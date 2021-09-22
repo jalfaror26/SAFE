@@ -1,0 +1,36 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="PROYECTO.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="UsuarioBD" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">SAFE</Value>
+    </Setting>
+    <Setting Name="Servidor" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">XE</Value>
+    </Setting>
+    <Setting Name="No_cia" Type="System.String" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="Usuario" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="RutaImagen" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="Cedula" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="Version" Type="System.String" Scope="User">
+      <Value Profile="(Default)">1.0.0.0</Value>
+    </Setting>
+    <Setting Name="RedondearPrecioVenta" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="ImprimeTiquetAlFacturar" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="Sistema_Administrativo_y_Facturación_Electronica_TipoCambioBCCR_wsindicadoreseconomicos" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">https://gee.bccr.fi.cr/Indicadores/Suscripciones/WS/wsindicadoreseconomicos.asmx</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
