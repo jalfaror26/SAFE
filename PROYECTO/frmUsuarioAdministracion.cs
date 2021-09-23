@@ -178,14 +178,6 @@ namespace PROYECTO
         {
             this.Close();
         }
-
-        private void btnCambiarCodigoBarras_Click(object sender, EventArgs e)
-        {
-            frmUsuarioCodigoBarrasCambio ofrmcambio = frmUsuarioCodigoBarrasCambio.getInstance(label1.Text);
-            ofrmcambio.MdiParent = this.MdiParent;
-            ofrmcambio.Show();
-            this.Enabled = false;
-        }
-
+        
     }
 }

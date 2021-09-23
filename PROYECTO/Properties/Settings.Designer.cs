@@ -79,18 +79,6 @@ namespace PROYECTO.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string Cedula {
-            get {
-                return ((string)(this["Cedula"]));
-            }
-            set {
-                this["Cedula"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("1.0.0.0")]
         public string Version {
             get {

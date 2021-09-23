@@ -67,26 +67,7 @@ namespace PROYECTO_DAO
 
             return !OracleDAO.getInstance().ErrorSQL;
         }
-
-        public Boolean CambiarCodigoBarras(String nomusuario, string CodigoBarras, string pNo_cia)
-        {
-            OracleCommand oCommand = new OracleCommand();
-
-            oCommand.CommandText = "PCKUSUARIO.paCambiarCodigoBarras";
-            oCommand.CommandType = CommandType.StoredProcedure;
-
-            oCommand.Parameters.Add("nomUsuario", OracleType.NVarChar);
-            oCommand.Parameters[0].Value = nomusuario;
-            oCommand.Parameters.Add("codigo", OracleType.NVarChar);
-            oCommand.Parameters[1].Value = CodigoBarras;
-            oCommand.Parameters.Add("pNo_cia", OracleType.NVarChar);
-            oCommand.Parameters[2].Value = pNo_cia;
-
-            OracleDAO.getInstance().EjecutarSQLStoreProcedure(oCommand);
-
-            return !OracleDAO.getInstance().ErrorSQL;
-        }
-
+        
         public Boolean Eliminar(String nomusuario, string pNo_cia)
         {
             OracleCommand oCommand = new OracleCommand();

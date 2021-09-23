@@ -67,18 +67,6 @@ namespace PROYECTO
                 {
                     if (oConexion.existeUsuario(usuario, clave, PROYECTO.Properties.Settings.Default.No_cia))
                     {
-                        oConexion.cerrarConexion();
-                        oConexion.abrirConexion();
-
-                        String sql = "select EMP_CEDULA from TBL_EMPLEADO em WHERE em.no_cia = '" + PROYECTO.Properties.Settings.Default.No_cia + "' and EMP_USUARIO = '" + usuario + "'";
-
-                        DataTable oTabla = oConexion.EjecutaSentencia(sql);
-
-                        if (oTabla.Rows.Count > 0)
-                            PROYECTO.Properties.Settings.Default.Cedula = oTabla.Rows[0].ItemArray[0].ToString();
-                        else
-                            PROYECTO.Properties.Settings.Default.Cedula = "";
-
                         ((System.Windows.Forms.MenuStrip)this.MdiParent.Controls["mnuPrincipal"]).Enabled = true;
                         PROYECTO.Properties.Settings.Default.Usuario = usuario;
                         //oCertificacionDAO = new CertificacionDAO();

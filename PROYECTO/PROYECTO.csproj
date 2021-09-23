@@ -155,12 +155,6 @@
     <Compile Include="frmUsuarioAdministracion.designer.cs">
       <DependentUpon>frmUsuarioAdministracion.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmUsuarioCodigoBarrasCambio.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmUsuarioCodigoBarrasCambio.designer.cs">
-      <DependentUpon>frmUsuarioCodigoBarrasCambio.cs</DependentUpon>
-    </Compile>
     <Compile Include="frmUsuarioContraseñaCambio.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -225,9 +219,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmUsuarioAdministracion.resx">
       <DependentUpon>frmUsuarioAdministracion.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmUsuarioCodigoBarrasCambio.resx">
-      <DependentUpon>frmUsuarioCodigoBarrasCambio.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmUsuarioContraseñaCambio.resx">
       <DependentUpon>frmUsuarioContraseñaCambio.cs</DependentUpon>

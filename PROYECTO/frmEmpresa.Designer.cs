@@ -53,7 +53,6 @@ namespace PROYECTO
             this.chkCortaTicket = new System.Windows.Forms.CheckBox();
             this.chkMultFacturasAbiertas = new System.Windows.Forms.CheckBox();
             this.chkRedondearPrecioFactura = new System.Windows.Forms.CheckBox();
-            this.chkArticulosCImagen = new System.Windows.Forms.CheckBox();
             this.chkImprimeAlFacturar = new System.Windows.Forms.CheckBox();
             this.cboProvincia = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -316,7 +315,7 @@ namespace PROYECTO
             // chkRedondearPrecioFactura
             // 
             this.chkRedondearPrecioFactura.AutoSize = true;
-            this.chkRedondearPrecioFactura.Location = new System.Drawing.Point(273, 457);
+            this.chkRedondearPrecioFactura.Location = new System.Drawing.Point(273, 428);
             this.chkRedondearPrecioFactura.Margin = new System.Windows.Forms.Padding(4);
             this.chkRedondearPrecioFactura.Name = "chkRedondearPrecioFactura";
             this.chkRedondearPrecioFactura.Size = new System.Drawing.Size(194, 21);
@@ -324,18 +323,6 @@ namespace PROYECTO
             this.chkRedondearPrecioFactura.TabStop = false;
             this.chkRedondearPrecioFactura.Text = "Redondear Precio Venta?";
             this.chkRedondearPrecioFactura.UseVisualStyleBackColor = true;
-            // 
-            // chkArticulosCImagen
-            // 
-            this.chkArticulosCImagen.AutoSize = true;
-            this.chkArticulosCImagen.Location = new System.Drawing.Point(273, 428);
-            this.chkArticulosCImagen.Margin = new System.Windows.Forms.Padding(4);
-            this.chkArticulosCImagen.Name = "chkArticulosCImagen";
-            this.chkArticulosCImagen.Size = new System.Drawing.Size(169, 21);
-            this.chkArticulosCImagen.TabIndex = 619;
-            this.chkArticulosCImagen.TabStop = false;
-            this.chkArticulosCImagen.Text = "Articulos con Imagen?";
-            this.chkArticulosCImagen.UseVisualStyleBackColor = true;
             // 
             // chkImprimeAlFacturar
             // 
@@ -444,7 +431,7 @@ namespace PROYECTO
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(812, 556);
+            this.ClientSize = new System.Drawing.Size(812, 508);
             this.Controls.Add(this.cboBarrio);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.cboDistrito);
@@ -454,7 +441,6 @@ namespace PROYECTO
             this.Controls.Add(this.cboProvincia);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.chkImprimeAlFacturar);
-            this.Controls.Add(this.chkArticulosCImagen);
             this.Controls.Add(this.chkRedondearPrecioFactura);
             this.Controls.Add(this.chkMultFacturasAbiertas);
             this.Controls.Add(this.chkCortaTicket);
@@ -514,7 +500,6 @@ namespace PROYECTO
         private System.Windows.Forms.CheckBox chkCortaTicket;
         private System.Windows.Forms.CheckBox chkMultFacturasAbiertas;
         private System.Windows.Forms.CheckBox chkRedondearPrecioFactura;
-        private System.Windows.Forms.CheckBox chkArticulosCImagen;
         private System.Windows.Forms.CheckBox chkImprimeAlFacturar;
         private System.Windows.Forms.ComboBox cboProvincia;
         private System.Windows.Forms.Label label1;

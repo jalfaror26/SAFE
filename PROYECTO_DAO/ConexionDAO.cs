@@ -46,7 +46,7 @@ namespace PROYECTO_DAO
             Boolean existe = false;
             try
             {
-                String sql = "Select usuario from TBUSUARIO u where u.no_Cia = '" + pNo_cia + "' and usuario = '" + usuario + "' and (contrasenna = '" + clave + "' or CODIGO_BARRAS = '" + clave + "')";
+                String sql = "Select usuario from TBUSUARIO u where u.no_Cia = '" + pNo_cia + "' and usuario = '" + usuario + "' and contrasenna = '" + clave + "'";
 
                 DataSet oDataSet = null;
                 oDataSet = OracleDAO.getInstance().EjecutarSQLDataSet(sql);
@@ -75,48 +75,7 @@ namespace PROYECTO_DAO
             catch { }
             return existe;
         }
-
-
-        public Boolean existeUsuarioAdministrador2(String codigoBarras, out String usuario, String pNo_cia)
-        {
-            Boolean existe = false;
-            usuario = "";
-            try
-            {
-                String sql = "Select usuario from TBUSUARIO u where u.no_Cia = '" + pNo_cia + "' and codigo_barras = '" + codigoBarras + "' and ROL='ADMINISTRADOR'";
-                DataSet oDataSet = null;
-                oDataSet = OracleDAO.getInstance().EjecutarSQLDataSet(sql);
-
-                if (oDataSet.Tables[0].Rows.Count > 0)
-                {
-                    usuario = oDataSet.Tables[0].Rows[0].ItemArray[0].ToString();
-                    existe = true;
-                }
-            }
-            catch { }
-            return existe;
-        }
-
-        public Boolean EsUsuarioAdministrador(String usuario, out String codigoBarras, String pNo_cia)
-        {
-            Boolean existe = false;
-            codigoBarras = "";
-            try
-            {
-                String sql = "Select codigo_barras from TBUSUARIO u where u.no_Cia = '" + pNo_cia + "' and usuario = '" + usuario + "' and ROL='ADMINISTRADOR'";
-                DataSet oDataSet = null;
-                oDataSet = OracleDAO.getInstance().EjecutarSQLDataSet(sql);
-
-                if (oDataSet.Tables[0].Rows.Count > 0)
-                {
-                    codigoBarras = oDataSet.Tables[0].Rows[0].ItemArray[0].ToString();
-                    existe = true;
-                }
-            }
-            catch { }
-            return existe;
-        }
-
+        
         public Boolean estadoConexion()
         {
             return OracleDAO.getInstance().EstadoConexion();

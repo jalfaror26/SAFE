@@ -8,6 +8,7 @@ using System.Windows.Forms;
 using PROYECTO_DAO;
 using System.Collections;
 using ENTIDADES;
+using System.Text.RegularExpressions;
 
 namespace PROYECTO
 {
@@ -115,6 +116,12 @@ namespace PROYECTO
                     MessageBox.Show("Digite la contraseña del usuario a crear", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
+                if (!Valida_Contrasenna(txtcontrasenna.Text.Trim()))
+                {
+                    MessageBox.Show("La contraseña no es valida, La contraseña debe tener 8 caracteres, incluyendo 1 letra mayúscula, 1 carácter especial, caracteres alfanuméricos", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    txtcontrasenna.Focus();
+                    return;
+                }
                 if (txtContrasenna2.Text.Trim().Equals(""))
                 {
                     MessageBox.Show("Digite la confirmacion de contraseña del usuario a crear", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -132,7 +139,7 @@ namespace PROYECTO
                 }
                 oConexion.cerrarConexion(); if (oConexion.abrirConexion())
                 {
-                    string rol = rboAdministrador.Checked ? "ADMINISTRADOR" : "VENDEDOR";
+                    string rol = rboAdministrador.Checked ? "ADMINISTRADOR" : "FUNCIONARIO";
                     ousuarioDAO = new UsuarioDAO();
                     ousuarioDAO.Agregar(txtNombreusuario.Text, txtcontrasenna.Text, rol, PROYECTO.Properties.Settings.Default.No_cia);
                     if (ousuarioDAO.Error())
@@ -190,7 +197,7 @@ namespace PROYECTO
             if (dgrUsuarios["rol", e.RowIndex].Value.ToString().Equals("ADMINISTRADOR"))
                 rboAdministrador.Checked = true;
             else
-                rboVendedor.Checked = true;
+                rboFuncionario.Checked = true;
             btnGuardar.Enabled = false;
             llenarGridPermisos();
             permisosPantallas();
@@ -320,6 +327,35 @@ namespace PROYECTO
 
         }
 
+        private void txtcontrasenna_Leave(object sender, EventArgs e)
+        {
+            if (Valida_Contrasenna(txtcontrasenna.Text.Trim()))
+                txtContrasenna2.Focus();
+            else
+            {
+                MessageBox.Show("La contraseña no es valida, La contraseña debe tener 8 caracteres, incluyendo 1 letra mayúscula, 1 carácter especial, caracteres alfanuméricos", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtcontrasenna.Focus();
+            }
+        }
+
+        private Boolean Valida_Contrasenna(String input)
+        {
+            var hasNumber = new Regex(@"[0-9]+");
+            var hasUpperChar = new Regex(@"[A-Z]+");
+            var hasMinimum8Chars = new Regex(@".{8,}");
+
+            return hasNumber.IsMatch(input) && hasUpperChar.IsMatch(input) && hasMinimum8Chars.IsMatch(input);
+        }
+
+        private void txtContrasenna2_Leave(object sender, EventArgs e)
+        {
+            if (!txtcontrasenna.Text.Trim().Equals(txtContrasenna2.Text.Trim()))
+            {
+                MessageBox.Show("La contraseña y la confirmacion deben ser iguales", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+        }
+
         private void dgrUsuarioCentros_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
 
@@ -340,6 +376,6 @@ namespace PROYECTO
                 permisosPantallas();
             }
         }
-               
+
     }
 }

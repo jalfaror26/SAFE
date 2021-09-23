@@ -55,7 +55,7 @@ namespace PROYECTO
             this.btnCambiarContrasenna.ImageIndex = 1;
             this.btnCambiarContrasenna.ImageList = this.imageList1;
             this.btnCambiarContrasenna.Location = new System.Drawing.Point(127, 230);
-            this.btnCambiarContrasenna.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnCambiarContrasenna.Margin = new System.Windows.Forms.Padding(4);
             this.btnCambiarContrasenna.Name = "btnCambiarContrasenna";
             this.btnCambiarContrasenna.Size = new System.Drawing.Size(232, 39);
             this.btnCambiarContrasenna.TabIndex = 3;
@@ -71,14 +71,14 @@ namespace PROYECTO
             this.label1.Location = new System.Drawing.Point(16, 64);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(286, 17);
+            this.label1.Size = new System.Drawing.Size(141, 17);
             this.label1.TabIndex = 544;
-            this.label1.Text = "Contraseña o Codigo de Barras Actual";
+            this.label1.Text = "Contraseña Actual";
             // 
             // txtContrasennaActual
             // 
             this.txtContrasennaActual.Location = new System.Drawing.Point(20, 84);
-            this.txtContrasennaActual.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtContrasennaActual.Margin = new System.Windows.Forms.Padding(4);
             this.txtContrasennaActual.Name = "txtContrasennaActual";
             this.txtContrasennaActual.PasswordChar = '*';
             this.txtContrasennaActual.Size = new System.Drawing.Size(337, 22);
@@ -98,11 +98,12 @@ namespace PROYECTO
             // txtNuevaContrasenna
             // 
             this.txtNuevaContrasenna.Location = new System.Drawing.Point(20, 137);
-            this.txtNuevaContrasenna.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtNuevaContrasenna.Margin = new System.Windows.Forms.Padding(4);
             this.txtNuevaContrasenna.Name = "txtNuevaContrasenna";
             this.txtNuevaContrasenna.PasswordChar = '*';
             this.txtNuevaContrasenna.Size = new System.Drawing.Size(337, 22);
             this.txtNuevaContrasenna.TabIndex = 1;
+            this.txtNuevaContrasenna.Leave += new System.EventHandler(this.txtNuevaContrasenna_Leave);
             // 
             // label3
             // 
@@ -118,11 +119,12 @@ namespace PROYECTO
             // txtConfirmNueva
             // 
             this.txtConfirmNueva.Location = new System.Drawing.Point(20, 192);
-            this.txtConfirmNueva.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtConfirmNueva.Margin = new System.Windows.Forms.Padding(4);
             this.txtConfirmNueva.Name = "txtConfirmNueva";
             this.txtConfirmNueva.PasswordChar = '*';
             this.txtConfirmNueva.Size = new System.Drawing.Size(337, 22);
             this.txtConfirmNueva.TabIndex = 2;
+            this.txtConfirmNueva.Leave += new System.EventHandler(this.txtConfirmNueva_Leave);
             // 
             // label4
             // 
@@ -152,7 +154,7 @@ namespace PROYECTO
             this.Controls.Add(this.txtContrasennaActual);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmUsuarioContraseñaCambio";

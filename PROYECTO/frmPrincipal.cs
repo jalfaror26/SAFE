@@ -394,7 +394,7 @@ namespace PROYECTO
                     if (oMensajes.Rows.Count > 0)
                     {
                         rutaArchivoBackup = oMensajes.Rows[0]["rutaArchivoBackup"].ToString();
-
+                        
                         if (File.Exists(rutaArchivoBackup))
                         {
                             System.Diagnostics.Process.Start(@"" + rutaArchivoBackup);

@@ -55,7 +55,6 @@ namespace PROYECTO
         {
             Boolean vFacturasAbiertas = false;
             Boolean vCortaTicket = false;
-            Boolean vArticulosCImagen = false;
 
             LlenaTipoID();
             LlenaProvincias();
@@ -68,13 +67,12 @@ namespace PROYECTO
                 oConexion.cerrarConexion();
                 if (oConexion.abrirConexion())
                 {
-                    DataTable oMensajes = oConexion.EjecutaSentencia("select ind_facturasabiertas, ind_cortaticket, IND_ARTICULOSCIMAGEN from TBL_EMPRESA_MC e where e.no_cia = '" + PROYECTO.Properties.Settings.Default.No_cia + "'");
+                    DataTable oMensajes = oConexion.EjecutaSentencia("select ind_facturasabiertas, ind_cortaticket from TBL_EMPRESA_MC e where e.no_cia = '" + PROYECTO.Properties.Settings.Default.No_cia + "'");
 
                     if (oMensajes.Rows.Count > 0)
                     {
                         vFacturasAbiertas = oMensajes.Rows[0]["ind_facturasabiertas"].ToString().Equals("S") ? true : false;
                         vCortaTicket = oMensajes.Rows[0]["ind_cortaticket"].ToString().Equals("S") ? true : false;
-                        vArticulosCImagen = oMensajes.Rows[0]["IND_ARTICULOSCIMAGEN"].ToString().Equals("S") ? true : false;
                     }
 
 
@@ -88,7 +86,6 @@ namespace PROYECTO
             chkCortaTicket.Checked = vCortaTicket;
             chkMultFacturasAbiertas.Checked = vFacturasAbiertas;
             chkRedondearPrecioFactura.Checked = PROYECTO.Properties.Settings.Default.RedondearPrecioVenta;
-            chkArticulosCImagen.Checked = vArticulosCImagen;
 
             chkImprimeAlFacturar.Checked = PROYECTO.Properties.Settings.Default.ImprimeTiquetAlFacturar;
             
@@ -419,9 +416,7 @@ namespace PROYECTO
                         oEmpresaDAO.ActualizaParametro(PROYECTO.Properties.Settings.Default.No_cia, "IND_FACTURASABIERTAS", chkMultFacturasAbiertas.Checked ? "S" : "N");
 
                         oEmpresaDAO.ActualizaParametro(PROYECTO.Properties.Settings.Default.No_cia, "IND_CORTATICKET", chkCortaTicket.Checked ? "S" : "N");
-
-                        oEmpresaDAO.ActualizaParametro(PROYECTO.Properties.Settings.Default.No_cia, "IND_ARTICULOSCIMAGEN", chkArticulosCImagen.Checked ? "S" : "N");
-
+                        
                         MessageBox.Show("Guardado Correctamente!!", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         Llenar_Grid();
                     }

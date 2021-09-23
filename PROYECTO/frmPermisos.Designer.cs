@@ -30,14 +30,14 @@ namespace PROYECTO
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPermisos));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.rboVendedor = new System.Windows.Forms.RadioButton();
+            this.rboFuncionario = new System.Windows.Forms.RadioButton();
             this.rboAdministrador = new System.Windows.Forms.RadioButton();
             this.btnAsignarPermisos = new System.Windows.Forms.Button();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
@@ -106,7 +106,7 @@ namespace PROYECTO
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.rboVendedor);
+            this.groupBox2.Controls.Add(this.rboFuncionario);
             this.groupBox2.Controls.Add(this.rboAdministrador);
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox2.Location = new System.Drawing.Point(8, 191);
@@ -118,17 +118,17 @@ namespace PROYECTO
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Rol";
             // 
-            // rboVendedor
+            // rboFuncionario
             // 
-            this.rboVendedor.AutoSize = true;
-            this.rboVendedor.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rboVendedor.Location = new System.Drawing.Point(175, 20);
-            this.rboVendedor.Margin = new System.Windows.Forms.Padding(4);
-            this.rboVendedor.Name = "rboVendedor";
-            this.rboVendedor.Size = new System.Drawing.Size(91, 21);
-            this.rboVendedor.TabIndex = 1;
-            this.rboVendedor.Text = "Vendedor";
-            this.rboVendedor.UseVisualStyleBackColor = true;
+            this.rboFuncionario.AutoSize = true;
+            this.rboFuncionario.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rboFuncionario.Location = new System.Drawing.Point(175, 20);
+            this.rboFuncionario.Margin = new System.Windows.Forms.Padding(4);
+            this.rboFuncionario.Name = "rboFuncionario";
+            this.rboFuncionario.Size = new System.Drawing.Size(103, 21);
+            this.rboFuncionario.TabIndex = 1;
+            this.rboFuncionario.Text = "Funcionario";
+            this.rboFuncionario.UseVisualStyleBackColor = true;
             // 
             // rboAdministrador
             // 
@@ -243,6 +243,7 @@ namespace PROYECTO
             this.txtContrasenna2.PasswordChar = '*';
             this.txtContrasenna2.Size = new System.Drawing.Size(308, 22);
             this.txtContrasenna2.TabIndex = 5;
+            this.txtContrasenna2.Leave += new System.EventHandler(this.txtContrasenna2_Leave);
             // 
             // label2
             // 
@@ -263,6 +264,7 @@ namespace PROYECTO
             this.txtcontrasenna.PasswordChar = '*';
             this.txtcontrasenna.Size = new System.Drawing.Size(308, 22);
             this.txtcontrasenna.TabIndex = 3;
+            this.txtcontrasenna.Leave += new System.EventHandler(this.txtcontrasenna_Leave);
             // 
             // label1
             // 
@@ -287,8 +289,8 @@ namespace PROYECTO
             // 
             this.dgrUsuarios.AllowUserToAddRows = false;
             this.dgrUsuarios.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.Gainsboro;
-            this.dgrUsuarios.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle9.BackColor = System.Drawing.Color.Gainsboro;
+            this.dgrUsuarios.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle9;
             this.dgrUsuarios.BackgroundColor = System.Drawing.Color.White;
             this.dgrUsuarios.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgrUsuarios.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -300,9 +302,9 @@ namespace PROYECTO
             this.dgrUsuarios.Name = "dgrUsuarios";
             this.dgrUsuarios.RowHeadersVisible = false;
             this.dgrUsuarios.RowHeadersWidth = 51;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.Teal;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.White;
-            this.dgrUsuarios.RowsDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.Color.Teal;
+            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.Color.White;
+            this.dgrUsuarios.RowsDefaultCellStyle = dataGridViewCellStyle10;
             this.dgrUsuarios.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgrUsuarios.Size = new System.Drawing.Size(347, 325);
             this.dgrUsuarios.TabIndex = 0;
@@ -376,8 +378,8 @@ namespace PROYECTO
             // 
             this.dgrPantallas.AllowUserToAddRows = false;
             this.dgrPantallas.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle7.BackColor = System.Drawing.Color.Gainsboro;
-            this.dgrPantallas.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle11.BackColor = System.Drawing.Color.Gainsboro;
+            this.dgrPantallas.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle11;
             this.dgrPantallas.BackgroundColor = System.Drawing.Color.White;
             this.dgrPantallas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgrPantallas.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -391,9 +393,9 @@ namespace PROYECTO
             this.dgrPantallas.Name = "dgrPantallas";
             this.dgrPantallas.RowHeadersVisible = false;
             this.dgrPantallas.RowHeadersWidth = 51;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.Teal;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.White;
-            this.dgrPantallas.RowsDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.Teal;
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.Color.White;
+            this.dgrPantallas.RowsDefaultCellStyle = dataGridViewCellStyle12;
             this.dgrPantallas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgrPantallas.Size = new System.Drawing.Size(685, 322);
             this.dgrPantallas.TabIndex = 0;
@@ -492,7 +494,7 @@ namespace PROYECTO
         private System.Windows.Forms.DataGridViewCheckBoxColumn acceso;
         private System.Windows.Forms.CheckBox chkTodasPantallas;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.RadioButton rboVendedor;
+        private System.Windows.Forms.RadioButton rboFuncionario;
         private System.Windows.Forms.RadioButton rboAdministrador;
         private System.Windows.Forms.DataGridViewTextBoxColumn usuario;
         private System.Windows.Forms.DataGridViewTextBoxColumn rol;

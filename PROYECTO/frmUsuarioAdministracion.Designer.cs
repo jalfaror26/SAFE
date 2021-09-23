@@ -38,7 +38,6 @@ namespace PROYECTO
             this.button1 = new System.Windows.Forms.Button();
             this.imageList2 = new System.Windows.Forms.ImageList(this.components);
             this.btnCambiarContraseña = new System.Windows.Forms.Button();
-            this.btnCambiarCodigoBarras = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.imgFoto)).BeginInit();
             this.SuspendLayout();
             // 
@@ -49,7 +48,7 @@ namespace PROYECTO
             this.imgFoto.Image = ((System.Drawing.Image)(resources.GetObject("imgFoto.Image")));
             this.imgFoto.InitialImage = ((System.Drawing.Image)(resources.GetObject("imgFoto.InitialImage")));
             this.imgFoto.Location = new System.Drawing.Point(17, 65);
-            this.imgFoto.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.imgFoto.Margin = new System.Windows.Forms.Padding(4);
             this.imgFoto.Name = "imgFoto";
             this.imgFoto.Size = new System.Drawing.Size(200, 192);
             this.imgFoto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -76,8 +75,8 @@ namespace PROYECTO
             this.btnGuardar.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnGuardar.ImageIndex = 2;
             this.btnGuardar.ImageList = this.imageList1;
-            this.btnGuardar.Location = new System.Drawing.Point(235, 58);
-            this.btnGuardar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnGuardar.Location = new System.Drawing.Point(235, 75);
+            this.btnGuardar.Margin = new System.Windows.Forms.Padding(4);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(224, 44);
             this.btnGuardar.TabIndex = 447;
@@ -109,8 +108,8 @@ namespace PROYECTO
             this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.button1.ImageIndex = 6;
             this.button1.ImageList = this.imageList1;
-            this.button1.Location = new System.Drawing.Point(235, 219);
-            this.button1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button1.Location = new System.Drawing.Point(235, 199);
+            this.button1.Margin = new System.Windows.Forms.Padding(4);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(224, 44);
             this.button1.TabIndex = 610;
@@ -135,8 +134,8 @@ namespace PROYECTO
             this.btnCambiarContraseña.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnCambiarContraseña.ImageIndex = 2;
             this.btnCambiarContraseña.ImageList = this.imageList2;
-            this.btnCambiarContraseña.Location = new System.Drawing.Point(235, 111);
-            this.btnCambiarContraseña.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnCambiarContraseña.Location = new System.Drawing.Point(235, 128);
+            this.btnCambiarContraseña.Margin = new System.Windows.Forms.Padding(4);
             this.btnCambiarContraseña.Name = "btnCambiarContraseña";
             this.btnCambiarContraseña.Size = new System.Drawing.Size(224, 44);
             this.btnCambiarContraseña.TabIndex = 611;
@@ -145,29 +144,11 @@ namespace PROYECTO
             this.btnCambiarContraseña.UseVisualStyleBackColor = true;
             this.btnCambiarContraseña.Click += new System.EventHandler(this.btnCambiarContraseña_Click);
             // 
-            // btnCambiarCodigoBarras
-            // 
-            this.btnCambiarCodigoBarras.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCambiarCodigoBarras.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCambiarCodigoBarras.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnCambiarCodigoBarras.ImageKey = "stock_id.png";
-            this.btnCambiarCodigoBarras.ImageList = this.imageList2;
-            this.btnCambiarCodigoBarras.Location = new System.Drawing.Point(235, 165);
-            this.btnCambiarCodigoBarras.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.btnCambiarCodigoBarras.Name = "btnCambiarCodigoBarras";
-            this.btnCambiarCodigoBarras.Size = new System.Drawing.Size(224, 44);
-            this.btnCambiarCodigoBarras.TabIndex = 612;
-            this.btnCambiarCodigoBarras.Text = " Cambiar Cod. Barras";
-            this.btnCambiarCodigoBarras.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnCambiarCodigoBarras.UseVisualStyleBackColor = true;
-            this.btnCambiarCodigoBarras.Click += new System.EventHandler(this.btnCambiarCodigoBarras_Click);
-            // 
             // frmUsuarioAdministracion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(477, 276);
-            this.Controls.Add(this.btnCambiarCodigoBarras);
             this.Controls.Add(this.btnCambiarContraseña);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.imgFoto);
@@ -175,7 +156,7 @@ namespace PROYECTO
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmUsuarioAdministracion";
@@ -198,6 +179,5 @@ namespace PROYECTO
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.ImageList imageList2;
         private System.Windows.Forms.Button btnCambiarContraseña;
-        private System.Windows.Forms.Button btnCambiarCodigoBarras;
     }
 }
