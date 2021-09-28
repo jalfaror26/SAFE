@@ -365,6 +365,7 @@ namespace PROYECTO
             this.groupBox1.TabIndex = 591;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "     Acceso Rápido     ";
+            this.groupBox1.Visible = false;
             // 
             // btnCerrarSesion
             // 
@@ -438,6 +439,7 @@ namespace PROYECTO
             this.btnReportes.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnReportes.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnReportes.UseVisualStyleBackColor = true;
+            this.btnReportes.Visible = false;
             this.btnReportes.Click += new System.EventHandler(this.lblReportes_Click);
             // 
             // btnInventarios
@@ -455,6 +457,7 @@ namespace PROYECTO
             this.btnInventarios.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnInventarios.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnInventarios.UseVisualStyleBackColor = true;
+            this.btnInventarios.Visible = false;
             this.btnInventarios.Click += new System.EventHandler(this.lblInventarios_Click);
             // 
             // btnGenerales
@@ -488,6 +491,7 @@ namespace PROYECTO
             this.btnFinancieros.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnFinancieros.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnFinancieros.UseVisualStyleBackColor = true;
+            this.btnFinancieros.Visible = false;
             this.btnFinancieros.Click += new System.EventHandler(this.lblFinancieros_Click);
             // 
             // label13
@@ -523,7 +527,6 @@ namespace PROYECTO
             this.pictureBox10.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox10.TabIndex = 590;
             this.pictureBox10.TabStop = false;
-            this.pictureBox10.Visible = false;
             // 
             // pRepFinancieros
             // 

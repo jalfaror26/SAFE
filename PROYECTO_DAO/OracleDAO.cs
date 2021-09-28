@@ -243,8 +243,15 @@ namespace PROYECTO_DAO
             try
             {
                 ErrorSQL = false;
-                oConexion.Close();
-                oConexion = null;
+
+                if (Instance.oConexion != null)
+                {
+                    if (Instance.EstadoConexion())
+                    {
+                        oConexion.Close();
+                        oConexion = null;
+                    }
+                }
                 //     Instance = null;
 
             }
@@ -276,17 +283,23 @@ namespace PROYECTO_DAO
             //switch del Estado de la Conexión con la Base de Datos
             switch (oConexion.State)
             {
-                case ConnectionState.Broken: mensaje = "Conexión Quebrada";
+                case ConnectionState.Broken:
+                    mensaje = "Conexión Quebrada";
                     break;
-                case ConnectionState.Closed: mensaje = "Conexión Cerrada";
+                case ConnectionState.Closed:
+                    mensaje = "Conexión Cerrada";
                     break;
-                case ConnectionState.Connecting: mensaje = "Conectandose";
+                case ConnectionState.Connecting:
+                    mensaje = "Conectandose";
                     break;
-                case ConnectionState.Executing: mensaje = "Ejecutando sentencia SQL";
+                case ConnectionState.Executing:
+                    mensaje = "Ejecutando sentencia SQL";
                     break;
-                case ConnectionState.Fetching: mensaje = "Extrayendo tuplas";
+                case ConnectionState.Fetching:
+                    mensaje = "Extrayendo tuplas";
                     break;
-                case ConnectionState.Open: mensaje = "Conexión Abierta";
+                case ConnectionState.Open:
+                    mensaje = "Conexión Abierta";
                     break;
             }
             //Cambiar la descripción del Estado de la Conexión con la base de datos
@@ -1009,7 +1022,7 @@ namespace PROYECTO_DAO
             //Retornar el resultado del SqlScalar
             return vResultadoScalar;
         }
-        
+
         /// <summary>
         /// Ejecutar sentencias SQL Escalares --> SUM, AVG, MIN, MAX, etc
         /// O consultas SQL que retornen un solo campo

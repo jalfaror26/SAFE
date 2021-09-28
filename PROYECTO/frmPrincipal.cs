@@ -70,6 +70,7 @@ namespace PROYECTO
                 try
                 {
                     oConexion = new ConexionDAO(PROYECTO.Properties.Settings.Default.UsuarioBD, PROYECTO.Properties.Settings.Default.Servidor, Conexion.getInstance().Clave);
+                    oConexion.cerrarConexion();
                     oConexion.abrirConexion();
                     string ruta = oPantallaPermisoDAO.RutaImagen(PROYECTO.Properties.Settings.Default.Usuario, PROYECTO.Properties.Settings.Default.No_cia);
                     try
