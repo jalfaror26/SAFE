@@ -40,7 +40,68 @@ namespace PROYECTO
             return instance;
         }
 
+        
         private void tobAgregar_Click(object sender, EventArgs e)
+        {
+            if (tipo == 0)
+            {
+                Agregar();
+            }
+            else
+            {
+                Modificar();
+            }
+        }
+
+        private void frmTiposCambio_Load(object sender, EventArgs e)
+        {
+            this.Text = this.Text + " - " + this.Name;
+            String BuscaTC = "";
+            try
+            {
+                oConexion.cerrarConexion();
+                if (oConexion.abrirConexion())
+                {
+                    DataTable oMensajes = oConexion.EjecutaSentencia("select BuscaTC from TBL_EMPRESA e where e.no_cia = '" + PROYECTO.Properties.Settings.Default.No_cia + "'");
+
+                    if (oMensajes.Rows.Count > 0)
+                        BuscaTC = oMensajes.Rows[0]["BuscaTC"].ToString();
+
+                    oConexion.cerrarConexion();
+                }
+
+                if (BuscaTC.Equals("Venta"))
+                    rboVenta.Checked = true;
+                else
+                    rboCompra.Checked = true;
+            }
+            catch
+            {
+            }
+
+            ((System.Windows.Forms.StatusStrip)this.MdiParent.Controls["stEstado"]).Items["stLinea4"].Visible = true;
+            ((System.Windows.Forms.StatusStrip)this.MdiParent.Controls["stEstado"]).Items["stActual"].Text = " Actual: Tipo de Cambio ";
+            if (tipo == 0)
+            {
+                tobSalir.Visible = false;
+
+                oConexion.cerrarConexion();
+                oConexion.abrirConexion();
+                lblFecha.Text = oTipoCambioDAO.fecha().ToShortDateString();
+                if (((System.Windows.Forms.MenuStrip)this.MdiParent.Controls["mnuPrincipal"]).Enabled)
+                    ((System.Windows.Forms.MenuStrip)this.MdiParent.Controls["mnuPrincipal"]).Enabled = false;
+
+                btnObtenerTipoCambio.PerformClick();
+            }
+            else
+            {
+                tobSalir.Visible = true;
+                Llenar();
+            }
+
+        }
+        
+        private void Agregar()
         {
             if (txtDolar.Text.Equals(""))
             {
@@ -94,60 +155,8 @@ namespace PROYECTO
                 MessageBox.Show("Ha ocurrido un error al conectarse a la base de datos.", "Error de oConexion", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
-        private void frmTiposCambio_Load(object sender, EventArgs e)
-        {
-            String BuscaTC = "";
-            try
-            {
-                oConexion.cerrarConexion();
-                if (oConexion.abrirConexion())
-                {
-                    DataTable oMensajes = oConexion.EjecutaSentencia("select BuscaTC from TBL_EMPRESA e where e.no_cia = '" + PROYECTO.Properties.Settings.Default.No_cia + "'");
 
-                    if (oMensajes.Rows.Count > 0)
-                        BuscaTC = oMensajes.Rows[0]["BuscaTC"].ToString();
-
-                    oConexion.cerrarConexion();
-                }
-
-                if (BuscaTC.Equals("Venta"))
-                    rboVenta.Checked = true;
-                else
-                    rboCompra.Checked = true;
-            }
-            catch
-            {
-            }
-
-            ((System.Windows.Forms.StatusStrip)this.MdiParent.Controls["stEstado"]).Items["stLinea4"].Visible = true;
-            ((System.Windows.Forms.StatusStrip)this.MdiParent.Controls["stEstado"]).Items["stActual"].Text = " Actual: Tipo de Cambio ";
-            if (tipo == 0)
-            {
-                oConexion.cerrarConexion();
-                oConexion.abrirConexion();
-                lblFecha.Text = oTipoCambioDAO.fecha().ToShortDateString();
-                if (((System.Windows.Forms.MenuStrip)this.MdiParent.Controls["mnuPrincipal"]).Enabled)
-                    ((System.Windows.Forms.MenuStrip)this.MdiParent.Controls["mnuPrincipal"]).Enabled = false;
-
-                btnObtenerTipoCambio.PerformClick();
-            }
-            else
-            {
-                Llenar();
-                Visibl();
-            }
-
-        }
-
-        private void Visibl()
-        {
-            tobAgregar.Visible = false;
-            tobModificar.Visible = true;
-            tssSeparador.Visible = true;
-            tobSalir.Visible = true;
-        }
-
-        private void tobModificar_Click(object sender, EventArgs e)
+        private void Modificar()
         {
             if (txtDolar.Text.Equals(""))
             {
@@ -410,5 +419,20 @@ namespace PROYECTO
             }
         }
 
+        private void frmForma_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.F1)
+            {
+                if (e.KeyCode == Keys.F1)
+                    Ayuda();
+            }
+        }
+
+        private void Ayuda()
+        {
+            frmAyuda oFrm = frmAyuda.getInstance("t2");
+            oFrm.MdiParent = this.MdiParent;
+            oFrm.Show();
+        }
     }
 }

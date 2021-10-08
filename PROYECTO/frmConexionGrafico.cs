@@ -680,18 +680,6 @@ namespace PROYECTO
             catch (Exception ex) { }
         }
 
-        private void cboCentros_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                if (empresasListo)
-                {
-                    TraerUsuarios();
-                }
-            }
-            catch (Exception ex) { }
-        }
-
         private void lblNombre9_Click(object sender, EventArgs e)
         {
             QuitarTodos();
@@ -700,6 +688,8 @@ namespace PROYECTO
             txtContrasena9.Focus();
             lblNombre9.TextAlign = ContentAlignment.MiddleCenter;
         }
+
+       
 
         private void lblNombre10_Click(object sender, EventArgs e)
         {
@@ -727,9 +717,22 @@ namespace PROYECTO
             txtContrasena12.Focus();
             lblNombre12.TextAlign = ContentAlignment.MiddleCenter;
         }
+        
+        private void frmForma_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.F1)
+            {
+                if (e.KeyCode == Keys.F1)
+                    Ayuda();
+            }
+        }
 
-
-
+        private void Ayuda()
+        {
+            frmAyuda oFrm = frmAyuda.getInstance("t1");
+            oFrm.MdiParent = this.MdiParent;
+            oFrm.Show();
+        }
 
     }
 }

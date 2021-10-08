@@ -56,14 +56,18 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Bodega.cs" />
+    <Compile Include="Cantidad_a_Letra.cs" />
     <Compile Include="Cliente.cs" />
+    <Compile Include="Gasto.cs" />
+    <Compile Include="ProformaDetalle.cs" />
+    <Compile Include="Proforma.cs" />
     <Compile Include="Proveedor.cs" />
     <Compile Include="Servicio.cs" />
     <Compile Include="Conexion.cs" />
     <Compile Include="Empresa.cs" />
     <Compile Include="Recordatorio.cs" />
     <Compile Include="TipoCambio.cs" />
+    <Compile Include="Usuario.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -110,64 +110,20 @@ namespace PROYECTO
 
         private void lblInventarios_Click(object sender, EventArgs e)
         {
-            return; 
-            
-            /*frmMenuInvFact oMenu = frmMenuInvFact.getInstance();
+            frmMenuFacturacion oMenu = frmMenuFacturacion.getInstance();
             oMenu.MdiParent = this.MdiParent;
             oMenu.Show();
 
-            this.Close();*/
+            this.Close();
         }
 
-        private void btnTraspasoAlmacenes_Click(object sender, EventArgs e)
-        {
-          /*  frmTraspasoEBodegas oFrm = frmTraspasoEBodegas.getInstance();
-            codigo = oFrm.Codigo;
-            descripcion = oFrm.Descripcion;
-            modulo = oFrm.Modulo;
-            if (!TienePermiso())
-            {
-                oFrm.MdiParent = this.MdiParent;
-                oFrm.Show();
-            }
-            else
-            {
-                MessageBox.Show("No tiene permiso para accesar esta pantalla, comuníquese con el administrador", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                oFrm = null;
-            }
-            this.Close();*/
-        }
-
-
-
-        private void btnMarcas_Click(object sender, EventArgs e)
-        {
-           /* frmLineaProducto oLinea = frmLineaProducto.getInstance();
-            codigo = oLinea.Codigo;
-            descripcion = oLinea.Descripcion;
-            modulo = oLinea.Modulo;
-            if (!TienePermiso())
-            {
-                oLinea.MdiParent = this.MdiParent;
-                oLinea.Show();
-            }
-            else
-            {
-                MessageBox.Show("No tiene permiso para accesar esta pantalla, comuníquese con el administrador", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                oLinea = null;
-            }
-            this.Close();*/
-        }
-        
         private void lblFinancieros_Click(object sender, EventArgs e)
         {
-            return; 
-            
-            /*frmMenuFinancieros oMenu = frmMenuFinancieros.getInstance();
+            frmMenuFinancieros oMenu = frmMenuFinancieros.getInstance();
             oMenu.MdiParent = this.MdiParent;
             oMenu.Show();
 
-            this.Close();*/
+            this.Close();
         }
 
         private void lblReportes_Click(object sender, EventArgs e)
@@ -213,21 +169,21 @@ namespace PROYECTO
 
         private void btnRepGtsPorCategoria_Click(object sender, EventArgs e)
         {
-           /* frmrptFactsRecibidasCategoria ofrm = frmrptFactsRecibidasCategoria.getInstance();
-            codigo = ofrm.Codigo;
-            descripcion = ofrm.Descripcion;
-            modulo = ofrm.Modulo;
-            if (!TienePermiso())
-            {
-                ofrm.MdiParent = this.MdiParent;
-                ofrm.Show();
-            }
-            else
-            {
-                ofrm = null;
-                MessageBox.Show("No tiene permiso para accesar esta pantalla, comuníquese con el administrador", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-            this.Close();*/
+            /* frmrptFactsRecibidasCategoria ofrm = frmrptFactsRecibidasCategoria.getInstance();
+             codigo = ofrm.Codigo;
+             descripcion = ofrm.Descripcion;
+             modulo = ofrm.Modulo;
+             if (!TienePermiso())
+             {
+                 ofrm.MdiParent = this.MdiParent;
+                 ofrm.Show();
+             }
+             else
+             {
+                 ofrm = null;
+                 MessageBox.Show("No tiene permiso para accesar esta pantalla, comuníquese con el administrador", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+             }
+             this.Close();*/
         }
 
         private void btnRepFacRecPag_Click(object sender, EventArgs e)
@@ -251,195 +207,195 @@ namespace PROYECTO
 
         private void btnRepPagReaCate_Click(object sender, EventArgs e)
         {
-         /*   frmrptPagosRealizadosCategoria orpt = frmrptPagosRealizadosCategoria.getInstance();
-            codigo = orpt.Codigo;
-            descripcion = orpt.Descripcion;
-            modulo = orpt.Modulo;
-            if (!TienePermiso())
-            {
-                orpt.MdiParent = this.MdiParent;
-                orpt.Show();
-            }
-            else
-            {
-                MessageBox.Show("No tiene permiso para accesar esta pantalla, comuníquese con el administrador", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                orpt = null;
-            }
-            this.Close();*/
+            /*   frmrptPagosRealizadosCategoria orpt = frmrptPagosRealizadosCategoria.getInstance();
+               codigo = orpt.Codigo;
+               descripcion = orpt.Descripcion;
+               modulo = orpt.Modulo;
+               if (!TienePermiso())
+               {
+                   orpt.MdiParent = this.MdiParent;
+                   orpt.Show();
+               }
+               else
+               {
+                   MessageBox.Show("No tiene permiso para accesar esta pantalla, comuníquese con el administrador", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                   orpt = null;
+               }
+               this.Close();*/
         }
 
         private void btnRepPagReaCuenta_Click(object sender, EventArgs e)
         {
-          /*  frmrptPagosCuenta orpt = frmrptPagosCuenta.getInstance();
-            codigo = orpt.Codigo;
-            descripcion = orpt.Descripcion;
-            modulo = orpt.Modulo;
-            if (!TienePermiso())
-            {
-                orpt.MdiParent = this.MdiParent;
-                orpt.Show();
-            }
-            else
-            {
-                MessageBox.Show("No tiene permiso para accesar esta pantalla, comuníquese con el administrador", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                orpt = null;
-            }
-            this.Close();*/
+            /*  frmrptPagosCuenta orpt = frmrptPagosCuenta.getInstance();
+              codigo = orpt.Codigo;
+              descripcion = orpt.Descripcion;
+              modulo = orpt.Modulo;
+              if (!TienePermiso())
+              {
+                  orpt.MdiParent = this.MdiParent;
+                  orpt.Show();
+              }
+              else
+              {
+                  MessageBox.Show("No tiene permiso para accesar esta pantalla, comuníquese con el administrador", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                  orpt = null;
+              }
+              this.Close();*/
         }
 
         private void btnRepSalPenPago_Click(object sender, EventArgs e)
         {
-           /* frmrptSaldosFacturasPago ofrm = frmrptSaldosFacturasPago.getInstance();
-            codigo = ofrm.Codigo;
-            descripcion = ofrm.Descripcion;
-            modulo = ofrm.Modulo;
-            if (!TienePermiso())
-            {
-                ofrm.MdiParent = this.MdiParent;
-                ofrm.Show();
-            }
-            else
-            {
-                MessageBox.Show("No tiene permiso para accesar esta pantalla, comuníquese con el administrador", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                ofrm = null;
-            }
-            this.Close();*/
+            /* frmrptSaldosFacturasPago ofrm = frmrptSaldosFacturasPago.getInstance();
+             codigo = ofrm.Codigo;
+             descripcion = ofrm.Descripcion;
+             modulo = ofrm.Modulo;
+             if (!TienePermiso())
+             {
+                 ofrm.MdiParent = this.MdiParent;
+                 ofrm.Show();
+             }
+             else
+             {
+                 MessageBox.Show("No tiene permiso para accesar esta pantalla, comuníquese con el administrador", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                 ofrm = null;
+             }
+             this.Close();*/
         }
 
         private void btnRepRecDinero_Click(object sender, EventArgs e)
         {
-           /* frmrptRecibosPorCliente orpt = frmrptRecibosPorCliente.getInstance();
-            codigo = orpt.Codigo;
-            descripcion = orpt.Descripcion;
-            modulo = orpt.Modulo;
-            if (!TienePermiso())
-            {
-                orpt.MdiParent = this.MdiParent;
-                orpt.Show();
-            }
-            else
-            {
-                MessageBox.Show("No tiene permiso para accesar esta pantalla, comuníquese con el administrador", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                orpt = null;
-            }
-            this.Close();*/
+            /* frmrptRecibosPorCliente orpt = frmrptRecibosPorCliente.getInstance();
+             codigo = orpt.Codigo;
+             descripcion = orpt.Descripcion;
+             modulo = orpt.Modulo;
+             if (!TienePermiso())
+             {
+                 orpt.MdiParent = this.MdiParent;
+                 orpt.Show();
+             }
+             else
+             {
+                 MessageBox.Show("No tiene permiso para accesar esta pantalla, comuníquese con el administrador", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                 orpt = null;
+             }
+             this.Close();*/
         }
 
         private void btnRepTransacc_Click(object sender, EventArgs e)
         {
-           /* frmrptReciboTransacciones orpt = frmrptReciboTransacciones.getInstance();
-            codigo = orpt.Codigo;
-            descripcion = orpt.Descripcion;
-            modulo = orpt.Modulo;
-            if (!TienePermiso())
-            {
-                orpt.MdiParent = this.MdiParent;
-                orpt.Show();
-            }
-            else
-            {
-                MessageBox.Show("No tiene permiso para accesar esta pantalla, comuníquese con el administrador", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                orpt = null;
-            }
-            this.Close();*/
+            /* frmrptReciboTransacciones orpt = frmrptReciboTransacciones.getInstance();
+             codigo = orpt.Codigo;
+             descripcion = orpt.Descripcion;
+             modulo = orpt.Modulo;
+             if (!TienePermiso())
+             {
+                 orpt.MdiParent = this.MdiParent;
+                 orpt.Show();
+             }
+             else
+             {
+                 MessageBox.Show("No tiene permiso para accesar esta pantalla, comuníquese con el administrador", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                 orpt = null;
+             }
+             this.Close();*/
         }
 
 
         private void btnRepHisPrecios_Click(object sender, EventArgs e)
         {
-          /*  frmrptHisPrecios orpt = frmrptHisPrecios.getInstance();
-            codigo = orpt.Codigo;
-            descripcion = orpt.Descripcion;
-            modulo = orpt.Modulo;
-            if (!TienePermiso())
-            {
-                orpt.MdiParent = this.MdiParent;
-                orpt.Show();
-            }
-            else
-            {
-                MessageBox.Show("No tiene permiso para accesar esta pantalla, comuníquese con el administrador", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                orpt = null;
-            }
-            this.Close();*/
+            /*  frmrptHisPrecios orpt = frmrptHisPrecios.getInstance();
+              codigo = orpt.Codigo;
+              descripcion = orpt.Descripcion;
+              modulo = orpt.Modulo;
+              if (!TienePermiso())
+              {
+                  orpt.MdiParent = this.MdiParent;
+                  orpt.Show();
+              }
+              else
+              {
+                  MessageBox.Show("No tiene permiso para accesar esta pantalla, comuníquese con el administrador", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                  orpt = null;
+              }
+              this.Close();*/
         }
 
         private void btnRepFacMoneda_Click(object sender, EventArgs e)
         {
-          /*  frmrptFacturasMoneda orpt = frmrptFacturasMoneda.getInstance();
-            codigo = orpt.Codigo;
-            descripcion = orpt.Descripcion;
-            modulo = orpt.Modulo;
-            if (!TienePermiso())
-            {
-                orpt.MdiParent = this.MdiParent;
-                orpt.Show();
-            }
-            else
-            {
-                MessageBox.Show("No tiene permiso para accesar esta pantalla, comuníquese con el administrador", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                orpt = null;
-            }
-            this.Close();*/
+            /*  frmrptFacturasMoneda orpt = frmrptFacturasMoneda.getInstance();
+              codigo = orpt.Codigo;
+              descripcion = orpt.Descripcion;
+              modulo = orpt.Modulo;
+              if (!TienePermiso())
+              {
+                  orpt.MdiParent = this.MdiParent;
+                  orpt.Show();
+              }
+              else
+              {
+                  MessageBox.Show("No tiene permiso para accesar esta pantalla, comuníquese con el administrador", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                  orpt = null;
+              }
+              this.Close();*/
         }
 
         private void btnRepFacPeriodo_Click(object sender, EventArgs e)
         {
-         /*   frmrptFacturacionPorPeriodo orpt = frmrptFacturacionPorPeriodo.getInstance();
-            codigo = orpt.Codigo;
-            descripcion = orpt.Descripcion;
-            modulo = orpt.Modulo;
-            if (!TienePermiso())
-            {
-                orpt.MdiParent = this.MdiParent;
-                orpt.Show();
-            }
-            else
-            {
-                MessageBox.Show("No tiene permiso para accesar esta pantalla, comuníquese con el administrador", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                orpt = null;
-            }
-            this.Close();*/
+            /*   frmrptFacturacionPorPeriodo orpt = frmrptFacturacionPorPeriodo.getInstance();
+               codigo = orpt.Codigo;
+               descripcion = orpt.Descripcion;
+               modulo = orpt.Modulo;
+               if (!TienePermiso())
+               {
+                   orpt.MdiParent = this.MdiParent;
+                   orpt.Show();
+               }
+               else
+               {
+                   MessageBox.Show("No tiene permiso para accesar esta pantalla, comuníquese con el administrador", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                   orpt = null;
+               }
+               this.Close();*/
         }
 
         private void btnRepFacCliente_Click(object sender, EventArgs e)
         {
-           /* frmrptHisFacturacionCliente orpt = frmrptHisFacturacionCliente.getInstance();
-            codigo = orpt.Codigo;
-            descripcion = orpt.Descripcion;
-            modulo = orpt.Modulo;
-            if (!TienePermiso())
-            {
-                orpt.MdiParent = this.MdiParent;
-                orpt.Show();
-            }
-            else
-            {
-                MessageBox.Show("No tiene permiso para accesar esta pantalla, comuníquese con el administrador", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                orpt = null;
-            }
-            this.Close();*/
+            /* frmrptHisFacturacionCliente orpt = frmrptHisFacturacionCliente.getInstance();
+             codigo = orpt.Codigo;
+             descripcion = orpt.Descripcion;
+             modulo = orpt.Modulo;
+             if (!TienePermiso())
+             {
+                 orpt.MdiParent = this.MdiParent;
+                 orpt.Show();
+             }
+             else
+             {
+                 MessageBox.Show("No tiene permiso para accesar esta pantalla, comuníquese con el administrador", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                 orpt = null;
+             }
+             this.Close();*/
         }
 
         private void btnRepSalFact_Click(object sender, EventArgs e)
         {
-           /* frmrptEstadoCuentasClientes orpt = frmrptEstadoCuentasClientes.getInstance();
-            codigo = orpt.Codigo;
-            descripcion = orpt.Descripcion;
-            modulo = orpt.Modulo;
-            if (!TienePermiso())
-            {
-                orpt.MdiParent = this.MdiParent;
-                orpt.Show();
-            }
-            else
-            {
-                MessageBox.Show("No tiene permiso para accesar esta pantalla, comuníquese con el administrador", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                orpt = null;
-            }
-            this.Close();*/
+            /* frmrptEstadoCuentasClientes orpt = frmrptEstadoCuentasClientes.getInstance();
+             codigo = orpt.Codigo;
+             descripcion = orpt.Descripcion;
+             modulo = orpt.Modulo;
+             if (!TienePermiso())
+             {
+                 orpt.MdiParent = this.MdiParent;
+                 orpt.Show();
+             }
+             else
+             {
+                 MessageBox.Show("No tiene permiso para accesar esta pantalla, comuníquese con el administrador", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                 orpt = null;
+             }
+             this.Close();*/
         }
-               
+
 
         private void btnFacturacionXmesAno_Click(object sender, EventArgs e)
         {
@@ -462,23 +418,23 @@ namespace PROYECTO
 
         private void btnVentas_Click(object sender, EventArgs e)
         {
-          /*  frmrptVentas oFrmPantalla = frmrptVentas.getInstance();
-            codigo = oFrmPantalla.Codigo;
-            descripcion = oFrmPantalla.Descripcion;
-            modulo = oFrmPantalla.Modulo;
-            if (!TienePermiso())
-            {
-                oFrmPantalla.MdiParent = this.MdiParent;
-                oFrmPantalla.Show();
-            }
-            else
-            {
-                MessageBox.Show("No tiene permiso para accesar esta pantalla, comuníquese con el administrador", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                oFrmPantalla = null;
-            }
-            this.Close();*/
+            /*  frmrptVentas oFrmPantalla = frmrptVentas.getInstance();
+              codigo = oFrmPantalla.Codigo;
+              descripcion = oFrmPantalla.Descripcion;
+              modulo = oFrmPantalla.Modulo;
+              if (!TienePermiso())
+              {
+                  oFrmPantalla.MdiParent = this.MdiParent;
+                  oFrmPantalla.Show();
+              }
+              else
+              {
+                  MessageBox.Show("No tiene permiso para accesar esta pantalla, comuníquese con el administrador", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                  oFrmPantalla = null;
+              }
+              this.Close();*/
         }
-        
+
         private void btnrptsGenerales_Click(object sender, EventArgs e)
         {
             QuitarTodos();
@@ -487,125 +443,133 @@ namespace PROYECTO
 
         private void btnRepClientes_Click(object sender, EventArgs e)
         {
-           /* frmrptClientes oFrm = frmrptClientes.getInstance();
-            codigo = oFrm.Codigo;
-            descripcion = oFrm.Descripcion;
-            modulo = oFrm.Modulo;
-            if (!TienePermiso())
-            {
-                oFrm.MdiParent = this.MdiParent;
-                oFrm.Show();
-            }
-            else
-            {
-                MessageBox.Show("No tiene permiso para accesar esta pantalla, comuníquese con el administrador", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                oFrm = null;
-            }
-            this.Close();*/
+            /* frmrptClientes oFrm = frmrptClientes.getInstance();
+             codigo = oFrm.Codigo;
+             descripcion = oFrm.Descripcion;
+             modulo = oFrm.Modulo;
+             if (!TienePermiso())
+             {
+                 oFrm.MdiParent = this.MdiParent;
+                 oFrm.Show();
+             }
+             else
+             {
+                 MessageBox.Show("No tiene permiso para accesar esta pantalla, comuníquese con el administrador", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                 oFrm = null;
+             }
+             this.Close();*/
         }
 
         private void btnRepProveedores_Click(object sender, EventArgs e)
         {
-           /* frmrptProveedores oFrm = frmrptProveedores.getInstance();
-            codigo = oFrm.Codigo;
-            descripcion = oFrm.Descripcion;
-            modulo = oFrm.Modulo;
-            if (!TienePermiso())
-            {
-                oFrm.MdiParent = this.MdiParent;
-                oFrm.Show();
-            }
-            else
-            {
-                MessageBox.Show("No tiene permiso para accesar esta pantalla, comuníquese con el administrador", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                oFrm = null;
-            }
-            this.Close();*/
+            /* frmrptProveedores oFrm = frmrptProveedores.getInstance();
+             codigo = oFrm.Codigo;
+             descripcion = oFrm.Descripcion;
+             modulo = oFrm.Modulo;
+             if (!TienePermiso())
+             {
+                 oFrm.MdiParent = this.MdiParent;
+                 oFrm.Show();
+             }
+             else
+             {
+                 MessageBox.Show("No tiene permiso para accesar esta pantalla, comuníquese con el administrador", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                 oFrm = null;
+             }
+             this.Close();*/
         }
-        
+
         private void btnCajas_Click(object sender, EventArgs e)
         {
-          /*  frmrptCajas orpt = frmrptCajas.getInstance();
-            codigo = orpt.Codigo;
-            descripcion = orpt.Descripcion;
-            modulo = orpt.Modulo;
-            if (!TienePermiso())
-            {
-                orpt.MdiParent = this.MdiParent;
-                orpt.Show();
-            }
-            else
-            {
-                MessageBox.Show("No tiene permiso para accesar esta pantalla, comuníquese con el administrador", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                orpt = null;
-            }
-            this.Close();*/
+            /*  frmrptCajas orpt = frmrptCajas.getInstance();
+              codigo = orpt.Codigo;
+              descripcion = orpt.Descripcion;
+              modulo = orpt.Modulo;
+              if (!TienePermiso())
+              {
+                  orpt.MdiParent = this.MdiParent;
+                  orpt.Show();
+              }
+              else
+              {
+                  MessageBox.Show("No tiene permiso para accesar esta pantalla, comuníquese con el administrador", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                  orpt = null;
+              }
+              this.Close();*/
         }
 
         private void btnAdministracionUsuario_Click(object sender, EventArgs e)
         {
 
         }
-        
+
         private void btnRepFacImpuestoVentas_Click(object sender, EventArgs e)
         {
-          /*  frmrptImpuestoVentas orpt = frmrptImpuestoVentas.getInstance();
-            codigo = orpt.Codigo;
-            descripcion = orpt.Descripcion;
-            modulo = orpt.Modulo;
-            if (!TienePermiso())
-            {
-                orpt.MdiParent = this.MdiParent;
-                orpt.Show();
-            }
-            else
-            {
-                MessageBox.Show("No tiene permiso para accesar esta pantalla, comuníquese con el administrador", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                orpt = null;
-            }
-            this.Close();*/
+            /*  frmrptImpuestoVentas orpt = frmrptImpuestoVentas.getInstance();
+              codigo = orpt.Codigo;
+              descripcion = orpt.Descripcion;
+              modulo = orpt.Modulo;
+              if (!TienePermiso())
+              {
+                  orpt.MdiParent = this.MdiParent;
+                  orpt.Show();
+              }
+              else
+              {
+                  MessageBox.Show("No tiene permiso para accesar esta pantalla, comuníquese con el administrador", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                  orpt = null;
+              }
+              this.Close();*/
         }
-                    
+
         private void btnProdPendientesCobro_Click(object sender, EventArgs e)
         {
-          /*  frmrptProductosPendienteCobro orpt = frmrptProductosPendienteCobro.getInstance();
-            codigo = orpt.Codigo;
-            descripcion = orpt.Descripcion;
-            modulo = orpt.Modulo;
-            if (!TienePermiso())
-            {
-                orpt.MdiParent = this.MdiParent;
-                orpt.Show();
-            }
-            else
-            {
-                MessageBox.Show("No tiene permiso para accesar esta pantalla, comuníquese con el administrador", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                orpt = null;
-            }
-            this.Close();*/
+            /*  frmrptProductosPendienteCobro orpt = frmrptProductosPendienteCobro.getInstance();
+              codigo = orpt.Codigo;
+              descripcion = orpt.Descripcion;
+              modulo = orpt.Modulo;
+              if (!TienePermiso())
+              {
+                  orpt.MdiParent = this.MdiParent;
+                  orpt.Show();
+              }
+              else
+              {
+                  MessageBox.Show("No tiene permiso para accesar esta pantalla, comuníquese con el administrador", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                  orpt = null;
+              }
+              this.Close();*/
         }
-        
+
         private void btnFacturacion_Click(object sender, EventArgs e)
         {
             return;
 
-           /* frmFacturacionRapida oFactura = frmFacturacionRapida.getInstance();
-            codigo = oFactura.Codigo;
-            descripcion = oFactura.Descripcion;
-            modulo = oFactura.Modulo;
-            if (!TienePermiso())
-            {
-                oFactura.MdiParent = this.MdiParent;
-                oFactura.Show();
-            }
-            else
-            {
-                MessageBox.Show("No tiene permiso para accesar esta pantalla, comuníquese con el administrador", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                oFactura = null;
-            }
-            this.Close();*/
+            /* frmFacturacionRapida oFactura = frmFacturacionRapida.getInstance();
+             codigo = oFactura.Codigo;
+             descripcion = oFactura.Descripcion;
+             modulo = oFactura.Modulo;
+             if (!TienePermiso())
+             {
+                 oFactura.MdiParent = this.MdiParent;
+                 oFactura.Show();
+             }
+             else
+             {
+                 MessageBox.Show("No tiene permiso para accesar esta pantalla, comuníquese con el administrador", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                 oFactura = null;
+             }
+             this.Close();*/
         }
 
+        private void btnAyuda_Click(object sender, EventArgs e)
+        {
+            frmAyuda oFrm = frmAyuda.getInstance();
+            oFrm.MdiParent = this.MdiParent;
+            oFrm.Show();
+
+            //this.Close();
+        }
 
         private void btnCerrarSesion_Click(object sender, EventArgs e)
         {
@@ -614,9 +578,11 @@ namespace PROYECTO
 
         private void frmMenu_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.F1)
+            if (e.KeyCode == Keys.F1 || e.KeyCode == Keys.F2)
             {
                 if (e.KeyCode == Keys.F1)
+                    btnAyuda.PerformClick();
+                if (e.KeyCode == Keys.F2)
                     btnCerrarSesion.PerformClick();
             }
         }

@@ -736,6 +736,7 @@ namespace PROYECTO
             this.TopMost = true;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmConexionGrafico3_FormClosing);
             this.Load += new System.EventHandler(this.frmConexionGrafico3_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmForma_KeyDown);
             this.panel.ResumeLayout(false);
             this.panel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.p10)).EndInit();

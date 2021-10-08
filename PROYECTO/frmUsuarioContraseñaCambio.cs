@@ -8,6 +8,7 @@ using System.Windows.Forms;
 using PROYECTO_DAO;
 using ENTIDADES;
 using System.Text.RegularExpressions;
+using Entidades;
 
 namespace PROYECTO
 {
@@ -17,6 +18,7 @@ namespace PROYECTO
         private ConexionDAO oConexion = new ConexionDAO(PROYECTO.Properties.Settings.Default.UsuarioBD, PROYECTO.Properties.Settings.Default.Servidor, Conexion.getInstance().Clave);
 
         private string usuario = "";
+        private Usuario oUsuario = null;
 
         public frmUsuarioContraseñaCambio(string pusuario)
         {
@@ -56,6 +58,7 @@ namespace PROYECTO
                 {
                     if (oConexion.existeUsuario(usuario, txtContrasennaActual.Text, PROYECTO.Properties.Settings.Default.No_cia))
                     {
+
                         UsuarioDAO ousuarioDAO = new UsuarioDAO();
 
                         oConexion.cerrarConexion();
@@ -81,7 +84,12 @@ namespace PROYECTO
                             return;
                         }
 
-                        ousuarioDAO.CambiarContraseña(usuario, txtConfirmNueva.Text, PROYECTO.Properties.Settings.Default.No_cia);
+                        oUsuario = new Usuario();
+
+                        oUsuario.CodUsuario = usuario;
+                        oUsuario.Contrasenna = txtConfirmNueva.Text;
+
+                        ousuarioDAO.CambiarContraseña(oUsuario, PROYECTO.Properties.Settings.Default.No_cia);
                         if (ousuarioDAO.Error())
                         {
                             MessageBox.Show("Ocurrió un error al guardar los datos del usuario." + ousuarioDAO.DescError(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -106,6 +114,7 @@ namespace PROYECTO
 
         private void frmUsuarioContraseñaCambio_Load(object sender, EventArgs e)
         {
+            this.Text = this.Text + " - " + this.Name;
             label4.Text = usuario;
         }
 

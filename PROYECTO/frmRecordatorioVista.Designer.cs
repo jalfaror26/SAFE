@@ -36,7 +36,6 @@ namespace PROYECTO
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.lblRecordatorios = new System.Windows.Forms.Label();
             this.grbBusqueda = new System.Windows.Forms.GroupBox();
-            this.cboUsuario = new System.Windows.Forms.ComboBox();
             this.btnBuscar = new System.Windows.Forms.Button();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.rboPM = new System.Windows.Forms.RadioButton();
@@ -47,7 +46,6 @@ namespace PROYECTO
             this.dtpFecha = new System.Windows.Forms.DateTimePicker();
             this.chkHora = new System.Windows.Forms.CheckBox();
             this.chkFecha = new System.Windows.Forms.CheckBox();
-            this.chkUsuario = new System.Windows.Forms.CheckBox();
             this.btnAbrir = new System.Windows.Forms.Button();
             this.btnCerrar = new System.Windows.Forms.Button();
             this.timer2 = new System.Windows.Forms.Timer(this.components);
@@ -61,7 +59,7 @@ namespace PROYECTO
             this.trvLista.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.trvLista.FullRowSelect = true;
             this.trvLista.Location = new System.Drawing.Point(8, 9);
-            this.trvLista.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.trvLista.Margin = new System.Windows.Forms.Padding(4);
             this.trvLista.Name = "trvLista";
             this.trvLista.Size = new System.Drawing.Size(364, 552);
             this.trvLista.TabIndex = 0;
@@ -103,7 +101,6 @@ namespace PROYECTO
             // 
             // grbBusqueda
             // 
-            this.grbBusqueda.Controls.Add(this.cboUsuario);
             this.grbBusqueda.Controls.Add(this.btnBuscar);
             this.grbBusqueda.Controls.Add(this.rboPM);
             this.grbBusqueda.Controls.Add(this.rboAM);
@@ -113,35 +110,22 @@ namespace PROYECTO
             this.grbBusqueda.Controls.Add(this.dtpFecha);
             this.grbBusqueda.Controls.Add(this.chkHora);
             this.grbBusqueda.Controls.Add(this.chkFecha);
-            this.grbBusqueda.Controls.Add(this.chkUsuario);
             this.grbBusqueda.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grbBusqueda.Location = new System.Drawing.Point(536, 15);
-            this.grbBusqueda.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.grbBusqueda.Margin = new System.Windows.Forms.Padding(4);
             this.grbBusqueda.Name = "grbBusqueda";
-            this.grbBusqueda.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.grbBusqueda.Padding = new System.Windows.Forms.Padding(4);
             this.grbBusqueda.Size = new System.Drawing.Size(496, 25);
             this.grbBusqueda.TabIndex = 6;
             this.grbBusqueda.TabStop = false;
             this.grbBusqueda.Text = "Busqueda";
             // 
-            // cboUsuario
-            // 
-            this.cboUsuario.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboUsuario.Enabled = false;
-            this.cboUsuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cboUsuario.FormattingEnabled = true;
-            this.cboUsuario.Location = new System.Drawing.Point(131, 25);
-            this.cboUsuario.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.cboUsuario.Name = "cboUsuario";
-            this.cboUsuario.Size = new System.Drawing.Size(337, 25);
-            this.cboUsuario.TabIndex = 169;
-            // 
             // btnBuscar
             // 
             this.btnBuscar.ImageKey = "file_find.ico";
             this.btnBuscar.ImageList = this.imageList1;
-            this.btnBuscar.Location = new System.Drawing.Point(308, 154);
-            this.btnBuscar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnBuscar.Location = new System.Drawing.Point(308, 134);
+            this.btnBuscar.Margin = new System.Windows.Forms.Padding(4);
             this.btnBuscar.Name = "btnBuscar";
             this.btnBuscar.Size = new System.Drawing.Size(161, 37);
             this.btnBuscar.TabIndex = 9;
@@ -163,8 +147,8 @@ namespace PROYECTO
             this.rboPM.AutoSize = true;
             this.rboPM.Enabled = false;
             this.rboPM.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rboPM.Location = new System.Drawing.Point(280, 92);
-            this.rboPM.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.rboPM.Location = new System.Drawing.Point(280, 60);
+            this.rboPM.Margin = new System.Windows.Forms.Padding(4);
             this.rboPM.Name = "rboPM";
             this.rboPM.Size = new System.Drawing.Size(50, 21);
             this.rboPM.TabIndex = 168;
@@ -177,8 +161,8 @@ namespace PROYECTO
             this.rboAM.Checked = true;
             this.rboAM.Enabled = false;
             this.rboAM.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rboAM.Location = new System.Drawing.Point(217, 92);
-            this.rboAM.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.rboAM.Location = new System.Drawing.Point(217, 60);
+            this.rboAM.Margin = new System.Windows.Forms.Padding(4);
             this.rboAM.Name = "rboAM";
             this.rboAM.Size = new System.Drawing.Size(50, 21);
             this.rboAM.TabIndex = 167;
@@ -190,8 +174,8 @@ namespace PROYECTO
             // 
             this.txtHora.Enabled = false;
             this.txtHora.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtHora.Location = new System.Drawing.Point(131, 90);
-            this.txtHora.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtHora.Location = new System.Drawing.Point(131, 58);
+            this.txtHora.Margin = new System.Windows.Forms.Padding(4);
             this.txtHora.Mask = "00 : 00";
             this.txtHora.Name = "txtHora";
             this.txtHora.PromptChar = ' ';
@@ -206,8 +190,8 @@ namespace PROYECTO
             // 
             this.chkOtro.AutoSize = true;
             this.chkOtro.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkOtro.Location = new System.Drawing.Point(23, 124);
-            this.chkOtro.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.chkOtro.Location = new System.Drawing.Point(23, 92);
+            this.chkOtro.Margin = new System.Windows.Forms.Padding(4);
             this.chkOtro.Name = "chkOtro";
             this.chkOtro.Size = new System.Drawing.Size(81, 21);
             this.chkOtro.TabIndex = 17;
@@ -219,8 +203,8 @@ namespace PROYECTO
             // 
             this.txtOtro.Enabled = false;
             this.txtOtro.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtOtro.Location = new System.Drawing.Point(131, 122);
-            this.txtOtro.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtOtro.Location = new System.Drawing.Point(131, 90);
+            this.txtOtro.Margin = new System.Windows.Forms.Padding(4);
             this.txtOtro.Name = "txtOtro";
             this.txtOtro.Size = new System.Drawing.Size(337, 23);
             this.txtOtro.TabIndex = 16;
@@ -229,8 +213,8 @@ namespace PROYECTO
             // 
             this.dtpFecha.Enabled = false;
             this.dtpFecha.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtpFecha.Location = new System.Drawing.Point(131, 58);
-            this.dtpFecha.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dtpFecha.Location = new System.Drawing.Point(131, 26);
+            this.dtpFecha.Margin = new System.Windows.Forms.Padding(4);
             this.dtpFecha.Name = "dtpFecha";
             this.dtpFecha.Size = new System.Drawing.Size(337, 23);
             this.dtpFecha.TabIndex = 15;
@@ -239,8 +223,8 @@ namespace PROYECTO
             // 
             this.chkHora.AutoSize = true;
             this.chkHora.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkHora.Location = new System.Drawing.Point(23, 92);
-            this.chkHora.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.chkHora.Location = new System.Drawing.Point(23, 60);
+            this.chkHora.Margin = new System.Windows.Forms.Padding(4);
             this.chkHora.Name = "chkHora";
             this.chkHora.Size = new System.Drawing.Size(65, 21);
             this.chkHora.TabIndex = 14;
@@ -252,8 +236,8 @@ namespace PROYECTO
             // 
             this.chkFecha.AutoSize = true;
             this.chkFecha.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkFecha.Location = new System.Drawing.Point(23, 62);
-            this.chkFecha.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.chkFecha.Location = new System.Drawing.Point(23, 30);
+            this.chkFecha.Margin = new System.Windows.Forms.Padding(4);
             this.chkFecha.Name = "chkFecha";
             this.chkFecha.Size = new System.Drawing.Size(74, 21);
             this.chkFecha.TabIndex = 12;
@@ -261,25 +245,12 @@ namespace PROYECTO
             this.chkFecha.UseVisualStyleBackColor = true;
             this.chkFecha.CheckedChanged += new System.EventHandler(this.chkFecha_CheckedChanged);
             // 
-            // chkUsuario
-            // 
-            this.chkUsuario.AutoSize = true;
-            this.chkUsuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkUsuario.Location = new System.Drawing.Point(23, 30);
-            this.chkUsuario.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.chkUsuario.Name = "chkUsuario";
-            this.chkUsuario.Size = new System.Drawing.Size(86, 21);
-            this.chkUsuario.TabIndex = 10;
-            this.chkUsuario.Text = "Usuario";
-            this.chkUsuario.UseVisualStyleBackColor = true;
-            this.chkUsuario.CheckedChanged += new System.EventHandler(this.chkUsuario_CheckedChanged);
-            // 
             // btnAbrir
             // 
             this.btnAbrir.ImageKey = "Sign 18.ico";
             this.btnAbrir.ImageList = this.imageList1;
             this.btnAbrir.Location = new System.Drawing.Point(1039, 21);
-            this.btnAbrir.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnAbrir.Margin = new System.Windows.Forms.Padding(4);
             this.btnAbrir.Name = "btnAbrir";
             this.btnAbrir.Size = new System.Drawing.Size(44, 41);
             this.btnAbrir.TabIndex = 7;
@@ -291,7 +262,7 @@ namespace PROYECTO
             this.btnCerrar.ImageKey = "Sign 17.ico";
             this.btnCerrar.ImageList = this.imageList1;
             this.btnCerrar.Location = new System.Drawing.Point(1040, 21);
-            this.btnCerrar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnCerrar.Margin = new System.Windows.Forms.Padding(4);
             this.btnCerrar.Name = "btnCerrar";
             this.btnCerrar.Size = new System.Drawing.Size(44, 41);
             this.btnCerrar.TabIndex = 8;
@@ -310,7 +281,7 @@ namespace PROYECTO
             this.panel1.Controls.Add(this.lblComentarios);
             this.panel1.Controls.Add(this.lblRecordatorios);
             this.panel1.Location = new System.Drawing.Point(379, -1);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(841, 571);
             this.panel1.TabIndex = 9;
@@ -326,7 +297,8 @@ namespace PROYECTO
             this.Controls.Add(this.btnCerrar);
             this.Controls.Add(this.panel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.KeyPreview = true;
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmRecordatorioVista";
@@ -353,7 +325,6 @@ namespace PROYECTO
         private System.Windows.Forms.DateTimePicker dtpFecha;
         private System.Windows.Forms.CheckBox chkHora;
         private System.Windows.Forms.CheckBox chkFecha;
-        private System.Windows.Forms.CheckBox chkUsuario;
         private System.Windows.Forms.CheckBox chkOtro;
         private System.Windows.Forms.TextBox txtOtro;
         private System.Windows.Forms.RadioButton rboPM;
@@ -363,7 +334,6 @@ namespace PROYECTO
         private System.Windows.Forms.ImageList imageList1;
         private System.Windows.Forms.Button btnCerrar;
         private System.Windows.Forms.Button btnBuscar;
-        private System.Windows.Forms.ComboBox cboUsuario;
         private System.Windows.Forms.Timer timer2;
         private System.Windows.Forms.Panel panel1;
     }

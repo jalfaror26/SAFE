@@ -58,6 +58,8 @@ namespace PROYECTO
                 if (oConexion.abrirConexion())
                 {
                     oRecordatorio.Linea = linea;
+                    oRecordatorio.No_cia = PROYECTO.Properties.Settings.Default.No_cia;
+
                     oRecordatorioDAC.CambiarEstado("MOS", linea, PROYECTO.Properties.Settings.Default.No_cia);
                     if (oRecordatorioDAC.Error())
                     {
@@ -84,6 +86,8 @@ namespace PROYECTO
 
         private void frmMensajeRecordatorio_Load(object sender, EventArgs e)
         {
+            this.Text = this.Text + " - " + this.Name;
+
             lblFecha.Text = fecha;
             lblMensaje.Text = mensaje;
         }
@@ -104,13 +108,11 @@ namespace PROYECTO
             }
             panel1.Visible = true;
         }
-
-        private void txtComentario_Enter(object sender, EventArgs e)
+                private void txtComentario_Enter(object sender, EventArgs e)
         {
             txtComentario.Clear();
         }
-
-        private void btnPosponerRecordatorio_Click(object sender, EventArgs e)
+                private void btnPosponerRecordatorio_Click(object sender, EventArgs e)
         {
             try
             {
@@ -130,6 +132,8 @@ namespace PROYECTO
                     else
                         fecha = DateTime.Parse(mthFecha.SelectionStart.ToShortDateString() + " " + txtHora.Text + " pm");
                     oRecordatorio.Linea = linea;
+                    oRecordatorio.No_cia = PROYECTO.Properties.Settings.Default.No_cia;
+
                     oRecordatorio.FechaHora = fecha;
                     oRecordatorioDAC.Posponer(oRecordatorio);
                     oRecordatorioDAC.CrearComentario(oRecordatorio, txtComentario.Text);
@@ -148,6 +152,19 @@ namespace PROYECTO
             {
             }
             this.Close();
+        }
+
+        private void frmForma_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.F1)
+                Ayuda();
+        }
+
+        private void Ayuda()
+        {
+            frmAyuda oFrm = frmAyuda.getInstance();
+            oFrm.MdiParent = this.MdiParent;
+            oFrm.Show();
         }
     }
 }

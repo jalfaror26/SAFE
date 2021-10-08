@@ -29,7 +29,7 @@ namespace PROYECTO
 
         private static frmRecordatorio instance = null;
         private ConexionDAO oConexion = new ConexionDAO(PROYECTO.Properties.Settings.Default.UsuarioBD, PROYECTO.Properties.Settings.Default.Servidor, Conexion.getInstance().Clave);
-        private String codigo = "par_Recordatorio", descripcion = "Creacion de Recordatorios.", modulo = "Parametros";
+        private String codigo = "par_Recordatorio", descripcion = "Creacion de Recordatorios.", modulo = "Recordatorios";
         private RecordatorioDAO oRecordatorioDAO = new RecordatorioDAO();
         private Recordatorio oRecordatorio = new Recordatorio();
         private DateTime hoy = new DateTime();
@@ -81,6 +81,7 @@ namespace PROYECTO
 
         private void frmRecordatorio_Load(object sender, EventArgs e)
         {
+            this.Text = this.Text + " - " + this.Name;
             Llenar_Grid();
             timer1.Start();
         }
@@ -553,5 +554,19 @@ namespace PROYECTO
             btnNuevo.Enabled = true;
             txtDetalle.Text = detalle;
         }
+
+        private void frmForma_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.F1)
+                Ayuda();
+        }
+
+        private void Ayuda()
+        {
+            frmAyuda oFrm = frmAyuda.getInstance();
+            oFrm.MdiParent = this.MdiParent;
+            oFrm.Show();
+        }
+    
     }
 }

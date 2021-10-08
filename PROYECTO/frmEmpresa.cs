@@ -23,7 +23,7 @@ namespace PROYECTO
         private static frmEmpresa instance = null;
         private ConexionDAO oConexion = new ConexionDAO(PROYECTO.Properties.Settings.Default.UsuarioBD, PROYECTO.Properties.Settings.Default.Servidor, Conexion.getInstance().Clave);
         private Empresa oEmpresa;
-        private String codigo = "par_datos_empresa", descripcion = "Registro de los datos de la empresa.", modulo = "Parametros_Generales";
+        private String codigo = "par_datos_empresa", descripcion = "Registro de los datos de la empresa.", modulo = "Mantenimientos";
         private Hacienda_DireccionDAO oHacienda_DireccionDAO = new Hacienda_DireccionDAO();
 
         public String Modulo
@@ -53,8 +53,9 @@ namespace PROYECTO
 
         private void frmClientes_Load(object sender, EventArgs e)
         {
+            this.Text = this.Text + " - " + this.Name;
+
             Boolean vFacturasAbiertas = false;
-            Boolean vCortaTicket = false;
 
             LlenaTipoID();
             LlenaProvincias();
@@ -67,12 +68,11 @@ namespace PROYECTO
                 oConexion.cerrarConexion();
                 if (oConexion.abrirConexion())
                 {
-                    DataTable oMensajes = oConexion.EjecutaSentencia("select ind_facturasabiertas, ind_cortaticket from TBL_EMPRESA_MC e where e.no_cia = '" + PROYECTO.Properties.Settings.Default.No_cia + "'");
+                    DataTable oMensajes = oConexion.EjecutaSentencia("select ind_facturasabiertas from TBL_EMPRESA e where e.no_cia = '" + PROYECTO.Properties.Settings.Default.No_cia + "'");
 
                     if (oMensajes.Rows.Count > 0)
                     {
                         vFacturasAbiertas = oMensajes.Rows[0]["ind_facturasabiertas"].ToString().Equals("S") ? true : false;
-                        vCortaTicket = oMensajes.Rows[0]["ind_cortaticket"].ToString().Equals("S") ? true : false;
                     }
 
 
@@ -83,7 +83,6 @@ namespace PROYECTO
             {
             }
 
-            chkCortaTicket.Checked = vCortaTicket;
             chkMultFacturasAbiertas.Checked = vFacturasAbiertas;
             chkRedondearPrecioFactura.Checked = PROYECTO.Properties.Settings.Default.RedondearPrecioVenta;
 
@@ -414,9 +413,7 @@ namespace PROYECTO
                         EmpresaDAO oEmpresaDAO = new EmpresaDAO();
 
                         oEmpresaDAO.ActualizaParametro(PROYECTO.Properties.Settings.Default.No_cia, "IND_FACTURASABIERTAS", chkMultFacturasAbiertas.Checked ? "S" : "N");
-
-                        oEmpresaDAO.ActualizaParametro(PROYECTO.Properties.Settings.Default.No_cia, "IND_CORTATICKET", chkCortaTicket.Checked ? "S" : "N");
-                        
+                                                
                         MessageBox.Show("Guardado Correctamente!!", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         Llenar_Grid();
                     }
@@ -574,5 +571,19 @@ namespace PROYECTO
             instance = null;
             this.Close();
         }
+
+        private void frmForma_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.F1)
+                Ayuda();
+        }
+
+        private void Ayuda()
+        {
+            frmAyuda oFrm = frmAyuda.getInstance();
+            oFrm.MdiParent = this.MdiParent;
+            oFrm.Show();
+        }
+    
     }
 }

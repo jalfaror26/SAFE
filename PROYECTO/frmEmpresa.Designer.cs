@@ -50,7 +50,6 @@ namespace PROYECTO
             this.btnMNuevo = new System.Windows.Forms.Button();
             this.btnMSalir = new System.Windows.Forms.Button();
             this.btnMGuardar = new System.Windows.Forms.Button();
-            this.chkCortaTicket = new System.Windows.Forms.CheckBox();
             this.chkMultFacturasAbiertas = new System.Windows.Forms.CheckBox();
             this.chkRedondearPrecioFactura = new System.Windows.Forms.CheckBox();
             this.chkImprimeAlFacturar = new System.Windows.Forms.CheckBox();
@@ -70,7 +69,7 @@ namespace PROYECTO
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(171, 276);
+            this.label3.Location = new System.Drawing.Point(422, 295);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(51, 17);
@@ -103,7 +102,7 @@ namespace PROYECTO
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(21, 276);
+            this.label11.Location = new System.Drawing.Point(272, 295);
             this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(64, 17);
@@ -121,7 +120,7 @@ namespace PROYECTO
             // 
             // txtTelefono
             // 
-            this.txtTelefono.Location = new System.Drawing.Point(16, 295);
+            this.txtTelefono.Location = new System.Drawing.Point(267, 314);
             this.txtTelefono.Margin = new System.Windows.Forms.Padding(4);
             this.txtTelefono.Name = "txtTelefono";
             this.txtTelefono.Size = new System.Drawing.Size(137, 22);
@@ -130,7 +129,7 @@ namespace PROYECTO
             // 
             // txtCorreo
             // 
-            this.txtCorreo.Location = new System.Drawing.Point(165, 295);
+            this.txtCorreo.Location = new System.Drawing.Point(416, 314);
             this.txtCorreo.Margin = new System.Windows.Forms.Padding(4);
             this.txtCorreo.Name = "txtCorreo";
             this.txtCorreo.Size = new System.Drawing.Size(376, 22);
@@ -163,18 +162,18 @@ namespace PROYECTO
             // txtUbicacion
             // 
             this.txtUbicacion.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtUbicacion.Location = new System.Drawing.Point(16, 223);
+            this.txtUbicacion.Location = new System.Drawing.Point(267, 223);
             this.txtUbicacion.Margin = new System.Windows.Forms.Padding(4);
             this.txtUbicacion.Multiline = true;
             this.txtUbicacion.Name = "txtUbicacion";
-            this.txtUbicacion.Size = new System.Drawing.Size(777, 38);
+            this.txtUbicacion.Size = new System.Drawing.Size(525, 58);
             this.txtUbicacion.TabIndex = 8;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(21, 203);
+            this.label4.Location = new System.Drawing.Point(272, 203);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(70, 17);
@@ -195,7 +194,7 @@ namespace PROYECTO
             // imgFoto
             // 
             this.imgFoto.BackColor = System.Drawing.Color.White;
-            this.imgFoto.Location = new System.Drawing.Point(563, 278);
+            this.imgFoto.Location = new System.Drawing.Point(16, 223);
             this.imgFoto.Margin = new System.Windows.Forms.Padding(4);
             this.imgFoto.Name = "imgFoto";
             this.imgFoto.Size = new System.Drawing.Size(229, 212);
@@ -288,22 +287,10 @@ namespace PROYECTO
             this.btnMGuardar.UseVisualStyleBackColor = true;
             this.btnMGuardar.Click += new System.EventHandler(this.btnMGuardar_Click);
             // 
-            // chkCortaTicket
-            // 
-            this.chkCortaTicket.AutoSize = true;
-            this.chkCortaTicket.Location = new System.Drawing.Point(273, 343);
-            this.chkCortaTicket.Margin = new System.Windows.Forms.Padding(4);
-            this.chkCortaTicket.Name = "chkCortaTicket";
-            this.chkCortaTicket.Size = new System.Drawing.Size(181, 21);
-            this.chkCortaTicket.TabIndex = 616;
-            this.chkCortaTicket.TabStop = false;
-            this.chkCortaTicket.Text = "Impresora Corta Ticket?";
-            this.chkCortaTicket.UseVisualStyleBackColor = true;
-            // 
             // chkMultFacturasAbiertas
             // 
             this.chkMultFacturasAbiertas.AutoSize = true;
-            this.chkMultFacturasAbiertas.Location = new System.Drawing.Point(273, 372);
+            this.chkMultFacturasAbiertas.Location = new System.Drawing.Point(267, 358);
             this.chkMultFacturasAbiertas.Margin = new System.Windows.Forms.Padding(4);
             this.chkMultFacturasAbiertas.Name = "chkMultFacturasAbiertas";
             this.chkMultFacturasAbiertas.Size = new System.Drawing.Size(201, 21);
@@ -315,7 +302,7 @@ namespace PROYECTO
             // chkRedondearPrecioFactura
             // 
             this.chkRedondearPrecioFactura.AutoSize = true;
-            this.chkRedondearPrecioFactura.Location = new System.Drawing.Point(273, 428);
+            this.chkRedondearPrecioFactura.Location = new System.Drawing.Point(267, 414);
             this.chkRedondearPrecioFactura.Margin = new System.Windows.Forms.Padding(4);
             this.chkRedondearPrecioFactura.Name = "chkRedondearPrecioFactura";
             this.chkRedondearPrecioFactura.Size = new System.Drawing.Size(194, 21);
@@ -327,7 +314,7 @@ namespace PROYECTO
             // chkImprimeAlFacturar
             // 
             this.chkImprimeAlFacturar.AutoSize = true;
-            this.chkImprimeAlFacturar.Location = new System.Drawing.Point(273, 400);
+            this.chkImprimeAlFacturar.Location = new System.Drawing.Point(267, 386);
             this.chkImprimeAlFacturar.Margin = new System.Windows.Forms.Padding(4);
             this.chkImprimeAlFacturar.Name = "chkImprimeAlFacturar";
             this.chkImprimeAlFacturar.Size = new System.Drawing.Size(159, 21);
@@ -431,7 +418,7 @@ namespace PROYECTO
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(812, 508);
+            this.ClientSize = new System.Drawing.Size(812, 457);
             this.Controls.Add(this.cboBarrio);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.cboDistrito);
@@ -443,7 +430,6 @@ namespace PROYECTO
             this.Controls.Add(this.chkImprimeAlFacturar);
             this.Controls.Add(this.chkRedondearPrecioFactura);
             this.Controls.Add(this.chkMultFacturasAbiertas);
-            this.Controls.Add(this.chkCortaTicket);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.imgFoto);
             this.Controls.Add(this.label4);
@@ -460,6 +446,7 @@ namespace PROYECTO
             this.Controls.Add(this.txtUbicacion);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -468,6 +455,7 @@ namespace PROYECTO
             this.Text = "Datos de la empresa";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmClientes_FormClosing);
             this.Load += new System.EventHandler(this.frmClientes_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmForma_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.imgFoto)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -497,7 +485,6 @@ namespace PROYECTO
         private System.Windows.Forms.Button btnMNuevo;
         private System.Windows.Forms.Button btnMSalir;
         private System.Windows.Forms.Button btnMGuardar;
-        private System.Windows.Forms.CheckBox chkCortaTicket;
         private System.Windows.Forms.CheckBox chkMultFacturasAbiertas;
         private System.Windows.Forms.CheckBox chkRedondearPrecioFactura;
         private System.Windows.Forms.CheckBox chkImprimeAlFacturar;

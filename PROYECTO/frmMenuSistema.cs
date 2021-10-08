@@ -116,20 +116,10 @@ namespace PROYECTO
         private void btnAyuda_Click(object sender, EventArgs e)
         {
             frmAyuda oFrm = frmAyuda.getInstance();
-            codigo = oFrm.Codigo;
-            descripcion = oFrm.Descripcion;
-            modulo = oFrm.Modulo;
-            if (!TienePermiso())
-            {
-                oFrm.MdiParent = this.MdiParent;
-                oFrm.Show();
-            }
-            else
-            {
-                MessageBox.Show("No tiene permiso para accesar esta pantalla, comuníquese con el administrador", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                oFrm = null;
-            }
-            this.Close();
+            oFrm.MdiParent = this.MdiParent;
+            oFrm.Show();
+
+            //this.Close();
         }
 
         private void btnDatosEmpresa_Click(object sender, EventArgs e)

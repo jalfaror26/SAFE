@@ -9,6 +9,7 @@ using PROYECTO_DAO;
 using System.Collections;
 using ENTIDADES;
 using System.Text.RegularExpressions;
+using Entidades;
 
 namespace PROYECTO
 {
@@ -16,12 +17,13 @@ namespace PROYECTO
     {
         private static frmPermisos ofrmPermisos = null;
         private ConexionDAO oConexion = new ConexionDAO(PROYECTO.Properties.Settings.Default.UsuarioBD, PROYECTO.Properties.Settings.Default.Servidor, Conexion.getInstance().Clave);
-        private UsuarioDAO ousuarioDAO = null;
+        private UsuarioDAO oUsuarioDAO = null;
+        private Usuario oUsuario = null;
 
         private Boolean nuevo = true;
         private PantallasPermisosDAO opantallaDAO = null;
 
-        private String codigo = "sis_usuariopermiso", descripcion = "Registro de usuarios y sus permisos.", modulo = "Sistema";
+        private String codigo = "sis_usuariopermiso", descripcion = "Registro de usuarios y sus permisos.", modulo = "Seguridad";
 
 
         public String Modulo
@@ -54,17 +56,6 @@ namespace PROYECTO
             return ofrmPermisos;
         }
 
-        private void btnNuevo_Click(object sender, EventArgs e)
-        {
-            txtNombreusuario.Text = "";
-            txtContrasenna2.Text = "";
-            txtcontrasenna.Text = "";
-            rboAdministrador.Checked = true;
-            dgrUsuarios.ClearSelection();
-            btnGuardar.Enabled = true;
-            nuevo = true;
-        }
-
         private void frmPermisos_FormClosing(object sender, FormClosingEventArgs e)
         {
             ofrmPermisos = null;
@@ -72,7 +63,7 @@ namespace PROYECTO
 
         private void dgrDatos_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
-            btnNuevo.PerformClick();
+            btnMNuevo.PerformClick();
         }
 
         private void llenarGrid()
@@ -82,9 +73,9 @@ namespace PROYECTO
 
                 oConexion.cerrarConexion(); if (oConexion.abrirConexion())
                 {
-                    ousuarioDAO = new UsuarioDAO();
-                    dgrUsuarios.DataSource = ousuarioDAO.consultaUsuarios(PROYECTO.Properties.Settings.Default.No_cia).Tables[0];
-                    if (ousuarioDAO.Error())
+                    oUsuarioDAO = new UsuarioDAO();
+                    dgrUsuarios.DataSource = oUsuarioDAO.consultaUsuarios(PROYECTO.Properties.Settings.Default.No_cia).Tables[0];
+                    if (oUsuarioDAO.Error())
                         MessageBox.Show("Ocurrió un error al conectarse a la base de datos.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     oConexion.cerrarConexion();
                 }
@@ -99,121 +90,57 @@ namespace PROYECTO
 
         private void frmPermisos_Load(object sender, EventArgs e)
         {
+            this.Text = this.Text + " - " + this.Name;
             llenarGrid();
-        }
-
-        private void btnGuardar_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                if (txtNombreusuario.Text.Trim().Equals(""))
-                {
-                    MessageBox.Show("Digite el nombre de usuario a crear", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-                if (txtcontrasenna.Text.Trim().Equals(""))
-                {
-                    MessageBox.Show("Digite la contraseña del usuario a crear", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-                if (!Valida_Contrasenna(txtcontrasenna.Text.Trim()))
-                {
-                    MessageBox.Show("La contraseña no es valida, La contraseña debe tener 8 caracteres, incluyendo 1 letra mayúscula, 1 carácter especial, caracteres alfanuméricos", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    txtcontrasenna.Focus();
-                    return;
-                }
-                if (txtContrasenna2.Text.Trim().Equals(""))
-                {
-                    MessageBox.Show("Digite la confirmacion de contraseña del usuario a crear", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-                if (!txtcontrasenna.Text.Trim().Equals(txtContrasenna2.Text.Trim()))
-                {
-                    MessageBox.Show("La contraseña y la confirmacion deben ser iguales", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-                if (Existente())
-                {
-                    MessageBox.Show("Nombre de usuario existente favor ingresar uno nuevo", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-                oConexion.cerrarConexion(); if (oConexion.abrirConexion())
-                {
-                    string rol = rboAdministrador.Checked ? "ADMINISTRADOR" : "FUNCIONARIO";
-                    ousuarioDAO = new UsuarioDAO();
-                    ousuarioDAO.Agregar(txtNombreusuario.Text, txtcontrasenna.Text, rol, PROYECTO.Properties.Settings.Default.No_cia);
-                    if (ousuarioDAO.Error())
-                        MessageBox.Show("Ocurrió un error al guardar los datos del usuario.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-                    oConexion.cerrarConexion();
-                    llenarGrid();
-                }
-                else
-                    MessageBox.Show("Ocurrió un error al conectarse a la base de datos.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            catch (Exception ex)
-            {
-                oConexion.cerrarConexion();
-            }
-        }
-
-        private void btnEliminar_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                if (MessageBox.Show("¿Está seguro que desea ELIMINAR el registro?", "Advertencia", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                {
-                    if (dgrUsuarios.SelectedCells.Count == 0)
-                    {
-                        MessageBox.Show("Seleccione el usuario a eliminar.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        return;
-                    }
-                    oConexion.cerrarConexion(); if (oConexion.abrirConexion())
-                    {
-                        ousuarioDAO = new UsuarioDAO();
-                        ousuarioDAO.Eliminar(dgrUsuarios.SelectedCells[0].Value.ToString(), PROYECTO.Properties.Settings.Default.No_cia);
-                        if (ousuarioDAO.Error())
-                            MessageBox.Show("Ocurrió un error al eliminar el usuario.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        else
-                            MessageBox.Show("Usuario eliminado correctamente", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        oConexion.cerrarConexion();
-                        llenarGrid();
-                    }
-                    else
-                        MessageBox.Show("Ocurrió un error al conectarse a la base de datos.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-            catch (Exception ex)
-            {
-                oConexion.cerrarConexion();
-            }
         }
 
         private void dgrDatos_CellEnter(object sender, DataGridViewCellEventArgs e)
         {
-            txtNombreusuario.Text = dgrUsuarios["usuario", e.RowIndex].Value.ToString();
-            txtcontrasenna.Text = "********************";
-            txtContrasenna2.Text = "********************";
-            if (dgrUsuarios["rol", e.RowIndex].Value.ToString().Equals("ADMINISTRADOR"))
-                rboAdministrador.Checked = true;
-            else
-                rboFuncionario.Checked = true;
-            btnGuardar.Enabled = false;
-            llenarGridPermisos();
-            permisosPantallas();
-            nuevo = false;
+            try
+            {
+                txtCodUsuario.Text = dgrUsuarios["usuario", e.RowIndex].Value.ToString();
+
+                txtIdentificacion.Text = dgrUsuarios["cedula", e.RowIndex].Value.ToString();
+                txtNombre.Text = dgrUsuarios["nombre", e.RowIndex].Value.ToString();
+                txtApellido1.Text = dgrUsuarios["apellido1", e.RowIndex].Value.ToString();
+                txtApellido2.Text = dgrUsuarios["apellido2", e.RowIndex].Value.ToString();
+                txtCorreo.Text = dgrUsuarios["email", e.RowIndex].Value.ToString();
+
+                txtcontrasenna.Text = "********************";
+                txtContrasenna2.Text = "********************";
+                if (dgrUsuarios["rol", e.RowIndex].Value.ToString().Equals("ADMINISTRADOR"))
+                    rboAdministrador.Checked = true;
+                else
+                    rboFuncionario.Checked = true;
+
+                btnMEliminar.Enabled = true;
+                btnMAsignarPermisos.Enabled = true;
+
+                txtCodUsuario.ReadOnly = true;
+
+                txtcontrasenna.Enabled = false;
+                txtContrasenna2.Enabled = false;
+
+                grbRol.Enabled = false;
+
+                llenarGridPermisos();
+                permisosPantallas();
+                nuevo = false;
+
+                HabilitaPermisos(true);
+            }
+            catch { }
         }
 
-        private void btnAsignarPermisos_Click(object sender, EventArgs e)
+        private void HabilitaPermisos(Boolean pHabilita)
         {
-            if (dgrUsuarios.SelectedCells.Count == 0)
+            try
             {
-                MessageBox.Show("Seleccione el usuario asignar permisos.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
+                dgrPantallas.Enabled = pHabilita;
+                chkTodasPantallas.Enabled = pHabilita;
+                btnGuardarPermisos.Enabled = pHabilita;
             }
-            tabControl1.SelectedIndex = 1;
-            llenarGridPermisos();
-            permisosPantallas();
+            catch { }
         }
 
         private void llenarGridPermisos()
@@ -224,7 +151,8 @@ namespace PROYECTO
                 if (oConexion.abrirConexion())
                 {
                     opantallaDAO = new PantallasPermisosDAO();
-                    dgrPantallas.DataSource = opantallaDAO.consultaPantallas().Tables[0];
+                    DataTable oDataTable = opantallaDAO.consultaPantallas().Tables[0];
+                    dgrPantallas.DataSource = oDataTable;
                     if (opantallaDAO.Error())
                         MessageBox.Show("Ocurrió un error al extraer los datos.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     oConexion.cerrarConexion();
@@ -238,26 +166,26 @@ namespace PROYECTO
             }
         }
 
-
-
-
         private void permisosPantallas()
         {
             try
             {
+                if (String.IsNullOrEmpty(txtCodUsuario.Text))
+                    return;
+
                 oConexion.cerrarConexion();
                 if (oConexion.abrirConexion())
                 {
                     opantallaDAO = new PantallasPermisosDAO();
-                    DataSet oDataSet = opantallaDAO.consultaPantallasPermisos(dgrUsuarios.SelectedCells[0].Value.ToString(), PROYECTO.Properties.Settings.Default.No_cia);
+                    DataSet oDataSet = opantallaDAO.consultaPantallasPermisos(txtCodUsuario.Text, PROYECTO.Properties.Settings.Default.No_cia);
                     if (oDataSet.Tables[0].Rows.Count > 0)
                     {
                         foreach (DataRow oFila in oDataSet.Tables[0].Rows)
                         {
                             foreach (DataGridViewRow oFila1 in dgrPantallas.Rows)
                             {
-                                if (oFila1.Cells["pan_id"].Value.ToString().Equals(oFila.ItemArray[0].ToString()) && oFila.ItemArray[1].ToString().Equals("1"))
-                                    oFila1.Cells["acceso"].Value = "1";
+                                if (oFila1.Cells["PAN_ID"].Value.ToString().Equals(oFila["PAN_ID"].ToString()) && oFila["ACCESO"].ToString().Equals("1"))
+                                    oFila1.Cells["ACCESO"].Value = "1";
                             }
                         }
                     }
@@ -306,7 +234,7 @@ namespace PROYECTO
             Boolean existe = false;
             foreach (DataGridViewRow oFila in dgrUsuarios.Rows)
             {
-                if (oFila.Cells["usuario"].Value.ToString().Equals(txtNombreusuario.Text))
+                if (oFila.Cells["usuario"].Value.ToString().Equals(txtCodUsuario.Text))
                     existe = true;
             }
             return existe;
@@ -317,14 +245,9 @@ namespace PROYECTO
             if (tabControl1.SelectedIndex == 1 && nuevo)
             {
                 tabControl1.SelectedIndex = 0;
-                btnNuevo.PerformClick();
+                btnMNuevo.PerformClick();
                 MessageBox.Show("Seleccione el usuario para ver sus permisos.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
-        }
-
-        private void dgrPantallas_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
-        {
-
         }
 
         private void txtcontrasenna_Leave(object sender, EventArgs e)
@@ -356,11 +279,167 @@ namespace PROYECTO
             }
         }
 
-        private void dgrUsuarioCentros_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        private void btnMNuevo_Click(object sender, EventArgs e)
         {
+            txtCodUsuario.Clear();
+            txtContrasenna2.Clear();
+            txtcontrasenna.Clear();
 
+            txtIdentificacion.Clear();
+            txtNombre.Clear();
+            txtApellido1.Clear();
+            txtApellido2.Clear();
+            txtCorreo.Clear();
+
+            rboAdministrador.Checked = true;
+            dgrUsuarios.ClearSelection();
+
+            nuevo = true;
+
+            btnMEliminar.Enabled = false;
+            btnMAsignarPermisos.Enabled = false;
+
+            txtCodUsuario.ReadOnly = false;
+
+            txtcontrasenna.Enabled = true;
+            txtContrasenna2.Enabled = true;
+
+            grbRol.Enabled = true;
+
+            HabilitaPermisos(false);
         }
 
+        private void btnMGuardar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (txtCodUsuario.Text.Trim().Equals(""))
+                {
+                    MessageBox.Show("Digite el usuario a crear", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+                if (txtNombre.Text.Trim().Equals(""))
+                {
+                    MessageBox.Show("Digite el nombre del usuario a crear", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                if (nuevo)
+                {
+                    if (txtcontrasenna.Text.Trim().Equals(""))
+                    {
+                        MessageBox.Show("Digite la contraseña del usuario a crear", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
+                    if (!Valida_Contrasenna(txtcontrasenna.Text.Trim()))
+                    {
+                        MessageBox.Show("La contraseña no es valida, La contraseña debe tener 8 caracteres, incluyendo 1 letra mayúscula, 1 carácter especial, caracteres alfanuméricos", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        txtcontrasenna.Focus();
+                        return;
+                    }
+                    if (txtContrasenna2.Text.Trim().Equals(""))
+                    {
+                        MessageBox.Show("Digite la confirmacion de contraseña del usuario a crear", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
+                    if (!txtcontrasenna.Text.Trim().Equals(txtContrasenna2.Text.Trim()))
+                    {
+                        MessageBox.Show("La contraseña y la confirmacion deben ser iguales", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
+                    if (Existente())
+                    {
+                        MessageBox.Show("Usuario existente favor ingresar uno nuevo", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
+                }
+                oConexion.cerrarConexion(); if (oConexion.abrirConexion())
+                {
+                    oUsuario = new Usuario();
+
+                    oUsuario.CodUsuario = txtCodUsuario.Text.Trim();
+                    oUsuario.Contrasenna = txtcontrasenna.Text.Trim();
+                    oUsuario.Rol = rboAdministrador.Checked ? "ADMINISTRADOR" : "FUNCIONARIO";
+                    oUsuario.Cedula = txtIdentificacion.Text.Trim();
+                    oUsuario.Nombre = txtNombre.Text.Trim();
+                    oUsuario.Apellido1 = txtApellido1.Text.Trim();
+                    oUsuario.Apellido2 = txtApellido2.Text.Trim();
+                    oUsuario.Email = txtCorreo.Text.Trim();
+
+                    oUsuarioDAO = new UsuarioDAO();
+                    oUsuarioDAO.Agregar(oUsuario, PROYECTO.Properties.Settings.Default.No_cia);
+                    if (oUsuarioDAO.Error())
+                        MessageBox.Show("Ocurrió un error al guardar los datos del usuario.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                    oConexion.cerrarConexion();
+                    llenarGrid();
+                }
+                else
+                    MessageBox.Show("Ocurrió un error al conectarse a la base de datos.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                oConexion.cerrarConexion();
+            }
+        }
+
+        private void btnMEliminar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (MessageBox.Show("¿Está seguro que desea ELIMINAR el registro?", "Advertencia", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    if (dgrUsuarios.SelectedCells.Count == 0)
+                    {
+                        MessageBox.Show("Seleccione el usuario a eliminar.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
+                    oConexion.cerrarConexion(); if (oConexion.abrirConexion())
+                    {
+                        oUsuario = new Usuario();
+
+                        oUsuario.CodUsuario = txtCodUsuario.Text;
+
+                        oUsuarioDAO = new UsuarioDAO();
+                        oUsuarioDAO.Eliminar(oUsuario, PROYECTO.Properties.Settings.Default.No_cia);
+                        if (oUsuarioDAO.Error())
+                            MessageBox.Show("Ocurrió un error al eliminar el usuario.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        else
+                            MessageBox.Show("Usuario eliminado correctamente", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        oConexion.cerrarConexion();
+                        llenarGrid();
+                    }
+                    else
+                        MessageBox.Show("Ocurrió un error al conectarse a la base de datos.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            catch (Exception ex)
+            {
+                oConexion.cerrarConexion();
+            }
+        }
+
+        private void btnMAsignarPermisos_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (dgrUsuarios.SelectedCells.Count == 0)
+                {
+                    MessageBox.Show("Seleccione el usuario asignar permisos.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+                tabControl1.SelectedIndex = 1;
+                llenarGridPermisos();
+                permisosPantallas();
+            }
+            catch { }
+        }
+
+        private void btnMSalir_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+        
         private void chkTodasPantallas_CheckedChanged(object sender, EventArgs e)
         {
             if (chkTodasPantallas.Checked)

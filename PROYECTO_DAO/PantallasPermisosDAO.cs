@@ -68,14 +68,14 @@ namespace PROYECTO_DAO
 
         public DataSet consultaPantallas()
         {
-            String sql = "select pan_id, pan_modulo, pan_nombre,0 as acceso from TBL_PANTALLAS p order by pan_id, pan_modulo, pan_nombre ";
+            String sql = "select pan_id, pan_modulo, pan_nombre, 0 as acceso from TBL_PANTALLAS p order by pan_modulo, pan_id, pan_nombre";
             DataSet oDataSet = OracleDAO.getInstance().EjecutarSQLDataSet(sql);
             return oDataSet;
         }
 
         public DataSet consultaPantallasPermisos(String usuario, String pNo_cia)
         {
-            String sql = "select pan_id, per_acceso as acceso from TBL_PANTALLAS p, TBL_PERMISOS p2 where p2.no_cia = '" + pNo_cia + "' and pan_id = per_id_pantalla and per_usuario = '" + usuario + "'";
+            String sql = "select pan_id, pan_modulo, pan_nombre, per_acceso as acceso from TBL_PANTALLAS p, TBL_PERMISOS p2 where p2.no_cia = '" + pNo_cia + "' and pan_id = per_id_pantalla and per_usuario = '" + usuario + "' order by pan_modulo, pan_id, pan_nombre";
             DataSet oDataSet = OracleDAO.getInstance().EjecutarSQLDataSet(sql);
             return oDataSet;
         }

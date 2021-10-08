@@ -39,9 +39,10 @@ namespace PROYECTO
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.button2 = new System.Windows.Forms.Button();
             this.pGenerales = new System.Windows.Forms.Panel();
+            this.btnGastos = new System.Windows.Forms.Button();
             this.btnVerRecordatorios = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
-            this.btnArticulos = new System.Windows.Forms.Button();
+            this.btnServicios = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pGenerales.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -54,7 +55,7 @@ namespace PROYECTO
             this.imageList2.Images.SetKeyName(0, "Sign 06.ico");
             this.imageList2.Images.SetKeyName(1, "File 07.ico");
             this.imageList2.Images.SetKeyName(2, "Sign 10.ico");
-            this.imageList2.Images.SetKeyName(3, "users.ico");
+            this.imageList2.Images.SetKeyName(3, "usuarios.png");
             this.imageList2.Images.SetKeyName(4, "App 29.ico");
             this.imageList2.Images.SetKeyName(5, "App 23.ico");
             this.imageList2.Images.SetKeyName(6, "Money4.ico");
@@ -207,9 +208,10 @@ namespace PROYECTO
             // 
             this.pGenerales.BackColor = System.Drawing.Color.Transparent;
             this.pGenerales.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.pGenerales.Controls.Add(this.btnGastos);
             this.pGenerales.Controls.Add(this.btnVerRecordatorios);
             this.pGenerales.Controls.Add(this.button5);
-            this.pGenerales.Controls.Add(this.btnArticulos);
+            this.pGenerales.Controls.Add(this.btnServicios);
             this.pGenerales.Controls.Add(this.button2);
             this.pGenerales.Controls.Add(this.btnMenú1);
             this.pGenerales.Controls.Add(this.btnProveedores);
@@ -225,13 +227,29 @@ namespace PROYECTO
             this.pGenerales.Size = new System.Drawing.Size(944, 532);
             this.pGenerales.TabIndex = 10;
             // 
+            // btnGastos
+            // 
+            this.btnGastos.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
+            this.btnGastos.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnGastos.ImageIndex = 28;
+            this.btnGastos.ImageList = this.imageList2;
+            this.btnGastos.Location = new System.Drawing.Point(97, 217);
+            this.btnGastos.Margin = new System.Windows.Forms.Padding(4);
+            this.btnGastos.Name = "btnGastos";
+            this.btnGastos.Size = new System.Drawing.Size(333, 59);
+            this.btnGastos.TabIndex = 594;
+            this.btnGastos.Text = "   GASTOS";
+            this.btnGastos.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnGastos.UseVisualStyleBackColor = true;
+            this.btnGastos.Click += new System.EventHandler(this.btnGastos_Click);
+            // 
             // btnVerRecordatorios
             // 
             this.btnVerRecordatorios.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
             this.btnVerRecordatorios.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnVerRecordatorios.ImageIndex = 45;
             this.btnVerRecordatorios.ImageList = this.imageList2;
-            this.btnVerRecordatorios.Location = new System.Drawing.Point(97, 303);
+            this.btnVerRecordatorios.Location = new System.Drawing.Point(505, 303);
             this.btnVerRecordatorios.Margin = new System.Windows.Forms.Padding(4);
             this.btnVerRecordatorios.Name = "btnVerRecordatorios";
             this.btnVerRecordatorios.Size = new System.Drawing.Size(333, 59);
@@ -240,7 +258,6 @@ namespace PROYECTO
             this.btnVerRecordatorios.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnVerRecordatorios.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnVerRecordatorios.UseVisualStyleBackColor = true;
-            this.btnVerRecordatorios.Visible = false;
             this.btnVerRecordatorios.Click += new System.EventHandler(this.btnVerRecordatorios_Click);
             // 
             // button5
@@ -249,7 +266,7 @@ namespace PROYECTO
             this.button5.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button5.ImageIndex = 44;
             this.button5.ImageList = this.imageList2;
-            this.button5.Location = new System.Drawing.Point(97, 217);
+            this.button5.Location = new System.Drawing.Point(97, 303);
             this.button5.Margin = new System.Windows.Forms.Padding(4);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(333, 59);
@@ -258,25 +275,24 @@ namespace PROYECTO
             this.button5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button5.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.button5.UseVisualStyleBackColor = true;
-            this.button5.Visible = false;
             this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
-            // btnArticulos
+            // btnServicios
             // 
-            this.btnArticulos.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
-            this.btnArticulos.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnArticulos.ImageIndex = 22;
-            this.btnArticulos.ImageList = this.imageList2;
-            this.btnArticulos.Location = new System.Drawing.Point(97, 133);
-            this.btnArticulos.Margin = new System.Windows.Forms.Padding(4);
-            this.btnArticulos.Name = "btnArticulos";
-            this.btnArticulos.Size = new System.Drawing.Size(333, 59);
-            this.btnArticulos.TabIndex = 585;
-            this.btnArticulos.Text = "  SERVICIOS";
-            this.btnArticulos.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnArticulos.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnArticulos.UseVisualStyleBackColor = true;
-            this.btnArticulos.Click += new System.EventHandler(this.btnArticulos_Click);
+            this.btnServicios.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
+            this.btnServicios.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnServicios.ImageIndex = 22;
+            this.btnServicios.ImageList = this.imageList2;
+            this.btnServicios.Location = new System.Drawing.Point(97, 133);
+            this.btnServicios.Margin = new System.Windows.Forms.Padding(4);
+            this.btnServicios.Name = "btnServicios";
+            this.btnServicios.Size = new System.Drawing.Size(333, 59);
+            this.btnServicios.TabIndex = 585;
+            this.btnServicios.Text = "  SERVICIOS";
+            this.btnServicios.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnServicios.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnServicios.UseVisualStyleBackColor = true;
+            this.btnServicios.Click += new System.EventHandler(this.btnServicios_Click);
             // 
             // pictureBox1
             // 
@@ -303,6 +319,7 @@ namespace PROYECTO
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -325,10 +342,11 @@ namespace PROYECTO
         private System.Windows.Forms.Button btnMenú1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Panel pGenerales;
-        private System.Windows.Forms.Button btnArticulos;
+        private System.Windows.Forms.Button btnServicios;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button btnVerRecordatorios;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.ImageList imageList1;
+        private System.Windows.Forms.Button btnGastos;
     }
 }

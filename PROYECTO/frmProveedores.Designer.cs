@@ -89,7 +89,7 @@ namespace PROYECTO
             this.cboCategoria.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboCategoria.FormattingEnabled = true;
             this.cboCategoria.Location = new System.Drawing.Point(16, 229);
-            this.cboCategoria.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cboCategoria.Margin = new System.Windows.Forms.Padding(4);
             this.cboCategoria.Name = "cboCategoria";
             this.cboCategoria.Size = new System.Drawing.Size(201, 24);
             this.cboCategoria.TabIndex = 17;
@@ -97,7 +97,7 @@ namespace PROYECTO
             // txtFax
             // 
             this.txtFax.Location = new System.Drawing.Point(119, 174);
-            this.txtFax.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtFax.Margin = new System.Windows.Forms.Padding(4);
             this.txtFax.Name = "txtFax";
             this.txtFax.Size = new System.Drawing.Size(97, 22);
             this.txtFax.TabIndex = 11;
@@ -106,7 +106,7 @@ namespace PROYECTO
             // txtTelefono
             // 
             this.txtTelefono.Location = new System.Drawing.Point(16, 174);
-            this.txtTelefono.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtTelefono.Margin = new System.Windows.Forms.Padding(4);
             this.txtTelefono.Name = "txtTelefono";
             this.txtTelefono.Size = new System.Drawing.Size(96, 22);
             this.txtTelefono.TabIndex = 9;
@@ -116,7 +116,7 @@ namespace PROYECTO
             // 
             this.txtUbicacion.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtUbicacion.Location = new System.Drawing.Point(16, 283);
-            this.txtUbicacion.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtUbicacion.Margin = new System.Windows.Forms.Padding(4);
             this.txtUbicacion.Name = "txtUbicacion";
             this.txtUbicacion.Size = new System.Drawing.Size(713, 22);
             this.txtUbicacion.TabIndex = 21;
@@ -125,7 +125,7 @@ namespace PROYECTO
             // 
             this.txtContacto.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtContacto.Location = new System.Drawing.Point(225, 174);
-            this.txtContacto.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtContacto.Margin = new System.Windows.Forms.Padding(4);
             this.txtContacto.Name = "txtContacto";
             this.txtContacto.Size = new System.Drawing.Size(339, 22);
             this.txtContacto.TabIndex = 13;
@@ -134,7 +134,7 @@ namespace PROYECTO
             // 
             this.txtNombre.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtNombre.Location = new System.Drawing.Point(225, 117);
-            this.txtNombre.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtNombre.Margin = new System.Windows.Forms.Padding(4);
             this.txtNombre.Name = "txtNombre";
             this.txtNombre.Size = new System.Drawing.Size(431, 22);
             this.txtNombre.TabIndex = 5;
@@ -143,7 +143,7 @@ namespace PROYECTO
             // 
             this.txtId.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtId.Location = new System.Drawing.Point(119, 117);
-            this.txtId.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtId.Margin = new System.Windows.Forms.Padding(4);
             this.txtId.Name = "txtId";
             this.txtId.Size = new System.Drawing.Size(97, 22);
             this.txtId.TabIndex = 3;
@@ -265,7 +265,7 @@ namespace PROYECTO
             this.PROV_DESCRIPCION});
             this.dgrDatos.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.dgrDatos.Location = new System.Drawing.Point(16, 455);
-            this.dgrDatos.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dgrDatos.Margin = new System.Windows.Forms.Padding(4);
             this.dgrDatos.MultiSelect = false;
             this.dgrDatos.Name = "dgrDatos";
             this.dgrDatos.ReadOnly = true;
@@ -431,7 +431,7 @@ namespace PROYECTO
             // 
             this.txtBId.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtBId.Location = new System.Drawing.Point(16, 423);
-            this.txtBId.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtBId.Margin = new System.Windows.Forms.Padding(4);
             this.txtBId.Name = "txtBId";
             this.txtBId.Size = new System.Drawing.Size(156, 22);
             this.txtBId.TabIndex = 26;
@@ -443,7 +443,7 @@ namespace PROYECTO
             // 
             this.txtBNombre.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtBNombre.Location = new System.Drawing.Point(181, 423);
-            this.txtBNombre.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtBNombre.Margin = new System.Windows.Forms.Padding(4);
             this.txtBNombre.Name = "txtBNombre";
             this.txtBNombre.Size = new System.Drawing.Size(548, 22);
             this.txtBNombre.TabIndex = 28;
@@ -454,7 +454,7 @@ namespace PROYECTO
             // txtTelContacto
             // 
             this.txtTelContacto.Location = new System.Drawing.Point(569, 174);
-            this.txtTelContacto.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtTelContacto.Margin = new System.Windows.Forms.Padding(4);
             this.txtTelContacto.Name = "txtTelContacto";
             this.txtTelContacto.Size = new System.Drawing.Size(160, 22);
             this.txtTelContacto.TabIndex = 15;
@@ -475,7 +475,7 @@ namespace PROYECTO
             // 
             this.txtrefbancaria.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtrefbancaria.Location = new System.Drawing.Point(16, 338);
-            this.txtrefbancaria.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtrefbancaria.Margin = new System.Windows.Forms.Padding(4);
             this.txtrefbancaria.Name = "txtrefbancaria";
             this.txtrefbancaria.Size = new System.Drawing.Size(715, 22);
             this.txtrefbancaria.TabIndex = 23;
@@ -508,7 +508,7 @@ namespace PROYECTO
             // 
             this.txtDescripcion.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtDescripcion.Location = new System.Drawing.Point(221, 231);
-            this.txtDescripcion.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtDescripcion.Margin = new System.Windows.Forms.Padding(4);
             this.txtDescripcion.Name = "txtDescripcion";
             this.txtDescripcion.Size = new System.Drawing.Size(508, 22);
             this.txtDescripcion.TabIndex = 19;
@@ -527,7 +527,7 @@ namespace PROYECTO
             // txtDias
             // 
             this.txtDias.Location = new System.Drawing.Point(661, 117);
-            this.txtDias.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtDias.Margin = new System.Windows.Forms.Padding(4);
             this.txtDias.Name = "txtDias";
             this.txtDias.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.txtDias.Size = new System.Drawing.Size(68, 22);
@@ -551,7 +551,7 @@ namespace PROYECTO
             this.cboTipoId.DropDownWidth = 110;
             this.cboTipoId.FormattingEnabled = true;
             this.cboTipoId.Location = new System.Drawing.Point(16, 116);
-            this.cboTipoId.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cboTipoId.Margin = new System.Windows.Forms.Padding(4);
             this.cboTipoId.Name = "cboTipoId";
             this.cboTipoId.Size = new System.Drawing.Size(96, 24);
             this.cboTipoId.TabIndex = 2;
@@ -573,9 +573,9 @@ namespace PROYECTO
             this.groupBox2.Controls.Add(this.btnMEliminar);
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupBox2.Location = new System.Drawing.Point(0, 0);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox2.Size = new System.Drawing.Size(756, 85);
             this.groupBox2.TabIndex = 45;
             this.groupBox2.TabStop = false;
@@ -587,7 +587,7 @@ namespace PROYECTO
             this.btnMNuevo.ImageKey = "document.ico";
             this.btnMNuevo.ImageList = this.imgMenu;
             this.btnMNuevo.Location = new System.Drawing.Point(12, 18);
-            this.btnMNuevo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnMNuevo.Margin = new System.Windows.Forms.Padding(4);
             this.btnMNuevo.Name = "btnMNuevo";
             this.btnMNuevo.Size = new System.Drawing.Size(147, 55);
             this.btnMNuevo.TabIndex = 12;
@@ -604,7 +604,7 @@ namespace PROYECTO
             this.btnMSalir.ImageKey = "salir2.ico";
             this.btnMSalir.ImageList = this.imgMenu;
             this.btnMSalir.Location = new System.Drawing.Point(508, 18);
-            this.btnMSalir.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnMSalir.Margin = new System.Windows.Forms.Padding(4);
             this.btnMSalir.Name = "btnMSalir";
             this.btnMSalir.Size = new System.Drawing.Size(147, 55);
             this.btnMSalir.TabIndex = 15;
@@ -621,7 +621,7 @@ namespace PROYECTO
             this.btnMGuardar.ImageKey = "Disc 01.ico";
             this.btnMGuardar.ImageList = this.imgMenu;
             this.btnMGuardar.Location = new System.Drawing.Point(179, 18);
-            this.btnMGuardar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnMGuardar.Margin = new System.Windows.Forms.Padding(4);
             this.btnMGuardar.Name = "btnMGuardar";
             this.btnMGuardar.Size = new System.Drawing.Size(147, 55);
             this.btnMGuardar.TabIndex = 13;
@@ -638,7 +638,7 @@ namespace PROYECTO
             this.btnMEliminar.ImageKey = "Sign 06.ico";
             this.btnMEliminar.ImageList = this.imgMenu;
             this.btnMEliminar.Location = new System.Drawing.Point(344, 18);
-            this.btnMEliminar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnMEliminar.Margin = new System.Windows.Forms.Padding(4);
             this.btnMEliminar.Name = "btnMEliminar";
             this.btnMEliminar.Size = new System.Drawing.Size(147, 55);
             this.btnMEliminar.TabIndex = 14;
@@ -685,7 +685,8 @@ namespace PROYECTO
             this.Controls.Add(this.txtBNombre);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.KeyPreview = true;
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmProveedores";
@@ -693,6 +694,7 @@ namespace PROYECTO
             this.Text = "Proveedores";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmProveedores_FormClosing);
             this.Load += new System.EventHandler(this.frmProveedores_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmForma_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.dgrDatos)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.ResumeLayout(false);

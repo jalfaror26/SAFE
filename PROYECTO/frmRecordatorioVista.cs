@@ -17,7 +17,7 @@ namespace PROYECTO
             InitializeComponent();
         }
         private ConexionDAO oConexion = new ConexionDAO(PROYECTO.Properties.Settings.Default.UsuarioBD, PROYECTO.Properties.Settings.Default.Servidor, Conexion.getInstance().Clave);
-        private String codigo = "par_vista", descripcion = "vista de recordatorios del sistema.", modulo = "Parametros_Generales";
+        private String codigo = "par_vista", descripcion = "Vista de recordatorios del sistema.", modulo = "Recordatorios";
         private static frmRecordatorioVista instance = null;
 
         public String Modulo
@@ -47,6 +47,7 @@ namespace PROYECTO
 
         private void frmRecordatorioVista2_Load(object sender, EventArgs e)
         {
+            this.Text = this.Text + " - " + this.Name;
             LlenarNodos();
         }
 
@@ -57,42 +58,42 @@ namespace PROYECTO
                 oConexion.cerrarConexion();
                 if (oConexion.abrirConexion())
                 {
-                    DataTable oUsuarios = oConexion.EjecutaSentencia("SELECT distinct REC_USUARIO FROM TBL_RECORDATORIO r where r.no_cia = '" + PROYECTO.Properties.Settings.Default.No_cia + "' order by REC_USUARIO");
                     DataTable oRecordatorios = new DataTable();
                     DataTable oComentarios = new DataTable();
-                    String usuario = "";
+                    String usuario = PROYECTO.Properties.Settings.Default.Usuario;
                     String recordatorio = "";
                     String comentario = "";
-                    foreach (DataRow oFila in oUsuarios.Rows)
+
+                    oRecordatorios = oConexion.EjecutaSentencia("SELECT REC_INDICE,to_char(REC_FECHA_CREA,'dd/mm/yyyy hh:mi:ss am')|| '.  -  '  ||REC_DETALLE FROM TBL_RECORDATORIO r where r.no_cia = '" + PROYECTO.Properties.Settings.Default.No_cia + "' and REC_USUARIO='" + usuario + "' order by REC_FECHA_CREA");
+
+                    //TreeNode oNode = new TreeNode();
+                    //oNode.NodeFont = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold);
+                    //oNode.Name = usuario;
+                    //trvLista.Nodes.Add(oNode);
+                    //trvLista.Nodes[usuario].Text = oFila.ItemArray[0].ToString();
+
+                    foreach (DataRow oFila2 in oRecordatorios.Rows)
                     {
-                        usuario = oFila.ItemArray[0].ToString();
-                        oRecordatorios = oConexion.EjecutaSentencia("SELECT REC_INDICE,to_char(REC_FECHA_CREA,'dd/mm/yyyy hh:mi:ss am')|| '.  -  '  ||REC_DETALLE FROM TBL_RECORDATORIO r where r.no_cia = '" + PROYECTO.Properties.Settings.Default.No_cia + "' and REC_USUARIO='" + usuario + "' order by REC_FECHA_CREA");
+                        recordatorio = oFila2.ItemArray[0].ToString();
 
-                        TreeNode oNode = new TreeNode();
-                        oNode.NodeFont = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold);
-                        oNode.Name = usuario;
-                        trvLista.Nodes.Add(oNode);
-                        trvLista.Nodes[usuario].Text = oFila.ItemArray[0].ToString();
+                        TreeNode oNode1 = new TreeNode();
+                        oNode1.Name = recordatorio;
+                        oNode1.Text = oFila2.ItemArray[1].ToString();
+                        trvLista.Nodes.Add(oNode1);
 
-                        foreach (DataRow oFila2 in oRecordatorios.Rows)
+                        //oNode.Nodes.Add(oNode1);
+                        oComentarios = oConexion.EjecutaSentencia("SELECT RECOM_RECORDATORIO||to_char(RECOM_FECHA_HORA,'dd/mm/yyyy hh:mi:ss am')||RECOM_COMENTARIO, to_char(RECOM_FECHA_HORA,'dd/mm/yyyy hh:mi:ss am')|| '.  -  '  ||RECOM_COMENTARIO FROM TBL_RECORDATORIO_COMENTARIO rc where rc.no_cia = '" + PROYECTO.Properties.Settings.Default.No_cia + "' and  RECOM_RECORDATORIO= '" + recordatorio + "' order by RECOM_FECHA_HORA");
+
+                        foreach (DataRow oFila3 in oComentarios.Rows)
                         {
-                            recordatorio = oFila2.ItemArray[0].ToString();
-                            TreeNode oNode1 = new TreeNode();
-                            oNode1.Text = oFila2.ItemArray[1].ToString();
-                            oNode1.Name = recordatorio;
-                            oNode.Nodes.Add(oNode1);
-                            oComentarios = oConexion.EjecutaSentencia("SELECT RECOM_RECORDATORIO||to_char(RECOM_FECHA_HORA,'dd/mm/yyyy hh:mi:ss am')||RECOM_COMENTARIO, to_char(RECOM_FECHA_HORA,'dd/mm/yyyy hh:mi:ss am')|| '.  -  '  ||RECOM_COMENTARIO FROM TBL_RECORDATORIO_COMENTARIO_MC rc where rc.no_cia = '" + PROYECTO.Properties.Settings.Default.No_cia + "' and  RECOM_RECORDATORIO= '" + recordatorio + "' order by RECOM_FECHA_HORA");
-
-                            foreach (DataRow oFila3 in oComentarios.Rows)
-                            {
-                                comentario = oFila3.ItemArray[0].ToString();
-                                TreeNode oNode2 = new TreeNode();
-                                oNode2.Text = oFila3.ItemArray[1].ToString();
-                                oNode2.Name = comentario;
-                                oNode1.Nodes.Add(oNode2);
-                            }
+                            comentario = oFila3.ItemArray[0].ToString();
+                            TreeNode oNode2 = new TreeNode();
+                            oNode2.Text = oFila3.ItemArray[1].ToString();
+                            oNode2.Name = comentario;
+                            oNode1.Nodes.Add(oNode2);
                         }
                     }
+
                     oConexion.cerrarConexion();
 
                 }
@@ -116,17 +117,12 @@ namespace PROYECTO
                 oConexion.cerrarConexion();
                 if (oConexion.abrirConexion())
                 {
-                    String sql = "";
-                    if (chkUsuario.Checked && !cboUsuario.Text.Equals(""))
-                        sql = "SELECT distinct REC_USUARIO FROM TBL_RECORDATORIO r where r.no_cia = '" + PROYECTO.Properties.Settings.Default.No_cia + "' and REC_USUARIO ='" + cboUsuario.Text + "' order by REC_USUARIO";
-                    else
-                        sql = "SELECT distinct REC_USUARIO FROM TBL_RECORDATORIO r where r.no_cia = '" + PROYECTO.Properties.Settings.Default.No_cia + "' order by REC_USUARIO";
-                    DataTable oUsuarios = oConexion.EjecutaSentencia(sql);
                     DataTable oRecordatorios = new DataTable();
                     DataTable oComentarios = new DataTable();
-                    String usuario = "";
+                    String usuario = PROYECTO.Properties.Settings.Default.Usuario;
                     String recordatorio = "";
                     String comentario = "";
+                    String sql = "";
 
                     DateTime fecha = new DateTime();
                     if (rboAM.Checked)
@@ -134,53 +130,51 @@ namespace PROYECTO
                     else
                         fecha = DateTime.Parse(dtpFecha.Value.ToShortDateString() + " " + txtHora.Text + " pm");
 
-                    foreach (DataRow oFila in oUsuarios.Rows)
+
+                    sql = "SELECT REC_INDICE,to_char(REC_FECHA_CREA,'dd/mm/yyyy hh:mi:ss am')|| '.  -  '  ||REC_DETALLE FROM TBL_RECORDATORIO r where r.no_cia = '" + PROYECTO.Properties.Settings.Default.No_cia + "' and REC_USUARIO='" + usuario + "' ";
+                    if (chkFecha.Checked)
+                        sql += " and trunc(REC_FECHA_CREA) = '" + dtpFecha.Value.ToShortDateString() + "'";
+                    if (chkHora.Checked)
                     {
-                        usuario = oFila.ItemArray[0].ToString();
+                        sql += " and to_char(REC_FECHA_CREA,'hh:mi:ss am') = '" + fecha.ToShortTimeString().Substring(0, 5) + ":00 ";
+                        if (rboAM.Checked)
+                            sql += "AM'";
+                        else
+                            sql += "PM'";
+                    }
+                    if (chkOtro.Checked && !txtOtro.Text.Trim().Equals(""))
+                        sql += " and regexp_like(upper(REC_DETALLE),'" + txtOtro.Text.ToUpper() + "','i') ";
 
-                        sql = "SELECT REC_INDICE,to_char(REC_FECHA_CREA,'dd/mm/yyyy hh:mi:ss am')|| '.  -  '  ||REC_DETALLE FROM TBL_RECORDATORIO r where r.no_cia = '" + PROYECTO.Properties.Settings.Default.No_cia + "' and REC_USUARIO='" + usuario + "' ";
-                        if (chkFecha.Checked)
-                            sql += " and trunc(REC_FECHA_CREA) = '" + dtpFecha.Value.ToShortDateString() + "'";
-                        if (chkHora.Checked)
+                    sql += " order by REC_FECHA_CREA";
+
+                    oRecordatorios = oConexion.EjecutaSentencia(sql);
+
+                    //TreeNode oNode = new TreeNode();
+                    //oNode.NodeFont = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold);
+                    //oNode.Name = usuario;
+                    //trvLista.Nodes.Add(oNode);
+                    //trvLista.Nodes[usuario].Text = oFila.ItemArray[0].ToString();
+
+                    foreach (DataRow oFila2 in oRecordatorios.Rows)
+                    {
+                        recordatorio = oFila2.ItemArray[0].ToString();
+                        TreeNode oNode1 = new TreeNode();
+                        oNode1.Text = oFila2.ItemArray[1].ToString();
+                        oNode1.Name = recordatorio;
+                        trvLista.Nodes.Add(oNode1);
+                        //oNode.Nodes.Add(oNode1);
+                        oComentarios = oConexion.EjecutaSentencia("SELECT RECOM_RECORDATORIO||to_char(RECOM_FECHA_HORA,'dd/mm/yyyy hh:mi:ss am')||RECOM_COMENTARIO, to_char(RECOM_FECHA_HORA,'dd/mm/yyyy hh:mi:ss am')|| '.  -  '  ||RECOM_COMENTARIO FROM TBL_RECORDATORIO_COMENTARIO rc where rc.no_cia = '" + PROYECTO.Properties.Settings.Default.No_cia + "' and  RECOM_RECORDATORIO= '" + recordatorio + "' order by RECOM_FECHA_HORA");
+
+                        foreach (DataRow oFila3 in oComentarios.Rows)
                         {
-                            sql += " and to_char(REC_FECHA_CREA,'hh:mi:ss am') = '" + fecha.ToShortTimeString().Substring(0, 5) + ":00 ";
-                            if (rboAM.Checked)
-                                sql += "AM'";
-                            else
-                                sql += "PM'";
-                        }
-                        if (chkOtro.Checked && !txtOtro.Text.Trim().Equals(""))
-                            sql += " and regexp_like(upper(REC_DETALLE),'" + txtOtro.Text.ToUpper() + "','i') ";
-
-                        sql += " order by REC_FECHA_CREA";
-
-                        oRecordatorios = oConexion.EjecutaSentencia(sql);
-
-                        TreeNode oNode = new TreeNode();
-                        oNode.NodeFont = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold);
-                        oNode.Name = usuario;
-                        trvLista.Nodes.Add(oNode);
-                        trvLista.Nodes[usuario].Text = oFila.ItemArray[0].ToString();
-
-                        foreach (DataRow oFila2 in oRecordatorios.Rows)
-                        {
-                            recordatorio = oFila2.ItemArray[0].ToString();
-                            TreeNode oNode1 = new TreeNode();
-                            oNode1.Text = oFila2.ItemArray[1].ToString();
-                            oNode1.Name = recordatorio;
-                            oNode.Nodes.Add(oNode1);
-                            oComentarios = oConexion.EjecutaSentencia("SELECT RECOM_RECORDATORIO||to_char(RECOM_FECHA_HORA,'dd/mm/yyyy hh:mi:ss am')||RECOM_COMENTARIO, to_char(RECOM_FECHA_HORA,'dd/mm/yyyy hh:mi:ss am')|| '.  -  '  ||RECOM_COMENTARIO FROM TBL_RECORDATORIO_COMENTARIO_MC rc where rc.no_cia = '" + PROYECTO.Properties.Settings.Default.No_cia + "' and  RECOM_RECORDATORIO= '" + recordatorio + "' order by RECOM_FECHA_HORA");
-
-                            foreach (DataRow oFila3 in oComentarios.Rows)
-                            {
-                                comentario = oFila3.ItemArray[0].ToString();
-                                TreeNode oNode2 = new TreeNode();
-                                oNode2.Text = oFila3.ItemArray[1].ToString();
-                                oNode2.Name = comentario;
-                                oNode1.Nodes.Add(oNode2);
-                            }
+                            comentario = oFila3.ItemArray[0].ToString();
+                            TreeNode oNode2 = new TreeNode();
+                            oNode2.Text = oFila3.ItemArray[1].ToString();
+                            oNode2.Name = comentario;
+                            oNode1.Nodes.Add(oNode2);
                         }
                     }
+
                     oConexion.cerrarConexion();
 
                 }
@@ -217,47 +211,13 @@ namespace PROYECTO
                 {
                     if (nivel == 0)
                     {
-                        String sql = "";
-                        DateTime fecha = new DateTime();
-                        if (rboAM.Checked)
-                            fecha = DateTime.Parse(dtpFecha.Value.ToShortDateString() + " " + txtHora.Text + " am");
-                        else
-                            fecha = DateTime.Parse(dtpFecha.Value.ToShortDateString() + " " + txtHora.Text + " pm");
-                        sql = "SELECT lower(to_char(REC_FECHA_CREA,'dd/mm/yyyy hh:mi:ss am'))|| '.  -  '  ||REC_DETALLE FROM TBL_RECORDATORIO r where r.no_cia = '" + PROYECTO.Properties.Settings.Default.No_cia + "' and  REC_USUARIO='" + tema + "' ";
-                        if (chkFecha.Checked)
-                            sql += " and to_char(REC_FECHA_CREA,'dd/mm/yyyy') = '" + dtpFecha.Value.ToShortDateString() + "'";
-                        if (chkHora.Checked)
-                        {
-                            sql += " and to_char(REC_FECHA_CREA,'hh:mi:ss am') = '" + fecha.ToShortTimeString().Substring(0, 5) + ":00 ";
-                            if (rboAM.Checked)
-                                sql += "AM'";
-                            else
-                                sql += "PM'";
-                        }
-                        if (chkOtro.Checked && !txtOtro.Text.Trim().Equals(""))
-                            sql += " and regexp_like(upper(REC_DETALLE),'" + txtOtro.Text.ToUpper() + "','i') ";
-
-                        sql += " order by REC_FECHA_CREA";
-
-
-
-                        DataTable oRecordatorios = oConexion.EjecutaSentencia(sql);
-                        lblUsuario.Text = tema;
-                        foreach (DataRow oFila2 in oRecordatorios.Rows)
-                        {
-                            lblRecordatorios.Text += "* " + oFila2.ItemArray[0].ToString() + "\n";
-                        }
-                    }
-                    else if (nivel == 1)
-                    {
-
                         DataTable oComentarios = new DataTable();
                         DataTable oRecordatorio = oConexion.EjecutaSentencia("SELECT lower(to_char(REC_FECHA_CREA,'dd/mm/yyyy hh:mi:ss am'))|| '.  -  '  ||REC_DETALLE,REC_USUARIO FROM TBL_RECORDATORIO r where r.no_cia = '" + PROYECTO.Properties.Settings.Default.No_cia + "' and  REC_INDICE= '" + tema + "'");
                         foreach (DataRow oFila in oRecordatorio.Rows)
                         {
                             lblUsuario.Text = oFila.ItemArray[1].ToString();
                             lblRecordatorios.Text = oFila.ItemArray[0].ToString();
-                            oComentarios = oConexion.EjecutaSentencia("SELECT lower(to_char(RECOM_FECHA_HORA,'dd/mm/yyyy hh:mi:ss am'))|| '.  -  '  ||RECOM_COMENTARIO FROM TBL_RECORDATORIO_COMENTARIO_MC rc where rc.no_cia = '" + PROYECTO.Properties.Settings.Default.No_cia + "' and  RECOM_RECORDATORIO= '" + tema + "' order by RECOM_FECHA_HORA");
+                            oComentarios = oConexion.EjecutaSentencia("SELECT lower(to_char(RECOM_FECHA_HORA,'dd/mm/yyyy hh:mi:ss am'))|| '.  -  '  ||RECOM_COMENTARIO FROM TBL_RECORDATORIO_COMENTARIO rc where rc.no_cia = '" + PROYECTO.Properties.Settings.Default.No_cia + "' and  RECOM_RECORDATORIO= '" + tema + "' order by RECOM_FECHA_HORA");
 
                             foreach (DataRow oFila2 in oComentarios.Rows)
                             {
@@ -265,9 +225,9 @@ namespace PROYECTO
                             }
                         }
                     }
-                    else if (nivel == 2)
+                    else if (nivel == 1)
                     {
-                        DataTable oComentarios = oConexion.EjecutaSentencia("select rec_usuario, lower(to_char(REC_FECHA_CREA,'dd/mm/yyyy hh:mi:ss am'))|| '.  -  '||rec_detalle, lower(to_char(recom_fecha_hora,'dd/mm/yyyy hh:mi:ss am'))|| '.  -  '  ||recom_comentario from TBL_RECORDATORIO r, TBL_RECORDATORIO_COMENTARIO_MC rc where r.no_cia = '" + PROYECTO.Properties.Settings.Default.No_cia + "' and r.no_cia = rc.no_Cia and recom_recordatorio=rec_indice and (RECOM_RECORDATORIO||to_char(RECOM_FECHA_HORA,'dd/mm/yyyy hh:mi:ss am')||RECOM_COMENTARIO)='" + tema + "'");
+                        DataTable oComentarios = oConexion.EjecutaSentencia("select rec_usuario, lower(to_char(REC_FECHA_CREA,'dd/mm/yyyy hh:mi:ss am'))|| '.  -  '||rec_detalle, lower(to_char(recom_fecha_hora,'dd/mm/yyyy hh:mi:ss am'))|| '.  -  '  ||recom_comentario from TBL_RECORDATORIO r, TBL_RECORDATORIO_COMENTARIO rc where r.no_cia = '" + PROYECTO.Properties.Settings.Default.No_cia + "' and r.no_cia = rc.no_Cia and recom_recordatorio=rec_indice and (RECOM_RECORDATORIO||to_char(RECOM_FECHA_HORA,'dd/mm/yyyy hh:mi:ss am')||RECOM_COMENTARIO)='" + tema + "'");
 
                         foreach (DataRow oFila in oComentarios.Rows)
                         {
@@ -278,35 +238,6 @@ namespace PROYECTO
                     }
                     oConexion.cerrarConexion();
 
-                }
-                else
-                {
-                    MessageBox.Show("Error al conectarse con la base de datos\nVerifique que los datos estén correctos");
-
-                }
-
-            }
-            catch (Exception ex)
-            {
-
-            }
-        }
-
-        private void LlenarUsuarios()
-        {
-            try
-            {
-                oConexion.cerrarConexion();
-                if (oConexion.abrirConexion())
-                {
-                    DataTable oUsuarios = oConexion.EjecutaSentencia("SELECT distinct REC_USUARIO FROM TBL_RECORDATORIO r where r.no_cia = '" + PROYECTO.Properties.Settings.Default.No_cia + "' order by REC_USUARIO");
-                    cboUsuario.DataSource = oUsuarios;
-                    cboUsuario.ValueMember = "REC_USUARIO";
-                    cboUsuario.DisplayMember = "REC_USUARIO";
-                    cboUsuario.SelectedIndex = 0;
-
-                    dtpFecha.Value = oConexion.fecha();
-                    oConexion.cerrarConexion();
                 }
                 else
                 {
@@ -351,7 +282,6 @@ namespace PROYECTO
             btnCerrar.Visible = true;
             btnAbrir.Visible = false;
             grbBusqueda.Size = new Size(372, 163);
-            LlenarUsuarios();
         }
 
         private void btnCerrar_Click(object sender, EventArgs e)
@@ -476,11 +406,6 @@ namespace PROYECTO
             {
             }
             return min;
-        }
-
-        private void chkUsuario_CheckedChanged(object sender, EventArgs e)
-        {
-            cboUsuario.Enabled = chkUsuario.Checked;
         }
 
         private void chkFecha_CheckedChanged(object sender, EventArgs e)

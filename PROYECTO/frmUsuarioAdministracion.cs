@@ -9,6 +9,7 @@ using PROYECTO_DAO;
 using System.Collections;
 using System.IO;
 using ENTIDADES;
+using Entidades;
 
 namespace PROYECTO
 {
@@ -17,9 +18,11 @@ namespace PROYECTO
         private static frmUsuarioAdministracion ofrmPermisos2 = null;
         private ConexionDAO oConexion = new ConexionDAO(PROYECTO.Properties.Settings.Default.UsuarioBD, PROYECTO.Properties.Settings.Default.Servidor, Conexion.getInstance().Clave);
         private UsuarioDAO ousuarioDAO = null;
+        private Usuario oUsuario = null;
+
         private Boolean nuevo = true;
         private DataTable miArray = null;
-        private String codigo = "sis_usuariopermiso", descripcion = "Registro de usuarios y sus permisos.", modulo = "Sistema";
+        private String codigo = "sis_usuariopermiso", descripcion = "Administración de usuario.", modulo = "Seguridad";
         private string origen = "";
         private string txtRutaLogo = "", txtRutaDirectorio = "";
         private EmpresaDAO oEmpresaDAO = new EmpresaDAO();
@@ -43,6 +46,7 @@ namespace PROYECTO
 
         private void frmPermisos2_Load(object sender, EventArgs e)
         {
+            this.Text = this.Text + " - " + this.Name;
             try
             {
                 oConexion.cerrarConexion();
@@ -120,7 +124,11 @@ namespace PROYECTO
 
                     if (!nombreLogo.Equals(""))
                     {
-                        ousuarioDAO.GuardarImagen(label1.Text, bLogo, PROYECTO.Properties.Settings.Default.No_cia);
+                        oUsuario = new Usuario();
+
+                        oUsuario.CodUsuario = label1.Text;
+
+                        ousuarioDAO.GuardarImagen(oUsuario, bLogo, PROYECTO.Properties.Settings.Default.No_cia);
                         if (ousuarioDAO.Error())
                         {
                             MessageBox.Show("Ocurrió un error al guardar los datos del usuario." + ousuarioDAO.DescError(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);

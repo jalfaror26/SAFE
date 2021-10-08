@@ -97,7 +97,7 @@ namespace PROYECTO
             this.imageList2.Images.SetKeyName(0, "Sign 06.ico");
             this.imageList2.Images.SetKeyName(1, "File 07.ico");
             this.imageList2.Images.SetKeyName(2, "Sign 10.ico");
-            this.imageList2.Images.SetKeyName(3, "users.ico");
+            this.imageList2.Images.SetKeyName(3, "usuarios.png");
             this.imageList2.Images.SetKeyName(4, "App 29.ico");
             this.imageList2.Images.SetKeyName(5, "App 23.ico");
             this.imageList2.Images.SetKeyName(6, "Money4.ico");
@@ -142,12 +142,13 @@ namespace PROYECTO
             this.imageList2.Images.SetKeyName(45, "C&M 07.ico");
             this.imageList2.Images.SetKeyName(46, "mail.png");
             this.imageList2.Images.SetKeyName(47, "deposito.png");
+            this.imageList2.Images.SetKeyName(48, "settings.png");
             // 
             // btnDatosEmpresa
             // 
             this.btnDatosEmpresa.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDatosEmpresa.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnDatosEmpresa.ImageIndex = 4;
+            this.btnDatosEmpresa.ImageIndex = 48;
             this.btnDatosEmpresa.ImageList = this.imageList2;
             this.btnDatosEmpresa.Location = new System.Drawing.Point(107, 389);
             this.btnDatosEmpresa.Margin = new System.Windows.Forms.Padding(4);
@@ -328,6 +329,7 @@ namespace PROYECTO
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;

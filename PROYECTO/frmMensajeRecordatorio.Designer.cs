@@ -76,7 +76,7 @@ namespace PROYECTO
             this.btnPosponer.ImageKey = "Sign 12.ico";
             this.btnPosponer.ImageList = this.imageList1;
             this.btnPosponer.Location = new System.Drawing.Point(399, 224);
-            this.btnPosponer.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnPosponer.Margin = new System.Windows.Forms.Padding(4);
             this.btnPosponer.Name = "btnPosponer";
             this.btnPosponer.Size = new System.Drawing.Size(159, 39);
             this.btnPosponer.TabIndex = 4;
@@ -93,7 +93,7 @@ namespace PROYECTO
             this.btnAceptar.ImageKey = "Aceptar.ico";
             this.btnAceptar.ImageList = this.imageList1;
             this.btnAceptar.Location = new System.Drawing.Point(585, 224);
-            this.btnAceptar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnAceptar.Margin = new System.Windows.Forms.Padding(4);
             this.btnAceptar.Name = "btnAceptar";
             this.btnAceptar.Size = new System.Drawing.Size(159, 39);
             this.btnAceptar.TabIndex = 2;
@@ -118,7 +118,7 @@ namespace PROYECTO
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
             this.pictureBox1.Location = new System.Drawing.Point(20, 14);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(148, 137);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -129,7 +129,7 @@ namespace PROYECTO
             // 
             this.txtComentario.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtComentario.Location = new System.Drawing.Point(195, 169);
-            this.txtComentario.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtComentario.Margin = new System.Windows.Forms.Padding(4);
             this.txtComentario.MaxLength = 500;
             this.txtComentario.Multiline = true;
             this.txtComentario.Name = "txtComentario";
@@ -156,7 +156,7 @@ namespace PROYECTO
             this.panel1.Controls.Add(this.groupBox1);
             this.panel1.Controls.Add(this.mthFecha);
             this.panel1.Location = new System.Drawing.Point(181, 53);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(568, 210);
             this.panel1.TabIndex = 7;
@@ -170,7 +170,7 @@ namespace PROYECTO
             this.btnPosponerRecordatorio.ImageKey = "Sign 12.ico";
             this.btnPosponerRecordatorio.ImageList = this.imageList1;
             this.btnPosponerRecordatorio.Location = new System.Drawing.Point(343, 85);
-            this.btnPosponerRecordatorio.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnPosponerRecordatorio.Margin = new System.Windows.Forms.Padding(4);
             this.btnPosponerRecordatorio.Name = "btnPosponerRecordatorio";
             this.btnPosponerRecordatorio.Size = new System.Drawing.Size(159, 39);
             this.btnPosponerRecordatorio.TabIndex = 165;
@@ -186,9 +186,9 @@ namespace PROYECTO
             this.groupBox1.Controls.Add(this.txtHora);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(340, 5);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox1.Size = new System.Drawing.Size(172, 69);
             this.groupBox1.TabIndex = 164;
             this.groupBox1.TabStop = false;
@@ -199,7 +199,7 @@ namespace PROYECTO
             this.rboPM.AutoSize = true;
             this.rboPM.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rboPM.Location = new System.Drawing.Point(107, 38);
-            this.rboPM.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.rboPM.Margin = new System.Windows.Forms.Padding(4);
             this.rboPM.Name = "rboPM";
             this.rboPM.Size = new System.Drawing.Size(50, 21);
             this.rboPM.TabIndex = 165;
@@ -212,7 +212,7 @@ namespace PROYECTO
             this.rboAM.Checked = true;
             this.rboAM.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rboAM.Location = new System.Drawing.Point(107, 16);
-            this.rboAM.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.rboAM.Margin = new System.Windows.Forms.Padding(4);
             this.rboAM.Name = "rboAM";
             this.rboAM.Size = new System.Drawing.Size(50, 21);
             this.rboAM.TabIndex = 164;
@@ -224,7 +224,7 @@ namespace PROYECTO
             // 
             this.txtHora.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtHora.Location = new System.Drawing.Point(15, 25);
-            this.txtHora.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtHora.Margin = new System.Windows.Forms.Padding(4);
             this.txtHora.Mask = "00 : 00";
             this.txtHora.Name = "txtHora";
             this.txtHora.PromptChar = ' ';
@@ -260,7 +260,8 @@ namespace PROYECTO
             this.Controls.Add(this.pictureBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.KeyPreview = true;
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmMensajeRecordatorio";
@@ -268,6 +269,7 @@ namespace PROYECTO
             this.Text = "RECORDATORIO";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmMensajeRecordatorio_FormClosing);
             this.Load += new System.EventHandler(this.frmMensajeRecordatorio_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmForma_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel1.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);

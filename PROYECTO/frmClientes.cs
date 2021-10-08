@@ -12,19 +12,17 @@ namespace PROYECTO
 {
     public partial class frmClientes : Form
     {
-
-
         private frmClientes()
         {
             InitializeComponent();
         }
 
-        private ClienteDAO oClienteDAO_MC = new ClienteDAO();
+        private ClienteDAO oClienteDAO = new ClienteDAO();
         private static frmClientes instance = null;
         private ConexionDAO oConexion = new ConexionDAO(PROYECTO.Properties.Settings.Default.UsuarioBD, PROYECTO.Properties.Settings.Default.Servidor, Conexion.getInstance().Clave);
-        private Cliente oCliente_MC;
+        private Cliente oCliente;
         private Int32 indice;
-        private String codigo = "par_clientes", descripcion = "Registro de clientes del sistema.", modulo = "Parametros_Generales";
+        private String codigo = "par_clientes", descripcion = "Registro de clientes del sistema.", modulo = "Mantenimientos";
         private string txtCodigo = "";
 
         public String Modulo
@@ -45,8 +43,6 @@ namespace PROYECTO
             set { codigo = value; }
         }
 
-
-
         public static frmClientes getInstance()
         {
             if (instance == null)
@@ -54,9 +50,9 @@ namespace PROYECTO
             return instance;
         }
 
-
         private void frmClientes_Load(object sender, EventArgs e)
         {
+            this.Text = this.Text + " - " + this.Name;
             ((System.Windows.Forms.StatusStrip)this.MdiParent.Controls["stEstado"]).Items["stLinea4"].Visible = true;
             ((System.Windows.Forms.StatusStrip)this.MdiParent.Controls["stEstado"]).Items["stActual"].Text = " Actual: Mantenimiento de Clientes ";
             Llenar_Grid();
@@ -104,12 +100,12 @@ namespace PROYECTO
                 oConexion.cerrarConexion();
                 if (oConexion.abrirConexion())
                 {
-                    dgrDatos.DataSource = oClienteDAO_MC.Consultar(PROYECTO.Properties.Settings.Default.No_cia).Tables[0];
+                    dgrDatos.DataSource = oClienteDAO.Consultar(PROYECTO.Properties.Settings.Default.No_cia).Tables[0];
 
 
                     //Evaluar si ocurriió un Error
-                    if (oClienteDAO_MC.Error())
-                        MessageBox.Show("Error al listar los datos:\n" + oClienteDAO_MC.DescError(), "Error de consulta", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    if (oClienteDAO.Error())
+                        MessageBox.Show("Error al listar los datos:\n" + oClienteDAO.DescError(), "Error de consulta", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     oConexion.cerrarConexion();
                 }
                 else
@@ -128,9 +124,9 @@ namespace PROYECTO
             oConexion.cerrarConexion();
             if (oConexion.abrirConexion())
             {
-                dgrDatos.DataSource = oClienteDAO_MC.Listar(tipo, palabra, PROYECTO.Properties.Settings.Default.No_cia).Tables[0];
-                if (oClienteDAO_MC.Error())
-                    MessageBox.Show("Error al listar los datos:\n" + oClienteDAO_MC.DescError(), "Error de consulta", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                dgrDatos.DataSource = oClienteDAO.Listar(tipo, palabra, PROYECTO.Properties.Settings.Default.No_cia).Tables[0];
+                if (oClienteDAO.Error())
+                    MessageBox.Show("Error al listar los datos:\n" + oClienteDAO.DescError(), "Error de consulta", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                 oConexion.cerrarConexion();
             }
@@ -204,37 +200,37 @@ namespace PROYECTO
                 oConexion.cerrarConexion();
                 if (oConexion.abrirConexion())
                 {
-                    oCliente_MC = new Cliente();
+                    oCliente = new Cliente();
 
-                    oCliente_MC.No_cia = PROYECTO.Properties.Settings.Default.No_cia;
-                    oCliente_MC.Indice = indice;
-                    oCliente_MC.Id = "";//txtCodigo.Text;
-                    oCliente_MC.TipoId = EvaluarTipoID();
-                    oCliente_MC.Nombre = txtNombre.Text;
-                    oCliente_MC.Telefono = txtTelefono.Text;
-                    oCliente_MC.Fax = txtFax.Text;
-                    oCliente_MC.Contacto = txtContacto.Text;
-                    oCliente_MC.Correo = txtCorreo.Text;
-                    oCliente_MC.Ubicacion = txtUbicacion.Text;
-                    oCliente_MC.Identificacion = txtIdentificacion.Text;
+                    oCliente.No_cia = PROYECTO.Properties.Settings.Default.No_cia;
+                    oCliente.Indice = indice;
+                    oCliente.Id = "";//txtCodigo.Text;
+                    oCliente.TipoId = EvaluarTipoID();
+                    oCliente.Nombre = txtNombre.Text;
+                    oCliente.Telefono = txtTelefono.Text;
+                    oCliente.Fax = txtFax.Text;
+                    oCliente.Contacto = txtContacto.Text;
+                    oCliente.Correo = txtCorreo.Text;
+                    oCliente.Ubicacion = txtUbicacion.Text;
+                    oCliente.Identificacion = txtIdentificacion.Text;
                     if (txtDias.Text.Trim().Equals(""))
-                        oCliente_MC.Dias = 0;
+                        oCliente.Dias = 0;
                     else
-                        oCliente_MC.Dias = Convert.ToInt32(txtDias.Text);
+                        oCliente.Dias = Convert.ToInt32(txtDias.Text);
 
-                    oCliente_MC.Almacen = 0;
-                    oCliente_MC.DescAlmacen = "";
+                    oCliente.Almacen = 0;
+                    oCliente.DescAlmacen = "";
 
-                    oCliente_MC.Lc_limite = double.Parse(txtLCLimite.Text);
-                    oCliente_MC.Lc_moneda = cboLCMoneda.SelectedItem.ToString();
+                    oCliente.Lc_limite = double.Parse(txtLCLimite.Text);
+                    oCliente.Lc_moneda = cboLCMoneda.SelectedItem.ToString();
 
                     if (indice == 0)
-                        oClienteDAO_MC.Agregar(oCliente_MC, out indice);
+                        oClienteDAO.Agregar(oCliente, out indice);
                     else
-                        oClienteDAO_MC.Modificar(oCliente_MC);
+                        oClienteDAO.Modificar(oCliente);
 
-                    if (oClienteDAO_MC.Error())
-                        MessageBox.Show("Error al Guardar:\n" + oClienteDAO_MC.DescError(), "Error de consulta", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    if (oClienteDAO.Error())
+                        MessageBox.Show("Error al Guardar:\n" + oClienteDAO.DescError(), "Error de consulta", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     else
                     {
                         MessageBox.Show("Guardado Correctamente!!", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -266,14 +262,14 @@ namespace PROYECTO
                 oConexion.cerrarConexion();
                 if (oConexion.abrirConexion())
                 {
-                    oCliente_MC = new Cliente();
+                    oCliente = new Cliente();
 
-                    oCliente_MC.No_cia = PROYECTO.Properties.Settings.Default.No_cia;
-                    oCliente_MC.Indice = indice;
-                    oClienteDAO_MC.Eliminar(oCliente_MC);
-                    if (oClienteDAO_MC.Error())
+                    oCliente.No_cia = PROYECTO.Properties.Settings.Default.No_cia;
+                    oCliente.Indice = indice;
+                    oClienteDAO.Eliminar(oCliente);
+                    if (oClienteDAO.Error())
                     {
-                        MessageBox.Show("Error al Eliminar:\n" + oClienteDAO_MC.DescError(), "Error de consulta", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("Error al Eliminar:\n" + oClienteDAO.DescError(), "Error de consulta", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                     else
                         MessageBox.Show("Eliminado correctamente!!", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -317,25 +313,39 @@ namespace PROYECTO
 
         private void frmClientes_FormClosing(object sender, FormClosingEventArgs e)
         {
-            instance = null;
-            ((System.Windows.Forms.StatusStrip)this.MdiParent.Controls["stEstado"]).Items["stLinea4"].Visible = false;
-            ((System.Windows.Forms.StatusStrip)this.MdiParent.Controls["stEstado"]).Items["stActual"].Text = "";
+            try
+            {
+                instance = null;
+                ((System.Windows.Forms.StatusStrip)this.MdiParent.Controls["stEstado"]).Items["stLinea4"].Visible = false;
+                ((System.Windows.Forms.StatusStrip)this.MdiParent.Controls["stEstado"]).Items["stActual"].Text = "";
+            }
+            catch { }
         }
 
         private void txtBId_KeyUp(object sender, KeyEventArgs e)
         {
-            if (txtBId.Text.Trim().Equals(""))
-                Llenar_Grid();
+            if (e.KeyCode == Keys.F1)
+                Ayuda();
             else
-                Llenar_Grid(1, txtBId.Text);
+            {
+                if (txtBId.Text.Trim().Equals(""))
+                    Llenar_Grid();
+                else
+                    Llenar_Grid(1, txtBId.Text);
+            }
         }
 
         private void txtBNombre_KeyUp(object sender, KeyEventArgs e)
         {
-            if (txtBNombre.Text.Trim().Equals(""))
-                Llenar_Grid();
+            if (e.KeyCode == Keys.F1)
+                Ayuda();
             else
-                Llenar_Grid(2, txtBNombre.Text);
+            {
+                if (txtBNombre.Text.Trim().Equals(""))
+                    Llenar_Grid();
+                else
+                    Llenar_Grid(2, txtBNombre.Text);
+            }
         }
 
         private void dgrDatos_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
@@ -416,6 +426,19 @@ namespace PROYECTO
         {
             instance = null;
             this.Close();
+        }
+
+        private void frmForma_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.F1)
+                Ayuda();
+        }
+
+        private void Ayuda()
+        {
+            frmAyuda oFrm = frmAyuda.getInstance("t4");
+            oFrm.MdiParent = this.MdiParent;
+            oFrm.Show();
         }
     }
 }

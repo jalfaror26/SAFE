@@ -81,6 +81,42 @@
     <Compile Include="frmAyuda.designer.cs">
       <DependentUpon>frmAyuda.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmConsulta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmConsulta.designer.cs">
+      <DependentUpon>frmConsulta.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmConsultaCliente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmConsultaCliente.designer.cs">
+      <DependentUpon>frmConsultaCliente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmConsultaServicios.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmConsultaServicios.designer.cs">
+      <DependentUpon>frmConsultaServicios.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmMenuFacturacion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMenuFacturacion.designer.cs">
+      <DependentUpon>frmMenuFacturacion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmCotizacion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCotizacion.designer.cs">
+      <DependentUpon>frmCotizacion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmMenuFinancieros.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMenuFinancieros.designer.cs">
+      <DependentUpon>frmMenuFinancieros.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmServicios.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -171,6 +207,12 @@
     <Compile Include="frmTiposCambio.designer.cs">
       <DependentUpon>frmTiposCambio.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmGastos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmGastos.designer.cs">
+      <DependentUpon>frmGastos.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmUsuarioAdministracion.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -185,6 +227,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RedondearNumero.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="Web References\TipoCambioBCCR\Reference.cs">
       <AutoGen>True</AutoGen>
@@ -193,6 +236,24 @@
     </Compile>
     <EmbeddedResource Include="frmAyuda.resx">
       <DependentUpon>frmAyuda.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmConsulta.resx">
+      <DependentUpon>frmConsulta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmConsultaCliente.resx">
+      <DependentUpon>frmConsultaCliente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmConsultaServicios.resx">
+      <DependentUpon>frmConsultaServicios.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMenuFacturacion.resx">
+      <DependentUpon>frmMenuFacturacion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmCotizacion.resx">
+      <DependentUpon>frmCotizacion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMenuFinancieros.resx">
+      <DependentUpon>frmMenuFinancieros.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmServicios.resx">
       <DependentUpon>frmServicios.cs</DependentUpon>
@@ -238,6 +299,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmTiposCambio.resx">
       <DependentUpon>frmTiposCambio.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmGastos.resx">
+      <DependentUpon>frmGastos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmUsuarioAdministracion.resx">
       <DependentUpon>frmUsuarioAdministracion.cs</DependentUpon>

@@ -45,6 +45,7 @@ namespace PROYECTO
             this.pPrincipal = new System.Windows.Forms.Panel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnCerrarSesion = new System.Windows.Forms.Button();
+            this.btnAyuda = new System.Windows.Forms.Button();
             this.button12 = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.btnSistema = new System.Windows.Forms.Button();
@@ -124,7 +125,7 @@ namespace PROYECTO
             this.imageList2.Images.SetKeyName(4, "App 29.ico");
             this.imageList2.Images.SetKeyName(5, "App 23.ico");
             this.imageList2.Images.SetKeyName(6, "Money4.ico");
-            this.imageList2.Images.SetKeyName(7, "Sys-ControlPanel.ico");
+            this.imageList2.Images.SetKeyName(7, "FE.png");
             this.imageList2.Images.SetKeyName(8, "cerrar_sesion.png");
             this.imageList2.Images.SetKeyName(9, "help.png");
             this.imageList2.Images.SetKeyName(10, "Salir 2.ico");
@@ -167,6 +168,7 @@ namespace PROYECTO
             this.imageList2.Images.SetKeyName(47, "deposito.png");
             this.imageList2.Images.SetKeyName(48, "facturar.png");
             this.imageList2.Images.SetKeyName(49, "efectivo.png");
+            this.imageList2.Images.SetKeyName(50, "settings.png");
             // 
             // imageList1
             // 
@@ -357,6 +359,7 @@ namespace PROYECTO
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.btnCerrarSesion);
+            this.groupBox1.Controls.Add(this.btnAyuda);
             this.groupBox1.Location = new System.Drawing.Point(-7, 426);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox1.Name = "groupBox1";
@@ -365,7 +368,6 @@ namespace PROYECTO
             this.groupBox1.TabIndex = 591;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "     Acceso Rápido     ";
-            this.groupBox1.Visible = false;
             // 
             // btnCerrarSesion
             // 
@@ -373,15 +375,31 @@ namespace PROYECTO
             this.btnCerrarSesion.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnCerrarSesion.ImageIndex = 8;
             this.btnCerrarSesion.ImageList = this.imageList2;
-            this.btnCerrarSesion.Location = new System.Drawing.Point(137, 25);
+            this.btnCerrarSesion.Location = new System.Drawing.Point(523, 25);
             this.btnCerrarSesion.Margin = new System.Windows.Forms.Padding(4);
             this.btnCerrarSesion.Name = "btnCerrarSesion";
             this.btnCerrarSesion.Size = new System.Drawing.Size(287, 57);
-            this.btnCerrarSesion.TabIndex = 11;
-            this.btnCerrarSesion.Text = "      F1  -  CERRAR SESIÓN";
+            this.btnCerrarSesion.TabIndex = 12;
+            this.btnCerrarSesion.Text = "      F2  -  CERRAR SESIÓN";
             this.btnCerrarSesion.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnCerrarSesion.UseVisualStyleBackColor = true;
             this.btnCerrarSesion.Click += new System.EventHandler(this.btnCerrarSesion_Click);
+            // 
+            // btnAyuda
+            // 
+            this.btnAyuda.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAyuda.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnAyuda.ImageIndex = 9;
+            this.btnAyuda.ImageList = this.imageList2;
+            this.btnAyuda.Location = new System.Drawing.Point(137, 25);
+            this.btnAyuda.Margin = new System.Windows.Forms.Padding(4);
+            this.btnAyuda.Name = "btnAyuda";
+            this.btnAyuda.Size = new System.Drawing.Size(287, 57);
+            this.btnAyuda.TabIndex = 11;
+            this.btnAyuda.Text = "      F1  -  AYUDA";
+            this.btnAyuda.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnAyuda.UseVisualStyleBackColor = true;
+            this.btnAyuda.Click += new System.EventHandler(this.btnAyuda_Click);
             // 
             // button12
             // 
@@ -412,7 +430,7 @@ namespace PROYECTO
             // 
             this.btnSistema.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSistema.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSistema.ImageIndex = 4;
+            this.btnSistema.ImageIndex = 50;
             this.btnSistema.ImageList = this.imageList2;
             this.btnSistema.Location = new System.Drawing.Point(111, 257);
             this.btnSistema.Margin = new System.Windows.Forms.Padding(4);
@@ -457,7 +475,6 @@ namespace PROYECTO
             this.btnInventarios.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnInventarios.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnInventarios.UseVisualStyleBackColor = true;
-            this.btnInventarios.Visible = false;
             this.btnInventarios.Click += new System.EventHandler(this.lblInventarios_Click);
             // 
             // btnGenerales
@@ -491,7 +508,6 @@ namespace PROYECTO
             this.btnFinancieros.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnFinancieros.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnFinancieros.UseVisualStyleBackColor = true;
-            this.btnFinancieros.Visible = false;
             this.btnFinancieros.Click += new System.EventHandler(this.lblFinancieros_Click);
             // 
             // label13
@@ -527,6 +543,7 @@ namespace PROYECTO
             this.pictureBox10.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox10.TabIndex = 590;
             this.pictureBox10.TabStop = false;
+            this.pictureBox10.Visible = false;
             // 
             // pRepFinancieros
             // 
@@ -1314,7 +1331,8 @@ namespace PROYECTO
         private System.Windows.Forms.Button btnRepFacImpuestoVentas;
         private System.Windows.Forms.Button btnProdPendientesCobro;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Button btnCerrarSesion;
+        private System.Windows.Forms.Button btnAyuda;
         private System.Windows.Forms.Button btnSistema;
+        private System.Windows.Forms.Button btnCerrarSesion;
     }
 }

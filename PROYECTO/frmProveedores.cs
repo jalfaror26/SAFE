@@ -17,11 +17,11 @@ namespace PROYECTO
             InitializeComponent();
         }
 
-        private ProveedorDAO oProveedorDAO_MC = new ProveedorDAO();
+        private ProveedorDAO oProveedorDAO = new ProveedorDAO();
         private static frmProveedores instance = null;
         private ConexionDAO oConexion = new ConexionDAO(PROYECTO.Properties.Settings.Default.UsuarioBD, PROYECTO.Properties.Settings.Default.Servidor, Conexion.getInstance().Clave);
-        private Proveedor oProveedor_MC;
-        private String codigo = "par_proveedores", descripcion = "Registro de proveedores del sistema.", modulo = "Parametros_Generales";
+        private Proveedor oProveedor;
+        private String codigo = "par_proveedores", descripcion = "Registro de proveedores del sistema.", modulo = "Mantenimientos";
         private Double indiceProveedor = 0;
 
         public String Modulo
@@ -42,7 +42,6 @@ namespace PROYECTO
             set { codigo = value; }
         }
 
-
         public static frmProveedores getInstance()
         {
             if (instance == null)
@@ -50,9 +49,9 @@ namespace PROYECTO
             return instance;
         }
 
-
         private void frmProveedores_Load(object sender, EventArgs e)
         {
+            this.Text = this.Text + " - " + this.Name;
             ((System.Windows.Forms.StatusStrip)this.MdiParent.Controls["stEstado"]).Items["stLinea4"].Visible = true;
             ((System.Windows.Forms.StatusStrip)this.MdiParent.Controls["stEstado"]).Items["stActual"].Text = " Actual: Mantenimiento de Proveedores ";
             Llenar_Grid();
@@ -104,9 +103,9 @@ namespace PROYECTO
                 oConexion.cerrarConexion();
                 if (oConexion.abrirConexion())
                 {
-                    dgrDatos.DataSource = oProveedorDAO_MC.Consultar(PROYECTO.Properties.Settings.Default.No_cia).Tables[0];
-                    if (oProveedorDAO_MC.Error())
-                        MessageBox.Show("Error al listar los datos de proveedores:\n" + oProveedorDAO_MC.DescError(), "Error de consulta", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    dgrDatos.DataSource = oProveedorDAO.Consultar(PROYECTO.Properties.Settings.Default.No_cia).Tables[0];
+                    if (oProveedorDAO.Error())
+                        MessageBox.Show("Error al listar los datos de proveedores:\n" + oProveedorDAO.DescError(), "Error de consulta", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     oConexion.cerrarConexion();
                 }
                 else
@@ -125,10 +124,10 @@ namespace PROYECTO
             oConexion.cerrarConexion();
             if (oConexion.abrirConexion())
             {
-                dgrDatos.DataSource = oProveedorDAO_MC.Listar(tipo, palabra, PROYECTO.Properties.Settings.Default.No_cia).Tables[0];
-                if (oProveedorDAO_MC.Error())
+                dgrDatos.DataSource = oProveedorDAO.Listar(tipo, palabra, PROYECTO.Properties.Settings.Default.No_cia).Tables[0];
+                if (oProveedorDAO.Error())
                 {
-                    MessageBox.Show("Error al listar los datos de proveedores:\n" + oProveedorDAO_MC.DescError(), "Error de consulta", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Error al listar los datos de proveedores:\n" + oProveedorDAO.DescError(), "Error de consulta", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 oConexion.cerrarConexion();
             }
@@ -184,28 +183,28 @@ namespace PROYECTO
                     oConexion.cerrarConexion();
                     if (oConexion.abrirConexion())
                     {
-                        oProveedor_MC = new Proveedor();
+                        oProveedor = new Proveedor();
 
-                        oProveedor_MC.No_cia = PROYECTO.Properties.Settings.Default.No_cia;
-                        oProveedor_MC.Indice = indiceProveedor;
-                        oProveedor_MC.Id = txtId.Text;
-                        oProveedor_MC.TipoID = cboTipoId.SelectedItem.ToString();
-                        oProveedor_MC.Nombre = txtNombre.Text;
-                        oProveedor_MC.Telefono = txtTelefono.Text;
-                        oProveedor_MC.Fax = txtFax.Text;
-                        oProveedor_MC.Contacto = txtContacto.Text;
-                        oProveedor_MC.TelContacto = txtTelContacto.Text;
-                        oProveedor_MC.Ubicacion = txtUbicacion.Text;
-                        oProveedor_MC.Descripcion = txtDescripcion.Text;
+                        oProveedor.No_cia = PROYECTO.Properties.Settings.Default.No_cia;
+                        oProveedor.Indice = indiceProveedor;
+                        oProveedor.Id = txtId.Text;
+                        oProveedor.TipoID = cboTipoId.SelectedItem.ToString();
+                        oProveedor.Nombre = txtNombre.Text;
+                        oProveedor.Telefono = txtTelefono.Text;
+                        oProveedor.Fax = txtFax.Text;
+                        oProveedor.Contacto = txtContacto.Text;
+                        oProveedor.TelContacto = txtTelContacto.Text;
+                        oProveedor.Ubicacion = txtUbicacion.Text;
+                        oProveedor.Descripcion = txtDescripcion.Text;
                         if (txtDias.Text.Trim().Equals(""))
-                            oProveedor_MC.Dias = 0;
+                            oProveedor.Dias = 0;
                         else
-                            oProveedor_MC.Dias = Convert.ToInt32(txtDias.Text);
-                        oProveedor_MC.Categoria = cboCategoria.Text;
-                        oProveedor_MC.RefBancaria = txtrefbancaria.Text;
-                        oProveedorDAO_MC.Agregar(oProveedor_MC);
-                        if (oProveedorDAO_MC.Error())
-                            MessageBox.Show("Error al agregar:\n" + oProveedorDAO_MC.DescError(), "Error de Consulta ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            oProveedor.Dias = Convert.ToInt32(txtDias.Text);
+                        oProveedor.Categoria = cboCategoria.Text;
+                        oProveedor.RefBancaria = txtrefbancaria.Text;
+                        oProveedorDAO.Agregar(oProveedor);
+                        if (oProveedorDAO.Error())
+                            MessageBox.Show("Error al agregar:\n" + oProveedorDAO.DescError(), "Error de Consulta ", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         else
                         {
                             MessageBox.Show("Agregado correctamente!!", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -249,29 +248,29 @@ namespace PROYECTO
                     oConexion.cerrarConexion();
                     if (oConexion.abrirConexion())
                     {
-                        oProveedor_MC = new Proveedor();
+                        oProveedor = new Proveedor();
 
-                        oProveedor_MC.No_cia = PROYECTO.Properties.Settings.Default.No_cia;
-                        oProveedor_MC.Indice = indiceProveedor;
-                        oProveedor_MC.Id = txtId.Text;
-                        oProveedor_MC.TipoID = cboTipoId.SelectedItem.ToString();
-                        oProveedor_MC.Nombre = txtNombre.Text;
-                        oProveedor_MC.Telefono = txtTelefono.Text;
-                        oProveedor_MC.Fax = txtFax.Text;
-                        oProveedor_MC.Contacto = txtContacto.Text;
-                        oProveedor_MC.TelContacto = txtTelContacto.Text;
-                        oProveedor_MC.Ubicacion = txtUbicacion.Text;
-                        oProveedor_MC.Descripcion = txtDescripcion.Text;
+                        oProveedor.No_cia = PROYECTO.Properties.Settings.Default.No_cia;
+                        oProveedor.Indice = indiceProveedor;
+                        oProveedor.Id = txtId.Text;
+                        oProveedor.TipoID = cboTipoId.SelectedItem.ToString();
+                        oProveedor.Nombre = txtNombre.Text;
+                        oProveedor.Telefono = txtTelefono.Text;
+                        oProveedor.Fax = txtFax.Text;
+                        oProveedor.Contacto = txtContacto.Text;
+                        oProveedor.TelContacto = txtTelContacto.Text;
+                        oProveedor.Ubicacion = txtUbicacion.Text;
+                        oProveedor.Descripcion = txtDescripcion.Text;
                         if (txtDias.Text.Trim().Equals(""))
-                            oProveedor_MC.Dias = 0;
+                            oProveedor.Dias = 0;
                         else
-                            oProveedor_MC.Dias = Convert.ToInt32(txtDias.Text);
-                        oProveedor_MC.Categoria = cboCategoria.Text;
-                        oProveedor_MC.RefBancaria = txtrefbancaria.Text;
-                        oProveedorDAO_MC.Modificar(oProveedor_MC);
-                        if (oProveedorDAO_MC.Error())
+                            oProveedor.Dias = Convert.ToInt32(txtDias.Text);
+                        oProveedor.Categoria = cboCategoria.Text;
+                        oProveedor.RefBancaria = txtrefbancaria.Text;
+                        oProveedorDAO.Modificar(oProveedor);
+                        if (oProveedorDAO.Error())
                         {
-                            MessageBox.Show("Error al Modificar el Proveedor:\n" + oProveedorDAO_MC.DescError(), "Error de consulta", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show("Error al Modificar el Proveedor:\n" + oProveedorDAO.DescError(), "Error de consulta", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                         else
                             MessageBox.Show("Modificado correctamente!!", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -315,14 +314,14 @@ namespace PROYECTO
                     oConexion.cerrarConexion();
                     if (oConexion.abrirConexion())
                     {
-                        oProveedor_MC = new Proveedor();
+                        oProveedor = new Proveedor();
 
-                        oProveedor_MC.No_cia = PROYECTO.Properties.Settings.Default.No_cia;
-                        oProveedor_MC.Indice = indiceProveedor;
-                        oProveedorDAO_MC.Eliminar(oProveedor_MC);
-                        if (oProveedorDAO_MC.Error())
+                        oProveedor.No_cia = PROYECTO.Properties.Settings.Default.No_cia;
+                        oProveedor.Indice = indiceProveedor;
+                        oProveedorDAO.Eliminar(oProveedor);
+                        if (oProveedorDAO.Error())
                         {
-                            MessageBox.Show("Error al Eliminar el Proveedor:\n" + oProveedorDAO_MC.DescError(), "Error de consulta", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show("Error al Eliminar el Proveedor:\n" + oProveedorDAO.DescError(), "Error de consulta", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                         else
                             MessageBox.Show("Eliminado correctamente!!", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -365,18 +364,28 @@ namespace PROYECTO
 
         private void txtBNombre_KeyUp(object sender, KeyEventArgs e)
         {
-            if (txtBNombre.Text.Trim().Equals(""))
-                Llenar_Grid();
+            if (e.KeyCode == Keys.F1)
+                Ayuda();
             else
-                Llenar_Grid(2, txtBNombre.Text);
+            {
+                if (txtBNombre.Text.Trim().Equals(""))
+                    Llenar_Grid();
+                else
+                    Llenar_Grid(2, txtBNombre.Text);
+            }
         }
 
         private void txtBId_KeyUp(object sender, KeyEventArgs e)
         {
-            if (txtBId.Text.Trim().Equals(""))
-                Llenar_Grid();
+            if (e.KeyCode == Keys.F1)
+                Ayuda();
             else
-                Llenar_Grid(1, txtBId.Text);
+            {
+                if (txtBId.Text.Trim().Equals(""))
+                    Llenar_Grid();
+                else
+                    Llenar_Grid(1, txtBId.Text);
+            }
         }
 
         private void dgrDatos_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
@@ -384,7 +393,6 @@ namespace PROYECTO
             dgrDatos.ClearSelection();
             btnMNuevo.PerformClick();
         }
-
 
         private Boolean Existente()
         {
@@ -455,5 +463,20 @@ namespace PROYECTO
             this.Close();
         }
 
+        private void frmForma_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.F1)
+            {
+                if (e.KeyCode == Keys.F1)
+                    Ayuda();
+            }
+        }
+
+        private void Ayuda()
+        {
+            frmAyuda oFrm = frmAyuda.getInstance("t5");
+            oFrm.MdiParent = this.MdiParent;
+            oFrm.Show();
+        }
     }
 }

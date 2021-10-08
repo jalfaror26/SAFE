@@ -73,7 +73,7 @@ namespace PROYECTO_DAO
             return !OracleDAO.getInstance().ErrorSQL;
         }
 
-        public Boolean Modificar(Cliente oCliente_MC)
+        public Boolean Modificar(Cliente oCliente)
         {
 
             //Declaración de objeto SqlCommand           
@@ -83,37 +83,37 @@ namespace PROYECTO_DAO
             oCommand.CommandType = CommandType.StoredProcedure;
 
             oCommand.Parameters.Add("cliid", OracleType.NVarChar);
-            oCommand.Parameters[0].Value = oCliente_MC.Id;
+            oCommand.Parameters[0].Value = oCliente.Id;
             oCommand.Parameters.Add("tipoId", OracleType.NVarChar);
-            oCommand.Parameters[1].Value = oCliente_MC.TipoId;
+            oCommand.Parameters[1].Value = oCliente.TipoId;
             oCommand.Parameters.Add("nombre", OracleType.NVarChar);
-            oCommand.Parameters[2].Value = oCliente_MC.Nombre;
+            oCommand.Parameters[2].Value = oCliente.Nombre;
             oCommand.Parameters.Add("telefono", OracleType.NVarChar);
-            oCommand.Parameters[3].Value = oCliente_MC.Telefono;
+            oCommand.Parameters[3].Value = oCliente.Telefono;
             oCommand.Parameters.Add("fax", OracleType.NVarChar);
-            oCommand.Parameters[4].Value = oCliente_MC.Fax;
+            oCommand.Parameters[4].Value = oCliente.Fax;
             oCommand.Parameters.Add("contacto", OracleType.NVarChar);
-            oCommand.Parameters[5].Value = oCliente_MC.Contacto;
+            oCommand.Parameters[5].Value = oCliente.Contacto;
             oCommand.Parameters.Add("correo", OracleType.NVarChar);
-            oCommand.Parameters[6].Value = oCliente_MC.Correo;
+            oCommand.Parameters[6].Value = oCliente.Correo;
             oCommand.Parameters.Add("ubicacion", OracleType.NVarChar);
-            oCommand.Parameters[7].Value = oCliente_MC.Ubicacion;
+            oCommand.Parameters[7].Value = oCliente.Ubicacion;
             oCommand.Parameters.Add("dias", OracleType.Number);
-            oCommand.Parameters[8].Value = oCliente_MC.Dias;
+            oCommand.Parameters[8].Value = oCliente.Dias;
             oCommand.Parameters.Add("almacen", OracleType.Number);
-            oCommand.Parameters[9].Value = oCliente_MC.Almacen;
+            oCommand.Parameters[9].Value = oCliente.Almacen;
             oCommand.Parameters.Add("descAlmacen", OracleType.NVarChar);
-            oCommand.Parameters[10].Value = oCliente_MC.DescAlmacen;
+            oCommand.Parameters[10].Value = oCliente.DescAlmacen;
             oCommand.Parameters.Add("indice", OracleType.Number);
-            oCommand.Parameters[11].Value = oCliente_MC.Indice;
+            oCommand.Parameters[11].Value = oCliente.Indice;
             oCommand.Parameters.Add("identificacion", OracleType.NVarChar);
-            oCommand.Parameters[12].Value = oCliente_MC.Identificacion;
+            oCommand.Parameters[12].Value = oCliente.Identificacion;
             oCommand.Parameters.Add("lc_moneda", OracleType.NVarChar);
-            oCommand.Parameters[13].Value = oCliente_MC.Lc_moneda;
+            oCommand.Parameters[13].Value = oCliente.Lc_moneda;
             oCommand.Parameters.Add("lc_limite", OracleType.Number);
-            oCommand.Parameters[14].Value = oCliente_MC.Lc_limite;
+            oCommand.Parameters[14].Value = oCliente.Lc_limite;
             oCommand.Parameters.Add("pNo_cia", OracleType.NVarChar);
-            oCommand.Parameters[15].Value = oCliente_MC.No_cia;
+            oCommand.Parameters[15].Value = oCliente.No_cia;
 
             OracleDAO.getInstance().EjecutarSQLStoreProcedure(oCommand);
 
@@ -121,7 +121,7 @@ namespace PROYECTO_DAO
             return !OracleDAO.getInstance().ErrorSQL;
         }
 
-        public Boolean Eliminar(Cliente oCliente_MC)
+        public Boolean Eliminar(Cliente oCliente)
         {
             OracleCommand oCommand = new OracleCommand();
             oCommand.CommandText = "PCKCLIENTE.paEliminar";
@@ -129,9 +129,9 @@ namespace PROYECTO_DAO
 
             //Crear los Parámetros del procedimiento y sus valores
             oCommand.Parameters.Add("INDICE", OracleType.Number);
-            oCommand.Parameters[0].Value = oCliente_MC.Indice;
+            oCommand.Parameters[0].Value = oCliente.Indice;
             oCommand.Parameters.Add("pNo_cia", OracleType.NVarChar);
-            oCommand.Parameters[1].Value = oCliente_MC.No_cia;
+            oCommand.Parameters[1].Value = oCliente.No_cia;
 
             OracleDAO.getInstance().EjecutarSQLStoreProcedure(oCommand);
 
@@ -148,18 +148,11 @@ namespace PROYECTO_DAO
         
         public DataSet ConsultarSaldos(String pNo_cia)
         {
-            String sql = "SELECT Cli_Linea, Cli_Nombre, cli_identificacion, facp_moneda,  sum(facp_saldo) saldo from TBL_CLIENTES c, tbl_facturas_pendientes_cta_mc f WHERE c.no_cia = '" + pNo_cia + "' and  CLI_ESTADO = 1 and Cli_Linea > 0 and f.no_cia = c.no_cia and f.facp_cliente = c.cli_linea and f.facp_estado = 1 and f.facp_estatus in ('PE', 'FT') group by Cli_Linea, Cli_Nombre, cli_identificacion,facp_moneda order by cli_identificacion, Cli_Nombre";
+            String sql = "SELECT Cli_Linea, Cli_Nombre, cli_identificacion, facp_moneda,  sum(facp_saldo) saldo from TBL_CLIENTES c, tbl_facturas_pendientes_cta f WHERE c.no_cia = '" + pNo_cia + "' and  CLI_ESTADO = 1 and Cli_Linea > 0 and f.no_cia = c.no_cia and f.facp_cliente = c.cli_linea and f.facp_estado = 1 and f.facp_estatus in ('PE', 'FT') group by Cli_Linea, Cli_Nombre, cli_identificacion,facp_moneda order by cli_identificacion, Cli_Nombre";
             DataSet oDataSet = OracleDAO.getInstance().EjecutarSQLDataSet(sql);
             return oDataSet;
         }
-
-        public DataSet ConsultarAlmacen(String cliente, String pNo_cia, String pCentro)
-        {
-            String sql = "SELECT alm_Descripcion FROM TBL_BODEGA_MC b where no_cia = '" + pNo_cia + "' and b.centro = '" + pCentro + "' and alm_estado = 1 and alm_cliente = '" + cliente + "'";
-            DataSet oDataSet = OracleDAO.getInstance().EjecutarSQLDataSet(sql);
-            return oDataSet;
-        }
-
+        
         public DataSet consultarReporte( String pNo_cia)
         {
             String sql = "SELECT cli_linea as cod, cli_nombre as descripcion FROM TBL_CLIENTES c WHERE c.no_cia = '" + pNo_cia + "' and  cli_ESTADO = 1";
@@ -188,7 +181,7 @@ namespace PROYECTO_DAO
 
         public DataSet ListarSaldos(int tipo, String palabra, String pNo_cia)
         {
-            String sql = "SELECT Cli_Linea, Cli_Nombre, cli_identificacion, facp_moneda,  sum(facp_saldo) saldo FROM  TBL_CLIENTES c, tbl_facturas_pendientes_cta_mc f WHERE c.no_cia = '" + pNo_cia + "' and  CLI_ESTADO = 1 and Cli_Linea > 0 and f.no_cia = c.no_cia and f.facp_cliente = c.cli_linea and f.facp_estado = 1 and f.facp_estatus in ('PE', 'FT') and ";
+            String sql = "SELECT Cli_Linea, Cli_Nombre, cli_identificacion, facp_moneda,  sum(facp_saldo) saldo FROM  TBL_CLIENTES c, tbl_facturas_pendientes_cta f WHERE c.no_cia = '" + pNo_cia + "' and  CLI_ESTADO = 1 and Cli_Linea > 0 and f.no_cia = c.no_cia and f.facp_cliente = c.cli_linea and f.facp_estado = 1 and f.facp_estatus in ('PE', 'FT') and ";
             if (tipo == 1)
                 sql += " regexp_like(cli_identificacion,'" + palabra + "','i')";
             if (tipo == 2)
@@ -264,7 +257,7 @@ namespace PROYECTO_DAO
 
         public DataSet FacturasxCliente(String pNo_cia, String pCliente)
         {
-            String sql = "select f.facp_cliente, f.facp_numero_factura, trunc(f.facp_fecha_factura) facp_fecha_factura, trunc(f.facp_fecha_vence) facp_fecha_vence, f.facp_moneda, f.facp_monto, f.facp_saldo from TBL_FACTURAS_PENDIENTES_CTA_MC f WHERE f.no_cia = '" + pNo_cia + "' and f.facp_cliente = '" + pCliente + "' and f.facp_estado = 1 and f.facp_estatus in ('PE', 'FT') order by facp_fecha_factura, facp_numero_factura ";
+            String sql = "select f.facp_cliente, f.facp_numero_factura, trunc(f.facp_fecha_factura) facp_fecha_factura, trunc(f.facp_fecha_vence) facp_fecha_vence, f.facp_moneda, f.facp_monto, f.facp_saldo from TBL_FACTURAS_PENDIENTES_CTA f WHERE f.no_cia = '" + pNo_cia + "' and f.facp_cliente = '" + pCliente + "' and f.facp_estado = 1 and f.facp_estatus in ('PE', 'FT') order by facp_fecha_factura, facp_numero_factura ";
            
             DataSet oDataSet = OracleDAO.getInstance().EjecutarSQLDataSet(sql);
             return oDataSet;
@@ -272,7 +265,7 @@ namespace PROYECTO_DAO
 
         public DataSet DetalleFacturasxCliente(String pNo_cia, String pCliente, String pFactura)
         {
-            String sql = "select detfac_cantidad, (SELECT case when ARPRE_EMBALAJE = 'talla' then ARPRE_CANTIDAD || ' ' || ARPRE_EMBALAJE else ARPRE_EMBALAJE end FROM TBL_ARTICULO_PRESENTACION_MC ap WHERE ap.no_cia = '" + pNo_cia + "' and DETFAC_PRESENTACION = ARPRE_INDICE) ARPRE_EMBALAJE, detfac_descripcion, DETFAC_PRECIO_TOTAL detfac_total from tbl_factura_mc f, tbl_factura_detalle_mc fd, tbl_servicios ar where f.no_cia = '" + pNo_cia + "' and f.fac_numero = '" + pFactura + "' and f.Fac_Cliente = '" + pCliente + "' and f.no_cia = fd.no_cia and f.fac_linea = fd.detfac_indicefactura and f.no_cia = ar.no_cia and ART_INDICE = detfac_codigo ORDER BY detfac_numerolinea desc ";
+            String sql = "select detfac_cantidad, (SELECT case when ARPRE_EMBALAJE = 'talla' then ARPRE_CANTIDAD || ' ' || ARPRE_EMBALAJE else ARPRE_EMBALAJE end FROM TBL_ARTICULO_PRESENTACION ap WHERE ap.no_cia = '" + pNo_cia + "' and DETFAC_PRESENTACION = ARPRE_INDICE) ARPRE_EMBALAJE, detfac_descripcion, DETFAC_PRECIO_TOTAL detfac_total from tbl_factura f, tbl_factura_detalle fd, tbl_servicios ar where f.no_cia = '" + pNo_cia + "' and f.fac_numero = '" + pFactura + "' and f.Fac_Cliente = '" + pCliente + "' and f.no_cia = fd.no_cia and f.fac_linea = fd.detfac_indicefactura and f.no_cia = ar.no_cia and ART_INDICE = detfac_codigo ORDER BY detfac_numerolinea desc ";
 
             DataSet oDataSet = OracleDAO.getInstance().EjecutarSQLDataSet(sql);
             return oDataSet;

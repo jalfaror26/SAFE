@@ -42,7 +42,7 @@ namespace PROYECTO
             this.pbImagen.Location = new System.Drawing.Point(0, 0);
             this.pbImagen.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pbImagen.Name = "pbImagen";
-            this.pbImagen.Size = new System.Drawing.Size(379, 322);
+            this.pbImagen.Size = new System.Drawing.Size(1304, 694);
             this.pbImagen.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pbImagen.TabIndex = 7;
             this.pbImagen.TabStop = false;
@@ -53,7 +53,7 @@ namespace PROYECTO
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.ClientSize = new System.Drawing.Size(379, 322);
+            this.ClientSize = new System.Drawing.Size(1304, 694);
             this.Controls.Add(this.pbImagen);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));

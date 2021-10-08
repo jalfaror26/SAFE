@@ -12,30 +12,22 @@ namespace PROYECTO
 {
     public partial class frmAyuda : Form
     {
+        private ConexionDAO oConexion = new ConexionDAO(PROYECTO.Properties.Settings.Default.UsuarioBD, PROYECTO.Properties.Settings.Default.Servidor, Conexion.getInstance().Clave);
+        
+        private static frmAyuda instance = null;
+        private String vtema = "";
+        
         private frmAyuda()
         {
+            vtema = "";
+
             InitializeComponent();
         }
-        private ConexionDAO oConexion = new ConexionDAO(PROYECTO.Properties.Settings.Default.UsuarioBD, PROYECTO.Properties.Settings.Default.Servidor, Conexion.getInstance().Clave);
-        private String codigo = "par_temas", descripcion = "Registro de temas del sistema.", modulo = "Parametros_Generales";
-        private static frmAyuda instance = null;
-
-        public String Modulo
+        private frmAyuda(String pTema)
         {
-            get { return modulo; }
-            set { modulo = value; }
-        }
+            vtema = pTema;
 
-        public String Descripcion
-        {
-            get { return descripcion; }
-            set { descripcion = value; }
-        }
-
-        public String Codigo
-        {
-            get { return codigo; }
-            set { codigo = value; }
+            InitializeComponent();
         }
 
         public static frmAyuda getInstance()
@@ -45,8 +37,16 @@ namespace PROYECTO
             return instance;
         }
 
+        public static frmAyuda getInstance(String pTema)
+        {
+            if (instance == null)
+                instance = new frmAyuda(pTema);
+            return instance;
+        }
+
         private void frmAyuda_Load(object sender, EventArgs e)
         {
+            this.Text = this.Text + " - " + this.Name;
             LlenarNodos();
         }
 
@@ -58,13 +58,22 @@ namespace PROYECTO
                 if (oConexion.abrirConexion())
                 {
                     lblEtiqueta.Visible = false;
-                    DataTable oTemas = oConexion.EjecutaSentencia("SELECT TEM_LINEA,TEM_TITULO,tem_tipo FROM TBL_TEMA order by TEM_TITULO");
+
+                    String psql = "SELECT TEM_LINEA,TEM_TITULO,tem_tipo FROM TBL_TEMA";
+
+                    if (!String.IsNullOrEmpty(vtema))
+                        psql += " where TEM_LINEA = '" + vtema + "'";
+
+                    psql += " order by TEM_TITULO";
+
+                    DataTable oTemas = oConexion.EjecutaSentencia(psql);
                     DataTable ocategorias = new DataTable();
                     DataTable oDetalles = new DataTable();
 
                     TreeNode oParametros = new TreeNode();
                     oParametros.NodeFont = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
                     oParametros.Name = "PARAMETROS";
+
                     trvLista.Nodes.Add(oParametros);
                     trvLista.Nodes["PARAMETROS"].Text = "PARAMETROS";
 
@@ -75,9 +84,12 @@ namespace PROYECTO
                     TreeNode oProcesos = new TreeNode();
                     oProcesos.NodeFont = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
                     oProcesos.Name = "PROCESOS";
+
                     trvLista.Nodes.Add(oProcesos);
                     trvLista.Nodes["PROCESOS"].Text = "PROCESOS";
 
+
+                    trvLista.ExpandAll();
 
                     String tema = "";
                     String categoria = "";
@@ -119,6 +131,13 @@ namespace PROYECTO
                     }
                     oConexion.cerrarConexion();
 
+                    if (String.IsNullOrEmpty(vtema))
+                    {
+                        trvLista.Nodes["PARAMETROS"].Expand();
+                        trvLista.Nodes["PROCESOS"].Expand();
+                    }
+                    else
+                        trvLista.ExpandAll();
                 }
                 else
                 {
@@ -142,14 +161,21 @@ namespace PROYECTO
                 oConexion.cerrarConexion();
                 if (oConexion.abrirConexion())
                 {
+                    String psql = "SELECT TEM_LINEA,TEM_TITULO,tem_tipo FROM TBL_TEMA where regexp_like(upper(TEM_TITULO),'" + palabra.ToUpper() + "','i')";
 
-                    DataTable oTemas = oConexion.EjecutaSentencia("SELECT TEM_LINEA,TEM_TITULO,tem_tipo FROM TBL_TEMA where regexp_like(upper(TEM_TITULO),'" + palabra.ToUpper() + "','i') order by TEM_TITULO");
+                    if (!String.IsNullOrEmpty(vtema))
+                        psql += " and TEM_LINEA = '" + vtema + "'";
+
+                    psql += " order by TEM_LINEA, TEM_TITULO";
+
+                    DataTable oTemas = oConexion.EjecutaSentencia(psql);
                     DataTable ocategorias = new DataTable();
                     DataTable oDetalles = new DataTable();
 
                     TreeNode oParametros = new TreeNode();
                     oParametros.NodeFont = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
                     oParametros.Name = "PARAMETROS";
+                    oParametros.Expand();
                     trvLista.Nodes.Add(oParametros);
                     trvLista.Nodes["PARAMETROS"].Text = "PARAMETROS";
 
@@ -160,6 +186,7 @@ namespace PROYECTO
                     TreeNode oProcesos = new TreeNode();
                     oProcesos.NodeFont = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
                     oProcesos.Name = "PROCESOS";
+                    oProcesos.Expand();
                     trvLista.Nodes.Add(oProcesos);
                     trvLista.Nodes["PROCESOS"].Text = "PROCESOS";
 
@@ -202,6 +229,13 @@ namespace PROYECTO
                     }
                     oConexion.cerrarConexion();
 
+                    if (String.IsNullOrEmpty(vtema))
+                    {
+                        trvLista.Nodes["PARAMETROS"].Expand();
+                        trvLista.Nodes["PROCESOS"].Expand();
+                    }
+                    else
+                        trvLista.ExpandAll();
                 }
                 else
                 {

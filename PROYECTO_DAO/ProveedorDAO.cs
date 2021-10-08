@@ -50,7 +50,7 @@ namespace PROYECTO_DAO
             return !OracleDAO.getInstance().ErrorSQL;
         }
 
-        public Boolean Modificar(Proveedor oProveedor_MC)
+        public Boolean Modificar(Proveedor oProveedor)
         {
             OracleCommand oCommand = new OracleCommand();
 
@@ -58,48 +58,48 @@ namespace PROYECTO_DAO
             oCommand.CommandType = CommandType.StoredProcedure;
 
             oCommand.Parameters.Add("indice", OracleType.Number);
-            oCommand.Parameters[0].Value = oProveedor_MC.Indice;
+            oCommand.Parameters[0].Value = oProveedor.Indice;
             oCommand.Parameters.Add("provTipoID", OracleType.NVarChar);
-            oCommand.Parameters[1].Value = oProveedor_MC.TipoID;
+            oCommand.Parameters[1].Value = oProveedor.TipoID;
             oCommand.Parameters.Add("provId", OracleType.NVarChar);
-            oCommand.Parameters[2].Value = oProveedor_MC.Id;
+            oCommand.Parameters[2].Value = oProveedor.Id;
             oCommand.Parameters.Add("nombre", OracleType.NVarChar);
-            oCommand.Parameters[3].Value = oProveedor_MC.Nombre;
+            oCommand.Parameters[3].Value = oProveedor.Nombre;
             oCommand.Parameters.Add("telefono", OracleType.NVarChar);
-            oCommand.Parameters[4].Value = oProveedor_MC.Telefono;
+            oCommand.Parameters[4].Value = oProveedor.Telefono;
             oCommand.Parameters.Add("fax", OracleType.NVarChar);
-            oCommand.Parameters[5].Value = oProveedor_MC.Fax;
+            oCommand.Parameters[5].Value = oProveedor.Fax;
             oCommand.Parameters.Add("contacto", OracleType.NVarChar);
-            oCommand.Parameters[6].Value = oProveedor_MC.Contacto;
+            oCommand.Parameters[6].Value = oProveedor.Contacto;
             oCommand.Parameters.Add("telcontacto", OracleType.NVarChar);
-            oCommand.Parameters[7].Value = oProveedor_MC.TelContacto;
+            oCommand.Parameters[7].Value = oProveedor.TelContacto;
             oCommand.Parameters.Add("ubicacion", OracleType.NVarChar);
-            oCommand.Parameters[8].Value = oProveedor_MC.Ubicacion;
+            oCommand.Parameters[8].Value = oProveedor.Ubicacion;
             oCommand.Parameters.Add("descripcion", OracleType.NVarChar);
-            oCommand.Parameters[9].Value = oProveedor_MC.Descripcion;
+            oCommand.Parameters[9].Value = oProveedor.Descripcion;
             oCommand.Parameters.Add("dias", OracleType.Number);
-            oCommand.Parameters[10].Value = oProveedor_MC.Dias;
+            oCommand.Parameters[10].Value = oProveedor.Dias;
             oCommand.Parameters.Add("categoria", OracleType.NVarChar);
-            oCommand.Parameters[11].Value = oProveedor_MC.Categoria;
+            oCommand.Parameters[11].Value = oProveedor.Categoria;
             oCommand.Parameters.Add("refbancaria", OracleType.NVarChar);
-            oCommand.Parameters[12].Value = oProveedor_MC.RefBancaria;
+            oCommand.Parameters[12].Value = oProveedor.RefBancaria;
             oCommand.Parameters.Add("pNo_cia", OracleType.NVarChar);
-            oCommand.Parameters[13].Value = oProveedor_MC.No_cia;
+            oCommand.Parameters[13].Value = oProveedor.No_cia;
 
             OracleDAO.getInstance().EjecutarSQLStoreProcedure(oCommand);
             return !OracleDAO.getInstance().ErrorSQL;
         }
 
-        public Boolean Eliminar(Proveedor oProveedor_MC)
+        public Boolean Eliminar(Proveedor oProveedor)
         {
             OracleCommand oCommand = new OracleCommand();
             oCommand.CommandText = "PCKPROVEEDOR.paEliminar";
             oCommand.CommandType = CommandType.StoredProcedure;
 
             oCommand.Parameters.Add("indice", OracleType.Number);
-            oCommand.Parameters[0].Value = oProveedor_MC.Indice;
+            oCommand.Parameters[0].Value = oProveedor.Indice;
             oCommand.Parameters.Add("pNo_cia", OracleType.NVarChar);
-            oCommand.Parameters[1].Value = oProveedor_MC.No_cia;
+            oCommand.Parameters[1].Value = oProveedor.No_cia;
 
             OracleDAO.getInstance().EjecutarSQLStoreProcedure(oCommand);
             return !OracleDAO.getInstance().ErrorSQL;

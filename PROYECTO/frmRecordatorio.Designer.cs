@@ -295,6 +295,7 @@ namespace PROYECTO
             this.Controls.Add(this.mthFecha);
             this.Controls.Add(this.dgrDatos);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -303,6 +304,7 @@ namespace PROYECTO
             this.Text = "Recordatorios";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmRecordatorio_FormClosing);
             this.Load += new System.EventHandler(this.frmRecordatorio_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmForma_KeyDown);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgrDatos)).EndInit();

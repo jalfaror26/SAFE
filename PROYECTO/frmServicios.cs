@@ -18,17 +18,15 @@ namespace PROYECTO
             InitializeComponent();
         }
         private PantallasPermisosDAO oPantallaPermisoDAO = new PantallasPermisosDAO();
-        private ServicioDAO oArticuloDAO_MC = new ServicioDAO();
-        private ProveedorDAO oProveedorDAO_MC = new ProveedorDAO();
-        private BodegaDAO oBodegaDAO_MC = new BodegaDAO();
-        // private EmbalajeDAO oEmbalajeDAO = new EmbalajeDAO();
+        private ServicioDAO oServicioDAO = new ServicioDAO();
+        private ProveedorDAO oProveedorDAO = new ProveedorDAO();
         private static frmServicios instance = null;
         private Boolean nuevo = false;
         private ConexionDAO oConexion = new ConexionDAO(PROYECTO.Properties.Settings.Default.UsuarioBD, PROYECTO.Properties.Settings.Default.Servidor, Conexion.getInstance().Clave);
-        private Servicio oArticulo_MC;
+        private Servicio oServicio;
         private double indice = 0;
 
-        private String codigo = "par_Servicios", descripcion = "Mantenimiento de servicios", modulo = "Parametros";
+        private String codigo = "par_Servicios", descripcion = "Mantenimiento de servicios", modulo = "Mantenimientos";
 
         private String codigo2 = "", descripcion2 = "", modulo2 = "";
 
@@ -59,6 +57,7 @@ namespace PROYECTO
 
         private void frmServicios_Load(object sender, EventArgs e)
         {
+            this.Text = this.Text + " - " + this.Name;
             try
             {
                 btnMNuevo.PerformClick();
@@ -87,7 +86,7 @@ namespace PROYECTO
             txtImpuesto.Text = "0";
             chkIVI.Checked = false;
             chkIVI.Enabled = false;
-            
+
         }
 
         public void LlenarServicio(String cod, String des, String dato1)
@@ -124,43 +123,43 @@ namespace PROYECTO
                 oConexion.cerrarConexion();
                 if (oConexion.abrirConexion())
                 {
-                    oArticulo_MC = new Servicio();
-                    oArticulo_MC.No_cia = PROYECTO.Properties.Settings.Default.No_cia;
-                    oArticulo_MC.Tipo = "SER";
-                    oArticulo_MC.Impuestos = Double.Parse(txtImpuesto.Text);
+                    oServicio = new Servicio();
+                    oServicio.No_cia = PROYECTO.Properties.Settings.Default.No_cia;
+                    oServicio.Tipo = "SER";
+                    oServicio.Impuestos = Double.Parse(txtImpuesto.Text);
 
-                    if (oArticulo_MC.Impuestos == 0)
-                        oArticulo_MC.Venta_IVI = "N";
+                    if (oServicio.Impuestos == 0)
+                        oServicio.Venta_IVI = "N";
                     else
                     {
                         if (chkIVI.Checked)
-                            oArticulo_MC.Venta_IVI = "S";
+                            oServicio.Venta_IVI = "S";
                         else
-                            oArticulo_MC.Venta_IVI = "N";
+                            oServicio.Venta_IVI = "N";
                     }
 
-                    oArticulo_MC.Indice = indice;
-                    oArticulo_MC.CodigoBarras = "";
-                    oArticulo_MC.Descripcion = txtDesBreveArt.Text;
+                    oServicio.Indice = indice;
+                    oServicio.Codigo = txtCodigo.Text;
+                    oServicio.Descripcion = txtDesBreveArt.Text;
 
-                    oArticulo_MC.Nombre = txtDesBreveArt.Text;
-                    oArticulo_MC.TipoCodigo = "IN" ;
+                    oServicio.Nombre = txtDesBreveArt.Text;
+                    oServicio.TipoCodigo = "IN";
 
-                    indice = double.Parse(oArticuloDAO_MC.Agregar(oArticulo_MC));
+                    indice = double.Parse(oServicioDAO.Agregar(oServicio));
 
-                    if (oArticulo_MC.Indice == 0)
+                    if (oServicio.Indice == 0)
                     {
-                        oArticulo_MC.Indice = indice;
-                        oArticulo_MC.CodigoBarras = indice.ToString();
-                        oArticuloDAO_MC.Agregar(oArticulo_MC);
-                        oArticulo_MC.Indice = 0;
+                        oServicio.Indice = indice;
+                        oServicio.Codigo = indice.ToString();
+                        oServicioDAO.Agregar(oServicio);
+                        oServicio.Indice = 0;
                     }
 
-                    if (oArticulo_MC.Indice == 0)
+                    if (oServicio.Indice == 0)
                         txtCodigo.Text = indice.ToString();
 
-                    if (oArticuloDAO_MC.Error())
-                        MessageBox.Show("Error al guardar:\n" + oArticuloDAO_MC.DescError(), "Error de consulta", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    if (oServicioDAO.Error())
+                        MessageBox.Show("Error al guardar:\n" + oServicioDAO.DescError(), "Error de consulta", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     else
                         MessageBox.Show("Guardado correctamente", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
@@ -201,15 +200,15 @@ namespace PROYECTO
                 oConexion.cerrarConexion();
                 if (oConexion.abrirConexion())
                 {
-                    oArticulo_MC = new Servicio();
-                    oArticulo_MC.No_cia = PROYECTO.Properties.Settings.Default.No_cia;
-                    oArticulo_MC.Tipo = "SER";
-                    oArticulo_MC.Indice = indice;
+                    oServicio = new Servicio();
+                    oServicio.No_cia = PROYECTO.Properties.Settings.Default.No_cia;
+                    oServicio.Tipo = "SER";
+                    oServicio.Indice = indice;
 
-                    oArticuloDAO_MC.Eliminar(oArticulo_MC);
-                    if (oArticuloDAO_MC.Error())
+                    oServicioDAO.Eliminar(oServicio);
+                    if (oServicioDAO.Error())
                     {
-                        MessageBox.Show("Error al eliminar:\n" + oArticuloDAO_MC.DescError(), "Error de consulta", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("Error al eliminar:\n" + oServicioDAO.DescError(), "Error de consulta", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                     else
                         MessageBox.Show("Eliminado correctamente", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -402,9 +401,9 @@ namespace PROYECTO
                 oConexion.cerrarConexion();
                 if (oConexion.abrirConexion())
                 {
-                    dgrDatos.DataSource = oArticuloDAO_MC.ConsultarTodo(PROYECTO.Properties.Settings.Default.No_cia).Tables[0];
-                    if (oArticuloDAO_MC.Error())
-                        MessageBox.Show("Error al listar los datos:\n" + oArticuloDAO_MC.DescError(), "Error de consulta", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    dgrDatos.DataSource = oServicioDAO.ConsultarTodo(PROYECTO.Properties.Settings.Default.No_cia).Tables[0];
+                    if (oServicioDAO.Error())
+                        MessageBox.Show("Error al listar los datos:\n" + oServicioDAO.DescError(), "Error de consulta", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     oConexion.cerrarConexion();
                     LimpiarCampos();
                 }
@@ -463,9 +462,9 @@ namespace PROYECTO
                 oConexion.cerrarConexion();
                 if (oConexion.abrirConexion())
                 {
-                    DataTable oData = oArticuloDAO_MC.ConsultarEspecificoIndice2(indice.ToString(), PROYECTO.Properties.Settings.Default.No_cia);
-                    if (oArticuloDAO_MC.Error())
-                        MessageBox.Show("Error al listar los datos:\n" + oArticuloDAO_MC.DescError(), "Error de consulta", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    DataTable oData = oServicioDAO.ConsultarEspecificoIndice2(indice.ToString(), PROYECTO.Properties.Settings.Default.No_cia);
+                    if (oServicioDAO.Error())
+                        MessageBox.Show("Error al listar los datos:\n" + oServicioDAO.DescError(), "Error de consulta", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     else
                     {
                         if (oData.Rows.Count > 0)
@@ -490,12 +489,28 @@ namespace PROYECTO
 
         private void txtFiltroCodigo_KeyUp(object sender, KeyEventArgs e)
         {
-            filtrarGrid(1, txtFiltroCodigo.Text);
+            if (e.KeyCode == Keys.F1)
+                Ayuda();
+            else
+            {
+                if (txtFiltroDescBreve.Text.Trim().Equals(""))
+                    Llenar_Grid();
+                else
+                    filtrarGrid(1, txtFiltroCodigo.Text);
+            }
         }
 
         private void txtFiltroDescBreve_KeyUp(object sender, KeyEventArgs e)
         {
-            filtrarGrid(2, txtFiltroDescBreve.Text);
+            if (e.KeyCode == Keys.F1)
+                Ayuda();
+            else
+            {
+                if (txtFiltroDescBreve.Text.Trim().Equals(""))
+                    Llenar_Grid();
+                else
+                    filtrarGrid(2, txtFiltroDescBreve.Text);
+            }
         }
 
 
@@ -506,16 +521,16 @@ namespace PROYECTO
                 oConexion.cerrarConexion();
                 if (oConexion.abrirConexion())
                 {
-                    dgrDatos.DataSource = oArticuloDAO_MC.Listar(ind, palabraFiltro, PROYECTO.Properties.Settings.Default.No_cia).Tables[0];
-                    if (oArticuloDAO_MC.Error())
-                        MessageBox.Show("Error al listar los datos:\n" + oArticuloDAO_MC.DescError(), "Error de consulta", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    dgrDatos.DataSource = oServicioDAO.Listar(ind, palabraFiltro, PROYECTO.Properties.Settings.Default.No_cia).Tables[0];
+                    if (oServicioDAO.Error())
+                        MessageBox.Show("Error al listar los datos:\n" + oServicioDAO.DescError(), "Error de consulta", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     LimpiarCampos();
                 }
                 oConexion.cerrarConexion();
             }
             catch (Exception ex) { }
         }
-        
+
         private void dgrDatos_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
             dgrDatos.ClearSelection();
@@ -570,6 +585,18 @@ namespace PROYECTO
                 Eliminar();
             }
         }
-        
+
+        private void frmForma_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.F1)
+                Ayuda();
+        }
+
+        private void Ayuda()
+        {
+            frmAyuda oFrm = frmAyuda.getInstance("t3");
+            oFrm.MdiParent = this.MdiParent;
+            oFrm.Show();
+        }
     }
 }

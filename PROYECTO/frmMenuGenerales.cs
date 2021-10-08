@@ -126,21 +126,40 @@ namespace PROYECTO
             this.Close();
         }
 
-        private void btnArticulos_Click(object sender, EventArgs e)
+        private void btnServicios_Click(object sender, EventArgs e)
         {
-            frmServicios oArticulo = frmServicios.getInstance();
-            codigo = oArticulo.Codigo;
-            descripcion = oArticulo.Descripcion;
-            modulo = oArticulo.Modulo;
+            frmServicios oServicio = frmServicios.getInstance();
+            codigo = oServicio.Codigo;
+            descripcion = oServicio.Descripcion;
+            modulo = oServicio.Modulo;
             if (!TienePermiso())
             {
-                oArticulo.MdiParent = this.MdiParent;
-                oArticulo.Show();
+                oServicio.MdiParent = this.MdiParent;
+                oServicio.Show();
             }
             else
             {
                 MessageBox.Show("No tiene permiso para accesar esta pantalla, comuníquese con el administrador", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                oArticulo = null;
+                oServicio = null;
+            }
+            this.Close();
+        }
+
+        private void btnGastos_Click(object sender, EventArgs e)
+        {
+            frmGastos oGastos = frmGastos.getInstance();
+            codigo = oGastos.Codigo;
+            descripcion = oGastos.Descripcion;
+            modulo = oGastos.Modulo;
+            if (!TienePermiso())
+            {
+                oGastos.MdiParent = this.MdiParent;
+                oGastos.Show();
+            }
+            else
+            {
+                MessageBox.Show("No tiene permiso para accesar esta pantalla, comuníquese con el administrador", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                oGastos = null;
             }
             this.Close();
         }

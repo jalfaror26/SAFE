@@ -47,8 +47,8 @@ namespace PROYECTO
             this.imgFoto.ErrorImage = ((System.Drawing.Image)(resources.GetObject("imgFoto.ErrorImage")));
             this.imgFoto.Image = ((System.Drawing.Image)(resources.GetObject("imgFoto.Image")));
             this.imgFoto.InitialImage = ((System.Drawing.Image)(resources.GetObject("imgFoto.InitialImage")));
-            this.imgFoto.Location = new System.Drawing.Point(17, 65);
-            this.imgFoto.Margin = new System.Windows.Forms.Padding(4);
+            this.imgFoto.Location = new System.Drawing.Point(61, 81);
+            this.imgFoto.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.imgFoto.Name = "imgFoto";
             this.imgFoto.Size = new System.Drawing.Size(200, 192);
             this.imgFoto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -75,8 +75,8 @@ namespace PROYECTO
             this.btnGuardar.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnGuardar.ImageIndex = 2;
             this.btnGuardar.ImageList = this.imageList1;
-            this.btnGuardar.Location = new System.Drawing.Point(235, 75);
-            this.btnGuardar.Margin = new System.Windows.Forms.Padding(4);
+            this.btnGuardar.Location = new System.Drawing.Point(339, 94);
+            this.btnGuardar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(224, 44);
             this.btnGuardar.TabIndex = 447;
@@ -92,7 +92,7 @@ namespace PROYECTO
             this.label1.Location = new System.Drawing.Point(0, 0);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(477, 52);
+            this.label1.Size = new System.Drawing.Size(641, 52);
             this.label1.TabIndex = 2;
             this.label1.Text = "Usuario";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -108,8 +108,8 @@ namespace PROYECTO
             this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.button1.ImageIndex = 6;
             this.button1.ImageList = this.imageList1;
-            this.button1.Location = new System.Drawing.Point(235, 199);
-            this.button1.Margin = new System.Windows.Forms.Padding(4);
+            this.button1.Location = new System.Drawing.Point(339, 218);
+            this.button1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(224, 44);
             this.button1.TabIndex = 610;
@@ -134,8 +134,8 @@ namespace PROYECTO
             this.btnCambiarContraseña.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnCambiarContraseña.ImageIndex = 2;
             this.btnCambiarContraseña.ImageList = this.imageList2;
-            this.btnCambiarContraseña.Location = new System.Drawing.Point(235, 128);
-            this.btnCambiarContraseña.Margin = new System.Windows.Forms.Padding(4);
+            this.btnCambiarContraseña.Location = new System.Drawing.Point(339, 146);
+            this.btnCambiarContraseña.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnCambiarContraseña.Name = "btnCambiarContraseña";
             this.btnCambiarContraseña.Size = new System.Drawing.Size(224, 44);
             this.btnCambiarContraseña.TabIndex = 611;
@@ -148,7 +148,7 @@ namespace PROYECTO
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(477, 276);
+            this.ClientSize = new System.Drawing.Size(641, 322);
             this.Controls.Add(this.btnCambiarContraseña);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.imgFoto);
@@ -156,7 +156,8 @@ namespace PROYECTO
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4);
+            this.KeyPreview = true;
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmUsuarioAdministracion";
