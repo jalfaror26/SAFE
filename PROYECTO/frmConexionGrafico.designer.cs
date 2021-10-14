@@ -102,7 +102,7 @@ namespace PROYECTO
             this.lblNombre1.Location = new System.Drawing.Point(31, 18);
             this.lblNombre1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblNombre1.Name = "lblNombre1";
-            this.lblNombre1.Size = new System.Drawing.Size(224, 27);
+            this.lblNombre1.Size = new System.Drawing.Size(250, 27);
             this.lblNombre1.TabIndex = 8;
             this.lblNombre1.Text = "lblNombre1";
             this.lblNombre1.Visible = false;
@@ -115,7 +115,7 @@ namespace PROYECTO
             this.txtContrasena1.Margin = new System.Windows.Forms.Padding(4);
             this.txtContrasena1.Name = "txtContrasena1";
             this.txtContrasena1.PasswordChar = '*';
-            this.txtContrasena1.Size = new System.Drawing.Size(227, 22);
+            this.txtContrasena1.Size = new System.Drawing.Size(245, 22);
             this.txtContrasena1.TabIndex = 9;
             this.txtContrasena1.Visible = false;
             this.txtContrasena1.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtContrasena1_KeyUp);
@@ -141,7 +141,7 @@ namespace PROYECTO
             this.lblNombre2.Location = new System.Drawing.Point(31, 102);
             this.lblNombre2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblNombre2.Name = "lblNombre2";
-            this.lblNombre2.Size = new System.Drawing.Size(224, 27);
+            this.lblNombre2.Size = new System.Drawing.Size(250, 27);
             this.lblNombre2.TabIndex = 12;
             this.lblNombre2.Text = "lblNombre2";
             this.lblNombre2.Visible = false;
@@ -154,7 +154,7 @@ namespace PROYECTO
             this.txtContrasena2.Margin = new System.Windows.Forms.Padding(4);
             this.txtContrasena2.Name = "txtContrasena2";
             this.txtContrasena2.PasswordChar = '*';
-            this.txtContrasena2.Size = new System.Drawing.Size(227, 22);
+            this.txtContrasena2.Size = new System.Drawing.Size(245, 22);
             this.txtContrasena2.TabIndex = 13;
             this.txtContrasena2.Visible = false;
             this.txtContrasena2.TextChanged += new System.EventHandler(this.txtContrasena2_TextChanged);
@@ -167,7 +167,7 @@ namespace PROYECTO
             this.lblNombre3.Location = new System.Drawing.Point(31, 187);
             this.lblNombre3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblNombre3.Name = "lblNombre3";
-            this.lblNombre3.Size = new System.Drawing.Size(224, 27);
+            this.lblNombre3.Size = new System.Drawing.Size(250, 27);
             this.lblNombre3.TabIndex = 16;
             this.lblNombre3.Text = "lblNombre3";
             this.lblNombre3.Visible = false;
@@ -180,7 +180,7 @@ namespace PROYECTO
             this.txtContrasena3.Margin = new System.Windows.Forms.Padding(4);
             this.txtContrasena3.Name = "txtContrasena3";
             this.txtContrasena3.PasswordChar = '*';
-            this.txtContrasena3.Size = new System.Drawing.Size(227, 22);
+            this.txtContrasena3.Size = new System.Drawing.Size(245, 22);
             this.txtContrasena3.TabIndex = 17;
             this.txtContrasena3.Visible = false;
             this.txtContrasena3.TextChanged += new System.EventHandler(this.txtContrasena3_TextChanged);
@@ -193,7 +193,7 @@ namespace PROYECTO
             this.lblNombre4.Location = new System.Drawing.Point(31, 272);
             this.lblNombre4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblNombre4.Name = "lblNombre4";
-            this.lblNombre4.Size = new System.Drawing.Size(224, 27);
+            this.lblNombre4.Size = new System.Drawing.Size(250, 27);
             this.lblNombre4.TabIndex = 20;
             this.lblNombre4.Text = "lblNombre4";
             this.lblNombre4.Visible = false;
@@ -206,7 +206,7 @@ namespace PROYECTO
             this.txtContrasena4.Margin = new System.Windows.Forms.Padding(4);
             this.txtContrasena4.Name = "txtContrasena4";
             this.txtContrasena4.PasswordChar = '*';
-            this.txtContrasena4.Size = new System.Drawing.Size(227, 22);
+            this.txtContrasena4.Size = new System.Drawing.Size(245, 22);
             this.txtContrasena4.TabIndex = 21;
             this.txtContrasena4.Visible = false;
             this.txtContrasena4.TextChanged += new System.EventHandler(this.txtContrasena4_TextChanged);
@@ -216,10 +216,10 @@ namespace PROYECTO
             this.lblNombre5.BackColor = System.Drawing.Color.Transparent;
             this.lblNombre5.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblNombre5.ForeColor = System.Drawing.Color.Black;
-            this.lblNombre5.Location = new System.Drawing.Point(29, 356);
+            this.lblNombre5.Location = new System.Drawing.Point(31, 356);
             this.lblNombre5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblNombre5.Name = "lblNombre5";
-            this.lblNombre5.Size = new System.Drawing.Size(224, 27);
+            this.lblNombre5.Size = new System.Drawing.Size(250, 27);
             this.lblNombre5.TabIndex = 24;
             this.lblNombre5.Text = "lblNombre5";
             this.lblNombre5.Visible = false;
@@ -228,11 +228,11 @@ namespace PROYECTO
             // 
             // txtContrasena5
             // 
-            this.txtContrasena5.Location = new System.Drawing.Point(23, 384);
+            this.txtContrasena5.Location = new System.Drawing.Point(27, 384);
             this.txtContrasena5.Margin = new System.Windows.Forms.Padding(4);
             this.txtContrasena5.Name = "txtContrasena5";
             this.txtContrasena5.PasswordChar = '*';
-            this.txtContrasena5.Size = new System.Drawing.Size(227, 22);
+            this.txtContrasena5.Size = new System.Drawing.Size(245, 22);
             this.txtContrasena5.TabIndex = 25;
             this.txtContrasena5.Visible = false;
             this.txtContrasena5.TextChanged += new System.EventHandler(this.txtContrasena5_TextChanged);
@@ -242,10 +242,10 @@ namespace PROYECTO
             this.lblNombre6.BackColor = System.Drawing.Color.Transparent;
             this.lblNombre6.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblNombre6.ForeColor = System.Drawing.Color.Black;
-            this.lblNombre6.Location = new System.Drawing.Point(29, 442);
+            this.lblNombre6.Location = new System.Drawing.Point(31, 442);
             this.lblNombre6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblNombre6.Name = "lblNombre6";
-            this.lblNombre6.Size = new System.Drawing.Size(224, 27);
+            this.lblNombre6.Size = new System.Drawing.Size(250, 27);
             this.lblNombre6.TabIndex = 28;
             this.lblNombre6.Text = "lblNombre6";
             this.lblNombre6.Visible = false;
@@ -254,11 +254,11 @@ namespace PROYECTO
             // 
             // txtContrasena6
             // 
-            this.txtContrasena6.Location = new System.Drawing.Point(23, 470);
+            this.txtContrasena6.Location = new System.Drawing.Point(27, 470);
             this.txtContrasena6.Margin = new System.Windows.Forms.Padding(4);
             this.txtContrasena6.Name = "txtContrasena6";
             this.txtContrasena6.PasswordChar = '*';
-            this.txtContrasena6.Size = new System.Drawing.Size(227, 22);
+            this.txtContrasena6.Size = new System.Drawing.Size(245, 22);
             this.txtContrasena6.TabIndex = 29;
             this.txtContrasena6.Visible = false;
             this.txtContrasena6.TextChanged += new System.EventHandler(this.txtContrasena6_TextChanged);
@@ -268,10 +268,10 @@ namespace PROYECTO
             this.lblNombre7.BackColor = System.Drawing.Color.Transparent;
             this.lblNombre7.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblNombre7.ForeColor = System.Drawing.Color.Black;
-            this.lblNombre7.Location = new System.Drawing.Point(316, 18);
+            this.lblNombre7.Location = new System.Drawing.Point(355, 18);
             this.lblNombre7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblNombre7.Name = "lblNombre7";
-            this.lblNombre7.Size = new System.Drawing.Size(224, 27);
+            this.lblNombre7.Size = new System.Drawing.Size(250, 27);
             this.lblNombre7.TabIndex = 32;
             this.lblNombre7.Text = "lblNombre7";
             this.lblNombre7.Visible = false;
@@ -280,11 +280,11 @@ namespace PROYECTO
             // 
             // txtContrasena7
             // 
-            this.txtContrasena7.Location = new System.Drawing.Point(308, 47);
+            this.txtContrasena7.Location = new System.Drawing.Point(347, 47);
             this.txtContrasena7.Margin = new System.Windows.Forms.Padding(4);
             this.txtContrasena7.Name = "txtContrasena7";
             this.txtContrasena7.PasswordChar = '*';
-            this.txtContrasena7.Size = new System.Drawing.Size(227, 22);
+            this.txtContrasena7.Size = new System.Drawing.Size(245, 22);
             this.txtContrasena7.TabIndex = 33;
             this.txtContrasena7.Visible = false;
             this.txtContrasena7.TextChanged += new System.EventHandler(this.txtContrasena7_TextChanged);
@@ -328,19 +328,19 @@ namespace PROYECTO
             this.panel.Controls.Add(this.p6);
             this.panel.Controls.Add(this.p7);
             this.panel.Controls.Add(this.p1);
-            this.panel.Location = new System.Drawing.Point(483, 5);
+            this.panel.Location = new System.Drawing.Point(433, 5);
             this.panel.Margin = new System.Windows.Forms.Padding(4);
             this.panel.Name = "panel";
-            this.panel.Size = new System.Drawing.Size(561, 514);
+            this.panel.Size = new System.Drawing.Size(656, 514);
             this.panel.TabIndex = 41;
             // 
             // txtContrasena10
             // 
-            this.txtContrasena10.Location = new System.Drawing.Point(308, 300);
+            this.txtContrasena10.Location = new System.Drawing.Point(347, 300);
             this.txtContrasena10.Margin = new System.Windows.Forms.Padding(4);
             this.txtContrasena10.Name = "txtContrasena10";
             this.txtContrasena10.PasswordChar = '*';
-            this.txtContrasena10.Size = new System.Drawing.Size(227, 22);
+            this.txtContrasena10.Size = new System.Drawing.Size(245, 22);
             this.txtContrasena10.TabIndex = 61;
             this.txtContrasena10.Visible = false;
             this.txtContrasena10.TextChanged += new System.EventHandler(this.txtContrasena10_TextChanged);
@@ -350,10 +350,10 @@ namespace PROYECTO
             this.lblNombre10.BackColor = System.Drawing.Color.Transparent;
             this.lblNombre10.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblNombre10.ForeColor = System.Drawing.Color.Black;
-            this.lblNombre10.Location = new System.Drawing.Point(316, 272);
+            this.lblNombre10.Location = new System.Drawing.Point(355, 272);
             this.lblNombre10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblNombre10.Name = "lblNombre10";
-            this.lblNombre10.Size = new System.Drawing.Size(224, 27);
+            this.lblNombre10.Size = new System.Drawing.Size(250, 27);
             this.lblNombre10.TabIndex = 60;
             this.lblNombre10.Text = "lblNombre10";
             this.lblNombre10.Visible = false;
@@ -363,10 +363,10 @@ namespace PROYECTO
             // p10
             // 
             this.p10.Image = ((System.Drawing.Image)(resources.GetObject("p10.Image")));
-            this.p10.Location = new System.Drawing.Point(287, 258);
+            this.p10.Location = new System.Drawing.Point(325, 258);
             this.p10.Margin = new System.Windows.Forms.Padding(4);
             this.p10.Name = "p10";
-            this.p10.Size = new System.Drawing.Size(265, 79);
+            this.p10.Size = new System.Drawing.Size(290, 79);
             this.p10.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.p10.TabIndex = 62;
             this.p10.TabStop = false;
@@ -374,11 +374,11 @@ namespace PROYECTO
             // 
             // txtContrasena11
             // 
-            this.txtContrasena11.Location = new System.Drawing.Point(308, 384);
+            this.txtContrasena11.Location = new System.Drawing.Point(347, 384);
             this.txtContrasena11.Margin = new System.Windows.Forms.Padding(4);
             this.txtContrasena11.Name = "txtContrasena11";
             this.txtContrasena11.PasswordChar = '*';
-            this.txtContrasena11.Size = new System.Drawing.Size(227, 22);
+            this.txtContrasena11.Size = new System.Drawing.Size(245, 22);
             this.txtContrasena11.TabIndex = 58;
             this.txtContrasena11.Visible = false;
             this.txtContrasena11.TextChanged += new System.EventHandler(this.txtContrasena11_TextChanged);
@@ -388,10 +388,10 @@ namespace PROYECTO
             this.lblNombre11.BackColor = System.Drawing.Color.Transparent;
             this.lblNombre11.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblNombre11.ForeColor = System.Drawing.Color.Black;
-            this.lblNombre11.Location = new System.Drawing.Point(316, 356);
+            this.lblNombre11.Location = new System.Drawing.Point(355, 356);
             this.lblNombre11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblNombre11.Name = "lblNombre11";
-            this.lblNombre11.Size = new System.Drawing.Size(224, 27);
+            this.lblNombre11.Size = new System.Drawing.Size(250, 27);
             this.lblNombre11.TabIndex = 57;
             this.lblNombre11.Text = "lblNombre11";
             this.lblNombre11.Visible = false;
@@ -401,10 +401,10 @@ namespace PROYECTO
             // p11
             // 
             this.p11.Image = ((System.Drawing.Image)(resources.GetObject("p11.Image")));
-            this.p11.Location = new System.Drawing.Point(287, 342);
+            this.p11.Location = new System.Drawing.Point(325, 342);
             this.p11.Margin = new System.Windows.Forms.Padding(4);
             this.p11.Name = "p11";
-            this.p11.Size = new System.Drawing.Size(265, 79);
+            this.p11.Size = new System.Drawing.Size(290, 79);
             this.p11.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.p11.TabIndex = 59;
             this.p11.TabStop = false;
@@ -412,11 +412,11 @@ namespace PROYECTO
             // 
             // txtContrasena12
             // 
-            this.txtContrasena12.Location = new System.Drawing.Point(308, 470);
+            this.txtContrasena12.Location = new System.Drawing.Point(347, 470);
             this.txtContrasena12.Margin = new System.Windows.Forms.Padding(4);
             this.txtContrasena12.Name = "txtContrasena12";
             this.txtContrasena12.PasswordChar = '*';
-            this.txtContrasena12.Size = new System.Drawing.Size(227, 22);
+            this.txtContrasena12.Size = new System.Drawing.Size(245, 22);
             this.txtContrasena12.TabIndex = 55;
             this.txtContrasena12.Visible = false;
             this.txtContrasena12.TextChanged += new System.EventHandler(this.txtContrasena12_TextChanged);
@@ -426,10 +426,10 @@ namespace PROYECTO
             this.lblNombre12.BackColor = System.Drawing.Color.Transparent;
             this.lblNombre12.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblNombre12.ForeColor = System.Drawing.Color.Black;
-            this.lblNombre12.Location = new System.Drawing.Point(316, 442);
+            this.lblNombre12.Location = new System.Drawing.Point(355, 442);
             this.lblNombre12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblNombre12.Name = "lblNombre12";
-            this.lblNombre12.Size = new System.Drawing.Size(224, 27);
+            this.lblNombre12.Size = new System.Drawing.Size(250, 27);
             this.lblNombre12.TabIndex = 54;
             this.lblNombre12.Text = "lblNombre12";
             this.lblNombre12.Visible = false;
@@ -439,10 +439,10 @@ namespace PROYECTO
             // p12
             // 
             this.p12.Image = ((System.Drawing.Image)(resources.GetObject("p12.Image")));
-            this.p12.Location = new System.Drawing.Point(287, 428);
+            this.p12.Location = new System.Drawing.Point(325, 428);
             this.p12.Margin = new System.Windows.Forms.Padding(4);
             this.p12.Name = "p12";
-            this.p12.Size = new System.Drawing.Size(265, 79);
+            this.p12.Size = new System.Drawing.Size(290, 79);
             this.p12.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.p12.TabIndex = 56;
             this.p12.TabStop = false;
@@ -450,11 +450,11 @@ namespace PROYECTO
             // 
             // txtContrasena9
             // 
-            this.txtContrasena9.Location = new System.Drawing.Point(308, 215);
+            this.txtContrasena9.Location = new System.Drawing.Point(347, 215);
             this.txtContrasena9.Margin = new System.Windows.Forms.Padding(4);
             this.txtContrasena9.Name = "txtContrasena9";
             this.txtContrasena9.PasswordChar = '*';
-            this.txtContrasena9.Size = new System.Drawing.Size(227, 22);
+            this.txtContrasena9.Size = new System.Drawing.Size(245, 22);
             this.txtContrasena9.TabIndex = 52;
             this.txtContrasena9.Visible = false;
             this.txtContrasena9.TextChanged += new System.EventHandler(this.txtContrasena9_TextChanged);
@@ -464,10 +464,10 @@ namespace PROYECTO
             this.lblNombre9.BackColor = System.Drawing.Color.Transparent;
             this.lblNombre9.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblNombre9.ForeColor = System.Drawing.Color.Black;
-            this.lblNombre9.Location = new System.Drawing.Point(316, 187);
+            this.lblNombre9.Location = new System.Drawing.Point(355, 187);
             this.lblNombre9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblNombre9.Name = "lblNombre9";
-            this.lblNombre9.Size = new System.Drawing.Size(224, 27);
+            this.lblNombre9.Size = new System.Drawing.Size(250, 27);
             this.lblNombre9.TabIndex = 51;
             this.lblNombre9.Text = "lblNombre9";
             this.lblNombre9.Visible = false;
@@ -477,10 +477,10 @@ namespace PROYECTO
             // p9
             // 
             this.p9.Image = ((System.Drawing.Image)(resources.GetObject("p9.Image")));
-            this.p9.Location = new System.Drawing.Point(287, 174);
+            this.p9.Location = new System.Drawing.Point(325, 174);
             this.p9.Margin = new System.Windows.Forms.Padding(4);
             this.p9.Name = "p9";
-            this.p9.Size = new System.Drawing.Size(265, 79);
+            this.p9.Size = new System.Drawing.Size(290, 79);
             this.p9.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.p9.TabIndex = 53;
             this.p9.TabStop = false;
@@ -488,11 +488,11 @@ namespace PROYECTO
             // 
             // txtContrasena8
             // 
-            this.txtContrasena8.Location = new System.Drawing.Point(308, 130);
+            this.txtContrasena8.Location = new System.Drawing.Point(347, 130);
             this.txtContrasena8.Margin = new System.Windows.Forms.Padding(4);
             this.txtContrasena8.Name = "txtContrasena8";
             this.txtContrasena8.PasswordChar = '*';
-            this.txtContrasena8.Size = new System.Drawing.Size(227, 22);
+            this.txtContrasena8.Size = new System.Drawing.Size(245, 22);
             this.txtContrasena8.TabIndex = 49;
             this.txtContrasena8.Visible = false;
             this.txtContrasena8.TextChanged += new System.EventHandler(this.txtContrasena8_TextChanged);
@@ -502,10 +502,10 @@ namespace PROYECTO
             this.lblNombre8.BackColor = System.Drawing.Color.Transparent;
             this.lblNombre8.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblNombre8.ForeColor = System.Drawing.Color.Black;
-            this.lblNombre8.Location = new System.Drawing.Point(316, 102);
+            this.lblNombre8.Location = new System.Drawing.Point(355, 102);
             this.lblNombre8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblNombre8.Name = "lblNombre8";
-            this.lblNombre8.Size = new System.Drawing.Size(224, 27);
+            this.lblNombre8.Size = new System.Drawing.Size(250, 27);
             this.lblNombre8.TabIndex = 48;
             this.lblNombre8.Text = "lblNombre8";
             this.lblNombre8.Visible = false;
@@ -515,10 +515,10 @@ namespace PROYECTO
             // p8
             // 
             this.p8.Image = ((System.Drawing.Image)(resources.GetObject("p8.Image")));
-            this.p8.Location = new System.Drawing.Point(287, 89);
+            this.p8.Location = new System.Drawing.Point(325, 89);
             this.p8.Margin = new System.Windows.Forms.Padding(4);
             this.p8.Name = "p8";
-            this.p8.Size = new System.Drawing.Size(265, 79);
+            this.p8.Size = new System.Drawing.Size(290, 79);
             this.p8.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.p8.TabIndex = 50;
             this.p8.TabStop = false;
@@ -530,7 +530,7 @@ namespace PROYECTO
             this.p2.Location = new System.Drawing.Point(4, 89);
             this.p2.Margin = new System.Windows.Forms.Padding(4);
             this.p2.Name = "p2";
-            this.p2.Size = new System.Drawing.Size(265, 79);
+            this.p2.Size = new System.Drawing.Size(290, 79);
             this.p2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.p2.TabIndex = 40;
             this.p2.TabStop = false;
@@ -542,7 +542,7 @@ namespace PROYECTO
             this.p3.Location = new System.Drawing.Point(4, 174);
             this.p3.Margin = new System.Windows.Forms.Padding(4);
             this.p3.Name = "p3";
-            this.p3.Size = new System.Drawing.Size(265, 79);
+            this.p3.Size = new System.Drawing.Size(290, 79);
             this.p3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.p3.TabIndex = 41;
             this.p3.TabStop = false;
@@ -555,7 +555,7 @@ namespace PROYECTO
             this.p4.Location = new System.Drawing.Point(4, 258);
             this.p4.Margin = new System.Windows.Forms.Padding(4);
             this.p4.Name = "p4";
-            this.p4.Size = new System.Drawing.Size(265, 79);
+            this.p4.Size = new System.Drawing.Size(290, 79);
             this.p4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.p4.TabIndex = 42;
             this.p4.TabStop = false;
@@ -567,7 +567,7 @@ namespace PROYECTO
             this.p5.Location = new System.Drawing.Point(4, 343);
             this.p5.Margin = new System.Windows.Forms.Padding(4);
             this.p5.Name = "p5";
-            this.p5.Size = new System.Drawing.Size(265, 79);
+            this.p5.Size = new System.Drawing.Size(290, 79);
             this.p5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.p5.TabIndex = 43;
             this.p5.TabStop = false;
@@ -579,7 +579,7 @@ namespace PROYECTO
             this.p6.Location = new System.Drawing.Point(4, 428);
             this.p6.Margin = new System.Windows.Forms.Padding(4);
             this.p6.Name = "p6";
-            this.p6.Size = new System.Drawing.Size(265, 79);
+            this.p6.Size = new System.Drawing.Size(290, 79);
             this.p6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.p6.TabIndex = 44;
             this.p6.TabStop = false;
@@ -588,10 +588,10 @@ namespace PROYECTO
             // p7
             // 
             this.p7.Image = ((System.Drawing.Image)(resources.GetObject("p7.Image")));
-            this.p7.Location = new System.Drawing.Point(287, 5);
+            this.p7.Location = new System.Drawing.Point(325, 5);
             this.p7.Margin = new System.Windows.Forms.Padding(4);
             this.p7.Name = "p7";
-            this.p7.Size = new System.Drawing.Size(265, 79);
+            this.p7.Size = new System.Drawing.Size(290, 79);
             this.p7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.p7.TabIndex = 45;
             this.p7.TabStop = false;
@@ -603,7 +603,7 @@ namespace PROYECTO
             this.p1.Location = new System.Drawing.Point(5, 5);
             this.p1.Margin = new System.Windows.Forms.Padding(4);
             this.p1.Name = "p1";
-            this.p1.Size = new System.Drawing.Size(265, 78);
+            this.p1.Size = new System.Drawing.Size(290, 78);
             this.p1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.p1.TabIndex = 47;
             this.p1.TabStop = false;
@@ -617,7 +617,7 @@ namespace PROYECTO
             this.label1.Location = new System.Drawing.Point(3, 4);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(481, 105);
+            this.label1.Size = new System.Drawing.Size(423, 105);
             this.label1.TabIndex = 39;
             this.label1.Text = "USUARIOS";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -661,7 +661,7 @@ namespace PROYECTO
             this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pictureBox1.ErrorImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.ErrorImage")));
             this.pictureBox1.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.InitialImage")));
-            this.pictureBox1.Location = new System.Drawing.Point(91, 220);
+            this.pictureBox1.Location = new System.Drawing.Point(63, 220);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(292, 251);
@@ -678,7 +678,7 @@ namespace PROYECTO
             this.grpboxEmpresas.Margin = new System.Windows.Forms.Padding(4);
             this.grpboxEmpresas.Name = "grpboxEmpresas";
             this.grpboxEmpresas.Padding = new System.Windows.Forms.Padding(4);
-            this.grpboxEmpresas.Size = new System.Drawing.Size(429, 75);
+            this.grpboxEmpresas.Size = new System.Drawing.Size(386, 75);
             this.grpboxEmpresas.TabIndex = 592;
             this.grpboxEmpresas.TabStop = false;
             this.grpboxEmpresas.Text = "Empresa";
@@ -691,7 +691,7 @@ namespace PROYECTO
             this.cboEmpresa.Location = new System.Drawing.Point(17, 28);
             this.cboEmpresa.Margin = new System.Windows.Forms.Padding(4);
             this.cboEmpresa.Name = "cboEmpresa";
-            this.cboEmpresa.Size = new System.Drawing.Size(393, 25);
+            this.cboEmpresa.Size = new System.Drawing.Size(352, 25);
             this.cboEmpresa.TabIndex = 6;
             this.cboEmpresa.SelectedIndexChanged += new System.EventHandler(this.cboEmpresa_SelectedIndexChanged);
             // 
@@ -720,7 +720,7 @@ namespace PROYECTO
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.CancelButton = this.btnSalir;
-            this.ClientSize = new System.Drawing.Size(845, 526);
+            this.ClientSize = new System.Drawing.Size(777, 526);
             this.Controls.Add(this.panel);
             this.Controls.Add(this.panel1);
             this.DoubleBuffered = true;

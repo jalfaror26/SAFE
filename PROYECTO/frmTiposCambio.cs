@@ -40,7 +40,7 @@ namespace PROYECTO
             return instance;
         }
 
-        
+
         private void tobAgregar_Click(object sender, EventArgs e)
         {
             if (tipo == 0)
@@ -62,6 +62,7 @@ namespace PROYECTO
                 oConexion.cerrarConexion();
                 if (oConexion.abrirConexion())
                 {
+                    lblFecha.Text = oTipoCambioDAO.fecha().ToShortDateString();
                     DataTable oMensajes = oConexion.EjecutaSentencia("select BuscaTC from TBL_EMPRESA e where e.no_cia = '" + PROYECTO.Properties.Settings.Default.No_cia + "'");
 
                     if (oMensajes.Rows.Count > 0)
@@ -100,7 +101,7 @@ namespace PROYECTO
             }
 
         }
-        
+
         private void Agregar()
         {
             if (txtDolar.Text.Equals(""))
@@ -120,11 +121,6 @@ namespace PROYECTO
                 oTipo.No_cia = PROYECTO.Properties.Settings.Default.No_cia;
                 oTipo.Fecharegistro = DateTime.Now;
                 oTipo.Dolar = Double.Parse(txtDolar.Text);
-                oTipo.Euro = 1;
-                oTipo.MinDolar = Double.Parse(txtDolar.Text);
-                oTipo.MinEuro = 1;
-                oTipo.BcDolar = Double.Parse(txtDolar.Text);
-                oTipo.BcEuro = 1;
                 oTipo.Usuario = PROYECTO.Properties.Settings.Default.Usuario.ToString();
                 oTipoCambioDAO.Agregar(oTipo);
                 if (oTipoCambioDAO.Error())
@@ -134,8 +130,11 @@ namespace PROYECTO
                 oEmpresaDAO.ActualizaParametro(PROYECTO.Properties.Settings.Default.No_cia, "BUSCATC", rboCompra.Checked ? "Compra" : "Venta");
 
                 oConexion.cerrarConexion();
-                ((System.Windows.Forms.MenuStrip)this.MdiParent.Controls["mnuPrincipal"]).Enabled = true;
+
                 this.Close();
+
+                ((System.Windows.Forms.MenuStrip)this.MdiParent.Controls["mnuPrincipal"]).Enabled = true;
+
 
                 try
                 {
@@ -150,6 +149,8 @@ namespace PROYECTO
                     }
                 }
                 catch { }
+
+                
             }
             else
                 MessageBox.Show("Ha ocurrido un error al conectarse a la base de datos.", "Error de oConexion", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -174,11 +175,6 @@ namespace PROYECTO
                 oTipo.No_cia = PROYECTO.Properties.Settings.Default.No_cia;
                 oTipo.Fecharegistro = Convert.ToDateTime(lblFecha.Text);
                 oTipo.Dolar = Double.Parse(txtDolar.Text);
-                oTipo.Euro = 1;
-                oTipo.MinDolar = Double.Parse(txtDolar.Text);
-                oTipo.MinEuro = 1;
-                oTipo.BcDolar = Double.Parse(txtDolar.Text);
-                oTipo.BcEuro = 1;
                 oTipo.Usuario = PROYECTO.Properties.Settings.Default.Usuario.ToString();
                 oTipoCambioDAO.Modificar(oTipo);
                 if (oTipoCambioDAO.Error())
@@ -188,8 +184,24 @@ namespace PROYECTO
                 oEmpresaDAO.ActualizaParametro(PROYECTO.Properties.Settings.Default.No_cia, "BUSCATC", rboCompra.Checked ? "Compra" : "Venta");
 
                 oConexion.cerrarConexion();
+
+              
+
                 ((System.Windows.Forms.MenuStrip)this.MdiParent.Controls["mnuPrincipal"]).Enabled = true;
+
+                try
+                {
+                    oConexion.cerrarConexion();
+                    if (oConexion.abrirConexion())
+                    {
+                        ((System.Windows.Forms.StatusStrip)this.MdiParent.Controls["stEstado"]).Items["stTC"].Text = "   Dolar: ¢ " + double.Parse(oTipoCambioDAO.TipoCambio(PROYECTO.Properties.Settings.Default.No_cia).Tables[0].Rows[0].ItemArray[0].ToString()).ToString("###,###,##0.##");// +" -- Euro: ¢ " + double.Parse(oTipoDAO.TipoCambio().Tables[0].Rows[0].ItemArray[1].ToString()).ToString("###,###,##0.##") + " ";
+                        oConexion.cerrarConexion();
+                    }
+                }
+                catch { }
+
                 this.Close();
+
             }
             else
                 MessageBox.Show("Ha ocurrido un error al conectarse a la base de datos.", "Error de oConexion", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -252,11 +264,6 @@ namespace PROYECTO
                         oTipo.No_cia = PROYECTO.Properties.Settings.Default.No_cia;
                         oTipo.Fecharegistro = DateTime.Now;
                         oTipo.Dolar = Double.Parse(txtDolar.Text);
-                        oTipo.Euro = 1;
-                        oTipo.MinDolar = Double.Parse(txtDolar.Text);
-                        oTipo.MinEuro = 1;
-                        oTipo.BcDolar = Double.Parse(txtDolar.Text);
-                        oTipo.BcEuro = 1;
                         oTipo.Usuario = PROYECTO.Properties.Settings.Default.Usuario.ToString();
                         oTipoCambioDAO.Agregar(oTipo);
                         if (oTipoCambioDAO.Error())
@@ -280,11 +287,6 @@ namespace PROYECTO
                         oTipo.No_cia = PROYECTO.Properties.Settings.Default.No_cia;
                         oTipo.Fecharegistro = Convert.ToDateTime(lblFecha.Text);
                         oTipo.Dolar = Double.Parse(txtDolar.Text);
-                        oTipo.Euro = 1;
-                        oTipo.MinDolar = Double.Parse(txtDolar.Text);
-                        oTipo.MinEuro = 1;
-                        oTipo.BcDolar = Double.Parse(txtDolar.Text);
-                        oTipo.BcEuro = 1;
                         oTipo.Usuario = PROYECTO.Properties.Settings.Default.Usuario.ToString();
                         oTipoCambioDAO.Modificar(oTipo);
                         if (oTipoCambioDAO.Error())

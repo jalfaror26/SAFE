@@ -44,7 +44,7 @@ namespace PROYECTO
             this.label1 = new System.Windows.Forms.Label();
             this.txtBId = new System.Windows.Forms.TextBox();
             this.lblBusqueda = new System.Windows.Forms.Label();
-            this.lblLinea = new System.Windows.Forms.Label();
+            this.lDAOinea = new System.Windows.Forms.Label();
             this.btnSalir = new System.Windows.Forms.Button();
             this.btnAceptar = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
@@ -209,14 +209,14 @@ namespace PROYECTO
             this.lblBusqueda.TabIndex = 159;
             this.lblBusqueda.Text = "Búsqueda Rápida ....";
             // 
-            // lblLinea
+            // lDAOinea
             // 
-            this.lblLinea.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.lblLinea.Location = new System.Drawing.Point(239, 31);
-            this.lblLinea.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblLinea.Name = "lblLinea";
-            this.lblLinea.Size = new System.Drawing.Size(360, 2);
-            this.lblLinea.TabIndex = 160;
+            this.lDAOinea.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lDAOinea.Location = new System.Drawing.Point(239, 31);
+            this.lDAOinea.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lDAOinea.Name = "lDAOinea";
+            this.lDAOinea.Size = new System.Drawing.Size(360, 2);
+            this.lDAOinea.TabIndex = 160;
             // 
             // btnSalir
             // 
@@ -327,7 +327,7 @@ namespace PROYECTO
             this.Controls.Add(this.txtBId);
             this.Controls.Add(this.txtBNombre);
             this.Controls.Add(this.lblBusqueda);
-            this.Controls.Add(this.lblLinea);
+            this.Controls.Add(this.lDAOinea);
             this.Controls.Add(this.btnSalir);
             this.Controls.Add(this.btnAceptar);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -355,7 +355,7 @@ namespace PROYECTO
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtBId;
         private System.Windows.Forms.Label lblBusqueda;
-        private System.Windows.Forms.Label lblLinea;
+        private System.Windows.Forms.Label lDAOinea;
         private System.Windows.Forms.Button btnSalir;
         private System.Windows.Forms.Button btnAceptar;
         private System.Windows.Forms.DataGridViewTextBoxColumn CLI_IDENTIFICACION;

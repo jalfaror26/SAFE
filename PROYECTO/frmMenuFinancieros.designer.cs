@@ -33,6 +33,7 @@ namespace PROYECTO
             this.imageList2 = new System.Windows.Forms.ImageList(this.components);
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.pFinancieros = new System.Windows.Forms.Panel();
+            this.btnCajaChica = new System.Windows.Forms.Button();
             this.button9 = new System.Windows.Forms.Button();
             this.button22 = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
@@ -113,6 +114,7 @@ namespace PROYECTO
             // 
             this.pFinancieros.BackColor = System.Drawing.Color.Transparent;
             this.pFinancieros.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.pFinancieros.Controls.Add(this.btnCajaChica);
             this.pFinancieros.Controls.Add(this.button9);
             this.pFinancieros.Controls.Add(this.button22);
             this.pFinancieros.Controls.Add(this.label7);
@@ -130,6 +132,24 @@ namespace PROYECTO
             this.pFinancieros.Name = "pFinancieros";
             this.pFinancieros.Size = new System.Drawing.Size(944, 532);
             this.pFinancieros.TabIndex = 7;
+            // 
+            // btnCajaChica
+            // 
+            this.btnCajaChica.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCajaChica.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnCajaChica.ImageIndex = 33;
+            this.btnCajaChica.ImageList = this.imageList2;
+            this.btnCajaChica.Location = new System.Drawing.Point(337, 82);
+            this.btnCajaChica.Margin = new System.Windows.Forms.Padding(4);
+            this.btnCajaChica.Name = "btnCajaChica";
+            this.btnCajaChica.Size = new System.Drawing.Size(267, 62);
+            this.btnCajaChica.TabIndex = 590;
+            this.btnCajaChica.Tag = " ";
+            this.btnCajaChica.Text = "  CAJA CHICA";
+            this.btnCajaChica.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnCajaChica.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnCajaChica.UseVisualStyleBackColor = true;
+            this.btnCajaChica.Click += new System.EventHandler(this.btnCajaChica_Click);
             // 
             // button9
             // 
@@ -327,5 +347,6 @@ namespace PROYECTO
         private System.Windows.Forms.Button button22;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.PictureBox pictureBox7;
+        private System.Windows.Forms.Button btnCajaChica;
     }
 }

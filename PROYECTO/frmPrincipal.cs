@@ -103,6 +103,8 @@ namespace PROYECTO
 
         private void frmPrincipal_Load(object sender, EventArgs e)
         {
+            PROYECTO.Properties.Settings.Default.Clave = Conexion.getInstance().Clave;
+
             mnuPrincipal.Visible = false;
             chkMenu.Checked = false;
 
@@ -267,19 +269,33 @@ namespace PROYECTO
         }
 
 
-        public void CerrarSesion()
+        public void CerrarSesion(Boolean pConsultar)
         {
             try
             {
-                if (MessageBox.Show("¿Desea Cerrar la Sesión: " + PROYECTO.Properties.Settings.Default.Usuario + "?", "Cerrar Sesión", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1) == DialogResult.Yes)
+                Boolean vCerrarSesion = false;
+
+                if (pConsultar)
+                {
+                    if (MessageBox.Show("¿Desea Cerrar la Sesión: " + PROYECTO.Properties.Settings.Default.Usuario + "?", "Cerrar Sesión", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1) == DialogResult.Yes)
+                        vCerrarSesion = true;
+                }
+                else
+                    vCerrarSesion = true;
+
+                if (vCerrarSesion)
                 {
                     try
                     {
                         int cont = this.MdiChildren.Length;
                         for (int i = 0; i <= cont; i++)
-                            this.MdiChildren[0].Close();
+                        {
+                            if (!this.MdiChildren[0].Name.Equals("frmUsuarioContraseñaCambio"))
+                                this.MdiChildren[0].Close();
+                        }
                     }
                     catch { }
+
 
                     PROYECTO.Properties.Settings.Default.Usuario = "";
                     mnuPrincipal.Visible = false;
@@ -299,6 +315,10 @@ namespace PROYECTO
 
                     this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
                     this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+
+                    PROYECTO.Properties.Settings.Default.UsuarioBD = PROYECTO.Properties.Settings.Default.UsuarioBD_PRINCIPAL;
+                    Conexion.getInstance().Clave = PROYECTO.Properties.Settings.Default.Clave;
+
                     ConexionDAO oConexion = new ConexionDAO(PROYECTO.Properties.Settings.Default.UsuarioBD, PROYECTO.Properties.Settings.Default.Servidor, Conexion.getInstance().Clave);
                     oConexion.cerrarConexion();
 
@@ -317,7 +337,7 @@ namespace PROYECTO
 
         private void cerrarSeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            CerrarSesion();
+            CerrarSesion(true);
         }
 
         public void FondoPantalla()
@@ -395,7 +415,7 @@ namespace PROYECTO
                     if (oMensajes.Rows.Count > 0)
                     {
                         rutaArchivoBackup = oMensajes.Rows[0]["rutaArchivoBackup"].ToString();
-                        
+
                         if (File.Exists(rutaArchivoBackup))
                         {
                             System.Diagnostics.Process.Start(@"" + rutaArchivoBackup);

@@ -26,9 +26,9 @@ namespace PROYECTO.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("SAFE")]
-        public string UsuarioBD {
+        public string UsuarioBD_PRINCIPAL {
             get {
-                return ((string)(this["UsuarioBD"]));
+                return ((string)(this["UsuarioBD_PRINCIPAL"]));
             }
         }
         
@@ -121,6 +121,30 @@ namespace PROYECTO.Properties {
             get {
                 return ((string)(this["Sistema_Administrativo_y_Facturación_Electronica_TipoCambioBCCR_wsindicadoresecon" +
                     "omicos"]));
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string Clave {
+            get {
+                return ((string)(this["Clave"]));
+            }
+            set {
+                this["Clave"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string UsuarioBD {
+            get {
+                return ((string)(this["UsuarioBD"]));
+            }
+            set {
+                this["UsuarioBD"] = value;
             }
         }
     }

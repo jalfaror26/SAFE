@@ -79,7 +79,7 @@ namespace PROYECTO_DAO
 
             return !OracleDAO.getInstance().ErrorSQL;
         }
-        
+
         public Boolean Eliminar(Usuario oUsuario, string pNo_cia)
         {
             OracleCommand oCommand = new OracleCommand();
@@ -96,14 +96,87 @@ namespace PROYECTO_DAO
 
             return !OracleDAO.getInstance().ErrorSQL;
         }
-        
+
         public DataSet consultaUsuarios(String pNo_cia)
         {
             String sql = "select usuario, rol, cedula, nombre, apellido1, apellido2, email from TBUSUARIO u where u.no_Cia = '" + pNo_cia + "' and estado = 1";
             DataSet oDataSet = OracleDAO.getInstance().EjecutarSQLDataSet(sql);
             return oDataSet;
         }
-               
+
+        public DataSet consultaUsuario(String pUsuario, String pNo_cia)
+        {
+            String sql = "select rol, cedula, nombre, apellido1, apellido2, email, ind_req_cambio from TBUSUARIO u where u.usuario = '" + pUsuario + "' and u.no_Cia = '" + pNo_cia + "' and estado = 1";
+            DataSet oDataSet = OracleDAO.getInstance().EjecutarSQLDataSet(sql);
+            return oDataSet;
+        }
+
+
+
+        public Boolean CreaUsuarioBD(Usuario oUsuario)
+        {
+            Boolean userCreado = false;
+
+            OracleDAO.getInstance().EjecutarSQLComando(@"alter session set ""_ORACLE_SCRIPT""=true");
+
+            if (!OracleDAO.getInstance().ErrorSQL)
+            {
+                OracleDAO.getInstance().EjecutarSQLComando("create user " + oUsuario.CodUsuario + " identified by " + oUsuario.Contrasenna);
+
+                if (!OracleDAO.getInstance().ErrorSQL)
+                {
+                    userCreado = true;
+
+                    if (oUsuario.Rol.Equals("ADMINISTRADOR"))
+                        OracleDAO.getInstance().EjecutarSQLComando("grant SAFE_USUARIOS to " + oUsuario.CodUsuario + " WITH ADMIN OPTION");
+                    else
+                        OracleDAO.getInstance().EjecutarSQLComando("grant SAFE_USUARIOS to " + oUsuario.CodUsuario);
+
+                    if (!OracleDAO.getInstance().ErrorSQL)
+                    {
+                        OracleDAO.getInstance().EjecutarSQLComando("grant create session to " + oUsuario.CodUsuario);
+
+                        if (!OracleDAO.getInstance().ErrorSQL)
+                            if (oUsuario.Rol.Equals("ADMINISTRADOR"))
+                                OracleDAO.getInstance().EjecutarSQLComando("grant dba to " + oUsuario.CodUsuario);
+                    }
+
+
+                    if (!OracleDAO.getInstance().ErrorSQL)
+                        userCreado = true;
+                    else
+                    {
+                        String error = OracleDAO.getInstance().DescripcionErrorSQL;
+                        if (userCreado)
+                            OracleDAO.getInstance().EjecutarSQLComando("drop user " + oUsuario.CodUsuario + " cascade");
+                        userCreado = false;
+
+                        OracleDAO.getInstance().ErrorSQL = true;
+                        OracleDAO.getInstance().DescripcionErrorSQL = error;
+                    }
+
+                }
+            }
+            return userCreado;
+        }
+
+        public Boolean CambiaClaveUsuarioBD(Usuario oUsuario)
+        {
+            Boolean userAlterado = false;
+
+            OracleDAO.getInstance().EjecutarSQLComando(@"alter session set ""_ORACLE_SCRIPT""=true");
+
+            if (!OracleDAO.getInstance().ErrorSQL)
+            {
+                OracleDAO.getInstance().EjecutarSQLComando("alter user " + oUsuario.CodUsuario + " identified by " + oUsuario.Contrasenna);
+
+                if (!OracleDAO.getInstance().ErrorSQL)
+                    userAlterado = true;
+            }
+            return userAlterado;
+        }
+
+
         public DataTable consultaImagen(String nomusuario, String pNo_cia)
         {
             String sql = "select IMAGEN from TBUSUARIO u where u.no_Cia = '" + pNo_cia + "' and estado = 1 and usuario='" + nomusuario + "'";

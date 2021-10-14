@@ -9,6 +9,7 @@ using PROYECTO_DAO;
 using ENTIDADES;
 using System.Reflection;
 using System.IO;
+using Entidades;
 
 namespace PROYECTO
 {
@@ -61,38 +62,90 @@ namespace PROYECTO
                     return;
                 }
 
+                PROYECTO.Properties.Settings.Default.UsuarioBD = PROYECTO.Properties.Settings.Default.UsuarioBD_PRINCIPAL;
+                Conexion.getInstance().Clave = PROYECTO.Properties.Settings.Default.Clave;
+
+                oConexion.cerrarConexion(PROYECTO.Properties.Settings.Default.UsuarioBD, PROYECTO.Properties.Settings.Default.Servidor, Conexion.getInstance().Clave);
+                oConexion.QuitarInstance(PROYECTO.Properties.Settings.Default.UsuarioBD, PROYECTO.Properties.Settings.Default.Servidor, Conexion.getInstance().Clave);
+
                 oConexion = new ConexionDAO(PROYECTO.Properties.Settings.Default.UsuarioBD, PROYECTO.Properties.Settings.Default.Servidor, Conexion.getInstance().Clave);
-                oConexion.cerrarConexion();
+
+                oConexion.cerrarConexion(PROYECTO.Properties.Settings.Default.UsuarioBD, PROYECTO.Properties.Settings.Default.Servidor, Conexion.getInstance().Clave);
                 if (oConexion.abrirConexion())
                 {
                     if (oConexion.existeUsuario(usuario, clave, PROYECTO.Properties.Settings.Default.No_cia))
                     {
-                        ((System.Windows.Forms.MenuStrip)this.MdiParent.Controls["mnuPrincipal"]).Enabled = true;
-                        PROYECTO.Properties.Settings.Default.Usuario = usuario;
-                        //oCertificacionDAO = new CertificacionDAO();
-                        oTipoCambioDAO = new TipoCambioDAO();
-                        ((System.Windows.Forms.StatusStrip)this.MdiParent.Controls["stEstado"]).Items["stEtiqueta1"].Text = "   Cia: " + cboEmpresa.Text + " ";
-                        ((System.Windows.Forms.StatusStrip)this.MdiParent.Controls["stEstado"]).Items["stLinea1"].Visible = true;
-                        ((System.Windows.Forms.StatusStrip)this.MdiParent.Controls["stEstado"]).Items["stFecha"].Text = "   Fecha: " + oConexion.fecha().ToShortDateString() + " ";
-                        ((System.Windows.Forms.StatusStrip)this.MdiParent.Controls["stEstado"]).Items["stLinea2"].Visible = true;
-                        ((System.Windows.Forms.StatusStrip)this.MdiParent.Controls["stEstado"]).Items["stUsuario"].Text = "   Usuario: " + usuario + " ";
-                        ((System.Windows.Forms.StatusStrip)this.MdiParent.Controls["stEstado"]).Items["stLinea3"].Visible = true;
-                        ((System.Windows.Forms.StatusStrip)this.MdiParent.Controls["stEstado"]).Items["stTC"].Text = "   Dólar: ¢ 0";
-                        ((System.Windows.Forms.StatusStrip)this.MdiParent.Controls["stEstado"]).Items["stVersion"].Text = " Versión: " + PROYECTO.Properties.Settings.Default.Version.ToString();
+                        oConexion.cerrarConexion(PROYECTO.Properties.Settings.Default.UsuarioBD, PROYECTO.Properties.Settings.Default.Servidor, Conexion.getInstance().Clave);
+                        oConexion.QuitarInstance(PROYECTO.Properties.Settings.Default.UsuarioBD, PROYECTO.Properties.Settings.Default.Servidor, Conexion.getInstance().Clave);
 
-                        if (oTipoCambioDAO.Consulta(PROYECTO.Properties.Settings.Default.No_cia))
+                        oConexion = new ConexionDAO(usuario, PROYECTO.Properties.Settings.Default.Servidor, clave);
+
+                        //oConexion = new ConexionDAO(PROYECTO.Properties.Settings.Default.UsuarioBD, PROYECTO.Properties.Settings.Default.Servidor, Conexion.getInstance().Clave);
+                        if (oConexion.abrirConexion())
                         {
-                            oTipoCambio = frmTiposCambio.getInstance(0);
-                            oTipoCambio.MdiParent = this.MdiParent;
-                            oTipoCambio.Show();
-                            this.Dispose();
+
+
+                            PROYECTO.Properties.Settings.Default.UsuarioBD = usuario;
+                            Conexion.getInstance().Clave = clave;
+
+                            ((System.Windows.Forms.MenuStrip)this.MdiParent.Controls["mnuPrincipal"]).Enabled = true;
+                            PROYECTO.Properties.Settings.Default.Usuario = PROYECTO.Properties.Settings.Default.UsuarioBD;
+                            //oCertificacionDAO = new CertificacionDAO();
+                            oTipoCambioDAO = new TipoCambioDAO();
+                            ((System.Windows.Forms.StatusStrip)this.MdiParent.Controls["stEstado"]).Items["stEtiqueta1"].Text = "   Cia: " + cboEmpresa.Text + " ";
+                            ((System.Windows.Forms.StatusStrip)this.MdiParent.Controls["stEstado"]).Items["stLinea1"].Visible = true;
+                            ((System.Windows.Forms.StatusStrip)this.MdiParent.Controls["stEstado"]).Items["stFecha"].Text = "   Fecha: " + oConexion.fecha().ToShortDateString() + " ";
+                            ((System.Windows.Forms.StatusStrip)this.MdiParent.Controls["stEstado"]).Items["stLinea2"].Visible = true;
+                            ((System.Windows.Forms.StatusStrip)this.MdiParent.Controls["stEstado"]).Items["stUsuario"].Text = "   Usuario: " + PROYECTO.Properties.Settings.Default.Usuario + " ";
+                            ((System.Windows.Forms.StatusStrip)this.MdiParent.Controls["stEstado"]).Items["stLinea3"].Visible = true;
+                            ((System.Windows.Forms.StatusStrip)this.MdiParent.Controls["stEstado"]).Items["stTC"].Text = "   Dólar: ¢ 0";
+                            ((System.Windows.Forms.StatusStrip)this.MdiParent.Controls["stEstado"]).Items["stVersion"].Text = " Versión: " + PROYECTO.Properties.Settings.Default.Version.ToString();
+
+                            UsuarioDAO oUsuarioDAO = new UsuarioDAO();
+                            Usuario oUsuario = new Usuario();
+
+                            DataTable oDatos = oUsuarioDAO.consultaUsuario(usuario, PROYECTO.Properties.Settings.Default.No_cia).Tables[0];
+
+                            oUsuario.CodUsuario = usuario;
+                            oUsuario.Nombre = oDatos.Rows[0]["nombre"].ToString();
+                            String ind_req_cambio = oDatos.Rows[0]["ind_req_cambio"].ToString();
+
+                            if (ind_req_cambio.Equals("S"))
+                            {
+
+                                MessageBox.Show("Bienvenido " + oUsuario.Nombre + "!!\n\nEs requerido que se realice el cambio de contraseña!!", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                                frmUsuarioContraseñaCambio oPantalla = frmUsuarioContraseñaCambio.getInstance(usuario, ind_req_cambio);
+                                oPantalla.MdiParent = this.MdiParent;
+                                oPantalla.Show();
+                                this.Dispose();
+                            }
+                            else
+                            {
+
+                                if (oTipoCambioDAO.Consulta(PROYECTO.Properties.Settings.Default.No_cia))
+                                {
+                                    oTipoCambio = frmTiposCambio.getInstance(0);
+                                    oTipoCambio.MdiParent = this.MdiParent;
+                                    oTipoCambio.Show();
+                                    this.Dispose();
+                                }
+                                else
+                                {
+                                    this.Dispose();
+                                }
+                            }
                         }
                         else
                         {
-                            this.Dispose();
-                        }
+                            MessageBox.Show("Error al conectarse con la base de datos\nVerifique que los datos estén correctos\n\n" + oConexion.DescError());
 
-                        timFecha.Stop();
+                            oConexion.cerrarConexion();
+                            oConexion.QuitarInstance(PROYECTO.Properties.Settings.Default.UsuarioBD, PROYECTO.Properties.Settings.Default.Servidor, Conexion.getInstance().Clave);
+
+                            intentos++;
+                            QuitarTodos();
+                        }
                     }
                     else
                     {
@@ -256,6 +309,19 @@ namespace PROYECTO
 
                     DataTable oUsuarios = oConexion.EjecutaSentencia("select usuario from TBUSUARIO u where u.no_cia = '" + cboEmpresa.SelectedValue.ToString() + "' and estado = 1 order by usuario");
 
+                    p1.Visible = false;
+                    p2.Visible = false;
+                    p3.Visible = false;
+                    p4.Visible = false;
+                    p5.Visible = false;
+                    p6.Visible = false;
+                    p7.Visible = false;
+                    p8.Visible = false;
+                    p9.Visible = false;
+                    p10.Visible = false;
+                    p11.Visible = false;
+                    p12.Visible = false;
+
                     for (int x = 0; x < oUsuarios.Rows.Count; x++)
                     {
                         switch (x)
@@ -264,37 +330,43 @@ namespace PROYECTO
                                 lblNombre1.Visible = true;
                                 lblNombre1.Text = oUsuarios.Rows[x].ItemArray[0].ToString();
                                 this.Size = new Size(600, 455);
-                                panel.Location = new Point(362, 170);
+                                panel.Location = new Point(330, 170);
+                                p1.Visible = true;
                                 break;
                             case 1:
                                 lblNombre2.Visible = true;
                                 lblNombre2.Text = oUsuarios.Rows[x].ItemArray[0].ToString();
-                                panel.Location = new Point(362, 130);
+                                panel.Location = new Point(330, 130);
+                                p2.Visible = true;
                                 break;
                             case 2:
                                 lblNombre3.Visible = true;
                                 lblNombre3.Text = oUsuarios.Rows[x].ItemArray[0].ToString();
-                                panel.Location = new Point(362, 100);
+                                panel.Location = new Point(330, 100);
+                                p3.Visible = true;
                                 break;
                             case 3:
                                 lblNombre4.Visible = true;
                                 lblNombre4.Text = oUsuarios.Rows[x].ItemArray[0].ToString();
-                                panel.Location = new Point(362, 70);
+                                panel.Location = new Point(330, 70);
+                                p4.Visible = true;
                                 break;
                             case 4:
                                 lblNombre5.Visible = true;
                                 lblNombre5.Text = oUsuarios.Rows[x].ItemArray[0].ToString();
-                                panel.Location = new Point(362, 40);
+                                panel.Location = new Point(330, 40);
+                                p5.Visible = true;
                                 break;
                             case 5:
                                 lblNombre6.Visible = true;
                                 lblNombre6.Text = oUsuarios.Rows[x].ItemArray[0].ToString();
-                                panel.Location = new Point(362, 4);
+                                panel.Location = new Point(330, 4);
+                                p6.Visible = true;
                                 break;
                             case 6:
                                 lblNombre7.Visible = true;
                                 lblNombre7.Text = oUsuarios.Rows[x].ItemArray[0].ToString();
-                                this.Size = new Size(810, 455);
+                                this.Size = new Size(830, 455);
                                 break;
                             case 7:
                                 lblNombre8.Visible = true;
@@ -356,18 +428,18 @@ namespace PROYECTO
             txtContrasena11.Clear();
             txtContrasena12.Clear();
 
-            p1.Visible = false;
-            p2.Visible = false;
-            p3.Visible = false;
-            p4.Visible = false;
-            p5.Visible = false;
-            p6.Visible = false;
-            p7.Visible = false;
-            p8.Visible = false;
-            p9.Visible = false;
-            p10.Visible = false;
-            p11.Visible = false;
-            p12.Visible = false;
+            //p1.Visible = false;
+            //p2.Visible = false;
+            //p3.Visible = false;
+            //p4.Visible = false;
+            //p5.Visible = false;
+            //p6.Visible = false;
+            //p7.Visible = false;
+            //p8.Visible = false;
+            //p9.Visible = false;
+            //p10.Visible = false;
+            //p11.Visible = false;
+            //p12.Visible = false;
 
             lblNombre1.TextAlign = ContentAlignment.MiddleLeft;
             lblNombre2.TextAlign = ContentAlignment.MiddleLeft;
@@ -456,10 +528,16 @@ namespace PROYECTO
         {
             try
             {
+                if (String.IsNullOrEmpty(PROYECTO.Properties.Settings.Default.UsuarioBD))
+                {
+                    PROYECTO.Properties.Settings.Default.UsuarioBD = PROYECTO.Properties.Settings.Default.UsuarioBD_PRINCIPAL;
+                    PROYECTO.Properties.Settings.Default.Clave = Conexion.getInstance().Clave;
+                }
+
                 oConexion = new ConexionDAO(PROYECTO.Properties.Settings.Default.UsuarioBD, PROYECTO.Properties.Settings.Default.Servidor, Conexion.getInstance().Clave);
                 if (oConexion.abrirConexion())
                 {
-                    this.Text = "Conexion al Sistema             " + oConexion.fecha().ToString();
+                    this.Text = "Conexion al Sistema             " + oConexion.fecha().ToShortDateString();
 
                     Conectado++;
                     try
@@ -473,6 +551,8 @@ namespace PROYECTO
                                 TraerUsuarios();
                         }
                         oConexion.cerrarConexion();
+
+                        timFecha.Stop();
                     }
                     catch (Exception ex) { }
                 }
@@ -480,7 +560,7 @@ namespace PROYECTO
                 {
                     this.Text = "Conexion al Sistema             - No hay Conexión";
                     oConexion.cerrarConexion();
-                    oConexion.QuitarInstance();
+                    oConexion.QuitarInstance(PROYECTO.Properties.Settings.Default.UsuarioBD, PROYECTO.Properties.Settings.Default.Servidor, Conexion.getInstance().Clave);
                     Conectado = 0;
 
                 }
@@ -672,7 +752,7 @@ namespace PROYECTO
                     TraerUsuarios();
                     timFecha.Stop();
                     QuitarVisibleTodos();
-                    oConexion.QuitarInstance();
+                    oConexion.QuitarInstance(PROYECTO.Properties.Settings.Default.UsuarioBD, PROYECTO.Properties.Settings.Default.Servidor, Conexion.getInstance().Clave);
                     Conectado = 0;
                     timFecha.Start();
                 }
@@ -689,7 +769,7 @@ namespace PROYECTO
             lblNombre9.TextAlign = ContentAlignment.MiddleCenter;
         }
 
-       
+
 
         private void lblNombre10_Click(object sender, EventArgs e)
         {
@@ -717,7 +797,7 @@ namespace PROYECTO
             txtContrasena12.Focus();
             lblNombre12.TextAlign = ContentAlignment.MiddleCenter;
         }
-        
+
         private void frmForma_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.F1)

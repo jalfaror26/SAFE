@@ -49,7 +49,7 @@ namespace PROYECTO
             // txtDescripcion
             // 
             this.txtDescripcion.Location = new System.Drawing.Point(232, 22);
-            this.txtDescripcion.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtDescripcion.Margin = new System.Windows.Forms.Padding(4);
             this.txtDescripcion.Name = "txtDescripcion";
             this.txtDescripcion.Size = new System.Drawing.Size(609, 22);
             this.txtDescripcion.TabIndex = 2;
@@ -79,7 +79,7 @@ namespace PROYECTO
             this.INV_IVI,
             this.INV_IMPUESTO_VENTAS});
             this.dgrDatos.Location = new System.Drawing.Point(16, 54);
-            this.dgrDatos.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dgrDatos.Margin = new System.Windows.Forms.Padding(4);
             this.dgrDatos.MultiSelect = false;
             this.dgrDatos.Name = "dgrDatos";
             this.dgrDatos.ReadOnly = true;
@@ -151,7 +151,7 @@ namespace PROYECTO
             // 
             this.btnSalir.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnSalir.Location = new System.Drawing.Point(376, 121);
-            this.btnSalir.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnSalir.Margin = new System.Windows.Forms.Padding(4);
             this.btnSalir.Name = "btnSalir";
             this.btnSalir.Size = new System.Drawing.Size(15, 28);
             this.btnSalir.TabIndex = 438;
@@ -164,7 +164,7 @@ namespace PROYECTO
             // 
             this.btnAceptar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnAceptar.Location = new System.Drawing.Point(487, 121);
-            this.btnAceptar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnAceptar.Margin = new System.Windows.Forms.Padding(4);
             this.btnAceptar.Name = "btnAceptar";
             this.btnAceptar.Size = new System.Drawing.Size(15, 28);
             this.btnAceptar.TabIndex = 439;
@@ -176,7 +176,7 @@ namespace PROYECTO
             // txtCodigo
             // 
             this.txtCodigo.Location = new System.Drawing.Point(17, 22);
-            this.txtCodigo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtCodigo.Margin = new System.Windows.Forms.Padding(4);
             this.txtCodigo.Name = "txtCodigo";
             this.txtCodigo.Size = new System.Drawing.Size(196, 22);
             this.txtCodigo.TabIndex = 1;
@@ -196,12 +196,12 @@ namespace PROYECTO
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmConsultaServicios";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Consulta de servicios y productos a facturar";
+            this.Text = "Consulta de servicios";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmConsultaArticulos_FormClosing);
             this.Load += new System.EventHandler(this.frmConsultaArticulos_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmForma_KeyDown);

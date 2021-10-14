@@ -22,20 +22,10 @@ namespace PROYECTO_DAO
             //Crear los Parámetros del procedimiento y sus valores
             oCommand.Parameters.Add("dolar", OracleType.Number);
             oCommand.Parameters[0].Value = oTipo.Dolar;
-            oCommand.Parameters.Add("euro", OracleType.Number);
-            oCommand.Parameters[1].Value = oTipo.Euro;
             oCommand.Parameters.Add("usuario", OracleType.NVarChar);
-            oCommand.Parameters[2].Value = oTipo.Usuario;
-            oCommand.Parameters.Add("minimod", OracleType.Number);
-            oCommand.Parameters[3].Value = oTipo.MinDolar;
-            oCommand.Parameters.Add("minimoe", OracleType.Number);
-            oCommand.Parameters[4].Value = oTipo.MinEuro;
-            oCommand.Parameters.Add("bcdolar", OracleType.Number);
-            oCommand.Parameters[5].Value = oTipo.BcDolar;
-            oCommand.Parameters.Add("bceuro", OracleType.Number);
-            oCommand.Parameters[6].Value = oTipo.BcEuro;
+            oCommand.Parameters[1].Value = oTipo.Usuario;
             oCommand.Parameters.Add("pNo_cia", OracleType.NVarChar);
-            oCommand.Parameters[7].Value = oTipo.No_cia;
+            oCommand.Parameters[2].Value = oTipo.No_cia;
 
             OracleDAO.getInstance().EjecutarSQLStoreProcedure(oCommand);
 
@@ -54,22 +44,10 @@ namespace PROYECTO_DAO
             //Crear los Parámetros del procedimiento y sus valores
             oCommand.Parameters.Add("dolar", OracleType.Number);
             oCommand.Parameters[0].Value = oTipo.Dolar;
-            oCommand.Parameters.Add("euro", OracleType.Number);
-            oCommand.Parameters[1].Value = oTipo.Euro;
             oCommand.Parameters.Add("usuario", OracleType.NVarChar);
-            oCommand.Parameters[2].Value = oTipo.Usuario;
-            oCommand.Parameters.Add("fecha", OracleType.DateTime);
-            oCommand.Parameters[3].Value = oTipo.Fecharegistro;
-            oCommand.Parameters.Add("minimod", OracleType.Number);
-            oCommand.Parameters[4].Value = oTipo.MinDolar;
-            oCommand.Parameters.Add("minimoe", OracleType.Number);
-            oCommand.Parameters[5].Value = oTipo.MinEuro;
-            oCommand.Parameters.Add("bcdolar", OracleType.Number);
-            oCommand.Parameters[6].Value = oTipo.BcDolar;
-            oCommand.Parameters.Add("bceuro", OracleType.Number);
-            oCommand.Parameters[7].Value = oTipo.BcEuro;
+            oCommand.Parameters[1].Value = oTipo.Usuario;
             oCommand.Parameters.Add("pNo_cia", OracleType.NVarChar);
-            oCommand.Parameters[8].Value = oTipo.No_cia;
+            oCommand.Parameters[2].Value = oTipo.No_cia;
 
             OracleDAO.getInstance().EjecutarSQLStoreProcedure(oCommand);
 
@@ -95,7 +73,7 @@ namespace PROYECTO_DAO
 
         public DataSet TipoCambio(String pNo_cia)
         {
-            String sql = "select cambio_dolar, cambioeuro, fecha_registro, minDolar, minEuro, tcbcDolar, tcbcEuro from TBL_TIPOS_CAMBIO tc where tc.no_cia = '" + pNo_cia + "' and  to_char(fecha_registro,'dd/mm/yyyy') = to_char(sysdate,'dd/mm/yyyy')";
+            String sql = "select cambio_dolar, fecha_registro from TBL_TIPOS_CAMBIO tc where tc.no_cia = '" + pNo_cia + "' and  to_char(fecha_registro,'dd/mm/yyyy') = to_char(sysdate,'dd/mm/yyyy')";
             DataSet oDataSet = OracleDAO.getInstance().EjecutarSQLDataSet(sql);
             return oDataSet;
         }
@@ -109,7 +87,7 @@ namespace PROYECTO_DAO
 
         public DataSet TipoCambio(String fecha, String pNo_cia)
         {
-            String sql = "select cambio_dolar, cambioeuro, minDolar, minEuro, tcbcDolar, tcbcEuro from TBL_TIPOS_CAMBIO tc where tc.no_cia = '" + pNo_cia + "' and  '" + fecha + "' = to_char(fecha_registro,'dd/mm/yyyy')";
+            String sql = "select cambio_dolar from TBL_TIPOS_CAMBIO tc where tc.no_cia = '" + pNo_cia + "' and  '" + fecha + "' = to_char(fecha_registro,'dd/mm/yyyy')";
             DataSet oDataSet = OracleDAO.getInstance().EjecutarSQLDataSet(sql);
             return oDataSet;
         }

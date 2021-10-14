@@ -573,7 +573,7 @@ namespace PROYECTO
 
         private void btnCerrarSesion_Click(object sender, EventArgs e)
         {
-            oPrincipal.CerrarSesion();
+            oPrincipal.CerrarSesion(true);
         }
 
         private void frmMenu_KeyDown(object sender, KeyEventArgs e)

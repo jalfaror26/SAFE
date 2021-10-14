@@ -19,7 +19,7 @@ namespace PROYECTO
 
         private ProveedorDAO oProveedorDAO = new ProveedorDAO();
         private static frmProveedores instance = null;
-        private ConexionDAO oConexion = new ConexionDAO(PROYECTO.Properties.Settings.Default.UsuarioBD, PROYECTO.Properties.Settings.Default.Servidor, Conexion.getInstance().Clave);
+        private ConexionDAO oConexion = new ConexionDAO(PROYECTO.Properties.Settings.Default.UsuarioBD, PROYECTO.Properties.Settings.Default.Servidor,Conexion.getInstance().Clave);
         private Proveedor oProveedor;
         private String codigo = "par_proveedores", descripcion = "Registro de proveedores del sistema.", modulo = "Mantenimientos";
         private Double indiceProveedor = 0;

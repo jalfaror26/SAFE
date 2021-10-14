@@ -48,7 +48,7 @@ namespace PROYECTO
             this.imgMenu = new System.Windows.Forms.ImageList(this.components);
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnMNuevo = new System.Windows.Forms.Button();
-            this.btnMSalir = new System.Windows.Forms.Button();
+            this.btnMBackup = new System.Windows.Forms.Button();
             this.btnMGuardar = new System.Windows.Forms.Button();
             this.chkMultFacturasAbiertas = new System.Windows.Forms.CheckBox();
             this.chkRedondearPrecioFactura = new System.Windows.Forms.CheckBox();
@@ -61,6 +61,7 @@ namespace PROYECTO
             this.label5 = new System.Windows.Forms.Label();
             this.cboBarrio = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
+            this.btnMSalir = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.imgFoto)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -221,11 +222,13 @@ namespace PROYECTO
             this.imgMenu.Images.SetKeyName(1, "Disc 01.ico");
             this.imgMenu.Images.SetKeyName(2, "Sign 06.ico");
             this.imgMenu.Images.SetKeyName(3, "salir2.ico");
+            this.imgMenu.Images.SetKeyName(4, "enable_server.ico");
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.btnMNuevo);
             this.groupBox1.Controls.Add(this.btnMSalir);
+            this.groupBox1.Controls.Add(this.btnMNuevo);
+            this.groupBox1.Controls.Add(this.btnMBackup);
             this.groupBox1.Controls.Add(this.btnMGuardar);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupBox1.Location = new System.Drawing.Point(0, 0);
@@ -253,22 +256,22 @@ namespace PROYECTO
             this.btnMNuevo.UseVisualStyleBackColor = true;
             this.btnMNuevo.Click += new System.EventHandler(this.btnMNuevo_Click);
             // 
-            // btnMSalir
+            // btnMBackup
             // 
-            this.btnMSalir.Font = new System.Drawing.Font("Tempus Sans ITC", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnMSalir.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnMSalir.ImageKey = "salir2.ico";
-            this.btnMSalir.ImageList = this.imgMenu;
-            this.btnMSalir.Location = new System.Drawing.Point(344, 18);
-            this.btnMSalir.Margin = new System.Windows.Forms.Padding(4);
-            this.btnMSalir.Name = "btnMSalir";
-            this.btnMSalir.Size = new System.Drawing.Size(147, 55);
-            this.btnMSalir.TabIndex = 15;
-            this.btnMSalir.Text = "Salir";
-            this.btnMSalir.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnMSalir.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnMSalir.UseVisualStyleBackColor = true;
-            this.btnMSalir.Click += new System.EventHandler(this.btnMSalir_Click);
+            this.btnMBackup.Font = new System.Drawing.Font("Tempus Sans ITC", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnMBackup.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnMBackup.ImageKey = "enable_server.ico";
+            this.btnMBackup.ImageList = this.imgMenu;
+            this.btnMBackup.Location = new System.Drawing.Point(344, 18);
+            this.btnMBackup.Margin = new System.Windows.Forms.Padding(4);
+            this.btnMBackup.Name = "btnMBackup";
+            this.btnMBackup.Size = new System.Drawing.Size(147, 55);
+            this.btnMBackup.TabIndex = 15;
+            this.btnMBackup.Text = "Backup de BD";
+            this.btnMBackup.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnMBackup.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnMBackup.UseVisualStyleBackColor = true;
+            this.btnMBackup.Click += new System.EventHandler(this.btnMBackup_Click);
             // 
             // btnMGuardar
             // 
@@ -414,6 +417,23 @@ namespace PROYECTO
             this.label6.TabIndex = 628;
             this.label6.Text = "Barrio";
             // 
+            // btnMSalir
+            // 
+            this.btnMSalir.Font = new System.Drawing.Font("Tempus Sans ITC", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnMSalir.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnMSalir.ImageKey = "salir2.ico";
+            this.btnMSalir.ImageList = this.imgMenu;
+            this.btnMSalir.Location = new System.Drawing.Point(511, 18);
+            this.btnMSalir.Margin = new System.Windows.Forms.Padding(4);
+            this.btnMSalir.Name = "btnMSalir";
+            this.btnMSalir.Size = new System.Drawing.Size(147, 55);
+            this.btnMSalir.TabIndex = 16;
+            this.btnMSalir.Text = "Salir";
+            this.btnMSalir.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnMSalir.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnMSalir.UseVisualStyleBackColor = true;
+            this.btnMSalir.Click += new System.EventHandler(this.btnMSalir_Click);
+            // 
             // frmEmpresa
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -483,7 +503,7 @@ namespace PROYECTO
         private System.Windows.Forms.ImageList imgMenu;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button btnMNuevo;
-        private System.Windows.Forms.Button btnMSalir;
+        private System.Windows.Forms.Button btnMBackup;
         private System.Windows.Forms.Button btnMGuardar;
         private System.Windows.Forms.CheckBox chkMultFacturasAbiertas;
         private System.Windows.Forms.CheckBox chkRedondearPrecioFactura;
@@ -496,5 +516,6 @@ namespace PROYECTO
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ComboBox cboBarrio;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Button btnMSalir;
     }
 }

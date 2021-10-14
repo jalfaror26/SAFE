@@ -13,10 +13,10 @@ namespace PROYECTO
     public partial class frmAyuda : Form
     {
         private ConexionDAO oConexion = new ConexionDAO(PROYECTO.Properties.Settings.Default.UsuarioBD, PROYECTO.Properties.Settings.Default.Servidor, Conexion.getInstance().Clave);
-        
+
         private static frmAyuda instance = null;
         private String vtema = "";
-        
+
         private frmAyuda()
         {
             vtema = "";

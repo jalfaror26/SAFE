@@ -15,7 +15,7 @@ namespace PROYECTO
     {
         private String fecha;
         private int linea = 0;
-        private ConexionDAO oConexion = new ConexionDAO(PROYECTO.Properties.Settings.Default.UsuarioBD, PROYECTO.Properties.Settings.Default.Servidor, Conexion.getInstance().Clave);
+        private ConexionDAO oConexion = new ConexionDAO(PROYECTO.Properties.Settings.Default.UsuarioBD, PROYECTO.Properties.Settings.Default.Servidor,Conexion.getInstance().Clave);
         private String mensaje;
         private RecordatorioDAO oRecordatorioDAC = new RecordatorioDAO();
         private Recordatorio oRecordatorio = new Recordatorio();

@@ -13,9 +13,9 @@ using Entidades;
 
 namespace PROYECTO
 {
-    public partial class frmPermisos : Form
+    public partial class frmUsuariosPermisos : Form
     {
-        private static frmPermisos ofrmPermisos = null;
+        private static frmUsuariosPermisos ofrmPermisos = null;
         private ConexionDAO oConexion = new ConexionDAO(PROYECTO.Properties.Settings.Default.UsuarioBD, PROYECTO.Properties.Settings.Default.Servidor, Conexion.getInstance().Clave);
         private UsuarioDAO oUsuarioDAO = null;
         private Usuario oUsuario = null;
@@ -44,15 +44,15 @@ namespace PROYECTO
             set { codigo = value; }
         }
 
-        public frmPermisos()
+        public frmUsuariosPermisos()
         {
             InitializeComponent();
         }
 
-        public static frmPermisos getInstance()
+        public static frmUsuariosPermisos getInstance()
         {
             if (ofrmPermisos == null)
-                ofrmPermisos = new frmPermisos();
+                ofrmPermisos = new frmUsuariosPermisos();
             return ofrmPermisos;
         }
 
@@ -71,7 +71,8 @@ namespace PROYECTO
             try
             {
 
-                oConexion.cerrarConexion(); if (oConexion.abrirConexion())
+                oConexion.cerrarConexion();
+                if (oConexion.abrirConexion())
                 {
                     oUsuarioDAO = new UsuarioDAO();
                     dgrUsuarios.DataSource = oUsuarioDAO.consultaUsuarios(PROYECTO.Properties.Settings.Default.No_cia).Tables[0];
@@ -113,7 +114,11 @@ namespace PROYECTO
                 else
                     rboFuncionario.Checked = true;
 
-                btnMEliminar.Enabled = true;
+                if (txtCodUsuario.Text.Equals(PROYECTO.Properties.Settings.Default.Usuario))
+                    btnMEliminar.Enabled = false;
+                else
+                    btnMEliminar.Enabled = true;
+
                 btnMAsignarPermisos.Enabled = true;
 
                 txtCodUsuario.ReadOnly = true;
@@ -313,22 +318,32 @@ namespace PROYECTO
         {
             try
             {
-                if (txtCodUsuario.Text.Trim().Equals(""))
+                if (String.IsNullOrEmpty(txtCodUsuario.Text.Trim()))
                 {
                     MessageBox.Show("Digite el usuario a crear", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    txtCodUsuario.Focus();
                     return;
                 }
-                if (txtNombre.Text.Trim().Equals(""))
+                if (String.IsNullOrEmpty(txtNombre.Text.Trim()))
                 {
                     MessageBox.Show("Digite el nombre del usuario a crear", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    txtNombre.Focus();
                     return;
                 }
 
                 if (nuevo)
                 {
-                    if (txtcontrasenna.Text.Trim().Equals(""))
+                    if (String.IsNullOrEmpty(txtcontrasenna.Text.Trim()))
                     {
                         MessageBox.Show("Digite la contraseña del usuario a crear", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        txtcontrasenna.Focus();
+                        return;
+                    }
+                    if (txtcontrasenna.Text.Trim().Equals(txtCodUsuario.Text.Trim()))
+                    {
+                        MessageBox.Show("La contraseña nueva no debe ser igual al usuario", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        txtcontrasenna.Clear();
+                        txtcontrasenna.Focus();
                         return;
                     }
                     if (!Valida_Contrasenna(txtcontrasenna.Text.Trim()))
@@ -337,7 +352,7 @@ namespace PROYECTO
                         txtcontrasenna.Focus();
                         return;
                     }
-                    if (txtContrasenna2.Text.Trim().Equals(""))
+                    if (String.IsNullOrEmpty(txtContrasenna2.Text.Trim()))
                     {
                         MessageBox.Show("Digite la confirmacion de contraseña del usuario a crear", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         return;
@@ -353,7 +368,8 @@ namespace PROYECTO
                         return;
                     }
                 }
-                oConexion.cerrarConexion(); if (oConexion.abrirConexion())
+                oConexion.cerrarConexion();
+                if (oConexion.abrirConexion())
                 {
                     oUsuario = new Usuario();
 
@@ -367,9 +383,16 @@ namespace PROYECTO
                     oUsuario.Email = txtCorreo.Text.Trim();
 
                     oUsuarioDAO = new UsuarioDAO();
-                    oUsuarioDAO.Agregar(oUsuario, PROYECTO.Properties.Settings.Default.No_cia);
+                    if (nuevo)
+                    {
+                        if (oUsuarioDAO.CreaUsuarioBD(oUsuario))
+                            oUsuarioDAO.Agregar(oUsuario, PROYECTO.Properties.Settings.Default.No_cia);
+                    }
+                    else
+                        oUsuarioDAO.Agregar(oUsuario, PROYECTO.Properties.Settings.Default.No_cia);
+
                     if (oUsuarioDAO.Error())
-                        MessageBox.Show("Ocurrió un error al guardar los datos del usuario.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("Ocurrió un error al guardar los datos del usuario.\n" + oUsuarioDAO.DescError(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                     oConexion.cerrarConexion();
                     llenarGrid();
@@ -389,11 +412,18 @@ namespace PROYECTO
             {
                 if (MessageBox.Show("¿Está seguro que desea ELIMINAR el registro?", "Advertencia", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    if (dgrUsuarios.SelectedCells.Count == 0)
+                    if (dgrUsuarios.SelectedCells.Count == 0 || String.IsNullOrEmpty(txtCodUsuario.Text.Trim()))
                     {
                         MessageBox.Show("Seleccione el usuario a eliminar.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         return;
                     }
+
+                    if (txtCodUsuario.Text.Equals(PROYECTO.Properties.Settings.Default.Usuario))
+                    {
+                        MessageBox.Show("No se permite eliminar el usuario conectado.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
+
                     oConexion.cerrarConexion(); if (oConexion.abrirConexion())
                     {
                         oUsuario = new Usuario();
@@ -439,7 +469,7 @@ namespace PROYECTO
         {
             this.Close();
         }
-        
+
         private void chkTodasPantallas_CheckedChanged(object sender, EventArgs e)
         {
             if (chkTodasPantallas.Checked)

@@ -87,7 +87,7 @@ namespace PROYECTO
             chkRedondearPrecioFactura.Checked = PROYECTO.Properties.Settings.Default.RedondearPrecioVenta;
 
             chkImprimeAlFacturar.Checked = PROYECTO.Properties.Settings.Default.ImprimeTiquetAlFacturar;
-            
+
             Llenar_Grid();
         }
 
@@ -407,13 +407,13 @@ namespace PROYECTO
                     else
                     {
                         PROYECTO.Properties.Settings.Default.RedondearPrecioVenta = chkRedondearPrecioFactura.Checked;
-                                               
+
                         PROYECTO.Properties.Settings.Default.ImprimeTiquetAlFacturar = chkImprimeAlFacturar.Checked;
 
                         EmpresaDAO oEmpresaDAO = new EmpresaDAO();
 
                         oEmpresaDAO.ActualizaParametro(PROYECTO.Properties.Settings.Default.No_cia, "IND_FACTURASABIERTAS", chkMultFacturasAbiertas.Checked ? "S" : "N");
-                                                
+
                         MessageBox.Show("Guardado Correctamente!!", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         Llenar_Grid();
                     }
@@ -568,8 +568,50 @@ namespace PROYECTO
 
         private void btnMSalir_Click(object sender, EventArgs e)
         {
-            instance = null;
             this.Close();
+        }
+
+        private void btnMBackup_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("¿Desea iniciar el Backup de la Base de Datos de forma manual?", "Información", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1) == DialogResult.Yes)
+            {
+                try
+                {
+                    oConexion.cerrarConexion();
+                    if (oConexion.abrirConexion())
+                    {
+                        String rutaArchivoBackup = "";
+
+                        DataTable oMensajes = oConexion.EjecutaSentencia("select rutaArchivoBackup from TBL_EMPRESA e where e.no_cia = '" + PROYECTO.Properties.Settings.Default.No_cia + "'");
+
+                        if (oMensajes.Rows.Count > 0)
+                        {
+                            rutaArchivoBackup = oMensajes.Rows[0]["rutaArchivoBackup"].ToString();
+
+                            if (File.Exists(rutaArchivoBackup))
+                            {
+                                System.Diagnostics.Process.Start(@"" + rutaArchivoBackup);
+
+                                MessageBox.Show("Respaldo iniciado exitosamente!!\n\nGuardado en la carpeta (" + rutaArchivoBackup + ").",
+                                  "Información", MessageBoxButtons.OK,
+                                  MessageBoxIcon.Exclamation);
+                            }
+                            else
+                            {
+                                MessageBox.Show("La carpeta (" + rutaArchivoBackup + ") no existe.",
+                                    "Carpeta no existe", MessageBoxButtons.OK,
+                                    MessageBoxIcon.Exclamation);
+                            }
+                        }
+                        oConexion.cerrarConexion();
+
+
+                    }
+                }
+                catch
+                {
+                }
+            }
         }
 
         private void frmForma_KeyDown(object sender, KeyEventArgs e)
@@ -584,6 +626,6 @@ namespace PROYECTO
             oFrm.MdiParent = this.MdiParent;
             oFrm.Show();
         }
-    
+
     }
 }

@@ -2,7 +2,7 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="PROYECTO.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
-    <Setting Name="UsuarioBD" Type="System.String" Scope="Application">
+    <Setting Name="UsuarioBD_PRINCIPAL" Type="System.String" Scope="Application">
       <Value Profile="(Default)">SAFE</Value>
     </Setting>
     <Setting Name="Servidor" Type="System.String" Scope="Application">
@@ -28,6 +28,12 @@
     </Setting>
     <Setting Name="Sistema_Administrativo_y_Facturación_Electronica_TipoCambioBCCR_wsindicadoreseconomicos" Type="(Web Service URL)" Scope="Application">
       <Value Profile="(Default)">https://gee.bccr.fi.cr/Indicadores/Suscripciones/WS/wsindicadoreseconomicos.asmx</Value>
+    </Setting>
+    <Setting Name="Clave" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="UsuarioBD" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
     </Setting>
   </Settings>
 </SettingsFile>

@@ -530,7 +530,7 @@ namespace PROYECTO
             this.cboLCMoneda.DropDownWidth = 110;
             this.cboLCMoneda.FormattingEnabled = true;
             this.cboLCMoneda.Items.AddRange(new object[] {
-            "COL",
+            "CRC",
             "USD"});
             this.cboLCMoneda.Location = new System.Drawing.Point(13, 23);
             this.cboLCMoneda.Margin = new System.Windows.Forms.Padding(4);

@@ -4,14 +4,14 @@ using System.Text;
 
 namespace ENTIDADES
 {
-    public class Proforma
+    public class Cotizacion
     {
         private int indice;
 
-        private DateTime fechaProforma;
+        private DateTime fechaCotizacion;
 
         private Double tipocambio, subTotal, impuesto, descuento, total, saldo, porDescuento;
-        private int  tarjeta, factura;
+        private int  tarjeta, cotizacion;
         private String cliente, nombre, telefono, ubicacion, moneda, estado, observacion, usuario, comentario;
         private Double indiceDocumento;
         private String tipo, vendedor, tipoDocumento;
@@ -113,10 +113,10 @@ namespace ENTIDADES
             set { cliente = value; }
         }
 
-        public DateTime FechaProforma
+        public DateTime FechaCotizacion
         {
-            get { return fechaProforma; }
-            set { fechaProforma = value; }
+            get { return fechaCotizacion; }
+            set { fechaCotizacion = value; }
         }
 
         public Double Saldo
@@ -155,10 +155,10 @@ namespace ENTIDADES
             set { tipocambio = value; }
         }
         
-        public int NumProforma
+        public int NumCotizacion
         {
-            get { return factura; }
-            set { factura = value; }
+            get { return cotizacion; }
+            set { cotizacion = value; }
         }
 
         public int Indice

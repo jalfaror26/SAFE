@@ -8,9 +8,9 @@ using System.Data;
 
 namespace PROYECTO_DAO
 {
-    public class ProformaDetalleDAO
+    public class CotizacionDetalleDAO
     {
-        public Boolean Agregar(ProformaDetalle oProformaDetalle)
+        public Boolean Agregar(CotizacionDetalle oCotizacionDetalle)
         {
             OracleCommand oCommand = new OracleCommand();
 
@@ -18,36 +18,36 @@ namespace PROYECTO_DAO
             oCommand.CommandType = CommandType.StoredProcedure;
 
             oCommand.Parameters.Add("indiceProforma", OracleType.Number);
-            oCommand.Parameters[0].Value = oProformaDetalle.IndiceProforma;
+            oCommand.Parameters[0].Value = oCotizacionDetalle.IndiceProforma;
             oCommand.Parameters.Add("cantidad", OracleType.Number);
-            oCommand.Parameters[1].Value = oProformaDetalle.Cantidad;
+            oCommand.Parameters[1].Value = oCotizacionDetalle.Cantidad;
             oCommand.Parameters.Add("medida", OracleType.NVarChar);
-            oCommand.Parameters[2].Value = oProformaDetalle.Medida;
+            oCommand.Parameters[2].Value = "";
             oCommand.Parameters.Add("codArticulo", OracleType.NVarChar);
-            oCommand.Parameters[3].Value = oProformaDetalle.CodArticulo;
+            oCommand.Parameters[3].Value = oCotizacionDetalle.CodServicio;
             oCommand.Parameters.Add("descripcion", OracleType.NVarChar);
-            oCommand.Parameters[4].Value = oProformaDetalle.Descripcion;
+            oCommand.Parameters[4].Value = oCotizacionDetalle.Descripcion;
             oCommand.Parameters.Add("precioUnitario", OracleType.Number);
-            oCommand.Parameters[5].Value = oProformaDetalle.PrecioUnitario;
+            oCommand.Parameters[5].Value = oCotizacionDetalle.PrecioUnitario;
             oCommand.Parameters.Add("SubTotal", OracleType.Number);
-            oCommand.Parameters[6].Value = oProformaDetalle.SubTotal;
+            oCommand.Parameters[6].Value = oCotizacionDetalle.SubTotal;
             oCommand.Parameters.Add("monto_IV", OracleType.Number);
-            oCommand.Parameters[7].Value = oProformaDetalle.Monto_IV;
+            oCommand.Parameters[7].Value = oCotizacionDetalle.Monto_IV;
             oCommand.Parameters.Add("PrecioTotal", OracleType.Number);
-            oCommand.Parameters[8].Value = oProformaDetalle.PrecioTotal;
+            oCommand.Parameters[8].Value = oCotizacionDetalle.PrecioTotal;
             oCommand.Parameters.Add("usuario", OracleType.NVarChar);
-            oCommand.Parameters[9].Value = oProformaDetalle.Usuario;
+            oCommand.Parameters[9].Value = oCotizacionDetalle.Usuario;
 
                   oCommand.Parameters.Add("tipoPrecio", OracleType.Number);
-            oCommand.Parameters[10].Value = oProformaDetalle.TipoPrecio;
+            oCommand.Parameters[10].Value = oCotizacionDetalle.TipoPrecio;
 
            
             oCommand.Parameters.Add("descuento", OracleType.Number);
-            oCommand.Parameters[11].Value = oProformaDetalle.Descuento;
+            oCommand.Parameters[11].Value = oCotizacionDetalle.Descuento;
             oCommand.Parameters.Add("pNo_cia", OracleType.NVarChar);
-            oCommand.Parameters[12].Value = oProformaDetalle.No_cia;
+            oCommand.Parameters[12].Value = oCotizacionDetalle.No_cia;
             oCommand.Parameters.Add("IVI", OracleType.NVarChar);
-            oCommand.Parameters[13].Value = oProformaDetalle.IVI;
+            oCommand.Parameters[13].Value = oCotizacionDetalle.IVI;
             
 
             OracleDAO.getInstance().EjecutarSQLStoreProcedure(oCommand);
@@ -55,7 +55,7 @@ namespace PROYECTO_DAO
             return !OracleDAO.getInstance().ErrorSQL;
         }
 
-        public Boolean Modificar(ProformaDetalle oProformaDetalle)
+        public Boolean Modificar(CotizacionDetalle oCotizacionDetalle)
         {
             OracleCommand oCommand = new OracleCommand();
 
@@ -63,44 +63,44 @@ namespace PROYECTO_DAO
             oCommand.CommandType = CommandType.StoredProcedure;
 
             oCommand.Parameters.Add("indice", OracleType.Number);
-            oCommand.Parameters[0].Value = oProformaDetalle.Indice;
+            oCommand.Parameters[0].Value = oCotizacionDetalle.Indice;
             oCommand.Parameters.Add("indiceProforma", OracleType.Number);
-            oCommand.Parameters[1].Value = oProformaDetalle.IndiceProforma;
+            oCommand.Parameters[1].Value = oCotizacionDetalle.IndiceProforma;
             oCommand.Parameters.Add("cantidad", OracleType.Number);
-            oCommand.Parameters[2].Value = oProformaDetalle.Cantidad;
+            oCommand.Parameters[2].Value = oCotizacionDetalle.Cantidad;
             oCommand.Parameters.Add("medida", OracleType.NVarChar);
-            oCommand.Parameters[3].Value = oProformaDetalle.Medida;
+            oCommand.Parameters[3].Value = "";
             oCommand.Parameters.Add("codArticulo", OracleType.NVarChar);
-            oCommand.Parameters[4].Value = oProformaDetalle.CodArticulo;
+            oCommand.Parameters[4].Value = oCotizacionDetalle.CodServicio;
             oCommand.Parameters.Add("descripcion", OracleType.NVarChar);
-            oCommand.Parameters[5].Value = oProformaDetalle.Descripcion;
+            oCommand.Parameters[5].Value = oCotizacionDetalle.Descripcion;
             oCommand.Parameters.Add("precioUnitario", OracleType.Number);
-            oCommand.Parameters[6].Value = oProformaDetalle.PrecioUnitario;
+            oCommand.Parameters[6].Value = oCotizacionDetalle.PrecioUnitario;
             oCommand.Parameters.Add("SubTotal", OracleType.Number);
-            oCommand.Parameters[7].Value = oProformaDetalle.SubTotal;
+            oCommand.Parameters[7].Value = oCotizacionDetalle.SubTotal;
             oCommand.Parameters.Add("monto_IV", OracleType.Number);
-            oCommand.Parameters[8].Value = oProformaDetalle.Monto_IV;
+            oCommand.Parameters[8].Value = oCotizacionDetalle.Monto_IV;
             oCommand.Parameters.Add("PrecioTotal", OracleType.Number);
-            oCommand.Parameters[9].Value = oProformaDetalle.PrecioTotal;
+            oCommand.Parameters[9].Value = oCotizacionDetalle.PrecioTotal;
             oCommand.Parameters.Add("usuario", OracleType.NVarChar);
-            oCommand.Parameters[10].Value = oProformaDetalle.Usuario;
+            oCommand.Parameters[10].Value = oCotizacionDetalle.Usuario;
 
             oCommand.Parameters.Add("tipoPrecio", OracleType.Number);
-            oCommand.Parameters[11].Value = oProformaDetalle.TipoPrecio;
+            oCommand.Parameters[11].Value = oCotizacionDetalle.TipoPrecio;
 
             oCommand.Parameters.Add("descuento", OracleType.Number);
-            oCommand.Parameters[12].Value = oProformaDetalle.Descuento;
+            oCommand.Parameters[12].Value = oCotizacionDetalle.Descuento;
             oCommand.Parameters.Add("pNo_cia", OracleType.NVarChar);
-            oCommand.Parameters[13].Value = oProformaDetalle.No_cia;
+            oCommand.Parameters[13].Value = oCotizacionDetalle.No_cia;
             oCommand.Parameters.Add("IVI", OracleType.NVarChar);
-            oCommand.Parameters[14].Value = oProformaDetalle.IVI;
+            oCommand.Parameters[14].Value = oCotizacionDetalle.IVI;
 
             OracleDAO.getInstance().EjecutarSQLStoreProcedure(oCommand);
 
             return !OracleDAO.getInstance().ErrorSQL;
         }
 
-        public Boolean Eliminar(ProformaDetalle oProformaDetalle)
+        public Boolean Eliminar(CotizacionDetalle oCotizacionDetalle)
         {
             OracleCommand oCommand = new OracleCommand();
 
@@ -108,15 +108,15 @@ namespace PROYECTO_DAO
             oCommand.CommandType = CommandType.StoredProcedure;
 
             oCommand.Parameters.Add("indice", OracleType.Number);
-            oCommand.Parameters[0].Value = oProformaDetalle.Indice;
+            oCommand.Parameters[0].Value = oCotizacionDetalle.Indice;
             oCommand.Parameters.Add("indiceProforma", OracleType.Number);
-            oCommand.Parameters[1].Value = oProformaDetalle.IndiceProforma;
+            oCommand.Parameters[1].Value = oCotizacionDetalle.IndiceProforma;
             oCommand.Parameters.Add("cantidad", OracleType.Number);
-            oCommand.Parameters[2].Value = oProformaDetalle.Cantidad;
+            oCommand.Parameters[2].Value = oCotizacionDetalle.Cantidad;
             oCommand.Parameters.Add("codArticulo", OracleType.NVarChar);
-            oCommand.Parameters[3].Value = oProformaDetalle.CodArticulo;       
+            oCommand.Parameters[3].Value = oCotizacionDetalle.CodServicio;       
             oCommand.Parameters.Add("pNo_cia", OracleType.NVarChar);
-            oCommand.Parameters[4].Value = oProformaDetalle.No_cia;
+            oCommand.Parameters[4].Value = oCotizacionDetalle.No_cia;
 
             OracleDAO.getInstance().EjecutarSQLStoreProcedure(oCommand);
 

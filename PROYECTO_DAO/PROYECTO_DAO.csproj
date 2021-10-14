@@ -62,9 +62,13 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CajaChicaDAO.cs" />
+    <Compile Include="CajaChicaDetalleDAO.cs" />
     <Compile Include="ClienteDAO.cs" />
+    <Compile Include="FacturasPagosDAO.cs" />
     <Compile Include="GastoDAO.cs" />
     <Compile Include="Hacienda_DireccionDAO.cs" />
+    <Compile Include="PagosProveedoresDAO.cs" />
     <Compile Include="ProformaDAO.cs" />
     <Compile Include="ProformaDetalleDAO.cs" />
     <Compile Include="ProveedorDAO.cs" />

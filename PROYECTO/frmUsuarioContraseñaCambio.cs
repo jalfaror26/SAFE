@@ -17,25 +17,36 @@ namespace PROYECTO
         private static frmUsuarioContraseñaCambio Instance = null;
         private ConexionDAO oConexion = new ConexionDAO(PROYECTO.Properties.Settings.Default.UsuarioBD, PROYECTO.Properties.Settings.Default.Servidor, Conexion.getInstance().Clave);
 
-        private string usuario = "";
+        private string usuario = "", ind_req_cambio;
         private Usuario oUsuario = null;
 
-        public frmUsuarioContraseñaCambio(string pusuario)
+        public frmUsuarioContraseñaCambio(string pusuario, String pind_req_cambio)
         {
             InitializeComponent();
             usuario = pusuario;
+            ind_req_cambio = pind_req_cambio;
+
+            if (ind_req_cambio.Equals("S"))
+                this.ControlBox = false;
         }
 
-        public static frmUsuarioContraseñaCambio getInstance(string usuario)
+        public static frmUsuarioContraseñaCambio getInstance(string usuario, String pind_req_cambio)
         {
             if (Instance == null)
-                Instance = new frmUsuarioContraseñaCambio(usuario);
+                Instance = new frmUsuarioContraseñaCambio(usuario, pind_req_cambio);
             return Instance;
         }
 
         private void frmUsuarioAdministracion_FormClosing(object sender, FormClosingEventArgs e)
         {
-            frmUsuarioAdministracion.getInstance().Enabled = true;
+            if (ind_req_cambio.Equals("S"))
+            {
+                frmPrincipal oPrincipal = frmPrincipal.getInstance();
+                oPrincipal.CerrarSesion(false);
+            }
+            else
+                frmUsuarioAdministracion.getInstance().Enabled = true;
+
             Instance = null;
         }
 
@@ -52,47 +63,66 @@ namespace PROYECTO
         {
             try
             {
+                if (txtNuevaContrasenna.Text.Trim().Equals(usuario))
+                {
+                    MessageBox.Show("La contraseña nueva no debe ser igual al usuario", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    txtConfirmNueva.Clear();
+                    txtNuevaContrasenna.Clear();
+                    txtNuevaContrasenna.Focus();
+                    return;
+                }
+
+                if (txtNuevaContrasenna.Text.Trim().Equals(txtContrasennaActual.Text.Trim()))
+                {
+                    MessageBox.Show("La contraseña nueva no debe ser igual a la contraseña actual", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    txtConfirmNueva.Clear();
+                    txtNuevaContrasenna.Clear();
+                    txtNuevaContrasenna.Focus();
+                    return;
+                }
+
+                if (!Valida_Contrasenna(txtNuevaContrasenna.Text.Trim()))
+                {
+                    MessageBox.Show("La contraseña no es valida, La contraseña debe tener 8 caracteres, incluyendo 1 letra mayúscula, 1 carácter especial, caracteres alfanuméricos", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    txtConfirmNueva.Clear();
+                    txtNuevaContrasenna.Clear();
+                    txtNuevaContrasenna.Focus();
+                    return;
+                }
+
+                if (txtConfirmNueva.Text.Trim().Equals(""))
+                {
+                    MessageBox.Show("Digite la confirmacion de contraseña del usuario", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    txtConfirmNueva.Focus();
+                    return;
+                }
+
+                if (!txtNuevaContrasenna.Text.Trim().Equals(txtConfirmNueva.Text.Trim()))
+                {
+                    MessageBox.Show("La contraseña y la confirmacion deben ser iguales", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    txtConfirmNueva.Focus();
+                    return;
+                }
+
                 oConexion = new ConexionDAO(PROYECTO.Properties.Settings.Default.UsuarioBD, PROYECTO.Properties.Settings.Default.Servidor, Conexion.getInstance().Clave);
                 oConexion.cerrarConexion();
                 if (oConexion.abrirConexion())
                 {
                     if (oConexion.existeUsuario(usuario, txtContrasennaActual.Text, PROYECTO.Properties.Settings.Default.No_cia))
                     {
-
-                        UsuarioDAO ousuarioDAO = new UsuarioDAO();
-
-                        oConexion.cerrarConexion();
-                        oConexion.abrirConexion();
-
-                        if (!Valida_Contrasenna(txtNuevaContrasenna.Text.Trim()))
-                        {
-                            MessageBox.Show("La contraseña no es valida, La contraseña debe tener 8 caracteres, incluyendo 1 letra mayúscula, 1 carácter especial, caracteres alfanuméricos", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                            txtNuevaContrasenna.Focus();
-                            return;
-                        }
-
-                        if (txtConfirmNueva.Text.Trim().Equals(""))
-                        {
-                            MessageBox.Show("Digite la confirmacion de contraseña del usuario", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                            txtConfirmNueva.Focus();
-                            return;
-                        }
-                        if (!txtNuevaContrasenna.Text.Trim().Equals(txtConfirmNueva.Text.Trim()))
-                        {
-                            MessageBox.Show("La contraseña y la confirmacion deben ser iguales", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                            txtConfirmNueva.Focus();
-                            return;
-                        }
+                        UsuarioDAO oUsuarioDAO = new UsuarioDAO();
 
                         oUsuario = new Usuario();
 
                         oUsuario.CodUsuario = usuario;
                         oUsuario.Contrasenna = txtConfirmNueva.Text;
 
-                        ousuarioDAO.CambiarContraseña(oUsuario, PROYECTO.Properties.Settings.Default.No_cia);
-                        if (ousuarioDAO.Error())
+                        if (oUsuarioDAO.CambiaClaveUsuarioBD(oUsuario))
+                            oUsuarioDAO.CambiarContraseña(oUsuario, PROYECTO.Properties.Settings.Default.No_cia);
+
+                        if (oUsuarioDAO.Error())
                         {
-                            MessageBox.Show("Ocurrió un error al guardar los datos del usuario." + ousuarioDAO.DescError(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show("Ocurrió un error al guardar los datos del usuario." + oUsuarioDAO.DescError(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             return;
                         }
                     }

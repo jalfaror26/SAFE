@@ -122,7 +122,7 @@ namespace PROYECTO
             //}
             //this.Close();
         }
-        
+
         private void btnTipoCambio_Click(object sender, EventArgs e)
         {
             try
@@ -143,6 +143,25 @@ namespace PROYECTO
             }
         }
 
+        private void btnCajaChica_Click(object sender, EventArgs e)
+        {
+
+            frmCajaChica oPantalla = frmCajaChica.getInstance();
+            codigo = oPantalla.Codigo;
+            descripcion = oPantalla.Descripcion;
+            modulo = oPantalla.Modulo;
+            if (!TienePermiso())
+            {
+                oPantalla.MdiParent = this.MdiParent;
+                oPantalla.Show();
+            }
+            else
+            {
+                MessageBox.Show("No tiene permiso para accesar esta pantalla, comuníquese con el administrador", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                oPantalla = null;
+            }
+            this.Close();
+        }
 
         private void btnFacturaPagoProveedor_Click(object sender, EventArgs e)
         {
@@ -181,6 +200,6 @@ namespace PROYECTO
             //}
             //this.Close();
         }
-        
+
     }
 }

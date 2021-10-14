@@ -56,11 +56,18 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="CajaChica.cs" />
+    <Compile Include="CajaChicaDetalle.cs" />
     <Compile Include="Cantidad_a_Letra.cs" />
     <Compile Include="Cliente.cs" />
+    <Compile Include="DetallePrepago.cs" />
+    <Compile Include="FacturasPago.cs" />
+    <Compile Include="FacturasPendientes.cs" />
     <Compile Include="Gasto.cs" />
-    <Compile Include="ProformaDetalle.cs" />
-    <Compile Include="Proforma.cs" />
+    <Compile Include="CotizacionDetalle.cs" />
+    <Compile Include="Cotizacion.cs" />
+    <Compile Include="GuiaPrepagoProveedor.cs" />
+    <Compile Include="PagosProveedores.cs" />
     <Compile Include="Proveedor.cs" />
     <Compile Include="Servicio.cs" />
     <Compile Include="Conexion.cs" />

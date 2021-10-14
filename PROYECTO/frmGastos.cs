@@ -73,7 +73,7 @@ namespace PROYECTO
                         //tobNuevo.PerformClick();
                         return;
                     }
-                    oConexion = new ConexionDAO(PROYECTO.Properties.Settings.Default.UsuarioBD, PROYECTO.Properties.Settings.Default.Servidor, Conexion.getInstance().Clave);
+                    oConexion = new ConexionDAO(PROYECTO.Properties.Settings.Default.UsuarioBD, PROYECTO.Properties.Settings.Default.Servidor,Conexion.getInstance().Clave);
                     oConexion.cerrarConexion();
                     if (oConexion.abrirConexion())
                     {
@@ -110,7 +110,7 @@ namespace PROYECTO
             try
             {
 
-                oConexion = new ConexionDAO(PROYECTO.Properties.Settings.Default.UsuarioBD, PROYECTO.Properties.Settings.Default.Servidor, Conexion.getInstance().Clave);
+                oConexion = new ConexionDAO(PROYECTO.Properties.Settings.Default.UsuarioBD, PROYECTO.Properties.Settings.Default.Servidor,Conexion.getInstance().Clave);
                 oConexion.cerrarConexion();
                 oConexion.cerrarConexion(); if (oConexion.abrirConexion())
                 {
@@ -137,7 +137,7 @@ namespace PROYECTO
             try
             {
 
-                oConexion = new ConexionDAO(PROYECTO.Properties.Settings.Default.UsuarioBD, PROYECTO.Properties.Settings.Default.Servidor, Conexion.getInstance().Clave);
+                oConexion = new ConexionDAO(PROYECTO.Properties.Settings.Default.UsuarioBD, PROYECTO.Properties.Settings.Default.Servidor,Conexion.getInstance().Clave);
                 oConexion.cerrarConexion();
                 oConexion.cerrarConexion(); if (oConexion.abrirConexion())
                 {
@@ -244,7 +244,7 @@ namespace PROYECTO
                     if (gasto != 0)
                     {
 
-                        oConexion = new ConexionDAO(PROYECTO.Properties.Settings.Default.UsuarioBD, PROYECTO.Properties.Settings.Default.Servidor, Conexion.getInstance().Clave);
+                        oConexion = new ConexionDAO(PROYECTO.Properties.Settings.Default.UsuarioBD, PROYECTO.Properties.Settings.Default.Servidor,Conexion.getInstance().Clave);
                         oConexion.cerrarConexion();
                         if (oConexion.abrirConexion())
                         {

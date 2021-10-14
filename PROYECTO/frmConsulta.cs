@@ -17,7 +17,7 @@ namespace PROYECTO
         private static String palabra;
         private static String cod = "", des = "", Dato_1 = "", Dato_2 = "", Dato_3 = "";
         private static frmConsulta instance = null;
-        /*BLL*/
+        /*DAO*/
         private ServicioDAO oServicioDAO = new ServicioDAO();
 
         private ProveedorDAO oProveedorDAO = new ProveedorDAO();
@@ -26,7 +26,7 @@ namespace PROYECTO
         //private FacturaDAO oFacturaDAO = new FacturaDAO();
         private ConexionDAO oConexion;
         private GastoDAO oGastosDAO = new GastoDAO();
-        private ProformaDAO oProformaDAO = new ProformaDAO();
+        private CotizacionDAO oProformaDAO = new CotizacionDAO();
 
         /**/
         private String palabra2, palabra3;
@@ -84,7 +84,7 @@ namespace PROYECTO
 
         private void Llenar_Grid(int tipoFiltro, String palabraFiltro)
         {
-            oConexion = new ConexionDAO(PROYECTO.Properties.Settings.Default.UsuarioBD, PROYECTO.Properties.Settings.Default.Servidor, Conexion.getInstance().Clave);
+            oConexion = new ConexionDAO(PROYECTO.Properties.Settings.Default.UsuarioBD, PROYECTO.Properties.Settings.Default.Servidor,Conexion.getInstance().Clave);
             oConexion.cerrarConexion();
             if (oConexion.abrirConexion())
             {
@@ -213,7 +213,7 @@ namespace PROYECTO
 
         private void Llenar_Grid()
         {
-            oConexion = new ConexionDAO(PROYECTO.Properties.Settings.Default.UsuarioBD, PROYECTO.Properties.Settings.Default.Servidor, Conexion.getInstance().Clave);
+            oConexion = new ConexionDAO(PROYECTO.Properties.Settings.Default.UsuarioBD, PROYECTO.Properties.Settings.Default.Servidor,Conexion.getInstance().Clave);
             oConexion.cerrarConexion();
             if (oConexion.abrirConexion())
             {
@@ -221,7 +221,7 @@ namespace PROYECTO
                 {
                     case "PROFORMA":
                         {
-                            dgrDatos.DataSource = oProformaDAO.ConsultaProformas(PROYECTO.Properties.Settings.Default.No_cia);
+                            dgrDatos.DataSource = oProformaDAO.ConsultaCotizaciones(PROYECTO.Properties.Settings.Default.No_cia);
                             if (oProformaDAO.Error())
                                 MessageBox.Show("Error al listar los datos:\n" + oProformaDAO.DescError(), "Error de consulta", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
@@ -386,7 +386,7 @@ namespace PROYECTO
             }
 
             if (palabra.Equals("PROFORMA"))
-                frmCotizacion.getInstance().cargaProforma(cod, des);
+                frmCotizacion.getInstance().cargaCotizacion(cod, des);
             //else if (palabra.Equals("ProveedorReporteFacturasPC"))
             //    frmrptFacturasRecibidasPagadas.getInstance().cargaProveedor(cod, des);
             //else if (palabra.Equals("GastoReporte"))

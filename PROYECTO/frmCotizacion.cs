@@ -17,10 +17,10 @@ namespace PROYECTO
     public partial class frmCotizacion : Form
     {
         private static frmCotizacion instance = null;
-        private ProformaDAO oProformaDAO = null;
-        private Proforma oProforma = null;
-        private ProformaDetalleDAO oProformaDetalleDAO = null;
-        private ProformaDetalle oProformaDetalle = null;
+        private CotizacionDAO oCotizacionDAO = null;
+        private Cotizacion oCotizacion = null;
+        private CotizacionDetalleDAO oCotizacionDetalleDAO = null;
+        private CotizacionDetalle oCotizacionDetalle = null;
 
         private TipoCambioDAO oTipoCambioDAO = null;
         private ConexionDAO oConexion = new ConexionDAO(PROYECTO.Properties.Settings.Default.UsuarioBD, PROYECTO.Properties.Settings.Default.Servidor, Conexion.getInstance().Clave);
@@ -32,16 +32,16 @@ namespace PROYECTO
         private String codigo = "pro_cotizacion", descripcion = "Cotización de Servicios.", modulo = "Procesos";
 
         private String tipoDocumento = "";
-        private Double IndiceDocumento = 0, indiceArticulo = 0;
-        private int indiceProforma = 0;
-        private String tipoCliente = "", txtUbicacion = "", txtTelefono = "", cmbMoneda = "COL", lblMontoEnLetras = "", idCliente = "";
+        private Double IndiceDocumento = 0, indiceServicio = 0;
+        private int indiceCotizacion = 0;
+        private String txtUbicacion = "", txtTelefono = "", lblMontoEnLetras = "", idCliente = "";
 
-        private double txtTipoCambio = 0, cantidad2 = 0;
-        private DateTime dtpFechaProforma;
+        private double cantidad2 = 0;
+        //private DateTime dtpFechaCotizacion;
         private String IVI = "N";
         private double IV = 0;
 
-        private int indiceDetalle = 0, cliente = 0, txtDias = 0, tipoDescuento = 0;
+        private int indiceDetalle = 0, txtDias = 0;
 
         private String codigoAbrir = "", descripcionAbrir = "", moduloAbrir = "";
 
@@ -88,12 +88,15 @@ namespace PROYECTO
                 oConexion.cerrarConexion();
                 if (oConexion.abrirConexion())
                 {
+                    DateTime fecha = oConexion.fecha();
+                    dtpFechaCotizacion.Text = fecha.ToShortDateString();
+
                     oTipoCambioDAO = new TipoCambioDAO();
                     TipoCambio = oTipoCambioDAO.TipoCambio(PROYECTO.Properties.Settings.Default.No_cia);
                     if (oTipoCambioDAO.Error())
                         MessageBox.Show("Ocurrió un error al extraer los tipos de cambio: " + oTipoCambioDAO.DescError(), "Error de consulta", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     else
-                        txtTipoCambio = Double.Parse(TipoCambio.Tables[0].Rows[0]["cambio_dolar"].ToString());
+                        txtTipoCambio.Text = Double.Parse(TipoCambio.Tables[0].Rows[0]["cambio_dolar"].ToString()).ToString("###,###.00");
                     oConexion.cerrarConexion();
                 }
                 else
@@ -120,8 +123,8 @@ namespace PROYECTO
                 oConexion.cerrarConexion();
                 if (oConexion.abrirConexion())
                 {
-                    oProformaDAO = new ProformaDAO();
-                    DataTable odata = oProformaDAO.consultaCantProformas(PROYECTO.Properties.Settings.Default.No_cia);
+                    oCotizacionDAO = new CotizacionDAO();
+                    DataTable odata = oCotizacionDAO.consultaCantProformas(PROYECTO.Properties.Settings.Default.No_cia);
                     if (odata.Rows.Count > 0)
                     {
                         if (double.Parse(odata.Rows[0].ItemArray[0].ToString()) > 0)
@@ -149,11 +152,11 @@ namespace PROYECTO
             txtDias = 0;
 
             txtCantidad.Text = "0";
-            txtCodarticulo.Text = "";
-            indiceArticulo = 0;
+            txtCodServicio.Text = "";
+            indiceServicio = 0;
             txtPrecioUnitario.Text = "¢ 0";
             txtTotalPorLinea.Text = "¢ 0";
-            txtDescArticulo.Text = "";
+            txtDescServicio.Text = "";
             txtDescuento.Text = "¢ 0";
             txtEstado.Text = "ABIERTA";
             txtMonto_IV.Text = "¢ 0";
@@ -161,15 +164,15 @@ namespace PROYECTO
             indiceDetalle = 0;
             txtPorcDecuento.Text = "0";
             txtTelefono = "";
-            txtTotalProforma.Text = "¢ 0";
+            txtTotalCotizacion.Text = "¢ 0";
             txtUbicacion = "";
             chkDescuento.Checked = false;
             idCliente = "";
-            cmbMoneda = "COL";
+            cmbMoneda.SelectedIndex = 0;
             oConexion.cerrarConexion();
             oConexion.abrirConexion();
             DateTime fecha = oConexion.fecha();
-            dtpFechaProforma = fecha;
+            dtpFechaCotizacion.Text = fecha.ToShortDateString();
             oConexion.cerrarConexion();
             limpiarAbajo();
         }
@@ -180,65 +183,68 @@ namespace PROYECTO
             {
                 DataTable miArreglo = new DataTable();
 
-                // if (MessageBox.Show("Desea crear una nueva Proforma?", "Observacion", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                if (MessageBox.Show("Desea crear una nueva Cotizacion?", "Observacion", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
+                    obtieneTipoCambio();
+
                     txtUsuario.Text = PROYECTO.Properties.Settings.Default.Usuario;
 
-                    if (txtProforma.BackColor == Color.White && txtProforma.Text.Equals(""))
+                    if (txtCotizacion.BackColor == Color.White && txtCotizacion.Text.Equals(""))
                     {
-                        MessageBox.Show("Digite el numero de Proforma con que iniciara el sistema.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        MessageBox.Show("Digite el numero de Cotizacion con que iniciara el sistema.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         return;
                     }
 
                     oConexion.cerrarConexion();
                     if (oConexion.abrirConexion())
                     {
-                        oProformaDAO = new ProformaDAO();
-                        oProforma = new Proforma();
+                        oCotizacionDAO = new CotizacionDAO();
+                        oCotizacion = new Cotizacion();
 
-                        oProforma.No_cia = PROYECTO.Properties.Settings.Default.No_cia;
-                        oProforma.Cliente = "-1";
-                        oProforma.Descuento = Double.Parse(txtDescuento.Text.Substring(1));
-                        oProforma.Estado = txtEstado.Text;
-                        oProforma.NumProforma = int.Parse(txtProforma.Text);
-                        oProforma.FechaProforma = dtpFechaProforma;
-                        oProforma.Impuesto = Double.Parse(txtMonto_IV.Text.Substring(1));
-                        oProforma.Moneda = cmbMoneda;
-                        oProforma.Nombre = txtANombreDe.Text;
-                        oProforma.Observacion = "";
-                        oProforma.Saldo = Double.Parse(txtTotalProforma.Text.Substring(1));
-                        oProforma.SubTotal = Double.Parse(txtSubTotal.Text.Substring(1));
-                        oProforma.Telefono = txtTelefono;
-                        oProforma.Tipocambio = txtTipoCambio;
-                        oProforma.Total = Double.Parse(txtTotalProforma.Text.Substring(1));
-                        oProforma.Ubicacion = txtUbicacion;
-                        oProforma.Usuario = PROYECTO.Properties.Settings.Default.Usuario;
-                        oProforma.Vendedor = PROYECTO.Properties.Settings.Default.Usuario;
+                        oCotizacion.No_cia = PROYECTO.Properties.Settings.Default.No_cia;
+                        oCotizacion.Cliente = "-1";
+                        oCotizacion.Descuento = Double.Parse(txtDescuento.Text.Substring(1));
+                        oCotizacion.Estado = txtEstado.Text;
+                        oCotizacion.NumCotizacion = int.Parse(txtCotizacion.Text);
+                        oCotizacion.FechaCotizacion = DateTime.Parse(dtpFechaCotizacion.Text);
+                        oCotizacion.Impuesto = Double.Parse(txtMonto_IV.Text.Substring(1));
+                        oCotizacion.Moneda = cmbMoneda.Text;
+                        oCotizacion.Nombre = txtANombreDe.Text;
+                        oCotizacion.Observacion = "";
+                        oCotizacion.Saldo = Double.Parse(txtTotalCotizacion.Text.Substring(1));
+                        oCotizacion.SubTotal = Double.Parse(txtSubTotal.Text.Substring(1));
+                        oCotizacion.Telefono = txtTelefono;
+                        oCotizacion.Tipocambio = Double.Parse(txtTipoCambio.Text);
+                        oCotizacion.Total = Double.Parse(txtTotalCotizacion.Text.Substring(1));
+                        oCotizacion.Ubicacion = txtUbicacion;
+                        oCotizacion.Usuario = PROYECTO.Properties.Settings.Default.Usuario;
+                        oCotizacion.Vendedor = PROYECTO.Properties.Settings.Default.Usuario;
                         if (rbContado.Checked)
-                            oProforma.Tipo = "CONTADO";
+                            oCotizacion.Tipo = "CONTADO";
                         else
-                            oProforma.Tipo = "CREDITO";
-                        oProforma.IndiceDocumento = 0;
-                        oProforma.TipoDocumento = "";
-                        miArreglo = oProformaDAO.Agregar(oProforma);
-                        if (oProformaDAO.Error())
-                            MessageBox.Show("Ocurrio un error al guardar los datos: " + oProformaDAO.DescError(), "Error de Consulta", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            oCotizacion.Tipo = "CREDITO";
+                        oCotizacion.IndiceDocumento = 0;
+                        oCotizacion.TipoDocumento = "";
+                        miArreglo = oCotizacionDAO.Agregar(oCotizacion);
+                        if (oCotizacionDAO.Error())
+                            MessageBox.Show("Ocurrio un error al guardar los datos: " + oCotizacionDAO.DescError(), "Error de Consulta", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         oConexion.cerrarConexion();
-                        txtProforma.ReadOnly = true;
-                        txtProforma.BackColor = Color.Blue;
-                        txtProforma.ForeColor = Color.White;
-                        txtProforma.Text = miArreglo.Rows[0].ItemArray[0].ToString();
-                        indiceProforma = int.Parse(miArreglo.Rows[0].ItemArray[1].ToString());
+                        txtCotizacion.ReadOnly = true;
+                        txtCotizacion.BackColor = Color.Blue;
+                        txtCotizacion.ForeColor = Color.White;
+                        txtCotizacion.Text = miArreglo.Rows[0].ItemArray[0].ToString();
+                        indiceCotizacion = int.Parse(miArreglo.Rows[0].ItemArray[1].ToString());
                         btnBusqCliente.PerformClick();
                         lblMontoEnLetras = "";
                     }
                     else
                         MessageBox.Show("Ocurrio un error al conectarse a la base de datos.", "Error de Conexion", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                    btnBusqCliente.PerformClick();
+                    limpiar();
+                    llenarGrid();
+                    txtCodServicio.Focus();
                 }
-                btnBusqCliente.PerformClick();
-                limpiar();
-                llenarGrid();
-                txtCodarticulo.Focus();
             }
             catch (Exception ex)
             {
@@ -249,23 +255,23 @@ namespace PROYECTO
         private void btnnuevoDetalle_Click(object sender, EventArgs e)
         {
             limpiarAbajo();
-            txtCodarticulo.Focus();
+            txtCodServicio.Focus();
         }
 
         private void limpiarAbajo()
         {
-            txtCodarticulo.ReadOnly = false;
+            txtCodServicio.ReadOnly = false;
             cantidad2 = 0;
-            btnGuardarDetalle.Text = " F3 - Guardar";
+            btnGuardarDetalle.Text = " Guardar";
             btnGuardarDetalle.ImageIndex = 1;
             txtCantidad.Text = "0";
-            txtCodarticulo.Text = "";
-            indiceArticulo = 0;
-            txtDescArticulo.Text = "";
+            txtCodServicio.Text = "";
+            indiceServicio = 0;
+            txtDescServicio.Text = "";
             indiceDetalle = 0;
-            txtSubTotalLinea.Text = cmbMoneda.Equals("COL") ? "¢ 0" : cmbMoneda.Equals("USD") ? "$ 0" : "€ 0";
-            txtPrecioUnitario.Text = cmbMoneda.Equals("COL") ? "¢ 0" : cmbMoneda.Equals("USD") ? "$ 0" : "€ 0";
-            txtTotalPorLinea.Text = cmbMoneda.Equals("COL") ? "¢ 0" : cmbMoneda.Equals("USD") ? "$ 0" : "€ 0";
+            txtSubTotalLinea.Text = cmbMoneda.Text.Equals("CRC") ? "¢ 0" : cmbMoneda.Text.Equals("USD") ? "$ 0" : "¢ 0";
+            txtPrecioUnitario.Text = cmbMoneda.Text.Equals("CRC") ? "¢ 0" : cmbMoneda.Text.Equals("USD") ? "$ 0" : "¢ 0";
+            txtTotalPorLinea.Text = cmbMoneda.Text.Equals("CRC") ? "¢ 0" : cmbMoneda.Text.Equals("USD") ? "$ 0" : "¢ 0";
             txtLineaDescuento.Text = "0";
 
             dgrDatos.ClearSelection();
@@ -284,12 +290,12 @@ namespace PROYECTO
             limpiar();
             if (!cantidadRegistros())
             {
-                txtProforma.ReadOnly = false;
-                txtProforma.BackColor = Color.White;
-                txtProforma.ForeColor = Color.Black;
+                txtCotizacion.ReadOnly = false;
+                txtCotizacion.BackColor = Color.White;
+                txtCotizacion.ForeColor = Color.Black;
             }
             else
-                txtProforma.Text = "0";
+                txtCotizacion.Text = "0";
             Cargar();
         }
 
@@ -310,8 +316,8 @@ namespace PROYECTO
                 oConexion.cerrarConexion();
                 if (oConexion.abrirConexion())
                 {
-                    oProformaDAO = new ProformaDAO();
-                    DataTable odata = oProformaDAO.ConsultaCliente(idCliente, PROYECTO.Properties.Settings.Default.No_cia);
+                    oCotizacionDAO = new CotizacionDAO();
+                    DataTable odata = oCotizacionDAO.ConsultaCliente(idCliente, PROYECTO.Properties.Settings.Default.No_cia);
                     if (odata.Rows.Count > 0)
                     {
                         //if (!codigo.Equals("-1"))
@@ -331,7 +337,7 @@ namespace PROYECTO
                         rbContado.Checked = true;
                     else
                         rbCredito.Checked = true;
-                    
+
                     modificar();
                 }
                 else
@@ -343,36 +349,40 @@ namespace PROYECTO
             }
         }
 
-        public void cargaProforma(String Proforma, String nombre)
+        public void cargaCotizacion(String pCotizacion, String nombre)
         {
             try
             {
-                string anterior = txtProforma.Text;
+                string anterior = txtCotizacion.Text;
 
-                String pProforma = Proforma[0].ToString();
-                for (int x = 1; x < Proforma.Length; x++)
+                String vCotizacion = pCotizacion[0].ToString();
+                for (int x = 1; x < pCotizacion.Length; x++)
                 {
-                    if (char.IsNumber(Proforma[x]))
-                        pProforma += Proforma[x];
+                    if (char.IsNumber(pCotizacion[x]))
+                        vCotizacion += pCotizacion[x];
                     else
-                        x = Proforma.Length;
+                        x = pCotizacion.Length;
                 }
 
-                Proforma = pProforma;
+                pCotizacion = vCotizacion;
 
-                txtProforma.Text = Proforma;
+                txtCotizacion.Text = pCotizacion;
 
                 txtANombreDe.Text = nombre;
                 oConexion = new ConexionDAO(PROYECTO.Properties.Settings.Default.UsuarioBD, PROYECTO.Properties.Settings.Default.Servidor, Conexion.getInstance().Clave);
                 oConexion.cerrarConexion();
                 if (oConexion.abrirConexion())
                 {
-                    oProformaDAO = new ProformaDAO();
-                    DataTable odata = oProformaDAO.ConsultaProforma(txtProforma.Text, PROYECTO.Properties.Settings.Default.No_cia);
+                    oCotizacionDAO = new CotizacionDAO();
+                    DataTable odata = oCotizacionDAO.ConsultaCotizacion(txtCotizacion.Text, PROYECTO.Properties.Settings.Default.No_cia);
                     if (odata.Rows.Count > 0)
                     {
-                        indiceProforma = int.Parse(odata.Rows[0]["fac_linea"].ToString());
-                        dtpFechaProforma = DateTime.Parse(odata.Rows[0]["fac_fecha"].ToString());
+                        txtCotizacion.ReadOnly = true;
+                        txtCotizacion.BackColor = Color.Beige;
+                        txtCotizacion.ForeColor = Color.Black;
+
+                        indiceCotizacion = int.Parse(odata.Rows[0]["fac_linea"].ToString());
+                        dtpFechaCotizacion.Text = odata.Rows[0]["fac_fecha"].ToString();
                         idCliente = odata.Rows[0]["fac_cliente"].ToString();
 
                         if (idCliente.Equals("-1"))
@@ -387,8 +397,9 @@ namespace PROYECTO
                         txtANombreDe.Text = odata.Rows[0]["fac_nombre"].ToString();
                         txtTelefono = odata.Rows[0]["fac_telefono"].ToString();
                         txtUbicacion = odata.Rows[0]["fac_ubicacion"].ToString();
-                        cmbMoneda = odata.Rows[0]["fac_moneda"].ToString();
-                        txtTipoCambio = double.Parse(odata.Rows[0]["fac_tipo_cambio"].ToString());
+                        cmbMoneda.SelectedItem = odata.Rows[0]["fac_moneda"].ToString();
+
+                        txtTipoCambio.Text = double.Parse(odata.Rows[0]["fac_tipo_cambio"].ToString()).ToString("###,###,0.00");
                         txtEstado.Text = odata.Rows[0]["fac_estado"].ToString();
                         String porcentaje = odata.Rows[0]["fac_pordescuento"].ToString();
                         if (porcentaje.Equals(""))
@@ -401,19 +412,20 @@ namespace PROYECTO
                         txtUsuario.Text = odata.Rows[0]["FAC_USUARIO"].ToString();
 
 
-                        if (cmbMoneda.Equals("COL"))
+                        switch (cmbMoneda.SelectedIndex)
                         {
-                            txtMonto_IV.Text = "¢ " + odata.Rows[0]["fac_subtotal"].ToString();
-                            txtSubTotal.Text = "¢ " + (Double.Parse(odata.Rows[0]["fac_excento"].ToString()) + Double.Parse(odata.Rows[0]["fac_subtotal"].ToString()));
-                            txtDescuento.Text = "¢ " + odata.Rows[0]["fac_descuento"].ToString();
-                            txtTotalProforma.Text = "¢ " + odata.Rows[0]["fac_total"].ToString();
-                        }
-                        else if (cmbMoneda.Equals("USD"))
-                        {
-                            txtMonto_IV.Text = "$ " + odata.Rows[0]["fac_subtotal"].ToString();
-                            txtSubTotal.Text = "$ " + (Double.Parse(odata.Rows[0]["fac_excento"].ToString()) + Double.Parse(odata.Rows[0]["fac_subtotal"].ToString()));
-                            txtDescuento.Text = "$ " + odata.Rows[0]["fac_descuento"].ToString();
-                            txtTotalProforma.Text = "$ " + odata.Rows[0]["fac_total"].ToString();
+                            case 0:
+                                txtMonto_IV.Text = "¢ " + odata.Rows[0]["fac_subtotal"].ToString();
+                                txtSubTotal.Text = "¢ " + (Double.Parse(odata.Rows[0]["fac_excento"].ToString()) + Double.Parse(odata.Rows[0]["fac_subtotal"].ToString()));
+                                txtDescuento.Text = "¢ " + odata.Rows[0]["fac_descuento"].ToString();
+                                txtTotalCotizacion.Text = "¢ " + odata.Rows[0]["fac_total"].ToString();
+                                break;
+                            case 1:
+                                txtMonto_IV.Text = "$ " + odata.Rows[0]["fac_subtotal"].ToString();
+                                txtSubTotal.Text = "$ " + (Double.Parse(odata.Rows[0]["fac_excento"].ToString()) + Double.Parse(odata.Rows[0]["fac_subtotal"].ToString()));
+                                txtDescuento.Text = "$ " + odata.Rows[0]["fac_descuento"].ToString();
+                                txtTotalCotizacion.Text = "$ " + odata.Rows[0]["fac_total"].ToString();
+                                break;
                         }
 
                         if (odata.Rows[0]["fac_tipo"].ToString().Equals("CONTADO"))
@@ -437,13 +449,13 @@ namespace PROYECTO
                     }
                     else
                     {
-                        if (!Proforma.Equals(anterior))
-                            cargaProforma(anterior, "");
+                        if (!pCotizacion.Equals(anterior))
+                            cargaCotizacion(anterior, "");
                         return;
                     }
                     oConexion.cerrarConexion();
                     oConexion.abrirConexion();
-                    odata = oProformaDAO.ConsultaCliente(idCliente, PROYECTO.Properties.Settings.Default.No_cia);
+                    odata = oCotizacionDAO.ConsultaCliente(idCliente, PROYECTO.Properties.Settings.Default.No_cia);
                     if (odata.Rows.Count > 0)
                     {
                         txtDias = int.Parse(odata.Rows[0]["cli_dias"].ToString());
@@ -484,57 +496,60 @@ namespace PROYECTO
         {
             try
             {
-                if (txtEstado.Text.Equals("FACTURADA"))
+                if (txtEstado.Text.Equals("EMITIDA"))
                 {
-                    cargaProforma(txtProforma.Text, txtANombreDe.Text);
+                    cargaCotizacion(txtCotizacion.Text, txtANombreDe.Text);
                     return;
                 }
-                if (indiceProforma == 0)
+                if (indiceCotizacion == 0)
                 {
-                    cargaProforma(txtProforma.Text, txtANombreDe.Text);
+                    cargaCotizacion(txtCotizacion.Text, txtANombreDe.Text);
                     return;
                 }
                 if (txtEstado.Text.Equals("ANULADA"))
                 {
-                    cargaProforma(txtProforma.Text, txtANombreDe.Text);
+                    cargaCotizacion(txtCotizacion.Text, txtANombreDe.Text);
                     return;
                 }
+
+                obtieneTipoCambio();
+
                 oConexion = new ConexionDAO(PROYECTO.Properties.Settings.Default.UsuarioBD, PROYECTO.Properties.Settings.Default.Servidor, Conexion.getInstance().Clave);
                 oConexion.cerrarConexion();
                 if (oConexion.abrirConexion())
                 {
-                    oProformaDAO = new ProformaDAO();
-                    oProforma = new Proforma();
+                    oCotizacionDAO = new CotizacionDAO();
+                    oCotizacion = new Cotizacion();
 
-                    oProforma.No_cia = PROYECTO.Properties.Settings.Default.No_cia;
-                    oProforma.Indice = indiceProforma;
-                    oProforma.Cliente = idCliente;
-                    oProforma.Descuento = Double.Parse(txtDescuento.Text.Substring(1));
-                    oProforma.PorDescuento = Double.Parse(txtPorcDecuento.Text);
-                    oProforma.Estado = txtEstado.Text;
-                    oProforma.NumProforma = int.Parse(txtProforma.Text);
-                    oProforma.FechaProforma = dtpFechaProforma;
-                    oProforma.Impuesto = Double.Parse(txtMonto_IV.Text.Substring(1));
-                    oProforma.Moneda = cmbMoneda;
-                    oProforma.Nombre = txtANombreDe.Text;
-                    String comentario = oProformaDAO.ConsultaProforma(txtProforma.Text, PROYECTO.Properties.Settings.Default.No_cia).Rows[0]["fac_observacion"].ToString();
-                    oProforma.Observacion = comentario;
-                    oProforma.Saldo = Double.Parse(txtTotalProforma.Text.Substring(1));
-                    oProforma.SubTotal = Double.Parse(txtSubTotal.Text.Substring(1));
-                    oProforma.Telefono = txtTelefono;
-                    oProforma.Tipocambio = txtTipoCambio;
-                    oProforma.Total = Double.Parse(txtTotalProforma.Text.Substring(1));
-                    oProforma.Ubicacion = txtUbicacion;
-                    oProforma.Usuario = PROYECTO.Properties.Settings.Default.Usuario;
-                    oProforma.Vendedor = PROYECTO.Properties.Settings.Default.Usuario;
+                    oCotizacion.No_cia = PROYECTO.Properties.Settings.Default.No_cia;
+                    oCotizacion.Indice = indiceCotizacion;
+                    oCotizacion.Cliente = idCliente;
+                    oCotizacion.Descuento = Double.Parse(txtDescuento.Text.Substring(1));
+                    oCotizacion.PorDescuento = Double.Parse(txtPorcDecuento.Text);
+                    oCotizacion.Estado = txtEstado.Text;
+                    oCotizacion.NumCotizacion = int.Parse(txtCotizacion.Text);
+                    oCotizacion.FechaCotizacion = DateTime.Parse(dtpFechaCotizacion.Text);
+                    oCotizacion.Impuesto = Double.Parse(txtMonto_IV.Text.Substring(1));
+                    oCotizacion.Moneda = cmbMoneda.Text;
+                    oCotizacion.Nombre = txtANombreDe.Text;
+                    String comentario = oCotizacionDAO.ConsultaCotizacion(txtCotizacion.Text, PROYECTO.Properties.Settings.Default.No_cia).Rows[0]["fac_observacion"].ToString();
+                    oCotizacion.Observacion = comentario;
+                    oCotizacion.Saldo = Double.Parse(txtTotalCotizacion.Text.Substring(1));
+                    oCotizacion.SubTotal = Double.Parse(txtSubTotal.Text.Substring(1));
+                    oCotizacion.Telefono = txtTelefono;
+                    oCotizacion.Tipocambio = Double.Parse(txtTipoCambio.Text);
+                    oCotizacion.Total = Double.Parse(txtTotalCotizacion.Text.Substring(1));
+                    oCotizacion.Ubicacion = txtUbicacion;
+                    oCotizacion.Usuario = PROYECTO.Properties.Settings.Default.Usuario;
+                    oCotizacion.Vendedor = PROYECTO.Properties.Settings.Default.Usuario;
                     if (rbContado.Checked)
-                        oProforma.Tipo = "CONTADO";
+                        oCotizacion.Tipo = "CONTADO";
                     else
-                        oProforma.Tipo = "CREDITO";
+                        oCotizacion.Tipo = "CREDITO";
 
-                    oProformaDAO.Modificar(oProforma);
-                    if (oProformaDAO.Error())
-                        MessageBox.Show("Ocurrió un error al guardar los datos: " + oProformaDAO.DescError(), "Error de consulta", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    oCotizacionDAO.Modificar(oCotizacion);
+                    if (oCotizacionDAO.Error())
+                        MessageBox.Show("Ocurrió un error al guardar los datos: " + oCotizacionDAO.DescError(), "Error de consulta", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     oConexion.cerrarConexion();
 
                 }
@@ -552,53 +567,53 @@ namespace PROYECTO
         {
             try
             {
-                if (indiceProforma == 0)
+                if (indiceCotizacion == 0)
                 {
-                    cargaProforma(txtProforma.Text, txtANombreDe.Text);
+                    cargaCotizacion(txtCotizacion.Text, txtANombreDe.Text);
                     return;
                 }
                 if (txtEstado.Text.Equals("ANULADA"))
                 {
-                    cargaProforma(txtProforma.Text, txtANombreDe.Text);
+                    cargaCotizacion(txtCotizacion.Text, txtANombreDe.Text);
                     return;
                 }
                 oConexion = new ConexionDAO(PROYECTO.Properties.Settings.Default.UsuarioBD, PROYECTO.Properties.Settings.Default.Servidor, Conexion.getInstance().Clave);
                 oConexion.cerrarConexion();
                 if (oConexion.abrirConexion())
                 {
-                    oProformaDAO = new ProformaDAO();
-                    oProforma = new Proforma();
+                    oCotizacionDAO = new CotizacionDAO();
+                    oCotizacion = new Cotizacion();
 
-                    oProforma.No_cia = PROYECTO.Properties.Settings.Default.No_cia;
-                    oProforma.Indice = indiceProforma;
-                    oProforma.Cliente = idCliente;
-                    oProforma.Descuento = Double.Parse(txtDescuento.Text.Substring(1));
-                    oProforma.PorDescuento = Double.Parse(txtPorcDecuento.Text);
-                    oProforma.Estado = txtEstado.Text;
-                    oProforma.NumProforma = int.Parse(txtProforma.Text);
-                    oProforma.FechaProforma = dtpFechaProforma;
-                    oProforma.Impuesto = Double.Parse(txtMonto_IV.Text.Substring(1));
-                    oProforma.Moneda = cmbMoneda;
-                    oProforma.Nombre = txtANombreDe.Text;
-                    String comentario = oProformaDAO.ConsultaProforma(txtProforma.Text, PROYECTO.Properties.Settings.Default.No_cia).Rows[0]["fac_observacion"].ToString();
-                    oProforma.Observacion = comentario;
-                    oProforma.Saldo = Double.Parse(txtTotalProforma.Text.Substring(1));
-                    oProforma.SubTotal = Double.Parse(txtSubTotal.Text.Substring(1));
-                    oProforma.Telefono = txtTelefono;
-                    oProforma.Tipocambio = txtTipoCambio;
-                    oProforma.Total = Double.Parse(txtTotalProforma.Text.Substring(1));
-                    oProforma.Ubicacion = txtUbicacion;
-                    oProforma.Usuario = PROYECTO.Properties.Settings.Default.Usuario;
-                    oProforma.Vendedor = PROYECTO.Properties.Settings.Default.Usuario;
+                    oCotizacion.No_cia = PROYECTO.Properties.Settings.Default.No_cia;
+                    oCotizacion.Indice = indiceCotizacion;
+                    oCotizacion.Cliente = idCliente;
+                    oCotizacion.Descuento = Double.Parse(txtDescuento.Text.Substring(1));
+                    oCotizacion.PorDescuento = Double.Parse(txtPorcDecuento.Text);
+                    oCotizacion.Estado = txtEstado.Text;
+                    oCotizacion.NumCotizacion = int.Parse(txtCotizacion.Text);
+                    oCotizacion.FechaCotizacion = DateTime.Parse(dtpFechaCotizacion.Text);
+                    oCotizacion.Impuesto = Double.Parse(txtMonto_IV.Text.Substring(1));
+                    oCotizacion.Moneda = cmbMoneda.Text;
+                    oCotizacion.Nombre = txtANombreDe.Text;
+                    String comentario = oCotizacionDAO.ConsultaCotizacion(txtCotizacion.Text, PROYECTO.Properties.Settings.Default.No_cia).Rows[0]["fac_observacion"].ToString();
+                    oCotizacion.Observacion = comentario;
+                    oCotizacion.Saldo = Double.Parse(txtTotalCotizacion.Text.Substring(1));
+                    oCotizacion.SubTotal = Double.Parse(txtSubTotal.Text.Substring(1));
+                    oCotizacion.Telefono = txtTelefono;
+                    oCotizacion.Tipocambio = Double.Parse(txtTipoCambio.Text);
+                    oCotizacion.Total = Double.Parse(txtTotalCotizacion.Text.Substring(1));
+                    oCotizacion.Ubicacion = txtUbicacion;
+                    oCotizacion.Usuario = PROYECTO.Properties.Settings.Default.Usuario;
+                    oCotizacion.Vendedor = PROYECTO.Properties.Settings.Default.Usuario;
 
                     if (rbContado.Checked)
-                        oProforma.Tipo = "CONTADO";
+                        oCotizacion.Tipo = "CONTADO";
                     else
-                        oProforma.Tipo = "CREDITO";
+                        oCotizacion.Tipo = "CREDITO";
 
-                    oProformaDAO.ModificaEstadoProforma(oProforma);
-                    if (oProformaDAO.Error())
-                        MessageBox.Show("Ocurrió un error al guardar los datos: " + oProformaDAO.DescError(), "Error de consulta", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    oCotizacionDAO.ModificaEstadoProforma(oCotizacion);
+                    if (oCotizacionDAO.Error())
+                        MessageBox.Show("Ocurrió un error al guardar los datos: " + oCotizacionDAO.DescError(), "Error de consulta", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     oConexion.cerrarConexion();
 
                 }
@@ -617,14 +632,7 @@ namespace PROYECTO
             modificar();
         }
 
-        private void btnBusqArticulo_Click(object sender, EventArgs e)
-        {
-            frmConsultaServicios oConsulta = new frmConsultaServicios("frmCotizacion");
-            oConsulta.MdiParent = frmPrincipal.getInstance().MdiParent;
-            oConsulta.ShowDialog();
-        }
-
-        public void cargaArticulo(String pindiceArticulo, String pDescripcion, String pIVI, double pIV)
+        public void cargaServicio(String pindiceServicio, String pCodigo, String pDescripcion, String pIVI, double pIV)
         {
             try
             {
@@ -636,11 +644,11 @@ namespace PROYECTO
 
                 txtPrecioUnitario.ReadOnly = false;
 
-                txtCodarticulo.Text = pindiceArticulo;
-                indiceArticulo = double.Parse(pindiceArticulo);
-                txtDescArticulo.Text = pDescripcion;
+                txtCodServicio.Text = pCodigo;
+                indiceServicio = double.Parse(pindiceServicio);
+                txtDescServicio.Text = pDescripcion;
 
-                txtPrecioUnitario.Text = cmbMoneda.Equals("COL") ? double.Parse("0").ToString("¢ ###,###,##0.##") : cmbMoneda.Equals("USD") ? double.Parse("0").ToString("$ ###,###,##0.##") : double.Parse("0").ToString("€ ###,###,##0.##");
+                txtPrecioUnitario.Text = cmbMoneda.Equals("CRC") ? double.Parse("0").ToString("¢ ###,###,##0.##") : cmbMoneda.Equals("USD") ? double.Parse("0").ToString("$ ###,###,##0.##") : double.Parse("0").ToString("¢ ###,###,##0.##");
 
                 txtCantidad.Focus();
 
@@ -662,24 +670,24 @@ namespace PROYECTO
         {
             try
             {
-                if (indiceProforma == 0)
+                if (indiceCotizacion == 0)
                 {
                     MessageBox.Show("Seleccione la Proforma a la cual agregara el detalle.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
-                if (txtEstado.Text.Equals("FACTURADA"))
+                if (txtEstado.Text.Equals("EMITIDA"))
                 {
-                    MessageBox.Show("No se puede Modificar la Proforma porque ya es ta en estado: FACTURADA.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("No se puede Modificar la Proforma porque ya está en estado: EMITIDA.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
-                if (indiceArticulo == 0)
+                if (indiceServicio == 0)
                 {
-                    MessageBox.Show("Seleccione el artículo a Proformar.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Seleccione el servicio para guardar en la Proformar.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
                 if (txtPrecioUnitario.Text.Equals("") || txtPrecioUnitario.Text.Substring(1).Equals(" 0"))
                 {
-                    MessageBox.Show("Digite el costo unitario del artículo.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Digite el precio unitario del servicio.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
                 if (txtCantidad.Text.Equals("") || txtCantidad.Text.Equals("0"))
@@ -700,43 +708,42 @@ namespace PROYECTO
                 oConexion.cerrarConexion();
                 if (oConexion.abrirConexion())
                 {
-                    oProformaDetalleDAO = new ProformaDetalleDAO();
-                    oProformaDetalle = new ProformaDetalle();
+                    oCotizacionDetalleDAO = new CotizacionDetalleDAO();
+                    oCotizacionDetalle = new CotizacionDetalle();
 
-                    oProformaDetalle.No_cia = PROYECTO.Properties.Settings.Default.No_cia;
+                    oCotizacionDetalle.No_cia = PROYECTO.Properties.Settings.Default.No_cia;
 
-                    if (btnGuardarDetalle.Text.Equals(" F3 - Guardar"))
+                    if (btnGuardarDetalle.Text.Equals(" Guardar"))
                     {
-                        oProformaDetalle.CodArticulo = indiceArticulo.ToString();
+                        oCotizacionDetalle.CodServicio = indiceServicio.ToString();
 
-                        oProformaDetalle.Cantidad = Double.Parse(txtCantidad.Text);
-                        oProformaDetalle.PrecioUnitario = Double.Parse(txtPrecioUnitario.Text.Substring(1));
-                        oProformaDetalle.SubTotal = oProformaDetalle.PrecioUnitario * oProformaDetalle.Cantidad;
-                        oProformaDetalle.Descuento = double.Parse(txtLineaDescuento.Text);
-                        double montoDescuento = oProformaDetalle.SubTotal * (oProformaDetalle.Descuento / 100);
-                        oProformaDetalle.Monto_IV = IVI.Equals("S") ? 0 : oProformaDetalle.SubTotal * (IV / 100);
-                        oProformaDetalle.PrecioTotal = oProformaDetalle.SubTotal - montoDescuento + oProformaDetalle.Monto_IV;
+                        oCotizacionDetalle.Cantidad = Double.Parse(txtCantidad.Text);
+                        oCotizacionDetalle.PrecioUnitario = Double.Parse(txtPrecioUnitario.Text.Substring(1));
+                        oCotizacionDetalle.SubTotal = oCotizacionDetalle.PrecioUnitario * oCotizacionDetalle.Cantidad;
+                        oCotizacionDetalle.Descuento = double.Parse(txtLineaDescuento.Text);
+                        double montoDescuento = oCotizacionDetalle.SubTotal * (oCotizacionDetalle.Descuento / 100);
+                        oCotizacionDetalle.Monto_IV = IVI.Equals("S") ? 0 : oCotizacionDetalle.SubTotal * (IV / 100);
+                        oCotizacionDetalle.PrecioTotal = oCotizacionDetalle.SubTotal - montoDescuento + oCotizacionDetalle.Monto_IV;
 
-                        oProformaDetalle.Descripcion = txtDescArticulo.Text;
-                        oProformaDetalle.TipoPrecio = 1;
-                        oProformaDetalle.Medida = "UND";
-                        oProformaDetalle.IndiceProforma = indiceProforma;
+                        oCotizacionDetalle.Descripcion = txtDescServicio.Text;
+                        oCotizacionDetalle.TipoPrecio = 1;
+                        oCotizacionDetalle.IndiceProforma = indiceCotizacion;
 
-                        oProformaDetalle.Usuario = PROYECTO.Properties.Settings.Default.Usuario;
+                        oCotizacionDetalle.Usuario = PROYECTO.Properties.Settings.Default.Usuario;
 
-                        oProformaDetalle.Descuento = double.Parse(txtLineaDescuento.Text);
+                        oCotizacionDetalle.Descuento = double.Parse(txtLineaDescuento.Text);
 
-                        oProformaDetalle.IVI = IVI;
+                        oCotizacionDetalle.IVI = IVI;
 
-                        oProformaDetalleDAO.Agregar(oProformaDetalle);
-                        if (oProformaDetalleDAO.Error())
-                            MessageBox.Show("Ocurrió un error al guardar los datos: " + oProformaDetalleDAO.DescError(), "Error de consulta", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        oCotizacionDetalleDAO.Agregar(oCotizacionDetalle);
+                        if (oCotizacionDetalleDAO.Error())
+                            MessageBox.Show("Ocurrió un error al guardar los datos: " + oCotizacionDetalleDAO.DescError(), "Error de consulta", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                     }
-                    else if (btnGuardarDetalle.Text.Equals(" F3 - Modificar"))
+                    else if (btnGuardarDetalle.Text.Equals(" Modificar"))
                     {
                         String embAnterior = "";
-                        DataTable oEmba = oConexion.EjecutaSentencia("SELECT DETFAC_MEDIDA FROM TBL_PROFORMA_DETALLE pd where pd.no_Cia = '" + PROYECTO.Properties.Settings.Default.No_cia + "' and DETFAC_INDICEFACTURA='" + indiceProforma + "' and DETFAC_CODIGO='" + indiceArticulo);
+                        DataTable oEmba = oConexion.EjecutaSentencia("SELECT DETFAC_MEDIDA FROM TBL_PROFORMA_DETALLE pd where pd.no_Cia = '" + PROYECTO.Properties.Settings.Default.No_cia + "' and DETFAC_INDICEFACTURA='" + indiceCotizacion + "' and DETFAC_CODIGO='" + indiceServicio);
                         if (oEmba.Rows.Count > 0)
                         {
                             embAnterior = oEmba.Rows[0].ItemArray[0].ToString();
@@ -747,30 +754,29 @@ namespace PROYECTO
                             MessageBox.Show("Seleccione el registro a Modificar.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                             return;
                         }
-                        oProformaDetalle.CodArticulo = indiceArticulo.ToString();
+                        oCotizacionDetalle.CodServicio = indiceServicio.ToString();
 
-                        oProformaDetalle.Cantidad = Double.Parse(txtCantidad.Text);
-                        oProformaDetalle.PrecioUnitario = Double.Parse(txtPrecioUnitario.Text.Substring(1));
-                        oProformaDetalle.SubTotal = oProformaDetalle.PrecioUnitario * oProformaDetalle.Cantidad;
-                        oProformaDetalle.Descuento = double.Parse(txtLineaDescuento.Text);
-                        double montoDescuento = oProformaDetalle.SubTotal * (oProformaDetalle.Descuento / 100);
-                        oProformaDetalle.Monto_IV = IVI.Equals("S") ? 0 : oProformaDetalle.SubTotal * (IV / 100);
-                        oProformaDetalle.PrecioTotal = oProformaDetalle.SubTotal - montoDescuento + oProformaDetalle.Monto_IV;
+                        oCotizacionDetalle.Cantidad = Double.Parse(txtCantidad.Text);
+                        oCotizacionDetalle.PrecioUnitario = Double.Parse(txtPrecioUnitario.Text.Substring(1));
+                        oCotizacionDetalle.SubTotal = oCotizacionDetalle.PrecioUnitario * oCotizacionDetalle.Cantidad;
+                        oCotizacionDetalle.Descuento = double.Parse(txtLineaDescuento.Text);
+                        double montoDescuento = oCotizacionDetalle.SubTotal * (oCotizacionDetalle.Descuento / 100);
+                        oCotizacionDetalle.Monto_IV = IVI.Equals("S") ? 0 : oCotizacionDetalle.SubTotal * (IV / 100);
+                        oCotizacionDetalle.PrecioTotal = oCotizacionDetalle.SubTotal - montoDescuento + oCotizacionDetalle.Monto_IV;
 
-                        oProformaDetalle.Descripcion = txtDescArticulo.Text;
-                        oProformaDetalle.Medida = "UND";
-                        oProformaDetalle.IndiceProforma = indiceProforma;
+                        oCotizacionDetalle.Descripcion = txtDescServicio.Text;
+                        oCotizacionDetalle.IndiceProforma = indiceCotizacion;
 
-                        oProformaDetalle.TipoPrecio = 1;
-                        oProformaDetalle.Usuario = PROYECTO.Properties.Settings.Default.Usuario;
-                        oProformaDetalle.Indice = indiceDetalle;
+                        oCotizacionDetalle.TipoPrecio = 1;
+                        oCotizacionDetalle.Usuario = PROYECTO.Properties.Settings.Default.Usuario;
+                        oCotizacionDetalle.Indice = indiceDetalle;
 
-                        oProformaDetalle.Descuento = double.Parse(txtLineaDescuento.Text);
-                        oProformaDetalle.IVI = IVI;
+                        oCotizacionDetalle.Descuento = double.Parse(txtLineaDescuento.Text);
+                        oCotizacionDetalle.IVI = IVI;
 
-                        oProformaDetalleDAO.Modificar(oProformaDetalle);
-                        if (oProformaDetalleDAO.Error())
-                            MessageBox.Show("Ocurrió un error al guardar los datos: " + oProformaDetalleDAO.DescError(), "Error de consulta", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        oCotizacionDetalleDAO.Modificar(oCotizacionDetalle);
+                        if (oCotizacionDetalleDAO.Error())
+                            MessageBox.Show("Ocurrió un error al guardar los datos: " + oCotizacionDetalleDAO.DescError(), "Error de consulta", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                     oConexion.cerrarConexion();
 
@@ -794,7 +800,7 @@ namespace PROYECTO
             {
                 if (MessageBox.Show("¿Está seguro que desea ELIMINAR el registro?", "Advertencia", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    if (indiceProforma == 0)
+                    if (indiceCotizacion == 0)
                     {
                         MessageBox.Show("Seleccione la Proforma a la cual eliminara el detalle.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         return;
@@ -804,9 +810,9 @@ namespace PROYECTO
                         MessageBox.Show("Seleccione el registro a Eliminar.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         return;
                     }
-                    if (txtEstado.Text.Equals("FACTURADA"))
+                    if (txtEstado.Text.Equals("EMITIDA"))
                     {
-                        MessageBox.Show("No se puede Modificar la Proforma porque ya es ta en estado: FACTURADA.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        MessageBox.Show("No se puede Modificar la Proforma porque ya está en estado: EMITIDA.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         return;
                     }
                     if (txtEstado.Text.Equals("ANULADA"))
@@ -818,18 +824,18 @@ namespace PROYECTO
                     oConexion.cerrarConexion();
                     if (oConexion.abrirConexion())
                     {
-                        oProformaDetalleDAO = new ProformaDetalleDAO();
-                        oProformaDetalle = new ProformaDetalle();
+                        oCotizacionDetalleDAO = new CotizacionDetalleDAO();
+                        oCotizacionDetalle = new CotizacionDetalle();
 
-                        oProformaDetalle.No_cia = PROYECTO.Properties.Settings.Default.No_cia;
-                        oProformaDetalle.IndiceProforma = indiceProforma;
-                        oProformaDetalle.Indice = indiceDetalle;
-                        oProformaDetalle.Cantidad = Double.Parse(txtCantidad.Text);
-                        oProformaDetalle.CodArticulo = indiceArticulo.ToString();
+                        oCotizacionDetalle.No_cia = PROYECTO.Properties.Settings.Default.No_cia;
+                        oCotizacionDetalle.IndiceProforma = indiceCotizacion;
+                        oCotizacionDetalle.Indice = indiceDetalle;
+                        oCotizacionDetalle.Cantidad = Double.Parse(txtCantidad.Text);
+                        oCotizacionDetalle.CodServicio = indiceServicio.ToString();
 
-                        oProformaDetalleDAO.Eliminar(oProformaDetalle);
-                        if (oProformaDetalleDAO.Error())
-                            MessageBox.Show("Ocurrió un error al guardar los datos: " + oProformaDetalleDAO.DescError(), "Error de consulta", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        oCotizacionDetalleDAO.Eliminar(oCotizacionDetalle);
+                        if (oCotizacionDetalleDAO.Error())
+                            MessageBox.Show("Ocurrió un error al guardar los datos: " + oCotizacionDetalleDAO.DescError(), "Error de consulta", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                         oConexion.cerrarConexion();
                         limpiarAbajo();
@@ -853,11 +859,11 @@ namespace PROYECTO
                 oConexion.cerrarConexion();
                 if (oConexion.abrirConexion())
                 {
-                    oProformaDetalleDAO = new ProformaDetalleDAO();
+                    oCotizacionDetalleDAO = new CotizacionDetalleDAO();
 
-                    dgrDatos.DataSource = oProformaDetalleDAO.Consulta(indiceProforma, PROYECTO.Properties.Settings.Default.No_cia).Tables[0];
-                    if (oProformaDetalleDAO.Error())
-                        MessageBox.Show("Ocurrió un error al extraer los datos: " + oProformaDetalleDAO.DescError(), "Error de consulta", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    dgrDatos.DataSource = oCotizacionDetalleDAO.Consulta(indiceCotizacion, PROYECTO.Properties.Settings.Default.No_cia).Tables[0];
+                    if (oCotizacionDetalleDAO.Error())
+                        MessageBox.Show("Ocurrió un error al extraer los datos: " + oCotizacionDetalleDAO.DescError(), "Error de consulta", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     oConexion.cerrarConexion();
                     calculaValores();
                 }
@@ -879,15 +885,24 @@ namespace PROYECTO
                 indiceDetalle = int.Parse(dgrDatos["detfac_numerolinea", e.RowIndex].Value.ToString());
                 txtCantidad.Text = dgrDatos["detfac_cantidad", e.RowIndex].Value.ToString();
                 cantidad2 = Double.Parse(dgrDatos["detfac_cantidad", e.RowIndex].Value.ToString());
-                indiceArticulo = double.Parse(dgrDatos["detfac_codigo", e.RowIndex].Value.ToString());
-                txtCodarticulo.Text = dgrDatos["art_codigo", e.RowIndex].Value.ToString();
-                txtDescArticulo.Text = dgrDatos["detfac_descripcion", e.RowIndex].Value.ToString();
+                indiceServicio = double.Parse(dgrDatos["detfac_codigo", e.RowIndex].Value.ToString());
+                txtCodServicio.Text = dgrDatos["art_codigo", e.RowIndex].Value.ToString();
+                txtDescServicio.Text = dgrDatos["detfac_descripcion", e.RowIndex].Value.ToString();
                 IVI = dgrDatos["detfac_ivi", e.RowIndex].Value.ToString();
                 IV = double.Parse(dgrDatos["art_impuestos", e.RowIndex].Value.ToString());
 
-                if (cmbMoneda.Equals("COL")) cadena = "¢";
-                else if (cmbMoneda.Equals("USD")) cadena = "$";
-                else if (cmbMoneda.Equals("EUR")) cadena = "€";
+                switch (cmbMoneda.SelectedIndex)
+                {
+                    case 0:
+                        cadena = "¢ ";
+                        break;
+                    case 1:
+                        cadena = "$ ";
+                        break;
+                    case 2:
+                        cadena = "€ ";
+                        break;
+                }
 
                 txtPrecioUnitario.Text = cadena + Double.Parse(dgrDatos["DETFAC_PRECIO_UNITARIO", e.RowIndex].Value.ToString()).ToString(" ###,###,##0.##");
                 txtSubTotalLinea.Text = cadena + Double.Parse(dgrDatos["DETFAC_SUBTOTAL", e.RowIndex].Value.ToString()).ToString(" ###,###,##0.##");
@@ -895,9 +910,9 @@ namespace PROYECTO
                 txtTotalPorLinea.Text = cadena + Double.Parse(dgrDatos["DETFAC_PRECIO_TOTAL", e.RowIndex].Value.ToString()).ToString(" ###,###,##0.##");
 
 
-                btnGuardarDetalle.Text = " F3 - Modificar";
+                btnGuardarDetalle.Text = " Modificar";
                 txtCantidad.ReadOnly = true;
-                txtCodarticulo.ReadOnly = true;
+                txtCodServicio.ReadOnly = true;
                 btnGuardarDetalle.ImageIndex = 4;
 
                 txtCantidad.ReadOnly = false;
@@ -942,26 +957,19 @@ namespace PROYECTO
                         granTotal -= descuento;
                 }
 
-                if (cmbMoneda.Equals("COL"))
+                if (cmbMoneda.SelectedItem.ToString().Equals("CRC"))
                 {
                     txtMonto_IV.Text = "¢ ";
                     txtSubTotal.Text = "¢ ";
                     txtDescuento.Text = "¢ ";
-                    txtTotalProforma.Text = "¢ ";
+                    txtTotalCotizacion.Text = "¢ ";
                 }
-                else if (cmbMoneda.Equals("USD"))
+                else if (cmbMoneda.SelectedItem.ToString().Equals("USD"))
                 {
                     txtMonto_IV.Text = "$ ";
                     txtSubTotal.Text = "$ ";
                     txtDescuento.Text = "$ ";
-                    txtTotalProforma.Text = "$ ";
-                }
-                else if (cmbMoneda.Equals("EUR"))
-                {
-                    txtMonto_IV.Text = "€ ";
-                    txtSubTotal.Text = "€ ";
-                    txtDescuento.Text = "€ ";
-                    txtTotalProforma.Text = "€ ";
+                    txtTotalCotizacion.Text = "$ ";
                 }
 
                 if (totalLinea > 0)
@@ -981,15 +989,15 @@ namespace PROYECTO
 
                 if (granTotal > 0)
                 {
-                    if (cmbMoneda.Equals("COL"))
+                    if (cmbMoneda.Equals("CRC"))
                     {
                         RedondearNumero oRedondear = new RedondearNumero();
                         granTotal = oRedondear.Redondear(granTotal);
                     }
-                    txtTotalProforma.Text += granTotal.ToString("###,###,##0.##");
+                    txtTotalCotizacion.Text += granTotal.ToString("###,###,##0.##");
                 }
                 else
-                    txtTotalProforma.Text += "0";
+                    txtTotalCotizacion.Text += "0";
             }
             catch (Exception ex)
             {
@@ -999,7 +1007,7 @@ namespace PROYECTO
 
         private void chkDescuento_CheckedChanged(object sender, EventArgs e)
         {
-            if (txtEstado.Text.Equals("FACTURADA"))
+            if (txtEstado.Text.Equals("EMITIDA"))
             {
                 return;
             }
@@ -1015,16 +1023,15 @@ namespace PROYECTO
         private void txtTotalProforma_TextChanged(object sender, EventArgs e)
         {
             String cadena = "";
-            if (txtTotalProforma.Text.Length > 2)
+            if (txtTotalCotizacion.Text.Length > 2)
             {
-                if (Double.Parse(txtTotalProforma.Text.Substring(1)) > 0)
+                if (Double.Parse(txtTotalCotizacion.Text.Substring(1)) > 0)
                 {
-                    if (cmbMoneda.Equals("COL")) cadena = "colones";
+                    if (cmbMoneda.Equals("CRC")) cadena = "colones";
                     else if (cmbMoneda.Equals("USD")) cadena = "dolares";
-                    else if (cmbMoneda.Equals("EUR")) cadena = "euros";
 
                     objeto = new Cantidad_a_Letra();
-                    String montoenletras = objeto.ConvertirCadena(Double.Parse(txtTotalProforma.Text.Substring(1)), cadena);
+                    String montoenletras = objeto.ConvertirCadena(Double.Parse(txtTotalCotizacion.Text.Substring(1)), cadena);
                     lblMontoEnLetras = montoenletras.ToUpper();
                 }
             }
@@ -1043,182 +1050,48 @@ namespace PROYECTO
 
         private void btnProformar_Click(object sender, EventArgs e)
         {
-            //if (txtProforma.Text.Equals(""))
-            //{
-            //    MessageBox.Show("Seleccione el documento a Facturar", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            //    return;
-            //}
-            //if (dgrDatos.Rows.Count == 0)
-            //{
-            //    MessageBox.Show("No se puede Facturar si no hay detalle en la Proforma.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            //    return;
-            //}
-            //if (txtCliente.Text.Trim().Equals("") || idCliente.Equals(""))
-            //{
-            //    MessageBox.Show("Seleccione el cliente de la Factura.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            //    return;
-            //}
-            //if (txtEstado.Text.Equals("FACTURADA"))
-            //{
-            //    MessageBox.Show("Este documento ya fue Facturado.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            //    return;
-            //}
-            //if (txtEstado.Text.Equals("ANULADA"))
-            //{
-            //    MessageBox.Show("Este documento fue anulado.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            //    return;
-            //}
+            if (txtCotizacion.Text.Equals(""))
+            {
+                MessageBox.Show("Seleccione el documento a Emitir", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            if (dgrDatos.Rows.Count == 0)
+            {
+                MessageBox.Show("No se puede Emitir si no hay detalle en la Proforma.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            if (txtCliente.Text.Trim().Equals("") || idCliente.Equals(""))
+            {
+                MessageBox.Show("Seleccione el cliente de la Cotización.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            if (txtEstado.Text.Equals("EMITIDA"))
+            {
+                MessageBox.Show("Este documento ya fue Emitido.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            if (txtEstado.Text.Equals("ANULADA"))
+            {
+                MessageBox.Show("Este documento fue anulado.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
-            //if (rbCredito.Checked)
-            //    if (MessageBox.Show("¿Está seguro que desea Facturar?", "Advertencia", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
-            //        return;
+            if (rbCredito.Checked)
+                if (MessageBox.Show("¿Está seguro que desea Emitir?", "Advertencia", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+                    return;
 
-            //modificar();
+            modificar();
 
-            //oConexion.cerrarConexion();
-            //if (oConexion.abrirConexion())
-            //{
-            //    FacturaDAO oFacturaDAO = new FacturaDAO();
-            //    Factura oFactura = new Factura();
+            oConexion.cerrarConexion();
+            if (oConexion.abrirConexion())
+            {
 
-            //    oFactura.No_cia = PROYECTO.Properties.Settings.Default.No_cia;
-            //    oFactura.Cliente = idCliente;
-            //    oFactura.Descuento = Double.Parse(txtDescuento.Text.Substring(1));
-            //    oFactura.Estado = txtEstado.Text;
-            //    oFactura.NumFactura = 1;
-            //    oFactura.FechaFactura = oConexion.fecha();
-            //    oFactura.Impuesto = Double.Parse(txtMonto_IV.Text.Substring(1));
-            //    oFactura.Moneda = cmbMoneda;
-            //    oFactura.Nombre = txtANombreDe.Text;
-            //    oFactura.Observacion = "";
-            //    oFactura.OrdenCompra = "";
-            //    oFactura.Retencion = 0;
-            //    oFactura.Saldo = rbCredito.Checked ? Double.Parse(txtTotalProforma.Text.Substring(1)) : 0;
-            //    oFactura.SubTotal = Double.Parse(txtSubTotal.Text.Substring(1));
-            //    oFactura.Telefono = txtTelefono;
-            //    oFactura.Tipocambio = txtTipoCambio;
-            //    oFactura.Total = Double.Parse(txtTotalProforma.Text.Substring(1));
-            //    oFactura.Adelanto = Double.Parse(txtTotalProforma.Text.Substring(1));
-            //    oFactura.Ubicacion = txtUbicacion;
-            //    oFactura.Usuario = PROYECTO.Properties.Settings.Default.Usuario;
-            //    oFactura.Vendedor = cmbVendedor.SelectedValue.ToString();
-            //    oFactura.FormaPago = "";
-            //    if (rbContado.Checked)
-            //        oFactura.Tipo = "CONTADO";
-            //    else
-            //        oFactura.Tipo = "CREDITO";
-            //    oFactura.IndiceDocumento = 0;
-            //    oFactura.TipoDocumento = "";
+                txtEstado.Text = "EMITIDA";
+                modificarEstado();
 
-            //    DataTable miArreglo = oFacturaDAO.Agregar(oFactura);
-            //    if (oFacturaDAO.Error())
-            //        MessageBox.Show("Ocurrio un error al crear la factura los datos: " + oFacturaDAO.DescError(), "Error de Consulta", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //    oConexion.cerrarConexion();
-
-            //    string numeroFactura = miArreglo.Rows[0].ItemArray[0].ToString();
-            //    int indiceFactura = int.Parse(miArreglo.Rows[0].ItemArray[1].ToString());
-
-            //    try
-            //    {
-            //        if (indiceFactura == 0)
-            //        {
-            //            MessageBox.Show("Seleccione la factura a la cual agregara el detalle.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            //            return;
-            //        }
-            //        if (txtEstado.Text.Equals("FACTURADA"))
-            //        {
-            //            MessageBox.Show("No se puede facturar la Proforma porque ya es ta en estado: FACTURADA.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            //            return;
-            //        }
-
-            //        if (txtCliente.Text.Equals("") || idCliente.Equals(""))
-            //        {
-            //            MessageBox.Show("Seleccione el cliente de la factura.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            //            return;
-            //        }
-            //        if (txtEstado.Text.Equals("ANULADA"))
-            //        {
-            //            MessageBox.Show("Este documento fue anulado.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            //            return;
-            //        }
-            //        oConexion.cerrarConexion();
-            //        if (oConexion.abrirConexion())
-            //        {
-            //            DataTable oDetalle = (DataTable)dgrDatos.DataSource;
-
-            //            for (int x = 0; x < oDetalle.Rows.Count; x++)
-            //            {
-            //                double cantidad = 0;
-
-            //                if (oDetalle.Rows[x]["DETFAC_TIPO"].ToString().Equals("ART"))
-            //                {
-            //                    DataTable oTabla2 = oConexion.EjecutaSentencia("SELECT INV_CANTIDAD-INV_CANTIDAD_TRANSITO FROM TBL_INVENTARIO i where i.no_cia = '" + PROYECTO.Properties.Settings.Default.No_cia + "' and  INV_COD_ARTICULO='" + oDetalle.Rows[x]["DETFAC_CODIGO"].ToString() + "' and INV_COD_PROVEEDOR=" + oDetalle.Rows[x]["DETFAC_PROVEEDOR"].ToString() + " and INV_COD_ALMACEN='" + oDetalle.Rows[x]["DETFAC_BODEGA"].ToString() + "' and INV_INDICE=" + oDetalle.Rows[x]["DETFAC_INDICEINVENTARIO"].ToString());
-            //                    if (oTabla2.Rows.Count > 0)
-            //                        existencia = int.Parse(oTabla2.Rows[0][0].ToString()) + cantidad2;
-
-            //                    cantidad = int.Parse(oDetalle.Rows[x]["DETFAC_CANTIDAD"].ToString());
-
-            //                    if (cantidad > existencia)
-            //                        cantidad = existencia;
-            //                }
-
-            //                FacturaDetalleDAO oFacturaDetalleDAO = new FacturaDetalleDAO();
-            //                FacturaDetalle oFacturaDetalle = new FacturaDetalle();
-
-            //                oFacturaDetalle.No_cia = PROYECTO.Properties.Settings.Default.No_cia;
-            //                oFacturaDetalle.Bodega = oDetalle.Rows[x]["DETFAC_BODEGA"].ToString();
-            //                oFacturaDetalle.CodArticulo = oDetalle.Rows[x]["DETFAC_CODIGO"].ToString();
-
-            //                oFacturaDetalle.Cantidad = cantidad;
-            //                oFacturaDetalle.PrecioUnitario = Double.Parse(oDetalle.Rows[x]["DETFAC_PRECIO_UNITARIO"].ToString());
-            //                oFacturaDetalle.Subtotal = Double.Parse(oDetalle.Rows[x]["DETFAC_SUBTOTAL"].ToString());
-            //                oFacturaDetalle.Descuento = double.Parse(oDetalle.Rows[x]["DETFAC_DESCUENTO"].ToString());
-            //                double montoDescuento = oFacturaDetalle.Subtotal * (oFacturaDetalle.Descuento / 100);
-            //                oFacturaDetalle.MontoIV = Double.Parse(oDetalle.Rows[x]["DETFAC_MONTO_IV"].ToString());
-            //                oFacturaDetalle.PrecioTotal = Double.Parse(oDetalle.Rows[x]["DETFAC_PRECIO_TOTAL"].ToString());
-
-            //                oFacturaDetalle.Descripcion = oDetalle.Rows[x]["DETFAC_DESCRIPCION"].ToString();
-            //                oFacturaDetalle.TipoPrecio = 1;
-            //                oFacturaDetalle.Medida = "UND";
-            //                oFacturaDetalle.IndiceFactura = indiceFactura;
-            //                oFacturaDetalle.UnidadesEmbalaje = 1;
-            //                oFacturaDetalle.Usuario = PROYECTO.Properties.Settings.Default.Usuario;
-            //                oFacturaDetalle.CostoCompra = 0;
-            //                oFacturaDetalle.Tipo = oDetalle.Rows[x]["DETFAC_TIPO"].ToString();
-            //                oFacturaDetalle.Proveedor = int.Parse(oDetalle.Rows[x]["DETFAC_PROVEEDOR"].ToString());
-            //                oFacturaDetalle.IndiceInventario = int.Parse(oDetalle.Rows[x]["DETFAC_INDICEINVENTARIO"].ToString());
-            //                oFacturaDetalle.Presentacion = int.Parse(oDetalle.Rows[x]["DETFAC_PRESENTACION"].ToString());
-            //                oFacturaDetalle.IVI = oDetalle.Rows[x]["detfac_ivi"].ToString();
-
-            //                oFacturaDetalleDAO.Agregar(oFacturaDetalle);
-            //                if (oFacturaDetalleDAO.Error())
-            //                    MessageBox.Show("Ocurrió un error al guardar los datos: " + oFacturaDetalleDAO.DescError(), "Error de consulta", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-            //            }
-
-
-            //        }
-            //        else
-            //            MessageBox.Show("Ocurrió un error al conectarse a la base de datos.", "Error de Conexión", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //    }
-            //    catch (Exception ex)
-            //    {
-            //        oConexion.cerrarConexion();
-            //    }
-
-            //    txtEstado.Text = "FACTURADA";
-            //    modificarEstado();
-
-            //    frmFacturacionRapida oFacturacion = frmFacturacionRapida.getInstance();
-            //    oFacturacion.MdiParent = this.MdiParent;
-            //    oFacturacion.Show();
-
-            //    oFacturacion.cargaFactura(numeroFactura, "");
-
-            //    this.Close();
-            //}
-            //else
-            //    MessageBox.Show("Ocurrio un error al conectarse a la base de datos.", "Error de Conexion", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+                MessageBox.Show("Ocurrio un error al conectarse a la base de datos.", "Error de Conexion", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
         }
 
@@ -1233,12 +1106,10 @@ namespace PROYECTO
                 //    total = Double.Parse(txtCantidad.Text) * Double.Parse(txtUnidEmba.Text) * Double.Parse(txtCostoUnitario.Text);
                 //else
                 total = Double.Parse(txtCantidad.Text) * Double.Parse(txtPrecioUnitario.Text.Substring(1));
-                if (cmbMoneda.Equals("COL"))
+                if (cmbMoneda.Equals("CRC"))
                     cadena = "¢";
                 else if (cmbMoneda.Equals("USD"))
                     cadena = "$";
-                else if (cmbMoneda.Equals("EUR"))
-                    cadena = "€";
 
                 txtTotalPorLinea.Text = cadena + " " + total.ToString("###,###,##0.##");
             }
@@ -1255,7 +1126,7 @@ namespace PROYECTO
             limpiarAbajo();
             if (dgrDatos.Rows.Count == 0)
             {
-                btnGuardarDetalle.Text = " F3 - Guardar";
+                btnGuardarDetalle.Text = " Guardar";
                 btnGuardarDetalle.ImageIndex = 1;
             }
         }
@@ -1278,11 +1149,11 @@ namespace PROYECTO
                     String sql = "";
                     if (idCliente.Equals(""))
                     {
-                        sql = "select fac_nombre as nombre, fac_telefono as telefono, to_char(fac_fecha,'dd') as dia, to_char(fac_fecha,'MM') as mes, to_char(fac_fecha,'yyyy') as anno, fac_observacion as obcervacion, fac_subtotal as subtotal, fac_impuesto as impuesto, fac_excento as excento, fac_total as total, fac_moneda as moneda, detfac_cantidad as cantidad, detfac_medida as embalaje, DETFAC_DESCRIPCION as descripcion, DETFAC_PRECIO_UNITARIO as costUnit, (detfac_cantidad*DETFAC_PRECIO_UNITARIO) as costTotal, fac_ubicacion AS ubicacion, fac_adelanto adelanto, '' codigoCliente, case when f.fac_tipodocumento = 'PED' then to_char(f.fac_indicedocumento) else ' ' end pedido, '' idPersona, f.fac_vendedor vendedor, '', '' vence, case when df.DETFAC_SUBTOTAL = 0 then '1' else '0' end indImpuesto,EMPR_NOMBRE, EMPR_LOGO Logo,EMPR_IDENTIFICACION, EMPR_DIRECCION, EMPR_TELEFONO, EMPR_CORREO, (DETFAC_CANTIDAD*DETFAC_PRECIO_UNITARIO)- ((DETFAC_CANTIDAD*DETFAC_PRECIO_UNITARIO)* (DETFAC_DESCUENTO/100)) as costTotal, DETFAC_DESCUENTO descuento, (SELECT case when ARPRE_EMBALAJE='talla' then ARPRE_CANTIDAD||' '||ARPRE_EMBALAJE else ARPRE_EMBALAJE end FROM TBL_ARTICULO_PRESENTACION ap WHERE ap.no_cia = '" + PROYECTO.Properties.Settings.Default.No_cia + "' and DETFAC_PRESENTACION = ARPRE_INDICE) ARPRE_EMBALAJE, ART_CODIGO codigoArticulo from TBL_PROFORMA F, TBL_PROFORMA_DETALLE df, TBL_EMPRESA em, TBL_ARTICULOS ar WHERE f.no_cia = '" + PROYECTO.Properties.Settings.Default.No_cia + "' and f.no_cia = df.no_cia and f.no_cia = em.no_cia and f.no_cia = ar.no_cia and ART_INDICE=DETFAC_CODIGO and FAC_LINEA = DETFAC_INDICEFACTURA and fac_numero ='" + txtProforma.Text + "' ORDER BY DETFAC_NUMEROLINEA";
+                        sql = "select fac_nombre as nombre, fac_telefono as telefono, to_char(fac_fecha,'dd') as dia, to_char(fac_fecha,'MM') as mes, to_char(fac_fecha,'yyyy') as anno, fac_observacion as obcervacion, fac_subtotal as subtotal, fac_impuesto as impuesto, fac_excento as excento, fac_total as total, fac_moneda as moneda, detfac_cantidad as cantidad, detfac_medida as embalaje, DETFAC_DESCRIPCION as descripcion, DETFAC_PRECIO_UNITARIO as costUnit, (detfac_cantidad*DETFAC_PRECIO_UNITARIO) as costTotal, fac_ubicacion AS ubicacion, fac_adelanto adelanto, '' codigoCliente, case when f.fac_tipodocumento = 'PED' then to_char(f.fac_indicedocumento) else ' ' end pedido, '' idPersona, f.fac_vendedor vendedor, '', '' vence, case when df.DETFAC_SUBTOTAL = 0 then '1' else '0' end indImpuesto,EMPR_NOMBRE, EMPR_LOGO Logo,EMPR_IDENTIFICACION, EMPR_DIRECCION, EMPR_TELEFONO, EMPR_CORREO, (DETFAC_CANTIDAD*DETFAC_PRECIO_UNITARIO)- ((DETFAC_CANTIDAD*DETFAC_PRECIO_UNITARIO)* (DETFAC_DESCUENTO/100)) as costTotal, DETFAC_DESCUENTO descuento, (SELECT case when ARPRE_EMBALAJE='talla' then ARPRE_CANTIDAD||' '||ARPRE_EMBALAJE else ARPRE_EMBALAJE end FROM TBL_ARTICULO_PRESENTACION ap WHERE ap.no_cia = '" + PROYECTO.Properties.Settings.Default.No_cia + "' and DETFAC_PRESENTACION = ARPRE_INDICE) ARPRE_EMBALAJE, ART_CODIGO codigoArticulo from TBL_PROFORMA F, TBL_PROFORMA_DETALLE df, TBL_EMPRESA em, TBL_ARTICULOS ar WHERE f.no_cia = '" + PROYECTO.Properties.Settings.Default.No_cia + "' and f.no_cia = df.no_cia and f.no_cia = em.no_cia and f.no_cia = ar.no_cia and ART_INDICE=DETFAC_CODIGO and FAC_LINEA = DETFAC_INDICEFACTURA and fac_numero ='" + txtCotizacion.Text + "' ORDER BY DETFAC_NUMEROLINEA";
                     }
                     else
                     {
-                        sql = "select fac_nombre as nombre, fac_telefono as telefono, to_char(fac_fecha,'dd') as dia, to_char(fac_fecha,'MM') as mes, to_char(fac_fecha,'yyyy') as anno, fac_observacion as obcervacion, fac_subtotal as subtotal, fac_impuesto as impuesto, fac_excento as excento, fac_total as total, fac_moneda as moneda, detfac_cantidad as cantidad, detfac_medida as embalaje, DETFAC_DESCRIPCION as descripcion, DETFAC_PRECIO_UNITARIO as costUnit, (detfac_cantidad*DETFAC_PRECIO_UNITARIO) as costTotal, fac_ubicacion AS ubicacion, fac_adelanto adelanto, cl.cli_id codigoCliente, case when f.fac_tipodocumento = 'PED' then to_char(f.fac_indicedocumento) else ' ' end pedido, cl.cli_identificacion idPersona, f.fac_vendedor vendedor, '', '' vence, case when df.DETFAC_SUBTOTAL = 0 then '1' else '0' end indImpuesto,EMPR_NOMBRE, EMPR_LOGO Logo,EMPR_IDENTIFICACION, EMPR_DIRECCION, EMPR_TELEFONO, EMPR_CORREO, (DETFAC_CANTIDAD*DETFAC_PRECIO_UNITARIO)- ((DETFAC_CANTIDAD*DETFAC_PRECIO_UNITARIO)* (DETFAC_DESCUENTO/100)) as costTotal, DETFAC_DESCUENTO descuento, (SELECT case when ARPRE_EMBALAJE='talla' then ARPRE_CANTIDAD||' '||ARPRE_EMBALAJE else ARPRE_EMBALAJE end FROM TBL_ARTICULO_PRESENTACION ap WHERE ap.no_cia = '" + PROYECTO.Properties.Settings.Default.No_cia + "' and DETFAC_PRESENTACION = ARPRE_INDICE) ARPRE_EMBALAJE, ART_CODIGO codigoArticulo from TBL_PROFORMA F, TBL_PROFORMA_DETALLE df, TBL_CLIENTES cl, TBL_EMPRESA em, TBL_ARTICULOS ar WHERE f.no_cia = '" + PROYECTO.Properties.Settings.Default.No_cia + "' and f.no_cia = df.no_cia and f.no_cia = cl.no_cia and f.no_cia = em.no_cia and f.no_cia = ar.no_cia and ART_INDICE=DETFAC_CODIGO and f.fac_cliente = cl.cli_linea and FAC_LINEA = DETFAC_INDICEFACTURA and fac_numero ='" + txtProforma.Text + "' ORDER BY DETFAC_NUMEROLINEA";
+                        sql = "select fac_nombre as nombre, fac_telefono as telefono, to_char(fac_fecha,'dd') as dia, to_char(fac_fecha,'MM') as mes, to_char(fac_fecha,'yyyy') as anno, fac_observacion as obcervacion, fac_subtotal as subtotal, fac_impuesto as impuesto, fac_excento as excento, fac_total as total, fac_moneda as moneda, detfac_cantidad as cantidad, detfac_medida as embalaje, DETFAC_DESCRIPCION as descripcion, DETFAC_PRECIO_UNITARIO as costUnit, (detfac_cantidad*DETFAC_PRECIO_UNITARIO) as costTotal, fac_ubicacion AS ubicacion, fac_adelanto adelanto, cl.cli_id codigoCliente, case when f.fac_tipodocumento = 'PED' then to_char(f.fac_indicedocumento) else ' ' end pedido, cl.cli_identificacion idPersona, f.fac_vendedor vendedor, '', '' vence, case when df.DETFAC_SUBTOTAL = 0 then '1' else '0' end indImpuesto,EMPR_NOMBRE, EMPR_LOGO Logo,EMPR_IDENTIFICACION, EMPR_DIRECCION, EMPR_TELEFONO, EMPR_CORREO, (DETFAC_CANTIDAD*DETFAC_PRECIO_UNITARIO)- ((DETFAC_CANTIDAD*DETFAC_PRECIO_UNITARIO)* (DETFAC_DESCUENTO/100)) as costTotal, DETFAC_DESCUENTO descuento, (SELECT case when ARPRE_EMBALAJE='talla' then ARPRE_CANTIDAD||' '||ARPRE_EMBALAJE else ARPRE_EMBALAJE end FROM TBL_ARTICULO_PRESENTACION ap WHERE ap.no_cia = '" + PROYECTO.Properties.Settings.Default.No_cia + "' and DETFAC_PRESENTACION = ARPRE_INDICE) ARPRE_EMBALAJE, ART_CODIGO codigoArticulo from TBL_PROFORMA F, TBL_PROFORMA_DETALLE df, TBL_CLIENTES cl, TBL_EMPRESA em, TBL_ARTICULOS ar WHERE f.no_cia = '" + PROYECTO.Properties.Settings.Default.No_cia + "' and f.no_cia = df.no_cia and f.no_cia = cl.no_cia and f.no_cia = em.no_cia and f.no_cia = ar.no_cia and ART_INDICE=DETFAC_CODIGO and f.fac_cliente = cl.cli_linea and FAC_LINEA = DETFAC_INDICEFACTURA and fac_numero ='" + txtCotizacion.Text + "' ORDER BY DETFAC_NUMEROLINEA";
                     }
 
                     //DataTable oTabla = crearTabla(oReporteDAO.EjecutaSentencia(sql).Tables[0]);
@@ -1362,7 +1233,7 @@ namespace PROYECTO
                     String nombreVendedor = "", inicialesVendedor = "";
                     DataTable oDatoVendedor = new DataTable();
                     Double adelantos = 0;
-                    DataTable oTabla2 = oConexion.EjecutaSentencia("SELECT SUM(RECFAC_MONTO) AS RECFAC_MONTO FROM TBL_RECIBOS_Proforma where RECFAC_Proforma= '" + txtProforma.Text + "'");
+                    DataTable oTabla2 = oConexion.EjecutaSentencia("SELECT SUM(RECFAC_MONTO) AS RECFAC_MONTO FROM TBL_RECIBOS_Proforma where RECFAC_Proforma= '" + txtCotizacion.Text + "'");
                     if (oTabla2.Rows.Count > 0)
                     {
                         try
@@ -1395,7 +1266,7 @@ namespace PROYECTO
                     oDataTable.Columns.Add("pedido", typeof(string));
                     oDataTable.Columns.Add("idPersona", typeof(string));
                     oDataTable.Columns.Add("vendedor", typeof(string));
-                    oDataTable.Columns.Add("codigoArticulo", typeof(string));
+                    oDataTable.Columns.Add("codigoServicio", typeof(string));
                     oDataTable.Columns.Add("indImpuesto", typeof(int));
 
                     oDataTable.Columns.Add("EMPR_IDENTIFICACION", typeof(string));
@@ -1450,7 +1321,7 @@ namespace PROYECTO
                             }
                         }
                         oDataRow["vendedor"] = inicialesVendedor;
-                        oDataRow["codigoArticulo"] = oFila["codigoArticulo"].ToString();
+                        oDataRow["codigoServicio"] = oFila["codigoServicio"].ToString();
                         oDataRow["indImpuesto"] = oFila["indImpuesto"].ToString();
 
                         byte[] imageBytes = new byte[10000];
@@ -1473,11 +1344,6 @@ namespace PROYECTO
             {
                 return new DataTable();
             }
-        }
-
-        private void txtDescArticulo_Enter(object sender, EventArgs e)
-        {
-            btnBusqArticulo.PerformClick();
         }
 
         private void btnRecibos_Click(object sender, EventArgs e)
@@ -1541,15 +1407,15 @@ namespace PROYECTO
                 if (oConexion.abrirConexion())
                 {
                     txtCliente.Clear();
-                    cliente = 0;
-                    txtDescArticulo.Clear();
+
+                    txtDescServicio.Clear();
                     llenarGrid();
 
                     IndiceDocumento = 0;
 
                     oConexion.cerrarConexion();
                     oConexion.abrirConexion();
-                    dtpFechaProforma = oConexion.fecha();
+                    dtpFechaCotizacion.Text = oConexion.fecha().ToShortDateString();
                 }
                 else
                 {
@@ -1566,388 +1432,56 @@ namespace PROYECTO
         {
             if (txtEstado.Text.Equals(""))
             {
-                btnBProforma.Enabled = true;
+                btnBCotizacion.Enabled = true;
                 btnNueva.Enabled = true;
                 btnGuardar.Enabled = false;
-                btnFacturar.Enabled = false;
+                btnEmitir.Enabled = false;
                 btnNuevoDetalle.Enabled = false;
-                btnBusqArticulo.Enabled = false;
+                btnBusqCliente.Enabled = false;
+                btnBusqServicio.Enabled = false;
                 btnGuardarDetalle.Enabled = false;
                 btnEliminarDetalle.Enabled = false;
-                btnImprimirTicket.Enabled = false;
+                btnImprimir.Enabled = false;
             }
             else if (txtEstado.Text.Equals("ABIERTA"))
             {
-                btnBProforma.Enabled = true;
+                btnBCotizacion.Enabled = true;
                 btnNueva.Enabled = true;
                 btnGuardar.Enabled = true;
-                btnFacturar.Enabled = true;
+                btnEmitir.Enabled = true;
                 btnNuevoDetalle.Enabled = true;
-                btnBusqArticulo.Enabled = true;
+                btnBusqCliente.Enabled = true;
+                btnBusqServicio.Enabled = true;
                 btnGuardarDetalle.Enabled = true;
                 btnEliminarDetalle.Enabled = true;
-                btnImprimirTicket.Enabled = true;
+                btnImprimir.Enabled = false;
             }
-            else if (txtEstado.Text.Equals("FACTURADA"))
+            else if (txtEstado.Text.Equals("EMITIDA"))
             {
-                btnBProforma.Enabled = true;
+                btnBCotizacion.Enabled = true;
                 btnNueva.Enabled = true;
                 btnGuardar.Enabled = false;
-                btnFacturar.Enabled = false;
+                btnEmitir.Enabled = false;
                 btnNuevoDetalle.Enabled = false;
-                btnBusqArticulo.Enabled = false;
+                btnBusqCliente.Enabled = false;
+                btnBusqServicio.Enabled = false;
                 btnGuardarDetalle.Enabled = false;
                 btnEliminarDetalle.Enabled = false;
-                btnImprimirTicket.Enabled = false;
+                btnImprimir.Enabled = true;
             }
             else if (txtEstado.Text.Equals("ANULADA"))
             {
-                btnBProforma.Enabled = true;
+                btnBCotizacion.Enabled = true;
                 btnNueva.Enabled = true;
                 btnGuardar.Enabled = false;
-                btnFacturar.Enabled = false;
+                btnEmitir.Enabled = false;
                 btnNuevoDetalle.Enabled = false;
-                btnBusqArticulo.Enabled = false;
+                btnBusqCliente.Enabled = false;
+                btnBusqServicio.Enabled = false;
                 btnGuardarDetalle.Enabled = false;
                 btnEliminarDetalle.Enabled = false;
-                btnImprimirTicket.Enabled = true;
+                btnImprimir.Enabled = false;
             }
-        }
-
-        public void ImprimirTiquete(String nombre, double cancelacon, double vuelto, string formaPago, string documento)
-        {
-            //try
-            //{
-            //    PrintDocument pd = new PrintDocument();
-            //    string name = pd.PrinterSettings.PrinterName;
-            //    string nombreEmpresa = "", cedula = "", telefono = "", direccion = "", fax = "";
-            //    int anchoTiquet = 0;
-            //    // Byte[] bytes = null;
-
-            //    oConexion.cerrarConexion();
-            //    if (oConexion.abrirConexion())
-            //    {
-            //        DataTable oEmpresa = oConexion.EjecutaSentencia("select EMPR_NOMBRE, EMPR_IDENTIFICACION, EMPR_DIRECCION, EMPR_TELEFONO, EMPR_CORREO, EMPR_LOGO, NVL(anchotiquet,0) anchotiquet from TBL_EMPRESA em where no_cia = '" + PROYECTO.Properties.Settings.Default.No_cia + "'");
-            //        if (oEmpresa.Rows.Count > 0)
-            //        {
-            //            nombreEmpresa = oEmpresa.Rows[0]["EMPR_NOMBRE"].ToString();
-            //            cedula = oEmpresa.Rows[0]["EMPR_IDENTIFICACION"].ToString();
-            //            telefono = oEmpresa.Rows[0]["EMPR_TELEFONO"].ToString();
-            //            direccion = oEmpresa.Rows[0]["EMPR_DIRECCION"].ToString();
-            //            fax = oEmpresa.Rows[0]["EMPR_CORREO"].ToString();
-            //            // bytes = (Byte[])oEmpresa.Rows[0]["EMPR_LOGO"];
-            //            anchoTiquet = int.Parse(oEmpresa.Rows[0]["anchotiquet"].ToString());
-            //        }
-            //    }
-            //    else
-            //    {
-            //        MessageBox.Show("Error al conectarse con la base de datos\nVerifique que los datos esten correctos");
-            //    }
-
-            //    if (anchoTiquet <= 0)
-            //    {
-            //        MessageBox.Show("Configurar correctamente el ancho del tiquete de Factura.");
-            //        return;
-            //    }
-
-            //    int y = 0;
-            //    Ticket ticket = new Ticket("Impresion de Proforma");
-
-            //    //Datos de Proforma
-            //    // ticket.AddDatos(nombreEmpresa, "" + (20 - (nombreEmpresa.Length / 2)), y.ToString());
-
-            //    string linea = nombreEmpresa, linea1 = "", linea2 = "", linea3 = "", linea4 = "";
-            //    int renglon = 1, contador = 0;
-            //    for (int x = 0; x < linea.Length; x++)
-            //    {
-            //        if (linea[x].Equals('|'))
-            //        {
-            //            contador = 0;
-            //            renglon++;
-            //        }
-            //        else
-            //        {
-            //            contador++;
-            //            if (renglon == 1)
-            //                linea1 += linea[x];
-            //            else if (renglon == 2)
-            //                linea2 += linea[x];
-            //            else if (renglon == 3)
-            //                linea3 += linea[x];
-            //            else if (renglon == 4)
-            //                linea4 += linea[x];
-
-            //            if (contador == 30 || (linea[x].Equals(' ') && contador > 25))
-            //            {
-            //                contador = 0;
-            //                renglon++;
-            //            }
-            //        }
-            //    }
-
-            //    if (linea1.Length > 0)
-            //    {
-            //        linea = linea1;
-            //        ticket.AddDatos(linea, ((anchoTiquet - linea.Length)), y);
-            //        y = y + 4;
-            //    }
-            //    if (linea2.Length > 0)
-            //    {
-            //        linea = linea2;
-            //        ticket.AddDatos(linea, ((anchoTiquet - linea.Length)), y); ;
-            //        y = y + 4;
-            //    }
-            //    if (linea3.Length > 0)
-            //    {
-            //        linea = linea3;
-            //        ticket.AddDatos(linea, ((anchoTiquet - linea.Length)), y);
-            //        y = y + 4;
-            //    }
-            //    if (linea4.Length > 0)
-            //    {
-            //        linea = linea4;
-            //        ticket.AddDatos(linea, ((anchoTiquet - linea.Length)), y);
-            //        y = y + 4;
-            //    }
-
-
-            //    //direccion = "Direccion: " + direccion;
-            //    linea = direccion;
-            //    linea1 = "";
-            //    linea2 = "";
-            //    linea3 = "";
-            //    linea4 = "";
-            //    renglon = 1;
-            //    contador = 0;
-
-            //    for (int x = 0; x < linea.Length; x++)
-            //    {
-            //        if (linea[x].Equals('|'))
-            //        {
-            //            contador = 0;
-            //            renglon++;
-            //        }
-            //        else
-            //        {
-            //            contador++;
-            //            if (renglon == 1)
-            //                linea1 += linea[x];
-            //            else if (renglon == 2)
-            //                linea2 += linea[x];
-            //            else if (renglon == 3)
-            //                linea3 += linea[x];
-            //            else if (renglon == 4)
-            //                linea4 += linea[x];
-
-            //            if (contador == 30 || (linea[x].Equals(' ') && contador > 25))
-            //            {
-            //                contador = 0;
-            //                renglon++;
-            //            }
-            //        }
-            //    }
-
-            //    if (linea1.Length > 0)
-            //    {
-            //        linea = linea1;
-            //        ticket.AddDatos(linea, ((anchoTiquet - linea.Length)), y);
-            //        y = y + 4;
-            //    }
-            //    if (linea2.Length > 0)
-            //    {
-            //        linea = linea2;
-            //        ticket.AddDatos(linea, ((anchoTiquet - linea.Length)), y); ;
-            //        y = y + 4;
-            //    }
-            //    if (linea3.Length > 0)
-            //    {
-            //        linea = linea3;
-            //        ticket.AddDatos(linea, ((anchoTiquet - linea.Length)), y);
-            //        y = y + 4;
-            //    }
-            //    if (linea4.Length > 0)
-            //    {
-            //        linea = linea4;
-            //        ticket.AddDatos(linea, ((anchoTiquet - linea.Length)), y);
-            //        y = y + 4;
-            //    }
-
-            //    cedula = "Ced: " + cedula;
-
-            //    linea = cedula;
-            //    ticket.AddDatos(linea, ((anchoTiquet - linea.Length)), y);
-            //    //ticket.AddDatos(cedula, "" + (20 - (cedula.Length / 2)), y.ToString());
-            //    y = y + 4;
-
-            //    if (!telefono.Equals(""))
-            //        telefono = "Tel: " + telefono;
-
-            //    if (!telefono.Equals("") && !fax.Equals(""))
-            //        telefono += "  /  Fax: " + fax;
-            //    else if (telefono.Equals("") && !fax.Equals(""))
-            //        telefono += "Fax: " + fax;
-
-            //    linea = telefono;
-            //    ticket.AddDatos(linea, ((anchoTiquet - linea.Length)), y);
-            //    //ticket.AddDatos(telefono, "" + 0, y.ToString());
-            //    y = y + 2;
-
-
-            //    //ticket.AddDatos("_____________________________________________", 0,y);
-
-            //    oConexion.cerrarConexion();
-            //    oConexion.abrirConexion();
-            //    string fecha = oConexion.fecha().ToString();
-            //    DataTable otfecha = oConexion.EjecutaSentencia("select FAC_FECHACREA from TBL_PROFORMA P where P.no_cia = '" + PROYECTO.Properties.Settings.Default.No_cia + "' and FAC_NUMERO=" + txtProforma.Text);
-            //    if (otfecha.Rows.Count > 0)
-            //        fecha = otfecha.Rows[0]["FAC_FECHACREA"].ToString();
-
-            //    y = y + 4;
-            //    linea = fecha;
-            //    ticket.AddDatos(linea, 2,y);
-
-            //    //ticket.AddDatos(fecha, 0,y);
-
-            //    y = y + 4;
-            //    string tipo = rbContado.Checked ? "CONTADO" : "CREDITO " + txtDias;
-
-            //    linea = "Proforma: " + txtProforma.Text + "      " + tipo + "      Caj: " + txtUsuario.Text;
-            //    ticket.AddDatos(linea, 2,y);
-            //    y = y + 4;
-
-            //    linea = "CLIENTE: " + nombre;
-            //    ticket.AddDatos(linea, 2,y);
-
-            //    y = y + 1;
-            //    ticket.AddDatos("_____________________________________________", 0,y);
-
-            //    y = y + 4;
-
-            //    //linea = "Cant.   Descripcion                     Desc.   Subtotal";
-            //    linea = "Cant.        Producto                         Desc.        Subtotal";
-            //    ticket.AddDatos(linea, 0,y);
-
-            //    y = y + 4;
-            //    //Items
-            //    int v = y;
-            //    for (int x = 0; x < dgrDatos.Rows.Count; x++)
-            //    {
-            //        string Cant = dgrDatos.Rows[x].Cells["DETFAC_CANTIDAD"].Value.ToString();
-            //        string embalaje = dgrDatos.Rows[x].Cells["ARPRE_EMBALAJE"].Value.ToString();
-            //        string codigo = dgrDatos.Rows[x].Cells["ART_CODIGO"].Value.ToString();
-            //        string descripcion = dgrDatos.Rows[x].Cells["DETFAC_DESCRIPCION"].Value.ToString();
-            //        string Descripcion = descripcion; // dgrDatos.Rows[x].Cells["DETFAC_TIPO"].Value.ToString().Equals("ART") ? (embalaje + " - " + codigo + " - " + descripcion) : descripcion;
-            //        string Desc = dgrDatos.Rows[x].Cells["DETFAC_DEScuento"].Value.ToString();
-
-            //        string Subtotal = double.Parse(dgrDatos.Rows[x].Cells["DETFAC_PRECIO_TOTAL"].Value.ToString()).ToString("###,###,##0.##");
-
-            //        double IV = double.Parse(dgrDatos.Rows[x].Cells["art_impuestos"].Value.ToString());
-            //        String IVI = dgrDatos.Rows[x].Cells["detfac_ivi"].Value.ToString();
-
-            //        if (IV <= 0)
-            //            Subtotal += " *";
-            //        else if (IV > 0)
-            //        {
-            //            if (IVI.Equals("S"))
-            //                Subtotal += " **";
-            //        }
-
-            //        //ticket.AddItems(Cant + "?" + Descripcion + "?" + Desc + "?" + Subtotal, v.ToString());
-            //        //y = y + 3;
-
-            //        Cant = double.Parse(Cant).ToString("###,###,##0");
-            //        ticket.AddItems(Cant + "?" + codigo + "?" + Desc + "?" + Subtotal, v.ToString());
-            //        y = y + 3;
-
-            //        ticket.AddItemDesc(embalaje + "?" + descripcion + "?" + "-" + "?" + "-", v.ToString());
-            //        y = y + 3;
-
-            //        ticket.AddItemDesc("" + "?" + "" + "?" + "" + "?" + "", v.ToString());
-            //        y = y + 3;
-            //    }
-
-            //    y = y + 2;
-            //    linea = "===========================================";
-            //    ticket.AddDatos(linea, 0,y-1);
-            //    y = y + 0;
-
-            //    string simbolo = cmbMoneda.Equals("COL") ? "¢ " : "$ ";
-
-            //    y = y + 4;
-            //    ticket.AddDatos("SUBTOTAL :", 15,y);
-            //    ticket.AddDatos(simbolo + double.Parse(txtSubTotal.Text.Substring(1)).ToString("###,###,##0.##"), 44,y);
-
-            //    if (double.Parse(txtDescuento.Text.Substring(1)) > 0)
-            //    {
-            //        y = y + 4;
-            //        ticket.AddDatos("DESCUENTO :", 15,y);
-            //        ticket.AddDatos(simbolo + double.Parse(txtDescuento.Text.Substring(1)).ToString("###,###,##0.##"), 44,y);
-            //    }
-
-            //    y = y + 4;
-            //    ticket.AddDatos("IV :", 15,y);
-            //    ticket.AddDatos(simbolo + double.Parse(txtMonto_IV.Text.Substring(1)).ToString("###,###,##0.##"), 44,y);
-
-            //    y = y + 4;
-            //    ticket.AddDatos("TOTAL :", 15,y);
-            //    ticket.AddDatos(simbolo + double.Parse(txtTotalProforma.Text.Substring(1)).ToString("###,###,##0.##"), 44,y);
-
-            //    if (txtEstado.Text.Equals("ANULADA"))
-            //    {
-            //        y = y + 5;
-            //        ticket.AddDatos("ANULADA", 15,y);
-            //    }
-
-            //    y = y + 7;
-
-            //    linea = "*** MUCHAS GRACIAS POR PREFERIRNOS ***";
-            //    ticket.AddDatos(linea, 0,y);
-            //    y = y + 7;
-
-            //    linea = "(*) Exento  |  (**) Impuesto de ventas Incluido";
-            //    ticket.AddDatos(linea, 0,y);
-
-            //    //ticket.AddDatos("* Producto Exento", 7,y);
-
-            //    //y = y + 5;
-            //    //linea = "* AUTORIZADO MEDIANTE RESOLUCION 11-97";
-            //    //ticket.AddDatos(linea, 0,y);
-            //    ////ticket.AddDatos("Autorizado mediante Oficio", "12", y.ToString());
-
-            //    //y = y + 3;
-            //    //linea = "DE DGT GACETA 171 DEL 05/09/97 *";
-            //    //ticket.AddDatos(linea, ((anchoTiquet - linea.Length)), y);
-
-            //    y = y + 5;
-            //    oConexion.cerrarConexion();
-            //    oConexion.abrirConexion();
-            //    string vfecha = oConexion.fecha().ToString();
-            //    linea = "** " + vfecha + " - ULTIMA LINEA **";
-            //    ticket.AddDatos(linea, 4,y);
-
-            //    ticket.PrintFactura(name);
-
-
-            //    Boolean vCortaTicket = false;
-            //    oConexion.cerrarConexion();
-            //    if (oConexion.abrirConexion())
-            //    {
-            //        DataTable oMensajes = oConexion.EjecutaSentencia("select IND_CORTATICKET from TBL_EMPRESA e where e.no_cia = '" + PROYECTO.Properties.Settings.Default.No_cia + "'");
-
-            //        if (oMensajes.Rows.Count > 0)
-            //            vCortaTicket = oMensajes.Rows[0]["IND_CORTATICKET"].ToString().Equals("S") ? true : false;
-
-            //        oConexion.cerrarConexion();
-            //    }
-
-            //    ticket.CortaTicket(vCortaTicket);
-
-            //    ticket.AbreCajon(false);
-            //}
-            //catch (Exception ex)
-            //{
-            //    oConexion.cerrarConexion();
-            //}
         }
 
         private void calcularTotalPorLinea()
@@ -1968,15 +1502,15 @@ namespace PROYECTO
 
                 double total = subtotal - descuento;
 
-                if (cmbMoneda.Equals("COL"))
+                if (cmbMoneda.Equals("CRC"))
                 {
                     RedondearNumero oRedondear = new RedondearNumero();
                     total = oRedondear.Redondear(total);
                 }
 
-                switch (cmbMoneda.Trim())
+                switch (cmbMoneda.Text.Trim())
                 {
-                    case "COL":
+                    case "CRC":
                         txtSubTotalLinea.Text = subtotal.ToString("¢ ###,###,##0.##");
                         txtTotalPorLinea.Text = total.ToString("¢ ###,###,##0.##");
                         break;
@@ -1984,13 +1518,9 @@ namespace PROYECTO
                         txtSubTotalLinea.Text = subtotal.ToString("$ ###,###,##0.##");
                         txtTotalPorLinea.Text = total.ToString("$ ###,###,##0.##");
                         break;
-                    case "EUR":
-                        txtSubTotalLinea.Text = subtotal.ToString("€ ###,###,##0.##");
-                        txtTotalPorLinea.Text = total.ToString("€ ###,###,##0.##");
-                        break;
                     default:
-                        txtSubTotalLinea.Text = subtotal.ToString("###,###,##0.##");
-                        txtTotalPorLinea.Text = total.ToString("###,###,##0.##");
+                        txtSubTotalLinea.Text = subtotal.ToString("¢ ###,###,##0.##");
+                        txtTotalPorLinea.Text = total.ToString("¢ ###,###,##0.##");
                         break;
                 }
             }
@@ -2027,31 +1557,24 @@ namespace PROYECTO
             calcularTotalPorLinea();
         }
 
+        private void btnBusqServicio_Click(object sender, EventArgs e)
+        {
+            frmConsultaServicios oConsulta = new frmConsultaServicios("frmCotizacion");
+            oConsulta.MdiParent = frmPrincipal.getInstance().MdiParent;
+            oConsulta.ShowDialog();
+        }
+
         private void frmCotizacioncion_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.F1 || e.KeyCode == Keys.F2 || e.KeyCode == Keys.F3 || e.KeyCode == Keys.F4 || e.KeyCode == Keys.F5 || e.KeyCode == Keys.F6 || e.KeyCode == Keys.F7 || e.KeyCode == Keys.F8)
-            {
-                txtCodarticulo.Focus();
+            if (e.KeyCode == Keys.F1)
+                Ayuda();
+        }
 
-                if (e.KeyCode == Keys.F1)
-                    btnNueva.PerformClick();
-                else if (e.KeyCode == Keys.F2)
-                    btnNuevoDetalle.PerformClick();
-                else if (e.KeyCode == Keys.F3)
-                {
-                    btnGuardarDetalle.PerformClick();
-                }
-                else if (e.KeyCode == Keys.F4)
-                    btnFacturar.PerformClick();
-                else if (e.KeyCode == Keys.F5)
-                    btnGuardar.PerformClick();
-                //else if (e.KeyCode == Keys.F6)
-                //    btnAnular.PerformClick();
-                else if (e.KeyCode == Keys.F7)
-                    btnEliminarDetalle.PerformClick();
-                else if (e.KeyCode == Keys.F8)
-                    btnImprimirTicket.PerformClick();
-            }
+        private void Ayuda()
+        {
+            frmAyuda oFrm = frmAyuda.getInstance();
+            oFrm.MdiParent = this.MdiParent;
+            oFrm.Show();
         }
 
         private void txtEstado_TextChanged(object sender, EventArgs e)
@@ -2080,6 +1603,24 @@ namespace PROYECTO
                 e.Handled = true;
         }
 
+        private void txtDescServicio_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnImprimir_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtCodServicio_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter || e.KeyCode == Keys.Tab)
+            {
+                BuscaCodigoServicio();
+            }
+        }
+
         private void txtPrecioUnitario_Leave(object sender, EventArgs e)
         {
             if (txtPrecioUnitario.Text.Equals(""))
@@ -2088,12 +1629,7 @@ namespace PROYECTO
             calcularTotalPorLinea();
         }
 
-        private void btnImprimirTicket_Click(object sender, EventArgs e)
-        {
-            ImprimirTiquete(txtANombreDe.Text, 0, 0, "", "");
-        }
-
-        private void BuscaCodigoArticulo()
+        private void BuscaCodigoServicio()
         {
             try
             {
@@ -2101,19 +1637,19 @@ namespace PROYECTO
                 if (oConexion.abrirConexion())
                 {
                     ServicioDAO oServicioDAO = new ServicioDAO();
-                    DataTable oTabla = oServicioDAO.ConsultaCodigo(txtCodarticulo.Text, true, PROYECTO.Properties.Settings.Default.No_cia).Tables[0];
+                    DataTable oTabla = oServicioDAO.ConsultaCodigo(txtCodServicio.Text, true, PROYECTO.Properties.Settings.Default.No_cia).Tables[0];
 
                     if (oServicioDAO.Error())
                         MessageBox.Show("Ocurrió un error al extraer los datos: " + oServicioDAO.DescError(), "Error de consulta", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     else
                     {
-                        if (oTabla.Rows.Count > 1)
+                        if (oTabla.Rows.Count == 0 || oTabla.Rows.Count > 1)
                         {
-                            btnBusqArticulo.PerformClick();
+                            btnBusqServicio.PerformClick();
                         }
                         else if (oTabla.Rows.Count > 0)
                         {
-                            cargaArticulo(oTabla.Rows[0]["INV_COD_ARTICULO"].ToString(), oTabla.Rows[0]["ART_NOMBRE"].ToString(), oTabla.Rows[0]["INV_IVI"].ToString(), double.Parse(oTabla.Rows[0]["inv_impuesto_ventas"].ToString()));
+                            cargaServicio(oTabla.Rows[0]["INV_COD_ARTICULO"].ToString(), oTabla.Rows[0]["ART_CODIGO"].ToString(), oTabla.Rows[0]["ART_NOMBRE"].ToString(), oTabla.Rows[0]["INV_IVI"].ToString(), double.Parse(oTabla.Rows[0]["inv_impuesto_ventas"].ToString()));
                         }
 
                     }
@@ -2129,20 +1665,12 @@ namespace PROYECTO
             }
         }
 
-        private void txtCodarticulo_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter || e.KeyCode == Keys.Tab)
-            {
-                BuscaCodigoArticulo();
-            }
-        }
-
         private void btnProformaAtras_Click(object sender, EventArgs e)
         {
             try
             {
-                if (!txtProforma.Text.Equals("") && !txtProforma.Text.Equals("0"))
-                    cargaProforma((int.Parse(txtProforma.Text) - 1).ToString(), "");
+                if (!txtCotizacion.Text.Equals("") && !txtCotizacion.Text.Equals("0"))
+                    cargaCotizacion((int.Parse(txtCotizacion.Text) - 1).ToString(), "");
             }
             catch { }
         }
@@ -2151,8 +1679,8 @@ namespace PROYECTO
         {
             try
             {
-                if (!txtProforma.Text.Equals(""))
-                    cargaProforma((int.Parse(txtProforma.Text) + 1).ToString(), "");
+                if (!txtCotizacion.Text.Equals(""))
+                    cargaCotizacion((int.Parse(txtCotizacion.Text) + 1).ToString(), "");
             }
             catch { }
         }
@@ -2160,68 +1688,6 @@ namespace PROYECTO
         private void txtPresentacion_TextChanged(object sender, EventArgs e)
         {
 
-        }
-
-        private void btnHabilitarDescuento1_Click(object sender, EventArgs e)
-        {
-            tipoDescuento = 1;
-
-            oProforma = new Proforma();
-
-            oProforma.No_cia = PROYECTO.Properties.Settings.Default.No_cia;
-            oProforma.NumProforma = int.Parse(txtProforma.Text);
-            oProforma.Indice = indiceProforma;
-            oProforma.Usuario = PROYECTO.Properties.Settings.Default.Usuario;
-            oProforma.Cliente = idCliente;
-
-            if (rbContado.Checked)
-                oProforma.Tipo = "CONTADO";
-            else
-                oProforma.Tipo = "CREDITO";
-
-
-            //if (PROYECTO.Properties.Settings.Default.Autorizacion.Equals("CODIGOBARRAS"))
-            //{
-            //    frmAutorizacionCodigoBarras oPantalla = frmAutorizacionCodigoBarras.getInstance(oProforma, "AUTORIZAR DESCUENTO", this.Name, "DESCUENTO");
-            //    oPantalla.MdiParent = this.MdiParent;
-            //    oPantalla.Show();
-            //}
-            //else
-            //{
-            //    MessageBox.Show("No existe metodo de autorización, por favor revisar la configuración.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            //    return;
-            //}
-        }
-
-        private void btnHabilitarDescuento2_Click(object sender, EventArgs e)
-        {
-            tipoDescuento = 2;
-
-            oProforma = new Proforma();
-
-            oProforma.No_cia = PROYECTO.Properties.Settings.Default.No_cia;
-            oProforma.NumProforma = int.Parse(txtProforma.Text);
-            oProforma.Indice = indiceProforma;
-            oProforma.Usuario = PROYECTO.Properties.Settings.Default.Usuario;
-            oProforma.Cliente = idCliente;
-
-            if (rbContado.Checked)
-                oProforma.Tipo = "CONTADO";
-            else
-                oProforma.Tipo = "CREDITO";
-
-
-            //if (PROYECTO.Properties.Settings.Default.Autorizacion.Equals("CODIGOBARRAS"))
-            //{
-            //    frmAutorizacionCodigoBarras oPantalla = frmAutorizacionCodigoBarras.getInstance(oProforma, "AUTORIZAR DESCUENTO", this.Name, "DESCUENTO");
-            //    oPantalla.MdiParent = this.MdiParent;
-            //    oPantalla.Show();
-            //}
-            //else
-            //{
-            //    MessageBox.Show("No existe metodo de autorización, por favor revisar la configuración.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            //    return;
-            //}
         }
 
         private void btnNuevoCliente_Click(object sender, EventArgs e)
@@ -2271,6 +1737,39 @@ namespace PROYECTO
                 oConexion.cerrarConexion();
                 return false;
             }
+        }
+
+        private void cmbMoneda_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                String cadena = "";
+                switch (cmbMoneda.SelectedIndex)
+                {
+                    case 0:
+                        // txtTipoCambio.Text = "¢ " + TipoCambio.Tables[0].Rows[0].ItemArray[0].ToString();
+                        txtSubTotal.Text = "¢ " + Double.Parse(txtSubTotal.Text.Substring(1));
+                        txtDescuento.Text = "¢ " + Double.Parse(txtDescuento.Text.Substring(1));
+                        txtMonto_IV.Text = "¢ " + Double.Parse(txtMonto_IV.Text.Substring(1));
+                        txtTotalCotizacion.Text = "¢ " + Double.Parse(txtTotalCotizacion.Text.Substring(1));
+                        cadena = "¢ ";
+                        break;
+                    case 1:
+                        //txtTipoCambio.Text = "¢ " + TipoCambio.Tables[0].Rows[0].ItemArray[0].ToString();
+                        txtSubTotal.Text = "$ " + Double.Parse(txtSubTotal.Text.Substring(1));
+                        txtDescuento.Text = "$ " + Double.Parse(txtDescuento.Text.Substring(1));
+                        txtMonto_IV.Text = "$ " + Double.Parse(txtMonto_IV.Text.Substring(1));
+                        txtTotalCotizacion.Text = "$ " + Double.Parse(txtTotalCotizacion.Text.Substring(1));
+                        cadena = "$ ";
+                        break;
+                }
+                if (txtTotalPorLinea.Text.Length == 2)
+                    txtTotalPorLinea.Text = cadena;
+                else
+                    if (!txtTotalPorLinea.Text.Equals("") && !txtTotalPorLinea.Text.Equals("0"))
+                    txtTotalPorLinea.Text = cadena + txtTotalPorLinea.Text.Substring(2);
+            }
+            catch { }
         }
     }
 }

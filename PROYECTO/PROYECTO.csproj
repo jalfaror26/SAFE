@@ -58,6 +58,9 @@
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.ReportSource, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Shared, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.EnterpriseServices" />
@@ -80,6 +83,18 @@
     </Compile>
     <Compile Include="frmAyuda.designer.cs">
       <DependentUpon>frmAyuda.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmCajaChica.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCajaChica.Designer.cs">
+      <DependentUpon>frmCajaChica.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmCajaChicaOtros.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCajaChicaOtros.Designer.cs">
+      <DependentUpon>frmCajaChicaOtros.cs</DependentUpon>
     </Compile>
     <Compile Include="frmConsulta.cs">
       <SubType>Form</SubType>
@@ -116,6 +131,12 @@
     </Compile>
     <Compile Include="frmMenuFinancieros.designer.cs">
       <DependentUpon>frmMenuFinancieros.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmMovimientosCajaChica.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMovimientosCajaChica.designer.cs">
+      <DependentUpon>frmMovimientosCajaChica.cs</DependentUpon>
     </Compile>
     <Compile Include="frmServicios.cs">
       <SubType>Form</SubType>
@@ -171,11 +192,11 @@
     <Compile Include="frmMenuSistema.designer.cs">
       <DependentUpon>frmMenuSistema.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmPermisos.cs">
+    <Compile Include="frmUsuariosPermisos.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmPermisos.designer.cs">
-      <DependentUpon>frmPermisos.cs</DependentUpon>
+    <Compile Include="frmUsuariosPermisos.designer.cs">
+      <DependentUpon>frmUsuariosPermisos.cs</DependentUpon>
     </Compile>
     <Compile Include="frmPrincipal.cs">
       <SubType>Form</SubType>
@@ -228,6 +249,12 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RedondearNumero.cs" />
+    <Compile Include="rptCajasChicas.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptCajasChicas.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Settings.cs" />
     <Compile Include="Web References\TipoCambioBCCR\Reference.cs">
       <AutoGen>True</AutoGen>
@@ -236,6 +263,12 @@
     </Compile>
     <EmbeddedResource Include="frmAyuda.resx">
       <DependentUpon>frmAyuda.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmCajaChica.resx">
+      <DependentUpon>frmCajaChica.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmCajaChicaOtros.resx">
+      <DependentUpon>frmCajaChicaOtros.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmConsulta.resx">
       <DependentUpon>frmConsulta.cs</DependentUpon>
@@ -248,12 +281,16 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmMenuFacturacion.resx">
       <DependentUpon>frmMenuFacturacion.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="frmCotizacion.resx">
       <DependentUpon>frmCotizacion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmMenuFinancieros.resx">
       <DependentUpon>frmMenuFinancieros.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMovimientosCajaChica.resx">
+      <DependentUpon>frmMovimientosCajaChica.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmServicios.resx">
       <DependentUpon>frmServicios.cs</DependentUpon>
@@ -266,6 +303,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmConexionGrafico.resx">
       <DependentUpon>frmConexionGrafico.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="frmEmpresa.resx">
       <DependentUpon>frmEmpresa.cs</DependentUpon>
@@ -281,9 +319,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmMenuSistema.resx">
       <DependentUpon>frmMenuSistema.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmPermisos.resx">
-      <DependentUpon>frmPermisos.cs</DependentUpon>
+    <EmbeddedResource Include="frmUsuariosPermisos.resx">
+      <DependentUpon>frmUsuariosPermisos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmPrincipal.resx">
       <DependentUpon>frmPrincipal.cs</DependentUpon>
@@ -319,6 +358,10 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="rptCajasChicas.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptCajasChicas.cs</LastGenOutput>
+    </EmbeddedResource>
     <None Include="Properties\DataSources\System.Data.DataSet.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -352,6 +395,7 @@
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\rym2.jpg" />
     <Content Include="SAFE.ico" />
     <None Include="Web References\TipoCambioBCCR\wsindicadoreseconomicos.disco" />
   </ItemGroup>
@@ -370,6 +414,9 @@
       <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
       <CachedSettingsPropName>Sistema_Administrativo_y_Facturación_Electronica_TipoCambioBCCR_wsindicadoreseconomicos</CachedSettingsPropName>
     </WebReferenceUrl>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

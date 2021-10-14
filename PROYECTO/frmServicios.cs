@@ -22,7 +22,7 @@ namespace PROYECTO
         private ProveedorDAO oProveedorDAO = new ProveedorDAO();
         private static frmServicios instance = null;
         private Boolean nuevo = false;
-        private ConexionDAO oConexion = new ConexionDAO(PROYECTO.Properties.Settings.Default.UsuarioBD, PROYECTO.Properties.Settings.Default.Servidor, Conexion.getInstance().Clave);
+        private ConexionDAO oConexion = new ConexionDAO(PROYECTO.Properties.Settings.Default.UsuarioBD, PROYECTO.Properties.Settings.Default.Servidor,Conexion.getInstance().Clave);
         private Servicio oServicio;
         private double indice = 0;
 
@@ -119,7 +119,7 @@ namespace PROYECTO
         {
             try
             {
-                oConexion = new ConexionDAO(PROYECTO.Properties.Settings.Default.UsuarioBD, PROYECTO.Properties.Settings.Default.Servidor, Conexion.getInstance().Clave);
+                oConexion = new ConexionDAO(PROYECTO.Properties.Settings.Default.UsuarioBD, PROYECTO.Properties.Settings.Default.Servidor,Conexion.getInstance().Clave);
                 oConexion.cerrarConexion();
                 if (oConexion.abrirConexion())
                 {
@@ -196,7 +196,7 @@ namespace PROYECTO
         {
             try
             {
-                oConexion = new ConexionDAO(PROYECTO.Properties.Settings.Default.UsuarioBD, PROYECTO.Properties.Settings.Default.Servidor, Conexion.getInstance().Clave);
+                oConexion = new ConexionDAO(PROYECTO.Properties.Settings.Default.UsuarioBD, PROYECTO.Properties.Settings.Default.Servidor,Conexion.getInstance().Clave);
                 oConexion.cerrarConexion();
                 if (oConexion.abrirConexion())
                 {
@@ -368,7 +368,7 @@ namespace PROYECTO
             try
             {
                 Boolean tienePermiso = false;
-                oConexion = new ConexionDAO(PROYECTO.Properties.Settings.Default.UsuarioBD, PROYECTO.Properties.Settings.Default.Servidor, Conexion.getInstance().Clave);
+                oConexion = new ConexionDAO(PROYECTO.Properties.Settings.Default.UsuarioBD, PROYECTO.Properties.Settings.Default.Servidor,Conexion.getInstance().Clave);
                 oConexion.cerrarConexion();
 
                 if (oConexion.abrirConexion())
@@ -458,7 +458,7 @@ namespace PROYECTO
         {
             try
             {
-                oConexion = new ConexionDAO(PROYECTO.Properties.Settings.Default.UsuarioBD, PROYECTO.Properties.Settings.Default.Servidor, Conexion.getInstance().Clave);
+                oConexion = new ConexionDAO(PROYECTO.Properties.Settings.Default.UsuarioBD, PROYECTO.Properties.Settings.Default.Servidor,Conexion.getInstance().Clave);
                 oConexion.cerrarConexion();
                 if (oConexion.abrirConexion())
                 {

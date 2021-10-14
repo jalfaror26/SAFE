@@ -261,6 +261,8 @@ namespace PROYECTO_DAO
         public abstract DateTime TraerFechaHoraBaseDatos();
 
         #endregion
+        public abstract void EjecutarSQLComando(String pSql);
+        
 
         #endregion
     }

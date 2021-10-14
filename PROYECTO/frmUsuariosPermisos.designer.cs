@@ -1,6 +1,6 @@
 namespace PROYECTO
 {
-    partial class frmPermisos
+    partial class frmUsuariosPermisos
     {
         /// <summary>
         /// Required designer variable.
@@ -29,11 +29,11 @@ namespace PROYECTO
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPermisos));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmUsuariosPermisos));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.txtCorreo = new System.Windows.Forms.MaskedTextBox();
@@ -439,6 +439,7 @@ namespace PROYECTO
             // 
             // txtCodUsuario
             // 
+            this.txtCodUsuario.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtCodUsuario.Location = new System.Drawing.Point(28, 128);
             this.txtCodUsuario.Margin = new System.Windows.Forms.Padding(4);
             this.txtCodUsuario.Name = "txtCodUsuario";
@@ -449,8 +450,8 @@ namespace PROYECTO
             // 
             this.dgrUsuarios.AllowUserToAddRows = false;
             this.dgrUsuarios.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Gainsboro;
-            this.dgrUsuarios.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.Gainsboro;
+            this.dgrUsuarios.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
             this.dgrUsuarios.BackgroundColor = System.Drawing.Color.White;
             this.dgrUsuarios.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgrUsuarios.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -467,9 +468,9 @@ namespace PROYECTO
             this.dgrUsuarios.Name = "dgrUsuarios";
             this.dgrUsuarios.RowHeadersVisible = false;
             this.dgrUsuarios.RowHeadersWidth = 51;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Teal;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
-            this.dgrUsuarios.RowsDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.Teal;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.White;
+            this.dgrUsuarios.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.dgrUsuarios.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgrUsuarios.Size = new System.Drawing.Size(810, 213);
             this.dgrUsuarios.TabIndex = 0;
@@ -620,8 +621,8 @@ namespace PROYECTO
             // 
             this.dgrPantallas.AllowUserToAddRows = false;
             this.dgrPantallas.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.Gainsboro;
-            this.dgrPantallas.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.Gainsboro;
+            this.dgrPantallas.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
             this.dgrPantallas.BackgroundColor = System.Drawing.Color.White;
             this.dgrPantallas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgrPantallas.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -635,9 +636,9 @@ namespace PROYECTO
             this.dgrPantallas.Name = "dgrPantallas";
             this.dgrPantallas.RowHeadersVisible = false;
             this.dgrPantallas.RowHeadersWidth = 51;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.Teal;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.White;
-            this.dgrPantallas.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.Teal;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.White;
+            this.dgrPantallas.RowsDefaultCellStyle = dataGridViewCellStyle8;
             this.dgrPantallas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgrPantallas.Size = new System.Drawing.Size(811, 394);
             this.dgrPantallas.TabIndex = 0;
@@ -695,7 +696,7 @@ namespace PROYECTO
             this.imageList1.Images.SetKeyName(6, "Salir.ico");
             this.imageList1.Images.SetKeyName(7, "file_find.ico");
             // 
-            // frmPermisos
+            // frmUsuariosPermisos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -707,7 +708,7 @@ namespace PROYECTO
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "frmPermisos";
+            this.Name = "frmUsuariosPermisos";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Asignación de Permisos a Usuario";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmPermisos_FormClosing);

@@ -25,17 +25,17 @@ namespace PROYECTO_DAO
         /// <summary>
         /// Código de Usuario para la conexión hacia la base de datos
         /// </summary>
-        private String codigoUsuario = "";
+        private static String codigoUsuario = "";
 
         /// <summary>
         /// Contraseña del Usuario para la conexión hacia la base de datos
         /// </summary>
-        private String claveUsuario = "";
+        private static String claveUsuario = "";
 
         /// <summary>
         /// Nombre del servidor de Base de datos
         /// </summary>
-        private String servidorBaseDatos = "";
+        private static String servidorBaseDatos = "";
 
         /// <summary>
         /// Variable de Instancia para implementar el Singlenton 
@@ -64,12 +64,12 @@ namespace PROYECTO_DAO
             servidorBaseDatos = pServidorBD;
         }//OracleDAO con argumentos
 
-        private OracleDAO()
-        {
-            codigoUsuario = "";
-            claveUsuario = "";
-            servidorBaseDatos = "";
-        }//OracleDAO sin argumentos
+        //private OracleDAO()
+        //{
+        //    codigoUsuario = "";
+        //    claveUsuario = "";
+        //    servidorBaseDatos = "";
+        //}//OracleDAO sin argumentos
 
         /// <summary>
         /// Destructor del objeto OracleDAO
@@ -132,7 +132,9 @@ namespace PROYECTO_DAO
             //Verificar si la instancia no ha sido credada
             if (Instance == null)
             {
-                Instance = new OracleDAO();
+                Instance = new OracleDAO(servidorBaseDatos,
+                                         codigoUsuario,
+                                         claveUsuario);
             }
             return Instance;
         }
@@ -883,6 +885,38 @@ namespace PROYECTO_DAO
             {
                 ErrorSQL = true;
                 DescripcionErrorSQL = "Error General en EjecutarSQLStoreProcedure:\n";
+                DescripcionErrorSQL += Error.Message;
+            }
+        }
+
+        public override void EjecutarSQLComando(String pSql)
+        {
+
+            try
+            {
+                ErrorSQL = false;
+
+                // Creación del nuevo objeto tipo Command
+                OracleCommand oCommand = new OracleCommand();
+
+                //Asignación del objeto conexión y tipo de OracleCommand
+                oCommand.Connection = oConexion;
+                oCommand.CommandText = pSql;
+                oCommand.CommandType = CommandType.Text;
+
+                //Ejecutar la sentencia
+                oCommand.ExecuteNonQuery();
+            }
+            catch (OracleException errorSQL)
+            {
+                ErrorSQL = true;
+                DescripcionErrorSQL = "Error de SQL en EjecutarSQLComando:\n";
+                DescripcionErrorSQL += errorSQL.Message;
+            }
+            catch (Exception Error)
+            {
+                ErrorSQL = true;
+                DescripcionErrorSQL = "Error General en EjecutarSQLComando:\n";
                 DescripcionErrorSQL += Error.Message;
             }
         }

@@ -17,7 +17,7 @@ namespace PROYECTO
         private static String palabra;
         private static String cod = "", des = "", cedula = "", Dato_1 = "", Dato_2 = "", Dato_3 = "";
         private static frmConsultaCliente instance = null;
-        /*BLL*/
+        /*DAO*/
         private ClienteDAO oClienteDAO = new ClienteDAO();
         private ConexionDAO oConexion;
 
@@ -78,7 +78,7 @@ namespace PROYECTO
 
         private void Llenar_Grid(int tipoFiltro, String palabraFiltro)
         {
-            oConexion = new ConexionDAO(PROYECTO.Properties.Settings.Default.UsuarioBD, PROYECTO.Properties.Settings.Default.Servidor, Conexion.getInstance().Clave);
+            oConexion = new ConexionDAO(PROYECTO.Properties.Settings.Default.UsuarioBD, PROYECTO.Properties.Settings.Default.Servidor,Conexion.getInstance().Clave);
             oConexion.cerrarConexion();
             if (oConexion.abrirConexion())
             {
@@ -124,7 +124,7 @@ namespace PROYECTO
 
         private void Llenar_Grid()
         {
-            oConexion = new ConexionDAO(PROYECTO.Properties.Settings.Default.UsuarioBD, PROYECTO.Properties.Settings.Default.Servidor, Conexion.getInstance().Clave);
+            oConexion = new ConexionDAO(PROYECTO.Properties.Settings.Default.UsuarioBD, PROYECTO.Properties.Settings.Default.Servidor,Conexion.getInstance().Clave);
             oConexion.cerrarConexion();
             if (oConexion.abrirConexion())
             {
@@ -328,7 +328,7 @@ namespace PROYECTO
                 PantallasPermisosDAO oPantallaPermisoDAO = new PantallasPermisosDAO();
 
                 Boolean tienePermiso = false;
-                oConexion = new ConexionDAO(PROYECTO.Properties.Settings.Default.UsuarioBD, PROYECTO.Properties.Settings.Default.Servidor, Conexion.getInstance().Clave);
+                oConexion = new ConexionDAO(PROYECTO.Properties.Settings.Default.UsuarioBD, PROYECTO.Properties.Settings.Default.Servidor,Conexion.getInstance().Clave);
                 oConexion.cerrarConexion();
                 if (oConexion.abrirConexion())
                 {

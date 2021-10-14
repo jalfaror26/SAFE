@@ -54,7 +54,7 @@ namespace PROYECTO
                 {
                     label1.Text = PROYECTO.Properties.Settings.Default.Usuario;
                     origen = "";
-                    imgFoto.Image = null;                    
+                    imgFoto.Image = null;
                     imgFoto.Visible = true;
 
                     ousuarioDAO = new UsuarioDAO();
@@ -176,7 +176,7 @@ namespace PROYECTO
 
         private void btnCambiarContraseña_Click(object sender, EventArgs e)
         {
-            frmUsuarioContraseñaCambio ofrmcambio = frmUsuarioContraseñaCambio.getInstance(label1.Text);
+            frmUsuarioContraseñaCambio ofrmcambio = frmUsuarioContraseñaCambio.getInstance(label1.Text, "N");
             ofrmcambio.MdiParent = this.MdiParent;
             ofrmcambio.Show();
             this.Enabled = false;
@@ -186,6 +186,6 @@ namespace PROYECTO
         {
             this.Close();
         }
-        
+
     }
 }

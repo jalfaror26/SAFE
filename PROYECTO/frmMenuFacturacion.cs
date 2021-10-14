@@ -35,7 +35,7 @@ namespace PROYECTO
             try
             {
                 Boolean tienePermiso = false;
-                oConexion = new ConexionDAO(PROYECTO.Properties.Settings.Default.UsuarioBD, PROYECTO.Properties.Settings.Default.Servidor, Conexion.getInstance().Clave);
+                oConexion = new ConexionDAO(PROYECTO.Properties.Settings.Default.UsuarioBD, PROYECTO.Properties.Settings.Default.Servidor,Conexion.getInstance().Clave);
                 oConexion.cerrarConexion();
                 if (oConexion.abrirConexion())
                 {

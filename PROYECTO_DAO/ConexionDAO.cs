@@ -28,9 +28,17 @@ namespace PROYECTO_DAO
         }
 
 
-        public void QuitarInstance()
+        public void QuitarInstance(String codigoUsuario, String servidorBaseDatos, String claveUsuario)
         {
-            OracleDAO.getInstance().QuitarInstance();
+            OracleDAO.getInstance(servidorBaseDatos, codigoUsuario, claveUsuario).QuitarInstance();
+        }
+
+        public Boolean cerrarConexion(String codigoUsuario, String servidorBaseDatos, String claveUsuario)
+        {
+            if (OracleDAO.getInstance(servidorBaseDatos, codigoUsuario, claveUsuario).CerrarConexion() == false)
+                return true;
+            else
+                return false;
         }
 
         public Boolean cerrarConexion()

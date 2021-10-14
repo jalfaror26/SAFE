@@ -35,7 +35,7 @@ namespace PROYECTO
             try
             {
                 Boolean tienePermiso = false;
-                oConexion = new ConexionDAO(PROYECTO.Properties.Settings.Default.UsuarioBD, PROYECTO.Properties.Settings.Default.Servidor, Conexion.getInstance().Clave);
+                oConexion = new ConexionDAO(PROYECTO.Properties.Settings.Default.UsuarioBD, PROYECTO.Properties.Settings.Default.Servidor,Conexion.getInstance().Clave);
                 oConexion.cerrarConexion();
                 if (oConexion.abrirConexion())
                 {
@@ -85,7 +85,7 @@ namespace PROYECTO
 
         private void btnCerrarSesion_Click(object sender, EventArgs e)
         {
-            oPrincipal.CerrarSesion();
+            oPrincipal.CerrarSesion(true);
         }
 
         private void btnFondoPantalla_Click(object sender, EventArgs e)
@@ -96,7 +96,7 @@ namespace PROYECTO
 
         private void btnUsuariosPermisos_Click(object sender, EventArgs e)
         {
-            frmPermisos ofrm = frmPermisos.getInstance();
+            frmUsuariosPermisos ofrm = frmUsuariosPermisos.getInstance();
             codigo = ofrm.Codigo;
             descripcion = ofrm.Descripcion;
             modulo = ofrm.Modulo;
