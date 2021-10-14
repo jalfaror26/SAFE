@@ -362,6 +362,8 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>rptCajasChicas.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="backupBD\backup_SAFE.BAT" />
+    <None Include="backupBD\BD_SAFE.DMP" />
     <None Include="Properties\DataSources\System.Data.DataSet.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
