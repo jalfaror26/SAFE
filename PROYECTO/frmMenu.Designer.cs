@@ -247,6 +247,7 @@ namespace PROYECTO
             this.btnRepPagos.Text = "   PAGOS";
             this.btnRepPagos.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnRepPagos.UseVisualStyleBackColor = true;
+            this.btnRepPagos.Visible = false;
             this.btnRepPagos.Click += new System.EventHandler(this.btnRepPagos_Click);
             // 
             // btnRepInvFac
@@ -264,6 +265,7 @@ namespace PROYECTO
             this.btnRepInvFac.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnRepInvFac.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnRepInvFac.UseVisualStyleBackColor = true;
+            this.btnRepInvFac.Visible = false;
             this.btnRepInvFac.Click += new System.EventHandler(this.btnRepInvFac_Click);
             // 
             // btnRepFinancieros
@@ -281,6 +283,7 @@ namespace PROYECTO
             this.btnRepFinancieros.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnRepFinancieros.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnRepFinancieros.UseVisualStyleBackColor = true;
+            this.btnRepFinancieros.Visible = false;
             this.btnRepFinancieros.Click += new System.EventHandler(this.btnRepFinancieros_Click);
             // 
             // button20
@@ -457,7 +460,6 @@ namespace PROYECTO
             this.btnReportes.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnReportes.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnReportes.UseVisualStyleBackColor = true;
-            this.btnReportes.Visible = false;
             this.btnReportes.Click += new System.EventHandler(this.lblReportes_Click);
             // 
             // btnInventarios

@@ -108,9 +108,21 @@ namespace PROYECTO
             mnuPrincipal.Visible = false;
             chkMenu.Checked = false;
 
-            frmConexionGrafico oConexion = new frmConexionGrafico();
-            oConexion.MdiParent = this;
-            oConexion.Show();
+            //1 Conexion sencilla
+            //2 Conexion grafica
+            if (PROYECTO.Properties.Settings.Default.FormaConectar.Equals("1"))
+            {
+                frmConexion ofrmConexion = new frmConexion();
+                ofrmConexion.MdiParent = this;
+                ofrmConexion.Show();
+            }
+            else
+            {
+                frmConexionGrafico ofrmConexion = new frmConexionGrafico();
+                ofrmConexion.MdiParent = this;
+                ofrmConexion.Show();
+            }
+
 
             timer1.Start();
         }
@@ -322,9 +334,21 @@ namespace PROYECTO
                     ConexionDAO oConexion = new ConexionDAO(PROYECTO.Properties.Settings.Default.UsuarioBD, PROYECTO.Properties.Settings.Default.Servidor, Conexion.getInstance().Clave);
                     oConexion.cerrarConexion();
 
-                    frmConexionGrafico oPantalla = new frmConexionGrafico();
-                    oPantalla.MdiParent = this;
-                    oPantalla.Show();
+                    //1 Conexion sencilla
+                    //2 Conexion grafica
+                    if (PROYECTO.Properties.Settings.Default.FormaConectar.Equals("1"))
+                    {
+                        frmConexion ofrmConexion = new frmConexion();
+                        ofrmConexion.MdiParent = this;
+                        ofrmConexion.Show();
+                    }
+
+                    else
+                    {
+                        frmConexionGrafico ofrmConexion = new frmConexionGrafico();
+                        ofrmConexion.MdiParent = this;
+                        ofrmConexion.Show();
+                    }
 
                     timer1.Start();
                 }

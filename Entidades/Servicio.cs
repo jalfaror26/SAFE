@@ -8,7 +8,7 @@ namespace ENTIDADES
     {
         private Double indice;
         private Double impuestos;
-        private String descripcion, nombre, tipo, codigo, tipoCodigo;
+        private String descripcion, nombre, tipo, codigo, tipoCodigo, cod_cabys;
 
         private String no_cia, venta_IVI;
 
@@ -66,5 +66,6 @@ namespace ENTIDADES
             set { descripcion = value; }
         }
 
+        public string Cod_cabys { get => cod_cabys; set => cod_cabys = value; }
     }
 }

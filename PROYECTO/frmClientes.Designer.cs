@@ -35,20 +35,6 @@ namespace PROYECTO
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmClientes));
             this.label2 = new System.Windows.Forms.Label();
             this.dgrDatos = new System.Windows.Forms.DataGridView();
-            this.cli_identificacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cli_Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CLI_DIAS = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cli_Linea = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cli_Tipo_ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cli_Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cli_Telefono = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cli_Fax = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cli_Contacto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cli_Correo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cli_Ubicacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cli_Credito = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CLI_LC_MONEDA = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CLI_LC_LIMITE = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label1 = new System.Windows.Forms.Label();
             this.txtBId = new System.Windows.Forms.TextBox();
             this.txtBNombre = new System.Windows.Forms.TextBox();
@@ -80,6 +66,32 @@ namespace PROYECTO
             this.btnMSalir = new System.Windows.Forms.Button();
             this.btnMGuardar = new System.Windows.Forms.Button();
             this.btnMEliminar = new System.Windows.Forms.Button();
+            this.cboBarrio = new System.Windows.Forms.ComboBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.cboDistrito = new System.Windows.Forms.ComboBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.cboCanton = new System.Windows.Forms.ComboBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.cboProvincia = new System.Windows.Forms.ComboBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.cli_identificacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cli_Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CLI_DIAS = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cli_Linea = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cli_Tipo_ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cli_Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cli_Telefono = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cli_Fax = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cli_Contacto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cli_Correo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cli_Ubicacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cli_Credito = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CLI_LC_MONEDA = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CLI_LC_LIMITE = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PROVINCIA = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CANTON = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DISTRITO = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BARRIO = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgrDatos)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -91,7 +103,7 @@ namespace PROYECTO
             this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.label2.Location = new System.Drawing.Point(228, 354);
+            this.label2.Location = new System.Drawing.Point(228, 422);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(58, 17);
@@ -106,7 +118,7 @@ namespace PROYECTO
             this.dgrDatos.AllowUserToResizeRows = false;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.Gainsboro;
             this.dgrDatos.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            this.dgrDatos.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.dgrDatos.BackgroundColor = System.Drawing.Color.White;
             this.dgrDatos.BorderStyle = System.Windows.Forms.BorderStyle.None;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
@@ -131,9 +143,13 @@ namespace PROYECTO
             this.Cli_Ubicacion,
             this.Cli_Credito,
             this.CLI_LC_MONEDA,
-            this.CLI_LC_LIMITE});
+            this.CLI_LC_LIMITE,
+            this.PROVINCIA,
+            this.CANTON,
+            this.DISTRITO,
+            this.BARRIO});
             this.dgrDatos.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.dgrDatos.Location = new System.Drawing.Point(13, 412);
+            this.dgrDatos.Location = new System.Drawing.Point(18, 480);
             this.dgrDatos.Margin = new System.Windows.Forms.Padding(4);
             this.dgrDatos.MultiSelect = false;
             this.dgrDatos.Name = "dgrDatos";
@@ -145,7 +161,7 @@ namespace PROYECTO
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White;
             this.dgrDatos.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.dgrDatos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgrDatos.Size = new System.Drawing.Size(800, 229);
+            this.dgrDatos.Size = new System.Drawing.Size(779, 222);
             this.dgrDatos.TabIndex = 40;
             this.dgrDatos.TabStop = false;
             this.dgrDatos.VirtualMode = true;
@@ -153,151 +169,13 @@ namespace PROYECTO
             this.dgrDatos.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgrDatos_CellEnter);
             this.dgrDatos.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgrDatos_DataBindingComplete);
             // 
-            // cli_identificacion
-            // 
-            this.cli_identificacion.DataPropertyName = "cli_identificacion";
-            this.cli_identificacion.HeaderText = "IDENTIFICACION";
-            this.cli_identificacion.MinimumWidth = 6;
-            this.cli_identificacion.Name = "cli_identificacion";
-            this.cli_identificacion.ReadOnly = true;
-            this.cli_identificacion.Width = 140;
-            // 
-            // Cli_Id
-            // 
-            this.Cli_Id.DataPropertyName = "Cli_Id";
-            this.Cli_Id.HeaderText = "Cli_Id";
-            this.Cli_Id.MinimumWidth = 6;
-            this.Cli_Id.Name = "Cli_Id";
-            this.Cli_Id.ReadOnly = true;
-            this.Cli_Id.Visible = false;
-            this.Cli_Id.Width = 140;
-            // 
-            // CLI_DIAS
-            // 
-            this.CLI_DIAS.DataPropertyName = "CLI_DIAS";
-            this.CLI_DIAS.HeaderText = "Dias";
-            this.CLI_DIAS.MinimumWidth = 6;
-            this.CLI_DIAS.Name = "CLI_DIAS";
-            this.CLI_DIAS.ReadOnly = true;
-            this.CLI_DIAS.Visible = false;
-            this.CLI_DIAS.Width = 125;
-            // 
-            // Cli_Linea
-            // 
-            this.Cli_Linea.DataPropertyName = "Cli_Linea";
-            this.Cli_Linea.HeaderText = "Línea";
-            this.Cli_Linea.MinimumWidth = 6;
-            this.Cli_Linea.Name = "Cli_Linea";
-            this.Cli_Linea.ReadOnly = true;
-            this.Cli_Linea.Visible = false;
-            this.Cli_Linea.Width = 125;
-            // 
-            // Cli_Tipo_ID
-            // 
-            this.Cli_Tipo_ID.DataPropertyName = "Cli_Tipo_ID";
-            this.Cli_Tipo_ID.HeaderText = "TipoId";
-            this.Cli_Tipo_ID.MinimumWidth = 6;
-            this.Cli_Tipo_ID.Name = "Cli_Tipo_ID";
-            this.Cli_Tipo_ID.ReadOnly = true;
-            this.Cli_Tipo_ID.Visible = false;
-            this.Cli_Tipo_ID.Width = 125;
-            // 
-            // Cli_Nombre
-            // 
-            this.Cli_Nombre.DataPropertyName = "Cli_Nombre";
-            this.Cli_Nombre.HeaderText = "NOMBRE";
-            this.Cli_Nombre.MinimumWidth = 6;
-            this.Cli_Nombre.Name = "Cli_Nombre";
-            this.Cli_Nombre.ReadOnly = true;
-            this.Cli_Nombre.Width = 440;
-            // 
-            // Cli_Telefono
-            // 
-            this.Cli_Telefono.DataPropertyName = "Cli_Telefono";
-            this.Cli_Telefono.HeaderText = "Teléfono";
-            this.Cli_Telefono.MinimumWidth = 6;
-            this.Cli_Telefono.Name = "Cli_Telefono";
-            this.Cli_Telefono.ReadOnly = true;
-            this.Cli_Telefono.Visible = false;
-            this.Cli_Telefono.Width = 75;
-            // 
-            // Cli_Fax
-            // 
-            this.Cli_Fax.DataPropertyName = "Cli_Fax";
-            this.Cli_Fax.HeaderText = "Fax";
-            this.Cli_Fax.MinimumWidth = 6;
-            this.Cli_Fax.Name = "Cli_Fax";
-            this.Cli_Fax.ReadOnly = true;
-            this.Cli_Fax.Visible = false;
-            this.Cli_Fax.Width = 125;
-            // 
-            // Cli_Contacto
-            // 
-            this.Cli_Contacto.DataPropertyName = "Cli_Contacto";
-            this.Cli_Contacto.HeaderText = "Contacto";
-            this.Cli_Contacto.MinimumWidth = 6;
-            this.Cli_Contacto.Name = "Cli_Contacto";
-            this.Cli_Contacto.ReadOnly = true;
-            this.Cli_Contacto.Visible = false;
-            this.Cli_Contacto.Width = 125;
-            // 
-            // Cli_Correo
-            // 
-            this.Cli_Correo.DataPropertyName = "Cli_Correo";
-            this.Cli_Correo.HeaderText = "Correo";
-            this.Cli_Correo.MinimumWidth = 6;
-            this.Cli_Correo.Name = "Cli_Correo";
-            this.Cli_Correo.ReadOnly = true;
-            this.Cli_Correo.Visible = false;
-            this.Cli_Correo.Width = 125;
-            // 
-            // Cli_Ubicacion
-            // 
-            this.Cli_Ubicacion.DataPropertyName = "Cli_Ubicacion";
-            this.Cli_Ubicacion.HeaderText = "Ubicacion";
-            this.Cli_Ubicacion.MinimumWidth = 6;
-            this.Cli_Ubicacion.Name = "Cli_Ubicacion";
-            this.Cli_Ubicacion.ReadOnly = true;
-            this.Cli_Ubicacion.Visible = false;
-            this.Cli_Ubicacion.Width = 125;
-            // 
-            // Cli_Credito
-            // 
-            this.Cli_Credito.DataPropertyName = "Cli_Credito";
-            this.Cli_Credito.HeaderText = "Credito";
-            this.Cli_Credito.MinimumWidth = 6;
-            this.Cli_Credito.Name = "Cli_Credito";
-            this.Cli_Credito.ReadOnly = true;
-            this.Cli_Credito.Visible = false;
-            this.Cli_Credito.Width = 125;
-            // 
-            // CLI_LC_MONEDA
-            // 
-            this.CLI_LC_MONEDA.DataPropertyName = "CLI_LC_MONEDA";
-            this.CLI_LC_MONEDA.HeaderText = "CLI_LC_MONEDA";
-            this.CLI_LC_MONEDA.MinimumWidth = 6;
-            this.CLI_LC_MONEDA.Name = "CLI_LC_MONEDA";
-            this.CLI_LC_MONEDA.ReadOnly = true;
-            this.CLI_LC_MONEDA.Visible = false;
-            this.CLI_LC_MONEDA.Width = 125;
-            // 
-            // CLI_LC_LIMITE
-            // 
-            this.CLI_LC_LIMITE.DataPropertyName = "CLI_LC_LIMITE";
-            this.CLI_LC_LIMITE.HeaderText = "CLI_LC_LIMITE";
-            this.CLI_LC_LIMITE.MinimumWidth = 6;
-            this.CLI_LC_LIMITE.Name = "CLI_LC_LIMITE";
-            this.CLI_LC_LIMITE.ReadOnly = true;
-            this.CLI_LC_LIMITE.Visible = false;
-            this.CLI_LC_LIMITE.Width = 125;
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.label1.Location = new System.Drawing.Point(28, 354);
+            this.label1.Location = new System.Drawing.Point(28, 422);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(90, 17);
@@ -307,7 +185,7 @@ namespace PROYECTO
             // txtBId
             // 
             this.txtBId.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtBId.Location = new System.Drawing.Point(28, 374);
+            this.txtBId.Location = new System.Drawing.Point(28, 442);
             this.txtBId.Margin = new System.Windows.Forms.Padding(4);
             this.txtBId.Name = "txtBId";
             this.txtBId.Size = new System.Drawing.Size(172, 22);
@@ -319,7 +197,7 @@ namespace PROYECTO
             // txtBNombre
             // 
             this.txtBNombre.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtBNombre.Location = new System.Drawing.Point(213, 374);
+            this.txtBNombre.Location = new System.Drawing.Point(213, 442);
             this.txtBNombre.Margin = new System.Windows.Forms.Padding(4);
             this.txtBNombre.Name = "txtBNombre";
             this.txtBNombre.Size = new System.Drawing.Size(581, 22);
@@ -334,7 +212,7 @@ namespace PROYECTO
             this.lblBusqueda.BackColor = System.Drawing.Color.Transparent;
             this.lblBusqueda.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblBusqueda.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            this.lblBusqueda.Location = new System.Drawing.Point(16, 326);
+            this.lblBusqueda.Location = new System.Drawing.Point(16, 394);
             this.lblBusqueda.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblBusqueda.Name = "lblBusqueda";
             this.lblBusqueda.Size = new System.Drawing.Size(162, 20);
@@ -584,7 +462,7 @@ namespace PROYECTO
             this.groupBox2.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox2.Size = new System.Drawing.Size(812, 85);
+            this.groupBox2.Size = new System.Drawing.Size(816, 85);
             this.groupBox2.TabIndex = 44;
             this.groupBox2.TabStop = false;
             // 
@@ -656,11 +534,288 @@ namespace PROYECTO
             this.btnMEliminar.UseVisualStyleBackColor = true;
             this.btnMEliminar.Click += new System.EventHandler(this.btnMEliminar_Click);
             // 
+            // cboBarrio
+            // 
+            this.cboBarrio.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboBarrio.DropDownWidth = 110;
+            this.cboBarrio.FormattingEnabled = true;
+            this.cboBarrio.Location = new System.Drawing.Point(587, 345);
+            this.cboBarrio.Margin = new System.Windows.Forms.Padding(4);
+            this.cboBarrio.Name = "cboBarrio";
+            this.cboBarrio.Size = new System.Drawing.Size(205, 24);
+            this.cboBarrio.TabIndex = 632;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(591, 326);
+            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(46, 17);
+            this.label6.TabIndex = 636;
+            this.label6.Text = "Barrio";
+            // 
+            // cboDistrito
+            // 
+            this.cboDistrito.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboDistrito.DropDownWidth = 110;
+            this.cboDistrito.FormattingEnabled = true;
+            this.cboDistrito.Location = new System.Drawing.Point(369, 345);
+            this.cboDistrito.Margin = new System.Windows.Forms.Padding(4);
+            this.cboDistrito.Name = "cboDistrito";
+            this.cboDistrito.Size = new System.Drawing.Size(205, 24);
+            this.cboDistrito.TabIndex = 631;
+            this.cboDistrito.SelectedIndexChanged += new System.EventHandler(this.cboDistrito_SelectedIndexChanged);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(375, 326);
+            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(52, 17);
+            this.label5.TabIndex = 635;
+            this.label5.Text = "Distrito";
+            // 
+            // cboCanton
+            // 
+            this.cboCanton.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboCanton.DropDownWidth = 150;
+            this.cboCanton.FormattingEnabled = true;
+            this.cboCanton.Location = new System.Drawing.Point(152, 345);
+            this.cboCanton.Margin = new System.Windows.Forms.Padding(4);
+            this.cboCanton.Name = "cboCanton";
+            this.cboCanton.Size = new System.Drawing.Size(205, 24);
+            this.cboCanton.TabIndex = 630;
+            this.cboCanton.SelectedIndexChanged += new System.EventHandler(this.cboCanton_SelectedIndexChanged);
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(157, 326);
+            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(53, 17);
+            this.label7.TabIndex = 634;
+            this.label7.Text = "Cantón";
+            // 
+            // cboProvincia
+            // 
+            this.cboProvincia.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboProvincia.DropDownWidth = 110;
+            this.cboProvincia.FormattingEnabled = true;
+            this.cboProvincia.Location = new System.Drawing.Point(16, 345);
+            this.cboProvincia.Margin = new System.Windows.Forms.Padding(4);
+            this.cboProvincia.Name = "cboProvincia";
+            this.cboProvincia.Size = new System.Drawing.Size(125, 24);
+            this.cboProvincia.TabIndex = 629;
+            this.cboProvincia.SelectedIndexChanged += new System.EventHandler(this.cboProvincia_SelectedIndexChanged);
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(21, 326);
+            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(66, 17);
+            this.label8.TabIndex = 633;
+            this.label8.Text = "Provincia";
+            // 
+            // cli_identificacion
+            // 
+            this.cli_identificacion.DataPropertyName = "cli_identificacion";
+            this.cli_identificacion.HeaderText = "IDENTIFICACION";
+            this.cli_identificacion.MinimumWidth = 6;
+            this.cli_identificacion.Name = "cli_identificacion";
+            this.cli_identificacion.ReadOnly = true;
+            this.cli_identificacion.Width = 140;
+            // 
+            // Cli_Id
+            // 
+            this.Cli_Id.DataPropertyName = "Cli_Id";
+            this.Cli_Id.HeaderText = "Cli_Id";
+            this.Cli_Id.MinimumWidth = 6;
+            this.Cli_Id.Name = "Cli_Id";
+            this.Cli_Id.ReadOnly = true;
+            this.Cli_Id.Visible = false;
+            this.Cli_Id.Width = 140;
+            // 
+            // CLI_DIAS
+            // 
+            this.CLI_DIAS.DataPropertyName = "CLI_DIAS";
+            this.CLI_DIAS.HeaderText = "Dias";
+            this.CLI_DIAS.MinimumWidth = 6;
+            this.CLI_DIAS.Name = "CLI_DIAS";
+            this.CLI_DIAS.ReadOnly = true;
+            this.CLI_DIAS.Visible = false;
+            this.CLI_DIAS.Width = 125;
+            // 
+            // Cli_Linea
+            // 
+            this.Cli_Linea.DataPropertyName = "Cli_Linea";
+            this.Cli_Linea.HeaderText = "Línea";
+            this.Cli_Linea.MinimumWidth = 6;
+            this.Cli_Linea.Name = "Cli_Linea";
+            this.Cli_Linea.ReadOnly = true;
+            this.Cli_Linea.Visible = false;
+            this.Cli_Linea.Width = 125;
+            // 
+            // Cli_Tipo_ID
+            // 
+            this.Cli_Tipo_ID.DataPropertyName = "Cli_Tipo_ID";
+            this.Cli_Tipo_ID.HeaderText = "TipoId";
+            this.Cli_Tipo_ID.MinimumWidth = 6;
+            this.Cli_Tipo_ID.Name = "Cli_Tipo_ID";
+            this.Cli_Tipo_ID.ReadOnly = true;
+            this.Cli_Tipo_ID.Visible = false;
+            this.Cli_Tipo_ID.Width = 125;
+            // 
+            // Cli_Nombre
+            // 
+            this.Cli_Nombre.DataPropertyName = "Cli_Nombre";
+            this.Cli_Nombre.HeaderText = "NOMBRE";
+            this.Cli_Nombre.MinimumWidth = 6;
+            this.Cli_Nombre.Name = "Cli_Nombre";
+            this.Cli_Nombre.ReadOnly = true;
+            this.Cli_Nombre.Width = 440;
+            // 
+            // Cli_Telefono
+            // 
+            this.Cli_Telefono.DataPropertyName = "Cli_Telefono";
+            this.Cli_Telefono.HeaderText = "Teléfono";
+            this.Cli_Telefono.MinimumWidth = 6;
+            this.Cli_Telefono.Name = "Cli_Telefono";
+            this.Cli_Telefono.ReadOnly = true;
+            this.Cli_Telefono.Visible = false;
+            this.Cli_Telefono.Width = 75;
+            // 
+            // Cli_Fax
+            // 
+            this.Cli_Fax.DataPropertyName = "Cli_Fax";
+            this.Cli_Fax.HeaderText = "Fax";
+            this.Cli_Fax.MinimumWidth = 6;
+            this.Cli_Fax.Name = "Cli_Fax";
+            this.Cli_Fax.ReadOnly = true;
+            this.Cli_Fax.Visible = false;
+            this.Cli_Fax.Width = 125;
+            // 
+            // Cli_Contacto
+            // 
+            this.Cli_Contacto.DataPropertyName = "Cli_Contacto";
+            this.Cli_Contacto.HeaderText = "Contacto";
+            this.Cli_Contacto.MinimumWidth = 6;
+            this.Cli_Contacto.Name = "Cli_Contacto";
+            this.Cli_Contacto.ReadOnly = true;
+            this.Cli_Contacto.Visible = false;
+            this.Cli_Contacto.Width = 125;
+            // 
+            // Cli_Correo
+            // 
+            this.Cli_Correo.DataPropertyName = "Cli_Correo";
+            this.Cli_Correo.HeaderText = "Correo";
+            this.Cli_Correo.MinimumWidth = 6;
+            this.Cli_Correo.Name = "Cli_Correo";
+            this.Cli_Correo.ReadOnly = true;
+            this.Cli_Correo.Visible = false;
+            this.Cli_Correo.Width = 125;
+            // 
+            // Cli_Ubicacion
+            // 
+            this.Cli_Ubicacion.DataPropertyName = "Cli_Ubicacion";
+            this.Cli_Ubicacion.HeaderText = "Ubicacion";
+            this.Cli_Ubicacion.MinimumWidth = 6;
+            this.Cli_Ubicacion.Name = "Cli_Ubicacion";
+            this.Cli_Ubicacion.ReadOnly = true;
+            this.Cli_Ubicacion.Visible = false;
+            this.Cli_Ubicacion.Width = 125;
+            // 
+            // Cli_Credito
+            // 
+            this.Cli_Credito.DataPropertyName = "Cli_Credito";
+            this.Cli_Credito.HeaderText = "Credito";
+            this.Cli_Credito.MinimumWidth = 6;
+            this.Cli_Credito.Name = "Cli_Credito";
+            this.Cli_Credito.ReadOnly = true;
+            this.Cli_Credito.Visible = false;
+            this.Cli_Credito.Width = 125;
+            // 
+            // CLI_LC_MONEDA
+            // 
+            this.CLI_LC_MONEDA.DataPropertyName = "CLI_LC_MONEDA";
+            this.CLI_LC_MONEDA.HeaderText = "CLI_LC_MONEDA";
+            this.CLI_LC_MONEDA.MinimumWidth = 6;
+            this.CLI_LC_MONEDA.Name = "CLI_LC_MONEDA";
+            this.CLI_LC_MONEDA.ReadOnly = true;
+            this.CLI_LC_MONEDA.Visible = false;
+            this.CLI_LC_MONEDA.Width = 125;
+            // 
+            // CLI_LC_LIMITE
+            // 
+            this.CLI_LC_LIMITE.DataPropertyName = "CLI_LC_LIMITE";
+            this.CLI_LC_LIMITE.HeaderText = "CLI_LC_LIMITE";
+            this.CLI_LC_LIMITE.MinimumWidth = 6;
+            this.CLI_LC_LIMITE.Name = "CLI_LC_LIMITE";
+            this.CLI_LC_LIMITE.ReadOnly = true;
+            this.CLI_LC_LIMITE.Visible = false;
+            this.CLI_LC_LIMITE.Width = 125;
+            // 
+            // PROVINCIA
+            // 
+            this.PROVINCIA.DataPropertyName = "PROVINCIA";
+            this.PROVINCIA.HeaderText = "PROVINCIA";
+            this.PROVINCIA.MinimumWidth = 6;
+            this.PROVINCIA.Name = "PROVINCIA";
+            this.PROVINCIA.ReadOnly = true;
+            this.PROVINCIA.Visible = false;
+            this.PROVINCIA.Width = 125;
+            // 
+            // CANTON
+            // 
+            this.CANTON.DataPropertyName = "CANTON";
+            this.CANTON.HeaderText = "CANTON";
+            this.CANTON.MinimumWidth = 6;
+            this.CANTON.Name = "CANTON";
+            this.CANTON.ReadOnly = true;
+            this.CANTON.Visible = false;
+            this.CANTON.Width = 125;
+            // 
+            // DISTRITO
+            // 
+            this.DISTRITO.DataPropertyName = "DISTRITO";
+            this.DISTRITO.HeaderText = "DISTRITO";
+            this.DISTRITO.MinimumWidth = 6;
+            this.DISTRITO.Name = "DISTRITO";
+            this.DISTRITO.ReadOnly = true;
+            this.DISTRITO.Visible = false;
+            this.DISTRITO.Width = 125;
+            // 
+            // BARRIO
+            // 
+            this.BARRIO.DataPropertyName = "BARRIO";
+            this.BARRIO.HeaderText = "BARRIO";
+            this.BARRIO.MinimumWidth = 6;
+            this.BARRIO.Name = "BARRIO";
+            this.BARRIO.ReadOnly = true;
+            this.BARRIO.Visible = false;
+            this.BARRIO.Width = 125;
+            // 
             // frmClientes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(812, 652);
+            this.ClientSize = new System.Drawing.Size(816, 718);
+            this.Controls.Add(this.cboBarrio);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.cboDistrito);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.cboCanton);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.cboProvincia);
+            this.Controls.Add(this.label8);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.txtDias);
@@ -743,6 +898,14 @@ namespace PROYECTO
         private System.Windows.Forms.Button btnMSalir;
         private System.Windows.Forms.Button btnMGuardar;
         private System.Windows.Forms.Button btnMEliminar;
+        private System.Windows.Forms.ComboBox cboBarrio;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.ComboBox cboDistrito;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.ComboBox cboCanton;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.ComboBox cboProvincia;
+        private System.Windows.Forms.Label label8;
         private System.Windows.Forms.DataGridViewTextBoxColumn cli_identificacion;
         private System.Windows.Forms.DataGridViewTextBoxColumn Cli_Id;
         private System.Windows.Forms.DataGridViewTextBoxColumn CLI_DIAS;
@@ -757,5 +920,9 @@ namespace PROYECTO
         private System.Windows.Forms.DataGridViewTextBoxColumn Cli_Credito;
         private System.Windows.Forms.DataGridViewTextBoxColumn CLI_LC_MONEDA;
         private System.Windows.Forms.DataGridViewTextBoxColumn CLI_LC_LIMITE;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PROVINCIA;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CANTON;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DISTRITO;
+        private System.Windows.Forms.DataGridViewTextBoxColumn BARRIO;
     }
 }

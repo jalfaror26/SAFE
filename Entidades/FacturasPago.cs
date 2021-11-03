@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Entidades
+namespace ENTIDADES
 {
     public class FacturasPago
     {
@@ -12,9 +12,12 @@ namespace Entidades
         private Double tipocambio, monto, saldo;
         private DateTime fechaEmision, fechaVence;
 
-        public FacturasPago()
-        {
+        private String no_cia;
 
+        public String No_cia
+        {
+            get { return no_cia; }
+            set { no_cia = value; }
         }
 
         public String TipoGasto

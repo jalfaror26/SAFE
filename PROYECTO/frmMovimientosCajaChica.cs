@@ -176,7 +176,7 @@ namespace PROYECTO
             {
                 oConexion = new ConexionDAO(PROYECTO.Properties.Settings.Default.UsuarioBD, PROYECTO.Properties.Settings.Default.Clave, PROYECTO.Properties.Settings.Default.Servidor);
                 oConexion.cerrarConexion();
-                oConexion.cerrarConexion(); if (oConexion.abrirConexion())
+                if (oConexion.abrirConexion())
                 {
                     CajaChicaDAO = new CajaChicaDetalleDAO();
                     
@@ -190,7 +190,7 @@ namespace PROYECTO
                     oTabla.Columns.Add("DETCAJ_CREDITO");
                     oTabla.Columns.Add("DETCAJ_DEBITO");
                     oTabla.Columns.Add("DETCAJ_JUSTIFICACION");
-                    foreach (DataRow oFila in CajaChicaDAO.Consultar(tipomovimiento, PROYECTO.Properties.Settings.Default.Usuario).Tables[0].Rows)
+                    foreach (DataRow oFila in CajaChicaDAO.Consultar(tipomovimiento, PROYECTO.Properties.Settings.Default.Usuario, PROYECTO.Properties.Settings.Default.No_cia).Tables[0].Rows)
                     {
                         oRow = oTabla.NewRow();
                         oRow["DETCAJ_FECHAMOVIMIENTO"] = DateTime.Parse(oFila["DETCAJ_FECHAMOVIMIENTO"].ToString()).ToShortDateString();
@@ -250,6 +250,35 @@ namespace PROYECTO
             oCaja.MdiParent = this.MdiParent;
             oCaja.Show();
             this.Close();
+        }
+
+        private void btnImprimir_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                oConexion.cerrarConexion();
+                if (oConexion.abrirConexion())
+                {
+                    DataTable oTable = (DataTable)dgrDatos.DataSource;
+                    if (oTable.Rows.Count > 0)
+                    {
+                        frmVisorReportes oVisor = frmVisorReportes.getInstance();
+                        oVisor.MdiParent = this.MdiParent;
+                        rptCajasChicas oReporte = new rptCajasChicas();
+                        oReporte.DataDefinition.FormulaFields["empleado"].Text = "''";
+                        oReporte.SetDataSource(oTable);
+                        oVisor.ReportSource(oReporte);
+                        oVisor.Show();
+                    }
+                    oConexion.cerrarConexion();
+                }
+                else
+                    MessageBox.Show("Error al conectarse a la base de datos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+
+            }
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)

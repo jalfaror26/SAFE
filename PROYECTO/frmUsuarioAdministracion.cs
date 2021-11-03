@@ -49,6 +49,11 @@ namespace PROYECTO
             this.Text = this.Text + " - " + this.Name;
             try
             {
+                if (PROYECTO.Properties.Settings.Default.FormaConectar.Equals("1"))
+                    rbo1.Checked = true;
+                else
+                    rbo2.Checked = true;
+
                 oConexion.cerrarConexion();
                 if (oConexion.abrirConexion())
                 {
@@ -88,6 +93,11 @@ namespace PROYECTO
         {
             try
             {
+                if (rbo1.Checked)
+                    PROYECTO.Properties.Settings.Default.FormaConectar = "1";
+                else if (rbo2.Checked)
+                    PROYECTO.Properties.Settings.Default.FormaConectar = "2";
+
                 oConexion.cerrarConexion();
                 if (oConexion.abrirConexion())
                 {
@@ -134,11 +144,16 @@ namespace PROYECTO
                             MessageBox.Show("Ocurrió un error al guardar los datos del usuario." + ousuarioDAO.DescError(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             return;
                         }
+
                     }
 
                 }
                 else
-                    MessageBox.Show("Ocurrió un error al conectarse a la base de datos.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                {
+                    MessageBox.Show("Ocurrió un error al conectarse a la base de datos.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); 
+                    return;
+                }
+                this.Close();
             }
             catch (Exception ex)
             {

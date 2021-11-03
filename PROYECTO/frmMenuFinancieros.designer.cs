@@ -139,7 +139,7 @@ namespace PROYECTO
             this.btnCajaChica.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnCajaChica.ImageIndex = 33;
             this.btnCajaChica.ImageList = this.imageList2;
-            this.btnCajaChica.Location = new System.Drawing.Point(337, 82);
+            this.btnCajaChica.Location = new System.Drawing.Point(500, 118);
             this.btnCajaChica.Margin = new System.Windows.Forms.Padding(4);
             this.btnCajaChica.Name = "btnCajaChica";
             this.btnCajaChica.Size = new System.Drawing.Size(267, 62);
@@ -202,7 +202,7 @@ namespace PROYECTO
             this.btnPagoProveedor.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnPagoProveedor.ImageIndex = 24;
             this.btnPagoProveedor.ImageList = this.imageList2;
-            this.btnPagoProveedor.Location = new System.Drawing.Point(336, 351);
+            this.btnPagoProveedor.Location = new System.Drawing.Point(499, 207);
             this.btnPagoProveedor.Margin = new System.Windows.Forms.Padding(4);
             this.btnPagoProveedor.Name = "btnPagoProveedor";
             this.btnPagoProveedor.Size = new System.Drawing.Size(267, 62);
@@ -211,7 +211,6 @@ namespace PROYECTO
             this.btnPagoProveedor.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnPagoProveedor.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnPagoProveedor.UseVisualStyleBackColor = true;
-            this.btnPagoProveedor.Visible = false;
             this.btnPagoProveedor.Click += new System.EventHandler(this.btnPagoProveedor_Click);
             // 
             // btnTipoCambio
@@ -220,7 +219,7 @@ namespace PROYECTO
             this.btnTipoCambio.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnTipoCambio.ImageIndex = 35;
             this.btnTipoCambio.ImageList = this.imageList2;
-            this.btnTipoCambio.Location = new System.Drawing.Point(24, 82);
+            this.btnTipoCambio.Location = new System.Drawing.Point(187, 118);
             this.btnTipoCambio.Margin = new System.Windows.Forms.Padding(4);
             this.btnTipoCambio.Name = "btnTipoCambio";
             this.btnTipoCambio.Size = new System.Drawing.Size(267, 62);
@@ -237,7 +236,7 @@ namespace PROYECTO
             this.btnRecibosDinero.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnRecibosDinero.ImageIndex = 6;
             this.btnRecibosDinero.ImageList = this.imageList2;
-            this.btnRecibosDinero.Location = new System.Drawing.Point(24, 171);
+            this.btnRecibosDinero.Location = new System.Drawing.Point(188, 300);
             this.btnRecibosDinero.Margin = new System.Windows.Forms.Padding(4);
             this.btnRecibosDinero.Name = "btnRecibosDinero";
             this.btnRecibosDinero.Size = new System.Drawing.Size(267, 62);
@@ -255,7 +254,7 @@ namespace PROYECTO
             this.btnFacturaCliente.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnFacturaCliente.ImageIndex = 1;
             this.btnFacturaCliente.ImageList = this.imageList2;
-            this.btnFacturaCliente.Location = new System.Drawing.Point(336, 171);
+            this.btnFacturaCliente.Location = new System.Drawing.Point(501, 300);
             this.btnFacturaCliente.Margin = new System.Windows.Forms.Padding(4);
             this.btnFacturaCliente.Name = "btnFacturaCliente";
             this.btnFacturaCliente.Size = new System.Drawing.Size(267, 62);
@@ -274,7 +273,7 @@ namespace PROYECTO
             this.btnFacturaPagoProveedor.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnFacturaPagoProveedor.ImageIndex = 1;
             this.btnFacturaPagoProveedor.ImageList = this.imageList2;
-            this.btnFacturaPagoProveedor.Location = new System.Drawing.Point(27, 351);
+            this.btnFacturaPagoProveedor.Location = new System.Drawing.Point(187, 207);
             this.btnFacturaPagoProveedor.Margin = new System.Windows.Forms.Padding(4);
             this.btnFacturaPagoProveedor.Name = "btnFacturaPagoProveedor";
             this.btnFacturaPagoProveedor.Size = new System.Drawing.Size(267, 62);
@@ -283,7 +282,6 @@ namespace PROYECTO
             this.btnFacturaPagoProveedor.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnFacturaPagoProveedor.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnFacturaPagoProveedor.UseVisualStyleBackColor = true;
-            this.btnFacturaPagoProveedor.Visible = false;
             this.btnFacturaPagoProveedor.Click += new System.EventHandler(this.btnFacturaPagoProveedor_Click);
             // 
             // label17

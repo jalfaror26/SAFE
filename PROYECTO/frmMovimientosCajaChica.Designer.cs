@@ -32,13 +32,21 @@ namespace PROYECTO
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMovimientosCajaChica));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMovimientosCajaChica));
             this.dgrDatos = new System.Windows.Forms.DataGridView();
+            this.DETCAJ_FECHAMOVIMIENTO = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DETCAJ_DOCUMENTO = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DETCAJ_EMPLEADO = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.emp_nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DETCAJ_MOVIMIENTO = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DETCAJ_JUSTIFICACION = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DETCAJ_CREDITO = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DETCAJ_DEBITO = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.btnSalir = new System.Windows.Forms.Button();
             this.label22 = new System.Windows.Forms.Label();
@@ -61,14 +69,7 @@ namespace PROYECTO
             this.label6 = new System.Windows.Forms.Label();
             this.txtSaldo = new System.Windows.Forms.TextBox();
             this.txtMonto = new System.Windows.Forms.TextBox();
-            this.DETCAJ_FECHAMOVIMIENTO = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DETCAJ_DOCUMENTO = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DETCAJ_EMPLEADO = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.emp_nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DETCAJ_MOVIMIENTO = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DETCAJ_JUSTIFICACION = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DETCAJ_CREDITO = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DETCAJ_DEBITO = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnImprimir = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgrDatos)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -128,6 +129,95 @@ namespace PROYECTO
             this.dgrDatos.TabIndex = 419;
             this.dgrDatos.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgrDatos_CellEnter);
             // 
+            // DETCAJ_FECHAMOVIMIENTO
+            // 
+            this.DETCAJ_FECHAMOVIMIENTO.DataPropertyName = "DETCAJ_FECHAMOVIMIENTO";
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.DETCAJ_FECHAMOVIMIENTO.DefaultCellStyle = dataGridViewCellStyle2;
+            this.DETCAJ_FECHAMOVIMIENTO.HeaderText = "Fecha";
+            this.DETCAJ_FECHAMOVIMIENTO.MinimumWidth = 6;
+            this.DETCAJ_FECHAMOVIMIENTO.Name = "DETCAJ_FECHAMOVIMIENTO";
+            this.DETCAJ_FECHAMOVIMIENTO.ReadOnly = true;
+            this.DETCAJ_FECHAMOVIMIENTO.Width = 70;
+            // 
+            // DETCAJ_DOCUMENTO
+            // 
+            this.DETCAJ_DOCUMENTO.DataPropertyName = "DETCAJ_DOCUMENTO";
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.DETCAJ_DOCUMENTO.DefaultCellStyle = dataGridViewCellStyle3;
+            this.DETCAJ_DOCUMENTO.HeaderText = "Documento";
+            this.DETCAJ_DOCUMENTO.MinimumWidth = 6;
+            this.DETCAJ_DOCUMENTO.Name = "DETCAJ_DOCUMENTO";
+            this.DETCAJ_DOCUMENTO.ReadOnly = true;
+            this.DETCAJ_DOCUMENTO.Width = 95;
+            // 
+            // DETCAJ_EMPLEADO
+            // 
+            this.DETCAJ_EMPLEADO.DataPropertyName = "DETCAJ_EMPLEADO";
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.DETCAJ_EMPLEADO.DefaultCellStyle = dataGridViewCellStyle4;
+            this.DETCAJ_EMPLEADO.HeaderText = "Empleado";
+            this.DETCAJ_EMPLEADO.MinimumWidth = 6;
+            this.DETCAJ_EMPLEADO.Name = "DETCAJ_EMPLEADO";
+            this.DETCAJ_EMPLEADO.ReadOnly = true;
+            this.DETCAJ_EMPLEADO.Visible = false;
+            this.DETCAJ_EMPLEADO.Width = 75;
+            // 
+            // emp_nombre
+            // 
+            this.emp_nombre.DataPropertyName = "emp_nombre";
+            this.emp_nombre.HeaderText = "";
+            this.emp_nombre.MinimumWidth = 6;
+            this.emp_nombre.Name = "emp_nombre";
+            this.emp_nombre.ReadOnly = true;
+            this.emp_nombre.Visible = false;
+            this.emp_nombre.Width = 200;
+            // 
+            // DETCAJ_MOVIMIENTO
+            // 
+            this.DETCAJ_MOVIMIENTO.DataPropertyName = "DETCAJ_MOVIMIENTO";
+            this.DETCAJ_MOVIMIENTO.HeaderText = "Movimiento";
+            this.DETCAJ_MOVIMIENTO.MinimumWidth = 6;
+            this.DETCAJ_MOVIMIENTO.Name = "DETCAJ_MOVIMIENTO";
+            this.DETCAJ_MOVIMIENTO.ReadOnly = true;
+            this.DETCAJ_MOVIMIENTO.Width = 125;
+            // 
+            // DETCAJ_JUSTIFICACION
+            // 
+            this.DETCAJ_JUSTIFICACION.DataPropertyName = "DETCAJ_JUSTIFICACION";
+            this.DETCAJ_JUSTIFICACION.HeaderText = "Justificación";
+            this.DETCAJ_JUSTIFICACION.MinimumWidth = 6;
+            this.DETCAJ_JUSTIFICACION.Name = "DETCAJ_JUSTIFICACION";
+            this.DETCAJ_JUSTIFICACION.ReadOnly = true;
+            this.DETCAJ_JUSTIFICACION.Visible = false;
+            this.DETCAJ_JUSTIFICACION.Width = 125;
+            // 
+            // DETCAJ_CREDITO
+            // 
+            this.DETCAJ_CREDITO.DataPropertyName = "DETCAJ_CREDITO";
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle5.Format = "N2";
+            dataGridViewCellStyle5.NullValue = null;
+            this.DETCAJ_CREDITO.DefaultCellStyle = dataGridViewCellStyle5;
+            this.DETCAJ_CREDITO.HeaderText = "Credito";
+            this.DETCAJ_CREDITO.MinimumWidth = 6;
+            this.DETCAJ_CREDITO.Name = "DETCAJ_CREDITO";
+            this.DETCAJ_CREDITO.ReadOnly = true;
+            this.DETCAJ_CREDITO.Width = 80;
+            // 
+            // DETCAJ_DEBITO
+            // 
+            this.DETCAJ_DEBITO.DataPropertyName = "DETCAJ_DEBITO";
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle6.Format = "N2";
+            dataGridViewCellStyle6.NullValue = null;
+            this.DETCAJ_DEBITO.DefaultCellStyle = dataGridViewCellStyle6;
+            this.DETCAJ_DEBITO.HeaderText = "Debito";
+            this.DETCAJ_DEBITO.MinimumWidth = 6;
+            this.DETCAJ_DEBITO.Name = "DETCAJ_DEBITO";
+            this.DETCAJ_DEBITO.ReadOnly = true;
+            this.DETCAJ_DEBITO.Width = 80;
+            // 
             // imageList1
             // 
             this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
@@ -146,7 +236,7 @@ namespace PROYECTO
             this.btnSalir.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSalir.ImageIndex = 4;
             this.btnSalir.ImageList = this.imageList1;
-            this.btnSalir.Location = new System.Drawing.Point(675, 89);
+            this.btnSalir.Location = new System.Drawing.Point(675, 143);
             this.btnSalir.Margin = new System.Windows.Forms.Padding(4);
             this.btnSalir.Name = "btnSalir";
             this.btnSalir.Size = new System.Drawing.Size(136, 43);
@@ -289,16 +379,15 @@ namespace PROYECTO
             // cboTipoMovimiento
             // 
             this.cboTipoMovimiento.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboTipoMovimiento.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboTipoMovimiento.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboTipoMovimiento.FormattingEnabled = true;
             this.cboTipoMovimiento.Items.AddRange(new object[] {
             "TODOS",
-            "GASTOS",
-            "REINTEGROS",
+            "GASTO",
+            "REINTEGRO",
             "NOTAS DE DÉBITO",
             "NOTAS DE CRÉDITO",
-            "AUMENTOS DE CAJA",
-            "DEVOLUCION DE DINERO"});
+            "AUMENTO"});
             this.cboTipoMovimiento.Location = new System.Drawing.Point(19, 27);
             this.cboTipoMovimiento.Margin = new System.Windows.Forms.Padding(4);
             this.cboTipoMovimiento.Name = "cboTipoMovimiento";
@@ -318,7 +407,7 @@ namespace PROYECTO
             this.txtJustificacion.Name = "txtJustificacion";
             this.txtJustificacion.ReadOnly = true;
             this.txtJustificacion.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtJustificacion.Size = new System.Drawing.Size(819, 41);
+            this.txtJustificacion.Size = new System.Drawing.Size(632, 41);
             this.txtJustificacion.TabIndex = 518;
             // 
             // label7
@@ -407,100 +496,25 @@ namespace PROYECTO
             this.txtMonto.Size = new System.Drawing.Size(153, 23);
             this.txtMonto.TabIndex = 522;
             // 
-            // DETCAJ_FECHAMOVIMIENTO
+            // btnImprimir
             // 
-            this.DETCAJ_FECHAMOVIMIENTO.DataPropertyName = "DETCAJ_FECHAMOVIMIENTO";
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.DETCAJ_FECHAMOVIMIENTO.DefaultCellStyle = dataGridViewCellStyle2;
-            this.DETCAJ_FECHAMOVIMIENTO.HeaderText = "Fecha";
-            this.DETCAJ_FECHAMOVIMIENTO.MinimumWidth = 6;
-            this.DETCAJ_FECHAMOVIMIENTO.Name = "DETCAJ_FECHAMOVIMIENTO";
-            this.DETCAJ_FECHAMOVIMIENTO.ReadOnly = true;
-            this.DETCAJ_FECHAMOVIMIENTO.Width = 70;
-            // 
-            // DETCAJ_DOCUMENTO
-            // 
-            this.DETCAJ_DOCUMENTO.DataPropertyName = "DETCAJ_DOCUMENTO";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.DETCAJ_DOCUMENTO.DefaultCellStyle = dataGridViewCellStyle3;
-            this.DETCAJ_DOCUMENTO.HeaderText = "Documento";
-            this.DETCAJ_DOCUMENTO.MinimumWidth = 6;
-            this.DETCAJ_DOCUMENTO.Name = "DETCAJ_DOCUMENTO";
-            this.DETCAJ_DOCUMENTO.ReadOnly = true;
-            this.DETCAJ_DOCUMENTO.Width = 95;
-            // 
-            // DETCAJ_EMPLEADO
-            // 
-            this.DETCAJ_EMPLEADO.DataPropertyName = "DETCAJ_EMPLEADO";
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.DETCAJ_EMPLEADO.DefaultCellStyle = dataGridViewCellStyle4;
-            this.DETCAJ_EMPLEADO.HeaderText = "Empleado";
-            this.DETCAJ_EMPLEADO.MinimumWidth = 6;
-            this.DETCAJ_EMPLEADO.Name = "DETCAJ_EMPLEADO";
-            this.DETCAJ_EMPLEADO.ReadOnly = true;
-            this.DETCAJ_EMPLEADO.Visible = false;
-            this.DETCAJ_EMPLEADO.Width = 75;
-            // 
-            // emp_nombre
-            // 
-            this.emp_nombre.DataPropertyName = "emp_nombre";
-            this.emp_nombre.HeaderText = "";
-            this.emp_nombre.MinimumWidth = 6;
-            this.emp_nombre.Name = "emp_nombre";
-            this.emp_nombre.ReadOnly = true;
-            this.emp_nombre.Visible = false;
-            this.emp_nombre.Width = 200;
-            // 
-            // DETCAJ_MOVIMIENTO
-            // 
-            this.DETCAJ_MOVIMIENTO.DataPropertyName = "DETCAJ_MOVIMIENTO";
-            this.DETCAJ_MOVIMIENTO.HeaderText = "Movimiento";
-            this.DETCAJ_MOVIMIENTO.MinimumWidth = 6;
-            this.DETCAJ_MOVIMIENTO.Name = "DETCAJ_MOVIMIENTO";
-            this.DETCAJ_MOVIMIENTO.ReadOnly = true;
-            this.DETCAJ_MOVIMIENTO.Width = 125;
-            // 
-            // DETCAJ_JUSTIFICACION
-            // 
-            this.DETCAJ_JUSTIFICACION.DataPropertyName = "DETCAJ_JUSTIFICACION";
-            this.DETCAJ_JUSTIFICACION.HeaderText = "Justificación";
-            this.DETCAJ_JUSTIFICACION.MinimumWidth = 6;
-            this.DETCAJ_JUSTIFICACION.Name = "DETCAJ_JUSTIFICACION";
-            this.DETCAJ_JUSTIFICACION.ReadOnly = true;
-            this.DETCAJ_JUSTIFICACION.Visible = false;
-            this.DETCAJ_JUSTIFICACION.Width = 125;
-            // 
-            // DETCAJ_CREDITO
-            // 
-            this.DETCAJ_CREDITO.DataPropertyName = "DETCAJ_CREDITO";
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle5.Format = "N2";
-            dataGridViewCellStyle5.NullValue = null;
-            this.DETCAJ_CREDITO.DefaultCellStyle = dataGridViewCellStyle5;
-            this.DETCAJ_CREDITO.HeaderText = "Credito";
-            this.DETCAJ_CREDITO.MinimumWidth = 6;
-            this.DETCAJ_CREDITO.Name = "DETCAJ_CREDITO";
-            this.DETCAJ_CREDITO.ReadOnly = true;
-            this.DETCAJ_CREDITO.Width = 80;
-            // 
-            // DETCAJ_DEBITO
-            // 
-            this.DETCAJ_DEBITO.DataPropertyName = "DETCAJ_DEBITO";
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle6.Format = "N2";
-            dataGridViewCellStyle6.NullValue = null;
-            this.DETCAJ_DEBITO.DefaultCellStyle = dataGridViewCellStyle6;
-            this.DETCAJ_DEBITO.HeaderText = "Debito";
-            this.DETCAJ_DEBITO.MinimumWidth = 6;
-            this.DETCAJ_DEBITO.Name = "DETCAJ_DEBITO";
-            this.DETCAJ_DEBITO.ReadOnly = true;
-            this.DETCAJ_DEBITO.Width = 80;
+            this.btnImprimir.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnImprimir.ForeColor = System.Drawing.Color.Black;
+            this.btnImprimir.Location = new System.Drawing.Point(675, 87);
+            this.btnImprimir.Margin = new System.Windows.Forms.Padding(4);
+            this.btnImprimir.Name = "btnImprimir";
+            this.btnImprimir.Size = new System.Drawing.Size(136, 43);
+            this.btnImprimir.TabIndex = 532;
+            this.btnImprimir.Text = "Imprimir";
+            this.btnImprimir.UseVisualStyleBackColor = true;
+            this.btnImprimir.Click += new System.EventHandler(this.btnImprimir_Click);
             // 
             // frmMovimientosCajaChica
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(851, 510);
+            this.Controls.Add(this.btnImprimir);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.txtSaldo);
@@ -571,5 +585,6 @@ namespace PROYECTO
         private System.Windows.Forms.DataGridViewTextBoxColumn DETCAJ_JUSTIFICACION;
         private System.Windows.Forms.DataGridViewTextBoxColumn DETCAJ_CREDITO;
         private System.Windows.Forms.DataGridViewTextBoxColumn DETCAJ_DEBITO;
+        private System.Windows.Forms.Button btnImprimir;
     }
 }

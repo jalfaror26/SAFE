@@ -67,13 +67,13 @@ namespace PROYECTO
             {
                 if (!txtCodigo.Text.Equals("") && !txtNombre.Text.Equals(""))
                 {
-                    if (Existente())
+                    if (gasto == 0 && Existente())
                     {
                         MessageBox.Show("Error al Agregar:\nTipo de Gasto Existente", "Error de Consulta", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         //tobNuevo.PerformClick();
                         return;
                     }
-                    oConexion = new ConexionDAO(PROYECTO.Properties.Settings.Default.UsuarioBD, PROYECTO.Properties.Settings.Default.Servidor,Conexion.getInstance().Clave);
+                    oConexion = new ConexionDAO(PROYECTO.Properties.Settings.Default.UsuarioBD, PROYECTO.Properties.Settings.Default.Servidor, Conexion.getInstance().Clave);
                     oConexion.cerrarConexion();
                     if (oConexion.abrirConexion())
                     {
@@ -110,7 +110,7 @@ namespace PROYECTO
             try
             {
 
-                oConexion = new ConexionDAO(PROYECTO.Properties.Settings.Default.UsuarioBD, PROYECTO.Properties.Settings.Default.Servidor,Conexion.getInstance().Clave);
+                oConexion = new ConexionDAO(PROYECTO.Properties.Settings.Default.UsuarioBD, PROYECTO.Properties.Settings.Default.Servidor, Conexion.getInstance().Clave);
                 oConexion.cerrarConexion();
                 oConexion.cerrarConexion(); if (oConexion.abrirConexion())
                 {
@@ -137,9 +137,9 @@ namespace PROYECTO
             try
             {
 
-                oConexion = new ConexionDAO(PROYECTO.Properties.Settings.Default.UsuarioBD, PROYECTO.Properties.Settings.Default.Servidor,Conexion.getInstance().Clave);
+                oConexion = new ConexionDAO(PROYECTO.Properties.Settings.Default.UsuarioBD, PROYECTO.Properties.Settings.Default.Servidor, Conexion.getInstance().Clave);
                 oConexion.cerrarConexion();
-                oConexion.cerrarConexion(); if (oConexion.abrirConexion())
+                if (oConexion.abrirConexion())
                 {
                     dgrDatos.DataSource = oGastosDAO.Listar(tipo, palabra, PROYECTO.Properties.Settings.Default.No_cia).Tables[0];
 
@@ -218,7 +218,7 @@ namespace PROYECTO
 
                 nuevo = false;
 
-                txtNombre.Focus();
+               // txtNombre.Focus();
 
             }
             catch (Exception ex) { }
@@ -244,7 +244,7 @@ namespace PROYECTO
                     if (gasto != 0)
                     {
 
-                        oConexion = new ConexionDAO(PROYECTO.Properties.Settings.Default.UsuarioBD, PROYECTO.Properties.Settings.Default.Servidor,Conexion.getInstance().Clave);
+                        oConexion = new ConexionDAO(PROYECTO.Properties.Settings.Default.UsuarioBD, PROYECTO.Properties.Settings.Default.Servidor, Conexion.getInstance().Clave);
                         oConexion.cerrarConexion();
                         if (oConexion.abrirConexion())
                         {
@@ -285,11 +285,17 @@ namespace PROYECTO
             Boolean existe = false;
             foreach (DataGridViewRow oFila in dgrDatos.Rows)
             {
-                if (oFila.Cells["codig"].Value.ToString().Equals(txtCodigo.Text))
+                if (oFila.Cells["gas_codigo"].Value.ToString().Equals(txtCodigo.Text))
                     existe = true;
             }
             return existe;
         }
+
+        private void dgrDatos_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            dgrDatos.ClearSelection();
+        }
+
         private void frmForma_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.F1)

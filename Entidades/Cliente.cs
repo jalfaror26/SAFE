@@ -26,7 +26,7 @@ namespace ENTIDADES
         private String lc_moneda;
 
         private String no_cia;
-
+        private String provincia, canton, distrito, barrio;
         public String No_cia
         {
             get { return no_cia; }
@@ -134,6 +134,11 @@ namespace ENTIDADES
             get { return descAlmacen; }
             set { descAlmacen = value; }
         }
+
+        public string Provincia { get => provincia; set => provincia = value; }
+        public string Canton { get => canton; set => canton = value; }
+        public string Distrito { get => distrito; set => distrito = value; }
+        public string Barrio { get => barrio; set => barrio = value; }
 
         #endregion
     }

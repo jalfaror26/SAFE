@@ -2,16 +2,22 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Entidades
+namespace ENTIDADES
 {
     public class PagosProveedores
-     {    
-
-        private int flujo;   
+    {
+        private int flujo;
         private double monto;
         private string proveedor, tipoPago, detallePago;
-        private Int64 documento;
-        
+        private Double documento;
+        private String no_cia;
+
+        public String No_cia
+        {
+            get { return no_cia; }
+            set { no_cia = value; }
+        }
+
         public string Proveedor
         {
             get { return proveedor; }
@@ -23,8 +29,8 @@ namespace Entidades
             get { return tipoPago; }
             set { tipoPago = value; }
         }
-        
-        public Int64 Documento
+
+        public Double Documento
         {
             get { return documento; }
             set { documento = value; }
@@ -35,18 +41,18 @@ namespace Entidades
             get { return detallePago; }
             set { detallePago = value; }
         }
-       
 
-       public int Flujo
-       {
-           get { return flujo; }
-           set { flujo = value; }
-       }
-           
-           public double Monto
-           {
-               get { return monto; }
-               set { monto = value; }
-           }
+
+        public int Flujo
+        {
+            get { return flujo; }
+            set { flujo = value; }
+        }
+
+        public double Monto
+        {
+            get { return monto; }
+            set { monto = value; }
+        }
     }
 }

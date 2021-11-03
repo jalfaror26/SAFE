@@ -38,17 +38,20 @@ namespace PROYECTO
             this.button1 = new System.Windows.Forms.Button();
             this.imageList2 = new System.Windows.Forms.ImageList(this.components);
             this.btnCambiarContraseña = new System.Windows.Forms.Button();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.rbo2 = new System.Windows.Forms.RadioButton();
+            this.rbo1 = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.imgFoto)).BeginInit();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // imgFoto
             // 
             this.imgFoto.BackColor = System.Drawing.Color.White;
             this.imgFoto.ErrorImage = ((System.Drawing.Image)(resources.GetObject("imgFoto.ErrorImage")));
-            this.imgFoto.Image = ((System.Drawing.Image)(resources.GetObject("imgFoto.Image")));
             this.imgFoto.InitialImage = ((System.Drawing.Image)(resources.GetObject("imgFoto.InitialImage")));
             this.imgFoto.Location = new System.Drawing.Point(61, 81);
-            this.imgFoto.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.imgFoto.Margin = new System.Windows.Forms.Padding(4);
             this.imgFoto.Name = "imgFoto";
             this.imgFoto.Size = new System.Drawing.Size(200, 192);
             this.imgFoto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -75,8 +78,8 @@ namespace PROYECTO
             this.btnGuardar.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnGuardar.ImageIndex = 2;
             this.btnGuardar.ImageList = this.imageList1;
-            this.btnGuardar.Location = new System.Drawing.Point(339, 94);
-            this.btnGuardar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnGuardar.Location = new System.Drawing.Point(339, 75);
+            this.btnGuardar.Margin = new System.Windows.Forms.Padding(4);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(224, 44);
             this.btnGuardar.TabIndex = 447;
@@ -108,8 +111,8 @@ namespace PROYECTO
             this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.button1.ImageIndex = 6;
             this.button1.ImageList = this.imageList1;
-            this.button1.Location = new System.Drawing.Point(339, 218);
-            this.button1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button1.Location = new System.Drawing.Point(339, 179);
+            this.button1.Margin = new System.Windows.Forms.Padding(4);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(224, 44);
             this.button1.TabIndex = 610;
@@ -134,8 +137,8 @@ namespace PROYECTO
             this.btnCambiarContraseña.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnCambiarContraseña.ImageIndex = 2;
             this.btnCambiarContraseña.ImageList = this.imageList2;
-            this.btnCambiarContraseña.Location = new System.Drawing.Point(339, 146);
-            this.btnCambiarContraseña.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnCambiarContraseña.Location = new System.Drawing.Point(339, 127);
+            this.btnCambiarContraseña.Margin = new System.Windows.Forms.Padding(4);
             this.btnCambiarContraseña.Name = "btnCambiarContraseña";
             this.btnCambiarContraseña.Size = new System.Drawing.Size(224, 44);
             this.btnCambiarContraseña.TabIndex = 611;
@@ -144,11 +147,50 @@ namespace PROYECTO
             this.btnCambiarContraseña.UseVisualStyleBackColor = true;
             this.btnCambiarContraseña.Click += new System.EventHandler(this.btnCambiarContraseña_Click);
             // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.rbo2);
+            this.groupBox2.Controls.Add(this.rbo1);
+            this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox2.Location = new System.Drawing.Point(292, 240);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(4);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(4);
+            this.groupBox2.Size = new System.Drawing.Size(313, 67);
+            this.groupBox2.TabIndex = 616;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Pantalla de Conexión";
+            // 
+            // rbo2
+            // 
+            this.rbo2.AutoSize = true;
+            this.rbo2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbo2.Location = new System.Drawing.Point(141, 32);
+            this.rbo2.Margin = new System.Windows.Forms.Padding(4);
+            this.rbo2.Name = "rbo2";
+            this.rbo2.Size = new System.Drawing.Size(151, 21);
+            this.rbo2.TabIndex = 456;
+            this.rbo2.Text = "Todos los Usuarios";
+            this.rbo2.UseVisualStyleBackColor = true;
+            // 
+            // rbo1
+            // 
+            this.rbo1.AutoSize = true;
+            this.rbo1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbo1.Location = new System.Drawing.Point(32, 32);
+            this.rbo1.Margin = new System.Windows.Forms.Padding(4);
+            this.rbo1.Name = "rbo1";
+            this.rbo1.Size = new System.Drawing.Size(74, 21);
+            this.rbo1.TabIndex = 455;
+            this.rbo1.Text = "Normal";
+            this.rbo1.UseVisualStyleBackColor = true;
+            // 
             // frmUsuarioAdministracion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(641, 322);
+            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.btnCambiarContraseña);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.imgFoto);
@@ -157,7 +199,7 @@ namespace PROYECTO
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmUsuarioAdministracion";
@@ -166,6 +208,8 @@ namespace PROYECTO
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmPermisos2_FormClosing);
             this.Load += new System.EventHandler(this.frmPermisos2_Load);
             ((System.ComponentModel.ISupportInitialize)(this.imgFoto)).EndInit();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -180,5 +224,8 @@ namespace PROYECTO
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.ImageList imageList2;
         private System.Windows.Forms.Button btnCambiarContraseña;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.RadioButton rbo2;
+        private System.Windows.Forms.RadioButton rbo1;
     }
 }

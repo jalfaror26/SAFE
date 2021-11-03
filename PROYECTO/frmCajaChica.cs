@@ -123,7 +123,6 @@ namespace PROYECTO
             {
                 double valor = 0;
                 double dolar = 0;
-                double euro = 0;
                 double monto = Convert.ToDouble(txtMonto.Text.Substring(1));
                 oConexion = new ConexionDAO(PROYECTO.Properties.Settings.Default.UsuarioBD, PROYECTO.Properties.Settings.Default.Clave, PROYECTO.Properties.Settings.Default.Servidor);
                 oConexion.cerrarConexion();
@@ -132,7 +131,6 @@ namespace PROYECTO
                 oTabla = oChicaDAO.TipoCambio();
                 oConexion.cerrarConexion();
                 dolar = Convert.ToDouble(oTabla.Rows[0].ItemArray[0].ToString());
-                euro = Convert.ToDouble(oTabla.Rows[0].ItemArray[1].ToString());
             }
             catch (Exception ex)
             {
@@ -398,6 +396,11 @@ namespace PROYECTO
             txtMonto.Text = moned + " " + ConvertirMontos(txtMonto.Text.Substring(1));
             txtSaldo.Text = txtMonto.Text;
             txtSaldoAnterior.Text = moned + " " + ConvertirMontos(txtSaldoAnterior.Text.Substring(1));
+        }
+
+        private void btnImprimir_Click(object sender, EventArgs e)
+        {
+
         }
 
         private void LlenarTipoCambio()

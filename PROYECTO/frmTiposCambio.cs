@@ -131,8 +131,6 @@ namespace PROYECTO
 
                 oConexion.cerrarConexion();
 
-                this.Close();
-
                 ((System.Windows.Forms.MenuStrip)this.MdiParent.Controls["mnuPrincipal"]).Enabled = true;
 
 
@@ -143,14 +141,14 @@ namespace PROYECTO
                         oConexion.cerrarConexion();
                         if (oConexion.abrirConexion())
                         {
-                            ((System.Windows.Forms.StatusStrip)this.MdiParent.Controls["stEstado"]).Items["stTC"].Text = "   Dolar: ¢ " + double.Parse(oTipoCambioDAO.TipoCambio(PROYECTO.Properties.Settings.Default.No_cia).Tables[0].Rows[0].ItemArray[0].ToString()).ToString("###,###,##0.##");// +" -- Euro: ¢ " + double.Parse(oTipoDAO.TipoCambio().Tables[0].Rows[0].ItemArray[1].ToString()).ToString("###,###,##0.##") + " ";
+                            ((System.Windows.Forms.StatusStrip)this.MdiParent.Controls["stEstado"]).Items["stTC"].Text = "   Dolar: ¢ " + double.Parse(oTipoCambioDAO.TipoCambio(PROYECTO.Properties.Settings.Default.No_cia).Tables[0].Rows[0].ItemArray[0].ToString()).ToString("###,###,##0.##");
                             oConexion.cerrarConexion();
                         }
                     }
                 }
                 catch { }
 
-                
+
             }
             else
                 MessageBox.Show("Ha ocurrido un error al conectarse a la base de datos.", "Error de oConexion", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -185,7 +183,7 @@ namespace PROYECTO
 
                 oConexion.cerrarConexion();
 
-              
+
 
                 ((System.Windows.Forms.MenuStrip)this.MdiParent.Controls["mnuPrincipal"]).Enabled = true;
 
@@ -194,7 +192,7 @@ namespace PROYECTO
                     oConexion.cerrarConexion();
                     if (oConexion.abrirConexion())
                     {
-                        ((System.Windows.Forms.StatusStrip)this.MdiParent.Controls["stEstado"]).Items["stTC"].Text = "   Dolar: ¢ " + double.Parse(oTipoCambioDAO.TipoCambio(PROYECTO.Properties.Settings.Default.No_cia).Tables[0].Rows[0].ItemArray[0].ToString()).ToString("###,###,##0.##");// +" -- Euro: ¢ " + double.Parse(oTipoDAO.TipoCambio().Tables[0].Rows[0].ItemArray[1].ToString()).ToString("###,###,##0.##") + " ";
+                        ((System.Windows.Forms.StatusStrip)this.MdiParent.Controls["stEstado"]).Items["stTC"].Text = "   Dolar: ¢ " + double.Parse(oTipoCambioDAO.TipoCambio(PROYECTO.Properties.Settings.Default.No_cia).Tables[0].Rows[0].ItemArray[0].ToString()).ToString("###,###,##0.##");
                         oConexion.cerrarConexion();
                     }
                 }

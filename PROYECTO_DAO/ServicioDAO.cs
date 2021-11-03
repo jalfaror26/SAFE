@@ -41,6 +41,8 @@ namespace PROYECTO_DAO
             oCommand.Parameters[7].Value = oServicio.Venta_IVI;
             oCommand.Parameters.Add("pNo_cia", OracleType.NVarChar);
             oCommand.Parameters[8].Value = oServicio.No_cia;
+            oCommand.Parameters.Add("pCod_cabys", OracleType.NVarChar);
+            oCommand.Parameters[9].Value = oServicio.Cod_cabys;
 
             oCommand.Parameters.Add(oParametro);
 
@@ -76,7 +78,7 @@ namespace PROYECTO_DAO
 
         public DataSet ConsultarTodo(String pNo_cia)
         {
-            String sql = "SELECT ART_INDICE, ART_TIPO, ART_CODIGO, ART_DESC_BREVE, ART_IMPUESTOS, ART_VENTA_IVI, ART_ESTADO, ART_TIPO_CODIGO FROM tbl_servicios ar WHERE ar.no_cia = '" + pNo_cia + "' and ART_ESTADO = 1 AND ART_TIPO = 'SER' ORDER BY ART_DESC_BREVE,ART_TIPO, ART_INDICE";
+            String sql = "SELECT ART_INDICE, ART_TIPO, ART_CODIGO, ART_DESC_BREVE, ART_IMPUESTOS, ART_VENTA_IVI, ART_ESTADO, ART_TIPO_CODIGO, Cod_cabys FROM tbl_servicios ar WHERE ar.no_cia = '" + pNo_cia + "' and ART_ESTADO = 1 AND ART_TIPO = 'SER' ORDER BY ART_DESC_BREVE,ART_TIPO, ART_INDICE";
 
 
             DataSet oDataSet = OracleDAO.getInstance().EjecutarSQLDataSet(sql);
@@ -85,7 +87,7 @@ namespace PROYECTO_DAO
 
         public DataTable ConsultarEspecificoIndice2(String codIndice, String pNo_cia)
         {
-            String sql = "SELECT ART_INDICE, ART_TIPO, ART_INDICE, ART_DESC_BREVE, ART_IMPUESTOS, ART_ESTADO, ART_TIPO_CODIGO, ART_CODIGO, ART_VENTA_IVI FROM tbl_servicios ar WHERE ar.no_cia = '" + pNo_cia + "' and ART_ESTADO = 1 AND ART_INDICE = '" + codIndice + "' order by ART_DESC_BREVE";
+            String sql = "SELECT ART_INDICE, ART_TIPO, ART_INDICE, ART_DESC_BREVE, ART_IMPUESTOS, ART_ESTADO, ART_TIPO_CODIGO, ART_CODIGO, ART_VENTA_IVI, Cod_cabys FROM tbl_servicios ar WHERE ar.no_cia = '" + pNo_cia + "' and ART_ESTADO = 1 AND ART_INDICE = '" + codIndice + "' order by ART_DESC_BREVE";
             DataTable oDataTable = OracleDAO.getInstance().EjecutarSQLDataTable(sql);
             return oDataTable;
         }
@@ -99,7 +101,7 @@ namespace PROYECTO_DAO
 
         public DataSet Listar(int tipo, String palabra, String pNo_cia)
         {
-            string sql = "SELECT ART_INDICE, ART_TIPO, ART_CODIGO, ART_DESC_BREVE, ART_IMPUESTOS, ART_VENTA_IVI, ART_ESTADO, ART_TIPO_CODIGO FROM tbl_servicios ar WHERE ar.no_cia = '" + pNo_cia + "' and ART_ESTADO = 1 AND ART_TIPO = 'SER' ";
+            string sql = "SELECT ART_INDICE, ART_TIPO, ART_CODIGO, ART_DESC_BREVE, ART_IMPUESTOS, ART_VENTA_IVI, ART_ESTADO, ART_TIPO_CODIGO, Cod_cabys FROM tbl_servicios ar WHERE ar.no_cia = '" + pNo_cia + "' and ART_ESTADO = 1 AND ART_TIPO = 'SER' ";
 
 
             if (palabra.Length > 0)
@@ -120,7 +122,7 @@ namespace PROYECTO_DAO
         {
             String sql = "";
 
-            sql = "SELECT DISTINCT ART_INDICE INV_COD_ARTICULO, ART_CODIGO, ART_DESC_BREVE ART_NOMBRE, art_venta_ivi INV_IVI, art_impuestos INV_IMPUESTO_VENTAS FROM tbl_servicios ar WHERE ar.no_cia = '" + pNo_cia + "' and  ART_TIPO = 'SER' AND ART_ESTADO = 1 ORDER BY art_desc_breve";
+            sql = "SELECT DISTINCT ART_INDICE INV_COD_ARTICULO, ART_CODIGO, ART_DESC_BREVE ART_NOMBRE, art_venta_ivi INV_IVI, art_impuestos INV_IMPUESTO_VENTAS, Cod_cabys FROM tbl_servicios ar WHERE ar.no_cia = '" + pNo_cia + "' and  ART_TIPO = 'SER' AND ART_ESTADO = 1 ORDER BY art_desc_breve";
 
             DataSet oDataSet = OracleDAO.getInstance().EjecutarSQLDataSet(sql);
             return oDataSet;
@@ -130,7 +132,7 @@ namespace PROYECTO_DAO
         {
             String sql = "";
 
-            sql = "SELECT DISTINCT ART_INDICE INV_COD_ARTICULO, ART_CODIGO, ART_DESC_BREVE ART_NOMBRE, art_venta_ivi INV_IVI, art_impuestos INV_IMPUESTO_VENTAS FROM tbl_servicios ar WHERE ar.no_cia = '" + pNo_cia + "' and  ART_TIPO = 'SER' AND ART_ESTADO = 1 ";
+            sql = "SELECT DISTINCT ART_INDICE INV_COD_ARTICULO, ART_CODIGO, ART_DESC_BREVE ART_NOMBRE, art_venta_ivi INV_IVI, art_impuestos INV_IMPUESTO_VENTAS, Cod_cabys FROM tbl_servicios ar WHERE ar.no_cia = '" + pNo_cia + "' and  ART_TIPO = 'SER' AND ART_ESTADO = 1 ";
 
             if (!codigo.Equals(""))
                 sql += " AND regexp_like(ART_INDICE,'" + codigo + "','i')";
@@ -147,7 +149,7 @@ namespace PROYECTO_DAO
         {
             String sql = "";
 
-            sql = "SELECT DISTINCT ART_INDICE INV_COD_ARTICULO, ART_CODIGO, ART_DESC_BREVE ART_NOMBRE, art_venta_ivi INV_IVI, art_impuestos INV_IMPUESTO_VENTAS FROM tbl_servicios ar WHERE ar.no_cia = '" + pNo_cia + "' and  ART_TIPO = 'SER' AND ART_ESTADO = 1 ";
+            sql = "SELECT DISTINCT ART_INDICE INV_COD_ARTICULO, ART_CODIGO, ART_DESC_BREVE ART_NOMBRE, art_venta_ivi INV_IVI, art_impuestos INV_IMPUESTO_VENTAS, Cod_cabys FROM tbl_servicios ar WHERE ar.no_cia = '" + pNo_cia + "' and  ART_TIPO = 'SER' AND ART_ESTADO = 1 ";
 
             if (!codigo.Equals(""))
                 sql += " AND ART_CODIGO = '" + codigo + "'";
@@ -162,7 +164,7 @@ namespace PROYECTO_DAO
         {
             String sql = "";
 
-            sql = "SELECT case when ARPRE_EMBALAJE='talla' then ARPRE_CANTIDAD||' '||ARPRE_EMBALAJE else ARPRE_EMBALAJE end ARPRE_EMBALAJE,ARPRE_INDICE,ART_INDICE, ART_CODIGO, ART_PROVEEDOR,'' ARTALM_ALMACEN, ART_DESC_BREVE ART_NOMBRE, '' ALM_DESCRIPCION, 0 inv_total , cat_descripcion";
+            sql = "SELECT case when ARPRE_EMBALAJE='talla' then ARPRE_CANTIDAD||' '||ARPRE_EMBALAJE else ARPRE_EMBALAJE end ARPRE_EMBALAJE,ARPRE_INDICE,ART_INDICE, ART_CODIGO, ART_PROVEEDOR,'' ARTALM_ALMACEN, ART_DESC_BREVE ART_NOMBRE, '' ALM_DESCRIPCION, 0 inv_total , cat_descripcion, Cod_cabys";
 
             sql += " FROM tbl_servicios ar, TBL_ARTICULO_PRESENTACION ap, TBL_CATEGORIA c WHERE ar.no_cia = '" + pNo_cia + "' and ar.no_cia = ap.no_cia and ar.no_cia = c.no_cia and ART_TIPO = 'ART' AND ART_ESTADO = 1 AND ARPRE_ARTICULO = ART_INDICE and art_categoria = cat_indice";
 

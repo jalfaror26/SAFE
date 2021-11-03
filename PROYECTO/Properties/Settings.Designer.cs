@@ -147,5 +147,17 @@ namespace PROYECTO.Properties {
                 this["UsuarioBD"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        public string FormaConectar {
+            get {
+                return ((string)(this["FormaConectar"]));
+            }
+            set {
+                this["FormaConectar"] = value;
+            }
+        }
     }
 }

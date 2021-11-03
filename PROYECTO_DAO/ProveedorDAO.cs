@@ -107,7 +107,7 @@ namespace PROYECTO_DAO
 
         public DataSet Consultar(String pNo_cia)
         {
-            String sql = "SELECT PROV_LINEA, PROV_ID, PROV_TIPO_ID, PROV_NOMBRE, PROV_TELEFONO, PROV_FAX, PROV_CONTACTO, PROV_TEL_CONTACTO, PROV_UBICACION, PROV_DESCRIPCION, PROV_DIAS, PROV_CATEGORIA, prov_refBancaria FROM TBL_PROVEEDOR p where p.no_cia = '" + pNo_cia + "' and  PROV_ESTADO = 1";
+            String sql = "SELECT PROV_LINEA, PROV_ID, PROV_TIPO_ID, PROV_NOMBRE, PROV_TELEFONO, PROV_FAX, PROV_CONTACTO, PROV_TEL_CONTACTO, PROV_UBICACION, PROV_DESCRIPCION, PROV_DIAS, PROV_CATEGORIA, prov_refBancaria FROM TBL_PROVEEDOR p where p.no_cia = '" + pNo_cia + "' and  PROV_ESTADO = 1 and prov_linea > 0";
             DataSet oDataSet = OracleDAO.getInstance().EjecutarSQLDataSet(sql);
             return oDataSet;
         }
@@ -121,7 +121,7 @@ namespace PROYECTO_DAO
 
         public DataSet Busqueda_Consulta(String pNo_cia)
         {
-            String sql = "SELECT PROV_LINEA as cod, PROV_NOMBRE as descripcion FROM TBL_PROVEEDOR p where p.no_cia = '" + pNo_cia + "' and  PROV_ESTADO = 1 ORDER BY PROV_NOMBRE";
+            String sql = "SELECT PROV_LINEA as cod, PROV_NOMBRE as descripcion FROM TBL_PROVEEDOR p where p.no_cia = '" + pNo_cia + "' and  PROV_ESTADO = 1 and prov_linea > 0 ORDER BY PROV_NOMBRE";
             DataSet oDataSet = OracleDAO.getInstance().EjecutarSQLDataSet(sql);
             return oDataSet;
         }
@@ -135,7 +135,7 @@ namespace PROYECTO_DAO
 
         public DataSet Listar(int tipo, String palabra, String pNo_cia)
         {
-            String sql = "SELECT PROV_LINEA, PROV_ID, PROV_TIPO_ID, PROV_NOMBRE, PROV_TELEFONO, PROV_FAX, PROV_CONTACTO, PROV_TEL_CONTACTO, PROV_UBICACION, PROV_DESCRIPCION, PROV_DIAS, PROV_CATEGORIA, prov_refBancaria FROM TBL_PROVEEDOR p where p.no_cia = '" + pNo_cia + "' and  PROV_ESTADO=1 and ";
+            String sql = "SELECT PROV_LINEA, PROV_ID, PROV_TIPO_ID, PROV_NOMBRE, PROV_TELEFONO, PROV_FAX, PROV_CONTACTO, PROV_TEL_CONTACTO, PROV_UBICACION, PROV_DESCRIPCION, PROV_DIAS, PROV_CATEGORIA, prov_refBancaria FROM TBL_PROVEEDOR p where p.no_cia = '" + pNo_cia + "' and  PROV_ESTADO=1 and prov_linea > 0 and ";
             if (tipo == 1)
                 sql += " regexp_like(PROV_LINEA,'" + palabra + "','i')";
             if (tipo == 2)
@@ -146,7 +146,7 @@ namespace PROYECTO_DAO
 
         public DataSet Listar_Filtrado(int tipo, String palabra, String pNo_cia)
         {
-            String sql = "SELECT PROV_LINEA as cod, PROV_NOMBRE as descripcion FROM TBL_PROVEEDOR p where p.no_cia = '" + pNo_cia + "' and  PROV_ESTADO = 1 and ";
+            String sql = "SELECT PROV_LINEA as cod, PROV_NOMBRE as descripcion FROM TBL_PROVEEDOR p where p.no_cia = '" + pNo_cia + "' and  PROV_ESTADO = 1 and prov_linea > 0 and ";
             if (tipo == 1)
                 sql += " regexp_like(PROV_LINEA,'" + palabra + "','i')";
             if (tipo == 2)

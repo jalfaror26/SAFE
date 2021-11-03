@@ -2,20 +2,24 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Entidades
+namespace ENTIDADES
 {
     public class GuiaPrepagoProveedor
     {
-        private Int64 id;
+        private Double id;
         private string proveedor, moneda, estado, usuario;
         private double monto;
         private DateTime fecha;
 
-        public GuiaPrepagoProveedor()
+        private String no_cia;
+
+        public String No_cia
         {
+            get { return no_cia; }
+            set { no_cia = value; }
         }
-        
-        public Int64 Id
+
+        public Double Id
         {
             get { return id; }
             set { id = value; }

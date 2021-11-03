@@ -394,10 +394,10 @@ namespace PROYECTO
             //else if (palabra.Equals("puestoReporteFacturacionPeriodo"))
             //    frmrptFacturacionPorPeriodo.getInstance().cargaCliente(cod, des);
    
-            //else if (palabra.Equals("ProveedorPagos"))
-            //    frmFacturaPorPagarProveedor.getInstance().LlenarProveedor(cod, des);
-            //else if (palabra.Equals("ProveedorPrepago"))
-            //    frmPrepagoProveedor.getInstance().LlenarProveedor(cod, des);
+            else if (palabra.Equals("ProveedorPagos"))
+                frmFacturaPorPagarProveedor.getInstance().LlenarProveedor(cod, des);
+            else if (palabra.Equals("ProveedorPrepago"))
+                frmPrepagoProveedor.getInstance().LlenarProveedor(cod, des);
             //else if (palabra.Equals("Cliente"))
             //{
             //    frmFacturasPendientesCuentas oFactura = frmFacturasPendientesCuentas.getInstance();
@@ -422,16 +422,12 @@ namespace PROYECTO
             //    oRecibo2.llenaDatosCliente(cod, des);
             //    oRecibo2.llenaGrid();
 
-            //    frmApartadosAbonoSencillo oAbono = frmApartadosAbonoSencillo.getInstance();
-            //    oAbono.llenaDatosCliente(cod, des);
-            //    oAbono.llenaGridFacturas("");
             //}
-            //else if (palabra.Equals("Gastos"))
-            //    frmFacturaPorPagarProveedor.getInstance().LlenarGasto(cod, des);
-            //else if (palabra.Equals("GastosRapidos"))
-            //    frmFacturaPorPagarProveedorRapida.getInstance().LlenarGasto(cod, des);
-            //else if (palabra.Equals("BancoPagos"))
-            //    frmPagosProveedores.getInstance().LlenarBancoPagos(cod, des);
+            else if (palabra.Equals("Gastos"))
+                frmFacturaPorPagarProveedor.getInstance().LlenarGasto(cod, des);
+            else if (palabra.Equals("GastosRapidos"))
+                frmFacturaPorPagarProveedorRapida.getInstance().LlenarGasto(cod, des);
+            
             //else if (palabra.Equals("ClienteReporteRecibos"))
             //    frmrptRecibosPorCliente.getInstance().cargaCliente(cod, des);
             //else if (palabra.Equals("ClienteReporteFacturacionPeriodo"))

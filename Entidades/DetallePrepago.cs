@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Entidades
+namespace ENTIDADES
 {
     public class DetallePrepago
     {
@@ -10,9 +10,13 @@ namespace Entidades
         private String numFactura, codProveedor;
         private Double monto, saldo, abono;
 
-            public DetallePrepago()
-        {
 
+        private String no_cia;
+
+        public String No_cia
+        {
+            get { return no_cia; }
+            set { no_cia = value; }
         }
 
         public Double Saldo

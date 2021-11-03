@@ -165,40 +165,40 @@ namespace PROYECTO
 
         private void btnFacturaPagoProveedor_Click(object sender, EventArgs e)
         {
-            //frmFacturaPorPagarProveedor oFactura = frmFacturaPorPagarProveedor.getInstance();
-            //codigo = oFactura.Codigo;
-            //descripcion = oFactura.Descripcion;
-            //modulo = oFactura.Modulo;
-            //if (!TienePermiso())
-            //{
-            //    oFactura.MdiParent = this.MdiParent;
-            //    oFactura.Show();
-            //}
-            //else
-            //{
-            //    MessageBox.Show("No tiene permiso para accesar esta pantalla, comuníquese con el administrador", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            //    oFactura = null;
-            //}
-            //this.Close();
+            frmFacturaPorPagarProveedor oFactura = frmFacturaPorPagarProveedor.getInstance();
+            codigo = oFactura.Codigo;
+            descripcion = oFactura.Descripcion;
+            modulo = oFactura.Modulo;
+            if (!TienePermiso())
+            {
+                oFactura.MdiParent = this.MdiParent;
+                oFactura.Show();
+            }
+            else
+            {
+                MessageBox.Show("No tiene permiso para accesar esta pantalla, comuníquese con el administrador", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                oFactura = null;
+            }
+            this.Close();
         }
 
         private void btnPagoProveedor_Click(object sender, EventArgs e)
         {
-            //frmPrepagoProveedor oPrepago = frmPrepagoProveedor.getInstance();
-            //codigo = oPrepago.Codigo1;
-            //descripcion = oPrepago.Descripcion;
-            //modulo = oPrepago.Modulo;
-            //if (!TienePermiso())
-            //{
-            //    oPrepago.MdiParent = this.MdiParent;
-            //    oPrepago.Show();
-            //}
-            //else
-            //{
-            //    MessageBox.Show("No tiene permiso para accesar esta pantalla, comuníquese con el administrador", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            //    oPrepago = null;
-            //}
-            //this.Close();
+            frmPrepagoProveedor oPrepago = frmPrepagoProveedor.getInstance();
+            codigo = oPrepago.Codigo1;
+            descripcion = oPrepago.Descripcion;
+            modulo = oPrepago.Modulo;
+            if (!TienePermiso())
+            {
+                oPrepago.MdiParent = this.MdiParent;
+                oPrepago.Show();
+            }
+            else
+            {
+                MessageBox.Show("No tiene permiso para accesar esta pantalla, comuníquese con el administrador", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                oPrepago = null;
+            }
+            this.Close();
         }
 
     }

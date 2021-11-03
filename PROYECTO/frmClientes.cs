@@ -24,6 +24,7 @@ namespace PROYECTO
         private Int32 indice;
         private String codigo = "par_clientes", descripcion = "Registro de clientes del sistema.", modulo = "Mantenimientos";
         private string txtCodigo = "";
+        private Hacienda_DireccionDAO oHacienda_DireccionDAO = new Hacienda_DireccionDAO();
 
         public String Modulo
         {
@@ -55,6 +56,7 @@ namespace PROYECTO
             this.Text = this.Text + " - " + this.Name;
             ((System.Windows.Forms.StatusStrip)this.MdiParent.Controls["stEstado"]).Items["stLinea4"].Visible = true;
             ((System.Windows.Forms.StatusStrip)this.MdiParent.Controls["stEstado"]).Items["stActual"].Text = " Actual: Mantenimiento de Clientes ";
+            LlenaProvincias();
             Llenar_Grid();
             LlenarCombos();
             btnMNuevo.PerformClick();
@@ -88,6 +90,7 @@ namespace PROYECTO
             dgrDatos.ClearSelection();
             cboLCMoneda.SelectedIndex = 0;
             txtLCLimite.Text = "0";
+            cboProvincia.SelectedIndex = 0;
             /*************************************/
             txtBId.Text = "";
             txtBNombre.Text = "";
@@ -161,6 +164,13 @@ namespace PROYECTO
 
                 cboLCMoneda.SelectedItem = dgrDatos["CLI_LC_MONEDA", e.RowIndex].Value.ToString();
                 txtLCLimite.Text = double.Parse(dgrDatos["CLI_LC_LIMITE", e.RowIndex].Value.ToString()).ToString("###,###,##0.##");
+
+                //LlenaProvincias();
+
+                cboProvincia.SelectedValue = dgrDatos["PROVINCIA", e.RowIndex].Value.ToString();
+                cboCanton.SelectedValue = dgrDatos["CANTON", e.RowIndex].Value.ToString();
+                cboDistrito.SelectedValue = dgrDatos["DISTRITO", e.RowIndex].Value.ToString();
+                cboBarrio.SelectedValue = dgrDatos["BARRIO", e.RowIndex].Value.ToString();
             }
             catch (Exception ex) { }
         }
@@ -223,6 +233,11 @@ namespace PROYECTO
 
                     oCliente.Lc_limite = double.Parse(txtLCLimite.Text);
                     oCliente.Lc_moneda = cboLCMoneda.SelectedItem.ToString();
+
+                    oCliente.Provincia = ((KeyValuePair<string, string>)cboProvincia.SelectedItem).Key;
+                    oCliente.Canton = ((KeyValuePair<string, string>)cboCanton.SelectedItem).Key;
+                    oCliente.Distrito = ((KeyValuePair<string, string>)cboDistrito.SelectedItem).Key;
+                    oCliente.Barrio = ((KeyValuePair<string, string>)cboBarrio.SelectedItem).Key;
 
                     if (indice == 0)
                         oClienteDAO.Agregar(oCliente, out indice);
@@ -428,6 +443,21 @@ namespace PROYECTO
             this.Close();
         }
 
+        private void cboProvincia_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            LlenaCantones();
+        }
+
+        private void cboCanton_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            LlenaDistritos();
+        }
+
+        private void cboDistrito_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            LlenaBarrios();
+        }
+
         private void frmForma_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.F1)
@@ -440,5 +470,170 @@ namespace PROYECTO
             oFrm.MdiParent = this.MdiParent;
             oFrm.Show();
         }
+
+        private void LlenaProvincias()
+        {
+            try
+            {
+                oHacienda_DireccionDAO = new Hacienda_DireccionDAO();
+
+                oConexion = new ConexionDAO(PROYECTO.Properties.Settings.Default.UsuarioBD, PROYECTO.Properties.Settings.Default.Servidor, Conexion.getInstance().Clave);
+
+                oConexion.cerrarConexion();
+                if (oConexion.abrirConexion())
+                {
+                    DataTable oDatos = oHacienda_DireccionDAO.consulta_Provincias().Tables[0];
+                    oConexion.cerrarConexion();
+
+                    if (oDatos.Rows.Count > 0)
+                    {
+                        Dictionary<string, string> comboSource = new Dictionary<string, string>();
+
+                        foreach (DataRow row in oDatos.Rows)
+                        {
+                            comboSource.Add(row[0].ToString(), row[1].ToString());
+                        }
+
+                        cboProvincia.DataSource = new BindingSource(comboSource, null);
+                        cboProvincia.DisplayMember = "Value";
+                        cboProvincia.ValueMember = "Key";
+
+                        cboProvincia.SelectedIndex = 0;
+                    }
+
+                }
+                else
+                {
+                    MessageBox.Show("Error al conectarse con la base de datos\nVerifique que los datos estén correctos");
+                }
+            }
+            catch (Exception ex)
+            {
+                oConexion.cerrarConexion();
+            }
+
+
+        }
+
+        private void LlenaCantones()
+        {
+            try
+            {
+                String provincia = ((KeyValuePair<string, string>)cboProvincia.SelectedItem).Key;
+
+                oConexion.cerrarConexion();
+                if (oConexion.abrirConexion())
+                {
+                    DataTable oDatos = oHacienda_DireccionDAO.consulta_Cantones(provincia).Tables[0];
+                    oConexion.cerrarConexion();
+
+                    if (oDatos.Rows.Count > 0)
+                    {
+                        Dictionary<string, string> comboSource = new Dictionary<string, string>();
+
+                        foreach (DataRow row in oDatos.Rows)
+                        {
+                            comboSource.Add(row[0].ToString(), row[1].ToString());
+                        }
+
+                        cboCanton.DataSource = new BindingSource(comboSource, null);
+                        cboCanton.DisplayMember = "Value";
+                        cboCanton.ValueMember = "Key";
+
+                        cboCanton.SelectedIndex = 0;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Error al conectarse con la base de datos\nVerifique que los datos estén correctos");
+                }
+            }
+            catch (Exception ex)
+            {
+                oConexion.cerrarConexion();
+            }
+        }
+
+        private void LlenaDistritos()
+        {
+            try
+            {
+                String provincia = ((KeyValuePair<string, string>)cboProvincia.SelectedItem).Key;
+                String canton = ((KeyValuePair<string, string>)cboCanton.SelectedItem).Key;
+
+                oConexion.cerrarConexion();
+                if (oConexion.abrirConexion())
+                {
+                    DataTable oDatos = oHacienda_DireccionDAO.consulta_Distritos(provincia, canton).Tables[0];
+                    oConexion.cerrarConexion();
+
+                    if (oDatos.Rows.Count > 0)
+                    {
+                        Dictionary<string, string> comboSource = new Dictionary<string, string>();
+
+                        foreach (DataRow row in oDatos.Rows)
+                        {
+                            comboSource.Add(row[0].ToString(), row[1].ToString());
+                        }
+
+                        cboDistrito.DataSource = new BindingSource(comboSource, null);
+                        cboDistrito.DisplayMember = "Value";
+                        cboDistrito.ValueMember = "Key";
+
+                        cboDistrito.SelectedIndex = 0;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Error al conectarse con la base de datos\nVerifique que los datos estén correctos");
+                }
+            }
+            catch (Exception ex)
+            {
+                oConexion.cerrarConexion();
+            }
+        }
+
+        private void LlenaBarrios()
+        {
+            try
+            {
+                String provincia = ((KeyValuePair<string, string>)cboProvincia.SelectedItem).Key;
+                String canton = ((KeyValuePair<string, string>)cboCanton.SelectedItem).Key;
+                String distrito = ((KeyValuePair<string, string>)cboDistrito.SelectedItem).Key;
+
+                oConexion.cerrarConexion();
+                if (oConexion.abrirConexion())
+                {
+                    DataTable oDatos = oHacienda_DireccionDAO.consulta_Barrios(provincia, canton, distrito).Tables[0];
+                    oConexion.cerrarConexion();
+
+                    if (oDatos.Rows.Count > 0)
+                    {
+                        Dictionary<string, string> comboSource = new Dictionary<string, string>();
+
+                        foreach (DataRow row in oDatos.Rows)
+                        {
+                            comboSource.Add(row[0].ToString(), row[1].ToString());
+                        }
+
+                        cboBarrio.DataSource = new BindingSource(comboSource, null);
+                        cboBarrio.DisplayMember = "Value";
+                        cboBarrio.ValueMember = "Key";
+
+                        cboBarrio.SelectedIndex = 0;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Error al conectarse con la base de datos\nVerifique que los datos estén correctos");
+                }
+            }
+            catch (Exception ex)
+            {
+                oConexion.cerrarConexion();
+            }
+        }
+
     }
 }

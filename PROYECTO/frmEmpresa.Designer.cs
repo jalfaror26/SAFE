@@ -47,6 +47,7 @@ namespace PROYECTO
             this.ttInformacion = new System.Windows.Forms.ToolTip(this.components);
             this.imgMenu = new System.Windows.Forms.ImageList(this.components);
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnMSalir = new System.Windows.Forms.Button();
             this.btnMNuevo = new System.Windows.Forms.Button();
             this.btnMBackup = new System.Windows.Forms.Button();
             this.btnMGuardar = new System.Windows.Forms.Button();
@@ -61,7 +62,6 @@ namespace PROYECTO
             this.label5 = new System.Windows.Forms.Label();
             this.cboBarrio = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.btnMSalir = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.imgFoto)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -238,6 +238,23 @@ namespace PROYECTO
             this.groupBox1.Size = new System.Drawing.Size(812, 85);
             this.groupBox1.TabIndex = 614;
             this.groupBox1.TabStop = false;
+            // 
+            // btnMSalir
+            // 
+            this.btnMSalir.Font = new System.Drawing.Font("Tempus Sans ITC", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnMSalir.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnMSalir.ImageKey = "salir2.ico";
+            this.btnMSalir.ImageList = this.imgMenu;
+            this.btnMSalir.Location = new System.Drawing.Point(511, 18);
+            this.btnMSalir.Margin = new System.Windows.Forms.Padding(4);
+            this.btnMSalir.Name = "btnMSalir";
+            this.btnMSalir.Size = new System.Drawing.Size(147, 55);
+            this.btnMSalir.TabIndex = 16;
+            this.btnMSalir.Text = "Salir";
+            this.btnMSalir.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnMSalir.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnMSalir.UseVisualStyleBackColor = true;
+            this.btnMSalir.Click += new System.EventHandler(this.btnMSalir_Click);
             // 
             // btnMNuevo
             // 
@@ -416,23 +433,6 @@ namespace PROYECTO
             this.label6.Size = new System.Drawing.Size(46, 17);
             this.label6.TabIndex = 628;
             this.label6.Text = "Barrio";
-            // 
-            // btnMSalir
-            // 
-            this.btnMSalir.Font = new System.Drawing.Font("Tempus Sans ITC", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnMSalir.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnMSalir.ImageKey = "salir2.ico";
-            this.btnMSalir.ImageList = this.imgMenu;
-            this.btnMSalir.Location = new System.Drawing.Point(511, 18);
-            this.btnMSalir.Margin = new System.Windows.Forms.Padding(4);
-            this.btnMSalir.Name = "btnMSalir";
-            this.btnMSalir.Size = new System.Drawing.Size(147, 55);
-            this.btnMSalir.TabIndex = 16;
-            this.btnMSalir.Text = "Salir";
-            this.btnMSalir.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnMSalir.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnMSalir.UseVisualStyleBackColor = true;
-            this.btnMSalir.Click += new System.EventHandler(this.btnMSalir_Click);
             // 
             // frmEmpresa
             // 

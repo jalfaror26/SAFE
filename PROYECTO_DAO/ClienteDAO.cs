@@ -62,6 +62,17 @@ namespace PROYECTO_DAO
             oCommand.Parameters.Add("pNo_cia", OracleType.NVarChar);
             oCommand.Parameters[15].Value = oCliente.No_cia;
 
+            oCommand.Parameters.Add("pPAIS", OracleType.NVarChar);
+            oCommand.Parameters[16].Value = "1";
+            oCommand.Parameters.Add("pPROVINCIA", OracleType.NVarChar);
+            oCommand.Parameters[17].Value = oCliente.Provincia;
+            oCommand.Parameters.Add("pCANTON", OracleType.NVarChar);
+            oCommand.Parameters[18].Value = oCliente.Canton;
+            oCommand.Parameters.Add("pDISTRITO", OracleType.NVarChar);
+            oCommand.Parameters[19].Value = oCliente.Distrito;
+            oCommand.Parameters.Add("pBARRIO", OracleType.NVarChar);
+            oCommand.Parameters[20].Value = oCliente.Barrio;
+
             oCommand.Parameters.Add(oParametro);
 
             OracleDAO.getInstance().EjecutarSQLStoreProcedure(oCommand);
@@ -115,6 +126,17 @@ namespace PROYECTO_DAO
             oCommand.Parameters.Add("pNo_cia", OracleType.NVarChar);
             oCommand.Parameters[15].Value = oCliente.No_cia;
 
+            oCommand.Parameters.Add("pPAIS", OracleType.NVarChar);
+            oCommand.Parameters[16].Value = "1";
+            oCommand.Parameters.Add("pPROVINCIA", OracleType.NVarChar);
+            oCommand.Parameters[17].Value = oCliente.Provincia;
+            oCommand.Parameters.Add("pCANTON", OracleType.NVarChar);
+            oCommand.Parameters[18].Value = oCliente.Canton;
+            oCommand.Parameters.Add("pDISTRITO", OracleType.NVarChar);
+            oCommand.Parameters[19].Value = oCliente.Distrito;
+            oCommand.Parameters.Add("pBARRIO", OracleType.NVarChar);
+            oCommand.Parameters[20].Value = oCliente.Barrio;
+
             OracleDAO.getInstance().EjecutarSQLStoreProcedure(oCommand);
 
             //Retornar el estado de la ejecución del procedimiento almacenado
@@ -141,7 +163,7 @@ namespace PROYECTO_DAO
 
         public DataSet Consultar( String pNo_cia)
         {
-            String sql = "SELECT Cli_Linea, Cli_Id, Cli_Tipo_ID, Cli_Nombre, Cli_Telefono, Cli_Fax, Cli_Contacto, Cli_Correo, Cli_Ubicacion, CLI_DIAS,cli_identificacion, CLI_LC_MONEDA,CLI_LC_LIMITE from TBL_CLIENTES c WHERE c.no_cia = '"+ pNo_cia + "' and  CLI_ESTADO = 1 and Cli_Linea>0";
+            String sql = "SELECT Cli_Linea, Cli_Id, Cli_Tipo_ID, Cli_Nombre, Cli_Telefono, Cli_Fax, Cli_Contacto, Cli_Correo, Cli_Ubicacion, CLI_DIAS,cli_identificacion, CLI_LC_MONEDA,CLI_LC_LIMITE, PROVINCIA, CANTON, DISTRITO, BARRIO from TBL_CLIENTES c WHERE c.no_cia = '" + pNo_cia + "' and  CLI_ESTADO = 1 and Cli_Linea > 0";
             DataSet oDataSet = OracleDAO.getInstance().EjecutarSQLDataSet(sql);
             return oDataSet;
         }
@@ -155,26 +177,26 @@ namespace PROYECTO_DAO
         
         public DataSet consultarReporte( String pNo_cia)
         {
-            String sql = "SELECT cli_linea as cod, cli_nombre as descripcion FROM TBL_CLIENTES c WHERE c.no_cia = '" + pNo_cia + "' and  cli_ESTADO = 1";
+            String sql = "SELECT cli_linea as cod, cli_nombre as descripcion FROM TBL_CLIENTES c WHERE c.no_cia = '" + pNo_cia + "' and  cli_ESTADO = 1 and Cli_Linea > 0";
             DataSet oDataSet = OracleDAO.getInstance().EjecutarSQLDataSet(sql);
             return oDataSet;
         }
 
         public DataSet consultarReporte2( String pNo_cia)
         {
-            String sql = "SELECT cli_linea as cod, cli_identificacion cli_cedula, cli_nombre as descripcion FROM TBL_CLIENTES c WHERE c.no_cia = '"+ pNo_cia + "' and  cli_ESTADO = 1";
+            String sql = "SELECT cli_linea as cod, cli_identificacion cli_cedula, cli_nombre as descripcion FROM TBL_CLIENTES c WHERE c.no_cia = '"+ pNo_cia + "' and  cli_ESTADO = 1 and Cli_Linea > 0";
             DataSet oDataSet = OracleDAO.getInstance().EjecutarSQLDataSet(sql);
             return oDataSet;
         }
 
         public DataSet Listar(int tipo, String palabra, String pNo_cia)
         {
-            String sql = "SELECT Cli_Linea, Cli_Id, Cli_Tipo_ID, Cli_Nombre, Cli_Telefono, Cli_Fax, Cli_Contacto, Cli_Correo, Cli_Ubicacion, CLI_DIAS,cli_identificacion, CLI_LC_MONEDA,CLI_LC_LIMITE FROM TBL_CLIENTES c WHERE c.no_cia = '"+ pNo_cia + "' and  CLI_ESTADO = 1 and ";
+            String sql = "SELECT Cli_Linea, Cli_Id, Cli_Tipo_ID, Cli_Nombre, Cli_Telefono, Cli_Fax, Cli_Contacto, Cli_Correo, Cli_Ubicacion, CLI_DIAS,cli_identificacion, CLI_LC_MONEDA,CLI_LC_LIMITE, PROVINCIA, CANTON, DISTRITO, BARRIO FROM TBL_CLIENTES c WHERE c.no_cia = '" + pNo_cia + "' and  CLI_ESTADO = 1 and ";
             if (tipo == 1)
                 sql += " regexp_like(cli_identificacion,'" + palabra + "','i')";
             if (tipo == 2)
                 sql += " regexp_like(Cli_Nombre,'" + palabra + "','i')";
-            sql += " and Cli_Linea>0";
+            sql += " and Cli_Linea > 0";
             DataSet oDataSet = OracleDAO.getInstance().EjecutarSQLDataSet(sql);
             return oDataSet;
         }
@@ -203,7 +225,7 @@ namespace PROYECTO_DAO
 
         public DataSet Listar_Filtrado(int tipo, String palabra, String pNo_cia)
         {
-            String sql = "SELECT cli_linea as cod, cli_nombre as descripcion FROM TBL_CLIENTES c WHERE c.no_cia = '"+ pNo_cia + "' and  cli_ESTADO = 1 and ";
+            String sql = "SELECT cli_linea as cod, cli_nombre as descripcion FROM TBL_CLIENTES c WHERE c.no_cia = '"+ pNo_cia + "' and  cli_ESTADO = 1 and Cli_Linea > 0 and ";
             if (tipo == 1)
                 sql += " regexp_like(CLi_linea,'" + palabra + "','i') order by CLi_linea";
             if (tipo == 2)
@@ -214,7 +236,7 @@ namespace PROYECTO_DAO
 
         public DataSet Listar_Filtrado2(int tipo, String palabra, String pNo_cia)
         {
-            String sql = "SELECT cli_linea as cod, CLI_IDENTIFICACION cli_cedula, cli_nombre as descripcion FROM TBL_CLIENTES c WHERE c.no_cia = '"+ pNo_cia + "' and  cli_ESTADO = 1 and ";
+            String sql = "SELECT cli_linea as cod, CLI_IDENTIFICACION cli_cedula, cli_nombre as descripcion FROM TBL_CLIENTES c WHERE c.no_cia = '"+ pNo_cia + "' and  cli_ESTADO = 1 and Cli_Linea > 0 and ";
             if (tipo == 1)
                 sql += " regexp_like(CLi_linea,'" + palabra + "','i') order by CLi_linea";
             if (tipo == 2)
@@ -227,7 +249,7 @@ namespace PROYECTO_DAO
 
         public DataSet Listar3(int tipo, String palabra, String pNo_cia)
         {
-            String sql = "SELECT cli_linea as cod, cli_nombre as descripcion FROM TBL_CLIENTES c WHERE c.no_cia = '"+ pNo_cia + "' and  cli_ESTADO = 1 and ";
+            String sql = "SELECT cli_linea as cod, cli_nombre as descripcion FROM TBL_CLIENTES c WHERE c.no_cia = '"+ pNo_cia + "' and  cli_ESTADO = 1 and Cli_Linea > 0 and ";
             if (tipo == 1)
                 sql += " regexp_like(CLi_linea,'" + palabra + "','i') or cli_id='PE' order by CLi_linea";
             if (tipo == 2)
@@ -238,7 +260,7 @@ namespace PROYECTO_DAO
 
         public DataSet ListarReporte(int tipo, String palabra, String pNo_cia)
         {
-            String sql = "SELECT cli_linea as cod, cli_nombre as descripcion from TBL_CLIENTES c WHERE c.no_cia = '"+ pNo_cia + "' and  cli_ESTADO = 1 and ";
+            String sql = "SELECT cli_linea as cod, cli_nombre as descripcion from TBL_CLIENTES c WHERE c.no_cia = '"+ pNo_cia + "' and  cli_ESTADO = 1 and Cli_Linea > 0 and ";
             if (tipo == 1)
                 sql += " regexp_like(CLi_linea,'" + palabra + "','i') order by CLi_linea";
             if (tipo == 2)
