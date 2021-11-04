@@ -9,8 +9,8 @@ namespace Entidades
         private int linea, caja;
         private DateTime fechamovimiento;
         private double credito, debito;
-        private string empleado, documento, usuario, tipoMovimiento, movimiento, justificacion;
-        
+        private string empleado, documento, tipoMovimiento, movimiento, justificacion;
+
         public string Justificacion
         {
             get { return justificacion; }
@@ -28,7 +28,7 @@ namespace Entidades
             get { return tipoMovimiento; }
             set { tipoMovimiento = value; }
         }
-        
+
 
         public int Caja
         {
@@ -48,28 +48,22 @@ namespace Entidades
             set { fechamovimiento = value; }
         }
 
-            public double Credito
-            {
-                get { return credito; }
-                set { credito = value; }
-            }
+        public double Credito
+        {
+            get { return credito; }
+            set { credito = value; }
+        }
 
-            public double Debito
-            {
-                get { return debito; }
-                set { debito = value; }
-            }
+        public double Debito
+        {
+            get { return debito; }
+            set { debito = value; }
+        }
 
         public string Documento
         {
             get { return documento; }
             set { documento = value; }
-        }
-
-        public string Usuario
-        {
-            get { return usuario; }
-            set { usuario = value; }
         }
 
         public string Empleado

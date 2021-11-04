@@ -26,14 +26,12 @@ namespace PROYECTO_DAO
             oCommand.Parameters[0].Value = oCajaChica.Monto;
             oCommand.Parameters.Add("documento", OracleType.NVarChar);
             oCommand.Parameters[1].Value = oCajaChica.Documento;
-            oCommand.Parameters.Add("usuario", OracleType.NVarChar);
-            oCommand.Parameters[2].Value = oCajaChica.Usuario;
             oCommand.Parameters.Add("saldo", OracleType.Number);
-            oCommand.Parameters[3].Value = oCajaChica.Saldo;
+            oCommand.Parameters[2].Value = oCajaChica.Saldo;
             oCommand.Parameters.Add("moneda", OracleType.NVarChar);
-            oCommand.Parameters[4].Value = oCajaChica.Moneda;         
+            oCommand.Parameters[3].Value = oCajaChica.Moneda;
             oCommand.Parameters.Add("pNo_cia", OracleType.NVarChar);
-            oCommand.Parameters[5].Value = pNo_cia;
+            oCommand.Parameters[4].Value = pNo_cia;
 
             oCommand.Parameters.Add(oParametro);
 
@@ -96,11 +94,8 @@ namespace PROYECTO_DAO
 
             oCommand.Parameters.Add("indice", OracleType.Number);
             oCommand.Parameters[0].Value = oCajaChica.Linea;
-
-            oCommand.Parameters.Add("usuario", OracleType.NVarChar);
-            oCommand.Parameters[1].Value = oCajaChica.Usuario;
             oCommand.Parameters.Add("pNo_cia", OracleType.NVarChar);
-            oCommand.Parameters[2].Value = pNo_cia;
+            oCommand.Parameters[1].Value = pNo_cia;
 
             OracleDAO.getInstance().EjecutarSQLStoreProcedure(oCommand);
 
@@ -108,11 +103,9 @@ namespace PROYECTO_DAO
             return !OracleDAO.getInstance().ErrorSQL;
         }
 
-        public DataSet Consultar(String usuario, String pNo_cia)
+        public DataSet Consultar(String pNo_cia)
         {
-            //    String sql = "SELECT CAJ_DOCUMENTO,CAJ_CTA_BANCO || '  **  '||BAN_SIGLAS || '  **  '||BAN_NOMBRE, CAJ_MONTO, CAJ_SALDO,CAJ_MONEDA, caj_linea fROM TBL_CAJA_CHICA, TBL_BANCOS, TBL_CUENTAS_BANCARIAS where CTABAN_CTA=CAJ_CTA_BANCO and upper(CTABAN_IDBANCO)=upper(BAN_SIGLAS) and CAJ_ESTADO=1 and CAJ_USUARIOABRE = '" + usuario + "'";
-
-            String sql = "SELECT CAJ_DOCUMENTO,'', CAJ_MONTO, CAJ_SALDO,CAJ_MONEDA, caj_linea fROM TBL_CAJA_CHICA where CAJ_ESTADO=1 and CAJ_USUARIOABRE = '" + usuario + "' and no_cia = '" + pNo_cia + "'";
+            String sql = "SELECT CAJ_DOCUMENTO,'', CAJ_MONTO, CAJ_SALDO,CAJ_MONEDA, caj_linea fROM TBL_CAJA_CHICA where CAJ_ESTADO=1 and CAJ_USUARIOABRE = user and no_cia = '" + pNo_cia + "'";
 
             DataSet oDataSet = OracleDAO.getInstance().EjecutarSQLDataSet(sql);
             return oDataSet;
@@ -134,31 +127,31 @@ namespace PROYECTO_DAO
             DateTime oDataSet = OracleDAO.getInstance().EjecutarSQLScalarDateTime(sql);
             return oDataSet;
         }
-        
-        public DateTime FechaAperturaCaja(string caja, String usuario, String pNo_cia)
+
+        public DateTime FechaAperturaCaja(string caja, String pNo_cia)
         {
-            String sql = "SELECT CAJ_FECHAAPERTURA FROM tbl_caja_chica where CAJ_LINEA =" + caja + " and CAJ_ESTADO =1 and CAJ_USUARIOABRE = '" + usuario + "' and no_cia = '" + pNo_cia + "'";
+            String sql = "SELECT CAJ_FECHAAPERTURA FROM tbl_caja_chica where CAJ_LINEA =" + caja + " and CAJ_ESTADO =1 and CAJ_USUARIOABRE = user and no_cia = '" + pNo_cia + "'";
             DateTime oDateTime = OracleDAO.getInstance().EjecutarSQLScalarDateTime(sql);
             return oDateTime;
         }
 
-        public DataSet Caja(String usuario, String pNo_cia)
+        public DataSet Caja(String pNo_cia)
         {
-            String sql = "SELECT CAJ_LINEA,CAJ_SALDO FROM tbl_caja_chica where CAJ_ESTADO =1 and CAJ_USUARIOABRE = '" + usuario + "' and no_cia = '" + pNo_cia + "'";
+            String sql = "SELECT CAJ_LINEA,CAJ_SALDO FROM tbl_caja_chica where CAJ_ESTADO =1 and CAJ_USUARIOABRE = user and no_cia = '" + pNo_cia + "'";
             DataSet oDataSet = OracleDAO.getInstance().EjecutarSQLDataSet(sql);
             return oDataSet;
         }
 
-        public double ultimoSaldo(String usuario, String pNo_cia)
+        public double ultimoSaldo(String pNo_cia)
         {
-            String sql = "SELECT CAJ_SALDO FROM TBL_CAJA_CHICA where CAJ_LINEA=(SELECT max(CAJ_LINEA) FROM tbl_caja_chica) and CAJ_ESTADO=0 and CAJ_USUARIOABRE = '" + usuario + "' and no_cia = '" + pNo_cia + "'";
+            String sql = "SELECT CAJ_SALDO FROM TBL_CAJA_CHICA where CAJ_LINEA=(SELECT max(CAJ_LINEA) FROM tbl_caja_chica) and CAJ_ESTADO=0 and CAJ_USUARIOABRE = user and no_cia = '" + pNo_cia + "'";
             Double oDataSet = OracleDAO.getInstance().EjecutarSQLScalarDouble(sql);
             return oDataSet;
         }
 
-        public string ultimoMoneda(String usuario, String pNo_cia)
+        public string ultimoMoneda(String pNo_cia)
         {
-            String sql = "SELECT CAJ_Moneda FROM TBL_CAJA_CHICA where CAJ_LINEA=(SELECT max(CAJ_LINEA) FROM tbl_caja_chica) and CAJ_ESTADO=0 and CAJ_USUARIOABRE = '" + usuario + "' and no_cia = '" + pNo_cia + "'";
+            String sql = "SELECT CAJ_Moneda FROM TBL_CAJA_CHICA where CAJ_LINEA=(SELECT max(CAJ_LINEA) FROM tbl_caja_chica) and CAJ_ESTADO=0 and CAJ_USUARIOABRE = user and no_cia = '" + pNo_cia + "'";
             String oDataSet = OracleDAO.getInstance().EjecutarSQLScalarString(sql);
             return oDataSet;
         }

@@ -44,7 +44,7 @@ namespace PROYECTO
                     {
                         oPantallaPermisoDAO.crearPantalla(codigo, modulo, descripcion, PROYECTO.Properties.Settings.Default.No_cia);
                     }
-                    odataset = oPantallaPermisoDAO.tieneAcceso(codigo, PROYECTO.Properties.Settings.Default.Usuario, PROYECTO.Properties.Settings.Default.No_cia);
+                    odataset = oPantallaPermisoDAO.tieneAcceso(codigo, PROYECTO.Properties.Settings.Default.No_cia);
                     if (odataset.Tables[0].Rows[0]["PER_ACCESO"].ToString().Equals("0"))
                         tienePermiso = true;
                     oConexion.cerrarConexion();

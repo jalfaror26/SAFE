@@ -187,7 +187,6 @@ namespace PROYECTO
                 oFacturasPago.Monto = Double.Parse(txtmonto.Text.Substring(1));
                 oFacturasPago.Saldo = Double.Parse(txtmonto.Text.Substring(1));
                 oFacturasPago.Estado = "FP";
-                oFacturasPago.Usuario = PROYECTO.Properties.Settings.Default.Usuario;
                 oFacturasPago.Responsable = txtCodProveedor.Text;
                 oFacturaDAO.Insertar(oFacturasPago);
                 if (oFacturaDAO.Error())
@@ -219,7 +218,7 @@ namespace PROYECTO
                     oFacturasPago.Monto = Double.Parse(txtmonto.Text.Substring(1));
                     oFacturasPago.Saldo = Double.Parse(txtmonto.Text.Substring(1));
                     oFacturasPago.Estado = "FP";
-                    oFacturasPago.Usuario = PROYECTO.Properties.Settings.Default.Usuario;
+
                     oFacturaDAO.ModificarExistente(oFacturasPago);
                     if (oFacturaDAO.Error())
                         MessageBox.Show("Ha ocurrido un error al Modificar los datos: " + oFacturaDAO.DescError(), "Error de consulta", MessageBoxButtons.OK, MessageBoxIcon.Error);

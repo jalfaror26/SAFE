@@ -127,6 +127,7 @@ namespace PROYECTO
                     oServicio.No_cia = PROYECTO.Properties.Settings.Default.No_cia;
                     oServicio.Tipo = "SER";
                     oServicio.Impuestos = Double.Parse(txtImpuesto.Text);
+                    oServicio.Cod_cabys = txtCodCabys.Text;
 
                     if (oServicio.Impuestos == 0)
                         oServicio.Venta_IVI = "N";
@@ -183,7 +184,7 @@ namespace PROYECTO
             {
                 if (txtDesBreveArt.Text.Trim().Equals(""))
                 {
-                    MessageBox.Show("Digite la descripción del artículo", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Digite la descripción del servicio", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
@@ -379,7 +380,7 @@ namespace PROYECTO
                         oPantallaPermisoDAO.crearPantalla(codigo2, modulo2, descripcion2, PROYECTO.Properties.Settings.Default.No_cia);
                     }
 
-                    odataset = oPantallaPermisoDAO.tieneAcceso(codigo2, PROYECTO.Properties.Settings.Default.Usuario, PROYECTO.Properties.Settings.Default.No_cia);
+                    odataset = oPantallaPermisoDAO.tieneAcceso(codigo2, PROYECTO.Properties.Settings.Default.No_cia);
                     if (odataset.Tables[0].Rows[0]["PER_ACCESO"].ToString().Equals("0"))
                         tienePermiso = true;
                     oConexion.cerrarConexion();
@@ -426,7 +427,8 @@ namespace PROYECTO
                 txtCodigo.Text = dgrDatos["ART_CODIGO", e.RowIndex].Value.ToString();
                 txtDesBreveArt.Text = dgrDatos["ART_DESC_BREVE", e.RowIndex].Value.ToString();
                 txtImpuesto.Text = double.Parse(dgrDatos["ART_IMPUESTOS", e.RowIndex].Value.ToString()).ToString("##0.##");
-
+                txtCodCabys.Text = dgrDatos["COD_CABYS", e.RowIndex].Value.ToString();
+                
                 if (txtImpuesto.Text.Equals("0"))
                 {
                     chkIVI.Checked = false;

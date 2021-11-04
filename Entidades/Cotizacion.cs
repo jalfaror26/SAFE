@@ -11,10 +11,10 @@ namespace ENTIDADES
         private DateTime fechaCotizacion;
 
         private Double tipocambio, subTotal, impuesto, descuento, total, saldo, porDescuento;
-        private int  tarjeta, cotizacion;
-        private String cliente, nombre, telefono, ubicacion, moneda, estado, observacion, usuario, comentario;
+        private int tarjeta, cotizacion;
+        private String cliente, nombre, telefono, ubicacion, moneda, estado, observacion, comentario;
         private Double indiceDocumento;
-        private String tipo, vendedor, tipoDocumento;
+        private String tipo, tipoDocumento;
         private String no_cia;
 
         public String No_cia
@@ -22,7 +22,7 @@ namespace ENTIDADES
             get { return no_cia; }
             set { no_cia = value; }
         }
-                
+
         public String Comentario
         {
             get { return comentario; }
@@ -33,7 +33,7 @@ namespace ENTIDADES
             get { return tarjeta; }
             set { tarjeta = value; }
         }
-        
+
         public Double PorDescuento
         {
             get { return porDescuento; }
@@ -45,13 +45,6 @@ namespace ENTIDADES
             get { return tipo; }
             set { tipo = value; }
         }
-
-        public String Vendedor
-        {
-            get { return vendedor; }
-            set { vendedor = value; }
-        }
-
         public String TipoDocumento
         {
             get { return tipoDocumento; }
@@ -63,12 +56,6 @@ namespace ENTIDADES
         {
             get { return indiceDocumento; }
             set { indiceDocumento = value; }
-        }
-        
-        public String Usuario
-        {
-            get { return usuario; }
-            set { usuario = value; }
         }
 
         public String Observacion
@@ -148,13 +135,13 @@ namespace ENTIDADES
             get { return subTotal; }
             set { subTotal = value; }
         }
-        
+
         public Double Tipocambio
         {
             get { return tipocambio; }
             set { tipocambio = value; }
         }
-        
+
         public int NumCotizacion
         {
             get { return cotizacion; }

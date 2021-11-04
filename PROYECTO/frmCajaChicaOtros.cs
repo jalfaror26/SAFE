@@ -84,7 +84,7 @@ namespace PROYECTO
         {
             timer1.Start();
         }
-        
+
         private void LlenarDatos()
         {
             try
@@ -94,13 +94,13 @@ namespace PROYECTO
                 oConexion.cerrarConexion(); if (oConexion.abrirConexion())
                 {
                     oChicaDAO = new CajaChicaDAO();
-                    lblCajaAbierta1.Text = oChicaDAO.Caja(PROYECTO.Properties.Settings.Default.Usuario, PROYECTO.Properties.Settings.Default.No_cia).Tables[0].Rows[0].ItemArray[0].ToString();
+                    lblCajaAbierta1.Text = oChicaDAO.Caja(PROYECTO.Properties.Settings.Default.No_cia).Tables[0].Rows[0].ItemArray[0].ToString();
                     lblCajaAbierta2.Text = lblCajaAbierta1.Text;
                     lblCajaAbierta3.Text = lblCajaAbierta1.Text;
-                    lblFechaApertura1.Text = oChicaDAO.FechaAperturaCaja(lblCajaAbierta1.Text, PROYECTO.Properties.Settings.Default.Usuario, PROYECTO.Properties.Settings.Default.No_cia).ToShortDateString();
+                    lblFechaApertura1.Text = oChicaDAO.FechaAperturaCaja(lblCajaAbierta1.Text, PROYECTO.Properties.Settings.Default.No_cia).ToShortDateString();
                     lblFechaApertura2.Text = lblFechaApertura1.Text;
                     lblFechaApertura3.Text = lblFechaApertura1.Text;
-                    DataTable oTabla = oChicaDAO.Consultar(PROYECTO.Properties.Settings.Default.Usuario, PROYECTO.Properties.Settings.Default.No_cia).Tables[0];
+                    DataTable oTabla = oChicaDAO.Consultar(PROYECTO.Properties.Settings.Default.No_cia).Tables[0];
                     txtMonedas1 = oTabla.Rows[0].ItemArray[4].ToString();
                     if (txtMonedas1.Equals("CRC"))
                         moned = '¢';
@@ -138,7 +138,7 @@ namespace PROYECTO
         private Boolean evaluar1()
         {
             Boolean val = true;
-            if ( txtMontoAumentar1.Text.Trim().Equals("") || txtDoc1.Text.Trim().Equals("") || txtJustificacion1.Text.Trim().Equals(""))
+            if (txtMontoAumentar1.Text.Trim().Equals("") || txtDoc1.Text.Trim().Equals("") || txtJustificacion1.Text.Trim().Equals(""))
                 val = false;
             return val;
         }
@@ -164,7 +164,7 @@ namespace PROYECTO
             oConexion.cerrarConexion();
             oConexion.cerrarConexion(); oConexion.abrirConexion();
             oChicaDAO = new CajaChicaDAO();
-            txtSaldoActual1.Text = moned + " " + oChicaDAO.Consultar(PROYECTO.Properties.Settings.Default.Usuario, PROYECTO.Properties.Settings.Default.No_cia).Tables[0].Rows[0].ItemArray[3].ToString();
+            txtSaldoActual1.Text = moned + " " + oChicaDAO.Consultar(PROYECTO.Properties.Settings.Default.No_cia).Tables[0].Rows[0].ItemArray[3].ToString();
             oConexion.cerrarConexion();
             if (txtMontoAumentar1.Text.Trim().Equals("") || txtMontoAumentar1.Text.Trim().Equals("."))
                 txtMontoAumentar1.Text = "0";
@@ -208,7 +208,7 @@ namespace PROYECTO
                     {
                         oChica = new CajaChica();
                         oChicaDAO = new CajaChicaDAO();
-                        txtSaldoActual1.Text = moned + " " + oChicaDAO.Consultar(PROYECTO.Properties.Settings.Default.Usuario, PROYECTO.Properties.Settings.Default.No_cia).Tables[0].Rows[0].ItemArray[3].ToString();
+                        txtSaldoActual1.Text = moned + " " + oChicaDAO.Consultar(PROYECTO.Properties.Settings.Default.No_cia).Tables[0].Rows[0].ItemArray[3].ToString();
                         oChica.Linea = indice;
                         oChica.Monto = double.Parse(txtMontoActual.Text.Substring(1)) + double.Parse(txtMontoAumentar1.Text.Substring(1));
                         oChica.Saldo = double.Parse(txtMontoAumentar1.Text.Substring(1)) + double.Parse(txtSaldoActual1.Text.Substring(1));
@@ -219,10 +219,10 @@ namespace PROYECTO
                             MessageBox.Show("Error al Crear Aumenta en Caja Chica:\n" + oChicaDAO.DescError(), "Error de Consulta", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                         else
-     MessageBox.Show("Aumento de Caja Creado Correctamente!!", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            MessageBox.Show("Aumento de Caja Creado Correctamente!!", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         oConexion.cerrarConexion();
                         CrearMovimiento();
-                   
+
 
                     }
                     else
@@ -254,17 +254,17 @@ namespace PROYECTO
                     {
                         oChica = new CajaChica();
                         oChicaDAO = new CajaChicaDAO();
-                        txtSaldoActual2.Text = moned + " " + oChicaDAO.Consultar(PROYECTO.Properties.Settings.Default.Usuario, PROYECTO.Properties.Settings.Default.No_cia).Tables[0].Rows[0].ItemArray[3].ToString();
+                        txtSaldoActual2.Text = moned + " " + oChicaDAO.Consultar(PROYECTO.Properties.Settings.Default.No_cia).Tables[0].Rows[0].ItemArray[3].ToString();
                         oChica.Linea = indice;
                         oChica.Saldo = double.Parse(txtSaldoActual2.Text.Substring(1)) - double.Parse(txtMontoAumentar2.Text.Substring(1));
                         oChicaDAO.ActualizarSaldo(oChica, PROYECTO.Properties.Settings.Default.No_cia);
                         if (oChicaDAO.Error())
                             MessageBox.Show("Error al crear Nota de Débito:\n" + oChicaDAO.DescError(), "Error de Consulta", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         else
-MessageBox.Show("Nota de Débito Creada Correctamente!!", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            MessageBox.Show("Nota de Débito Creada Correctamente!!", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         oConexion.cerrarConexion();
                         CrearMovimiento2();
-                        
+
 
                     }
                     else
@@ -295,18 +295,19 @@ MessageBox.Show("Nota de Débito Creada Correctamente!!", "Información", MessageB
                     {
                         oChica = new CajaChica();
                         oChicaDAO = new CajaChicaDAO();
-                        txtSaldoActual3.Text = moned + " " + oChicaDAO.Consultar(PROYECTO.Properties.Settings.Default.Usuario, PROYECTO.Properties.Settings.Default.No_cia).Tables[0].Rows[0].ItemArray[3].ToString();
+                        txtSaldoActual3.Text = moned + " " + oChicaDAO.Consultar(PROYECTO.Properties.Settings.Default.No_cia).Tables[0].Rows[0].ItemArray[3].ToString();
                         oChica.Linea = indice;
                         oChica.Saldo = double.Parse(txtMontoAumentar3.Text.Substring(1)) + double.Parse(txtSaldoActual3.Text.Substring(1));
                         oChicaDAO.ActualizarSaldo(oChica, PROYECTO.Properties.Settings.Default.No_cia);
                         if (oChicaDAO.Error())
                         {
                             MessageBox.Show("Error al Crear Nota de Crédito:\n" + oChicaDAO.DescError(), "Error de Consulta", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }else
- MessageBox.Show("Nota de Crédito Creada Correctamente!!", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                        else
+                            MessageBox.Show("Nota de Crédito Creada Correctamente!!", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                         oConexion.cerrarConexion();
-                        CrearMovimiento3();           
+                        CrearMovimiento3();
 
                     }
                     else
@@ -338,7 +339,6 @@ MessageBox.Show("Nota de Débito Creada Correctamente!!", "Información", MessageB
                     oChicaDetalle.Debito = 0;
                     oChicaDetalle.Empleado = "CAJA CHICA";
                     oChicaDetalle.Documento = txtDoc1.Text;
-                    oChicaDetalle.Usuario = PROYECTO.Properties.Settings.Default.Usuario;
                     oChicaDetalle.TipoMovimiento = "AUMENTO";
                     oChicaDetalle.Justificacion = txtJustificacion1.Text;
                     oChicaDetalleDAO.Insertar(oChicaDetalle, PROYECTO.Properties.Settings.Default.No_cia);
@@ -371,10 +371,9 @@ MessageBox.Show("Nota de Débito Creada Correctamente!!", "Información", MessageB
                     oChicaDetalle.Debito = double.Parse(txtMontoAumentar2.Text.Substring(1));
                     oChicaDetalle.Empleado = "CAJA CHICA";
                     oChicaDetalle.Documento = txtDoc2.Text;
-                    oChicaDetalle.Usuario = PROYECTO.Properties.Settings.Default.Usuario;
                     oChicaDetalle.TipoMovimiento = "NOTAS DE DÉBITO";
                     oChicaDetalle.Justificacion = txtJustificacion2.Text;
-        
+
                     oChicaDetalleDAO.Insertar(oChicaDetalle, PROYECTO.Properties.Settings.Default.No_cia);
                     if (oChicaDetalleDAO.Error())
                         MessageBox.Show("Error al Guardar Movimiento de Caja Chica:\n" + oChicaDetalleDAO.DescError(), "Error de Consulta", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -405,10 +404,9 @@ MessageBox.Show("Nota de Débito Creada Correctamente!!", "Información", MessageB
                     oChicaDetalle.Debito = 0;
                     oChicaDetalle.Empleado = "CAJA CHICA";
                     oChicaDetalle.Documento = txtDoc3.Text;
-                    oChicaDetalle.Usuario = PROYECTO.Properties.Settings.Default.Usuario;
                     oChicaDetalle.TipoMovimiento = "NOTAS DE CRÉDITO";
                     oChicaDetalle.Justificacion = txtJustificacion3.Text;
-  
+
                     oChicaDetalleDAO.Insertar(oChicaDetalle, PROYECTO.Properties.Settings.Default.No_cia);
                     if (oChicaDetalleDAO.Error())
                         MessageBox.Show("Error al Guardar Movimiento de Caja Chica:\n" + oChicaDetalleDAO.DescError(), "Error de Consulta", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -422,7 +420,7 @@ MessageBox.Show("Nota de Débito Creada Correctamente!!", "Información", MessageB
             {
             }
         }
-        
+
         private void txtMontoAumentar_KeyUp(object sender, KeyEventArgs e)
         {
             string monto = "";
@@ -454,7 +452,7 @@ MessageBox.Show("Nota de Débito Creada Correctamente!!", "Información", MessageB
             txtMontoAumentar1.Clear();
             txtJustificacion1.Clear();
         }
-        
+
         private void btnGuardar2_Click(object sender, EventArgs e)
         {
             Guardar2();
@@ -495,7 +493,7 @@ MessageBox.Show("Nota de Débito Creada Correctamente!!", "Información", MessageB
             oConexion.cerrarConexion();
             oConexion.cerrarConexion(); oConexion.abrirConexion();
             oChicaDAO = new CajaChicaDAO();
-            txtSaldoActual2.Text = moned + " " + oChicaDAO.Consultar(PROYECTO.Properties.Settings.Default.Usuario, PROYECTO.Properties.Settings.Default.No_cia).Tables[0].Rows[0].ItemArray[3].ToString();
+            txtSaldoActual2.Text = moned + " " + oChicaDAO.Consultar(PROYECTO.Properties.Settings.Default.No_cia).Tables[0].Rows[0].ItemArray[3].ToString();
             oConexion.cerrarConexion();
 
             if (txtMontoAumentar2.Text.Trim().Equals("") || txtMontoAumentar2.Text.Trim().Equals("."))
@@ -553,7 +551,7 @@ MessageBox.Show("Nota de Débito Creada Correctamente!!", "Información", MessageB
             oConexion.cerrarConexion();
             oConexion.cerrarConexion(); oConexion.abrirConexion();
             oChicaDAO = new CajaChicaDAO();
-            txtSaldoActual3.Text = moned + " " + oChicaDAO.Consultar(PROYECTO.Properties.Settings.Default.Usuario, PROYECTO.Properties.Settings.Default.No_cia).Tables[0].Rows[0].ItemArray[3].ToString();
+            txtSaldoActual3.Text = moned + " " + oChicaDAO.Consultar(PROYECTO.Properties.Settings.Default.No_cia).Tables[0].Rows[0].ItemArray[3].ToString();
             oConexion.cerrarConexion();
             if (txtMontoAumentar3.Text.Trim().Equals("") || txtMontoAumentar3.Text.Trim().Equals("."))
                 txtMontoAumentar3.Text = "0";
@@ -592,7 +590,7 @@ MessageBox.Show("Nota de Débito Creada Correctamente!!", "Información", MessageB
             }
             catch (Exception ex)
             {
-                txtMontoAumentar1.Text = moned + " 0";                
+                txtMontoAumentar1.Text = moned + " 0";
             }
         }
 

@@ -7,7 +7,7 @@ namespace ENTIDADES
     public class GuiaPrepagoProveedor
     {
         private Double id;
-        private string proveedor, moneda, estado, usuario;
+        private string proveedor, moneda, estado;
         private double monto;
         private DateTime fecha;
 
@@ -23,12 +23,6 @@ namespace ENTIDADES
         {
             get { return id; }
             set { id = value; }
-        }
-        
-        public string Usuario
-        {
-            get { return usuario; }
-            set { usuario = value; }
         }
 
         public string Estado
@@ -48,19 +42,19 @@ namespace ENTIDADES
             get { return proveedor; }
             set { proveedor = value; }
         }
-        
+
         public double Monto
         {
             get { return monto; }
             set { monto = value; }
         }
-        
+
         public DateTime Fecha
         {
             get { return fecha; }
             set { fecha = value; }
         }
 
-    
+
     }
 }

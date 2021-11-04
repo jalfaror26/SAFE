@@ -247,7 +247,6 @@ namespace PROYECTO
             this.btnRepPagos.Text = "   PAGOS";
             this.btnRepPagos.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnRepPagos.UseVisualStyleBackColor = true;
-            this.btnRepPagos.Visible = false;
             this.btnRepPagos.Click += new System.EventHandler(this.btnRepPagos_Click);
             // 
             // btnRepInvFac
@@ -980,6 +979,7 @@ namespace PROYECTO
             this.btnRepPagReaCate.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnRepPagReaCate.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnRepPagReaCate.UseVisualStyleBackColor = true;
+            this.btnRepPagReaCate.Visible = false;
             this.btnRepPagReaCate.Click += new System.EventHandler(this.btnRepPagReaCate_Click);
             // 
             // btnRepPagReaCuenta
@@ -997,6 +997,7 @@ namespace PROYECTO
             this.btnRepPagReaCuenta.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnRepPagReaCuenta.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnRepPagReaCuenta.UseVisualStyleBackColor = true;
+            this.btnRepPagReaCuenta.Visible = false;
             this.btnRepPagReaCuenta.Click += new System.EventHandler(this.btnRepPagReaCuenta_Click);
             // 
             // btnRepSalPenPago
@@ -1014,6 +1015,7 @@ namespace PROYECTO
             this.btnRepSalPenPago.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnRepSalPenPago.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnRepSalPenPago.UseVisualStyleBackColor = true;
+            this.btnRepSalPenPago.Visible = false;
             this.btnRepSalPenPago.Click += new System.EventHandler(this.btnRepSalPenPago_Click);
             // 
             // btnRepFacRecPag
@@ -1031,6 +1033,7 @@ namespace PROYECTO
             this.btnRepFacRecPag.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnRepFacRecPag.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnRepFacRecPag.UseVisualStyleBackColor = true;
+            this.btnRepFacRecPag.Visible = false;
             this.btnRepFacRecPag.Click += new System.EventHandler(this.btnRepFacRecPag_Click);
             // 
             // btnRepGtsPorCategoria
@@ -1231,12 +1234,12 @@ namespace PROYECTO
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(944, 532);
             this.ControlBox = false;
-            this.Controls.Add(this.pPrincipal);
             this.Controls.Add(this.pReportes);
             this.Controls.Add(this.pRepGenerales);
             this.Controls.Add(this.pRepPagos);
             this.Controls.Add(this.pRepFinancieros);
             this.Controls.Add(this.pRepInvFact);
+            this.Controls.Add(this.pPrincipal);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));

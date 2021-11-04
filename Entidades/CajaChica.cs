@@ -7,7 +7,7 @@ namespace Entidades
     public class CajaChica
     {
         private int linea, estado;
-        private string documento, usuario, moneda;
+        private string documento, moneda;
         private DateTime fechaapertura, fechacierre;
         private double monto, saldo;
 
@@ -36,13 +36,6 @@ namespace Entidades
             set { documento = value; }
         }
         
-        public string Usuario
-        {
-            get { return usuario; }
-            set { usuario = value; }
-        }
-       
-
         public DateTime Fechaapertura
         {
             get { return fechaapertura; }

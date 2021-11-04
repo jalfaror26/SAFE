@@ -22,10 +22,8 @@ namespace PROYECTO_DAO
             //Crear los Parámetros del procedimiento y sus valores
             oCommand.Parameters.Add("dolar", OracleType.Number);
             oCommand.Parameters[0].Value = oTipo.Dolar;
-            oCommand.Parameters.Add("usuario", OracleType.NVarChar);
-            oCommand.Parameters[1].Value = oTipo.Usuario;
             oCommand.Parameters.Add("pNo_cia", OracleType.NVarChar);
-            oCommand.Parameters[2].Value = oTipo.No_cia;
+            oCommand.Parameters[1].Value = oTipo.No_cia;
 
             OracleDAO.getInstance().EjecutarSQLStoreProcedure(oCommand);
 
@@ -44,10 +42,8 @@ namespace PROYECTO_DAO
             //Crear los Parámetros del procedimiento y sus valores
             oCommand.Parameters.Add("dolar", OracleType.Number);
             oCommand.Parameters[0].Value = oTipo.Dolar;
-            oCommand.Parameters.Add("usuario", OracleType.NVarChar);
-            oCommand.Parameters[1].Value = oTipo.Usuario;
             oCommand.Parameters.Add("pNo_cia", OracleType.NVarChar);
-            oCommand.Parameters[2].Value = oTipo.No_cia;
+            oCommand.Parameters[1].Value = oTipo.No_cia;
 
             OracleDAO.getInstance().EjecutarSQLStoreProcedure(oCommand);
 
@@ -55,10 +51,11 @@ namespace PROYECTO_DAO
             return !OracleDAO.getInstance().ErrorSQL;
         }
 
-        public Boolean Consulta(String pNo_cia) {
+        public Boolean Consulta(String pNo_cia)
+        {
             String sql = "select fecha_registro from TBL_TIPOS_CAMBIO tc where tc.no_cia = '" + pNo_cia + "' and  to_char(fecha_registro,'dd/mm/yyyy') = to_char(sysdate,'dd/mm/yyyy')";
             DataSet oDataSet = OracleDAO.getInstance().EjecutarSQLDataSet(sql);
-            if(oDataSet.Tables[0].Rows.Count > 0)
+            if (oDataSet.Tables[0].Rows.Count > 0)
                 return false;
             else
                 return true;

@@ -121,7 +121,7 @@ namespace PROYECTO
                 oTipo.No_cia = PROYECTO.Properties.Settings.Default.No_cia;
                 oTipo.Fecharegistro = DateTime.Now;
                 oTipo.Dolar = Double.Parse(txtDolar.Text);
-                oTipo.Usuario = PROYECTO.Properties.Settings.Default.Usuario.ToString();
+
                 oTipoCambioDAO.Agregar(oTipo);
                 if (oTipoCambioDAO.Error())
                     MessageBox.Show("Ha ocurrido un error al guardar los datos: " + oTipoCambioDAO.DescError(), "Error de Consulta", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -148,7 +148,7 @@ namespace PROYECTO
                 }
                 catch { }
 
-
+                this.Close();
             }
             else
                 MessageBox.Show("Ha ocurrido un error al conectarse a la base de datos.", "Error de oConexion", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -173,7 +173,7 @@ namespace PROYECTO
                 oTipo.No_cia = PROYECTO.Properties.Settings.Default.No_cia;
                 oTipo.Fecharegistro = Convert.ToDateTime(lblFecha.Text);
                 oTipo.Dolar = Double.Parse(txtDolar.Text);
-                oTipo.Usuario = PROYECTO.Properties.Settings.Default.Usuario.ToString();
+
                 oTipoCambioDAO.Modificar(oTipo);
                 if (oTipoCambioDAO.Error())
                     MessageBox.Show("Ha ocurrido un error al Modificar los datos: " + oTipoCambioDAO.DescError(), "Error de Consulta", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -262,7 +262,7 @@ namespace PROYECTO
                         oTipo.No_cia = PROYECTO.Properties.Settings.Default.No_cia;
                         oTipo.Fecharegistro = DateTime.Now;
                         oTipo.Dolar = Double.Parse(txtDolar.Text);
-                        oTipo.Usuario = PROYECTO.Properties.Settings.Default.Usuario.ToString();
+
                         oTipoCambioDAO.Agregar(oTipo);
                         if (oTipoCambioDAO.Error())
                             MessageBox.Show("Ha ocurrido un error al guardar los datos: " + oTipoCambioDAO.DescError(), "Error de Consulta", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -285,7 +285,7 @@ namespace PROYECTO
                         oTipo.No_cia = PROYECTO.Properties.Settings.Default.No_cia;
                         oTipo.Fecharegistro = Convert.ToDateTime(lblFecha.Text);
                         oTipo.Dolar = Double.Parse(txtDolar.Text);
-                        oTipo.Usuario = PROYECTO.Properties.Settings.Default.Usuario.ToString();
+
                         oTipoCambioDAO.Modificar(oTipo);
                         if (oTipoCambioDAO.Error())
                             MessageBox.Show("Ha ocurrido un error al Modificar los datos: " + oTipoCambioDAO.DescError(), "Error de Consulta", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -405,7 +405,7 @@ namespace PROYECTO
                     {
                         oPantallaPermisoDAO.crearPantalla(codigo, modulo, descripcion, PROYECTO.Properties.Settings.Default.No_cia);
                     }
-                    odataset = oPantallaPermisoDAO.tieneAcceso(codigo, PROYECTO.Properties.Settings.Default.Usuario, PROYECTO.Properties.Settings.Default.No_cia);
+                    odataset = oPantallaPermisoDAO.tieneAcceso(codigo, PROYECTO.Properties.Settings.Default.No_cia);
                     if (odataset.Tables[0].Rows[0].ItemArray[0].ToString().Equals("0"))
                         tienePermiso = true;
                     oConexion.cerrarConexion();

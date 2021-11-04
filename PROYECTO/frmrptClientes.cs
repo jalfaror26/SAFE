@@ -69,7 +69,7 @@ namespace PROYECTO
                 oConexion.cerrarConexion();
                 if (oConexion.abrirConexion())
                 {
-                    sql = "SELECT CLI_LINEA,CLI_TIPO_ID,CLI_IDENTIFICACION, CLI_NOMBRE, CLI_TELEFONO, CLI_FAX, CLI_CONTACTO, CLI_CORREO, CLI_UBICACION, CLI_DIAS, CLI_ID , CLI_TIPOCLIENTE,CLI_LC_MONEDA ,CLI_LC_LIMITE,EMPR_NOMBRE ,EMPR_LOGO, EMPR_DIRECCION ||' - Telefono: '||EMPR_TELEFONO EMPR_OTROS, user usuario FROM TBL_CLIENTES c, TBL_EMPRESA e where c.no_cia = e.no_cia and c.no_cia = '" + PROYECTO.Properties.Settings.Default.No_cia + "' and CLI_ESTADO = 1 and CLI_LINEA > 0";
+                    sql = "SELECT CLI_LINEA,CLI_TIPO_ID,CLI_IDENTIFICACION, CLI_NOMBRE, CLI_TELEFONO, CLI_FAX, CLI_CONTACTO, CLI_CORREO, CLI_UBICACION, CLI_DIAS, CLI_ID , CLI_TIPOCLIENTE, CLI_LC_MONEDA, CLI_LC_LIMITE, EMPR_NOMBRE, EMPR_LOGO, EMPR_DIRECCION ||' - Telefono: '||EMPR_TELEFONO EMPR_OTROS, user usuario FROM TBL_CLIENTES c, TBL_EMPRESA e where c.no_cia = e.no_cia and c.no_cia = '" + PROYECTO.Properties.Settings.Default.No_cia + "' and CLI_ESTADO = 1 and CLI_LINEA > 0";
 
                     sql += " order by CLI_NOMBRE";
 

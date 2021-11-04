@@ -28,6 +28,8 @@ namespace PROYECTO {
         
         private tbl_proveedoresDataTable tabletbl_proveedores;
         
+        private tbl_prepago_ProveedorDataTable tabletbl_prepago_Proveedor;
+        
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -61,6 +63,9 @@ namespace PROYECTO {
                 }
                 if ((ds.Tables["tbl_proveedores"] != null)) {
                     base.Tables.Add(new tbl_proveedoresDataTable(ds.Tables["tbl_proveedores"]));
+                }
+                if ((ds.Tables["tbl_prepago_Proveedor"] != null)) {
+                    base.Tables.Add(new tbl_prepago_ProveedorDataTable(ds.Tables["tbl_prepago_Proveedor"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -97,6 +102,16 @@ namespace PROYECTO {
         public tbl_proveedoresDataTable tbl_proveedores {
             get {
                 return this.tabletbl_proveedores;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+        [global::System.ComponentModel.Browsable(false)]
+        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
+        public tbl_prepago_ProveedorDataTable tbl_prepago_Proveedor {
+            get {
+                return this.tabletbl_prepago_Proveedor;
             }
         }
         
@@ -173,6 +188,9 @@ namespace PROYECTO {
                 if ((ds.Tables["tbl_proveedores"] != null)) {
                     base.Tables.Add(new tbl_proveedoresDataTable(ds.Tables["tbl_proveedores"]));
                 }
+                if ((ds.Tables["tbl_prepago_Proveedor"] != null)) {
+                    base.Tables.Add(new tbl_prepago_ProveedorDataTable(ds.Tables["tbl_prepago_Proveedor"]));
+                }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
                 this.Namespace = ds.Namespace;
@@ -218,6 +236,12 @@ namespace PROYECTO {
                     this.tabletbl_proveedores.InitVars();
                 }
             }
+            this.tabletbl_prepago_Proveedor = ((tbl_prepago_ProveedorDataTable)(base.Tables["tbl_prepago_Proveedor"]));
+            if ((initTable == true)) {
+                if ((this.tabletbl_prepago_Proveedor != null)) {
+                    this.tabletbl_prepago_Proveedor.InitVars();
+                }
+            }
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -232,6 +256,8 @@ namespace PROYECTO {
             base.Tables.Add(this.tabletbl_clientes);
             this.tabletbl_proveedores = new tbl_proveedoresDataTable();
             base.Tables.Add(this.tabletbl_proveedores);
+            this.tabletbl_prepago_Proveedor = new tbl_prepago_ProveedorDataTable();
+            base.Tables.Add(this.tabletbl_prepago_Proveedor);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -243,6 +269,12 @@ namespace PROYECTO {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         private bool ShouldSerializetbl_proveedores() {
+            return false;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+        private bool ShouldSerializetbl_prepago_Proveedor() {
             return false;
         }
         
@@ -306,6 +338,9 @@ namespace PROYECTO {
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         public delegate void tbl_proveedoresRowChangeEventHandler(object sender, tbl_proveedoresRowChangeEvent e);
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+        public delegate void tbl_prepago_ProveedorRowChangeEventHandler(object sender, tbl_prepago_ProveedorRowChangeEvent e);
         
         /// <summary>
         ///Represents the strongly named DataTable class.
@@ -1197,6 +1232,421 @@ namespace PROYECTO {
         }
         
         /// <summary>
+        ///Represents the strongly named DataTable class.
+        ///</summary>
+        [global::System.Serializable()]
+        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
+        public partial class tbl_prepago_ProveedorDataTable : global::System.Data.TypedTableBase<tbl_prepago_ProveedorRow> {
+            
+            private global::System.Data.DataColumn columnguia;
+            
+            private global::System.Data.DataColumn columnproveedor;
+            
+            private global::System.Data.DataColumn columnfactura;
+            
+            private global::System.Data.DataColumn columnmonto;
+            
+            private global::System.Data.DataColumn columnsaldo;
+            
+            private global::System.Data.DataColumn columnfecha;
+            
+            private global::System.Data.DataColumn columnmoneda;
+            
+            private global::System.Data.DataColumn columnabono;
+            
+            private global::System.Data.DataColumn columngasto;
+            
+            private global::System.Data.DataColumn columnEMPR_NOMBRE;
+            
+            private global::System.Data.DataColumn columnEMPR_LOGO;
+            
+            private global::System.Data.DataColumn columnEMPR_OTROS;
+            
+            private global::System.Data.DataColumn columnusuario;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public tbl_prepago_ProveedorDataTable() {
+                this.TableName = "tbl_prepago_Proveedor";
+                this.BeginInit();
+                this.InitClass();
+                this.EndInit();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            internal tbl_prepago_ProveedorDataTable(global::System.Data.DataTable table) {
+                this.TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
+                    this.CaseSensitive = table.CaseSensitive;
+                }
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
+                    this.Locale = table.Locale;
+                }
+                if ((table.Namespace != table.DataSet.Namespace)) {
+                    this.Namespace = table.Namespace;
+                }
+                this.Prefix = table.Prefix;
+                this.MinimumCapacity = table.MinimumCapacity;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            protected tbl_prepago_ProveedorDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+                    base(info, context) {
+                this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn guiaColumn {
+                get {
+                    return this.columnguia;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn proveedorColumn {
+                get {
+                    return this.columnproveedor;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn facturaColumn {
+                get {
+                    return this.columnfactura;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn montoColumn {
+                get {
+                    return this.columnmonto;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn saldoColumn {
+                get {
+                    return this.columnsaldo;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn fechaColumn {
+                get {
+                    return this.columnfecha;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn monedaColumn {
+                get {
+                    return this.columnmoneda;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn abonoColumn {
+                get {
+                    return this.columnabono;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn gastoColumn {
+                get {
+                    return this.columngasto;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn EMPR_NOMBREColumn {
+                get {
+                    return this.columnEMPR_NOMBRE;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn EMPR_LOGOColumn {
+                get {
+                    return this.columnEMPR_LOGO;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn EMPR_OTROSColumn {
+                get {
+                    return this.columnEMPR_OTROS;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn usuarioColumn {
+                get {
+                    return this.columnusuario;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            [global::System.ComponentModel.Browsable(false)]
+            public int Count {
+                get {
+                    return this.Rows.Count;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public tbl_prepago_ProveedorRow this[int index] {
+                get {
+                    return ((tbl_prepago_ProveedorRow)(this.Rows[index]));
+                }
+            }
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public event tbl_prepago_ProveedorRowChangeEventHandler tbl_prepago_ProveedorRowChanging;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public event tbl_prepago_ProveedorRowChangeEventHandler tbl_prepago_ProveedorRowChanged;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public event tbl_prepago_ProveedorRowChangeEventHandler tbl_prepago_ProveedorRowDeleting;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public event tbl_prepago_ProveedorRowChangeEventHandler tbl_prepago_ProveedorRowDeleted;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void Addtbl_prepago_ProveedorRow(tbl_prepago_ProveedorRow row) {
+                this.Rows.Add(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public tbl_prepago_ProveedorRow Addtbl_prepago_ProveedorRow(long guia, string proveedor, string factura, double monto, double saldo, string fecha, string moneda, double abono, string gasto, string EMPR_NOMBRE, byte[] EMPR_LOGO, string EMPR_OTROS, string usuario) {
+                tbl_prepago_ProveedorRow rowtbl_prepago_ProveedorRow = ((tbl_prepago_ProveedorRow)(this.NewRow()));
+                object[] columnValuesArray = new object[] {
+                        guia,
+                        proveedor,
+                        factura,
+                        monto,
+                        saldo,
+                        fecha,
+                        moneda,
+                        abono,
+                        gasto,
+                        EMPR_NOMBRE,
+                        EMPR_LOGO,
+                        EMPR_OTROS,
+                        usuario};
+                rowtbl_prepago_ProveedorRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowtbl_prepago_ProveedorRow);
+                return rowtbl_prepago_ProveedorRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public override global::System.Data.DataTable Clone() {
+                tbl_prepago_ProveedorDataTable cln = ((tbl_prepago_ProveedorDataTable)(base.Clone()));
+                cln.InitVars();
+                return cln;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            protected override global::System.Data.DataTable CreateInstance() {
+                return new tbl_prepago_ProveedorDataTable();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            internal void InitVars() {
+                this.columnguia = base.Columns["guia"];
+                this.columnproveedor = base.Columns["proveedor"];
+                this.columnfactura = base.Columns["factura"];
+                this.columnmonto = base.Columns["monto"];
+                this.columnsaldo = base.Columns["saldo"];
+                this.columnfecha = base.Columns["fecha"];
+                this.columnmoneda = base.Columns["moneda"];
+                this.columnabono = base.Columns["abono"];
+                this.columngasto = base.Columns["gasto"];
+                this.columnEMPR_NOMBRE = base.Columns["EMPR_NOMBRE"];
+                this.columnEMPR_LOGO = base.Columns["EMPR_LOGO"];
+                this.columnEMPR_OTROS = base.Columns["EMPR_OTROS"];
+                this.columnusuario = base.Columns["usuario"];
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            private void InitClass() {
+                this.columnguia = new global::System.Data.DataColumn("guia", typeof(long), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnguia);
+                this.columnproveedor = new global::System.Data.DataColumn("proveedor", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnproveedor);
+                this.columnfactura = new global::System.Data.DataColumn("factura", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnfactura);
+                this.columnmonto = new global::System.Data.DataColumn("monto", typeof(double), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnmonto);
+                this.columnsaldo = new global::System.Data.DataColumn("saldo", typeof(double), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnsaldo);
+                this.columnfecha = new global::System.Data.DataColumn("fecha", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnfecha);
+                this.columnmoneda = new global::System.Data.DataColumn("moneda", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnmoneda);
+                this.columnabono = new global::System.Data.DataColumn("abono", typeof(double), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnabono);
+                this.columngasto = new global::System.Data.DataColumn("gasto", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columngasto);
+                this.columnEMPR_NOMBRE = new global::System.Data.DataColumn("EMPR_NOMBRE", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnEMPR_NOMBRE);
+                this.columnEMPR_LOGO = new global::System.Data.DataColumn("EMPR_LOGO", typeof(byte[]), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnEMPR_LOGO);
+                this.columnEMPR_OTROS = new global::System.Data.DataColumn("EMPR_OTROS", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnEMPR_OTROS);
+                this.columnusuario = new global::System.Data.DataColumn("usuario", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnusuario);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public tbl_prepago_ProveedorRow Newtbl_prepago_ProveedorRow() {
+                return ((tbl_prepago_ProveedorRow)(this.NewRow()));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+                return new tbl_prepago_ProveedorRow(builder);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            protected override global::System.Type GetRowType() {
+                return typeof(tbl_prepago_ProveedorRow);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanged(e);
+                if ((this.tbl_prepago_ProveedorRowChanged != null)) {
+                    this.tbl_prepago_ProveedorRowChanged(this, new tbl_prepago_ProveedorRowChangeEvent(((tbl_prepago_ProveedorRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanging(e);
+                if ((this.tbl_prepago_ProveedorRowChanging != null)) {
+                    this.tbl_prepago_ProveedorRowChanging(this, new tbl_prepago_ProveedorRowChangeEvent(((tbl_prepago_ProveedorRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleted(e);
+                if ((this.tbl_prepago_ProveedorRowDeleted != null)) {
+                    this.tbl_prepago_ProveedorRowDeleted(this, new tbl_prepago_ProveedorRowChangeEvent(((tbl_prepago_ProveedorRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleting(e);
+                if ((this.tbl_prepago_ProveedorRowDeleting != null)) {
+                    this.tbl_prepago_ProveedorRowDeleting(this, new tbl_prepago_ProveedorRowChangeEvent(((tbl_prepago_ProveedorRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void Removetbl_prepago_ProveedorRow(tbl_prepago_ProveedorRow row) {
+                this.Rows.Remove(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
+                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                DataSetReportes ds = new DataSetReportes();
+                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
+                any1.MinOccurs = new decimal(0);
+                any1.MaxOccurs = decimal.MaxValue;
+                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any1);
+                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
+                any2.MinOccurs = new decimal(1);
+                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any2);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute1.Name = "namespace";
+                attribute1.FixedValue = ds.Namespace;
+                type.Attributes.Add(attribute1);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute2.Name = "tableTypeName";
+                attribute2.FixedValue = "tbl_prepago_ProveedorDataTable";
+                type.Attributes.Add(attribute2);
+                type.Particle = sequence;
+                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace)) {
+                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
+                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    try {
+                        global::System.Xml.Schema.XmlSchema schema = null;
+                        dsSchema.Write(s1);
+                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                            s2.SetLength(0);
+                            schema.Write(s2);
+                            if ((s1.Length == s2.Length)) {
+                                s1.Position = 0;
+                                s2.Position = 0;
+                                for (; ((s1.Position != s1.Length) 
+                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                    ;
+                                }
+                                if ((s1.Position == s1.Length)) {
+                                    return type;
+                                }
+                            }
+                        }
+                    }
+                    finally {
+                        if ((s1 != null)) {
+                            s1.Close();
+                        }
+                        if ((s2 != null)) {
+                            s2.Close();
+                        }
+                    }
+                }
+                xs.Add(dsSchema);
+                return type;
+            }
+        }
+        
+        /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
         public partial class tbl_clientesRow : global::System.Data.DataRow {
@@ -2039,6 +2489,385 @@ namespace PROYECTO {
         }
         
         /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
+        public partial class tbl_prepago_ProveedorRow : global::System.Data.DataRow {
+            
+            private tbl_prepago_ProveedorDataTable tabletbl_prepago_Proveedor;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            internal tbl_prepago_ProveedorRow(global::System.Data.DataRowBuilder rb) : 
+                    base(rb) {
+                this.tabletbl_prepago_Proveedor = ((tbl_prepago_ProveedorDataTable)(this.Table));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public long guia {
+                get {
+                    try {
+                        return ((long)(this[this.tabletbl_prepago_Proveedor.guiaColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'guia\' in table \'tbl_prepago_Proveedor\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabletbl_prepago_Proveedor.guiaColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public string proveedor {
+                get {
+                    try {
+                        return ((string)(this[this.tabletbl_prepago_Proveedor.proveedorColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'proveedor\' in table \'tbl_prepago_Proveedor\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabletbl_prepago_Proveedor.proveedorColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public string factura {
+                get {
+                    try {
+                        return ((string)(this[this.tabletbl_prepago_Proveedor.facturaColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'factura\' in table \'tbl_prepago_Proveedor\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabletbl_prepago_Proveedor.facturaColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public double monto {
+                get {
+                    try {
+                        return ((double)(this[this.tabletbl_prepago_Proveedor.montoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'monto\' in table \'tbl_prepago_Proveedor\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabletbl_prepago_Proveedor.montoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public double saldo {
+                get {
+                    try {
+                        return ((double)(this[this.tabletbl_prepago_Proveedor.saldoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'saldo\' in table \'tbl_prepago_Proveedor\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabletbl_prepago_Proveedor.saldoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public string fecha {
+                get {
+                    try {
+                        return ((string)(this[this.tabletbl_prepago_Proveedor.fechaColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'fecha\' in table \'tbl_prepago_Proveedor\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabletbl_prepago_Proveedor.fechaColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public string moneda {
+                get {
+                    try {
+                        return ((string)(this[this.tabletbl_prepago_Proveedor.monedaColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'moneda\' in table \'tbl_prepago_Proveedor\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabletbl_prepago_Proveedor.monedaColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public double abono {
+                get {
+                    try {
+                        return ((double)(this[this.tabletbl_prepago_Proveedor.abonoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'abono\' in table \'tbl_prepago_Proveedor\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabletbl_prepago_Proveedor.abonoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public string gasto {
+                get {
+                    try {
+                        return ((string)(this[this.tabletbl_prepago_Proveedor.gastoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'gasto\' in table \'tbl_prepago_Proveedor\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabletbl_prepago_Proveedor.gastoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public string EMPR_NOMBRE {
+                get {
+                    try {
+                        return ((string)(this[this.tabletbl_prepago_Proveedor.EMPR_NOMBREColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'EMPR_NOMBRE\' in table \'tbl_prepago_Proveedor\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabletbl_prepago_Proveedor.EMPR_NOMBREColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public byte[] EMPR_LOGO {
+                get {
+                    try {
+                        return ((byte[])(this[this.tabletbl_prepago_Proveedor.EMPR_LOGOColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'EMPR_LOGO\' in table \'tbl_prepago_Proveedor\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabletbl_prepago_Proveedor.EMPR_LOGOColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public string EMPR_OTROS {
+                get {
+                    try {
+                        return ((string)(this[this.tabletbl_prepago_Proveedor.EMPR_OTROSColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'EMPR_OTROS\' in table \'tbl_prepago_Proveedor\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabletbl_prepago_Proveedor.EMPR_OTROSColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public string usuario {
+                get {
+                    try {
+                        return ((string)(this[this.tabletbl_prepago_Proveedor.usuarioColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'usuario\' in table \'tbl_prepago_Proveedor\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabletbl_prepago_Proveedor.usuarioColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsguiaNull() {
+                return this.IsNull(this.tabletbl_prepago_Proveedor.guiaColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetguiaNull() {
+                this[this.tabletbl_prepago_Proveedor.guiaColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsproveedorNull() {
+                return this.IsNull(this.tabletbl_prepago_Proveedor.proveedorColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetproveedorNull() {
+                this[this.tabletbl_prepago_Proveedor.proveedorColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsfacturaNull() {
+                return this.IsNull(this.tabletbl_prepago_Proveedor.facturaColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetfacturaNull() {
+                this[this.tabletbl_prepago_Proveedor.facturaColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsmontoNull() {
+                return this.IsNull(this.tabletbl_prepago_Proveedor.montoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetmontoNull() {
+                this[this.tabletbl_prepago_Proveedor.montoColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IssaldoNull() {
+                return this.IsNull(this.tabletbl_prepago_Proveedor.saldoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetsaldoNull() {
+                this[this.tabletbl_prepago_Proveedor.saldoColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsfechaNull() {
+                return this.IsNull(this.tabletbl_prepago_Proveedor.fechaColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetfechaNull() {
+                this[this.tabletbl_prepago_Proveedor.fechaColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsmonedaNull() {
+                return this.IsNull(this.tabletbl_prepago_Proveedor.monedaColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetmonedaNull() {
+                this[this.tabletbl_prepago_Proveedor.monedaColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsabonoNull() {
+                return this.IsNull(this.tabletbl_prepago_Proveedor.abonoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetabonoNull() {
+                this[this.tabletbl_prepago_Proveedor.abonoColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsgastoNull() {
+                return this.IsNull(this.tabletbl_prepago_Proveedor.gastoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetgastoNull() {
+                this[this.tabletbl_prepago_Proveedor.gastoColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsEMPR_NOMBRENull() {
+                return this.IsNull(this.tabletbl_prepago_Proveedor.EMPR_NOMBREColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetEMPR_NOMBRENull() {
+                this[this.tabletbl_prepago_Proveedor.EMPR_NOMBREColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsEMPR_LOGONull() {
+                return this.IsNull(this.tabletbl_prepago_Proveedor.EMPR_LOGOColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetEMPR_LOGONull() {
+                this[this.tabletbl_prepago_Proveedor.EMPR_LOGOColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsEMPR_OTROSNull() {
+                return this.IsNull(this.tabletbl_prepago_Proveedor.EMPR_OTROSColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetEMPR_OTROSNull() {
+                this[this.tabletbl_prepago_Proveedor.EMPR_OTROSColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsusuarioNull() {
+                return this.IsNull(this.tabletbl_prepago_Proveedor.usuarioColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetusuarioNull() {
+                this[this.tabletbl_prepago_Proveedor.usuarioColumn] = global::System.Convert.DBNull;
+            }
+        }
+        
+        /// <summary>
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
@@ -2092,6 +2921,40 @@ namespace PROYECTO {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public tbl_proveedoresRow Row {
+                get {
+                    return this.eventRow;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataRowAction Action {
+                get {
+                    return this.eventAction;
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Row event argument class
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+        public class tbl_prepago_ProveedorRowChangeEvent : global::System.EventArgs {
+            
+            private tbl_prepago_ProveedorRow eventRow;
+            
+            private global::System.Data.DataRowAction eventAction;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public tbl_prepago_ProveedorRowChangeEvent(tbl_prepago_ProveedorRow row, global::System.Data.DataRowAction action) {
+                this.eventRow = row;
+                this.eventAction = action;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public tbl_prepago_ProveedorRow Row {
                 get {
                     return this.eventRow;
                 }

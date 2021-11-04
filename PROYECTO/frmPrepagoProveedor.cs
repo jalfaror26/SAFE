@@ -95,9 +95,9 @@ namespace PROYECTO
                     string moned = "";
                     if (rbtnCol.Checked)
                         moned = "CRC";
-                    else                        if (rbtnUsd.Checked)
+                    else if (rbtnUsd.Checked)
                         moned = "USD";
-                 
+
 
                     foreach (DataRow OFila in oFacturaDAO.Busqueda_Consulta(txtCodProveedor.Text, "FP", moned, "0", PROYECTO.Properties.Settings.Default.No_cia).Tables[0].Rows)
                     {
@@ -151,9 +151,9 @@ namespace PROYECTO
                     string moned = "";
                     if (rbtnCol.Checked)
                         moned = "CRC";
-                    else                        if (rbtnUsd.Checked)
+                    else if (rbtnUsd.Checked)
                         moned = "USD";
-                   
+
                     BuscarGuia();
                     oConexion.cerrarConexion();
                     oConexion.abrirConexion();
@@ -215,7 +215,7 @@ namespace PROYECTO
                 moneda = "CRC";
             else if (rbtnUsd.Checked)
                 moneda = "USD";
-          
+
             frmFacturaPorPagarProveedorRapida oRapida = frmFacturaPorPagarProveedorRapida.getInstance(txtCodProveedor.Text, txtProveedor.Text, moneda);
             oRapida.MdiParent = this.MdiParent;
             oRapida.Show();
@@ -234,7 +234,7 @@ namespace PROYECTO
             llenaGrid();
             llenaGrid2();
         }
-        
+
         private void CrearTabla()
         {
             oDataTable = new DataTable();
@@ -512,7 +512,7 @@ namespace PROYECTO
                                 oFacturasPago.Indice = int.Parse(dgrDatos["FACPAG_INDICE", x].Value.ToString());
                                 oFacturasPago.NumFactura = dgrDatos["facpag_num_factura", x].Value.ToString();
                                 oFacturasPago.Saldo = double.Parse(dgrDatos["saldo_actual", x].Value.ToString());
-                                oFacturasPago.Usuario = PROYECTO.Properties.Settings.Default.Usuario;
+
                                 oFacturaDAO.Modificar(oFacturasPago);
 
                                 AgregarDetalle(dgrDatos["facpag_num_factura", x].Value.ToString(), Double.Parse(dgrDatos["facpag_monto", x].Value.ToString()), Double.Parse(dgrDatos["facpag_saldo", x].Value.ToString()), Double.Parse(dgrDatos["Abono", x].Value.ToString()), int.Parse(dgrDatos["FACPAG_INDICE", x].Value.ToString()));
@@ -550,7 +550,7 @@ namespace PROYECTO
                     moneda = "CRC";
                 else if (rbtnUsd.Checked)
                     moneda = "USD";
-             
+
                 oConexion.cerrarConexion();
                 oConexion.abrirConexion();
                 oTabla = oGuiaPrepagoProveedorDAO.ConsultarExistente(moneda, txtCodProveedor.Text, PROYECTO.Properties.Settings.Default.No_cia).Tables[0];
@@ -585,7 +585,7 @@ namespace PROYECTO
                     moneda = "CRC";
                 else if (rbtnUsd.Checked)
                     moneda = "USD";
-             
+
                 if (txtGuiaPago.Text.Trim().Equals(""))
                 {
                     oConexion.cerrarConexion();
@@ -595,7 +595,7 @@ namespace PROYECTO
                     oGuiaPrepagoProveedor.No_cia = PROYECTO.Properties.Settings.Default.No_cia;
                     oGuiaPrepagoProveedor.Proveedor = txtCodProveedor.Text;
                     oGuiaPrepagoProveedor.Moneda = moneda;
-                    oGuiaPrepagoProveedor.Usuario = PROYECTO.Properties.Settings.Default.Usuario;
+
                     oGuiaPrepagoProveedorDAO.Agregar(oGuiaPrepagoProveedor);
                     if (oGuiaPrepagoProveedorDAO.Error())
                         MessageBox.Show("Ha ocurrido un error al crear el nuevo Prepago Proveedor: " + oGuiaPrepagoProveedorDAO.DescError(), "Error de Creación", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -626,7 +626,7 @@ namespace PROYECTO
 
                 oDetalle.No_cia = PROYECTO.Properties.Settings.Default.No_cia;
                 oDetalle.Prepago = int.Parse(txtGuiaPago.Text);
-                oDetalle.CodProveedor = txtCodProveedor.Text;
+                oDetalle.CodProveedor = int.Parse(txtCodProveedor.Text);
                 oDetalle.NumFactura = factura;
                 oDetalle.Monto = monto;
                 oDetalle.Abono = abono;
@@ -637,7 +637,7 @@ namespace PROYECTO
                 oGuiaPrepagoProveedor.No_cia = PROYECTO.Properties.Settings.Default.No_cia;
                 oGuiaPrepagoProveedor.Id = Double.Parse(txtGuiaPago.Text);
                 oGuiaPrepagoProveedor.Monto = (double.Parse(txtMontoGuia.Text.Trim().Substring(1)) + abono);
-                oGuiaPrepagoProveedor.Usuario = PROYECTO.Properties.Settings.Default.Usuario;
+
                 oGuiaPrepagoProveedorDAO.Modificar(oGuiaPrepagoProveedor);
                 if (oDetalleDAO.Error())
                     MessageBox.Show("Ha ocurrido un error al crear el nuevo Prepago Proveedor: " + oDetalleDAO.DescError(), "Error de Creación", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -662,7 +662,7 @@ namespace PROYECTO
                 oGuiaPrepagoProveedor.Id = Double.Parse(txtGuiaPago.Text);
                 oGuiaPrepagoProveedor.Monto = (double.Parse(txtMontoGuia.Text.Trim().Substring(1)) - abono);
                 // oGuiaPrepagoProveedor.Monto = abono;
-                oGuiaPrepagoProveedor.Usuario = PROYECTO.Properties.Settings.Default.Usuario;
+
                 oGuiaPrepagoProveedorDAO.Modificar(oGuiaPrepagoProveedor);
                 if (oDetalleDAO.Error())
                     MessageBox.Show("Ha ocurrido un error al crear el nuevo Prepago Proveedor: " + oDetalleDAO.DescError(), "Error de Creación", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -713,7 +713,7 @@ namespace PROYECTO
                                 oFacturasPago.Indice = int.Parse(oFila.Cells["DETPRE_INDICE"].Value.ToString());
                                 oFacturasPago.NumFactura = oFila.Cells["DETPRE_FACTURA"].Value.ToString();
                                 oFacturasPago.Saldo = abonos + saldoFactura;
-                                oFacturasPago.Usuario = PROYECTO.Properties.Settings.Default.Usuario;
+
                                 oFacturaDAO.Modificar(oFacturasPago);
                                 QuitarDetalle(Double.Parse(oFila.Cells["DETPRE_INDICE"].Value.ToString()), abonos);
                                 CrearGuia();
@@ -825,12 +825,12 @@ namespace PROYECTO
                     DataTable oTable = oDetalleDAO.Busqueda_Consulta(txtCodProveedor.Text, Double.Parse(txtGuiaPago.Text), moned, PROYECTO.Properties.Settings.Default.No_cia).Tables[0];
                     if (oTable.Rows.Count > 0)
                     {
-                        //frmVisorReportes oVisor = frmVisorReportes.getInstance();
-                        //oVisor.MdiParent = this.MdiParent;
-                        //rptPrepagoProveedor oReporte = new rptPrepagoProveedor();
-                        //oReporte.SetDataSource(oTable);
-                        //oVisor.ReportSource(oReporte);
-                        //oVisor.Show();
+                        frmVisorReportes oVisor = frmVisorReportes.getInstance();
+                        oVisor.MdiParent = this.MdiParent;
+                        rptPrepagoProveedor oReporte = new rptPrepagoProveedor();
+                        oReporte.SetDataSource(oTable);
+                        oVisor.ReportSource(oReporte);
+                        oVisor.Show();
                     }
                     else
                         MessageBox.Show("No hay datos para mostrar.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -878,9 +878,7 @@ namespace PROYECTO
                         oFacturasPago.No_cia = PROYECTO.Properties.Settings.Default.No_cia;
                         oFacturasPago.Indice = int.Parse(dgrDatos.SelectedCells[2].Value.ToString());
                         oFacturasPago.NumFactura = dgrDatos.SelectedCells[0].Value.ToString();
-                    
 
-                        oFacturasPago.Usuario = PROYECTO.Properties.Settings.Default.Usuario;
                         oFacturaDAO.Eliminar(oFacturasPago);
                         if (oFacturaDAO.Error())
                             MessageBox.Show("Ocurrió un error al eliminar la factura.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);

@@ -29,10 +29,8 @@ namespace PROYECTO_DAO
             oCommand.Parameters[0].Value = oGuiaPrepagoProveedor.Proveedor;
             oCommand.Parameters.Add("moneda", OracleType.NVarChar);
             oCommand.Parameters[1].Value = oGuiaPrepagoProveedor.Moneda;
-            oCommand.Parameters.Add("usuario", OracleType.NVarChar);
-            oCommand.Parameters[2].Value = oGuiaPrepagoProveedor.Usuario;
             oCommand.Parameters.Add("pNo_cia", OracleType.NVarChar);
-            oCommand.Parameters[3].Value = oGuiaPrepagoProveedor.No_cia;
+            oCommand.Parameters[2].Value = oGuiaPrepagoProveedor.No_cia;
 
             oCommand.Parameters.Add(oParametro);
 
@@ -54,10 +52,8 @@ namespace PROYECTO_DAO
             oCommand.Parameters[0].Value = oGuiaPrepagoProveedor.Id;
             oCommand.Parameters.Add("monto", OracleType.Number);
             oCommand.Parameters[1].Value = oGuiaPrepagoProveedor.Monto;
-            oCommand.Parameters.Add("usuario", OracleType.NVarChar);
-            oCommand.Parameters[2].Value = oGuiaPrepagoProveedor.Usuario;
             oCommand.Parameters.Add("pNo_cia", OracleType.NVarChar);
-            oCommand.Parameters[3].Value = oGuiaPrepagoProveedor.No_cia;
+            oCommand.Parameters[2].Value = oGuiaPrepagoProveedor.No_cia;
 
             OracleDAO.getInstance().EjecutarSQLStoreProcedure(oCommand);
 
@@ -74,10 +70,8 @@ namespace PROYECTO_DAO
             //Crear los Parámetros del procedimiento y sus valores
             oCommand.Parameters.Add("preid", OracleType.Number);
             oCommand.Parameters[0].Value = oGuiaPrepagoProveedor.Id;
-            oCommand.Parameters.Add("usuario", OracleType.NVarChar);
-            oCommand.Parameters[1].Value = oGuiaPrepagoProveedor.Usuario;
             oCommand.Parameters.Add("pNo_cia", OracleType.NVarChar);
-            oCommand.Parameters[3].Value = oGuiaPrepagoProveedor.No_cia;
+            oCommand.Parameters[1].Value = oGuiaPrepagoProveedor.No_cia;
 
             OracleDAO.getInstance().EjecutarSQLStoreProcedure(oCommand);
 

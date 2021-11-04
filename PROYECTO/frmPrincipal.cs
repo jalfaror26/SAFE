@@ -48,7 +48,7 @@ namespace PROYECTO
                     {
                         oPantallaPermisoDAO.crearPantalla(codigo, modulo, descripcion, PROYECTO.Properties.Settings.Default.No_cia);
                     }
-                    odataset = oPantallaPermisoDAO.tieneAcceso(codigo, PROYECTO.Properties.Settings.Default.Usuario, PROYECTO.Properties.Settings.Default.No_cia);
+                    odataset = oPantallaPermisoDAO.tieneAcceso(codigo, PROYECTO.Properties.Settings.Default.No_cia);
                     if (odataset.Tables[0].Rows[0].ItemArray[0].ToString().Equals("0"))
                         tienePermiso = true;
                     oConexion.cerrarConexion();
@@ -72,7 +72,7 @@ namespace PROYECTO
                     oConexion = new ConexionDAO(PROYECTO.Properties.Settings.Default.UsuarioBD, PROYECTO.Properties.Settings.Default.Servidor, Conexion.getInstance().Clave);
                     oConexion.cerrarConexion();
                     oConexion.abrirConexion();
-                    string ruta = oPantallaPermisoDAO.RutaImagen(PROYECTO.Properties.Settings.Default.Usuario, PROYECTO.Properties.Settings.Default.No_cia);
+                    string ruta = oPantallaPermisoDAO.RutaImagen(PROYECTO.Properties.Settings.Default.No_cia);
                     try
                     {
                         if (!ruta.Equals(""))
@@ -414,7 +414,7 @@ namespace PROYECTO
                 this.BackgroundImage = Image.FromFile(PROYECTO.Properties.Settings.Default.RutaImagen);
                 oConexion.cerrarConexion();
                 oConexion.abrirConexion();
-                oPantallaPermisoDAO.InsertarFondo(PROYECTO.Properties.Settings.Default.RutaImagen, PROYECTO.Properties.Settings.Default.Usuario, PROYECTO.Properties.Settings.Default.No_cia);
+                oPantallaPermisoDAO.InsertarFondo(PROYECTO.Properties.Settings.Default.RutaImagen, PROYECTO.Properties.Settings.Default.No_cia);
                 oConexion.cerrarConexion();
             }
             catch (Exception ex) { }

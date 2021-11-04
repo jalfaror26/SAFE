@@ -42,12 +42,10 @@ namespace PROYECTO_DAO
             oCommand.Parameters[9].Value = ofactura.Saldo;
             oCommand.Parameters.Add("estado", OracleType.NVarChar);
             oCommand.Parameters[10].Value = ofactura.Estado;
-            oCommand.Parameters.Add("usuario", OracleType.NVarChar);
-            oCommand.Parameters[11].Value = ofactura.Usuario;
             oCommand.Parameters.Add("responsable", OracleType.NVarChar);
-            oCommand.Parameters[12].Value = ofactura.Responsable;
+            oCommand.Parameters[11].Value = ofactura.Responsable;
             oCommand.Parameters.Add("pNo_cia", OracleType.NVarChar);
-            oCommand.Parameters[13].Value = ofactura.No_cia;
+            oCommand.Parameters[12].Value = ofactura.No_cia;
 
             OracleDAO.getInstance().EjecutarSQLStoreProcedure(oCommand);
 
@@ -70,10 +68,8 @@ namespace PROYECTO_DAO
             oCommand.Parameters[1].Value = ofactura.NumFactura;
             oCommand.Parameters.Add("saldo", OracleType.Number);
             oCommand.Parameters[2].Value = ofactura.Saldo;
-            oCommand.Parameters.Add("usuario", OracleType.NVarChar);
-            oCommand.Parameters[3].Value = ofactura.Usuario;
             oCommand.Parameters.Add("pNo_cia", OracleType.NVarChar);
-            oCommand.Parameters[4].Value = ofactura.No_cia;
+            oCommand.Parameters[3].Value = ofactura.No_cia;
 
             OracleDAO.getInstance().EjecutarSQLStoreProcedure(oCommand);
 
@@ -112,10 +108,8 @@ namespace PROYECTO_DAO
             oCommand.Parameters[9].Value = ofactura.Saldo;
             oCommand.Parameters.Add("estado", OracleType.NVarChar);
             oCommand.Parameters[10].Value = ofactura.Estado;
-            oCommand.Parameters.Add("usuario", OracleType.NVarChar);
-            oCommand.Parameters[11].Value = ofactura.Usuario;
             oCommand.Parameters.Add("pNo_cia", OracleType.NVarChar);
-            oCommand.Parameters[12].Value = ofactura.No_cia;
+            oCommand.Parameters[11].Value = ofactura.No_cia;
 
             OracleDAO.getInstance().EjecutarSQLStoreProcedure(oCommand);
 
@@ -136,10 +130,8 @@ namespace PROYECTO_DAO
             oCommand.Parameters[0].Value = ofactura.Indice;
             oCommand.Parameters.Add("numFactura", OracleType.NVarChar);
             oCommand.Parameters[1].Value = ofactura.NumFactura;
-            oCommand.Parameters.Add("usuario", OracleType.NVarChar);
-            oCommand.Parameters[2].Value = ofactura.Usuario;
             oCommand.Parameters.Add("pNo_cia", OracleType.NVarChar);
-            oCommand.Parameters[3].Value = ofactura.No_cia;
+            oCommand.Parameters[2].Value = ofactura.No_cia;
 
             OracleDAO.getInstance().EjecutarSQLStoreProcedure(oCommand);
 

@@ -8,7 +8,6 @@ namespace ENTIDADES
     {
         private DateTime fecharegistro;
         private double dolar;
-        private String usuario;
         private String no_cia;
 
         public String No_cia
@@ -29,10 +28,5 @@ namespace ENTIDADES
             set { dolar = value; }
         }        
 
-        public String Usuario
-        {
-            get { return usuario; }
-            set { usuario = value; }
-        }
     }
 }

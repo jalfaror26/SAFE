@@ -128,7 +128,7 @@ namespace PROYECTO
                     oHoras.Columns.Add("REC_DETALLE");
                     DataRow oFila = null;
 
-                    DataTable oTabla2 = oRecordatorioDAO.Consultar(PROYECTO.Properties.Settings.Default.Usuario, mthFecha.SelectionStart, PROYECTO.Properties.Settings.Default.No_cia).Tables[0];
+                    DataTable oTabla2 = oRecordatorioDAO.Consultar(mthFecha.SelectionStart, PROYECTO.Properties.Settings.Default.No_cia).Tables[0];
                     foreach (DataRow oFila2 in oTabla2.Rows)
                     {
                         oFila = oHoras.NewRow();
@@ -478,7 +478,6 @@ namespace PROYECTO
                     oRecordatorio.Detalle = txtDetalle.Text;
                     oRecordatorio.DetalleProviene = "";
                     oRecordatorio.IndiceProviene = linea;
-                    oRecordatorio.Usuario = PROYECTO.Properties.Settings.Default.Usuario;
                     oRecordatorio.Persona = persona;
                     oRecordatorio.Tipo = tipo;
                     oRecordatorioDAO.Guardar(oRecordatorio);
@@ -525,7 +524,7 @@ namespace PROYECTO
 
                     oRecordatorio.No_cia = PROYECTO.Properties.Settings.Default.No_cia;
                     oRecordatorio.Linea = linea;
-                    oRecordatorio.Usuario = PROYECTO.Properties.Settings.Default.Usuario;
+
                     oRecordatorioDAO.Eliminar(oRecordatorio);
 
                     if (oRecordatorioDAO.Error())
@@ -567,6 +566,6 @@ namespace PROYECTO
             oFrm.MdiParent = this.MdiParent;
             oFrm.Show();
         }
-    
+
     }
 }

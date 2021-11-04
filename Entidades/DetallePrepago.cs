@@ -6,8 +6,8 @@ namespace ENTIDADES
 {
     public class DetallePrepago
     {
-        private int indice, prepago;       
-        private String numFactura, codProveedor;
+        private int indice, prepago, codProveedor;       
+        private String numFactura ;
         private Double monto, saldo, abono;
 
 
@@ -49,7 +49,7 @@ namespace ENTIDADES
             set { indice = value; }
         }
 
-        public String CodProveedor
+        public int CodProveedor
         {
             get { return codProveedor; }
             set { codProveedor = value; }

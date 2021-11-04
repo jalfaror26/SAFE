@@ -38,9 +38,9 @@ namespace PROYECTO_DAO
             return !OracleDAO.getInstance().ErrorSQL;
         }
 
-        public DataSet tieneAcceso(String id, String usuario, String pNo_cia)
+        public DataSet tieneAcceso(String id, String pNo_cia)
         {
-            String sql = "select PER_ACCESO from TBL_PERMISOS p where p.no_cia = '" + pNo_cia + "' and per_estado = 1 and PER_ID_PANTALLA = '" + id + "' and PER_USUARIO = '" + usuario + "'";
+            String sql = "select PER_ACCESO from TBL_PERMISOS p where p.no_cia = '" + pNo_cia + "' and per_estado = 1 and PER_ID_PANTALLA = '" + id + "' and PER_USUARIO = user";
             DataSet oDataSet = OracleDAO.getInstance().EjecutarSQLDataSet(sql);
             return oDataSet;
         }
@@ -80,14 +80,14 @@ namespace PROYECTO_DAO
             return oDataSet;
         }
 
-        public String RutaImagen(string usuario, String pNo_cia)
+        public String RutaImagen(String pNo_cia)
         {
-            String sql = "select fon_ruta from TBL_FONDO f where f.no_cia = '" + pNo_cia + "' and fon_usuario='" + usuario + "'";
+            String sql = "select fon_ruta from TBL_FONDO f where f.no_cia = '" + pNo_cia + "' and fon_usuario= user";
             String oDataSet = OracleDAO.getInstance().EjecutarSQLScalarString(sql);
             return oDataSet;
         }
 
-        public Boolean InsertarFondo(String ruta, String usuario, String pNo_cia)
+        public Boolean InsertarFondo(String ruta, String pNo_cia)
         {
             OracleCommand oCommand = new OracleCommand();
 
@@ -96,10 +96,8 @@ namespace PROYECTO_DAO
 
             oCommand.Parameters.Add("ruta", OracleType.NVarChar);
             oCommand.Parameters[0].Value = ruta;
-            oCommand.Parameters.Add("usuario", OracleType.NVarChar);
-            oCommand.Parameters[1].Value = usuario;
             oCommand.Parameters.Add("pNo_cia", OracleType.NVarChar);
-            oCommand.Parameters[2].Value = pNo_cia;
+            oCommand.Parameters[1].Value = pNo_cia;
 
             OracleDAO.getInstance().EjecutarSQLStoreProcedure(oCommand);
 

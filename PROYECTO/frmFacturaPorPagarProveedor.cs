@@ -206,7 +206,6 @@ namespace PROYECTO
             oFacturasPago.Monto = Double.Parse(txtmonto.Text.Substring(1));
             oFacturasPago.Saldo = Double.Parse(txtSaldo.Text.Substring(1));
             oFacturasPago.Estado = "FP";
-            oFacturasPago.Usuario = PROYECTO.Properties.Settings.Default.Usuario;
             oFacturasPago.Dias = int.Parse(txtDiasCredito.Text);
             oFacturaDAO.Insertar(oFacturasPago);
             if (oFacturaDAO.Error())
@@ -234,7 +233,6 @@ namespace PROYECTO
             oFacturasPago.Monto = Double.Parse(txtmonto.Text.Substring(1));
             oFacturasPago.Saldo = Double.Parse(txtSaldo.Text.Substring(1));
             oFacturasPago.Estado = "FP";
-            oFacturasPago.Usuario = PROYECTO.Properties.Settings.Default.Usuario;
             oFacturasPago.Dias = int.Parse(txtDiasCredito.Text);
             oFacturaDAO.ModificarExistente(oFacturasPago);
             if (oFacturaDAO.Error())
@@ -617,7 +615,7 @@ namespace PROYECTO
                         oFacturasPago.No_cia = PROYECTO.Properties.Settings.Default.No_cia;
                         oFacturasPago.Indice = indi;
                         oFacturasPago.NumFactura = txtnumfactura.Text;
-                        oFacturasPago.Usuario = PROYECTO.Properties.Settings.Default.Usuario;
+
                         oFacturaDAO.Eliminar(oFacturasPago);
                         if (oFacturaDAO.Error())
                             MessageBox.Show("Ha ocurrido un error al Eliminar los datos: " + oFacturaDAO.DescError(), "Error de consulta", MessageBoxButtons.OK, MessageBoxIcon.Error);

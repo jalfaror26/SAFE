@@ -231,17 +231,17 @@ namespace PROYECTO
                 oConexion.cerrarConexion();
                 if (oConexion.abrirConexion())
                 {
-                    String sql = "SELECT DISTINCT DETPRE_PREPAGO guia, PROV_NOMBRE proveedor, DETPRE_FACTURA factura, DETPRE_MONTO monto, DETPRE_SALDO saldo,DETPRE_ABONO abono,to_char(sysdate,'DD/MM/YYYY') fecha , PRE_MONEDA moneda, GAS_NOMBRE gasto, pag_banco banco, pag_cta_bancaria cuenta, pag_tipo_pago tipopago, pag_documento documento FROM TBL_DETALLE_PREPAGO DPP, TBL_PREPAGOS_PROVEEDORES PPP, TBL_PROVEEDOR p, TBL_GASTOS g, TBL_FACTURAS_PENDIENTE_PAGO FPP, TBL_PAGOS_PROVEEDORES PP where dpp.no_cia = '" + PROYECTO.Properties.Settings.Default.No_cia + "' and dpp.no_cia = ppp.no_cia and dpp.no_cia = p.no_cia and dpp.no_cia = g.no_cia and dpp.no_cia = fpp.no_cia and dpp.no_cia = pp.no_cia and ppp.centro = pp.centro and dpp.centro = pp.centro and pre_id = pag_id and DETPRE_FACTURA = FACPAG_NUM_FACTURA and GAS_CODIGO = FACPAG_TIPO_GASTO and prov_linea=PRE_PROVEEDOR and DETPRE_PREPAGO= '" + txtGuiaPago.Text + "' and DETPRE_ESTADO='FC'and detpre_prepago= ppp.pre_id and upper(DETPRE_PROVEEDOR)=upper('" + txtCodProveedor.Text + "') and facpag_proveedor= pre_proveedor";
+                    String sql = "SELECT DETPRE_PREPAGO guia, PROV_NOMBRE proveedor, DETPRE_FACTURA factura, DETPRE_MONTO monto, DETPRE_SALDO saldo, DETPRE_ABONO abono,to_char(sysdate,'DD/MM/YYYY') fecha , PRE_MONEDA moneda, GAS_NOMBRE gasto, EMPR_NOMBRE, EMPR_LOGO, EMPR_DIRECCION ||' - Telefono: '||EMPR_TELEFONO EMPR_OTROS, user usuario FROM TBL_DETALLE_PREPAGO DPP, TBL_PREPAGOS_PROVEEDORES PPP, TBL_PROVEEDOR p, TBL_GASTOS g, TBL_FACTURAS_PENDIENTE_PAGO FPP, TBL_PAGOS_PROVEEDORES PP, TBL_EMPRESA e where dpp.no_cia = '" + PROYECTO.Properties.Settings.Default.No_cia + "' and dpp.no_cia = ppp.no_cia and dpp.no_cia = p.no_cia and dpp.no_cia = g.no_cia and dpp.no_cia = fpp.no_cia and dpp.no_cia = pp.no_cia and fpp.no_cia = e.no_cia and pre_id = pag_id and DETPRE_FACTURA = FACPAG_NUM_FACTURA and GAS_CODIGO = FACPAG_TIPO_GASTO and prov_linea = PRE_PROVEEDOR and DETPRE_PREPAGO= " + txtGuiaPago.Text + " and DETPRE_ESTADO='FC'and detpre_prepago= ppp.pre_id and DETPRE_PROVEEDOR = " + txtCodProveedor.Text + " and facpag_proveedor= pre_proveedor";
 
                     DataTable oTable = oReporteDAO.EjecutaSentencia(sql).Tables[0];
                     if (oTable.Rows.Count > 0)
                     {
-                        //frmVisorReportes oVisor = frmVisorReportes.getInstance();
-                        //oVisor.MdiParent = this.MdiParent;
-                        //rptPagoProveedor oReporte = new rptPagoProveedor();
-                        //oReporte.SetDataSource(oTable);
-                        //oVisor.ReportSource(oReporte);
-                        //oVisor.Show();
+                        frmVisorReportes oVisor = frmVisorReportes.getInstance();
+                        oVisor.MdiParent = this.MdiParent;
+                        rptPagoProveedor oReporte = new rptPagoProveedor();
+                        oReporte.SetDataSource(oTable);
+                        oVisor.ReportSource(oReporte);
+                        oVisor.Show();
                     }
                     else
                         MessageBox.Show("No hay datos para mostrar.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);

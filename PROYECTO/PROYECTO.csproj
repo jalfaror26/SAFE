@@ -186,6 +186,12 @@
     <Compile Include="frmrptClientes.designer.cs">
       <DependentUpon>frmrptClientes.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmrptFactsRecibidasCategoria.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmrptFactsRecibidasCategoria.designer.cs">
+      <DependentUpon>frmrptFactsRecibidasCategoria.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmrptProveedores.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -321,6 +327,24 @@
       <DependentUpon>rptCajasChicas.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="rptFacsRecibidasCategoria.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptFacsRecibidasCategoria.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="rptPagoProveedor.cs">
+      <DependentUpon>rptPagoProveedor.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="rptPrepagoProveedor.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptPrepagoProveedor.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="rptProveedores.cs">
       <DependentUpon>rptProveedores.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -391,6 +415,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmrptClientes.resx">
       <DependentUpon>frmrptClientes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmrptFactsRecibidasCategoria.resx">
+      <DependentUpon>frmrptFactsRecibidasCategoria.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmrptProveedores.resx">
       <DependentUpon>frmrptProveedores.cs</DependentUpon>
@@ -470,6 +497,18 @@
     <EmbeddedResource Include="rptCajasChicas.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>rptCajasChicas.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="rptFacsRecibidasCategoria.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptFacsRecibidasCategoria.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="rptPagoProveedor.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptPagoProveedor.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="rptPrepagoProveedor.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptPrepagoProveedor.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="rptProveedores.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>

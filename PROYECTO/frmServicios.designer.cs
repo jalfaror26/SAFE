@@ -48,15 +48,6 @@ namespace PROYECTO
             this.txtFiltroDescBreve = new System.Windows.Forms.TextBox();
             this.txtFiltroCodigo = new System.Windows.Forms.TextBox();
             this.dgrDatos = new System.Windows.Forms.DataGridView();
-            this.ART_CODIGO = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ART_DESC_BREVE = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ART_IMPUESTOS = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ART_VENTA_IVI = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ART_TIPO = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ART_ESTADO = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ART_NOMBRE = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ART_TIPO_CODIGO = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ART_INDICE = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lblBusqueda = new System.Windows.Forms.Label();
             this.txtDesBreveArt = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
@@ -71,6 +62,18 @@ namespace PROYECTO
             this.btnMSalir = new System.Windows.Forms.Button();
             this.btnMNuevo = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txtCodCabys = new System.Windows.Forms.TextBox();
+            this.ART_CODIGO = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ART_DESC_BREVE = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ART_IMPUESTOS = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ART_VENTA_IVI = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ART_TIPO = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ART_ESTADO = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ART_NOMBRE = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ART_TIPO_CODIGO = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ART_INDICE = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.COD_CABYS = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgrDatos)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -237,7 +240,8 @@ namespace PROYECTO
             this.ART_ESTADO,
             this.ART_NOMBRE,
             this.ART_TIPO_CODIGO,
-            this.ART_INDICE});
+            this.ART_INDICE,
+            this.COD_CABYS});
             this.dgrDatos.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.dgrDatos.Location = new System.Drawing.Point(18, 352);
             this.dgrDatos.Margin = new System.Windows.Forms.Padding(4);
@@ -257,6 +261,219 @@ namespace PROYECTO
             this.dgrDatos.VirtualMode = true;
             this.dgrDatos.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgrDatos_CellEnter);
             this.dgrDatos.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgrDatos_CellEnter);
+            // 
+            // lblBusqueda
+            // 
+            this.lblBusqueda.AutoSize = true;
+            this.lblBusqueda.BackColor = System.Drawing.Color.Transparent;
+            this.lblBusqueda.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblBusqueda.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.lblBusqueda.Location = new System.Drawing.Point(31, 256);
+            this.lblBusqueda.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblBusqueda.Name = "lblBusqueda";
+            this.lblBusqueda.Size = new System.Drawing.Size(162, 20);
+            this.lblBusqueda.TabIndex = 50;
+            this.lblBusqueda.Text = "Búsqueda Rápida ....";
+            // 
+            // txtDesBreveArt
+            // 
+            this.txtDesBreveArt.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtDesBreveArt.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDesBreveArt.Location = new System.Drawing.Point(30, 171);
+            this.txtDesBreveArt.Margin = new System.Windows.Forms.Padding(4);
+            this.txtDesBreveArt.Multiline = true;
+            this.txtDesBreveArt.Name = "txtDesBreveArt";
+            this.txtDesBreveArt.Size = new System.Drawing.Size(764, 66);
+            this.txtDesBreveArt.TabIndex = 2;
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.Location = new System.Drawing.Point(32, 151);
+            this.label14.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(82, 17);
+            this.label14.TabIndex = 43;
+            this.label14.Text = "Descripción";
+            // 
+            // chkIVI
+            // 
+            this.chkIVI.AutoSize = true;
+            this.chkIVI.Enabled = false;
+            this.chkIVI.Location = new System.Drawing.Point(749, 117);
+            this.chkIVI.Margin = new System.Windows.Forms.Padding(4);
+            this.chkIVI.Name = "chkIVI";
+            this.chkIVI.Size = new System.Drawing.Size(45, 21);
+            this.chkIVI.TabIndex = 49;
+            this.chkIVI.Tag = "Impuesto de Ventas Incluido para la Venta";
+            this.chkIVI.Text = "IVI";
+            this.chkIVI.UseVisualStyleBackColor = true;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(32, 96);
+            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(52, 17);
+            this.label8.TabIndex = 42;
+            this.label8.Text = "Código";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(705, 118);
+            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(25, 20);
+            this.label5.TabIndex = 48;
+            this.label5.Text = "%";
+            // 
+            // txtCodigo
+            // 
+            this.txtCodigo.BackColor = System.Drawing.Color.White;
+            this.txtCodigo.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtCodigo.Location = new System.Drawing.Point(30, 118);
+            this.txtCodigo.Margin = new System.Windows.Forms.Padding(4);
+            this.txtCodigo.Name = "txtCodigo";
+            this.txtCodigo.Size = new System.Drawing.Size(249, 22);
+            this.txtCodigo.TabIndex = 44;
+            this.txtCodigo.TabStop = false;
+            // 
+            // txtImpuesto
+            // 
+            this.txtImpuesto.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtImpuesto.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtImpuesto.Location = new System.Drawing.Point(630, 115);
+            this.txtImpuesto.Margin = new System.Windows.Forms.Padding(4);
+            this.txtImpuesto.MaxLength = 5;
+            this.txtImpuesto.Name = "txtImpuesto";
+            this.txtImpuesto.Size = new System.Drawing.Size(69, 26);
+            this.txtImpuesto.TabIndex = 46;
+            this.txtImpuesto.TabStop = false;
+            this.txtImpuesto.Text = "0";
+            this.txtImpuesto.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtImpuesto.Enter += new System.EventHandler(this.txtImpuesto_Enter);
+            this.txtImpuesto.Leave += new System.EventHandler(this.txtImpuesto_Leave);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(596, 118);
+            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(26, 20);
+            this.label4.TabIndex = 47;
+            this.label4.Text = "IV";
+            // 
+            // btnMEliminar
+            // 
+            this.btnMEliminar.Font = new System.Drawing.Font("Tempus Sans ITC", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnMEliminar.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnMEliminar.ImageKey = "Sign 06.ico";
+            this.btnMEliminar.ImageList = this.imgMenu;
+            this.btnMEliminar.Location = new System.Drawing.Point(344, 18);
+            this.btnMEliminar.Margin = new System.Windows.Forms.Padding(4);
+            this.btnMEliminar.Name = "btnMEliminar";
+            this.btnMEliminar.Size = new System.Drawing.Size(147, 55);
+            this.btnMEliminar.TabIndex = 14;
+            this.btnMEliminar.Text = "Eliminar";
+            this.btnMEliminar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnMEliminar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnMEliminar.UseVisualStyleBackColor = true;
+            this.btnMEliminar.Click += new System.EventHandler(this.btnMEliminar_Click);
+            // 
+            // btnMGuardar
+            // 
+            this.btnMGuardar.Font = new System.Drawing.Font("Tempus Sans ITC", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnMGuardar.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnMGuardar.ImageKey = "Disc 01.ico";
+            this.btnMGuardar.ImageList = this.imgMenu;
+            this.btnMGuardar.Location = new System.Drawing.Point(179, 18);
+            this.btnMGuardar.Margin = new System.Windows.Forms.Padding(4);
+            this.btnMGuardar.Name = "btnMGuardar";
+            this.btnMGuardar.Size = new System.Drawing.Size(147, 55);
+            this.btnMGuardar.TabIndex = 13;
+            this.btnMGuardar.Text = "Guardar";
+            this.btnMGuardar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnMGuardar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnMGuardar.UseVisualStyleBackColor = true;
+            this.btnMGuardar.Click += new System.EventHandler(this.btnMGuardar_Click);
+            // 
+            // btnMSalir
+            // 
+            this.btnMSalir.Font = new System.Drawing.Font("Tempus Sans ITC", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnMSalir.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnMSalir.ImageKey = "salir2.ico";
+            this.btnMSalir.ImageList = this.imgMenu;
+            this.btnMSalir.Location = new System.Drawing.Point(508, 18);
+            this.btnMSalir.Margin = new System.Windows.Forms.Padding(4);
+            this.btnMSalir.Name = "btnMSalir";
+            this.btnMSalir.Size = new System.Drawing.Size(147, 55);
+            this.btnMSalir.TabIndex = 15;
+            this.btnMSalir.Text = "Salir";
+            this.btnMSalir.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnMSalir.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnMSalir.UseVisualStyleBackColor = true;
+            this.btnMSalir.Click += new System.EventHandler(this.btnMSalir_Click);
+            // 
+            // btnMNuevo
+            // 
+            this.btnMNuevo.Font = new System.Drawing.Font("Tempus Sans ITC", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnMNuevo.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnMNuevo.ImageKey = "document.ico";
+            this.btnMNuevo.ImageList = this.imgMenu;
+            this.btnMNuevo.Location = new System.Drawing.Point(12, 18);
+            this.btnMNuevo.Margin = new System.Windows.Forms.Padding(4);
+            this.btnMNuevo.Name = "btnMNuevo";
+            this.btnMNuevo.Size = new System.Drawing.Size(147, 55);
+            this.btnMNuevo.TabIndex = 12;
+            this.btnMNuevo.Text = "Nuevo";
+            this.btnMNuevo.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnMNuevo.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnMNuevo.UseVisualStyleBackColor = true;
+            this.btnMNuevo.Click += new System.EventHandler(this.btnMNuevo_Click);
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.btnMNuevo);
+            this.groupBox2.Controls.Add(this.btnMSalir);
+            this.groupBox2.Controls.Add(this.btnMGuardar);
+            this.groupBox2.Controls.Add(this.btnMEliminar);
+            this.groupBox2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.groupBox2.Location = new System.Drawing.Point(0, 0);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(4);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(4);
+            this.groupBox2.Size = new System.Drawing.Size(820, 85);
+            this.groupBox2.TabIndex = 17;
+            this.groupBox2.TabStop = false;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(318, 95);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(95, 17);
+            this.label1.TabIndex = 56;
+            this.label1.Text = "Código Cabys";
+            // 
+            // txtCodCabys
+            // 
+            this.txtCodCabys.BackColor = System.Drawing.Color.White;
+            this.txtCodCabys.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtCodCabys.Location = new System.Drawing.Point(316, 117);
+            this.txtCodCabys.Margin = new System.Windows.Forms.Padding(4);
+            this.txtCodCabys.Name = "txtCodCabys";
+            this.txtCodCabys.Size = new System.Drawing.Size(249, 22);
+            this.txtCodCabys.TabIndex = 1;
+            this.txtCodCabys.TabStop = false;
             // 
             // ART_CODIGO
             // 
@@ -354,196 +571,15 @@ namespace PROYECTO
             this.ART_INDICE.Visible = false;
             this.ART_INDICE.Width = 2;
             // 
-            // lblBusqueda
+            // COD_CABYS
             // 
-            this.lblBusqueda.AutoSize = true;
-            this.lblBusqueda.BackColor = System.Drawing.Color.Transparent;
-            this.lblBusqueda.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblBusqueda.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            this.lblBusqueda.Location = new System.Drawing.Point(31, 256);
-            this.lblBusqueda.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblBusqueda.Name = "lblBusqueda";
-            this.lblBusqueda.Size = new System.Drawing.Size(162, 20);
-            this.lblBusqueda.TabIndex = 50;
-            this.lblBusqueda.Text = "Búsqueda Rápida ....";
-            // 
-            // txtDesBreveArt
-            // 
-            this.txtDesBreveArt.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtDesBreveArt.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDesBreveArt.Location = new System.Drawing.Point(30, 171);
-            this.txtDesBreveArt.Margin = new System.Windows.Forms.Padding(4);
-            this.txtDesBreveArt.Multiline = true;
-            this.txtDesBreveArt.Name = "txtDesBreveArt";
-            this.txtDesBreveArt.Size = new System.Drawing.Size(764, 66);
-            this.txtDesBreveArt.TabIndex = 45;
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(32, 151);
-            this.label14.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(82, 17);
-            this.label14.TabIndex = 43;
-            this.label14.Text = "Descripción";
-            // 
-            // chkIVI
-            // 
-            this.chkIVI.AutoSize = true;
-            this.chkIVI.Enabled = false;
-            this.chkIVI.Location = new System.Drawing.Point(611, 117);
-            this.chkIVI.Margin = new System.Windows.Forms.Padding(4);
-            this.chkIVI.Name = "chkIVI";
-            this.chkIVI.Size = new System.Drawing.Size(45, 21);
-            this.chkIVI.TabIndex = 49;
-            this.chkIVI.Tag = "Impuesto de Ventas Incluido para la Venta";
-            this.chkIVI.Text = "IVI";
-            this.chkIVI.UseVisualStyleBackColor = true;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(32, 96);
-            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(52, 17);
-            this.label8.TabIndex = 42;
-            this.label8.Text = "Código";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(567, 118);
-            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(25, 20);
-            this.label5.TabIndex = 48;
-            this.label5.Text = "%";
-            // 
-            // txtCodigo
-            // 
-            this.txtCodigo.BackColor = System.Drawing.Color.White;
-            this.txtCodigo.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtCodigo.Location = new System.Drawing.Point(30, 118);
-            this.txtCodigo.Margin = new System.Windows.Forms.Padding(4);
-            this.txtCodigo.Name = "txtCodigo";
-            this.txtCodigo.Size = new System.Drawing.Size(249, 22);
-            this.txtCodigo.TabIndex = 44;
-            this.txtCodigo.TabStop = false;
-            // 
-            // txtImpuesto
-            // 
-            this.txtImpuesto.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtImpuesto.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtImpuesto.Location = new System.Drawing.Point(492, 115);
-            this.txtImpuesto.Margin = new System.Windows.Forms.Padding(4);
-            this.txtImpuesto.MaxLength = 5;
-            this.txtImpuesto.Name = "txtImpuesto";
-            this.txtImpuesto.Size = new System.Drawing.Size(69, 26);
-            this.txtImpuesto.TabIndex = 46;
-            this.txtImpuesto.TabStop = false;
-            this.txtImpuesto.Text = "0";
-            this.txtImpuesto.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txtImpuesto.Enter += new System.EventHandler(this.txtImpuesto_Enter);
-            this.txtImpuesto.Leave += new System.EventHandler(this.txtImpuesto_Leave);
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(458, 118);
-            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(26, 20);
-            this.label4.TabIndex = 47;
-            this.label4.Text = "IV";
-            // 
-            // btnMEliminar
-            // 
-            this.btnMEliminar.Font = new System.Drawing.Font("Tempus Sans ITC", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnMEliminar.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnMEliminar.ImageKey = "Sign 06.ico";
-            this.btnMEliminar.ImageList = this.imgMenu;
-            this.btnMEliminar.Location = new System.Drawing.Point(344, 18);
-            this.btnMEliminar.Margin = new System.Windows.Forms.Padding(4);
-            this.btnMEliminar.Name = "btnMEliminar";
-            this.btnMEliminar.Size = new System.Drawing.Size(147, 55);
-            this.btnMEliminar.TabIndex = 14;
-            this.btnMEliminar.Text = "Eliminar";
-            this.btnMEliminar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnMEliminar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnMEliminar.UseVisualStyleBackColor = true;
-            this.btnMEliminar.Click += new System.EventHandler(this.btnMEliminar_Click);
-            // 
-            // btnMGuardar
-            // 
-            this.btnMGuardar.Font = new System.Drawing.Font("Tempus Sans ITC", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnMGuardar.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnMGuardar.ImageKey = "Disc 01.ico";
-            this.btnMGuardar.ImageList = this.imgMenu;
-            this.btnMGuardar.Location = new System.Drawing.Point(179, 18);
-            this.btnMGuardar.Margin = new System.Windows.Forms.Padding(4);
-            this.btnMGuardar.Name = "btnMGuardar";
-            this.btnMGuardar.Size = new System.Drawing.Size(147, 55);
-            this.btnMGuardar.TabIndex = 13;
-            this.btnMGuardar.Text = "Guardar";
-            this.btnMGuardar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnMGuardar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnMGuardar.UseVisualStyleBackColor = true;
-            this.btnMGuardar.Click += new System.EventHandler(this.btnMGuardar_Click);
-            // 
-            // btnMSalir
-            // 
-            this.btnMSalir.Font = new System.Drawing.Font("Tempus Sans ITC", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnMSalir.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnMSalir.ImageKey = "salir2.ico";
-            this.btnMSalir.ImageList = this.imgMenu;
-            this.btnMSalir.Location = new System.Drawing.Point(508, 18);
-            this.btnMSalir.Margin = new System.Windows.Forms.Padding(4);
-            this.btnMSalir.Name = "btnMSalir";
-            this.btnMSalir.Size = new System.Drawing.Size(147, 55);
-            this.btnMSalir.TabIndex = 15;
-            this.btnMSalir.Text = "Salir";
-            this.btnMSalir.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnMSalir.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnMSalir.UseVisualStyleBackColor = true;
-            this.btnMSalir.Click += new System.EventHandler(this.btnMSalir_Click);
-            // 
-            // btnMNuevo
-            // 
-            this.btnMNuevo.Font = new System.Drawing.Font("Tempus Sans ITC", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnMNuevo.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnMNuevo.ImageKey = "document.ico";
-            this.btnMNuevo.ImageList = this.imgMenu;
-            this.btnMNuevo.Location = new System.Drawing.Point(12, 18);
-            this.btnMNuevo.Margin = new System.Windows.Forms.Padding(4);
-            this.btnMNuevo.Name = "btnMNuevo";
-            this.btnMNuevo.Size = new System.Drawing.Size(147, 55);
-            this.btnMNuevo.TabIndex = 12;
-            this.btnMNuevo.Text = "Nuevo";
-            this.btnMNuevo.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnMNuevo.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnMNuevo.UseVisualStyleBackColor = true;
-            this.btnMNuevo.Click += new System.EventHandler(this.btnMNuevo_Click);
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.btnMNuevo);
-            this.groupBox2.Controls.Add(this.btnMSalir);
-            this.groupBox2.Controls.Add(this.btnMGuardar);
-            this.groupBox2.Controls.Add(this.btnMEliminar);
-            this.groupBox2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.groupBox2.Location = new System.Drawing.Point(0, 0);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(4);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox2.Size = new System.Drawing.Size(820, 85);
-            this.groupBox2.TabIndex = 17;
-            this.groupBox2.TabStop = false;
+            this.COD_CABYS.DataPropertyName = "COD_CABYS";
+            this.COD_CABYS.HeaderText = "COD_CABYS";
+            this.COD_CABYS.MinimumWidth = 6;
+            this.COD_CABYS.Name = "COD_CABYS";
+            this.COD_CABYS.ReadOnly = true;
+            this.COD_CABYS.Visible = false;
+            this.COD_CABYS.Width = 125;
             // 
             // frmServicios
             // 
@@ -551,6 +587,8 @@ namespace PROYECTO
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.button1;
             this.ClientSize = new System.Drawing.Size(820, 673);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.txtCodCabys);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.txtFiltroDescBreve);
@@ -610,6 +648,13 @@ namespace PROYECTO
         private System.Windows.Forms.TextBox txtCodigo;
         private System.Windows.Forms.TextBox txtImpuesto;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Button btnMEliminar;
+        private System.Windows.Forms.Button btnMGuardar;
+        private System.Windows.Forms.Button btnMSalir;
+        private System.Windows.Forms.Button btnMNuevo;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox txtCodCabys;
         private System.Windows.Forms.DataGridViewTextBoxColumn ART_CODIGO;
         private System.Windows.Forms.DataGridViewTextBoxColumn ART_DESC_BREVE;
         private System.Windows.Forms.DataGridViewTextBoxColumn ART_IMPUESTOS;
@@ -619,10 +664,6 @@ namespace PROYECTO
         private System.Windows.Forms.DataGridViewTextBoxColumn ART_NOMBRE;
         private System.Windows.Forms.DataGridViewTextBoxColumn ART_TIPO_CODIGO;
         private System.Windows.Forms.DataGridViewTextBoxColumn ART_INDICE;
-        private System.Windows.Forms.Button btnMEliminar;
-        private System.Windows.Forms.Button btnMGuardar;
-        private System.Windows.Forms.Button btnMSalir;
-        private System.Windows.Forms.Button btnMNuevo;
-        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn COD_CABYS;
     }
 }

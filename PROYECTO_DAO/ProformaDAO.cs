@@ -50,18 +50,14 @@ namespace PROYECTO_DAO
             oCommand.Parameters[14].Value = oCotizacion.Estado;
             oCommand.Parameters.Add("observacion", OracleType.NVarChar);
             oCommand.Parameters[15].Value = oCotizacion.Observacion;
-            oCommand.Parameters.Add("usuario", OracleType.NVarChar);
-            oCommand.Parameters[16].Value = oCotizacion.Usuario;
             oCommand.Parameters.Add("TIPO", OracleType.NVarChar);
-            oCommand.Parameters[17].Value = oCotizacion.Tipo;
-            oCommand.Parameters.Add("VENDEDOR", OracleType.NVarChar);
-            oCommand.Parameters[18].Value = oCotizacion.Vendedor;
+            oCommand.Parameters[16].Value = oCotizacion.Tipo;
             oCommand.Parameters.Add("INDICEDOCUMENTO", OracleType.Number);
-            oCommand.Parameters[19].Value = oCotizacion.IndiceDocumento;
+            oCommand.Parameters[17].Value = oCotizacion.IndiceDocumento;
             oCommand.Parameters.Add("tIPODOCUMENTO", OracleType.NVarChar);
-            oCommand.Parameters[20].Value = oCotizacion.TipoDocumento;
+            oCommand.Parameters[18].Value = oCotizacion.TipoDocumento;
             oCommand.Parameters.Add("pNo_cia", OracleType.NVarChar);
-            oCommand.Parameters[21].Value = oCotizacion.No_cia;
+            oCommand.Parameters[19].Value = oCotizacion.No_cia;
 
             oCommand.Parameters.Add(Util.CrearCursor());
 
@@ -111,16 +107,12 @@ namespace PROYECTO_DAO
             oCommand.Parameters[15].Value = oCotizacion.Estado;
             oCommand.Parameters.Add("observacion", OracleType.NVarChar);
             oCommand.Parameters[16].Value = oCotizacion.Observacion;
-            oCommand.Parameters.Add("usuario", OracleType.NVarChar);
-            oCommand.Parameters[17].Value = oCotizacion.Usuario;
             oCommand.Parameters.Add("TIPO", OracleType.NVarChar);
-            oCommand.Parameters[18].Value = oCotizacion.Tipo;
-            oCommand.Parameters.Add("VENDEDOR", OracleType.NVarChar);
-            oCommand.Parameters[19].Value = oCotizacion.Vendedor;
+            oCommand.Parameters[17].Value = oCotizacion.Tipo;
             oCommand.Parameters.Add("pordescuento", OracleType.Number);
-            oCommand.Parameters[20].Value = oCotizacion.PorDescuento;
+            oCommand.Parameters[18].Value = oCotizacion.PorDescuento;
             oCommand.Parameters.Add("pNo_cia", OracleType.NVarChar);
-            oCommand.Parameters[21].Value = oCotizacion.No_cia;
+            oCommand.Parameters[19].Value = oCotizacion.No_cia;
 
             OracleDAO.getInstance().EjecutarSQLStoreProcedure(oCommand);
 
@@ -138,10 +130,8 @@ namespace PROYECTO_DAO
             oCommand.Parameters[0].Value = oCotizacion.Indice;
             oCommand.Parameters.Add("PROFORMA", OracleType.Number);
             oCommand.Parameters[1].Value = oCotizacion.NumCotizacion;
-            oCommand.Parameters.Add("usuario", OracleType.NVarChar);
-            oCommand.Parameters[3].Value = oCotizacion.Usuario;
             oCommand.Parameters.Add("pNo_cia", OracleType.NVarChar);
-            oCommand.Parameters[4].Value = oCotizacion.No_cia;
+            oCommand.Parameters[2].Value = oCotizacion.No_cia;
 
 
             OracleDAO.getInstance().EjecutarSQLStoreProcedure(oCommand);
@@ -169,7 +159,7 @@ namespace PROYECTO_DAO
             DataTable oDataTable = OracleDAO.getInstance().EjecutarSQLDataTable(sql);
             return oDataTable;
         }
-        
+
         public DataTable ConsultaCotizacion(String numProforma, String pNo_cia)
         {
             String sql = "SELECT fac_linea, fac_fecha, fac_cliente, fac_nombre, fac_telefono, fac_ubicacion, fac_moneda, fac_tipo_cambio, fac_excento, fac_subtotal, fac_impuesto, fac_descuento, fac_total, fac_saldo, fac_estado, fac_observacion, fac_tipo, fac_vendedor, fac_indicedocumento, fac_tipodocumento, fac_pordescuento, CASE WHEN (FAC_USUARIOMODIFICA IS NULL) THEN FAC_USUARIOCREA ELSE FAC_USUARIOMODIFICA END FAC_USUARIO FROM TBL_PROFORMA P where p.no_cia = '" + pNo_cia + "' and fac_numero = '" + numProforma + "'";
@@ -186,27 +176,6 @@ namespace PROYECTO_DAO
         {
             String sql = "update TBL_PROFORMA P set fac_estado = 'EMITIDA', Fac_Subtotal = " + oProforma.SubTotal + ", fac_impuesto =" + oProforma.Impuesto + ", Fac_descuento = " + oProforma.Descuento + ", fac_total = " + oProforma.Total + ", fac_saldo = " + oProforma.Total + " where p.no_cia = '" + oProforma.No_cia + "' and fac_linea = " + oProforma.Indice + " and fac_numero = '" + oProforma.NumCotizacion + "'";
             return OracleDAO.getInstance().EjecutarSQL(sql);
-        }
-
-        public Int32 Anular(Cotizacion oProforma, String administrador)
-        {
-            String sql = "SELECT FAC_INDICEDOCUMENTO, FAC_TIPODOCUMENTO FROM TBL_PROFORMA p WHERE p.no_cia = '" + oProforma.No_cia + "' and fac_linea = '" + oProforma.Indice + "' and fac_numero = '" + oProforma.NumCotizacion + "'";
-            DataTable oTabla = OracleDAO.getInstance().EjecutarSQLDataTable(sql);
-            if (oTabla.Rows.Count > 0)
-            {
-                if (oTabla.Rows[0].ItemArray[1].ToString().Equals("COT"))
-                {
-                    sql = "update TBL_COTIZACION c set COT_ESTADOREGISTRO = 'ABIERTA' WHERE c.no_cia = '" + oProforma.No_cia + "' and COT_NUMERO = '" + oTabla.Rows[0].ItemArray[0].ToString() + "'";
-                    OracleDAO.getInstance().EjecutarSQL(sql);
-                }
-            }
-
-            sql = "update TBL_PROFORMA p set fac_estado = 'ANULADA', FAC_USUARIOMODIFICA='" + oProforma.Usuario + "', FAC_FECHAMODIFICA= sysdate,FAC_ADMINISTRADOR_ANULA='" + administrador + "', FAC_FECHA_ANULA=sysdate, fac_comentario='" + oProforma.Comentario + "' where p.no_cia = '" + oProforma.No_cia + "' and fac_linea = " + oProforma.Indice + " and fac_numero = " + oProforma.NumCotizacion;
-            OracleDAO.getInstance().EjecutarSQL(sql);
-
-            sql = "INSERT INTO tbl_Proforma_AUTORIZACION VALUES ('" + oProforma.NumCotizacion + "', '" + oProforma.Cliente + "', '" + oProforma.Usuario + "', '" + administrador + "', '" + oProforma.Comentario + "', 'ANULAR FACTURA', sysdate)";
-            return OracleDAO.getInstance().EjecutarSQL(sql);
-
         }
 
         public DataTable ConsultaCliente(String codigo, String pNo_cia)

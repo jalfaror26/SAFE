@@ -7,7 +7,7 @@ namespace ENTIDADES
     public class Recordatorio
     {
         private DateTime fechaHora;
-        private String detalle, usuario, estado, detalleProviene, tipo;
+        private String detalle, estado, detalleProviene, tipo;
         private int linea, indiceProviene, persona;
         private String no_cia;
 
@@ -40,7 +40,7 @@ namespace ENTIDADES
             get { return indiceProviene; }
             set { indiceProviene = value; }
         }
-        
+
         public DateTime FechaHora
         {
             get { return fechaHora; }
@@ -51,12 +51,6 @@ namespace ENTIDADES
         {
             get { return detalle; }
             set { detalle = value; }
-        }
-
-        public String Usuario
-        {
-            get { return usuario; }
-            set { usuario = value; }
         }
 
         public String Estado

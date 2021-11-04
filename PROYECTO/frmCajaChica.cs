@@ -91,7 +91,7 @@ namespace PROYECTO
                     oChicaDAO = new CajaChicaDAO();
                     oChica.Monto = double.Parse(txtSaldo.Text.Substring(1)) + double.Parse(txtSaldoAnterior.Text.Substring(1));
                     oChica.Documento = txtDocumento.Text;
-                    oChica.Usuario = PROYECTO.Properties.Settings.Default.Usuario;
+
                     oChica.Saldo = double.Parse(txtSaldo.Text.Substring(1)) + double.Parse(txtSaldoAnterior.Text.Substring(1));
                     oChica.Moneda = cmbMoneda.Text;
                     indice = int.Parse(oChicaDAO.Abrir(oChica, PROYECTO.Properties.Settings.Default.No_cia).ToString());
@@ -155,7 +155,6 @@ namespace PROYECTO
                     oChicaDetalle.Debito = 0;
                     oChicaDetalle.Empleado = "CAJA CHICA";
                     oChicaDetalle.Documento = txtDocumento.Text;
-                    oChicaDetalle.Usuario = PROYECTO.Properties.Settings.Default.Usuario;
                     oChicaDetalle.TipoMovimiento = "REINTEGRO";
                     oChicaDetalle.Justificacion = "APERTURA DE CAJA";
 
@@ -189,7 +188,7 @@ namespace PROYECTO
                 if (oConexion.abrirConexion())
                 {
                     oChicaDAO = new CajaChicaDAO();
-                    DataTable oTabla = oChicaDAO.Consultar(PROYECTO.Properties.Settings.Default.Usuario, PROYECTO.Properties.Settings.Default.No_cia).Tables[0];
+                    DataTable oTabla = oChicaDAO.Consultar(PROYECTO.Properties.Settings.Default.No_cia).Tables[0];
                     txtDocumento.Text = oTabla.Rows[0].ItemArray[0].ToString();
                     cmbMoneda.SelectedItem = oTabla.Rows[0].ItemArray[4].ToString().ToString();
                     txtMonto.Text = moned + " " + double.Parse(oTabla.Rows[0].ItemArray[2].ToString()).ToString("###,###,##0.##");
@@ -243,7 +242,7 @@ namespace PROYECTO
                     oChicaDAO = new CajaChicaDAO();
                     try
                     {
-                        lblCaja.Text = oChicaDAO.Caja(PROYECTO.Properties.Settings.Default.Usuario, PROYECTO.Properties.Settings.Default.No_cia).Tables[0].Rows[0].ItemArray[0].ToString();
+                        lblCaja.Text = oChicaDAO.Caja(PROYECTO.Properties.Settings.Default.No_cia).Tables[0].Rows[0].ItemArray[0].ToString();
                     }
                     catch (Exception ex)
                     {
@@ -251,7 +250,7 @@ namespace PROYECTO
                     }
                     if (!lblCaja.Text.Trim().Equals("") && !lblCaja.Text.Trim().Equals("No") && val == 0)
                     {
-                        lblFecha.Text = oChicaDAO.FechaAperturaCaja(lblCaja.Text, PROYECTO.Properties.Settings.Default.Usuario, PROYECTO.Properties.Settings.Default.No_cia).ToShortDateString();
+                        lblFecha.Text = oChicaDAO.FechaAperturaCaja(lblCaja.Text, PROYECTO.Properties.Settings.Default.No_cia).ToShortDateString();
                         btnCerrar.Enabled = true;
                         btnMovimientos.Enabled = true;
                         btnOtros.Enabled = true;
@@ -296,20 +295,20 @@ namespace PROYECTO
             lblCaja.Text = "0";
             try
             {
-                montos = double.Parse(oChicaDAO.ultimoSaldo(PROYECTO.Properties.Settings.Default.Usuario, PROYECTO.Properties.Settings.Default.No_cia).ToString("###,###,##0.##"));
+                montos = double.Parse(oChicaDAO.ultimoSaldo(PROYECTO.Properties.Settings.Default.No_cia).ToString("###,###,##0.##"));
             }
             catch (Exception ex)
             {
                 montos = 0;
             }
             txtSaldoAnterior.Text = moned + " " + montos.ToString("###,###,##0.##");
-            if (oChicaDAO.ultimoMoneda(PROYECTO.Properties.Settings.Default.Usuario, PROYECTO.Properties.Settings.Default.No_cia).Equals("CRC"))
+            if (oChicaDAO.ultimoMoneda(PROYECTO.Properties.Settings.Default.No_cia).Equals("CRC"))
             {
                 moneda1 = '¢';
                 moned = '¢';
                 cmbMoneda.SelectedIndex = 0;
             }
-            else if (oChicaDAO.ultimoMoneda(PROYECTO.Properties.Settings.Default.Usuario, PROYECTO.Properties.Settings.Default.No_cia).Equals("USD"))
+            else if (oChicaDAO.ultimoMoneda(PROYECTO.Properties.Settings.Default.No_cia).Equals("USD"))
             {
                 moneda1 = '$';
                 moned = '$';
@@ -348,7 +347,7 @@ namespace PROYECTO
 
         private void cboMoneda_SelectedIndexChanged(object sender, EventArgs e)
         {
-           
+
         }
 
         private Boolean evaluar()
@@ -461,7 +460,7 @@ namespace PROYECTO
                         oChica = new CajaChica();
                         oChicaDAO = new CajaChicaDAO();
                         oChica.Linea = indice;
-                        oChica.Usuario = PROYECTO.Properties.Settings.Default.Usuario;
+
                         oChicaDAO.Cerrar(oChica, PROYECTO.Properties.Settings.Default.No_cia);
                         if (oChicaDAO.Error())
                         {

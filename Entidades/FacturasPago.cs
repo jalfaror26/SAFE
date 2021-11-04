@@ -8,7 +8,7 @@ namespace ENTIDADES
     {
 
         private int flujo, indice, dias;
-        private String numFactura, codProveedor, responsable, tipoGasto, moneda, estado, usuario;
+        private String numFactura, codProveedor, responsable, tipoGasto, moneda, estado;
         private Double tipocambio, monto, saldo;
         private DateTime fechaEmision, fechaVence;
 
@@ -73,13 +73,7 @@ namespace ENTIDADES
             get { return tipocambio; }
             set { tipocambio = value; }
         }
-
-        public String Usuario
-        {
-            get { return usuario; }
-            set { usuario = value; }
-        }
-
+        
         public String Estado
         {
             get { return estado; }

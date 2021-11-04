@@ -217,8 +217,6 @@ namespace PROYECTO
                         oCotizacion.Tipocambio = Double.Parse(txtTipoCambio.Text);
                         oCotizacion.Total = Double.Parse(txtTotalCotizacion.Text.Substring(1));
                         oCotizacion.Ubicacion = txtUbicacion;
-                        oCotizacion.Usuario = PROYECTO.Properties.Settings.Default.Usuario;
-                        oCotizacion.Vendedor = PROYECTO.Properties.Settings.Default.Usuario;
                         if (rbContado.Checked)
                             oCotizacion.Tipo = "CONTADO";
                         else
@@ -540,8 +538,6 @@ namespace PROYECTO
                     oCotizacion.Tipocambio = Double.Parse(txtTipoCambio.Text);
                     oCotizacion.Total = Double.Parse(txtTotalCotizacion.Text.Substring(1));
                     oCotizacion.Ubicacion = txtUbicacion;
-                    oCotizacion.Usuario = PROYECTO.Properties.Settings.Default.Usuario;
-                    oCotizacion.Vendedor = PROYECTO.Properties.Settings.Default.Usuario;
                     if (rbContado.Checked)
                         oCotizacion.Tipo = "CONTADO";
                     else
@@ -603,8 +599,6 @@ namespace PROYECTO
                     oCotizacion.Tipocambio = Double.Parse(txtTipoCambio.Text);
                     oCotizacion.Total = Double.Parse(txtTotalCotizacion.Text.Substring(1));
                     oCotizacion.Ubicacion = txtUbicacion;
-                    oCotizacion.Usuario = PROYECTO.Properties.Settings.Default.Usuario;
-                    oCotizacion.Vendedor = PROYECTO.Properties.Settings.Default.Usuario;
 
                     if (rbContado.Checked)
                         oCotizacion.Tipo = "CONTADO";
@@ -1725,7 +1719,7 @@ namespace PROYECTO
                     {
                         oPantallaPermisoDAO.crearPantalla(codigoAbrir, moduloAbrir, descripcionAbrir, PROYECTO.Properties.Settings.Default.No_cia);
                     }
-                    odataset = oPantallaPermisoDAO.tieneAcceso(codigoAbrir, PROYECTO.Properties.Settings.Default.Usuario, PROYECTO.Properties.Settings.Default.No_cia);
+                    odataset = oPantallaPermisoDAO.tieneAcceso(codigoAbrir, PROYECTO.Properties.Settings.Default.No_cia);
                     if (odataset.Tables[0].Rows[0]["PER_ACCESO"].ToString().Equals("0"))
                         tienePermiso = true;
                     oConexion.cerrarConexion();

@@ -60,7 +60,7 @@ namespace PROYECTO
                     {
                         oPantallaPermisoDAO.crearPantalla(codigo, modulo, descripcion, PROYECTO.Properties.Settings.Default.No_cia);
                     }
-                    odataset = oPantallaPermisoDAO.tieneAcceso(codigo, PROYECTO.Properties.Settings.Default.Usuario, PROYECTO.Properties.Settings.Default.No_cia);
+                    odataset = oPantallaPermisoDAO.tieneAcceso(codigo, PROYECTO.Properties.Settings.Default.No_cia);
                     if (odataset.Tables[0].Rows[0]["PER_ACCESO"].ToString().Equals("0"))
                         tienePermiso = true;
                     oConexion.cerrarConexion();
@@ -167,21 +167,21 @@ namespace PROYECTO
 
         private void btnRepGtsPorCategoria_Click(object sender, EventArgs e)
         {
-            /* frmrptFactsRecibidasCategoria ofrm = frmrptFactsRecibidasCategoria.getInstance();
-             codigo = ofrm.Codigo;
-             descripcion = ofrm.Descripcion;
-             modulo = ofrm.Modulo;
-             if (!TienePermiso())
-             {
-                 ofrm.MdiParent = this.MdiParent;
-                 ofrm.Show();
-             }
-             else
-             {
-                 ofrm = null;
-                 MessageBox.Show("No tiene permiso para accesar esta pantalla, comuníquese con el administrador", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-             }
-             this.Close();*/
+            frmrptFactsRecibidasCategoria ofrm = frmrptFactsRecibidasCategoria.getInstance();
+            codigo = ofrm.Codigo;
+            descripcion = ofrm.Descripcion;
+            modulo = ofrm.Modulo;
+            if (!TienePermiso())
+            {
+                ofrm.MdiParent = this.MdiParent;
+                ofrm.Show();
+            }
+            else
+            {
+                ofrm = null;
+                MessageBox.Show("No tiene permiso para accesar esta pantalla, comuníquese con el administrador", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            this.Close();
         }
 
         private void btnRepFacRecPag_Click(object sender, EventArgs e)
