@@ -247,6 +247,7 @@ namespace PROYECTO
             this.btnRepPagos.Text = "   PAGOS";
             this.btnRepPagos.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnRepPagos.UseVisualStyleBackColor = true;
+            this.btnRepPagos.Visible = false;
             this.btnRepPagos.Click += new System.EventHandler(this.btnRepPagos_Click);
             // 
             // btnRepInvFac
