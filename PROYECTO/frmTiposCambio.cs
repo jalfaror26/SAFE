@@ -141,7 +141,7 @@ namespace PROYECTO
                         oConexion.cerrarConexion();
                         if (oConexion.abrirConexion())
                         {
-                            ((System.Windows.Forms.StatusStrip)this.MdiParent.Controls["stEstado"]).Items["stTC"].Text = "   Dolar: ¢ " + double.Parse(oTipoCambioDAO.TipoCambio(PROYECTO.Properties.Settings.Default.No_cia).Tables[0].Rows[0].ItemArray[0].ToString()).ToString("###,###,##0.##");
+                            ((System.Windows.Forms.StatusStrip)this.MdiParent.Controls["stEstado"]).Items["stTC"].Text = "   Dolar: ¢ " + double.Parse(oTipoCambioDAO.TipoCambio(PROYECTO.Properties.Settings.Default.No_cia).Tables[0].Rows[0].ItemArray[0].ToString()).ToString("###,###,##0.00");
                             oConexion.cerrarConexion();
                         }
                     }
@@ -192,7 +192,7 @@ namespace PROYECTO
                     oConexion.cerrarConexion();
                     if (oConexion.abrirConexion())
                     {
-                        ((System.Windows.Forms.StatusStrip)this.MdiParent.Controls["stEstado"]).Items["stTC"].Text = "   Dolar: ¢ " + double.Parse(oTipoCambioDAO.TipoCambio(PROYECTO.Properties.Settings.Default.No_cia).Tables[0].Rows[0].ItemArray[0].ToString()).ToString("###,###,##0.##");
+                        ((System.Windows.Forms.StatusStrip)this.MdiParent.Controls["stEstado"]).Items["stTC"].Text = "   Dolar: ¢ " + double.Parse(oTipoCambioDAO.TipoCambio(PROYECTO.Properties.Settings.Default.No_cia).Tables[0].Rows[0].ItemArray[0].ToString()).ToString("###,###,##0.00");
                         oConexion.cerrarConexion();
                     }
                 }
@@ -319,7 +319,7 @@ namespace PROYECTO
                 if (!txtDolar.Text[x].Equals(' '))
                     monto += txtDolar.Text[x];
             }
-            txtDolar.Text = double.Parse(txtDolar.Text).ToString("###,###,##0.##");
+            txtDolar.Text = double.Parse(txtDolar.Text).ToString("###,###,##0.00");
         }
 
         private void txtDolar_KeyPress(object sender, KeyPressEventArgs e)
@@ -360,7 +360,7 @@ namespace PROYECTO
                         if (resul1 != null)
                         {
                             ot = resul1.Tables[0];
-                            txtDolar.Text = Double.Parse(ot.Rows[0].ItemArray[2].ToString()).ToString("###,##0.##");
+                            txtDolar.Text = Double.Parse(ot.Rows[0].ItemArray[2].ToString()).ToString("###,##0.00");
                         }
                     }
                     else if (rboVenta.Checked)
@@ -370,7 +370,7 @@ namespace PROYECTO
                         if (resul1 != null)
                         {
                             ot = resul1.Tables[0];
-                            txtDolar.Text = Double.Parse(ot.Rows[0].ItemArray[2].ToString()).ToString("###,##0.##");
+                            txtDolar.Text = Double.Parse(ot.Rows[0].ItemArray[2].ToString()).ToString("###,##0.00");
                         }
                     }
                 }

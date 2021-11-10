@@ -92,8 +92,8 @@ namespace PROYECTO
                             simmoneda = '$';
 
                         lblCaja.Text = CajaChicaDAO.Caja(PROYECTO.Properties.Settings.Default.No_cia).Tables[0].Rows[0].ItemArray[0].ToString();
-                        txtMonto.Text = simmoneda + " " + double.Parse(CajaChicaDAO.Caja(PROYECTO.Properties.Settings.Default.No_cia).Tables[0].Rows[0].ItemArray[1].ToString()).ToString("###,###,##0.##");
-                        txtSaldo.Text = simmoneda + " " + double.Parse(CajaChicaDAO.Caja(PROYECTO.Properties.Settings.Default.No_cia).Tables[0].Rows[0].ItemArray[2].ToString()).ToString("###,###,##0.##");
+                        txtMonto.Text = simmoneda + " " + double.Parse(CajaChicaDAO.Caja(PROYECTO.Properties.Settings.Default.No_cia).Tables[0].Rows[0].ItemArray[1].ToString()).ToString("###,###,##0.00");
+                        txtSaldo.Text = simmoneda + " " + double.Parse(CajaChicaDAO.Caja(PROYECTO.Properties.Settings.Default.No_cia).Tables[0].Rows[0].ItemArray[2].ToString()).ToString("###,###,##0.00");
                     }
                     catch (Exception ex)
                     {
@@ -148,8 +148,8 @@ namespace PROYECTO
                         oRow["DETCAJ_EMPLEADO"] = oFila["DETCAJ_EMPLEADO"].ToString();
                         oRow["emp_nombre"] = oFila["emp_nombre"].ToString();
                         oRow["DETCAJ_MOVIMIENTO"] = oFila["DETCAJ_MOVIMIENTO"].ToString();
-                        oRow["DETCAJ_CREDITO"] = simmoneda + " " + double.Parse(oFila["DETCAJ_CREDITO"].ToString()).ToString("###,###,##0.##");
-                        oRow["DETCAJ_DEBITO"] = simmoneda + " " + double.Parse(oFila["DETCAJ_DEBITO"].ToString()).ToString("###,###,##0.##");
+                        oRow["DETCAJ_CREDITO"] = simmoneda + " " + double.Parse(oFila["DETCAJ_CREDITO"].ToString()).ToString("###,###,##0.00");
+                        oRow["DETCAJ_DEBITO"] = simmoneda + " " + double.Parse(oFila["DETCAJ_DEBITO"].ToString()).ToString("###,###,##0.00");
                         oRow["DETCAJ_JUSTIFICACION"] = oFila["DETCAJ_JUSTIFICACION"].ToString();
                         oTabla.Rows.Add(oRow.ItemArray);
 
@@ -198,8 +198,8 @@ namespace PROYECTO
                         oRow["DETCAJ_EMPLEADO"] = oFila["DETCAJ_EMPLEADO"].ToString();
                         oRow["emp_nombre"] = oFila["emp_nombre"].ToString();
                         oRow["DETCAJ_MOVIMIENTO"] = oFila["DETCAJ_MOVIMIENTO"].ToString();
-                        oRow["DETCAJ_CREDITO"] = simmoneda + " " + double.Parse(oFila["DETCAJ_CREDITO"].ToString()).ToString("###,###,##0.##");
-                        oRow["DETCAJ_DEBITO"] = simmoneda + " " + double.Parse(oFila["DETCAJ_DEBITO"].ToString()).ToString("###,###,##0.##");
+                        oRow["DETCAJ_CREDITO"] = simmoneda + " " + double.Parse(oFila["DETCAJ_CREDITO"].ToString()).ToString("###,###,##0.00");
+                        oRow["DETCAJ_DEBITO"] = simmoneda + " " + double.Parse(oFila["DETCAJ_DEBITO"].ToString()).ToString("###,###,##0.00");
                         oRow["DETCAJ_JUSTIFICACION"] = oFila["DETCAJ_JUSTIFICACION"].ToString();
 
                         oTabla.Rows.Add(oRow.ItemArray);
@@ -240,8 +240,8 @@ namespace PROYECTO
                 deb += double.Parse(dgrDatos["DETCAJ_DEBITO", x].Value.ToString().Substring(1));
                 cre += double.Parse(dgrDatos["DETCAJ_CREDITO", x].Value.ToString().Substring(1));
             }
-            txtCredito.Text = simmoneda + " " + cre.ToString("###,###,##0.##");
-            txtDebito.Text = simmoneda + " " + deb.ToString("###,###,##0.##");
+            txtCredito.Text = simmoneda + " " + cre.ToString("###,###,##0.00");
+            txtDebito.Text = simmoneda + " " + deb.ToString("###,###,##0.00");
         }
 
         private void btnCajaChica_Click(object sender, EventArgs e)

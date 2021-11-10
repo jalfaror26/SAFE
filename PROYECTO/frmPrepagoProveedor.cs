@@ -242,10 +242,10 @@ namespace PROYECTO
             oDataTable.Columns.Add("facpag_moneda", typeof(string));
             oDataTable.Columns.Add("FACPAG_INDICE", typeof(string));
             oDataTable.Columns.Add("gas_nombre", typeof(string));
-            oDataTable.Columns.Add("facpag_monto", typeof(string));
-            oDataTable.Columns.Add("facpag_saldo", typeof(string));
-            oDataTable.Columns.Add("Abono", typeof(string));
-            oDataTable.Columns.Add("saldo_actual", typeof(string));
+            oDataTable.Columns.Add("facpag_monto", typeof(double));
+            oDataTable.Columns.Add("facpag_saldo", typeof(double));
+            oDataTable.Columns.Add("Abono", typeof(double));
+            oDataTable.Columns.Add("saldo_actual", typeof(double));
             oDataTable.Columns.Add("facpag_proveedor", typeof(string));
             oDataTable.Columns.Add("facpag_fecha_emision", typeof(string));
             oDataTable.Columns.Add("facpag_fecha_vence", typeof(string));
@@ -261,10 +261,10 @@ namespace PROYECTO
             oDataTable1 = new DataTable();
             oDataTable1.Columns.Add("detpre_factura", typeof(string));
             oDataTable1.Columns.Add("moneda", typeof(string));
-            oDataTable1.Columns.Add("detpre_monto", typeof(string));
-            oDataTable1.Columns.Add("detpre_saldo", typeof(string));
-            oDataTable1.Columns.Add("detpre_Abono", typeof(string));
-            oDataTable1.Columns.Add("saldoactual", typeof(string));
+            oDataTable1.Columns.Add("detpre_monto", typeof(double));
+            oDataTable1.Columns.Add("detpre_saldo", typeof(double));
+            oDataTable1.Columns.Add("detpre_Abono", typeof(double));
+            oDataTable1.Columns.Add("saldoactual", typeof(double));
             oDataTable1.Columns.Add("detpre_prepago", typeof(string));
             oDataTable1.Columns.Add("detpre_INDICE", typeof(string));
             oDataTable1.Columns.Add("detpre_proveedor", typeof(string));
@@ -289,10 +289,10 @@ namespace PROYECTO
                 saldactual += Double.Parse(oRow.Cells["saldo_actual"].Value.ToString());
             }
 
-            txtMonto.Text = simMoneda + " " + mon.ToString("###,###,##0.##");
-            txtSAldo.Text = simMoneda + " " + sal.ToString("###,###,##0.##");
-            txtAbono.Text = simMoneda + " " + abo.ToString("###,###,##0.##");
-            txtSaldoActual.Text = simMoneda + " " + saldactual.ToString("###,###,##0.##");
+            txtMonto.Text = simMoneda + " " + mon.ToString("###,###,##0.00");
+            txtSAldo.Text = simMoneda + " " + sal.ToString("###,###,##0.00");
+            txtAbono.Text = simMoneda + " " + abo.ToString("###,###,##0.00");
+            txtSaldoActual.Text = simMoneda + " " + saldactual.ToString("###,###,##0.00");
 
         }
 
@@ -308,9 +308,9 @@ namespace PROYECTO
                 abo += Double.Parse(oRow.Cells["detpre_Abono"].Value.ToString());
             }
 
-            txtMonto2.Text = simMoneda + " " + mon.ToString("###,###,##0.##");
-            txtSaldo2.Text = simMoneda + " " + sal.ToString("###,###,##0.##");
-            txtAbono2.Text = simMoneda + " " + abo.ToString("###,###,##0.##");
+            txtMonto2.Text = simMoneda + " " + mon.ToString("###,###,##0.00");
+            txtSaldo2.Text = simMoneda + " " + sal.ToString("###,###,##0.00");
+            txtAbono2.Text = simMoneda + " " + abo.ToString("###,###,##0.00");
 
         }
 
@@ -388,7 +388,7 @@ namespace PROYECTO
                 abonos += Double.Parse(oFila.Cells["Abono"].Value.ToString());
 
             if (abonos > 0)
-                txtAbono.Text = simMoneda + " " + abonos.ToString("###,###,##0.##");
+                txtAbono.Text = simMoneda + " " + abonos.ToString("###,###,##0.00");
             else
                 txtAbono.Text = simMoneda + " 0";
 
@@ -403,7 +403,7 @@ namespace PROYECTO
                 saldos += Double.Parse(oFila.Cells["saldo_actual"].Value.ToString());
 
             if (saldos > 0)
-                txtSaldoActual.Text = simMoneda + " " + saldos.ToString("###,###,##0.##");
+                txtSaldoActual.Text = simMoneda + " " + saldos.ToString("###,###,##0.00");
             else
                 txtSaldoActual.Text = simMoneda + " 0";
         }
@@ -433,7 +433,7 @@ namespace PROYECTO
                         else
                             if ((Double.Parse(txtAbono.Text.Substring(1)) - montoAnterior + Double.Parse(dgrDatos.Rows[e.RowIndex].Cells["Abono"].Value.ToString())) <= Double.Parse(txtMonto.Text.Substring(1)))
                         {
-                            dgrDatos.Rows[e.RowIndex].Cells["saldo_actual"].Value = double.Parse(Double.Parse(dgrDatos.Rows[e.RowIndex].Cells["facpag_saldo"].Value.ToString()) - Double.Parse(dgrDatos.Rows[e.RowIndex].Cells["Abono"].Value.ToString()) + "").ToString("###,###,##0.##");
+                            dgrDatos.Rows[e.RowIndex].Cells["saldo_actual"].Value = double.Parse(Double.Parse(dgrDatos.Rows[e.RowIndex].Cells["facpag_saldo"].Value.ToString()) - Double.Parse(dgrDatos.Rows[e.RowIndex].Cells["Abono"].Value.ToString()) + "");
                             if (Double.Parse(dgrDatos.Rows[e.RowIndex].Cells["Abono"].Value.ToString()) > 0)
                             {
                                 dgrDatos.Rows[e.RowIndex].DefaultCellStyle.BackColor = System.Drawing.Color.LightBlue;
@@ -562,7 +562,7 @@ namespace PROYECTO
                     monto = double.Parse(oTabla.Rows[0].ItemArray[1].ToString());
                 }
                 txtGuiaPago.Text = guia;
-                txtMontoGuia.Text = simMoneda + " " + monto.ToString("###,###,##0.##");
+                txtMontoGuia.Text = simMoneda + " " + monto.ToString("###,###,##0.00");
             }
             catch (Exception ex)
             {
@@ -602,7 +602,7 @@ namespace PROYECTO
                     guia = oGuiaPrepagoProveedorDAO.ConsultarExistente(moneda, txtCodProveedor.Text, PROYECTO.Properties.Settings.Default.No_cia).Tables[0].Rows[0].ItemArray[0].ToString();
                     monto = double.Parse(oGuiaPrepagoProveedorDAO.ConsultarExistente(moneda, txtCodProveedor.Text, PROYECTO.Properties.Settings.Default.No_cia).Tables[0].Rows[0].ItemArray[1].ToString());
                     txtGuiaPago.Text = guia;
-                    txtMontoGuia.Text = simMoneda + " " + monto.ToString("###,###,##0.##");
+                    txtMontoGuia.Text = simMoneda + " " + monto.ToString("###,###,##0.00");
                     oConexion.cerrarConexion();
                 }
 
@@ -845,6 +845,11 @@ namespace PROYECTO
             {
                 oConexion.cerrarConexion();
             }
+        }
+
+        private void dgrDatos_DataError(object sender, DataGridViewDataErrorEventArgs e)
+        {
+
         }
 
         private void btnEliminar_Click(object sender, EventArgs e)

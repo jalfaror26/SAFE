@@ -63,7 +63,7 @@ namespace PROYECTO
                         oDataRow["PRE_PROVEEDOR"] = OFila.ItemArray[1].ToString();
                         oDataRow["PRE_MONEDA"] = OFila.ItemArray[2].ToString();
                         oDataRow["PRE_FECHA_REGISTRO"] = OFila.ItemArray[3].ToString();
-                        oDataRow["PRE_MONTO_TOTAL"] = simMoneda + double.Parse(OFila.ItemArray[4].ToString()).ToString(" ###,###,##0.##");
+                        oDataRow["PRE_MONTO_TOTAL"] = simMoneda + double.Parse(OFila.ItemArray[4].ToString()).ToString(" ###,###,##0.00");
 
                         foreach (DataRow oFacturas in oConexion.EjecutaSentencia("SELECT distinct DETPRE_FACTURA from TBL_DETALLE_PREPAGO DPP WHERE dpp.no_cia = '" + PROYECTO.Properties.Settings.Default.No_cia + "' and DETPRE_PREPAGO= '" + OFila.ItemArray[0].ToString() + "' order by DETPRE_FACTURA").Rows)
                         {
@@ -125,7 +125,7 @@ namespace PROYECTO
                         oDataRow["PRE_PROVEEDOR"] = OFila.ItemArray[1].ToString();
                         oDataRow["PRE_MONEDA"] = OFila.ItemArray[2].ToString();
                         oDataRow["PRE_FECHA_REGISTRO"] = OFila.ItemArray[3].ToString();
-                        oDataRow["PRE_MONTO_TOTAL"] = simMoneda + double.Parse(OFila.ItemArray[4].ToString()).ToString(" ###,###,##0.##");
+                        oDataRow["PRE_MONTO_TOTAL"] = simMoneda + double.Parse(OFila.ItemArray[4].ToString()).ToString(" ###,###,##0.00");
 
                         foreach (DataRow oFacturas in oConexion.EjecutaSentencia("SELECT distinct DETPRE_FACTURA from TBL_DETALLE_PREPAGO DPP WHERE dpp.no_cia = '" + PROYECTO.Properties.Settings.Default.No_cia + "' and DETPRE_PREPAGO= '" + OFila.ItemArray[0].ToString() + "' order by DETPRE_FACTURA").Rows)
                         {

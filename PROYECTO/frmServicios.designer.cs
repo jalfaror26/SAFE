@@ -30,11 +30,11 @@ namespace PROYECTO
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmServicios));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             this.button1 = new System.Windows.Forms.Button();
             this.imageList2 = new System.Windows.Forms.ImageList(this.components);
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
@@ -53,10 +53,7 @@ namespace PROYECTO
             this.label14 = new System.Windows.Forms.Label();
             this.chkIVI = new System.Windows.Forms.CheckBox();
             this.label8 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
             this.txtCodigo = new System.Windows.Forms.TextBox();
-            this.txtImpuesto = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
             this.btnMEliminar = new System.Windows.Forms.Button();
             this.btnMGuardar = new System.Windows.Forms.Button();
             this.btnMSalir = new System.Windows.Forms.Button();
@@ -64,6 +61,10 @@ namespace PROYECTO
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label1 = new System.Windows.Forms.Label();
             this.txtCodCabys = new System.Windows.Forms.TextBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.rboExento = new System.Windows.Forms.RadioButton();
+            this.rboGravado = new System.Windows.Forms.RadioButton();
+            this.btnImpuestos = new System.Windows.Forms.Button();
             this.ART_CODIGO = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ART_DESC_BREVE = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ART_IMPUESTOS = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -76,6 +77,7 @@ namespace PROYECTO
             this.COD_CABYS = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgrDatos)).BeginInit();
             this.groupBox2.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // button1
@@ -217,19 +219,19 @@ namespace PROYECTO
             this.dgrDatos.AllowUserToDeleteRows = false;
             this.dgrDatos.AllowUserToResizeColumns = false;
             this.dgrDatos.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Gainsboro;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dgrDatos.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.Gainsboro;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dgrDatos.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle6;
             this.dgrDatos.BackgroundColor = System.Drawing.Color.White;
             this.dgrDatos.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgrDatos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgrDatos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
             this.dgrDatos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgrDatos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ART_CODIGO,
@@ -251,9 +253,9 @@ namespace PROYECTO
             this.dgrDatos.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.dgrDatos.RowHeadersVisible = false;
             this.dgrDatos.RowHeadersWidth = 51;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.Teal;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.White;
-            this.dgrDatos.RowsDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.Color.Teal;
+            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.Color.White;
+            this.dgrDatos.RowsDefaultCellStyle = dataGridViewCellStyle10;
             this.dgrDatos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgrDatos.Size = new System.Drawing.Size(784, 306);
             this.dgrDatos.TabIndex = 55;
@@ -301,7 +303,7 @@ namespace PROYECTO
             // 
             this.chkIVI.AutoSize = true;
             this.chkIVI.Enabled = false;
-            this.chkIVI.Location = new System.Drawing.Point(749, 117);
+            this.chkIVI.Location = new System.Drawing.Point(118, 45);
             this.chkIVI.Margin = new System.Windows.Forms.Padding(4);
             this.chkIVI.Name = "chkIVI";
             this.chkIVI.Size = new System.Drawing.Size(45, 21);
@@ -309,6 +311,8 @@ namespace PROYECTO
             this.chkIVI.Tag = "Impuesto de Ventas Incluido para la Venta";
             this.chkIVI.Text = "IVI";
             this.chkIVI.UseVisualStyleBackColor = true;
+            this.chkIVI.Visible = false;
+            this.chkIVI.CheckedChanged += new System.EventHandler(this.chkIVI_CheckedChanged);
             // 
             // label8
             // 
@@ -321,17 +325,6 @@ namespace PROYECTO
             this.label8.TabIndex = 42;
             this.label8.Text = "Código";
             // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(705, 118);
-            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(25, 20);
-            this.label5.TabIndex = 48;
-            this.label5.Text = "%";
-            // 
             // txtCodigo
             // 
             this.txtCodigo.BackColor = System.Drawing.Color.White;
@@ -339,36 +332,9 @@ namespace PROYECTO
             this.txtCodigo.Location = new System.Drawing.Point(30, 118);
             this.txtCodigo.Margin = new System.Windows.Forms.Padding(4);
             this.txtCodigo.Name = "txtCodigo";
-            this.txtCodigo.Size = new System.Drawing.Size(249, 22);
+            this.txtCodigo.Size = new System.Drawing.Size(205, 22);
             this.txtCodigo.TabIndex = 44;
             this.txtCodigo.TabStop = false;
-            // 
-            // txtImpuesto
-            // 
-            this.txtImpuesto.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtImpuesto.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtImpuesto.Location = new System.Drawing.Point(630, 115);
-            this.txtImpuesto.Margin = new System.Windows.Forms.Padding(4);
-            this.txtImpuesto.MaxLength = 5;
-            this.txtImpuesto.Name = "txtImpuesto";
-            this.txtImpuesto.Size = new System.Drawing.Size(69, 26);
-            this.txtImpuesto.TabIndex = 46;
-            this.txtImpuesto.TabStop = false;
-            this.txtImpuesto.Text = "0";
-            this.txtImpuesto.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txtImpuesto.Enter += new System.EventHandler(this.txtImpuesto_Enter);
-            this.txtImpuesto.Leave += new System.EventHandler(this.txtImpuesto_Leave);
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(596, 118);
-            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(26, 20);
-            this.label4.TabIndex = 47;
-            this.label4.Text = "IV";
             // 
             // btnMEliminar
             // 
@@ -457,7 +423,7 @@ namespace PROYECTO
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(318, 95);
+            this.label1.Location = new System.Drawing.Point(253, 95);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(95, 17);
@@ -468,24 +434,78 @@ namespace PROYECTO
             // 
             this.txtCodCabys.BackColor = System.Drawing.Color.White;
             this.txtCodCabys.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtCodCabys.Location = new System.Drawing.Point(316, 117);
+            this.txtCodCabys.Location = new System.Drawing.Point(251, 117);
             this.txtCodCabys.Margin = new System.Windows.Forms.Padding(4);
             this.txtCodCabys.Name = "txtCodCabys";
-            this.txtCodCabys.Size = new System.Drawing.Size(249, 22);
+            this.txtCodCabys.Size = new System.Drawing.Size(207, 22);
             this.txtCodCabys.TabIndex = 1;
             this.txtCodCabys.TabStop = false;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.btnImpuestos);
+            this.groupBox1.Controls.Add(this.rboGravado);
+            this.groupBox1.Controls.Add(this.rboExento);
+            this.groupBox1.Controls.Add(this.chkIVI);
+            this.groupBox1.Location = new System.Drawing.Point(485, 86);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(300, 73);
+            this.groupBox1.TabIndex = 57;
+            this.groupBox1.TabStop = false;
+            // 
+            // rboExento
+            // 
+            this.rboExento.AutoSize = true;
+            this.rboExento.Checked = true;
+            this.rboExento.Location = new System.Drawing.Point(16, 15);
+            this.rboExento.Name = "rboExento";
+            this.rboExento.Size = new System.Drawing.Size(72, 21);
+            this.rboExento.TabIndex = 50;
+            this.rboExento.TabStop = true;
+            this.rboExento.Text = "Exento";
+            this.rboExento.UseVisualStyleBackColor = true;
+            this.rboExento.CheckedChanged += new System.EventHandler(this.rboExento_CheckedChanged);
+            // 
+            // rboGravado
+            // 
+            this.rboGravado.AutoSize = true;
+            this.rboGravado.Location = new System.Drawing.Point(16, 44);
+            this.rboGravado.Name = "rboGravado";
+            this.rboGravado.Size = new System.Drawing.Size(84, 21);
+            this.rboGravado.TabIndex = 51;
+            this.rboGravado.Text = "Gravado";
+            this.rboGravado.UseVisualStyleBackColor = true;
+            this.rboGravado.CheckedChanged += new System.EventHandler(this.rboGravado_CheckedChanged);
+            // 
+            // btnImpuestos
+            // 
+            this.btnImpuestos.Enabled = false;
+            this.btnImpuestos.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnImpuestos.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnImpuestos.ImageIndex = 11;
+            this.btnImpuestos.ImageList = this.imageList2;
+            this.btnImpuestos.Location = new System.Drawing.Point(144, 26);
+            this.btnImpuestos.Margin = new System.Windows.Forms.Padding(4);
+            this.btnImpuestos.Name = "btnImpuestos";
+            this.btnImpuestos.Size = new System.Drawing.Size(133, 39);
+            this.btnImpuestos.TabIndex = 52;
+            this.btnImpuestos.TabStop = false;
+            this.btnImpuestos.Text = " Impuestos";
+            this.btnImpuestos.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnImpuestos.UseVisualStyleBackColor = true;
+            this.btnImpuestos.Click += new System.EventHandler(this.btnImpuestos_Click);
             // 
             // ART_CODIGO
             // 
             this.ART_CODIGO.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             this.ART_CODIGO.DataPropertyName = "ART_CODIGO";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.ART_CODIGO.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.ART_CODIGO.DefaultCellStyle = dataGridViewCellStyle8;
             this.ART_CODIGO.HeaderText = "Código";
             this.ART_CODIGO.MinimumWidth = 6;
             this.ART_CODIGO.Name = "ART_CODIGO";
             this.ART_CODIGO.ReadOnly = true;
-            this.ART_CODIGO.Width = 125;
+            this.ART_CODIGO.Width = 150;
             // 
             // ART_DESC_BREVE
             // 
@@ -495,20 +515,21 @@ namespace PROYECTO
             this.ART_DESC_BREVE.MinimumWidth = 6;
             this.ART_DESC_BREVE.Name = "ART_DESC_BREVE";
             this.ART_DESC_BREVE.ReadOnly = true;
-            this.ART_DESC_BREVE.Width = 340;
+            this.ART_DESC_BREVE.Width = 400;
             // 
             // ART_IMPUESTOS
             // 
             this.ART_IMPUESTOS.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             this.ART_IMPUESTOS.DataPropertyName = "ART_IMPUESTOS";
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.Format = "###,###0.##";
-            dataGridViewCellStyle4.NullValue = "0";
-            this.ART_IMPUESTOS.DefaultCellStyle = dataGridViewCellStyle4;
-            this.ART_IMPUESTOS.HeaderText = "% IV";
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle9.Format = "###,###0.##";
+            dataGridViewCellStyle9.NullValue = "0";
+            this.ART_IMPUESTOS.DefaultCellStyle = dataGridViewCellStyle9;
+            this.ART_IMPUESTOS.HeaderText = "TipoIV";
             this.ART_IMPUESTOS.MinimumWidth = 6;
             this.ART_IMPUESTOS.Name = "ART_IMPUESTOS";
             this.ART_IMPUESTOS.ReadOnly = true;
+            this.ART_IMPUESTOS.Visible = false;
             this.ART_IMPUESTOS.Width = 65;
             // 
             // ART_VENTA_IVI
@@ -519,6 +540,7 @@ namespace PROYECTO
             this.ART_VENTA_IVI.MinimumWidth = 6;
             this.ART_VENTA_IVI.Name = "ART_VENTA_IVI";
             this.ART_VENTA_IVI.ReadOnly = true;
+            this.ART_VENTA_IVI.Visible = false;
             this.ART_VENTA_IVI.Width = 40;
             // 
             // ART_TIPO
@@ -587,6 +609,7 @@ namespace PROYECTO
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.button1;
             this.ClientSize = new System.Drawing.Size(820, 673);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtCodCabys);
             this.Controls.Add(this.label7);
@@ -597,12 +620,8 @@ namespace PROYECTO
             this.Controls.Add(this.lblBusqueda);
             this.Controls.Add(this.txtDesBreveArt);
             this.Controls.Add(this.label14);
-            this.Controls.Add(this.chkIVI);
             this.Controls.Add(this.label8);
-            this.Controls.Add(this.label5);
             this.Controls.Add(this.txtCodigo);
-            this.Controls.Add(this.txtImpuesto);
-            this.Controls.Add(this.label4);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.button1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -619,6 +638,8 @@ namespace PROYECTO
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmForma_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.dgrDatos)).EndInit();
             this.groupBox2.ResumeLayout(false);
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -644,10 +665,7 @@ namespace PROYECTO
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.CheckBox chkIVI;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox txtCodigo;
-        private System.Windows.Forms.TextBox txtImpuesto;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button btnMEliminar;
         private System.Windows.Forms.Button btnMGuardar;
         private System.Windows.Forms.Button btnMSalir;
@@ -655,6 +673,10 @@ namespace PROYECTO
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtCodCabys;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.RadioButton rboGravado;
+        private System.Windows.Forms.RadioButton rboExento;
+        private System.Windows.Forms.Button btnImpuestos;
         private System.Windows.Forms.DataGridViewTextBoxColumn ART_CODIGO;
         private System.Windows.Forms.DataGridViewTextBoxColumn ART_DESC_BREVE;
         private System.Windows.Forms.DataGridViewTextBoxColumn ART_IMPUESTOS;

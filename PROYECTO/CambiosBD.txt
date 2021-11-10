@@ -1,0 +1,74 @@
+create or replace PACKAGE PCKSERVICIO_Impuestos AS
+  PROCEDURE paGuardar(pclave          VARCHAR2,
+                      pcodigoServicio NUMBER,
+                      pafectaVenta    VARCHAR2,
+                      pNo_cia        VARCHAR2);
+
+  PROCEDURE paEliminar(pclave          VARCHAR2,
+                       pcodigoServicio NUMBER,
+                       pNo_cia        VARCHAR2);
+
+END;
+
+/
+
+create or replace PACKAGE BODY PCKSERVICIO_IMPUESTOS AS
+  PROCEDURE paGuardar(pclave          VARCHAR2,
+                      pcodigoServicio NUMBER,
+                      pafectaVenta    VARCHAR2,
+                      pNo_cia        VARCHAR2) IS
+  
+    error exception;
+    msg_error varchar2(1000);
+  
+  BEGIN
+  
+    INSERT INTO tbl_servicio_impuestos
+    VALUES
+      (pNo_cia, pcodigoServicio, pclave, pafectaVenta, sysdate);
+  
+    COMMIT;
+  EXCEPTION
+    WHEN timeout_on_resource THEN
+      raise_application_error(-20100,
+                              'Ha excedido el tiempo de espera maximo al insertar el impuesto, vuelva a intentarlo');
+    WHEN dup_val_on_index THEN
+      raise_application_error(-20100, 'Impuesto existente');
+    WHEN OTHERS THEN
+      raise_application_error(-20100,
+                              'Error desconocido al insertar el impuesto ' ||
+                              sqlerrm);
+  END paGuardar;
+  ----------------------------------------------------------------------------------
+
+  PROCEDURE paEliminar(pclave          VARCHAR2,
+                       pcodigoServicio NUMBER,
+                       pNo_cia        VARCHAR2) IS
+  BEGIN
+  
+    delete tbl_servicio_impuestos s
+     WHERE no_Cia = pNo_cia
+       and CODIGO_SERVICIO = pcodigoServicio
+       AND CLAVE = pclave;
+  
+    COMMIT;
+  EXCEPTION
+    WHEN timeout_on_resource THEN
+      raise_application_error(-20100,
+                              'Ha excedido el tiempo de espera maximo al eliminar el impuesto, por favor intente de nuevo');
+    WHEN OTHERS THEN
+      raise_application_error(-20100,
+                              'Error desconocido al eliminar el impuesto ' ||
+                              sqlerrm);
+  END paEliminar;
+
+END;
+
+/
+
+create public synonym PCKSERVICIO_IMPUESTOS for SAFE.PCKSERVICIO_IMPUESTOS;
+
+grant all on PCKSERVICIO_IMPUESTOS to SAFE_USUARIOS;
+
+/
+

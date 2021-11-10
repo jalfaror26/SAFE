@@ -251,8 +251,8 @@ namespace PROYECTO
             txtnumfactura.Text = dgrDatos["factura", e.RowIndex].Value.ToString();
             txtCodProveedor.Text = dgrDatos["codproveedor", e.RowIndex].Value.ToString();
             txtProveedor.Text = dgrDatos["proveedor", e.RowIndex].Value.ToString();
-            txtmonto.Text = simmoneda + " " + double.Parse(dgrDatos["monto", e.RowIndex].Value.ToString()).ToString("###,###,##0.##"); ;
-            txtSaldo.Text = simmoneda + " " + double.Parse(dgrDatos["saldo", e.RowIndex].Value.ToString()).ToString("###,###,##0.##");
+            txtmonto.Text = simmoneda + " " + double.Parse(dgrDatos["monto", e.RowIndex].Value.ToString()).ToString("###,###,##0.00"); ;
+            txtSaldo.Text = simmoneda + " " + double.Parse(dgrDatos["saldo", e.RowIndex].Value.ToString()).ToString("###,###,##0.00");
             txtestado.Text = dgrDatos["estatus", e.RowIndex].Value.ToString();
             if (dgrDatos["estatus", e.RowIndex].Value.ToString().Equals("FP"))
                 txtEstadoDesc.Text = "FACTURA PENDIENTE";
@@ -262,7 +262,7 @@ namespace PROYECTO
             txtGasto.Text = dgrDatos["gasto", e.RowIndex].Value.ToString();
             cmbMoneda.SelectedItem = dgrDatos["moneda", e.RowIndex].Value.ToString();
 
-            txttipocambio.Text = Convert.ToDouble(dgrDatos["tipocambio", e.RowIndex].Value.ToString()).ToString("¢ ###,##0.##");
+            txttipocambio.Text = Convert.ToDouble(dgrDatos["tipocambio", e.RowIndex].Value.ToString()).ToString("¢ ###,##0.00");
             txtFechaEmision.Text = DateTime.Parse(dgrDatos["emision", e.RowIndex].Value.ToString()).ToShortDateString();
             txtFechaVence.Text = DateTime.Parse(dgrDatos["vence", e.RowIndex].Value.ToString()).ToShortDateString();
             cboTipoGasto.SelectedItem = dgrDatos["flujo", e.RowIndex].Value.ToString();
@@ -276,7 +276,7 @@ namespace PROYECTO
             {
                 saldo += Double.Parse(oRow.Cells["saldo"].Value.ToString());
             }
-            txtSaldoAdeudado.Text = simmoneda + " " + saldo.ToString("###,###,##0.##");
+            txtSaldoAdeudado.Text = simmoneda + " " + saldo.ToString("###,###,##0.00");
         }
 
         private void frmFacturaPorPagarProveedor_Load(object sender, EventArgs e)
@@ -386,8 +386,8 @@ namespace PROYECTO
                     simmoneda = '$';
                     break;
             }
-            txtmonto.Text = simmoneda + " " + double.Parse(txtmonto.Text.Substring(1)).ToString("###,###,##0.##");
-            txtSaldo.Text = simmoneda + " " + double.Parse(txtSaldo.Text.Substring(1)).ToString("###,###,##0.##");
+            txtmonto.Text = simmoneda + " " + double.Parse(txtmonto.Text.Substring(1)).ToString("###,###,##0.00");
+            txtSaldo.Text = simmoneda + " " + double.Parse(txtSaldo.Text.Substring(1)).ToString("###,###,##0.00");
         }
 
         private void cboEstado_SelectedIndexChanged(object sender, EventArgs e)
@@ -405,7 +405,7 @@ namespace PROYECTO
                 if (!txtmonto.Text[x].Equals(' '))
                     monto += txtmonto.Text[x];
             }
-            txtmonto.Text = simmoneda + " " + double.Parse(monto).ToString("###,###,##0.##");
+            txtmonto.Text = simmoneda + " " + double.Parse(monto).ToString("###,###,##0.00");
             txtSaldo.Text = txtmonto.Text;
         }
 
@@ -458,7 +458,7 @@ namespace PROYECTO
                     {
                         if (monto < Double.Parse(oTabla.Rows[0].ItemArray[3].ToString()))
                         {
-                            txttipocambio.Text = Double.Parse(oTabla.Rows[0].ItemArray[0].ToString()).ToString("¢ ###,###,##0.##");
+                            txttipocambio.Text = Double.Parse(oTabla.Rows[0].ItemArray[0].ToString()).ToString("¢ ###,###,##0.00");
                             MessageBox.Show("El tipo de cambio no puede ser menor al minimo establecido.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         }
                     }
@@ -466,14 +466,14 @@ namespace PROYECTO
                     {
                         if (monto < Double.Parse(oTabla.Rows[0].ItemArray[4].ToString()))
                         {
-                            txttipocambio.Text = Double.Parse(oTabla.Rows[0].ItemArray[1].ToString()).ToString("¢ ###,###,##0.##");
+                            txttipocambio.Text = Double.Parse(oTabla.Rows[0].ItemArray[1].ToString()).ToString("¢ ###,###,##0.00");
                             MessageBox.Show("El tipo de cambio no puede ser menor al minimo establecido.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         }
                     }
                     oConexion.cerrarConexion();
                     try
                     {
-                        txttipocambio.Text = Double.Parse(txttipocambio.Text).ToString("¢ ###,###,##0.##");
+                        txttipocambio.Text = Double.Parse(txttipocambio.Text).ToString("¢ ###,###,##0.00");
                     }
                     catch (Exception ex)
                     {

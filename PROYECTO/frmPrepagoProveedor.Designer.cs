@@ -33,13 +33,13 @@ namespace PROYECTO
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -61,6 +61,24 @@ namespace PROYECTO
             this.imageList2 = new System.Windows.Forms.ImageList(this.components);
             this.btnAgregarFactura = new System.Windows.Forms.Button();
             this.dgrDatos = new System.Windows.Forms.DataGridView();
+            this.txtSalir = new System.Windows.Forms.Button();
+            this.bnAgregar = new System.Windows.Forms.Button();
+            this.txtSAldo = new System.Windows.Forms.TextBox();
+            this.txtAbono = new System.Windows.Forms.TextBox();
+            this.txtSaldoActual = new System.Windows.Forms.TextBox();
+            this.txtMonto = new System.Windows.Forms.TextBox();
+            this.txtMonto2 = new System.Windows.Forms.TextBox();
+            this.txtAbono2 = new System.Windows.Forms.TextBox();
+            this.txtSaldo2 = new System.Windows.Forms.TextBox();
+            this.btnBorrar = new System.Windows.Forms.Button();
+            this.dgrDatos2 = new System.Windows.Forms.DataGridView();
+            this.label4 = new System.Windows.Forms.Label();
+            this.btnReporte = new System.Windows.Forms.Button();
+            this.btnPagar = new System.Windows.Forms.Button();
+            this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.btnEliminar = new System.Windows.Forms.Button();
+            this.btnCancelarPagos = new System.Windows.Forms.Button();
             this.facpag_num_factura = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.facpag_moneda = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.FACPAG_INDICE = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -77,17 +95,6 @@ namespace PROYECTO
             this.prov_nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.facpag_flujo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.facpag_tipo_gasto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.txtSalir = new System.Windows.Forms.Button();
-            this.bnAgregar = new System.Windows.Forms.Button();
-            this.txtSAldo = new System.Windows.Forms.TextBox();
-            this.txtAbono = new System.Windows.Forms.TextBox();
-            this.txtSaldoActual = new System.Windows.Forms.TextBox();
-            this.txtMonto = new System.Windows.Forms.TextBox();
-            this.txtMonto2 = new System.Windows.Forms.TextBox();
-            this.txtAbono2 = new System.Windows.Forms.TextBox();
-            this.txtSaldo2 = new System.Windows.Forms.TextBox();
-            this.btnBorrar = new System.Windows.Forms.Button();
-            this.dgrDatos2 = new System.Windows.Forms.DataGridView();
             this.DETPRE_FACTURA = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Moneda = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DETPRE_MONTO = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -97,13 +104,6 @@ namespace PROYECTO
             this.DETPRE_PREPAGO = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DETPRE_INDICE = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DETPRE_PROVEEDOR = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.label4 = new System.Windows.Forms.Label();
-            this.btnReporte = new System.Windows.Forms.Button();
-            this.btnPagar = new System.Windows.Forms.Button();
-            this.progressBar1 = new System.Windows.Forms.ProgressBar();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.btnEliminar = new System.Windows.Forms.Button();
-            this.btnCancelarPagos = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgrDatos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgrDatos2)).BeginInit();
@@ -376,176 +376,7 @@ namespace PROYECTO
             this.dgrDatos.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgrDatos_CellDoubleClick);
             this.dgrDatos.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgrDatos_CellEndEdit);
             this.dgrDatos.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgrDatos_CellEnter);
-            // 
-            // facpag_num_factura
-            // 
-            this.facpag_num_factura.DataPropertyName = "facpag_num_factura";
-            this.facpag_num_factura.HeaderText = "Factura";
-            this.facpag_num_factura.MinimumWidth = 6;
-            this.facpag_num_factura.Name = "facpag_num_factura";
-            this.facpag_num_factura.ReadOnly = true;
-            this.facpag_num_factura.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.facpag_num_factura.Width = 75;
-            // 
-            // facpag_moneda
-            // 
-            this.facpag_moneda.DataPropertyName = "facpag_moneda";
-            this.facpag_moneda.HeaderText = "Moneda";
-            this.facpag_moneda.MinimumWidth = 6;
-            this.facpag_moneda.Name = "facpag_moneda";
-            this.facpag_moneda.ReadOnly = true;
-            this.facpag_moneda.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.facpag_moneda.Width = 125;
-            // 
-            // FACPAG_INDICE
-            // 
-            this.FACPAG_INDICE.DataPropertyName = "FACPAG_INDICE";
-            this.FACPAG_INDICE.HeaderText = "indic";
-            this.FACPAG_INDICE.MinimumWidth = 6;
-            this.FACPAG_INDICE.Name = "FACPAG_INDICE";
-            this.FACPAG_INDICE.ReadOnly = true;
-            this.FACPAG_INDICE.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.FACPAG_INDICE.Visible = false;
-            this.FACPAG_INDICE.Width = 40;
-            // 
-            // gas_nombre
-            // 
-            this.gas_nombre.DataPropertyName = "gas_nombre";
-            this.gas_nombre.HeaderText = "gasto";
-            this.gas_nombre.MinimumWidth = 6;
-            this.gas_nombre.Name = "gas_nombre";
-            this.gas_nombre.ReadOnly = true;
-            this.gas_nombre.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.gas_nombre.Visible = false;
-            this.gas_nombre.Width = 125;
-            // 
-            // facpag_monto
-            // 
-            this.facpag_monto.DataPropertyName = "facpag_monto";
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.facpag_monto.DefaultCellStyle = dataGridViewCellStyle2;
-            this.facpag_monto.HeaderText = "Monto";
-            this.facpag_monto.MinimumWidth = 6;
-            this.facpag_monto.Name = "facpag_monto";
-            this.facpag_monto.ReadOnly = true;
-            this.facpag_monto.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.facpag_monto.Width = 125;
-            // 
-            // facpag_saldo
-            // 
-            this.facpag_saldo.DataPropertyName = "facpag_saldo";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.facpag_saldo.DefaultCellStyle = dataGridViewCellStyle3;
-            this.facpag_saldo.HeaderText = "Saldo";
-            this.facpag_saldo.MinimumWidth = 6;
-            this.facpag_saldo.Name = "facpag_saldo";
-            this.facpag_saldo.ReadOnly = true;
-            this.facpag_saldo.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.facpag_saldo.Width = 125;
-            // 
-            // Abono
-            // 
-            this.Abono.DataPropertyName = "Abono";
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.LightGray;
-            this.Abono.DefaultCellStyle = dataGridViewCellStyle4;
-            this.Abono.HeaderText = "Abono";
-            this.Abono.MinimumWidth = 6;
-            this.Abono.Name = "Abono";
-            this.Abono.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.Abono.Width = 125;
-            // 
-            // saldo_actual
-            // 
-            this.saldo_actual.DataPropertyName = "saldo_actual";
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.saldo_actual.DefaultCellStyle = dataGridViewCellStyle5;
-            this.saldo_actual.HeaderText = "Saldo Actual";
-            this.saldo_actual.MinimumWidth = 6;
-            this.saldo_actual.Name = "saldo_actual";
-            this.saldo_actual.ReadOnly = true;
-            this.saldo_actual.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.saldo_actual.Width = 125;
-            // 
-            // facpag_proveedor
-            // 
-            this.facpag_proveedor.DataPropertyName = "facpag_proveedor";
-            this.facpag_proveedor.HeaderText = "CodProveedor";
-            this.facpag_proveedor.MinimumWidth = 6;
-            this.facpag_proveedor.Name = "facpag_proveedor";
-            this.facpag_proveedor.ReadOnly = true;
-            this.facpag_proveedor.Visible = false;
-            this.facpag_proveedor.Width = 125;
-            // 
-            // facpag_fecha_emision
-            // 
-            this.facpag_fecha_emision.DataPropertyName = "facpag_fecha_emision";
-            this.facpag_fecha_emision.HeaderText = "Fecha Factura";
-            this.facpag_fecha_emision.MinimumWidth = 6;
-            this.facpag_fecha_emision.Name = "facpag_fecha_emision";
-            this.facpag_fecha_emision.ReadOnly = true;
-            this.facpag_fecha_emision.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.facpag_fecha_emision.Width = 125;
-            // 
-            // facpag_fecha_vence
-            // 
-            this.facpag_fecha_vence.DataPropertyName = "facpag_fecha_vence";
-            this.facpag_fecha_vence.HeaderText = "Fecha Vence";
-            this.facpag_fecha_vence.MinimumWidth = 6;
-            this.facpag_fecha_vence.Name = "facpag_fecha_vence";
-            this.facpag_fecha_vence.ReadOnly = true;
-            this.facpag_fecha_vence.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.facpag_fecha_vence.Width = 125;
-            // 
-            // facpag_tipo_cambio
-            // 
-            this.facpag_tipo_cambio.DataPropertyName = "facpag_tipo_cambio";
-            this.facpag_tipo_cambio.HeaderText = "TipoCambio";
-            this.facpag_tipo_cambio.MinimumWidth = 6;
-            this.facpag_tipo_cambio.Name = "facpag_tipo_cambio";
-            this.facpag_tipo_cambio.ReadOnly = true;
-            this.facpag_tipo_cambio.Visible = false;
-            this.facpag_tipo_cambio.Width = 125;
-            // 
-            // facpag_estatus
-            // 
-            this.facpag_estatus.DataPropertyName = "facpag_estatus";
-            this.facpag_estatus.HeaderText = "Estatus";
-            this.facpag_estatus.MinimumWidth = 6;
-            this.facpag_estatus.Name = "facpag_estatus";
-            this.facpag_estatus.ReadOnly = true;
-            this.facpag_estatus.Visible = false;
-            this.facpag_estatus.Width = 125;
-            // 
-            // prov_nombre
-            // 
-            this.prov_nombre.DataPropertyName = "prov_nombre";
-            this.prov_nombre.HeaderText = "nombre_proveedor";
-            this.prov_nombre.MinimumWidth = 6;
-            this.prov_nombre.Name = "prov_nombre";
-            this.prov_nombre.ReadOnly = true;
-            this.prov_nombre.Visible = false;
-            this.prov_nombre.Width = 125;
-            // 
-            // facpag_flujo
-            // 
-            this.facpag_flujo.DataPropertyName = "facpag_flujo";
-            this.facpag_flujo.HeaderText = "flujo";
-            this.facpag_flujo.MinimumWidth = 6;
-            this.facpag_flujo.Name = "facpag_flujo";
-            this.facpag_flujo.ReadOnly = true;
-            this.facpag_flujo.Visible = false;
-            this.facpag_flujo.Width = 125;
-            // 
-            // facpag_tipo_gasto
-            // 
-            this.facpag_tipo_gasto.DataPropertyName = "facpag_tipo_gasto";
-            this.facpag_tipo_gasto.HeaderText = "tipogasto";
-            this.facpag_tipo_gasto.MinimumWidth = 6;
-            this.facpag_tipo_gasto.Name = "facpag_tipo_gasto";
-            this.facpag_tipo_gasto.ReadOnly = true;
-            this.facpag_tipo_gasto.Visible = false;
-            this.facpag_tipo_gasto.Width = 125;
+            this.dgrDatos.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dgrDatos_DataError);
             // 
             // txtSalir
             // 
@@ -749,104 +580,6 @@ namespace PROYECTO
             this.dgrDatos2.TabStop = false;
             this.dgrDatos2.VirtualMode = true;
             // 
-            // DETPRE_FACTURA
-            // 
-            this.DETPRE_FACTURA.DataPropertyName = "DETPRE_FACTURA";
-            this.DETPRE_FACTURA.HeaderText = "Factura";
-            this.DETPRE_FACTURA.MinimumWidth = 6;
-            this.DETPRE_FACTURA.Name = "DETPRE_FACTURA";
-            this.DETPRE_FACTURA.ReadOnly = true;
-            this.DETPRE_FACTURA.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.DETPRE_FACTURA.Width = 75;
-            // 
-            // Moneda
-            // 
-            this.Moneda.DataPropertyName = "Moneda";
-            this.Moneda.HeaderText = "Moneda";
-            this.Moneda.MinimumWidth = 6;
-            this.Moneda.Name = "Moneda";
-            this.Moneda.ReadOnly = true;
-            this.Moneda.Width = 125;
-            // 
-            // DETPRE_MONTO
-            // 
-            this.DETPRE_MONTO.DataPropertyName = "DETPRE_MONTO";
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.DETPRE_MONTO.DefaultCellStyle = dataGridViewCellStyle9;
-            this.DETPRE_MONTO.HeaderText = "Monto";
-            this.DETPRE_MONTO.MinimumWidth = 6;
-            this.DETPRE_MONTO.Name = "DETPRE_MONTO";
-            this.DETPRE_MONTO.ReadOnly = true;
-            this.DETPRE_MONTO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.DETPRE_MONTO.Width = 125;
-            // 
-            // DETPRE_SALDO
-            // 
-            this.DETPRE_SALDO.DataPropertyName = "DETPRE_SALDO";
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.DETPRE_SALDO.DefaultCellStyle = dataGridViewCellStyle10;
-            this.DETPRE_SALDO.HeaderText = "Saldo";
-            this.DETPRE_SALDO.MinimumWidth = 6;
-            this.DETPRE_SALDO.Name = "DETPRE_SALDO";
-            this.DETPRE_SALDO.ReadOnly = true;
-            this.DETPRE_SALDO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.DETPRE_SALDO.Width = 125;
-            // 
-            // DETPRE_ABONO
-            // 
-            this.DETPRE_ABONO.DataPropertyName = "DETPRE_ABONO";
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle11.BackColor = System.Drawing.Color.LightGray;
-            this.DETPRE_ABONO.DefaultCellStyle = dataGridViewCellStyle11;
-            this.DETPRE_ABONO.HeaderText = "Abono";
-            this.DETPRE_ABONO.MinimumWidth = 6;
-            this.DETPRE_ABONO.Name = "DETPRE_ABONO";
-            this.DETPRE_ABONO.ReadOnly = true;
-            this.DETPRE_ABONO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.DETPRE_ABONO.Width = 125;
-            // 
-            // SaldoActual
-            // 
-            this.SaldoActual.DataPropertyName = "SaldoActual";
-            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.SaldoActual.DefaultCellStyle = dataGridViewCellStyle12;
-            this.SaldoActual.HeaderText = "Saldo Actual";
-            this.SaldoActual.MinimumWidth = 6;
-            this.SaldoActual.Name = "SaldoActual";
-            this.SaldoActual.ReadOnly = true;
-            this.SaldoActual.Width = 125;
-            // 
-            // DETPRE_PREPAGO
-            // 
-            this.DETPRE_PREPAGO.DataPropertyName = "DETPRE_PREPAGO";
-            this.DETPRE_PREPAGO.HeaderText = "prepago";
-            this.DETPRE_PREPAGO.MinimumWidth = 6;
-            this.DETPRE_PREPAGO.Name = "DETPRE_PREPAGO";
-            this.DETPRE_PREPAGO.ReadOnly = true;
-            this.DETPRE_PREPAGO.Visible = false;
-            this.DETPRE_PREPAGO.Width = 125;
-            // 
-            // DETPRE_INDICE
-            // 
-            this.DETPRE_INDICE.DataPropertyName = "DETPRE_INDICE";
-            this.DETPRE_INDICE.HeaderText = "indic";
-            this.DETPRE_INDICE.MinimumWidth = 6;
-            this.DETPRE_INDICE.Name = "DETPRE_INDICE";
-            this.DETPRE_INDICE.ReadOnly = true;
-            this.DETPRE_INDICE.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.DETPRE_INDICE.Visible = false;
-            this.DETPRE_INDICE.Width = 40;
-            // 
-            // DETPRE_PROVEEDOR
-            // 
-            this.DETPRE_PROVEEDOR.DataPropertyName = "DETPRE_PROVEEDOR";
-            this.DETPRE_PROVEEDOR.HeaderText = "CodProveedor";
-            this.DETPRE_PROVEEDOR.MinimumWidth = 6;
-            this.DETPRE_PROVEEDOR.Name = "DETPRE_PROVEEDOR";
-            this.DETPRE_PROVEEDOR.ReadOnly = true;
-            this.DETPRE_PROVEEDOR.Visible = false;
-            this.DETPRE_PROVEEDOR.Width = 125;
-            // 
             // label4
             // 
             this.label4.AutoSize = true;
@@ -937,6 +670,290 @@ namespace PROYECTO
             this.btnCancelarPagos.UseVisualStyleBackColor = true;
             this.btnCancelarPagos.Click += new System.EventHandler(this.btnCancelarPagos_Click);
             // 
+            // facpag_num_factura
+            // 
+            this.facpag_num_factura.DataPropertyName = "facpag_num_factura";
+            this.facpag_num_factura.HeaderText = "Factura";
+            this.facpag_num_factura.MinimumWidth = 6;
+            this.facpag_num_factura.Name = "facpag_num_factura";
+            this.facpag_num_factura.ReadOnly = true;
+            this.facpag_num_factura.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.facpag_num_factura.Width = 75;
+            // 
+            // facpag_moneda
+            // 
+            this.facpag_moneda.DataPropertyName = "facpag_moneda";
+            this.facpag_moneda.HeaderText = "Moneda";
+            this.facpag_moneda.MinimumWidth = 6;
+            this.facpag_moneda.Name = "facpag_moneda";
+            this.facpag_moneda.ReadOnly = true;
+            this.facpag_moneda.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.facpag_moneda.Width = 125;
+            // 
+            // FACPAG_INDICE
+            // 
+            this.FACPAG_INDICE.DataPropertyName = "FACPAG_INDICE";
+            this.FACPAG_INDICE.HeaderText = "indic";
+            this.FACPAG_INDICE.MinimumWidth = 6;
+            this.FACPAG_INDICE.Name = "FACPAG_INDICE";
+            this.FACPAG_INDICE.ReadOnly = true;
+            this.FACPAG_INDICE.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.FACPAG_INDICE.Visible = false;
+            this.FACPAG_INDICE.Width = 40;
+            // 
+            // gas_nombre
+            // 
+            this.gas_nombre.DataPropertyName = "gas_nombre";
+            this.gas_nombre.HeaderText = "gasto";
+            this.gas_nombre.MinimumWidth = 6;
+            this.gas_nombre.Name = "gas_nombre";
+            this.gas_nombre.ReadOnly = true;
+            this.gas_nombre.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.gas_nombre.Visible = false;
+            this.gas_nombre.Width = 125;
+            // 
+            // facpag_monto
+            // 
+            this.facpag_monto.DataPropertyName = "facpag_monto";
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle2.Format = "###,###,##0.00";
+            dataGridViewCellStyle2.NullValue = "0";
+            this.facpag_monto.DefaultCellStyle = dataGridViewCellStyle2;
+            this.facpag_monto.HeaderText = "Monto";
+            this.facpag_monto.MinimumWidth = 6;
+            this.facpag_monto.Name = "facpag_monto";
+            this.facpag_monto.ReadOnly = true;
+            this.facpag_monto.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.facpag_monto.Width = 125;
+            // 
+            // facpag_saldo
+            // 
+            this.facpag_saldo.DataPropertyName = "facpag_saldo";
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle3.Format = "###,###,##0.00";
+            dataGridViewCellStyle3.NullValue = "0";
+            this.facpag_saldo.DefaultCellStyle = dataGridViewCellStyle3;
+            this.facpag_saldo.HeaderText = "Saldo";
+            this.facpag_saldo.MinimumWidth = 6;
+            this.facpag_saldo.Name = "facpag_saldo";
+            this.facpag_saldo.ReadOnly = true;
+            this.facpag_saldo.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.facpag_saldo.Width = 125;
+            // 
+            // Abono
+            // 
+            this.Abono.DataPropertyName = "Abono";
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.LightGray;
+            dataGridViewCellStyle4.Format = "###,###,##0.00";
+            dataGridViewCellStyle4.NullValue = "0";
+            this.Abono.DefaultCellStyle = dataGridViewCellStyle4;
+            this.Abono.HeaderText = "Abono";
+            this.Abono.MinimumWidth = 6;
+            this.Abono.Name = "Abono";
+            this.Abono.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Abono.Width = 125;
+            // 
+            // saldo_actual
+            // 
+            this.saldo_actual.DataPropertyName = "saldo_actual";
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle5.Format = "###,###,##0.00";
+            dataGridViewCellStyle5.NullValue = "0";
+            this.saldo_actual.DefaultCellStyle = dataGridViewCellStyle5;
+            this.saldo_actual.HeaderText = "Saldo Actual";
+            this.saldo_actual.MinimumWidth = 6;
+            this.saldo_actual.Name = "saldo_actual";
+            this.saldo_actual.ReadOnly = true;
+            this.saldo_actual.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.saldo_actual.Width = 125;
+            // 
+            // facpag_proveedor
+            // 
+            this.facpag_proveedor.DataPropertyName = "facpag_proveedor";
+            this.facpag_proveedor.HeaderText = "CodProveedor";
+            this.facpag_proveedor.MinimumWidth = 6;
+            this.facpag_proveedor.Name = "facpag_proveedor";
+            this.facpag_proveedor.ReadOnly = true;
+            this.facpag_proveedor.Visible = false;
+            this.facpag_proveedor.Width = 125;
+            // 
+            // facpag_fecha_emision
+            // 
+            this.facpag_fecha_emision.DataPropertyName = "facpag_fecha_emision";
+            this.facpag_fecha_emision.HeaderText = "Fecha Factura";
+            this.facpag_fecha_emision.MinimumWidth = 6;
+            this.facpag_fecha_emision.Name = "facpag_fecha_emision";
+            this.facpag_fecha_emision.ReadOnly = true;
+            this.facpag_fecha_emision.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.facpag_fecha_emision.Width = 125;
+            // 
+            // facpag_fecha_vence
+            // 
+            this.facpag_fecha_vence.DataPropertyName = "facpag_fecha_vence";
+            this.facpag_fecha_vence.HeaderText = "Fecha Vence";
+            this.facpag_fecha_vence.MinimumWidth = 6;
+            this.facpag_fecha_vence.Name = "facpag_fecha_vence";
+            this.facpag_fecha_vence.ReadOnly = true;
+            this.facpag_fecha_vence.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.facpag_fecha_vence.Width = 125;
+            // 
+            // facpag_tipo_cambio
+            // 
+            this.facpag_tipo_cambio.DataPropertyName = "facpag_tipo_cambio";
+            this.facpag_tipo_cambio.HeaderText = "TipoCambio";
+            this.facpag_tipo_cambio.MinimumWidth = 6;
+            this.facpag_tipo_cambio.Name = "facpag_tipo_cambio";
+            this.facpag_tipo_cambio.ReadOnly = true;
+            this.facpag_tipo_cambio.Visible = false;
+            this.facpag_tipo_cambio.Width = 125;
+            // 
+            // facpag_estatus
+            // 
+            this.facpag_estatus.DataPropertyName = "facpag_estatus";
+            this.facpag_estatus.HeaderText = "Estatus";
+            this.facpag_estatus.MinimumWidth = 6;
+            this.facpag_estatus.Name = "facpag_estatus";
+            this.facpag_estatus.ReadOnly = true;
+            this.facpag_estatus.Visible = false;
+            this.facpag_estatus.Width = 125;
+            // 
+            // prov_nombre
+            // 
+            this.prov_nombre.DataPropertyName = "prov_nombre";
+            this.prov_nombre.HeaderText = "nombre_proveedor";
+            this.prov_nombre.MinimumWidth = 6;
+            this.prov_nombre.Name = "prov_nombre";
+            this.prov_nombre.ReadOnly = true;
+            this.prov_nombre.Visible = false;
+            this.prov_nombre.Width = 125;
+            // 
+            // facpag_flujo
+            // 
+            this.facpag_flujo.DataPropertyName = "facpag_flujo";
+            this.facpag_flujo.HeaderText = "flujo";
+            this.facpag_flujo.MinimumWidth = 6;
+            this.facpag_flujo.Name = "facpag_flujo";
+            this.facpag_flujo.ReadOnly = true;
+            this.facpag_flujo.Visible = false;
+            this.facpag_flujo.Width = 125;
+            // 
+            // facpag_tipo_gasto
+            // 
+            this.facpag_tipo_gasto.DataPropertyName = "facpag_tipo_gasto";
+            this.facpag_tipo_gasto.HeaderText = "tipogasto";
+            this.facpag_tipo_gasto.MinimumWidth = 6;
+            this.facpag_tipo_gasto.Name = "facpag_tipo_gasto";
+            this.facpag_tipo_gasto.ReadOnly = true;
+            this.facpag_tipo_gasto.Visible = false;
+            this.facpag_tipo_gasto.Width = 125;
+            // 
+            // DETPRE_FACTURA
+            // 
+            this.DETPRE_FACTURA.DataPropertyName = "DETPRE_FACTURA";
+            this.DETPRE_FACTURA.HeaderText = "Factura";
+            this.DETPRE_FACTURA.MinimumWidth = 6;
+            this.DETPRE_FACTURA.Name = "DETPRE_FACTURA";
+            this.DETPRE_FACTURA.ReadOnly = true;
+            this.DETPRE_FACTURA.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.DETPRE_FACTURA.Width = 75;
+            // 
+            // Moneda
+            // 
+            this.Moneda.DataPropertyName = "Moneda";
+            this.Moneda.HeaderText = "Moneda";
+            this.Moneda.MinimumWidth = 6;
+            this.Moneda.Name = "Moneda";
+            this.Moneda.ReadOnly = true;
+            this.Moneda.Width = 125;
+            // 
+            // DETPRE_MONTO
+            // 
+            this.DETPRE_MONTO.DataPropertyName = "DETPRE_MONTO";
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle9.Format = "###,###,##0.00";
+            dataGridViewCellStyle9.NullValue = "0";
+            this.DETPRE_MONTO.DefaultCellStyle = dataGridViewCellStyle9;
+            this.DETPRE_MONTO.HeaderText = "Monto";
+            this.DETPRE_MONTO.MinimumWidth = 6;
+            this.DETPRE_MONTO.Name = "DETPRE_MONTO";
+            this.DETPRE_MONTO.ReadOnly = true;
+            this.DETPRE_MONTO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.DETPRE_MONTO.Width = 125;
+            // 
+            // DETPRE_SALDO
+            // 
+            this.DETPRE_SALDO.DataPropertyName = "DETPRE_SALDO";
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle10.Format = "###,###,##0.00";
+            dataGridViewCellStyle10.NullValue = "0";
+            this.DETPRE_SALDO.DefaultCellStyle = dataGridViewCellStyle10;
+            this.DETPRE_SALDO.HeaderText = "Saldo";
+            this.DETPRE_SALDO.MinimumWidth = 6;
+            this.DETPRE_SALDO.Name = "DETPRE_SALDO";
+            this.DETPRE_SALDO.ReadOnly = true;
+            this.DETPRE_SALDO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.DETPRE_SALDO.Width = 125;
+            // 
+            // DETPRE_ABONO
+            // 
+            this.DETPRE_ABONO.DataPropertyName = "DETPRE_ABONO";
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle11.BackColor = System.Drawing.Color.LightGray;
+            dataGridViewCellStyle11.Format = "###,###,##0.00";
+            dataGridViewCellStyle11.NullValue = "0";
+            this.DETPRE_ABONO.DefaultCellStyle = dataGridViewCellStyle11;
+            this.DETPRE_ABONO.HeaderText = "Abono";
+            this.DETPRE_ABONO.MinimumWidth = 6;
+            this.DETPRE_ABONO.Name = "DETPRE_ABONO";
+            this.DETPRE_ABONO.ReadOnly = true;
+            this.DETPRE_ABONO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.DETPRE_ABONO.Width = 125;
+            // 
+            // SaldoActual
+            // 
+            this.SaldoActual.DataPropertyName = "SaldoActual";
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle12.Format = "###,###,##0.00";
+            dataGridViewCellStyle12.NullValue = "0";
+            this.SaldoActual.DefaultCellStyle = dataGridViewCellStyle12;
+            this.SaldoActual.HeaderText = "Saldo Actual";
+            this.SaldoActual.MinimumWidth = 6;
+            this.SaldoActual.Name = "SaldoActual";
+            this.SaldoActual.ReadOnly = true;
+            this.SaldoActual.Width = 125;
+            // 
+            // DETPRE_PREPAGO
+            // 
+            this.DETPRE_PREPAGO.DataPropertyName = "DETPRE_PREPAGO";
+            this.DETPRE_PREPAGO.HeaderText = "prepago";
+            this.DETPRE_PREPAGO.MinimumWidth = 6;
+            this.DETPRE_PREPAGO.Name = "DETPRE_PREPAGO";
+            this.DETPRE_PREPAGO.ReadOnly = true;
+            this.DETPRE_PREPAGO.Visible = false;
+            this.DETPRE_PREPAGO.Width = 125;
+            // 
+            // DETPRE_INDICE
+            // 
+            this.DETPRE_INDICE.DataPropertyName = "DETPRE_INDICE";
+            this.DETPRE_INDICE.HeaderText = "indic";
+            this.DETPRE_INDICE.MinimumWidth = 6;
+            this.DETPRE_INDICE.Name = "DETPRE_INDICE";
+            this.DETPRE_INDICE.ReadOnly = true;
+            this.DETPRE_INDICE.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.DETPRE_INDICE.Visible = false;
+            this.DETPRE_INDICE.Width = 40;
+            // 
+            // DETPRE_PROVEEDOR
+            // 
+            this.DETPRE_PROVEEDOR.DataPropertyName = "DETPRE_PROVEEDOR";
+            this.DETPRE_PROVEEDOR.HeaderText = "CodProveedor";
+            this.DETPRE_PROVEEDOR.MinimumWidth = 6;
+            this.DETPRE_PROVEEDOR.Name = "DETPRE_PROVEEDOR";
+            this.DETPRE_PROVEEDOR.ReadOnly = true;
+            this.DETPRE_PROVEEDOR.Visible = false;
+            this.DETPRE_PROVEEDOR.Width = 125;
+            // 
             // frmPrepagoProveedor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -1025,6 +1042,10 @@ namespace PROYECTO
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button btnReporte;
         private System.Windows.Forms.Button btnPagar;
+        private System.Windows.Forms.ProgressBar progressBar1;
+        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Button btnEliminar;
+        private System.Windows.Forms.Button btnCancelarPagos;
         private System.Windows.Forms.DataGridViewTextBoxColumn facpag_num_factura;
         private System.Windows.Forms.DataGridViewTextBoxColumn facpag_moneda;
         private System.Windows.Forms.DataGridViewTextBoxColumn FACPAG_INDICE;
@@ -1050,9 +1071,5 @@ namespace PROYECTO
         private System.Windows.Forms.DataGridViewTextBoxColumn DETPRE_PREPAGO;
         private System.Windows.Forms.DataGridViewTextBoxColumn DETPRE_INDICE;
         private System.Windows.Forms.DataGridViewTextBoxColumn DETPRE_PROVEEDOR;
-        private System.Windows.Forms.ProgressBar progressBar1;
-        private System.Windows.Forms.Timer timer1;
-        private System.Windows.Forms.Button btnEliminar;
-        private System.Windows.Forms.Button btnCancelarPagos;
     }
 }

@@ -163,7 +163,7 @@ namespace PROYECTO
                 txtIdentificacion.Text = dgrDatos["cli_identificacion", e.RowIndex].Value.ToString();
 
                 cboLCMoneda.SelectedItem = dgrDatos["CLI_LC_MONEDA", e.RowIndex].Value.ToString();
-                txtLCLimite.Text = double.Parse(dgrDatos["CLI_LC_LIMITE", e.RowIndex].Value.ToString()).ToString("###,###,##0.##");
+                txtLCLimite.Text = double.Parse(dgrDatos["CLI_LC_LIMITE", e.RowIndex].Value.ToString()).ToString("###,###,##0.00");
 
                 //LlenaProvincias();
 
@@ -402,7 +402,7 @@ namespace PROYECTO
         {
             if (txtLCLimite.Text.Equals(""))
                 txtLCLimite.Text = "0";
-            txtLCLimite.Text = double.Parse(txtLCLimite.Text).ToString("###,###,##0.##");
+            txtLCLimite.Text = double.Parse(txtLCLimite.Text).ToString("###,###,##0.00");
         }
 
         private void txtLCLimite_KeyPress(object sender, KeyPressEventArgs e)

@@ -106,10 +106,10 @@ namespace PROYECTO
                         moned = '¢';
                     else if (txtMonedas1.Equals("USD"))
                         moned = '$';
-                    txtSaldoActual1.Text = moned + " " + double.Parse(oTabla.Rows[0].ItemArray[3].ToString()).ToString("###,###,##0.##");
+                    txtSaldoActual1.Text = moned + " " + double.Parse(oTabla.Rows[0].ItemArray[3].ToString()).ToString("###,###,##0.00");
                     txtSaldoActual2.Text = txtSaldoActual1.Text;
                     txtSaldoActual3.Text = txtSaldoActual1.Text;
-                    txtMontoActual.Text = moned + " " + double.Parse(oTabla.Rows[0].ItemArray[2].ToString()).ToString("###,###,##0.##");
+                    txtMontoActual.Text = moned + " " + double.Parse(oTabla.Rows[0].ItemArray[2].ToString()).ToString("###,###,##0.00");
                     indice = int.Parse(oTabla.Rows[0].ItemArray[5].ToString());
 
                     if (oChicaDAO.Error())
@@ -174,7 +174,7 @@ namespace PROYECTO
                 if (!txtMontoAumentar1.Text[x].Equals(' '))
                     monto += txtMontoAumentar1.Text[x];
             }
-            txtMontoAumentar1.Text = moned + " " + double.Parse(monto).ToString("###,###,##0.##");
+            txtMontoAumentar1.Text = moned + " " + double.Parse(monto).ToString("###,###,##0.00");
 
         }
 
@@ -466,7 +466,7 @@ namespace PROYECTO
             string monto = txtMontoAumentar2.Text;
             if (txtMontoAumentar2.ReadOnly == false)
             {
-                txtMontoAumentar2.Text = double.Parse(monto.Substring(1)).ToString("###,###,##0.##");
+                txtMontoAumentar2.Text = double.Parse(monto.Substring(1)).ToString("###,###,##0.00");
 
             }
         }
@@ -504,7 +504,7 @@ namespace PROYECTO
                 if (!txtMontoAumentar2.Text[x].Equals(' '))
                     monto += txtMontoAumentar2.Text[x];
             }
-            txtMontoAumentar2.Text = moned + " " + double.Parse(monto).ToString("###,###,##0.##");
+            txtMontoAumentar2.Text = moned + " " + double.Parse(monto).ToString("###,###,##0.00");
             if (double.Parse(monto) > double.Parse(txtSaldoActual2.Text.Substring(1)))
             {
                 MessageBox.Show("El monto no puede ser mayor al saldo");
@@ -524,7 +524,7 @@ namespace PROYECTO
             string monto = txtMontoAumentar3.Text;
             if (txtMontoAumentar3.ReadOnly == false)
             {
-                txtMontoAumentar3.Text = double.Parse(monto.Substring(1)).ToString("###,###,##0.##");
+                txtMontoAumentar3.Text = double.Parse(monto.Substring(1)).ToString("###,###,##0.00");
 
             }
         }
@@ -561,7 +561,7 @@ namespace PROYECTO
                 if (!txtMontoAumentar3.Text[x].Equals(' '))
                     monto += txtMontoAumentar3.Text[x];
             }
-            txtMontoAumentar3.Text = moned + " " + double.Parse(monto).ToString("###,###,##0.##");
+            txtMontoAumentar3.Text = moned + " " + double.Parse(monto).ToString("###,###,##0.00");
         }
 
         private void txtMontoAumentar1_KeyPress(object sender, KeyPressEventArgs e)

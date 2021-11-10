@@ -812,7 +812,7 @@ namespace PROYECTO
             // 
             this.monto.DataPropertyName = "facpag_monto";
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle2.Format = "###,###,##0.##";
+            dataGridViewCellStyle2.Format = "###,###,##0.00";
             dataGridViewCellStyle2.NullValue = "0";
             this.monto.DefaultCellStyle = dataGridViewCellStyle2;
             this.monto.HeaderText = "Monto";
@@ -835,7 +835,7 @@ namespace PROYECTO
             // 
             this.saldo.DataPropertyName = "facpag_saldo";
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle3.Format = "###,###,##0.##";
+            dataGridViewCellStyle3.Format = "###,###,##0.00";
             dataGridViewCellStyle3.NullValue = "0";
             this.saldo.DefaultCellStyle = dataGridViewCellStyle3;
             this.saldo.HeaderText = "Saldo";

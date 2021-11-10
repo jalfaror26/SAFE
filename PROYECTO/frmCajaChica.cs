@@ -191,8 +191,8 @@ namespace PROYECTO
                     DataTable oTabla = oChicaDAO.Consultar(PROYECTO.Properties.Settings.Default.No_cia).Tables[0];
                     txtDocumento.Text = oTabla.Rows[0].ItemArray[0].ToString();
                     cmbMoneda.SelectedItem = oTabla.Rows[0].ItemArray[4].ToString().ToString();
-                    txtMonto.Text = moned + " " + double.Parse(oTabla.Rows[0].ItemArray[2].ToString()).ToString("###,###,##0.##");
-                    txtSaldo.Text = moned + " " + double.Parse(oTabla.Rows[0].ItemArray[3].ToString()).ToString("###,###,##0.##");
+                    txtMonto.Text = moned + " " + double.Parse(oTabla.Rows[0].ItemArray[2].ToString()).ToString("###,###,##0.00");
+                    txtSaldo.Text = moned + " " + double.Parse(oTabla.Rows[0].ItemArray[3].ToString()).ToString("###,###,##0.00");
                     indice = int.Parse(oTabla.Rows[0].ItemArray[5].ToString());
                     cmbMoneda.Enabled = false;
                     if (oChicaDAO.Error())
@@ -295,13 +295,13 @@ namespace PROYECTO
             lblCaja.Text = "0";
             try
             {
-                montos = double.Parse(oChicaDAO.ultimoSaldo(PROYECTO.Properties.Settings.Default.No_cia).ToString("###,###,##0.##"));
+                montos = double.Parse(oChicaDAO.ultimoSaldo(PROYECTO.Properties.Settings.Default.No_cia).ToString("###,###,##0.00"));
             }
             catch (Exception ex)
             {
                 montos = 0;
             }
-            txtSaldoAnterior.Text = moned + " " + montos.ToString("###,###,##0.##");
+            txtSaldoAnterior.Text = moned + " " + montos.ToString("###,###,##0.00");
             if (oChicaDAO.ultimoMoneda(PROYECTO.Properties.Settings.Default.No_cia).Equals("CRC"))
             {
                 moneda1 = '¢';
@@ -370,7 +370,7 @@ namespace PROYECTO
                     if (!txtMonto.Text[x].Equals(' '))
                         monto += txtMonto.Text[x];
                 }
-                txtMonto.Text = moned + " " + double.Parse(monto).ToString("###,###,##0.##");
+                txtMonto.Text = moned + " " + double.Parse(monto).ToString("###,###,##0.00");
                 txtSaldo.Text = txtMonto.Text;
             }
         }
@@ -379,7 +379,7 @@ namespace PROYECTO
         {
             if (txtMonto.ReadOnly == false)
             {
-                txtMonto.Text = double.Parse(txtSaldo.Text.Substring(1)).ToString("###,###,##0.##");
+                txtMonto.Text = double.Parse(txtSaldo.Text.Substring(1)).ToString("###,###,##0.00");
             }
         }
 
@@ -391,7 +391,7 @@ namespace PROYECTO
             else if (cmbMoneda.Text.Equals("USD"))
                 moned = '$';
 
-            txtMonto.Text = moned + " " + double.Parse(txtMonto.Text.Substring(2)).ToString("###,###,##0.##");
+            txtMonto.Text = moned + " " + double.Parse(txtMonto.Text.Substring(2)).ToString("###,###,##0.00");
             txtMonto.Text = moned + " " + ConvertirMontos(txtMonto.Text.Substring(1));
             txtSaldo.Text = txtMonto.Text;
             txtSaldoAnterior.Text = moned + " " + ConvertirMontos(txtSaldoAnterior.Text.Substring(1));
@@ -428,20 +428,20 @@ namespace PROYECTO
             double monto = double.Parse(mont);
 
             if (monedaOrigen.Equals('¢') && moned.Equals('¢'))
-                valor = monto.ToString("###,###,##0.##");
+                valor = monto.ToString("###,###,##0.00");
             else if (monedaOrigen.Equals('¢') && moned.Equals('$'))
             {
                 double val = (monto / dolar);
-                valor = val.ToString("###,###,##0.##"); ;
+                valor = val.ToString("###,###,##0.00"); ;
             }
             else if (monedaOrigen.Equals('$') && moned.Equals('$'))
             {
-                valor = monto.ToString("###,###,##0.##");
+                valor = monto.ToString("###,###,##0.00");
             }
             else if (monedaOrigen.Equals('$') && moned.Equals('¢'))
             {
                 double val = (monto * dolar);
-                valor = val.ToString("###,###,##0.##");
+                valor = val.ToString("###,###,##0.00");
             }
 
             return valor;
@@ -490,8 +490,8 @@ namespace PROYECTO
             lblFecha.Text = "--/--/----";
             cmbMoneda.SelectedIndex = 0;
             txtDocumento.Clear();
-            txtMonto.Text = moned + " " + (0).ToString("###,###,##0.##");
-            txtSaldo.Text = moned + " " + (0).ToString("###,###,##0.##");
+            txtMonto.Text = moned + " " + (0).ToString("###,###,##0.00");
+            txtSaldo.Text = moned + " " + (0).ToString("###,###,##0.00");
             btnAbrirCaja.Enabled = true;
             btnCerrar.Enabled = false;
             btnMovimientos.Enabled = false;
@@ -533,7 +533,7 @@ namespace PROYECTO
             catch (Exception ex)
             {
                 txtMonto.Text = moned + " 0";
-                txtSaldo.Text = moned + " " + double.Parse(txtMonto.Text.Substring(1)).ToString("###,###,##0.##");
+                txtSaldo.Text = moned + " " + double.Parse(txtMonto.Text.Substring(1)).ToString("###,###,##0.00");
             }
         }
 

@@ -457,7 +457,7 @@ namespace PROYECTO
                 oConexion.cerrarConexion();
                 if (oConexion.abrirConexion())
                 {
-                    txtTipoCambioDolar.Text = Double.Parse(oTipoCambioDAO.TipoCambio(PROYECTO.Properties.Settings.Default.No_cia).Tables[0].Rows[0].ItemArray[0].ToString()).ToString("¢ ###,###,##0.##");
+                    txtTipoCambioDolar.Text = Double.Parse(oTipoCambioDAO.TipoCambio(PROYECTO.Properties.Settings.Default.No_cia).Tables[0].Rows[0].ItemArray[0].ToString()).ToString("¢ ###,###,##0.00");
                 }
                 oConexion.cerrarConexion();
             }
@@ -500,12 +500,12 @@ namespace PROYECTO
                         {
                             if (monto < Double.Parse(oTabla.Rows[0].ItemArray[3].ToString()))
                             {
-                                txtTipoCambioDolar.Text = Double.Parse(oTabla.Rows[0].ItemArray[0].ToString()).ToString("¢ ###,###,##0.##");
+                                txtTipoCambioDolar.Text = Double.Parse(oTabla.Rows[0].ItemArray[0].ToString()).ToString("¢ ###,###,##0.00");
                                 MessageBox.Show("El tipo de cambio no puede ser menor al minimo establecido.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                             }
                         }
                         oConexion.cerrarConexion();
-                        txtTipoCambioDolar.Text = Double.Parse(txtTipoCambioDolar.Text).ToString("¢ ###,###,##0.##");
+                        txtTipoCambioDolar.Text = Double.Parse(txtTipoCambioDolar.Text).ToString("¢ ###,###,##0.00");
                     }
                 }
                 catch (Exception ex)

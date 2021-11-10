@@ -276,9 +276,9 @@ namespace PROYECTO
                     dolar = Convert.ToDouble(oTabla.Rows[0].ItemArray[0].ToString());
                     
                     if (moneda.Trim().Equals("CRC"))
-                        txttipocambio.Text = dolar.ToString("¢ ###,###,##0.##");
+                        txttipocambio.Text = dolar.ToString("¢ ###,###,##0.00");
                     else if (moneda.Trim().Equals("USD"))
-                        txttipocambio.Text = dolar.ToString("¢ ###,###,##0.##");
+                        txttipocambio.Text = dolar.ToString("¢ ###,###,##0.00");
               
                 }
                 else
@@ -327,7 +327,7 @@ namespace PROYECTO
                 if (!txtmonto.Text[x].Equals(' '))
                     monto += txtmonto.Text[x];
             }
-            txtmonto.Text = simmoneda + " " + double.Parse(monto).ToString("###,###,##0.##");
+            txtmonto.Text = simmoneda + " " + double.Parse(monto).ToString("###,###,##0.00");
         }
 
         private void txtnumfactura_KeyPress(object sender, KeyPressEventArgs e)
@@ -371,7 +371,7 @@ namespace PROYECTO
                     {
                         if (monto < Double.Parse(oTabla.Rows[0].ItemArray[3].ToString()))
                         {
-                            txttipocambio.Text = Double.Parse(oTabla.Rows[0].ItemArray[0].ToString()).ToString("¢ ###,###,##0.##");
+                            txttipocambio.Text = Double.Parse(oTabla.Rows[0].ItemArray[0].ToString()).ToString("¢ ###,###,##0.00");
                             MessageBox.Show("El tipo de cambio no puede ser menor al minimo establecido.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         }
                     }
@@ -379,12 +379,12 @@ namespace PROYECTO
                     {
                         if (monto < Double.Parse(oTabla.Rows[0].ItemArray[4].ToString()))
                         {
-                            txttipocambio.Text = Double.Parse(oTabla.Rows[0].ItemArray[1].ToString()).ToString("¢ ###,###,##0.##");
+                            txttipocambio.Text = Double.Parse(oTabla.Rows[0].ItemArray[1].ToString()).ToString("¢ ###,###,##0.00");
                             MessageBox.Show("El tipo de cambio no puede ser menor al minimo establecido.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         }
                     }
                     oConexion.cerrarConexion();
-                    txttipocambio.Text = Double.Parse(txttipocambio.Text).ToString("¢ ###,###,##0.##");
+                    txttipocambio.Text = Double.Parse(txttipocambio.Text).ToString("¢ ###,###,##0.00");
                 }
             }
             catch (Exception ex)

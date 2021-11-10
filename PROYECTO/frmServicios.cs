@@ -22,7 +22,7 @@ namespace PROYECTO
         private ProveedorDAO oProveedorDAO = new ProveedorDAO();
         private static frmServicios instance = null;
         private Boolean nuevo = false;
-        private ConexionDAO oConexion = new ConexionDAO(PROYECTO.Properties.Settings.Default.UsuarioBD, PROYECTO.Properties.Settings.Default.Servidor,Conexion.getInstance().Clave);
+        private ConexionDAO oConexion = new ConexionDAO(PROYECTO.Properties.Settings.Default.UsuarioBD, PROYECTO.Properties.Settings.Default.Servidor, Conexion.getInstance().Clave);
         private Servicio oServicio;
         private double indice = 0;
 
@@ -83,10 +83,10 @@ namespace PROYECTO
             /*Precios*/
             txtPrecioCosto.Text = "0";
             txtPrecioVenta.Text = "0";
-            txtImpuesto.Text = "0";
+            rboExento.Checked = true;
             chkIVI.Checked = false;
             chkIVI.Enabled = false;
-
+            btnImpuestos.Enabled = false;
         }
 
         public void LlenarServicio(String cod, String des, String dato1)
@@ -103,30 +103,19 @@ namespace PROYECTO
             }
         }
 
-        private void btnBuscarArticulo_Click(object sender, EventArgs e)
-        {
-            //frmConsulta oConsulta = frmConsulta.getInstance("ARTICULO_ARTICULOS");
-            //oConsulta.MdiParent = frmPrincipal.getInstance().MdiParent;
-            //oConsulta.ShowDialog();
-        }
-
-        private void tobSalir_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void Agregar()
         {
             try
             {
-                oConexion = new ConexionDAO(PROYECTO.Properties.Settings.Default.UsuarioBD, PROYECTO.Properties.Settings.Default.Servidor,Conexion.getInstance().Clave);
+                oConexion = new ConexionDAO(PROYECTO.Properties.Settings.Default.UsuarioBD, PROYECTO.Properties.Settings.Default.Servidor, Conexion.getInstance().Clave);
                 oConexion.cerrarConexion();
                 if (oConexion.abrirConexion())
                 {
                     oServicio = new Servicio();
                     oServicio.No_cia = PROYECTO.Properties.Settings.Default.No_cia;
                     oServicio.Tipo = "SER";
-                    oServicio.Impuestos = Double.Parse(txtImpuesto.Text);
+                    oServicio.Impuestos = rboExento.Checked ? 0 : 1;
                     oServicio.Cod_cabys = txtCodCabys.Text;
 
                     if (oServicio.Impuestos == 0)
@@ -144,28 +133,32 @@ namespace PROYECTO
                     oServicio.Descripcion = txtDesBreveArt.Text;
 
                     oServicio.Nombre = txtDesBreveArt.Text;
-                    oServicio.TipoCodigo = "IN";
+                    oServicio.TipoCodigo = "EX";
 
                     indice = double.Parse(oServicioDAO.Agregar(oServicio));
-
-                    if (oServicio.Indice == 0)
-                    {
-                        oServicio.Indice = indice;
-                        oServicio.Codigo = indice.ToString();
-                        oServicioDAO.Agregar(oServicio);
-                        oServicio.Indice = 0;
-                    }
-
-                    if (oServicio.Indice == 0)
-                        txtCodigo.Text = indice.ToString();
 
                     if (oServicioDAO.Error())
                         MessageBox.Show("Error al guardar:\n" + oServicioDAO.DescError(), "Error de consulta", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     else
-                        MessageBox.Show("Guardado correctamente", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    {
+                        nuevo = false;
 
-                    Llenar_Grid();
-                    LimpiarCampos();
+                        if (oServicio.Impuestos == 1 && !chkIVI.Checked)
+                        {
+                            btnImpuestos.Enabled = true;
+                            btnImpuestos.PerformClick();
+
+                            Llenar_Grid();
+                            LimpiarCampos();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Guardado correctamente", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                            Llenar_Grid();
+                            LimpiarCampos();
+                        }
+                    }
                 }
                 else
                 {
@@ -197,7 +190,7 @@ namespace PROYECTO
         {
             try
             {
-                oConexion = new ConexionDAO(PROYECTO.Properties.Settings.Default.UsuarioBD, PROYECTO.Properties.Settings.Default.Servidor,Conexion.getInstance().Clave);
+                oConexion = new ConexionDAO(PROYECTO.Properties.Settings.Default.UsuarioBD, PROYECTO.Properties.Settings.Default.Servidor, Conexion.getInstance().Clave);
                 oConexion.cerrarConexion();
                 if (oConexion.abrirConexion())
                 {
@@ -338,7 +331,7 @@ namespace PROYECTO
                 if (txtPrecioVenta.Text.Trim().Equals(""))
                     txtPrecioVenta.Text = "0";
 
-                txtPrecioVenta.Text = Double.Parse(txtPrecioVenta.Text).ToString("###,###,##0.##");
+                txtPrecioVenta.Text = Double.Parse(txtPrecioVenta.Text).ToString("###,###,##0.00");
                 //ponerSimbolos();
             }
             catch (Exception ex)
@@ -354,7 +347,7 @@ namespace PROYECTO
                 if (txtPrecioCosto.Text.Trim().Equals(""))
                     txtPrecioCosto.Text = "0";
 
-                txtPrecioCosto.Text = Double.Parse(txtPrecioCosto.Text).ToString("###,###,##0.##");
+                txtPrecioCosto.Text = Double.Parse(txtPrecioCosto.Text).ToString("###,###,##0.00");
                 //ponerSimbolos();
             }
             catch (Exception ex)
@@ -369,7 +362,7 @@ namespace PROYECTO
             try
             {
                 Boolean tienePermiso = false;
-                oConexion = new ConexionDAO(PROYECTO.Properties.Settings.Default.UsuarioBD, PROYECTO.Properties.Settings.Default.Servidor,Conexion.getInstance().Clave);
+                oConexion = new ConexionDAO(PROYECTO.Properties.Settings.Default.UsuarioBD, PROYECTO.Properties.Settings.Default.Servidor, Conexion.getInstance().Clave);
                 oConexion.cerrarConexion();
 
                 if (oConexion.abrirConexion())
@@ -426,17 +419,18 @@ namespace PROYECTO
                 indice = double.Parse(dgrDatos["ART_INDICE", e.RowIndex].Value.ToString());
                 txtCodigo.Text = dgrDatos["ART_CODIGO", e.RowIndex].Value.ToString();
                 txtDesBreveArt.Text = dgrDatos["ART_DESC_BREVE", e.RowIndex].Value.ToString();
-                txtImpuesto.Text = double.Parse(dgrDatos["ART_IMPUESTOS", e.RowIndex].Value.ToString()).ToString("##0.##");
                 txtCodCabys.Text = dgrDatos["COD_CABYS", e.RowIndex].Value.ToString();
-                
-                if (txtImpuesto.Text.Equals("0"))
+                String tipoImpuesto = dgrDatos["ART_IMPUESTOS", e.RowIndex].Value.ToString();
+
+
+                if (tipoImpuesto.Equals("0"))
                 {
-                    chkIVI.Checked = false;
-                    chkIVI.Enabled = false;
+                    rboExento.Checked = true;
                 }
                 else
                 {
-                    chkIVI.Enabled = true;
+                    rboGravado.Checked = true;
+
                     if (dgrDatos["ART_VENTA_IVI", e.RowIndex].Value.ToString().Equals("S"))
                         chkIVI.Checked = true;
                     else
@@ -460,7 +454,7 @@ namespace PROYECTO
         {
             try
             {
-                oConexion = new ConexionDAO(PROYECTO.Properties.Settings.Default.UsuarioBD, PROYECTO.Properties.Settings.Default.Servidor,Conexion.getInstance().Clave);
+                oConexion = new ConexionDAO(PROYECTO.Properties.Settings.Default.UsuarioBD, PROYECTO.Properties.Settings.Default.Servidor, Conexion.getInstance().Clave);
                 oConexion.cerrarConexion();
                 if (oConexion.abrirConexion())
                 {
@@ -555,24 +549,49 @@ namespace PROYECTO
             Modificar();
         }
 
-        private void txtImpuesto_Enter(object sender, EventArgs e)
+        private void rboExento_CheckedChanged(object sender, EventArgs e)
         {
-            txtImpuesto.Text = double.Parse(txtImpuesto.Text).ToString("##0.##");
-            if (txtImpuesto.Text.Equals("0"))
-                txtImpuesto.Clear();
+            chkIVI.Checked = false;
+            chkIVI.Enabled = false;
+            btnImpuestos.Enabled = false;
         }
 
-        private void txtImpuesto_Leave(object sender, EventArgs e)
+        private void rboGravado_CheckedChanged(object sender, EventArgs e)
         {
-            if (txtImpuesto.Text.Trim().Equals(""))
-                txtImpuesto.Text = "0";
+            chkIVI.Enabled = true;
+            if (indice > 0)
+                btnImpuestos.Enabled = true;
+        }
 
-            if (txtImpuesto.Text.Trim().Equals("0"))
-                chkIVI.Enabled = false;
+        private void btnImpuestos_Click(object sender, EventArgs e)
+        {
+            oServicio = new Servicio();
+
+            oServicio.No_cia = PROYECTO.Properties.Settings.Default.No_cia;
+            oServicio.Codigo = txtCodigo.Text;
+            oServicio.Indice = indice;
+            oServicio.Descripcion = txtDesBreveArt.Text;
+
+            frmServicioImpuestos ofrmArticulosPresentacion = frmServicioImpuestos.getInstance(oServicio);
+            codigo2 = ofrmArticulosPresentacion.Codigo;
+            descripcion2 = ofrmArticulosPresentacion.Descripcion;
+            modulo2 = ofrmArticulosPresentacion.Modulo;
+            if (!TienePermiso())
+            {
+                ofrmArticulosPresentacion.MdiParent = this.MdiParent;
+                ofrmArticulosPresentacion.Show();
+            }
             else
-                chkIVI.Enabled = true;
+            {
+                MessageBox.Show("No tiene permiso para accesar esta pantalla, comuníquese con el administrador", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                ofrmArticulosPresentacion = null;
+            }
+        }
 
-            txtImpuesto.Text = double.Parse(txtImpuesto.Text).ToString("##0.##");
+        private void chkIVI_CheckedChanged(object sender, EventArgs e)
+        {
+            if (indice > 0)
+                btnImpuestos.Enabled = !chkIVI.Checked;
         }
 
         private void btnMEliminar_Click(object sender, EventArgs e)

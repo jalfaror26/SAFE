@@ -91,12 +91,12 @@ namespace PROYECTO
                 txtMoneda.Text = moneda;
                 if (moneda.Equals("CRC"))
                 {
-                    txtMontoGuia.Text = "¢ " + monto.ToString("###,###,##0.##");
+                    txtMontoGuia.Text = "¢ " + monto.ToString("###,###,##0.00");
                     moned = "colones";
                 }
                 else if (moneda.Equals("USD"))
                 {
-                    txtMontoGuia.Text = "$ " + monto.ToString("###,###,##0.##");
+                    txtMontoGuia.Text = "$ " + monto.ToString("###,###,##0.00");
                     moned = "dolares";
                 }
 

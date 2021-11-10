@@ -201,7 +201,7 @@ namespace PROYECTO
 
                     if (stEstado.Items["stTC"].Text.Equals("   Dólar: ¢ 0"))
                     {
-                        stEstado.Items["stTC"].Text = "   Dolar: ¢ " + double.Parse(oTipoCambioDAO.TipoCambio(PROYECTO.Properties.Settings.Default.No_cia).Tables[0].Rows[0].ItemArray[0].ToString()).ToString("###,###,##0.##");// +" -- Euro: ¢ " + double.Parse(oTipoDAO.TipoCambio().Tables[0].Rows[0].ItemArray[1].ToString()).ToString("###,###,##0.##") + " ";
+                        stEstado.Items["stTC"].Text = "   Dolar: ¢ " + double.Parse(oTipoCambioDAO.TipoCambio(PROYECTO.Properties.Settings.Default.No_cia).Tables[0].Rows[0].ItemArray[0].ToString()).ToString("###,###,##0.00");// +" -- Euro: ¢ " + double.Parse(oTipoDAO.TipoCambio().Tables[0].Rows[0].ItemArray[1].ToString()).ToString("###,###,##0.00") + " ";
                     }
 
                     if (MensajesAbiertos <= 0)
@@ -224,7 +224,7 @@ namespace PROYECTO
                 //else
                 //{
                 //    stEstado.Items["stFecha"].Text = "   Fecha: " + oConexion.fecha().ToString() + " ";
-                //    stEstado.Items["stTC"].Text = "   Dolar: ¢ " + double.Parse(oTipoDAO.TipoCambio().Tables[0].Rows[0].ItemArray[0].ToString()).ToString("###,###,##0.##") + " -- Euro: ¢ " + double.Parse(oTipoDAO.TipoCambio().Tables[0].Rows[0].ItemArray[1].ToString()).ToString("###,###,##0.##") + " ";
+                //    stEstado.Items["stTC"].Text = "   Dolar: ¢ " + double.Parse(oTipoDAO.TipoCambio().Tables[0].Rows[0].ItemArray[0].ToString()).ToString("###,###,##0.00") + " -- Euro: ¢ " + double.Parse(oTipoDAO.TipoCambio().Tables[0].Rows[0].ItemArray[1].ToString()).ToString("###,###,##0.00") + " ";
                 //}
 
                 if (MensajesAbiertos <= 0)

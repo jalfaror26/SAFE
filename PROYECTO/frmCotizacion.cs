@@ -642,7 +642,7 @@ namespace PROYECTO
                 indiceServicio = double.Parse(pindiceServicio);
                 txtDescServicio.Text = pDescripcion;
 
-                txtPrecioUnitario.Text = cmbMoneda.Equals("CRC") ? double.Parse("0").ToString("¢ ###,###,##0.##") : cmbMoneda.Equals("USD") ? double.Parse("0").ToString("$ ###,###,##0.##") : double.Parse("0").ToString("¢ ###,###,##0.##");
+                txtPrecioUnitario.Text = cmbMoneda.Equals("CRC") ? double.Parse("0").ToString("¢ ###,###,##0.00") : cmbMoneda.Equals("USD") ? double.Parse("0").ToString("$ ###,###,##0.00") : double.Parse("0").ToString("¢ ###,###,##0.00");
 
                 txtCantidad.Focus();
 
@@ -898,10 +898,10 @@ namespace PROYECTO
                         break;
                 }
 
-                txtPrecioUnitario.Text = cadena + Double.Parse(dgrDatos["DETFAC_PRECIO_UNITARIO", e.RowIndex].Value.ToString()).ToString(" ###,###,##0.##");
-                txtSubTotalLinea.Text = cadena + Double.Parse(dgrDatos["DETFAC_SUBTOTAL", e.RowIndex].Value.ToString()).ToString(" ###,###,##0.##");
-                txtLineaDescuento.Text = Double.Parse(dgrDatos["detfac_descuento", e.RowIndex].Value.ToString()).ToString("###,###,##0.##");
-                txtTotalPorLinea.Text = cadena + Double.Parse(dgrDatos["DETFAC_PRECIO_TOTAL", e.RowIndex].Value.ToString()).ToString(" ###,###,##0.##");
+                txtPrecioUnitario.Text = cadena + Double.Parse(dgrDatos["DETFAC_PRECIO_UNITARIO", e.RowIndex].Value.ToString()).ToString(" ###,###,##0.00");
+                txtSubTotalLinea.Text = cadena + Double.Parse(dgrDatos["DETFAC_SUBTOTAL", e.RowIndex].Value.ToString()).ToString(" ###,###,##0.00");
+                txtLineaDescuento.Text = Double.Parse(dgrDatos["detfac_descuento", e.RowIndex].Value.ToString()).ToString("###,###,##0.00");
+                txtTotalPorLinea.Text = cadena + Double.Parse(dgrDatos["DETFAC_PRECIO_TOTAL", e.RowIndex].Value.ToString()).ToString(" ###,###,##0.00");
 
 
                 btnGuardarDetalle.Text = " Modificar";
@@ -967,17 +967,17 @@ namespace PROYECTO
                 }
 
                 if (totalLinea > 0)
-                    txtMonto_IV.Text += totalMonto_IV.ToString("###,###,##0.##");
+                    txtMonto_IV.Text += totalMonto_IV.ToString("###,###,##0.00");
                 else
                     txtMonto_IV.Text += "0";
 
                 if (subtotal > 0)
-                    txtSubTotal.Text += subtotal.ToString("###,###,##0.##");
+                    txtSubTotal.Text += subtotal.ToString("###,###,##0.00");
                 else
                     txtSubTotal.Text += "0";
 
                 if (descuento > 0)
-                    txtDescuento.Text += descuento.ToString("###,###,##0.##");
+                    txtDescuento.Text += descuento.ToString("###,###,##0.00");
                 else
                     txtDescuento.Text += "0";
 
@@ -988,7 +988,7 @@ namespace PROYECTO
                         RedondearNumero oRedondear = new RedondearNumero();
                         granTotal = oRedondear.Redondear(granTotal);
                     }
-                    txtTotalCotizacion.Text += granTotal.ToString("###,###,##0.##");
+                    txtTotalCotizacion.Text += granTotal.ToString("###,###,##0.00");
                 }
                 else
                     txtTotalCotizacion.Text += "0";
@@ -1105,7 +1105,7 @@ namespace PROYECTO
                 else if (cmbMoneda.Equals("USD"))
                     cadena = "$";
 
-                txtTotalPorLinea.Text = cadena + " " + total.ToString("###,###,##0.##");
+                txtTotalPorLinea.Text = cadena + " " + total.ToString("###,###,##0.00");
             }
         }
 
@@ -1505,16 +1505,16 @@ namespace PROYECTO
                 switch (cmbMoneda.Text.Trim())
                 {
                     case "CRC":
-                        txtSubTotalLinea.Text = subtotal.ToString("¢ ###,###,##0.##");
-                        txtTotalPorLinea.Text = total.ToString("¢ ###,###,##0.##");
+                        txtSubTotalLinea.Text = subtotal.ToString("¢ ###,###,##0.00");
+                        txtTotalPorLinea.Text = total.ToString("¢ ###,###,##0.00");
                         break;
                     case "USD":
-                        txtSubTotalLinea.Text = subtotal.ToString("$ ###,###,##0.##");
-                        txtTotalPorLinea.Text = total.ToString("$ ###,###,##0.##");
+                        txtSubTotalLinea.Text = subtotal.ToString("$ ###,###,##0.00");
+                        txtTotalPorLinea.Text = total.ToString("$ ###,###,##0.00");
                         break;
                     default:
-                        txtSubTotalLinea.Text = subtotal.ToString("¢ ###,###,##0.##");
-                        txtTotalPorLinea.Text = total.ToString("¢ ###,###,##0.##");
+                        txtSubTotalLinea.Text = subtotal.ToString("¢ ###,###,##0.00");
+                        txtTotalPorLinea.Text = total.ToString("¢ ###,###,##0.00");
                         break;
                 }
             }
@@ -1546,7 +1546,7 @@ namespace PROYECTO
         {
             if (txtLineaDescuento.Text.Equals(""))
                 txtLineaDescuento.Text = "0";
-            txtLineaDescuento.Text = Double.Parse(txtLineaDescuento.Text).ToString("###,###,##0.##");
+            txtLineaDescuento.Text = Double.Parse(txtLineaDescuento.Text).ToString("###,###,##0.00");
 
             calcularTotalPorLinea();
         }
@@ -1619,7 +1619,7 @@ namespace PROYECTO
         {
             if (txtPrecioUnitario.Text.Equals(""))
                 txtPrecioUnitario.Text = "0";
-            txtPrecioUnitario.Text = double.Parse(txtPrecioUnitario.Text).ToString("¢ ###,###,##0.##");
+            txtPrecioUnitario.Text = double.Parse(txtPrecioUnitario.Text).ToString("¢ ###,###,##0.00");
             calcularTotalPorLinea();
         }
 
