@@ -106,21 +106,21 @@ namespace PROYECTO
 
         private void btnRecibosDinero_Click(object sender, EventArgs e)
         {
-            //frmRecibosDineroSencillo oRecibo = frmRecibosDineroSencillo.getInstance();
-            //codigo = oRecibo.Codigo;
-            //descripcion = oRecibo.Descripcion;
-            //modulo = oRecibo.Modulo;
-            //if (!TienePermiso())
-            //{
-            //    oRecibo.MdiParent = this.MdiParent;
-            //    oRecibo.Show();
-            //}
-            //else
-            //{
-            //    MessageBox.Show("No tiene permiso para accesar esta pantalla, comuníquese con el administrador", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            //    oRecibo = null;
-            //}
-            //this.Close();
+            frmRecibosDineroSencillo oRecibo = frmRecibosDineroSencillo.getInstance();
+            codigo = oRecibo.Codigo;
+            descripcion = oRecibo.Descripcion;
+            modulo = oRecibo.Modulo;
+            if (!TienePermiso())
+            {
+                oRecibo.MdiParent = this.MdiParent;
+                oRecibo.Show();
+            }
+            else
+            {
+                MessageBox.Show("No tiene permiso para accesar esta pantalla, comuníquese con el administrador", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                oRecibo = null;
+            }
+            this.Close();
         }
 
         private void btnTipoCambio_Click(object sender, EventArgs e)

@@ -13,7 +13,7 @@ namespace PROYECTO_DAO
         //{
         //    OracleCommand oCommand = new OracleCommand();
 
-        //    oCommand.CommandText = "PCKEMBALAJE_MC.paGuardar";
+        //    oCommand.CommandText = "PCKEMBALAJE.paGuardar";
         //    oCommand.CommandType = CommandType.StoredProcedure;
         //    oCommand.Parameters.Add("codigo", OracleType.NVarChar);
         //    oCommand.Parameters[0].Value = oEmbalaje.Codigo;

@@ -1,0 +1,831 @@
+  CREATE TABLE "SAFE"."TBL_RECIBOS_DINERO" 
+   (	"REC_CLIENTE" NUMBER, 
+	"REC_NUMERO" NUMBER NOT NULL ENABLE, 
+	"REC_FORMA_PAGO" VARCHAR2(50 BYTE), 
+	"REC_MONEDA" VARCHAR2(50 BYTE), 
+	"REC_TIPO_CAMBIO" NUMBER, 
+	"REC_MONTO" NUMBER, 
+	"REC_SALDO" NUMBER, 
+	"REC_FECHADOC" DATE, 
+	"REC_ESTATUS" VARCHAR2(50 BYTE), 
+	"REC_TIPO_DOC" VARCHAR2(50 BYTE), 
+	"REC_DETALLE" VARCHAR2(250 BYTE), 
+	"REC_USUARIOCREA" VARCHAR2(50 BYTE), 
+	"REC_FECHACREA" DATE, 
+	"REC_USUARIOACTUALIZA" VARCHAR2(50 BYTE), 
+	"REC_FECHAACTUALIZA" DATE, 
+	"REC_USUARIOBLOQUEA" VARCHAR2(50 BYTE), 
+	"REC_FACHABLOQUEA" DATE, 
+	"REC_FECHAREGISTRO" DATE, 
+	"REC_ESTADO" NUMBER, 
+	"REC_INDICE" NUMBER NOT NULL ENABLE, 
+	"REC_TIPOINGRESO" VARCHAR2(30 BYTE), 
+	"NO_CIA" VARCHAR2(3 BYTE), 
+	 CONSTRAINT "TBL_RECIBOS_DINERO_PK1" PRIMARY KEY ("NO_CIA", "REC_INDICE")
+  USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
+  BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "SYSTEM"  ENABLE, 
+	 CONSTRAINT "TBL_RECIBOS_DINERO_FK1" FOREIGN KEY ("NO_CIA", "REC_CLIENTE")
+	  REFERENCES "SAFE"."TBL_CLIENTES" ("NO_CIA", "CLI_LINEA") ENABLE
+   ) SEGMENT CREATION IMMEDIATE 
+  PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 
+ NOCOMPRESS LOGGING
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
+  BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "SYSTEM" ;
+
+  CREATE UNIQUE INDEX "SAFE"."PK_TBL_RECIBOS_DINERO" ON "SAFE"."TBL_RECIBOS_DINERO" ("REC_NUMERO", "REC_INDICE") 
+  PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
+  BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "SYSTEM" ;
+
+  /
+
+  create public synonym TBL_RECIBOS_DINERO for SAFE.TBL_RECIBOS_DINERO;
+
+grant all on TBL_RECIBOS_DINERO to SAFE_USUARIOS;
+
+/
+
+  CREATE TABLE "SAFE"."TBL_RECIBOS_FACTURA" 
+   (	"RECFAC_FACTURA" NUMBER NOT NULL ENABLE, 
+	"RECFAC_RECIBO" NUMBER NOT NULL ENABLE, 
+	"RECFAC_MONEDA" VARCHAR2(20 BYTE), 
+	"RECFAC_MONTO" NUMBER, 
+	"RECFAC_ESTADO" VARCHAR2(4 BYTE), 
+	"RECFAC_MONTO_ORIGINAL" NUMBER, 
+	"NO_CIA" VARCHAR2(3 BYTE), 
+	 CONSTRAINT "TBL_RECIBOS_FACTURA_PK1" PRIMARY KEY ("NO_CIA", "RECFAC_FACTURA", "RECFAC_RECIBO")
+  USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 
+  STORAGE( INITIAL 65536 NEXT 1048576 MINEXTENTS 1
+  FREELISTS 1 FREELIST GROUPS 1
+  BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "SYSTEM"  ENABLE, 
+	 CONSTRAINT "TBL_RECIBOS_FACTURA_FK1" FOREIGN KEY ("NO_CIA", "RECFAC_FACTURA")
+	  REFERENCES "SAFE"."TBL_FACTURAS_PENDIENTES_CTA" ("NO_CIA", "FACP_INDICE") ENABLE, 
+	 CONSTRAINT "TBL_RECIBOS_FACTURA_FK2" FOREIGN KEY ("NO_CIA", "RECFAC_RECIBO")
+	  REFERENCES "SAFE"."TBL_RECIBOS_DINERO" ("NO_CIA", "REC_INDICE") ENABLE
+   ) SEGMENT CREATION DEFERRED 
+  PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 
+ NOCOMPRESS LOGGING
+  STORAGE( INITIAL 65536 NEXT 1048576 MINEXTENTS 1
+  FREELISTS 1 FREELIST GROUPS 1
+  BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "SYSTEM" ;
+
+/
+
+create public synonym TBL_RECIBOS_FACTURA for SAFE.TBL_RECIBOS_FACTURA;
+
+grant all on TBL_RECIBOS_FACTURA to SAFE_USUARIOS;
+
+/
+
+CREATE SEQUENCE  "SAFE"."SRECIBOS"  MINVALUE 1 MAXVALUE 999999999999999999999999999 INCREMENT BY 1 START WITH 1 NOCACHE  ORDER  NOCYCLE  NOKEEP  NOSCALE  GLOBAL ;
+
+/
+
+    create public synonym SRECIBOS for SAFE.SRECIBOS;
+    
+    grant all on SRECIBOS to SAFE_USUARIOS;
+
+/
+
+create or replace PACKAGE PCKRECIBODINERO AS
+  PROCEDURE paInsertar(cliente       NUMBER,
+                       numRecibo     NUMBER,
+                       formaPago     VARCHAR2,
+                       moneda        VARCHAR2,
+                       tipoCambio    NUMBER,
+                       monto         NUMBER,
+                       saldo         NUMBER,
+                       fechaDoc      DATE,
+                       estatus       VARCHAR2,
+                       tipodoc       VARCHAR2,
+                       detalle       VARCHAR2,
+                       fechaRegistro DATE,
+                       usuario       VARCHAR2,
+                       tipoIngreso   VARCHAR2,
+                       pNo_cia       VARCHAR2);
+
+  PROCEDURE paModificar(indice    NUMBER,
+                        numRecibo NUMBER,
+                        monto     NUMBER,
+                        detalle   VARCHAR2,
+                        usuario   VARCHAR2,
+                        formaPago VARCHAR2,
+                        moneda    VARCHAR2,
+                        pNo_cia   VARCHAR2);
+
+  PROCEDURE paEliminar(numRecibo NUMBER,
+                       usuario   VARCHAR2,
+                       indice    NUMBER,
+                       pNo_cia   VARCHAR2);
+
+END;
+
+/
+
+create or replace PACKAGE BODY PCKRECIBODINERO AS
+  PROCEDURE paInsertar(cliente       NUMBER,
+                       numRecibo     NUMBER,
+                       formaPago     VARCHAR2,
+                       moneda        VARCHAR2,
+                       tipoCambio    NUMBER,
+                       monto         NUMBER,
+                       saldo         NUMBER,
+                       fechaDoc      DATE,
+                       estatus       VARCHAR2,
+                       tipodoc       VARCHAR2,
+                       detalle       VARCHAR2,
+                       fechaRegistro DATE,
+                       usuario       VARCHAR2,
+                       tipoIngreso   VARCHAR2,
+                       pNo_cia       VARCHAR2) IS
+  
+    contador NUMBER;
+
+  BEGIN
+
+    INSERT INTO TBL_RECIBOS_DINERO
+      (rec_cliente,
+       rec_numero,
+       rec_forma_pago,
+       rec_moneda,
+       rec_tipo_cambio,
+       rec_monto,
+       rec_saldo,
+       rec_fechadoc,
+       rec_estatus,
+       rec_tipo_doc,
+       rec_detalle,
+       rec_usuariocrea,
+       rec_fechacrea,
+       rec_fecharegistro,
+       rec_estado,
+       rec_indice,
+       rec_tipoIngreso,
+       No_cia)
+    VALUES
+      (cliente,
+       numRecibo,
+       formaPago,
+       moneda,
+       tipoCambio,
+       monto,
+       saldo,
+       fechaDoc,
+       estatus,
+       tipodoc,
+       detalle,
+       usuario,
+       sysdate,
+       fechaRegistro,
+       1,
+       srecibos.nextval,
+       tipoIngreso,
+       pNo_cia);
+    COMMIT;
+  EXCEPTION
+    WHEN timeout_on_resource THEN
+      raise_application_error(-20100,
+                              'Ha excedido el tiempo de espera maximo al insertar recibo de dinero, vuelva a intentarlo');
+    WHEN dup_val_on_index THEN
+      raise_application_error(-20100, 'Recibo ya existente');
+    WHEN OTHERS THEN
+      raise_application_error(-20100,
+                              'Error desconocido al insertar al recibo de dinero ' ||
+                              sqlerrm);
+  END paInsertar;
+  ----------------------------------------------------------------------------------
+
+  PROCEDURE paModificar(indice    NUMBER,
+                        numRecibo NUMBER,
+                        monto     NUMBER,
+                        detalle   VARCHAR2,
+                        usuario   VARCHAR2,
+                        formaPago VARCHAR2,
+                        moneda    VARCHAR2,
+                        pNo_cia   VARCHAR2) IS
+
+  BEGIN
+    UPDATE TBL_RECIBOS_DINERO
+       SET rec_monto            = monto,
+           rec_saldo            = monto,
+           rec_detalle          = detalle,
+           REC_usuarioActualiza = usuario,
+           REC_FechaActualiza   = sysdate,
+           rec_forma_pago       = formaPago,
+           rec_moneda           = moneda
+     WHERE No_cia = pNo_cia
+       and rec_numero = numRecibo
+       AND Rec_estado = 1
+       AND rec_indice = indice;
+
+    COMMIT;
+  EXCEPTION
+    WHEN timeout_on_resource THEN
+      raise_application_error(-20100,
+                              'Ha excedido el tiempo de espera maximo al modificar el recibo de dinero, por favor intente de nuevo');
+    WHEN OTHERS THEN
+      raise_application_error(-20100,
+                              'Error desconocido al modificar el recibo de dinero ' ||
+                              sqlerrm);
+  END paModificar;
+  ---------------------------------------------------------------------------
+  PROCEDURE paEliminar(numRecibo NUMBER,
+                       usuario   VARCHAR2,
+                       indice    NUMBER,
+                       pNo_cia   VARCHAR2) IS
+
+  BEGIN
+    UPDATE TBL_RECIBOS_DINERO
+       SET REC_estado         = 0,
+           rec_usuarioBloquea = usuario,
+           rec_fachabloquea   = sysdate
+     WHERE No_cia = pNo_cia
+       and rec_numero = numRecibo;
+
+    COMMIT;
+  EXCEPTION
+    WHEN timeout_on_resource THEN
+      raise_application_error(-20100,
+                              'Ha excedido el tiempo de espera maximo al eliminar el recibo de dinero, por favor intente de nuevo');
+    WHEN OTHERS THEN
+      raise_application_error(-20100,
+                              'Error desconocido al eliminar el recibo de dinero ' ||
+                              sqlerrm);
+  END paEliminar;
+  ----------------------------------------------------------------------------
+END;
+
+/
+
+    create public synonym PCKRECIBODINERO for SAFE.PCKRECIBODINERO;
+    
+    grant all on PCKRECIBODINERO to SAFE_USUARIOS;
+
+/
+
+create or replace PACKAGE PCKRECIBOFACTURA as
+  procedure paAgregar(factura        number,
+                      recibo         number,
+                      monto          number,
+                      moneda         varchar2,
+                      monto_original number,
+                      pNo_cia        varchar2);
+
+  procedure paQuitar(factura number,
+                     recibo  number,
+                     pNo_cia varchar2);
+
+end;
+
+/
+
+create or replace PACKAGE BODY PCKRECIBOFACTURA AS
+  PROCEDURE paAgregar(factura        number,
+                      recibo         number,
+                      monto          NUMBER,
+                      moneda         varchar2,
+                      monto_original number,
+                      pNo_cia        varchar2) IS
+  
+    saldo         NUMBER;
+    saldo2        number;
+    cont          NUMBER;
+    mont          number;
+    montooriginal number;
+  
+  BEGIN
+  
+    select count(recfac_monto)
+      into cont
+      from TBL_RECIBOS_FACTURA
+     where No_cia = pNo_cia
+       and recfac_recibo = recibo
+       and recfac_factura = factura;
+  
+    IF (cont > 0) THEN
+    
+      select recfac_monto
+        into mont
+        from TBL_RECIBOS_FACTURA
+       where No_cia = pNo_cia
+         and recfac_recibo = recibo
+         and recfac_factura = factura;
+    
+      select recfac_monto_original
+        into montooriginal
+        from TBL_RECIBOS_FACTURA
+       where No_cia = pNo_cia
+         and recfac_recibo = recibo
+         and recfac_factura = factura;
+    
+      update TBL_RECIBOS_FACTURA
+         set recfac_monto          = monto + mont,
+             recfac_monto_original = montooriginal + monto_original
+       where No_cia = pNo_cia
+         and recfac_recibo = recibo
+         and recfac_factura = factura;
+    
+    else
+    
+      INSERT INTO TBL_RECIBOS_FACTURA
+      VALUES
+        (factura,
+         recibo,
+         moneda,
+         monto,
+         'PE',
+         monto_original,
+         pNo_cia);
+    
+    end if;
+  
+    saldo2 := 0;
+  
+    select rec_saldo
+      into saldo
+      from TBL_RECIBOS_DINERO
+     where No_cia = pNo_cia
+       and rec_indice = recibo;
+  
+    saldo2 := saldo - monto_original;
+  
+    UPDATE TBL_RECIBOS_DINERO
+       SET rec_saldo = saldo2
+     WHERE No_cia = pNo_cia
+       and rec_indice = recibo;
+  
+    COMMIT;
+  
+  EXCEPTION
+    WHEN timeout_on_resource THEN
+      raise_application_error(-20100,
+                              'Ha excedido el tiempo de espera maximo al insertar el recibo, vuelva a intentarlo');
+    WHEN dup_val_on_index THEN
+      raise_application_error(-20100, 'recibo existente');
+    WHEN OTHERS THEN
+      raise_application_error(-20100,
+                              'Error desconocido al insertar el recibo ' ||
+                              sqlerrm);
+  END paagregar;
+  ----------------------------------------------------------------------------------
+
+  PROCEDURE paQuitar(factura number,
+                     recibo  NUMBER,
+                     pNo_cia varchar2) IS
+  
+    saldo  NUMBER;
+    saldo2 NUMBER;
+    saldo3 NUMBER;
+  
+  BEGIN
+  
+    select rec_saldo
+      into saldo
+      from TBL_RECIBOS_DINERO
+     where No_cia = pNo_cia
+       and rec_indice = recibo;
+  
+    SELECT recfac_monto_original
+      INTO saldo2
+      FROM TBL_RECIBOS_FACTURA
+     WHERE No_cia = pNo_cia
+       and recfac_recibo = recibo
+       AND recfac_factura = factura;
+  
+    saldo3 := saldo + saldo2;
+  
+    DELETE TBL_RECIBOS_FACTURA
+     WHERE No_cia = pNo_cia
+       and recfac_factura = factura
+       AND recfac_recibo = recibo;
+  
+    UPDATE TBL_RECIBOS_DINERO
+       SET rec_saldo = saldo3
+     WHERE No_cia = pNo_cia
+       and rec_indice = recibo;
+  
+    COMMIT;
+  
+  EXCEPTION
+    WHEN timeout_on_resource THEN
+      raise_application_error(-20100,
+                              'Ha excedido el tiempo de espera maximo al borrar el recibo, por favor intente de nuevo');
+    WHEN OTHERS THEN
+      raise_application_error(-20100,
+                              'Error desconocido al quitar el recibo ' ||
+                              sqlerrm);
+  END paQuitar;
+  ----------------------------------------------------------------------------
+END;
+
+
+/
+
+
+    create public synonym PCKRECIBOFACTURA for SAFE.PCKRECIBOFACTURA;
+    
+    grant all on PCKRECIBOFACTURA to SAFE_USUARIOS;
+
+/
+
+
+  CREATE TABLE "SAFE"."TBL_TRANSACCION" 
+   (	"TRA_ID" NUMBER NOT NULL ENABLE, 
+	"TRA_ID_CLIENTE" NUMBER, 
+	"TRA_NUM_FACTURA" VARCHAR2(20 BYTE) NOT NULL ENABLE, 
+	"TRA_TIPO_TRANS" VARCHAR2(50 BYTE), 
+	"TRA_DOCUMENTO" NUMBER, 
+	"TRA_MONTO" NUMBER, 
+	"TRA_MONEDA" VARCHAR2(20 BYTE), 
+	"TRA_TEXTO" VARCHAR2(50 BYTE), 
+	"TRA_SALDO_ANTERIOR" NUMBER, 
+	"TRA_SALDO_ACTUAL" NUMBER, 
+	"TRA_USUARIOCREA" VARCHAR2(50 BYTE), 
+	"TRA_FECHACREA" DATE, 
+	"TRA_ESTADO" NUMBER, 
+	"TRA_FECHA_REGISTRO" DATE, 
+	"NO_CIA" VARCHAR2(3 BYTE), 
+	 CONSTRAINT "TBL_TRANSACCION_UK1" UNIQUE ("NO_CIA", "TRA_ID_CLIENTE", "TRA_NUM_FACTURA", "TRA_DOCUMENTO")
+  USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
+  BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "SYSTEM"  ENABLE, 
+	 CONSTRAINT "TBL_TRANSACCION_PK1" PRIMARY KEY ("NO_CIA", "TRA_ID")
+  USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
+  BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "SYSTEM"  ENABLE, 
+	 CONSTRAINT "TBL_TRANSACCION_FK2" FOREIGN KEY ("NO_CIA", "TRA_ID_CLIENTE")
+	  REFERENCES "SAFE"."TBL_CLIENTES" ("NO_CIA", "CLI_LINEA") ENABLE
+   ) SEGMENT CREATION IMMEDIATE 
+  PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 
+ NOCOMPRESS LOGGING
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
+  BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "SYSTEM" ;
+
+  CREATE UNIQUE INDEX "SAFE"."TBL_TRANSACCION_PK" ON "SAFE"."TBL_TRANSACCION" ("TRA_ID", "TRA_NUM_FACTURA") 
+  PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
+  BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "SYSTEM" ;
+
+
+/
+
+    create public synonym TBL_TRANSACCION for SAFE.TBL_TRANSACCION;
+    
+    grant all on TBL_TRANSACCION to SAFE_USUARIOS;
+
+/
+
+CREATE SEQUENCE  "SAFE"."SCANCELACION"  MINVALUE 1 MAXVALUE 999999999999999999999999999 INCREMENT BY 1 START WITH 1 NOCACHE  ORDER  NOCYCLE  NOKEEP  NOSCALE  GLOBAL ;
+
+/
+
+    create public synonym SCANCELACION for SAFE.SCANCELACION;
+    
+    grant all on SCANCELACION to SAFE_USUARIOS;
+
+/
+
+create or replace PACKAGE PCKCANCELACIONFACTURA AS
+  PROCEDURE paInsertar(fechaRegistro DATE,
+                       idCliente     NUMBER,
+                       numFactura    VARCHAR2,
+                       tipoTrans     VARCHAR2,
+                       documento     NUMBER,
+                       monto         NUMBER,
+                       moneda        VARCHAR2,
+                       texto         VARCHAR2,
+                       saldoAnterior NUMBER,
+                       saldoActual   NUMBER,
+                       usuario       VARCHAR2,
+                       pNo_cia       VARCHAR2);
+
+  PROCEDURE paModificaFacturas(numFactura  VARCHAR2,
+                               saldoActual NUMBER,
+                               usuario     VARCHAR2,
+                               tipoPago    VARCHAR2,
+                               pNo_cia     VARCHAR2);
+
+  PROCEDURE paModificaRecibos(numRecibo   NUMBER,
+                              saldoActual NUMBER,
+                              usuario     VARCHAR2,
+                              tipoPago    VARCHAR2,
+                              pNo_cia     VARCHAR2);
+
+END;
+
+
+/
+
+create or replace PACKAGE BODY PCKCANCELACIONFACTURA AS
+
+  PROCEDURE paInsertar(fechaRegistro DATE,
+                       idCliente     NUMBER,
+                       numFactura    VARCHAR2,
+                       tipoTrans     VARCHAR2,
+                       documento     NUMBER,
+                       monto         NUMBER,
+                       moneda        VARCHAR2,
+                       texto         VARCHAR2,
+                       saldoAnterior NUMBER,
+                       saldoActual   NUMBER,
+                       usuario       VARCHAR2,
+                       pNo_cia       VARCHAR2) IS
+  
+  BEGIN
+  
+    INSERT INTO TBL_TRANSACCION
+      (tra_id,
+       tra_fecha_registro,
+       tra_id_cliente,
+       tra_num_factura,
+       tra_tipo_trans,
+       tra_documento,
+       tra_monto,
+       tra_moneda,
+       tra_texto,
+       tra_saldo_anterior,
+       tra_saldo_actual,
+       tra_usuariocrea,
+       tra_fechacrea,
+       TRA_ESTADO,
+       No_cia)
+    VALUES
+      (SCANCELACION.NEXTVAL,
+       fechaRegistro,
+       idCliente,
+       numFactura,
+       tipoTrans,
+       documento,
+       monto,
+       moneda,
+       texto,
+       saldoAnterior,
+       saldoActual,
+       usuario,
+       sysdate,
+       1,
+       pNo_cia);
+  
+  EXCEPTION
+    WHEN timeout_on_resource THEN
+      raise_application_error(-20100,
+                              'Ha excedido el tiempo de espera maximo al insertar la transaccion, vuelva a intentarlo');
+    WHEN dup_val_on_index THEN
+      raise_application_error(-20100, 'Transaccion ya existente');
+    WHEN OTHERS THEN
+      raise_application_error(-20100,
+                              'Error desconocido al insertar la transaccion ' ||
+                              sqlerrm);
+  END paInsertar;
+  ----------------------------------------------------------------------------
+
+  PROCEDURE paModificaFacturas(numFactura  VARCHAR2,
+                               saldoActual NUMBER,
+                               usuario     VARCHAR2,
+                               tipoPago    VARCHAR2,
+                               pNo_cia     VARCHAR2) IS
+  
+    estadofactura VARCHAR2(50);
+  BEGIN
+    IF (tipopago = 'CANCELACION') THEN
+      Estadofactura := 'FC';
+    ELSE
+      IF (saldoactual = 0) THEN
+        Estadofactura := 'FC';
+      ELSE
+        Estadofactura := 'FT';
+      END IF;
+    END IF;
+  
+    UPDATE TBL_FACTURAS_PENDIENTES_CTA
+       SET facp_saldo            = saldoActual,
+           facp_estatus          = Estadofactura,
+           facp_usuarioactualiza = usuario,
+           facp_fechaactualiza   = sysdate
+     WHERE No_cia = pNo_cia
+       and facp_numero_factura = numFactura;
+  
+  EXCEPTION
+    WHEN timeout_on_resource THEN
+      raise_application_error(-20100,
+                              'Ha excedido el tiempo de espera maximo al moficar las facturas, vuelva a intentarlo');
+    WHEN OTHERS THEN
+      raise_application_error(-20100,
+                              'Error desconocido al moficar las facturas ' ||
+                              sqlerrm);
+  END paModificaFacturas;
+  ----------------------------------------------------------------------------
+
+  PROCEDURE paModificaRecibos(numRecibo   NUMBER,
+                              saldoActual NUMBER,
+                              usuario     VARCHAR2,
+                              tipoPago    VARCHAR2,
+                              pNo_cia     VARCHAR2) IS
+  
+    val VARCHAR2(5);
+  BEGIN
+    IF (tipopago = 'CANCELACION') THEN
+      val := 'FH';
+    ELSE
+      val := 'AC';
+    END IF;
+  
+    UPDATE TBL_RECIBOS_DINERO
+       SET rec_saldo          = saldoactual,
+           rec_estatus        = val,
+           rec_usuariobloquea = usuario,
+           rec_fechaactualiza = sysdate
+     WHERE No_cia = pNo_cia
+       and rec_numero = numRecibo;
+  
+    COMMIT;
+  EXCEPTION
+    WHEN timeout_on_resource THEN
+      raise_application_error(-20100,
+                              'Ha excedido el tiempo de espera maximo al moficar el recibo, vuelva a intentarlo');
+    WHEN OTHERS THEN
+      raise_application_error(-20100,
+                              'Error desconocido al moficar el recibo ' ||
+                              sqlerrm);
+  END paModificaRecibos;
+  ----------------------------------------------------------------------------
+END;
+
+/
+
+    create public synonym PCKCANCELACIONFACTURA for SAFE.PCKCANCELACIONFACTURA;
+    
+    grant all on PCKCANCELACIONFACTURA to SAFE_USUARIOS;
+
+/
+
+create or replace PACKAGE PCKROLLBACKRECIBO as
+
+  PROCEDURE paRollback(recibo  number,
+                       cliente number,
+                       pNo_cia VARCHAR2);
+
+END;
+
+/
+
+create or replace PACKAGE BODY PCKROLLBACKRECIBO AS
+
+  PROCEDURE parollback(recibo NUMBER, cliente NUMBER, pNo_cia VARCHAR2) AS
+  
+    fecha     DATE;
+    monedarec VARCHAR2(10);
+    tcrec     NUMBER;
+    dolar     NUMBER;
+  
+    monto    NUMBER;
+    saldofac NUMBER;
+    saldorec NUMBER;
+    montofac NUMBER;
+    montorec NUMBER;
+    estado   VARCHAR2(10);
+  
+    CURSOR ocursor IS
+      SELECT tra_num_factura, TRA_MONTO, tra_moneda, TRA_ID
+        FROM TBL_TRANSACCION
+       WHERE No_cia = pNo_cia
+         and TRA_ID_CLIENTE = cliente
+         AND TRA_DOCUMENTO = recibo
+         AND TRA_ESTADO = 1;
+  
+  BEGIN
+  
+    SELECT rec_moneda, rec_monto, rec_tipo_cambio, rec_fechadoc
+      INTO monedarec, montorec, tcrec, fecha
+      FROM TBL_RECIBOS_DINERO
+     WHERE No_cia = pNo_cia
+       and rec_cliente = cliente
+       and rec_Estado = 1
+       AND rec_numero = recibo;
+  
+    SELECT cambio_dolar
+      INTO dolar
+      FROM TBL_TIPOS_CAMBIO
+     WHERE No_cia = pNo_cia
+       and TO_CHAR(fecha_registro, 'dd/mm/yyyy') =
+           TO_CHAR(fecha, 'dd/mm/yyyy');
+  
+    FOR factura IN ocursor LOOP
+    
+      monto    := 0;
+      saldorec := 0;
+      saldofac := 0;
+      montofac := 0;
+    
+      IF (monedarec = 'CRC' AND factura.tra_moneda = 'CRC') THEN
+        monto := factura.TRA_MONTO;
+      ELSIF (monedarec = 'CRC' AND factura.tra_moneda = 'USD') THEN
+      
+        IF (factura.TRA_MONTO * tcRec > montorec) THEN
+          monto := montorec;
+        ELSE
+          monto := factura.TRA_MONTO * tcRec;
+        END IF;
+      
+      ELSIF (monedarec = 'USD' AND factura.tra_moneda = 'CRC') THEN
+      
+        IF (factura.TRA_MONTO * tcRec > montorec) THEN
+          monto := montorec;
+        ELSE
+          monto := factura.TRA_MONTO * tcRec;
+        END IF;
+      
+      ELSIF (monedarec = 'USD' AND factura.tra_moneda = 'USD') THEN
+        monto := factura.tra_monto;
+      END IF;
+    
+      saldorec := 0;
+      saldofac := 0;
+    
+      SELECT rec_saldo
+        INTO saldorec
+        FROM TBL_RECIBOS_DINERO
+       WHERE No_cia = pNo_cia
+         and rec_cliente = cliente
+         and rec_Estado = 1
+         AND rec_numero = recibo;
+    
+      UPDATE TBL_RECIBOS_DINERO
+         SET rec_saldo = saldorec + monto, rec_estatus = 'SA'
+       WHERE No_cia = pNo_cia
+         and rec_cliente = cliente
+         and rec_Estado = 1
+         AND rec_numero = recibo;
+    
+      saldofac := 0;
+    
+      SELECT FACP_SALDO
+        INTO saldofac
+        FROM TBL_FACTURAS_PENDIENTES_CTA
+       WHERE No_cia = pNo_cia
+         and facp_cliente = cliente
+         AND facp_numero_factura = factura.tra_num_factura;
+    
+      SELECT FACP_monto
+        INTO montofac
+        FROM TBL_FACTURAS_PENDIENTES_CTA
+       WHERE No_cia = pNo_cia
+         and facp_cliente = cliente
+         AND facp_numero_factura = factura.tra_num_factura;
+    
+      estado := 'FT';
+    
+      IF ((saldofac + factura.tra_monto) = montofac) THEN
+        estado := 'PE';
+      END IF;
+    
+      UPDATE TBL_FACTURAS_PENDIENTES_CTA
+         SET FACP_SALDO   = saldofac + factura.TRA_MONTO,
+             facp_estatus = estado
+       WHERE No_cia = pNo_cia
+         and FACP_CLIENTE = cliente
+         AND facp_numero_factura = factura.tra_num_factura;
+    
+      UPDATE TBL_TRANSACCION
+         SET TRA_ESTADO = 0
+       WHERE No_cia = pNo_cia
+         and TRA_ID = factura.TRA_ID;
+    
+    END LOOP;
+  
+    COMMIT;
+  
+  EXCEPTION
+    WHEN timeout_on_resource THEN
+      raise_application_error(-20100,
+                              'Ha excedido el tiempo de espera maximo, por favor intente de nuevo');
+    WHEN OTHERS THEN
+      raise_application_error(-20100, 'Error desconocido' || sqlerrm);
+  END parollback;
+
+END;
+
+/
+
+    create public synonym PCKROLLBACKRECIBO for SAFE.PCKROLLBACKRECIBO;
+    
+    grant all on PCKROLLBACKRECIBO to SAFE_USUARIOS;
+
+/

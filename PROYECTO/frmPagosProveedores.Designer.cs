@@ -231,7 +231,10 @@ namespace PROYECTO
             this.cboFormaPago.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboFormaPago.FormattingEnabled = true;
             this.cboFormaPago.Items.AddRange(new object[] {
-            "TRANSFERENCIA"});
+            "EFECTIVO",
+            "TARJETA",
+            "TRANSFERENCIA",
+            "SINPE MOVIL"});
             this.cboFormaPago.Location = new System.Drawing.Point(45, 161);
             this.cboFormaPago.Margin = new System.Windows.Forms.Padding(4);
             this.cboFormaPago.Name = "cboFormaPago";

@@ -62,6 +62,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CancelacionFacturasDAO.cs" />
+    <Compile Include="RecibosDineroDAO.cs" />
     <Compile Include="ServicioImpuestosDAO.cs" />
     <Compile Include="CajaChicaDAO.cs" />
     <Compile Include="CajaChicaDetalleDAO.cs" />

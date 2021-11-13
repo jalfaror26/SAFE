@@ -398,7 +398,7 @@ namespace PROYECTO
         private void txtmonto_Leave(object sender, EventArgs e)
         {
             if (txtmonto.Text.Trim().Equals("") || txtmonto.Text.Trim().Equals("."))
-                txtmonto.Text = "0";
+                txtmonto.Text = "0.00";
             string monto = "";
             for (int x = 0; x < txtmonto.Text.Length; x++)
             {

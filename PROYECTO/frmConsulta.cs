@@ -84,7 +84,7 @@ namespace PROYECTO
 
         private void Llenar_Grid(int tipoFiltro, String palabraFiltro)
         {
-            oConexion = new ConexionDAO(PROYECTO.Properties.Settings.Default.UsuarioBD, PROYECTO.Properties.Settings.Default.Servidor,Conexion.getInstance().Clave);
+            oConexion = new ConexionDAO(PROYECTO.Properties.Settings.Default.UsuarioBD, PROYECTO.Properties.Settings.Default.Servidor, Conexion.getInstance().Clave);
             oConexion.cerrarConexion();
             if (oConexion.abrirConexion())
             {
@@ -213,7 +213,7 @@ namespace PROYECTO
 
         private void Llenar_Grid()
         {
-            oConexion = new ConexionDAO(PROYECTO.Properties.Settings.Default.UsuarioBD, PROYECTO.Properties.Settings.Default.Servidor,Conexion.getInstance().Clave);
+            oConexion = new ConexionDAO(PROYECTO.Properties.Settings.Default.UsuarioBD, PROYECTO.Properties.Settings.Default.Servidor, Conexion.getInstance().Clave);
             oConexion.cerrarConexion();
             if (oConexion.abrirConexion())
             {
@@ -285,7 +285,7 @@ namespace PROYECTO
                                 MessageBox.Show("Error al listar los datos:\n" + oClienteDAO.DescError(), "Error de consulta", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                         break;
-                        
+
                     case "REPORTEINVENTARIOARTICULO2":
                         {
                             dgrDatos.DataSource = oServicioDAO.Busqueda_Consulta(PROYECTO.Properties.Settings.Default.No_cia).Tables[0];
@@ -393,7 +393,7 @@ namespace PROYECTO
             //    frmrptPagosRealizadosCategoria.getInstance().cargaGasto(cod, des);
             //else if (palabra.Equals("puestoReporteFacturacionPeriodo"))
             //    frmrptFacturacionPorPeriodo.getInstance().cargaCliente(cod, des);
-   
+
             else if (palabra.Equals("ProveedorPagos"))
                 frmFacturaPorPagarProveedor.getInstance().LlenarProveedor(cod, des);
             else if (palabra.Equals("ProveedorPrepago"))
@@ -411,38 +411,37 @@ namespace PROYECTO
             //    frmFacturacionRapida.getInstance().cargaCliente(cod, des);
             else if (palabra.Equals("ClienteProforma"))
                 frmCotizacion.getInstance().cargaCliente(cod, des);
-         
-          
+
+
             //else if (palabra.Equals("FACTURACIONRAPIDA"))
             //    frmFacturacionRapida.getInstance().cargaFactura(cod, des);
-        
-            //else if (palabra.Equals("ClienteRecibo"))
-            //{
-            //    frmRecibosDineroSencillo oRecibo2 = frmRecibosDineroSencillo.getInstance();
-            //    oRecibo2.llenaDatosCliente(cod, des);
-            //    oRecibo2.llenaGrid();
 
-            //}
+            else if (palabra.Equals("ClienteRecibo"))
+            {
+                frmRecibosDineroSencillo oRecibo2 = frmRecibosDineroSencillo.getInstance();
+                oRecibo2.llenaDatosCliente(cod, des);
+                oRecibo2.llenaGrid();
+            }
             else if (palabra.Equals("Gastos"))
                 frmFacturaPorPagarProveedor.getInstance().LlenarGasto(cod, des);
             else if (palabra.Equals("GastosRapidos"))
                 frmFacturaPorPagarProveedorRapida.getInstance().LlenarGasto(cod, des);
-            
+
             //else if (palabra.Equals("ClienteReporteRecibos"))
             //    frmrptRecibosPorCliente.getInstance().cargaCliente(cod, des);
             //else if (palabra.Equals("ClienteReporteFacturacionPeriodo"))
             //    frmrptFacturacionPorPeriodo.getInstance().cargaCliente(cod, des);
             //else if (palabra.Equals("ReporteArticuloPrecios"))
             //    frmrptHisPrecios.getInstance().cargaArticulo(cod, des);
-         
-          
+
+
             //else if (palabra.Equals("ReporteArticulosMovimientos"))
             //    frmrptInventarioDetalle.getInstance().cargaArtiuculo(cod, des);
             //else if (palabra.Equals("GastosSaldosPagos"))
             //    frmrptSaldosFacturasPago.getInstance().llenargasto(cod, des);
-            
-           
-          
+
+
+
             this.Close();
         }
 
@@ -494,9 +493,9 @@ namespace PROYECTO
 
         private void frmForma_KeyDown(object sender, KeyEventArgs e)
         {
-                           if (e.KeyCode == Keys.F1)
-                    Ayuda();
-                   }
+            if (e.KeyCode == Keys.F1)
+                Ayuda();
+        }
 
         private void Ayuda()
         {

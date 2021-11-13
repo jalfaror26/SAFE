@@ -245,7 +245,6 @@ namespace PROYECTO
             this.btnRecibosDinero.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnRecibosDinero.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnRecibosDinero.UseVisualStyleBackColor = true;
-            this.btnRecibosDinero.Visible = false;
             this.btnRecibosDinero.Click += new System.EventHandler(this.btnRecibosDinero_Click);
             // 
             // btnFacturaCliente

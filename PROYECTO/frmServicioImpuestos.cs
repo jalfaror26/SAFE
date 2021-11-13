@@ -111,7 +111,7 @@ namespace PROYECTO
                 oConexion.cerrarConexion();
                 if (oConexion.abrirConexion())
                 {
-                    DataTable oMensajes = oConexion.EjecutaSentencia("select ind_articuloscimagen from TBL_EMPRESA_MC e where e.no_cia = '" + PROYECTO.Properties.Settings.Default.No_cia + "'");
+                    DataTable oMensajes = oConexion.EjecutaSentencia("select ind_articuloscimagen from TBL_EMPRESA e where e.no_cia = '" + PROYECTO.Properties.Settings.Default.No_cia + "'");
 
                     if (oMensajes.Rows.Count > 0)
                     {
@@ -267,12 +267,12 @@ namespace PROYECTO
                 oConexion.cerrarConexion();
                 if (oConexion.abrirConexion())
                 {
-                    DataTable ot = oConexion.EjecutaSentencia("select ART_INDICE,ART_UTILIDAD from TBL_ARTICULOS_MC ar" +
+                    DataTable ot = oConexion.EjecutaSentencia("select ART_INDICE,ART_UTILIDAD from TBL_ARTICULOS ar" +
                         "where no_cia = '" + PROYECTO.Properties.Settings.Default.No_cia + "'");
 
                     foreach (DataRow ofila in ot.Rows)
                     {
-                        int v = oConexion.EjecutaSentencia2("UPDATE TBL_ARTICULO_PRESENTACION_MC ap SET arpre_utilidad = " + ofila["ART_UTILIDAD"].ToString() + " WHERE ap.no_cia = '" + PROYECTO.Properties.Settings.Default.No_cia + "' and ARPRE_ARTICULO = " + ofila["ART_INDICE"].ToString());
+                        int v = oConexion.EjecutaSentencia2("UPDATE TBL_ARTICULO_PRESENTACION ap SET arpre_utilidad = " + ofila["ART_UTILIDAD"].ToString() + " WHERE ap.no_cia = '" + PROYECTO.Properties.Settings.Default.No_cia + "' and ARPRE_ARTICULO = " + ofila["ART_INDICE"].ToString());
                         if (v == 0)
                             v = -1;
                     }

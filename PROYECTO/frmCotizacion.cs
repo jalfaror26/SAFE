@@ -267,9 +267,9 @@ namespace PROYECTO
             indiceServicio = 0;
             txtDescServicio.Text = "";
             indiceDetalle = 0;
-            txtSubTotalLinea.Text = cmbMoneda.Text.Equals("CRC") ? "¢ 0" : cmbMoneda.Text.Equals("USD") ? "$ 0" : "¢ 0";
-            txtPrecioUnitario.Text = cmbMoneda.Text.Equals("CRC") ? "¢ 0" : cmbMoneda.Text.Equals("USD") ? "$ 0" : "¢ 0";
-            txtTotalPorLinea.Text = cmbMoneda.Text.Equals("CRC") ? "¢ 0" : cmbMoneda.Text.Equals("USD") ? "$ 0" : "¢ 0";
+            txtSubTotalLinea.Text = cmbMoneda.Text.Equals("CRC") ? "¢ 0.00" : cmbMoneda.Text.Equals("USD") ? "$ 0.00" : "¢ 0.00";
+            txtPrecioUnitario.Text = cmbMoneda.Text.Equals("CRC") ? "¢ 0.00" : cmbMoneda.Text.Equals("USD") ? "$ 0.00" : "¢ 0.00";
+            txtTotalPorLinea.Text = cmbMoneda.Text.Equals("CRC") ? "¢ 0.00" : cmbMoneda.Text.Equals("USD") ? "$ 0.00" : "¢ 0.00";
             txtLineaDescuento.Text = "0";
 
             dgrDatos.ClearSelection();
@@ -969,17 +969,17 @@ namespace PROYECTO
                 if (totalLinea > 0)
                     txtMonto_IV.Text += totalMonto_IV.ToString("###,###,##0.00");
                 else
-                    txtMonto_IV.Text += "0";
+                    txtMonto_IV.Text += "0.00";
 
                 if (subtotal > 0)
                     txtSubTotal.Text += subtotal.ToString("###,###,##0.00");
                 else
-                    txtSubTotal.Text += "0";
+                    txtSubTotal.Text += "0.00";
 
                 if (descuento > 0)
                     txtDescuento.Text += descuento.ToString("###,###,##0.00");
                 else
-                    txtDescuento.Text += "0";
+                    txtDescuento.Text += "0.00";
 
                 if (granTotal > 0)
                 {
@@ -991,7 +991,7 @@ namespace PROYECTO
                     txtTotalCotizacion.Text += granTotal.ToString("###,###,##0.00");
                 }
                 else
-                    txtTotalCotizacion.Text += "0";
+                    txtTotalCotizacion.Text += "0.00";
             }
             catch (Exception ex)
             {
