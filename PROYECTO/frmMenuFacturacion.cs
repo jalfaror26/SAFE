@@ -35,7 +35,7 @@ namespace PROYECTO
             try
             {
                 Boolean tienePermiso = false;
-                oConexion = new ConexionDAO(PROYECTO.Properties.Settings.Default.UsuarioBD, PROYECTO.Properties.Settings.Default.Servidor,Conexion.getInstance().Clave);
+                oConexion = new ConexionDAO(PROYECTO.Properties.Settings.Default.UsuarioBD, PROYECTO.Properties.Settings.Default.Servidor, Conexion.getInstance().Clave);
                 oConexion.cerrarConexion();
                 if (oConexion.abrirConexion())
                 {
@@ -98,7 +98,7 @@ namespace PROYECTO
             this.Close();
         }
 
-      
+
 
         private void button23_Click(object sender, EventArgs e)
         {
@@ -111,23 +111,21 @@ namespace PROYECTO
 
         private void btnFacturacionRapida_Click(object sender, EventArgs e)
         {
-            return;
-            
-            //frmFacturacionRapida oFactura = frmFacturacionRapida.getInstance();
-            //codigo = oFactura.Codigo;
-            //descripcion = oFactura.Descripcion;
-            //modulo = oFactura.Modulo;
-            //if (!TienePermiso())
-            //{
-            //    oFactura.MdiParent = this.MdiParent;
-            //    oFactura.Show();
-            //}
-            //else
-            //{
-            //    MessageBox.Show("No tiene permiso para accesar esta pantalla, comuníquese con el administrador", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            //    oFactura = null;
-            //}
-            //this.Close();
+            frmFacturacionRapida oFactura = frmFacturacionRapida.getInstance();
+            codigo = oFactura.Codigo;
+            descripcion = oFactura.Descripcion;
+            modulo = oFactura.Modulo;
+            if (!TienePermiso())
+            {
+                oFactura.MdiParent = this.MdiParent;
+                oFactura.Show();
+            }
+            else
+            {
+                MessageBox.Show("No tiene permiso para accesar esta pantalla, comuníquese con el administrador", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                oFactura = null;
+            }
+            this.Close();
         }
 
     }

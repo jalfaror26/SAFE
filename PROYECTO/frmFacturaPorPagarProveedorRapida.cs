@@ -72,7 +72,7 @@ namespace PROYECTO
             else if (moneda.Equals("USD"))
                 simmoneda = '$';
            
-            txtmonto.Text = simmoneda + " 0";
+            txtmonto.Text = simmoneda + " 0.00";
         }
 
         public void consultaDias()
@@ -320,7 +320,7 @@ namespace PROYECTO
         private void txtmonto_Leave(object sender, EventArgs e)
         {
             if (txtmonto.Text.Trim().Equals("") || txtmonto.Text.Trim().Equals("."))
-                txtmonto.Text = "0";
+                txtmonto.Text = "0.00";
             string monto = "";
             for (int x = 0; x < txtmonto.Text.Length; x++)
             {
@@ -346,9 +346,9 @@ namespace PROYECTO
             if (txttipocambio.Text.Trim().Equals(""))
             {
                 if (txttipocambio.Focused)
-                    txttipocambio.Text = "0";
+                    txttipocambio.Text = "0.00";
                 else
-                    txttipocambio.Text = "¢ 0";
+                    txttipocambio.Text = "¢ 0.00";
             }
         }
 
@@ -397,7 +397,7 @@ namespace PROYECTO
         {
             try
             {
-                txttipocambio.Text = Double.Parse(txttipocambio.Text.Substring(1)).ToString("########0.##");
+                txttipocambio.Text = Double.Parse(txttipocambio.Text.Substring(1)).ToString("########0.00");
             }
             catch (Exception ex)
             {

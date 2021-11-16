@@ -393,7 +393,7 @@ namespace PROYECTO
 
         private void txtLCLimite_Enter(object sender, EventArgs e)
         {
-            txtLCLimite.Text = double.Parse(txtLCLimite.Text).ToString("########0.##");
+            txtLCLimite.Text = double.Parse(txtLCLimite.Text).ToString("########0.00");
             if (txtLCLimite.Text.Equals("0"))
                 txtLCLimite.Clear();
         }

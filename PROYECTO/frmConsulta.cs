@@ -23,7 +23,7 @@ namespace PROYECTO
         private ProveedorDAO oProveedorDAO = new ProveedorDAO();
 
         private ClienteDAO oClienteDAO = new ClienteDAO();
-        //private FacturaDAO oFacturaDAO = new FacturaDAO();
+        private FacturaDAO oFacturaDAO = new FacturaDAO();
         private ConexionDAO oConexion;
         private GastoDAO oGastosDAO = new GastoDAO();
         private CotizacionDAO oProformaDAO = new CotizacionDAO();
@@ -178,13 +178,13 @@ namespace PROYECTO
                         break;
 
                     //case "FACTURACION":
-                    //case "FACTURACIONRAPIDA":
-                    //    {
-                    //        dgrDatos.DataSource = oFacturaDAO.Consulta(tipoFiltro, palabraFiltro, PROYECTO.Properties.Settings.Default.No_cia, PROYECTO.Properties.Settings.Default.Centro);
-                    //        if (oFacturaDAO.Error())
-                    //            MessageBox.Show("Error al listar los datos:\n" + oFacturaDAO.DescError(), "Error de consulta", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    //    }
-                    //    break;
+                    case "FACTURACIONRAPIDA":
+                        {
+                            dgrDatos.DataSource = oFacturaDAO.Consulta(tipoFiltro, palabraFiltro, PROYECTO.Properties.Settings.Default.No_cia);
+                            if (oFacturaDAO.Error())
+                                MessageBox.Show("Error al listar los datos:\n" + oFacturaDAO.DescError(), "Error de consulta", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                        break;
 
 
                     case "Gastos":
@@ -296,13 +296,13 @@ namespace PROYECTO
                         break;
 
                     //case "FACTURACION":
-                    //case "FACTURACIONRAPIDA":
-                    //    {
-                    //        dgrDatos.DataSource = oFacturaDAO.ConsultaFacturas(PROYECTO.Properties.Settings.Default.No_cia, PROYECTO.Properties.Settings.Default.Centro);
-                    //        if (oFacturaDAO.Error())
-                    //            MessageBox.Show("Error al listar los datos:\n" + oFacturaDAO.DescError(), "Error de consulta", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    //    }
-                    //    break;
+                    case "FACTURACIONRAPIDA":
+                        {
+                            dgrDatos.DataSource = oFacturaDAO.ConsultaFacturas(PROYECTO.Properties.Settings.Default.No_cia);
+                            if (oFacturaDAO.Error())
+                                MessageBox.Show("Error al listar los datos:\n" + oFacturaDAO.DescError(), "Error de consulta", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                        break;
 
                     case "PROVEEDORGASTO":
                         {
@@ -407,15 +407,12 @@ namespace PROYECTO
             //    oFactura.limpiar();
             //}
 
-            //else if (palabra.Equals("ClienteFacturacionRapida"))
-            //    frmFacturacionRapida.getInstance().cargaCliente(cod, des);
+            else if (palabra.Equals("ClienteFacturacionRapida"))
+                frmFacturacionRapida.getInstance().cargaCliente(cod, des);
             else if (palabra.Equals("ClienteProforma"))
                 frmCotizacion.getInstance().cargaCliente(cod, des);
-
-
-            //else if (palabra.Equals("FACTURACIONRAPIDA"))
-            //    frmFacturacionRapida.getInstance().cargaFactura(cod, des);
-
+            else if (palabra.Equals("FACTURACIONRAPIDA"))
+                frmFacturacionRapida.getInstance().cargaFactura(cod, des);
             else if (palabra.Equals("ClienteRecibo"))
             {
                 frmRecibosDineroSencillo oRecibo2 = frmRecibosDineroSencillo.getInstance();

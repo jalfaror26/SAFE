@@ -250,7 +250,7 @@ namespace PROYECTO
         {
             try
             {
-                txtTipoCambioDolar.Text = Double.Parse(txtTipoCambioDolar.Text.Substring(1)).ToString("########0.##");
+                txtTipoCambioDolar.Text = Double.Parse(txtTipoCambioDolar.Text.Substring(1)).ToString("########0.00");
             }
             catch (Exception ex)
             {

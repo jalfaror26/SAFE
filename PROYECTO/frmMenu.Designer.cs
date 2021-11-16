@@ -239,7 +239,7 @@ namespace PROYECTO
             this.btnRepPagos.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnRepPagos.ImageIndex = 24;
             this.btnRepPagos.ImageList = this.imageList2;
-            this.btnRepPagos.Location = new System.Drawing.Point(493, 222);
+            this.btnRepPagos.Location = new System.Drawing.Point(493, 123);
             this.btnRepPagos.Margin = new System.Windows.Forms.Padding(4);
             this.btnRepPagos.Name = "btnRepPagos";
             this.btnRepPagos.Size = new System.Drawing.Size(332, 70);
@@ -273,7 +273,7 @@ namespace PROYECTO
             this.btnRepFinancieros.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnRepFinancieros.ImageIndex = 6;
             this.btnRepFinancieros.ImageList = this.imageList2;
-            this.btnRepFinancieros.Location = new System.Drawing.Point(492, 123);
+            this.btnRepFinancieros.Location = new System.Drawing.Point(492, 222);
             this.btnRepFinancieros.Margin = new System.Windows.Forms.Padding(4);
             this.btnRepFinancieros.Name = "btnRepFinancieros";
             this.btnRepFinancieros.Size = new System.Drawing.Size(333, 70);
@@ -1234,12 +1234,12 @@ namespace PROYECTO
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(944, 532);
             this.ControlBox = false;
+            this.Controls.Add(this.pReportes);
+            this.Controls.Add(this.pRepGenerales);
             this.Controls.Add(this.pRepPagos);
             this.Controls.Add(this.pRepFinancieros);
             this.Controls.Add(this.pRepInvFact);
             this.Controls.Add(this.pPrincipal);
-            this.Controls.Add(this.pReportes);
-            this.Controls.Add(this.pRepGenerales);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));

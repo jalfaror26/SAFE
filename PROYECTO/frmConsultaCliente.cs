@@ -78,7 +78,7 @@ namespace PROYECTO
 
         private void Llenar_Grid(int tipoFiltro, String palabraFiltro)
         {
-            oConexion = new ConexionDAO(PROYECTO.Properties.Settings.Default.UsuarioBD, PROYECTO.Properties.Settings.Default.Servidor,Conexion.getInstance().Clave);
+            oConexion = new ConexionDAO(PROYECTO.Properties.Settings.Default.UsuarioBD, PROYECTO.Properties.Settings.Default.Servidor, Conexion.getInstance().Clave);
             oConexion.cerrarConexion();
             if (oConexion.abrirConexion())
             {
@@ -124,7 +124,7 @@ namespace PROYECTO
 
         private void Llenar_Grid()
         {
-            oConexion = new ConexionDAO(PROYECTO.Properties.Settings.Default.UsuarioBD, PROYECTO.Properties.Settings.Default.Servidor,Conexion.getInstance().Clave);
+            oConexion = new ConexionDAO(PROYECTO.Properties.Settings.Default.UsuarioBD, PROYECTO.Properties.Settings.Default.Servidor, Conexion.getInstance().Clave);
             oConexion.cerrarConexion();
             if (oConexion.abrirConexion())
             {
@@ -154,7 +154,8 @@ namespace PROYECTO
                             dgrDatos.DataSource = oClienteDAO.consultarReporte2(PROYECTO.Properties.Settings.Default.No_cia).Tables[0];
                             if (oClienteDAO.Error())
                                 MessageBox.Show("Error al listar los datos:\n" + oClienteDAO.DescError(), "Error de consulta", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        } break;
+                        }
+                        break;
 
 
                     default: break;
@@ -226,11 +227,11 @@ namespace PROYECTO
             //    oFactura.limpiar();
             //}
 
-            //else if (palabra.Equals("frmFacturacionRapida"))
-            //    frmFacturacionRapida.getInstance().cargaCliente(cod, des);
+            else if (palabra.Equals("frmFacturacionRapida"))
+                frmFacturacionRapida.getInstance().cargaCliente(cod, des);
             else if (palabra.Equals("frmCotizacion"))
                 frmCotizacion.getInstance().cargaCliente(cod, des);
-            
+
             //else if (palabra.Equals("ClienteRecibo"))
             //{
             //    frmRecibosDineroSencillo oRecibo2 = frmRecibosDineroSencillo.getInstance();
@@ -328,7 +329,7 @@ namespace PROYECTO
                 PantallasPermisosDAO oPantallaPermisoDAO = new PantallasPermisosDAO();
 
                 Boolean tienePermiso = false;
-                oConexion = new ConexionDAO(PROYECTO.Properties.Settings.Default.UsuarioBD, PROYECTO.Properties.Settings.Default.Servidor,Conexion.getInstance().Clave);
+                oConexion = new ConexionDAO(PROYECTO.Properties.Settings.Default.UsuarioBD, PROYECTO.Properties.Settings.Default.Servidor, Conexion.getInstance().Clave);
                 oConexion.cerrarConexion();
                 if (oConexion.abrirConexion())
                 {

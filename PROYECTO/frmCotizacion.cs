@@ -1523,7 +1523,7 @@ namespace PROYECTO
 
         private void txtLineaDescuento_Enter(object sender, EventArgs e)
         {
-            txtLineaDescuento.Text = Double.Parse(txtLineaDescuento.Text).ToString("########0.##");
+            txtLineaDescuento.Text = Double.Parse(txtLineaDescuento.Text).ToString("########0.00");
             if (txtLineaDescuento.Text.Equals("0"))
                 txtLineaDescuento.Text = "";
         }
@@ -1578,7 +1578,7 @@ namespace PROYECTO
 
         private void txtPrecioUnitario_Enter(object sender, EventArgs e)
         {
-            txtPrecioUnitario.Text = double.Parse(txtPrecioUnitario.Text.Substring(1)).ToString("########0.##");
+            txtPrecioUnitario.Text = double.Parse(txtPrecioUnitario.Text.Substring(1)).ToString("########0.00");
             if (txtPrecioUnitario.Text.Equals("0"))
                 txtPrecioUnitario.Clear();
         }
@@ -1631,7 +1631,7 @@ namespace PROYECTO
                 if (oConexion.abrirConexion())
                 {
                     ServicioDAO oServicioDAO = new ServicioDAO();
-                    DataTable oTabla = oServicioDAO.ConsultaCodigo(txtCodServicio.Text, true, PROYECTO.Properties.Settings.Default.No_cia).Tables[0];
+                    DataTable oTabla = oServicioDAO.ConsultaCodigo(txtCodServicio.Text, PROYECTO.Properties.Settings.Default.No_cia).Tables[0];
 
                     if (oServicioDAO.Error())
                         MessageBox.Show("Ocurrió un error al extraer los datos: " + oServicioDAO.DescError(), "Error de consulta", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -1643,7 +1643,7 @@ namespace PROYECTO
                         }
                         else if (oTabla.Rows.Count > 0)
                         {
-                            cargaServicio(oTabla.Rows[0]["INV_COD_ARTICULO"].ToString(), oTabla.Rows[0]["SER_CODIGO"].ToString(), oTabla.Rows[0]["SER_NOMBRE"].ToString(), oTabla.Rows[0]["INV_IVI"].ToString(), double.Parse(oTabla.Rows[0]["inv_impuesto_ventas"].ToString()));
+                            cargaServicio(oTabla.Rows[0]["SER_INDICE"].ToString(), oTabla.Rows[0]["SER_CODIGO"].ToString(), oTabla.Rows[0]["SER_NOMBRE"].ToString(), oTabla.Rows[0]["INV_IVI"].ToString(), double.Parse(oTabla.Rows[0]["inv_impuesto_ventas"].ToString()));
                         }
 
                     }

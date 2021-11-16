@@ -162,8 +162,8 @@ namespace PROYECTO
         public void limpiar()
         {
             txtnumfactura.Clear();
-            txtmonto.Text = simmoneda + " 0";
-            txtSaldo.Text = simmoneda + " 0";
+            txtmonto.Text = simmoneda + " 0.00";
+            txtSaldo.Text = simmoneda + " 0.00";
             txtestado.Clear();
             txtEstadoDesc.Clear();
             cboTipoGasto.SelectedIndex = 0;
@@ -355,10 +355,10 @@ namespace PROYECTO
                     switch (cmbMoneda.SelectedIndex)
                     {
                         case 0:
-                            txttipocambio.Text = dolar.ToString("¢ ##0.##");
+                            txttipocambio.Text = dolar.ToString("¢ ##0.00");
                             break;
                         case 1:
-                            txttipocambio.Text = dolar.ToString("¢ ##0.##");
+                            txttipocambio.Text = dolar.ToString("¢ ##0.00");
                             break;
                     }
 
@@ -491,7 +491,7 @@ namespace PROYECTO
         {
             try
             {
-                txttipocambio.Text = Double.Parse(txttipocambio.Text.Substring(1)).ToString("########0.##");
+                txttipocambio.Text = Double.Parse(txttipocambio.Text.Substring(1)).ToString("########0.00");
             }
             catch (Exception ex)
             {

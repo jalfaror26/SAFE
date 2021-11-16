@@ -1,0 +1,179 @@
+create or replace NONEDITIONABLE PACKAGE PCKFACTURADETALLE AS
+  PROCEDURE paInsertar(indiceFactura    NUMBER,
+                       cantidad         NUMBER,
+                       medida           VARCHAR2,
+                       codServicio      VARCHAR2,
+                       descripcion      VARCHAR2,
+                       precioUnitario   NUMBER,
+                       SubTotal         NUMBER,
+                       monto_IV         NUMBER,
+                       PrecioTotal      NUMBER,
+                       descuento        NUMBER,
+                       pNo_cia          VARCHAR2,
+                       IVI              VARCHAR2);
+
+  PROCEDURE paModificar(indice           NUMBER,
+                        indiceFactura    NUMBER,
+                        cantidad         NUMBER,
+                        medida           VARCHAR2,
+                        codServicio      VARCHAR2,
+                        descripcion      VARCHAR2,
+                        precioUnitario   NUMBER,
+                        SubTotal         NUMBER,
+                        monto_IV         NUMBER,
+                        PrecioTotal      NUMBER,
+                        descuento        NUMBER,
+                        pNo_cia          VARCHAR2,
+                        IVI              VARCHAR2);
+
+  PROCEDURE paEliminar(indice        NUMBER,
+                       indiceFactura NUMBER,
+                       cantidad      NUMBER,
+                       codServicio   VARCHAR2,
+                       pNo_cia       VARCHAR2);
+
+END;
+
+/
+
+create or replace NONEDITIONABLE PACKAGE BODY PCKFACTURADETALLE AS
+
+  PROCEDURE paInsertar(indiceFactura    NUMBER,
+                       cantidad         NUMBER,
+                       medida           VARCHAR2,
+                       codServicio      VARCHAR2,
+                       descripcion      VARCHAR2,
+                       precioUnitario   NUMBER,
+                       SubTotal         NUMBER,
+                       monto_IV         NUMBER,
+                       PrecioTotal      NUMBER,
+                       descuento        NUMBER,
+                       pNo_cia          VARCHAR2,
+                       IVI              VARCHAR2) IS
+  
+  BEGIN
+  
+    INSERT INTO TBL_FACTURA_DETALLE
+      (detfac_numerolinea,
+       DETFAC_INDICEFACTURA,
+       detfac_cantidad,
+       detfac_medida,
+       detfac_codigo,
+       detfac_descripcion,
+       DETFAC_PRECIO_UNITARIO,
+       DETFAC_SUBTOTAL,
+       DETFAC_MONTO_IV,
+       DETFAC_PRECIO_TOTAL,
+       detfac_usuariocrea,
+       detfac_fechacrea,
+       detfac_descuento,
+       No_cia,
+       detfac_ivi)
+    VALUES
+      (SFACTURADETALLE.Nextval,
+       indiceFactura,
+       cantidad,
+       medida,
+       codServicio,
+       descripcion,
+       precioUnitario,
+       SubTotal,
+       monto_IV,
+       PrecioTotal,
+       user,
+       sysdate,
+       descuento,
+       pNo_cia,
+       ivi);
+  
+    COMMIT;
+  
+  EXCEPTION
+    WHEN timeout_on_resource THEN
+      raise_application_error(-20100,
+                              'Ha excedido el tiempo de espera maximo al insertar el detalle de la factura, vuelva a intentarlo');
+    WHEN dup_val_on_index THEN
+      raise_application_error(-20100, 'Detalle de la factura existente');
+    WHEN OTHERS THEN
+      raise_application_error(-20100,
+                              'Error desconocido al insertar el detalle de la factura ' ||
+                              sqlerrm);
+  END paInsertar;
+  ----------------------------------------------------------------------------------
+
+  PROCEDURE paModificar(indice           NUMBER,
+                        indiceFactura    NUMBER,
+                        cantidad         NUMBER,
+                        medida           VARCHAR2,
+                        codServicio      VARCHAR2,
+                        descripcion      VARCHAR2,
+                        precioUnitario   NUMBER,
+                        SubTotal         NUMBER,
+                        monto_IV         NUMBER,
+                        PrecioTotal      NUMBER,
+                        descuento        NUMBER,
+                        pNo_cia          VARCHAR2,
+                        IVI              VARCHAR2) IS
+  
+  BEGIN
+  
+    UPDATE TBL_FACTURA_DETALLE
+       SET detfac_cantidad         = cantidad,
+           detfac_medida           = medida,
+           detfac_codigo           = codServicio,
+           detfac_descripcion      = descripcion,
+           DETFAC_PRECIO_UNITARIO  = precioUnitario,
+           DETFAC_SUBTOTAL         = SubTotal,
+           DETFAC_MONTO_IV         = monto_IV,
+           DETFAC_PRECIO_TOTAL     = PrecioTotal,
+           detfac_usuariomodifica  = user,
+           detfac_fechamofica      = sysdate,
+           detfac_descuento        = descuento,
+           detfac_ivi              = ivi
+     WHERE No_cia = pNo_cia
+       and detfac_numerolinea = indice
+       AND DETFAC_INDICEFACTURA = indiceFactura;
+  
+    COMMIT;
+  
+  EXCEPTION
+    WHEN timeout_on_resource THEN
+      raise_application_error(-20100,
+                              'Ha excedido el tiempo de espera maximo al modificar el detalle de la factura, por favor intente de nuevo');
+    WHEN OTHERS THEN
+      raise_application_error(-20100,
+                              'Error desconocido al modificar el detalle de la factura ' ||
+                              sqlerrm);
+  END paModificar;
+  ---------------------------------------------------------------------------
+
+  PROCEDURE paEliminar(indice        NUMBER,
+                       indiceFactura NUMBER,
+                       cantidad      NUMBER,
+                       codServicio   VARCHAR2,
+                       pNo_cia       VARCHAR2) IS
+  
+  BEGIN
+  
+    DELETE FROM TBL_FACTURA_DETALLE
+     WHERE No_cia = pNo_cia
+       and detfac_numerolinea = indice
+       AND DETFAC_INDICEFACTURA = indiceFactura;
+  
+    COMMIT;
+  
+  EXCEPTION
+    WHEN timeout_on_resource THEN
+      raise_application_error(-20100,
+                              'Ha excedido el tiempo de espera maximo al eliminar el detalle de la factura, por favor intente de nuevo');
+    WHEN OTHERS THEN
+      raise_application_error(-20100,
+                              'Error desconocido al eliminar el detalle de la factura ' ||
+                              sqlerrm);
+  END paEliminar;
+  ----------------------------------------------------------------------------
+
+END;
+
+/
+

@@ -35,7 +35,7 @@ namespace PROYECTO
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmConsultaServicios));
             this.txtDescripcion = new System.Windows.Forms.TextBox();
             this.dgrDatos = new System.Windows.Forms.DataGridView();
-            this.INV_COD_ARTICULO = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SER_INDICE = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SER_CODIGO = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SER_NOMBRE = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.INV_IVI = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -73,7 +73,7 @@ namespace PROYECTO
             this.dgrDatos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgrDatos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgrDatos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.INV_COD_ARTICULO,
+            this.SER_INDICE,
             this.SER_CODIGO,
             this.SER_NOMBRE,
             this.INV_IVI,
@@ -98,15 +98,15 @@ namespace PROYECTO
             this.dgrDatos.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.dgrDatos_KeyPress);
             this.dgrDatos.KeyUp += new System.Windows.Forms.KeyEventHandler(this.dgrDatos_KeyUp);
             // 
-            // INV_COD_ARTICULO
+            // SER_INDICE
             // 
-            this.INV_COD_ARTICULO.DataPropertyName = "INV_COD_ARTICULO";
-            this.INV_COD_ARTICULO.HeaderText = "";
-            this.INV_COD_ARTICULO.MinimumWidth = 6;
-            this.INV_COD_ARTICULO.Name = "INV_COD_ARTICULO";
-            this.INV_COD_ARTICULO.ReadOnly = true;
-            this.INV_COD_ARTICULO.Visible = false;
-            this.INV_COD_ARTICULO.Width = 50;
+            this.SER_INDICE.DataPropertyName = "SER_INDICE";
+            this.SER_INDICE.HeaderText = "";
+            this.SER_INDICE.MinimumWidth = 6;
+            this.SER_INDICE.Name = "SER_INDICE";
+            this.SER_INDICE.ReadOnly = true;
+            this.SER_INDICE.Visible = false;
+            this.SER_INDICE.Width = 50;
             // 
             // SER_CODIGO
             // 
@@ -218,7 +218,7 @@ namespace PROYECTO
         private System.Windows.Forms.Button btnSalir;
         private System.Windows.Forms.Button btnAceptar;
         private System.Windows.Forms.TextBox txtCodigo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn INV_COD_ARTICULO;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SER_INDICE;
         private System.Windows.Forms.DataGridViewTextBoxColumn SER_CODIGO;
         private System.Windows.Forms.DataGridViewTextBoxColumn SER_NOMBRE;
         private System.Windows.Forms.DataGridViewTextBoxColumn INV_IVI;

@@ -122,7 +122,7 @@ namespace PROYECTO_DAO
         {
             String sql = "";
 
-            sql = "SELECT DISTINCT SER_INDICE INV_COD_ARTICULO, SER_CODIGO, SER_DESC_BREVE SER_NOMBRE, SER_venta_ivi INV_IVI, SER_impuestos INV_IMPUESTO_VENTAS, Cod_cabys FROM tbl_servicios ar WHERE ar.no_cia = '" + pNo_cia + "' and  SER_TIPO = 'SER' AND SER_ESTADO = 1 ORDER BY SER_desc_breve";
+            sql = "SELECT DISTINCT SER_INDICE, SER_CODIGO, SER_DESC_BREVE SER_NOMBRE, SER_venta_ivi INV_IVI, SER_impuestos INV_IMPUESTO_VENTAS, Cod_cabys FROM tbl_servicios ar WHERE ar.no_cia = '" + pNo_cia + "' and  SER_TIPO = 'SER' AND SER_ESTADO = 1 ORDER BY SER_desc_breve";
 
             DataSet oDataSet = OracleDAO.getInstance().EjecutarSQLDataSet(sql);
             return oDataSet;
@@ -132,7 +132,7 @@ namespace PROYECTO_DAO
         {
             String sql = "";
 
-            sql = "SELECT DISTINCT SER_INDICE INV_COD_ARTICULO, SER_CODIGO, SER_DESC_BREVE SER_NOMBRE, SER_venta_ivi INV_IVI, SER_impuestos INV_IMPUESTO_VENTAS, Cod_cabys FROM tbl_servicios ar WHERE ar.no_cia = '" + pNo_cia + "' and  SER_TIPO = 'SER' AND SER_ESTADO = 1 ";
+            sql = "SELECT DISTINCT SER_INDICE, SER_CODIGO, SER_DESC_BREVE SER_NOMBRE, SER_venta_ivi INV_IVI, SER_impuestos INV_IMPUESTO_VENTAS, Cod_cabys FROM tbl_servicios ar WHERE ar.no_cia = '" + pNo_cia + "' and  SER_TIPO = 'SER' AND SER_ESTADO = 1 ";
 
             if (!codigo.Equals(""))
                 sql += " AND regexp_like(SER_INDICE,'" + codigo + "','i')";
@@ -145,11 +145,11 @@ namespace PROYECTO_DAO
             return oDataSet;
         }
 
-        public DataSet ConsultaCodigo(string codigo, Boolean MostrarPromocion, String pNo_cia)
+        public DataSet ConsultaCodigo(string codigo, String pNo_cia)
         {
             String sql = "";
 
-            sql = "SELECT DISTINCT SER_INDICE INV_COD_ARTICULO, SER_CODIGO, SER_DESC_BREVE SER_NOMBRE, SER_venta_ivi INV_IVI, SER_impuestos INV_IMPUESTO_VENTAS, Cod_cabys FROM tbl_servicios ar WHERE ar.no_cia = '" + pNo_cia + "' and  SER_TIPO = 'SER' AND SER_ESTADO = 1 ";
+            sql = "SELECT DISTINCT SER_INDICE, SER_CODIGO, SER_DESC_BREVE SER_NOMBRE, SER_venta_ivi INV_IVI, SER_impuestos INV_IMPUESTO_VENTAS, Cod_cabys FROM tbl_servicios ar WHERE ar.no_cia = '" + pNo_cia + "' and  SER_TIPO = 'SER' AND SER_ESTADO = 1 ";
 
             if (!codigo.Equals(""))
                 sql += " AND SER_CODIGO = '" + codigo + "'";

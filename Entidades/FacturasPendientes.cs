@@ -2,18 +2,21 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Entidades
+namespace ENTIDADES
 {
     public class FacturasPendientes
     {
-        private int numFactura, idCliente, aplicaRetencion, dias, indice;
-        private String nombre, moneda, estatus, observacion, tipoDocumento, Anombrede, usuario;
-        private Double tipocambio, subtotal, impuesto, monto, retencion, saldo, retencionReal,exento;
+        private int idCliente,  dias, indice;
+        private String nombre, moneda, estatus, observacion, tipoDocumento, Anombrede, numFactura;
+        private Double tipocambio, subtotal, impuesto, monto, saldo, exento;
         private DateTime fechaActual, fechaEmision, fechaVence;
 
-        public FacturasPendientes()
-        {
+        private String no_cia;
 
+        public String No_cia
+        {
+            get { return no_cia; }
+            set { no_cia = value; }
         }
 
         public DateTime FechaVence
@@ -33,23 +36,10 @@ namespace Entidades
             get { return fechaActual; }
             set { fechaActual = value; }
         }
-
-        public Double RetencionReal
-        {
-            get { return retencionReal; }
-            set { retencionReal = value; }
-        }
-
         public Double Saldo
         {
             get { return saldo; }
             set { saldo = value; }
-        }
-
-        public Double Retencion
-        {
-            get { return retencion; }
-            set { retencion = value; }
         }
 
         public Double Monto
@@ -75,13 +65,7 @@ namespace Entidades
             get { return tipocambio; }
             set { tipocambio = value; }
         }
-
-        public String Usuari
-        {
-            get { return usuario; }
-            set { usuario = value; }
-        }
-
+        
         public String Anombrede1
         {
             get { return Anombrede; }
@@ -129,13 +113,7 @@ namespace Entidades
             get { return dias; }
             set { dias = value; }
         }
-
-        public int AplicaRetencion
-        {
-            get { return aplicaRetencion; }
-            set { aplicaRetencion = value; }
-        }
-
+        
         public Double Exento
         {
             get { return exento; }
@@ -148,7 +126,7 @@ namespace Entidades
             set { idCliente = value; }
         }
 
-        public int NumFactura
+        public String NumFactura
         {
             get { return numFactura; }
             set { numFactura = value; }

@@ -140,7 +140,6 @@ namespace PROYECTO
             this.btnFacturacion.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnFacturacion.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnFacturacion.UseVisualStyleBackColor = true;
-            this.btnFacturacion.Visible = false;
             this.btnFacturacion.Click += new System.EventHandler(this.btnFacturacionRapida_Click);
             // 
             // button11

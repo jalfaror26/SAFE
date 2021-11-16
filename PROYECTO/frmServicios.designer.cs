@@ -137,7 +137,7 @@ namespace PROYECTO
             this.txtPrecioVenta.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.txtPrecioVenta.Size = new System.Drawing.Size(100, 22);
             this.txtPrecioVenta.TabIndex = 12;
-            this.txtPrecioVenta.Text = "¢ 0";
+            this.txtPrecioVenta.Text = "¢ 0.00";
             this.txtPrecioVenta.Visible = false;
             // 
             // label21
@@ -160,7 +160,7 @@ namespace PROYECTO
             this.txtPrecioCosto.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.txtPrecioCosto.Size = new System.Drawing.Size(100, 22);
             this.txtPrecioCosto.TabIndex = 10;
-            this.txtPrecioCosto.Text = "¢ 0";
+            this.txtPrecioCosto.Text = "¢ 0.00";
             this.txtPrecioCosto.Visible = false;
             // 
             // imgMenu
@@ -522,8 +522,8 @@ namespace PROYECTO
             this.SER_IMPUESTOS.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             this.SER_IMPUESTOS.DataPropertyName = "SER_IMPUESTOS";
             dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle9.Format = "###,###0.##";
-            dataGridViewCellStyle9.NullValue = "0";
+            dataGridViewCellStyle9.Format = "###,###0.00";
+            dataGridViewCellStyle9.NullValue = "0.00";
             this.SER_IMPUESTOS.DefaultCellStyle = dataGridViewCellStyle9;
             this.SER_IMPUESTOS.HeaderText = "TipoIV";
             this.SER_IMPUESTOS.MinimumWidth = 6;

@@ -34,11 +34,11 @@ namespace PROYECTO
             get { return this.Text.ToString(); }
         }
 
-        //public void ReportSource(rptFactura rptReporte)
-        //{
-        //    oReporte = rptReporte;
-        //    crvVisor.ReportSource = rptReporte;
-        //}
+        public void ReportSource(rptFactura rptReporte)
+        {
+            oReporte = rptReporte;
+            crvVisor.ReportSource = rptReporte;
+        }
 
         private void frmVisorReportes_FormClosing(object sender, FormClosingEventArgs e)
         {

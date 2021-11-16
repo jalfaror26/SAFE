@@ -81,8 +81,8 @@ namespace PROYECTO
             txtDesBreveArt.Clear();
 
             /*Precios*/
-            txtPrecioCosto.Text = "0";
-            txtPrecioVenta.Text = "0";
+            txtPrecioCosto.Text = "0.00";
+            txtPrecioVenta.Text = "0.00";
             rboExento.Checked = true;
             chkIVI.Checked = false;
             chkIVI.Enabled = false;
@@ -272,7 +272,7 @@ namespace PROYECTO
             }
             catch (Exception ex)
             {
-                txtPrecioCosto.Text = "0";
+                txtPrecioCosto.Text = "0.00";
             }
         }
 
@@ -292,7 +292,7 @@ namespace PROYECTO
             }
             catch (Exception ex)
             {
-                txtPrecioVenta.Text = "0";
+                txtPrecioVenta.Text = "0.00";
             }
         }
 
@@ -300,9 +300,9 @@ namespace PROYECTO
         {
             try
             {
-                txtPrecioCosto.Text = Double.Parse(txtPrecioCosto.Text.Substring(1)).ToString("########0.##");
+                txtPrecioCosto.Text = Double.Parse(txtPrecioCosto.Text.Substring(1)).ToString("########0.00");
 
-                if (txtPrecioCosto.Text.Equals("0"))
+                if (txtPrecioCosto.Text.Equals("0.00"))
                     txtPrecioCosto.Clear();
             }
             catch (Exception ex)
@@ -315,8 +315,8 @@ namespace PROYECTO
         {
             try
             {
-                txtPrecioVenta.Text = Double.Parse(txtPrecioVenta.Text.Substring(1)).ToString("########0.##");
-                if (txtPrecioVenta.Text.Equals("0"))
+                txtPrecioVenta.Text = Double.Parse(txtPrecioVenta.Text.Substring(1)).ToString("########0.00");
+                if (txtPrecioVenta.Text.Equals("0.00"))
                     txtPrecioVenta.Clear();
             }
             catch (Exception ex)
@@ -329,7 +329,7 @@ namespace PROYECTO
             try
             {
                 if (txtPrecioVenta.Text.Trim().Equals(""))
-                    txtPrecioVenta.Text = "0";
+                    txtPrecioVenta.Text = "0.00";
 
                 txtPrecioVenta.Text = Double.Parse(txtPrecioVenta.Text).ToString("###,###,##0.00");
                 //ponerSimbolos();
@@ -345,7 +345,7 @@ namespace PROYECTO
             try
             {
                 if (txtPrecioCosto.Text.Trim().Equals(""))
-                    txtPrecioCosto.Text = "0";
+                    txtPrecioCosto.Text = "0.00";
 
                 txtPrecioCosto.Text = Double.Parse(txtPrecioCosto.Text).ToString("###,###,##0.00");
                 //ponerSimbolos();
