@@ -258,36 +258,7 @@ namespace PROYECTO
             }
             catch (Exception ex) { }
         }
-
-        private void toolStripButton1_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                oConexion = new ConexionDAO(PROYECTO.Properties.Settings.Default.UsuarioBD, PROYECTO.Properties.Settings.Default.Servidor, Conexion.getInstance().Clave);
-                oConexion.cerrarConexion();
-                if (oConexion.abrirConexion())
-                {
-                    DataTable ot = oConexion.EjecutaSentencia("select ART_INDICE,ART_UTILIDAD from TBL_ARTICULOS ar" +
-                        "where no_cia = '" + PROYECTO.Properties.Settings.Default.No_cia + "'");
-
-                    foreach (DataRow ofila in ot.Rows)
-                    {
-                        int v = oConexion.EjecutaSentencia2("UPDATE TBL_ARTICULO_PRESENTACION ap SET arpre_utilidad = " + ofila["ART_UTILIDAD"].ToString() + " WHERE ap.no_cia = '" + PROYECTO.Properties.Settings.Default.No_cia + "' and ARPRE_ARTICULO = " + ofila["ART_INDICE"].ToString());
-                        if (v == 0)
-                            v = -1;
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("Error al conectarse con la base de datos\nVerifique que los datos estén correctos");
-                }
-            }
-            catch (Exception ex)
-            {
-
-            }
-        }
-
+        
         private void btnMNuevo_Click(object sender, EventArgs e)
         {
             LimpiarCampos();

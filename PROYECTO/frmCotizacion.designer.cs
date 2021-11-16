@@ -81,7 +81,7 @@ namespace PROYECTO
             this.dgrDatos = new System.Windows.Forms.DataGridView();
             this.detfac_numerolinea = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.detfac_codigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ART_CODIGO = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SER_CODIGO = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.detfac_cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.detfac_descripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DETFAC_MONTO_IV = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -92,7 +92,7 @@ namespace PROYECTO
             this.DETFAC_TIPOPRECIO = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DETFAC_PRECIO_TOTAL = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.detfac_ivi = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.art_impuestos = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SER_impuestos = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.txtTotalCotizacion = new System.Windows.Forms.TextBox();
             this.label25 = new System.Windows.Forms.Label();
             this.txtTotalPorLinea = new System.Windows.Forms.MaskedTextBox();
@@ -685,7 +685,7 @@ namespace PROYECTO
             this.dgrDatos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.detfac_numerolinea,
             this.detfac_codigo,
-            this.ART_CODIGO,
+            this.SER_CODIGO,
             this.detfac_cantidad,
             this.detfac_descripcion,
             this.DETFAC_MONTO_IV,
@@ -696,7 +696,7 @@ namespace PROYECTO
             this.DETFAC_TIPOPRECIO,
             this.DETFAC_PRECIO_TOTAL,
             this.detfac_ivi,
-            this.art_impuestos});
+            this.SER_impuestos});
             dataGridViewCellStyle38.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle38.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle38.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -751,14 +751,14 @@ namespace PROYECTO
             this.detfac_codigo.Visible = false;
             this.detfac_codigo.Width = 75;
             // 
-            // ART_CODIGO
+            // SER_CODIGO
             // 
-            this.ART_CODIGO.DataPropertyName = "ART_CODIGO";
-            this.ART_CODIGO.HeaderText = "CODIGO";
-            this.ART_CODIGO.MinimumWidth = 6;
-            this.ART_CODIGO.Name = "ART_CODIGO";
-            this.ART_CODIGO.ReadOnly = true;
-            this.ART_CODIGO.Width = 125;
+            this.SER_CODIGO.DataPropertyName = "SER_CODIGO";
+            this.SER_CODIGO.HeaderText = "CODIGO";
+            this.SER_CODIGO.MinimumWidth = 6;
+            this.SER_CODIGO.Name = "SER_CODIGO";
+            this.SER_CODIGO.ReadOnly = true;
+            this.SER_CODIGO.Width = 125;
             // 
             // detfac_cantidad
             // 
@@ -868,15 +868,15 @@ namespace PROYECTO
             this.detfac_ivi.Visible = false;
             this.detfac_ivi.Width = 125;
             // 
-            // art_impuestos
+            // SER_impuestos
             // 
-            this.art_impuestos.DataPropertyName = "art_impuestos";
-            this.art_impuestos.HeaderText = "art_impuestos";
-            this.art_impuestos.MinimumWidth = 6;
-            this.art_impuestos.Name = "art_impuestos";
-            this.art_impuestos.ReadOnly = true;
-            this.art_impuestos.Visible = false;
-            this.art_impuestos.Width = 125;
+            this.SER_impuestos.DataPropertyName = "SER_impuestos";
+            this.SER_impuestos.HeaderText = "SER_impuestos";
+            this.SER_impuestos.MinimumWidth = 6;
+            this.SER_impuestos.Name = "SER_impuestos";
+            this.SER_impuestos.ReadOnly = true;
+            this.SER_impuestos.Visible = false;
+            this.SER_impuestos.Width = 125;
             // 
             // txtTotalCotizacion
             // 
@@ -1277,7 +1277,7 @@ namespace PROYECTO
         private System.Windows.Forms.Button btnNuevoCliente;
         private System.Windows.Forms.DataGridViewTextBoxColumn detfac_numerolinea;
         private System.Windows.Forms.DataGridViewTextBoxColumn detfac_codigo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ART_CODIGO;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SER_CODIGO;
         private System.Windows.Forms.DataGridViewTextBoxColumn detfac_cantidad;
         private System.Windows.Forms.DataGridViewTextBoxColumn detfac_descripcion;
         private System.Windows.Forms.DataGridViewTextBoxColumn DETFAC_MONTO_IV;
@@ -1288,7 +1288,7 @@ namespace PROYECTO
         private System.Windows.Forms.DataGridViewTextBoxColumn DETFAC_TIPOPRECIO;
         private System.Windows.Forms.DataGridViewTextBoxColumn DETFAC_PRECIO_TOTAL;
         private System.Windows.Forms.DataGridViewTextBoxColumn detfac_ivi;
-        private System.Windows.Forms.DataGridViewTextBoxColumn art_impuestos;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SER_impuestos;
         private System.Windows.Forms.ComboBox cmbMoneda;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtTipoCambio;

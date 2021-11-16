@@ -287,7 +287,7 @@ namespace PROYECTO_DAO
 
         public DataSet DetalleFacturasxCliente(String pNo_cia, String pCliente, String pFactura)
         {
-            String sql = "select detfac_cantidad, (SELECT case when ARPRE_EMBALAJE = 'talla' then ARPRE_CANTIDAD || ' ' || ARPRE_EMBALAJE else ARPRE_EMBALAJE end FROM TBL_ARTICULO_PRESENTACION ap WHERE ap.no_cia = '" + pNo_cia + "' and DETFAC_PRESENTACION = ARPRE_INDICE) ARPRE_EMBALAJE, detfac_descripcion, DETFAC_PRECIO_TOTAL detfac_total from tbl_factura f, tbl_factura_detalle fd, tbl_servicios ar where f.no_cia = '" + pNo_cia + "' and f.fac_numero = '" + pFactura + "' and f.Fac_Cliente = '" + pCliente + "' and f.no_cia = fd.no_cia and f.fac_linea = fd.detfac_indicefactura and f.no_cia = ar.no_cia and ART_INDICE = detfac_codigo ORDER BY detfac_numerolinea desc ";
+            String sql = "select detfac_cantidad, (SELECT case when ARPRE_EMBALAJE = 'talla' then ARPRE_CANTIDAD || ' ' || ARPRE_EMBALAJE else ARPRE_EMBALAJE end FROM TBL_ARTICULO_PRESENTACION ap WHERE ap.no_cia = '" + pNo_cia + "' and DETFAC_PRESENTACION = ARPRE_INDICE) ARPRE_EMBALAJE, detfac_descripcion, DETFAC_PRECIO_TOTAL detfac_total from tbl_factura f, tbl_factura_detalle fd, tbl_servicios ar where f.no_cia = '" + pNo_cia + "' and f.fac_numero = '" + pFactura + "' and f.Fac_Cliente = '" + pCliente + "' and f.no_cia = fd.no_cia and f.fac_linea = fd.detfac_indicefactura and f.no_cia = ar.no_cia and SER_INDICE = detfac_codigo ORDER BY detfac_numerolinea desc ";
 
             DataSet oDataSet = OracleDAO.getInstance().EjecutarSQLDataSet(sql);
             return oDataSet;

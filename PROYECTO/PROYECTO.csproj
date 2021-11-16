@@ -84,6 +84,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DataSetReportes.xsd</DependentUpon>
     </Compile>
+    <Compile Include="frmVistaBitacora.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmVistaBitacora.designer.cs">
+      <DependentUpon>frmVistaBitacora.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmRecibosDineroSencillo.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -198,11 +204,11 @@
     <Compile Include="frmrptClientes.designer.cs">
       <DependentUpon>frmrptClientes.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmrptFactsRecibidasCategoria.cs">
+    <Compile Include="frmrptMontosPorGasto.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmrptFactsRecibidasCategoria.designer.cs">
-      <DependentUpon>frmrptFactsRecibidasCategoria.cs</DependentUpon>
+    <Compile Include="frmrptMontosPorGasto.designer.cs">
+      <DependentUpon>frmrptMontosPorGasto.cs</DependentUpon>
     </Compile>
     <Compile Include="frmrptProveedores.cs">
       <SubType>Form</SubType>
@@ -339,10 +345,10 @@
       <DependentUpon>rptCajasChicas.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="rptFacsRecibidasCategoria.cs">
+    <Compile Include="rptMontosPorGasto.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>rptFacsRecibidasCategoria.rpt</DependentUpon>
+      <DependentUpon>rptMontosPorGasto.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="rptPagoProveedor.cs">
@@ -375,6 +381,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.map</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="frmVistaBitacora.resx">
+      <DependentUpon>frmVistaBitacora.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmRecibosDineroSencillo.resx">
       <DependentUpon>frmRecibosDineroSencillo.cs</DependentUpon>
     </EmbeddedResource>
@@ -402,6 +411,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmConsultaServicios.resx">
       <DependentUpon>frmConsultaServicios.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="frmFacturaPorPagarProveedor.resx">
       <DependentUpon>frmFacturaPorPagarProveedor.cs</DependentUpon>
@@ -415,6 +425,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmCotizacion.resx">
       <DependentUpon>frmCotizacion.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="frmMenuFinancieros.resx">
       <DependentUpon>frmMenuFinancieros.cs</DependentUpon>
@@ -434,14 +445,15 @@
     <EmbeddedResource Include="frmrptClientes.resx">
       <DependentUpon>frmrptClientes.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmrptFactsRecibidasCategoria.resx">
-      <DependentUpon>frmrptFactsRecibidasCategoria.cs</DependentUpon>
+    <EmbeddedResource Include="frmrptMontosPorGasto.resx">
+      <DependentUpon>frmrptMontosPorGasto.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmrptProveedores.resx">
       <DependentUpon>frmrptProveedores.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmServicios.resx">
       <DependentUpon>frmServicios.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="frmAyudaAgrandar.resx">
       <DependentUpon>frmAyudaAgrandar.cs</DependentUpon>
@@ -516,9 +528,9 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>rptCajasChicas.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="rptFacsRecibidasCategoria.rpt">
+    <EmbeddedResource Include="rptMontosPorGasto.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>rptFacsRecibidasCategoria.cs</LastGenOutput>
+      <LastGenOutput>rptMontosPorGasto.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="rptPagoProveedor.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
@@ -584,6 +596,7 @@
   <ItemGroup>
     <None Include="Resources\rym2.jpg" />
     <Content Include="CambiosBD 12-11-21.txt" />
+    <Content Include="CambiosBD 15-11-21.txt" />
     <Content Include="CambiosBD.txt" />
     <Content Include="SAFE.ico" />
     <None Include="Web References\TipoCambioBCCR\wsindicadoreseconomicos.disco" />

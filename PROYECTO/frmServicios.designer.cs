@@ -65,15 +65,15 @@ namespace PROYECTO
             this.rboExento = new System.Windows.Forms.RadioButton();
             this.rboGravado = new System.Windows.Forms.RadioButton();
             this.btnImpuestos = new System.Windows.Forms.Button();
-            this.ART_CODIGO = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ART_DESC_BREVE = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ART_IMPUESTOS = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ART_VENTA_IVI = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ART_TIPO = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ART_ESTADO = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ART_NOMBRE = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ART_TIPO_CODIGO = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ART_INDICE = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SER_CODIGO = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SER_DESC_BREVE = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SER_IMPUESTOS = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SER_VENTA_IVI = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SER_TIPO = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SER_ESTADO = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SER_NOMBRE = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SER_TIPO_CODIGO = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SER_INDICE = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.COD_CABYS = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgrDatos)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -234,15 +234,15 @@ namespace PROYECTO
             this.dgrDatos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
             this.dgrDatos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgrDatos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.ART_CODIGO,
-            this.ART_DESC_BREVE,
-            this.ART_IMPUESTOS,
-            this.ART_VENTA_IVI,
-            this.ART_TIPO,
-            this.ART_ESTADO,
-            this.ART_NOMBRE,
-            this.ART_TIPO_CODIGO,
-            this.ART_INDICE,
+            this.SER_CODIGO,
+            this.SER_DESC_BREVE,
+            this.SER_IMPUESTOS,
+            this.SER_VENTA_IVI,
+            this.SER_TIPO,
+            this.SER_ESTADO,
+            this.SER_NOMBRE,
+            this.SER_TIPO_CODIGO,
+            this.SER_INDICE,
             this.COD_CABYS});
             this.dgrDatos.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.dgrDatos.Location = new System.Drawing.Point(18, 352);
@@ -495,103 +495,103 @@ namespace PROYECTO
             this.btnImpuestos.UseVisualStyleBackColor = true;
             this.btnImpuestos.Click += new System.EventHandler(this.btnImpuestos_Click);
             // 
-            // ART_CODIGO
+            // SER_CODIGO
             // 
-            this.ART_CODIGO.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.ART_CODIGO.DataPropertyName = "ART_CODIGO";
+            this.SER_CODIGO.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.SER_CODIGO.DataPropertyName = "SER_CODIGO";
             dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.ART_CODIGO.DefaultCellStyle = dataGridViewCellStyle8;
-            this.ART_CODIGO.HeaderText = "Código";
-            this.ART_CODIGO.MinimumWidth = 6;
-            this.ART_CODIGO.Name = "ART_CODIGO";
-            this.ART_CODIGO.ReadOnly = true;
-            this.ART_CODIGO.Width = 150;
+            this.SER_CODIGO.DefaultCellStyle = dataGridViewCellStyle8;
+            this.SER_CODIGO.HeaderText = "Código";
+            this.SER_CODIGO.MinimumWidth = 6;
+            this.SER_CODIGO.Name = "SER_CODIGO";
+            this.SER_CODIGO.ReadOnly = true;
+            this.SER_CODIGO.Width = 150;
             // 
-            // ART_DESC_BREVE
+            // SER_DESC_BREVE
             // 
-            this.ART_DESC_BREVE.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.ART_DESC_BREVE.DataPropertyName = "ART_DESC_BREVE";
-            this.ART_DESC_BREVE.HeaderText = "Descripción";
-            this.ART_DESC_BREVE.MinimumWidth = 6;
-            this.ART_DESC_BREVE.Name = "ART_DESC_BREVE";
-            this.ART_DESC_BREVE.ReadOnly = true;
-            this.ART_DESC_BREVE.Width = 400;
+            this.SER_DESC_BREVE.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.SER_DESC_BREVE.DataPropertyName = "SER_DESC_BREVE";
+            this.SER_DESC_BREVE.HeaderText = "Descripción";
+            this.SER_DESC_BREVE.MinimumWidth = 6;
+            this.SER_DESC_BREVE.Name = "SER_DESC_BREVE";
+            this.SER_DESC_BREVE.ReadOnly = true;
+            this.SER_DESC_BREVE.Width = 400;
             // 
-            // ART_IMPUESTOS
+            // SER_IMPUESTOS
             // 
-            this.ART_IMPUESTOS.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.ART_IMPUESTOS.DataPropertyName = "ART_IMPUESTOS";
+            this.SER_IMPUESTOS.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.SER_IMPUESTOS.DataPropertyName = "SER_IMPUESTOS";
             dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle9.Format = "###,###0.##";
             dataGridViewCellStyle9.NullValue = "0";
-            this.ART_IMPUESTOS.DefaultCellStyle = dataGridViewCellStyle9;
-            this.ART_IMPUESTOS.HeaderText = "TipoIV";
-            this.ART_IMPUESTOS.MinimumWidth = 6;
-            this.ART_IMPUESTOS.Name = "ART_IMPUESTOS";
-            this.ART_IMPUESTOS.ReadOnly = true;
-            this.ART_IMPUESTOS.Visible = false;
-            this.ART_IMPUESTOS.Width = 65;
+            this.SER_IMPUESTOS.DefaultCellStyle = dataGridViewCellStyle9;
+            this.SER_IMPUESTOS.HeaderText = "TipoIV";
+            this.SER_IMPUESTOS.MinimumWidth = 6;
+            this.SER_IMPUESTOS.Name = "SER_IMPUESTOS";
+            this.SER_IMPUESTOS.ReadOnly = true;
+            this.SER_IMPUESTOS.Visible = false;
+            this.SER_IMPUESTOS.Width = 65;
             // 
-            // ART_VENTA_IVI
+            // SER_VENTA_IVI
             // 
-            this.ART_VENTA_IVI.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.ART_VENTA_IVI.DataPropertyName = "ART_VENTA_IVI";
-            this.ART_VENTA_IVI.HeaderText = "IVI";
-            this.ART_VENTA_IVI.MinimumWidth = 6;
-            this.ART_VENTA_IVI.Name = "ART_VENTA_IVI";
-            this.ART_VENTA_IVI.ReadOnly = true;
-            this.ART_VENTA_IVI.Visible = false;
-            this.ART_VENTA_IVI.Width = 40;
+            this.SER_VENTA_IVI.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.SER_VENTA_IVI.DataPropertyName = "SER_VENTA_IVI";
+            this.SER_VENTA_IVI.HeaderText = "IVI";
+            this.SER_VENTA_IVI.MinimumWidth = 6;
+            this.SER_VENTA_IVI.Name = "SER_VENTA_IVI";
+            this.SER_VENTA_IVI.ReadOnly = true;
+            this.SER_VENTA_IVI.Visible = false;
+            this.SER_VENTA_IVI.Width = 40;
             // 
-            // ART_TIPO
+            // SER_TIPO
             // 
-            this.ART_TIPO.DataPropertyName = "ART_TIPO";
-            this.ART_TIPO.HeaderText = "ART_TIPO";
-            this.ART_TIPO.MinimumWidth = 2;
-            this.ART_TIPO.Name = "ART_TIPO";
-            this.ART_TIPO.ReadOnly = true;
-            this.ART_TIPO.Visible = false;
-            this.ART_TIPO.Width = 2;
+            this.SER_TIPO.DataPropertyName = "SER_TIPO";
+            this.SER_TIPO.HeaderText = "SER_TIPO";
+            this.SER_TIPO.MinimumWidth = 2;
+            this.SER_TIPO.Name = "SER_TIPO";
+            this.SER_TIPO.ReadOnly = true;
+            this.SER_TIPO.Visible = false;
+            this.SER_TIPO.Width = 2;
             // 
-            // ART_ESTADO
+            // SER_ESTADO
             // 
-            this.ART_ESTADO.DataPropertyName = "ART_ESTADO";
-            this.ART_ESTADO.HeaderText = "ART_ESTADO";
-            this.ART_ESTADO.MinimumWidth = 2;
-            this.ART_ESTADO.Name = "ART_ESTADO";
-            this.ART_ESTADO.ReadOnly = true;
-            this.ART_ESTADO.Visible = false;
-            this.ART_ESTADO.Width = 2;
+            this.SER_ESTADO.DataPropertyName = "SER_ESTADO";
+            this.SER_ESTADO.HeaderText = "SER_ESTADO";
+            this.SER_ESTADO.MinimumWidth = 2;
+            this.SER_ESTADO.Name = "SER_ESTADO";
+            this.SER_ESTADO.ReadOnly = true;
+            this.SER_ESTADO.Visible = false;
+            this.SER_ESTADO.Width = 2;
             // 
-            // ART_NOMBRE
+            // SER_NOMBRE
             // 
-            this.ART_NOMBRE.DataPropertyName = "ART_NOMBRE";
-            this.ART_NOMBRE.HeaderText = "Descripción";
-            this.ART_NOMBRE.MinimumWidth = 2;
-            this.ART_NOMBRE.Name = "ART_NOMBRE";
-            this.ART_NOMBRE.ReadOnly = true;
-            this.ART_NOMBRE.Visible = false;
-            this.ART_NOMBRE.Width = 2;
+            this.SER_NOMBRE.DataPropertyName = "SER_NOMBRE";
+            this.SER_NOMBRE.HeaderText = "Descripción";
+            this.SER_NOMBRE.MinimumWidth = 2;
+            this.SER_NOMBRE.Name = "SER_NOMBRE";
+            this.SER_NOMBRE.ReadOnly = true;
+            this.SER_NOMBRE.Visible = false;
+            this.SER_NOMBRE.Width = 2;
             // 
-            // ART_TIPO_CODIGO
+            // SER_TIPO_CODIGO
             // 
-            this.ART_TIPO_CODIGO.DataPropertyName = "ART_TIPO_CODIGO";
-            this.ART_TIPO_CODIGO.HeaderText = "ART_TIPO_CODIGO";
-            this.ART_TIPO_CODIGO.MinimumWidth = 2;
-            this.ART_TIPO_CODIGO.Name = "ART_TIPO_CODIGO";
-            this.ART_TIPO_CODIGO.ReadOnly = true;
-            this.ART_TIPO_CODIGO.Visible = false;
-            this.ART_TIPO_CODIGO.Width = 2;
+            this.SER_TIPO_CODIGO.DataPropertyName = "SER_TIPO_CODIGO";
+            this.SER_TIPO_CODIGO.HeaderText = "SER_TIPO_CODIGO";
+            this.SER_TIPO_CODIGO.MinimumWidth = 2;
+            this.SER_TIPO_CODIGO.Name = "SER_TIPO_CODIGO";
+            this.SER_TIPO_CODIGO.ReadOnly = true;
+            this.SER_TIPO_CODIGO.Visible = false;
+            this.SER_TIPO_CODIGO.Width = 2;
             // 
-            // ART_INDICE
+            // SER_INDICE
             // 
-            this.ART_INDICE.DataPropertyName = "ART_INDICE";
-            this.ART_INDICE.HeaderText = "ART_INDICE";
-            this.ART_INDICE.MinimumWidth = 2;
-            this.ART_INDICE.Name = "ART_INDICE";
-            this.ART_INDICE.ReadOnly = true;
-            this.ART_INDICE.Visible = false;
-            this.ART_INDICE.Width = 2;
+            this.SER_INDICE.DataPropertyName = "SER_INDICE";
+            this.SER_INDICE.HeaderText = "SER_INDICE";
+            this.SER_INDICE.MinimumWidth = 2;
+            this.SER_INDICE.Name = "SER_INDICE";
+            this.SER_INDICE.ReadOnly = true;
+            this.SER_INDICE.Visible = false;
+            this.SER_INDICE.Width = 2;
             // 
             // COD_CABYS
             // 
@@ -677,15 +677,15 @@ namespace PROYECTO
         private System.Windows.Forms.RadioButton rboGravado;
         private System.Windows.Forms.RadioButton rboExento;
         private System.Windows.Forms.Button btnImpuestos;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ART_CODIGO;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ART_DESC_BREVE;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ART_IMPUESTOS;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ART_VENTA_IVI;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ART_TIPO;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ART_ESTADO;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ART_NOMBRE;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ART_TIPO_CODIGO;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ART_INDICE;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SER_CODIGO;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SER_DESC_BREVE;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SER_IMPUESTOS;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SER_VENTA_IVI;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SER_TIPO;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SER_ESTADO;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SER_NOMBRE;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SER_TIPO_CODIGO;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SER_INDICE;
         private System.Windows.Forms.DataGridViewTextBoxColumn COD_CABYS;
     }
 }

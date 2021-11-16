@@ -16,14 +16,14 @@ namespace PROYECTO {
     using CrystalDecisions.CrystalReports.Engine;
     
     
-    public class rptFacsRecibidasCategoria : ReportClass {
+    public class rptMontosPorGasto : ReportClass {
         
-        public rptFacsRecibidasCategoria() {
+        public rptMontosPorGasto() {
         }
         
         public override string ResourceName {
             get {
-                return "rptFacsRecibidasCategoria.rpt";
+                return "rptMontosPorGasto.rpt";
             }
             set {
                 // Do nothing
@@ -41,7 +41,7 @@ namespace PROYECTO {
         
         public override string FullResourceName {
             get {
-                return "PROYECTO.rptFacsRecibidasCategoria.rpt";
+                return "PROYECTO.rptMontosPorGasto.rpt";
             }
             set {
                 // Do nothing
@@ -90,9 +90,9 @@ namespace PROYECTO {
     }
     
     [System.Drawing.ToolboxBitmapAttribute(typeof(CrystalDecisions.Shared.ExportOptions), "report.bmp")]
-    public class CachedrptFacsRecibidasCategoria : Component, ICachedReport {
+    public class CachedrptMontosPorGasto : Component, ICachedReport {
         
-        public CachedrptFacsRecibidasCategoria() {
+        public CachedrptMontosPorGasto() {
         }
         
         [Browsable(false)]
@@ -129,7 +129,7 @@ namespace PROYECTO {
         }
         
         public virtual CrystalDecisions.CrystalReports.Engine.ReportDocument CreateReport() {
-            rptFacsRecibidasCategoria rpt = new rptFacsRecibidasCategoria();
+            rptMontosPorGasto rpt = new rptMontosPorGasto();
             rpt.Site = this.Site;
             return rpt;
         }

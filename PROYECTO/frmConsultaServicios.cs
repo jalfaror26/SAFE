@@ -111,8 +111,8 @@ namespace PROYECTO
             try
             {
                 indiceServicio = dgrDatos.Rows[e.RowIndex].Cells["INV_COD_ARTICULO"].Value.ToString();
-                codigoServicio = dgrDatos.Rows[e.RowIndex].Cells["ART_CODIGO"].Value.ToString();
-                descripcionServicio = dgrDatos.Rows[e.RowIndex].Cells["ART_NOMBRE"].Value.ToString();
+                codigoServicio = dgrDatos.Rows[e.RowIndex].Cells["SER_CODIGO"].Value.ToString();
+                descripcionServicio = dgrDatos.Rows[e.RowIndex].Cells["SER_NOMBRE"].Value.ToString();
                 IVI = dgrDatos.Rows[e.RowIndex].Cells["INV_IVI"].Value.ToString();
                 IV = double.Parse(dgrDatos.Rows[e.RowIndex].Cells["INV_IMPUESTO_VENTAS"].Value.ToString());
             }
@@ -157,16 +157,16 @@ namespace PROYECTO
                         if (dgrDatos[0, x].Selected && x + 1 < dgrDatos.Rows.Count)
                         {
                             indiceServicio = dgrDatos.Rows[x - 1].Cells["INV_COD_ARTICULO"].Value.ToString();
-                            codigoServicio = dgrDatos.Rows[x - 1].Cells["ART_CODIGO"].Value.ToString();
-                            descripcionServicio = dgrDatos.Rows[x - 1].Cells["ART_NOMBRE"].Value.ToString();
+                            codigoServicio = dgrDatos.Rows[x - 1].Cells["SER_CODIGO"].Value.ToString();
+                            descripcionServicio = dgrDatos.Rows[x - 1].Cells["SER_NOMBRE"].Value.ToString();
                             IVI = dgrDatos.Rows[x - 1].Cells["INV_IVI"].Value.ToString();
                             IV = double.Parse(dgrDatos.Rows[x - 1].Cells["INV_IMPUESTO_VENTAS"].Value.ToString());
                         }
                         if (dgrDatos[0, x].Selected && x + 1 == dgrDatos.Rows.Count)
                         {
                             indiceServicio = dgrDatos.Rows[x].Cells["INV_COD_ARTICULO"].Value.ToString();
-                            codigoServicio = dgrDatos.Rows[x].Cells["ART_CODIGO"].Value.ToString();
-                            descripcionServicio = dgrDatos.Rows[x].Cells["ART_NOMBRE"].Value.ToString();
+                            codigoServicio = dgrDatos.Rows[x].Cells["SER_CODIGO"].Value.ToString();
+                            descripcionServicio = dgrDatos.Rows[x].Cells["SER_NOMBRE"].Value.ToString();
                             IVI = dgrDatos.Rows[x].Cells["INV_IVI"].Value.ToString();
                             IV = double.Parse(dgrDatos.Rows[x].Cells["INV_IMPUESTO_VENTAS"].Value.ToString());
                         }

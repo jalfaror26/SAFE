@@ -141,6 +141,25 @@ namespace PROYECTO
             this.Close();
         }
 
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            frmVistaBitacora oCategorias = frmVistaBitacora.getInstance();
+            codigo = oCategorias.Codigo;
+            descripcion = oCategorias.Descripcion;
+            modulo = oCategorias.Modulo;
+            if (!TienePermiso())
+            {
+                oCategorias.MdiParent = this.MdiParent;
+                oCategorias.Show();
+            }
+            else
+            {
+                MessageBox.Show("No tiene permiso para accesar esta pantalla, comuníquese con el administrador", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                oCategorias = null;
+            }
+            this.Close();
+        }
+
         private void btnAdministracionUsuario_Click(object sender, EventArgs e)
         {
             frmUsuarioAdministracion orpt = frmUsuarioAdministracion.getInstance();

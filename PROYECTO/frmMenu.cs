@@ -167,7 +167,7 @@ namespace PROYECTO
 
         private void btnRepGtsPorCategoria_Click(object sender, EventArgs e)
         {
-            frmrptFactsRecibidasCategoria ofrm = frmrptFactsRecibidasCategoria.getInstance();
+            frmrptMontosPorGasto ofrm = frmrptMontosPorGasto.getInstance();
             codigo = ofrm.Codigo;
             descripcion = ofrm.Descripcion;
             modulo = ofrm.Modulo;

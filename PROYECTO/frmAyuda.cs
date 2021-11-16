@@ -70,12 +70,12 @@ namespace PROYECTO
                     DataTable ocategorias = new DataTable();
                     DataTable oDetalles = new DataTable();
 
-                    TreeNode oParametros = new TreeNode();
-                    oParametros.NodeFont = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
-                    oParametros.Name = "PARAMETROS";
+                    TreeNode oMANTENIMIENTOS = new TreeNode();
+                    oMANTENIMIENTOS.NodeFont = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
+                    oMANTENIMIENTOS.Name = "MANTENIMIENTOS";
 
-                    trvLista.Nodes.Add(oParametros);
-                    trvLista.Nodes["PARAMETROS"].Text = "PARAMETROS";
+                    trvLista.Nodes.Add(oMANTENIMIENTOS);
+                    trvLista.Nodes["MANTENIMIENTOS"].Text = "MANTENIMIENTOS";
 
                     TreeNode oLimpio = new TreeNode();
                     oLimpio.Name = "LIMPIO";
@@ -106,8 +106,8 @@ namespace PROYECTO
 
                         if (oFila.ItemArray[2].ToString().Equals("PROCESOS"))
                             oProcesos.Nodes.Add(oNode);
-                        else if (oFila.ItemArray[2].ToString().Equals("PARAMETROS"))
-                            oParametros.Nodes.Add(oNode);
+                        else if (oFila.ItemArray[2].ToString().Equals("MANTENIMIENTOS"))
+                            oMANTENIMIENTOS.Nodes.Add(oNode);
 
 
                         foreach (DataRow oFila2 in ocategorias.Rows)
@@ -133,7 +133,7 @@ namespace PROYECTO
 
                     if (String.IsNullOrEmpty(vtema))
                     {
-                        trvLista.Nodes["PARAMETROS"].Expand();
+                        trvLista.Nodes["MANTENIMIENTOS"].Expand();
                         trvLista.Nodes["PROCESOS"].Expand();
                     }
                     else
@@ -172,12 +172,12 @@ namespace PROYECTO
                     DataTable ocategorias = new DataTable();
                     DataTable oDetalles = new DataTable();
 
-                    TreeNode oParametros = new TreeNode();
-                    oParametros.NodeFont = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
-                    oParametros.Name = "PARAMETROS";
-                    oParametros.Expand();
-                    trvLista.Nodes.Add(oParametros);
-                    trvLista.Nodes["PARAMETROS"].Text = "PARAMETROS";
+                    TreeNode oMANTENIMIENTOS = new TreeNode();
+                    oMANTENIMIENTOS.NodeFont = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
+                    oMANTENIMIENTOS.Name = "MANTENIMIENTOS";
+                    oMANTENIMIENTOS.Expand();
+                    trvLista.Nodes.Add(oMANTENIMIENTOS);
+                    trvLista.Nodes["MANTENIMIENTOS"].Text = "MANTENIMIENTOS";
 
                     TreeNode oLimpio = new TreeNode();
                     oLimpio.Name = "LIMPIO";
@@ -205,8 +205,8 @@ namespace PROYECTO
 
                         if (oFila.ItemArray[2].ToString().Equals("PROCESOS"))
                             oProcesos.Nodes.Add(oNode);
-                        else if (oFila.ItemArray[2].ToString().Equals("PARAMETROS"))
-                            oParametros.Nodes.Add(oNode);
+                        else if (oFila.ItemArray[2].ToString().Equals("MANTENIMIENTOS"))
+                            oMANTENIMIENTOS.Nodes.Add(oNode);
 
                         foreach (DataRow oFila2 in ocategorias.Rows)
                         {
@@ -231,7 +231,7 @@ namespace PROYECTO
 
                     if (String.IsNullOrEmpty(vtema))
                     {
-                        trvLista.Nodes["PARAMETROS"].Expand();
+                        trvLista.Nodes["MANTENIMIENTOS"].Expand();
                         trvLista.Nodes["PROCESOS"].Expand();
                     }
                     else

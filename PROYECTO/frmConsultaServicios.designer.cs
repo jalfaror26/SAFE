@@ -36,8 +36,8 @@ namespace PROYECTO
             this.txtDescripcion = new System.Windows.Forms.TextBox();
             this.dgrDatos = new System.Windows.Forms.DataGridView();
             this.INV_COD_ARTICULO = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ART_CODIGO = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ART_NOMBRE = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SER_CODIGO = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SER_NOMBRE = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.INV_IVI = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.INV_IMPUESTO_VENTAS = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnSalir = new System.Windows.Forms.Button();
@@ -74,8 +74,8 @@ namespace PROYECTO
             this.dgrDatos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgrDatos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.INV_COD_ARTICULO,
-            this.ART_CODIGO,
-            this.ART_NOMBRE,
+            this.SER_CODIGO,
+            this.SER_NOMBRE,
             this.INV_IVI,
             this.INV_IMPUESTO_VENTAS});
             this.dgrDatos.Location = new System.Drawing.Point(16, 54);
@@ -108,23 +108,23 @@ namespace PROYECTO
             this.INV_COD_ARTICULO.Visible = false;
             this.INV_COD_ARTICULO.Width = 50;
             // 
-            // ART_CODIGO
+            // SER_CODIGO
             // 
-            this.ART_CODIGO.DataPropertyName = "ART_CODIGO";
-            this.ART_CODIGO.HeaderText = "CODIGO";
-            this.ART_CODIGO.MinimumWidth = 6;
-            this.ART_CODIGO.Name = "ART_CODIGO";
-            this.ART_CODIGO.ReadOnly = true;
-            this.ART_CODIGO.Width = 150;
+            this.SER_CODIGO.DataPropertyName = "SER_CODIGO";
+            this.SER_CODIGO.HeaderText = "CODIGO";
+            this.SER_CODIGO.MinimumWidth = 6;
+            this.SER_CODIGO.Name = "SER_CODIGO";
+            this.SER_CODIGO.ReadOnly = true;
+            this.SER_CODIGO.Width = 150;
             // 
-            // ART_NOMBRE
+            // SER_NOMBRE
             // 
-            this.ART_NOMBRE.DataPropertyName = "ART_NOMBRE";
-            this.ART_NOMBRE.HeaderText = "Descripción";
-            this.ART_NOMBRE.MinimumWidth = 6;
-            this.ART_NOMBRE.Name = "ART_NOMBRE";
-            this.ART_NOMBRE.ReadOnly = true;
-            this.ART_NOMBRE.Width = 400;
+            this.SER_NOMBRE.DataPropertyName = "SER_NOMBRE";
+            this.SER_NOMBRE.HeaderText = "Descripción";
+            this.SER_NOMBRE.MinimumWidth = 6;
+            this.SER_NOMBRE.Name = "SER_NOMBRE";
+            this.SER_NOMBRE.ReadOnly = true;
+            this.SER_NOMBRE.Width = 400;
             // 
             // INV_IVI
             // 
@@ -219,8 +219,8 @@ namespace PROYECTO
         private System.Windows.Forms.Button btnAceptar;
         private System.Windows.Forms.TextBox txtCodigo;
         private System.Windows.Forms.DataGridViewTextBoxColumn INV_COD_ARTICULO;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ART_CODIGO;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ART_NOMBRE;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SER_CODIGO;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SER_NOMBRE;
         private System.Windows.Forms.DataGridViewTextBoxColumn INV_IVI;
         private System.Windows.Forms.DataGridViewTextBoxColumn INV_IMPUESTO_VENTAS;
     }

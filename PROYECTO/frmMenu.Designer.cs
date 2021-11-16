@@ -247,7 +247,6 @@ namespace PROYECTO
             this.btnRepPagos.Text = "   PAGOS";
             this.btnRepPagos.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnRepPagos.UseVisualStyleBackColor = true;
-            this.btnRepPagos.Visible = false;
             this.btnRepPagos.Click += new System.EventHandler(this.btnRepPagos_Click);
             // 
             // btnRepInvFac
@@ -1048,7 +1047,7 @@ namespace PROYECTO
             this.btnRepGtsPorCategoria.Name = "btnRepGtsPorCategoria";
             this.btnRepGtsPorCategoria.Size = new System.Drawing.Size(511, 70);
             this.btnRepGtsPorCategoria.TabIndex = 2;
-            this.btnRepGtsPorCategoria.Text = "  GASTOS RECIBIDOS POR CATEGORIA";
+            this.btnRepGtsPorCategoria.Text = "  MONTOS POR GASTO";
             this.btnRepGtsPorCategoria.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnRepGtsPorCategoria.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnRepGtsPorCategoria.UseVisualStyleBackColor = true;
@@ -1235,12 +1234,12 @@ namespace PROYECTO
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(944, 532);
             this.ControlBox = false;
-            this.Controls.Add(this.pReportes);
-            this.Controls.Add(this.pRepGenerales);
             this.Controls.Add(this.pRepPagos);
             this.Controls.Add(this.pRepFinancieros);
             this.Controls.Add(this.pRepInvFact);
             this.Controls.Add(this.pPrincipal);
+            this.Controls.Add(this.pReportes);
+            this.Controls.Add(this.pRepGenerales);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));

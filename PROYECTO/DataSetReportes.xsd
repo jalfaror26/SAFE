@@ -72,6 +72,19 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
+        <xs:element name="rptFacsRecibidasCategoria" msprop:Generator_TableClassName="rptFacsRecibidasCategoriaDataTable" msprop:Generator_TableVarName="tablerptFacsRecibidasCategoria" msprop:Generator_RowChangedName="rptFacsRecibidasCategoriaRowChanged" msprop:Generator_TablePropName="rptFacsRecibidasCategoria" msprop:Generator_RowDeletingName="rptFacsRecibidasCategoriaRowDeleting" msprop:Generator_RowChangingName="rptFacsRecibidasCategoriaRowChanging" msprop:Generator_RowEvHandlerName="rptFacsRecibidasCategoriaRowChangeEventHandler" msprop:Generator_RowDeletedName="rptFacsRecibidasCategoriaRowDeleted" msprop:Generator_RowClassName="rptFacsRecibidasCategoriaRow" msprop:Generator_UserTableName="rptFacsRecibidasCategoria" msprop:Generator_RowEvArgName="rptFacsRecibidasCategoriaRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="gasto" msprop:Generator_ColumnVarNameInTable="columngasto" msprop:Generator_ColumnPropNameInRow="gasto" msprop:Generator_ColumnPropNameInTable="gastoColumn" msprop:Generator_UserColumnName="gasto" type="xs:string" minOccurs="0" />
+              <xs:element name="monto" msprop:Generator_ColumnVarNameInTable="columnmonto" msprop:Generator_ColumnPropNameInRow="monto" msprop:Generator_ColumnPropNameInTable="montoColumn" msprop:Generator_UserColumnName="monto" type="xs:double" minOccurs="0" />
+              <xs:element name="EMPR_NOMBRE" msprop:Generator_ColumnVarNameInTable="columnEMPR_NOMBRE" msprop:Generator_ColumnPropNameInRow="EMPR_NOMBRE" msprop:Generator_ColumnPropNameInTable="EMPR_NOMBREColumn" msprop:Generator_UserColumnName="EMPR_NOMBRE" type="xs:string" minOccurs="0" />
+              <xs:element name="EMPR_LOGO" msprop:Generator_ColumnVarNameInTable="columnEMPR_LOGO" msprop:Generator_ColumnPropNameInRow="EMPR_LOGO" msprop:Generator_ColumnPropNameInTable="EMPR_LOGOColumn" msprop:Generator_UserColumnName="EMPR_LOGO" type="xs:base64Binary" minOccurs="0" />
+              <xs:element name="EMPR_OTROS" msprop:Generator_ColumnVarNameInTable="columnEMPR_OTROS" msprop:Generator_ColumnPropNameInRow="EMPR_OTROS" msprop:Generator_ColumnPropNameInTable="EMPR_OTROSColumn" msprop:Generator_UserColumnName="EMPR_OTROS" type="xs:string" minOccurs="0" />
+              <xs:element name="usuario" msprop:Generator_ColumnVarNameInTable="columnusuario" msprop:Generator_ColumnPropNameInRow="usuario" msprop:Generator_ColumnPropNameInTable="usuarioColumn" msprop:Generator_UserColumnName="usuario" type="xs:string" minOccurs="0" />
+              <xs:element name="filtro_fechas" msprop:Generator_ColumnVarNameInTable="columnfiltro_fechas" msprop:Generator_ColumnPropNameInRow="filtro_fechas" msprop:Generator_ColumnPropNameInTable="filtro_fechasColumn" msprop:Generator_UserColumnName="filtro_fechas" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
       </xs:choice>
     </xs:complexType>
   </xs:element>

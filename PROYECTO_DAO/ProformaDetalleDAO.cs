@@ -125,7 +125,7 @@ namespace PROYECTO_DAO
 
         public DataSet Consulta(int indiceProforma, String pNo_cia)
         {
-            String sql = "select detfac_numerolinea, detfac_codigo, detfac_cantidad, detfac_descripcion, DETFAC_SUBTOTAL, DETFAC_MONTO_IV, detfac_medida, DETFAC_PRECIO_UNITARIO, detfac_tipoprecio, DETFAC_DESCUENTO, DETFAC_PRECIO_TOTAL, ART_CODIGO, detfac_ivi, art_impuestos from TBL_PROFORMA_DETALLE pf, TBL_SERVICIOS ar where ar.no_cia = '" + pNo_cia + "' and ar.no_cia = pf.no_cia and DETFAC_INDICEFACTURA = " + indiceProforma + " and ART_INDICE = detfac_codigo ORDER BY detfac_numerolinea desc";
+            String sql = "select detfac_numerolinea, detfac_codigo, detfac_cantidad, detfac_descripcion, DETFAC_SUBTOTAL, DETFAC_MONTO_IV, detfac_medida, DETFAC_PRECIO_UNITARIO, detfac_tipoprecio, DETFAC_DESCUENTO, DETFAC_PRECIO_TOTAL, SER_CODIGO, detfac_ivi, SER_impuestos from TBL_PROFORMA_DETALLE pf, TBL_SERVICIOS ar where ar.no_cia = '" + pNo_cia + "' and ar.no_cia = pf.no_cia and DETFAC_INDICEFACTURA = " + indiceProforma + " and SER_INDICE = detfac_codigo ORDER BY detfac_numerolinea desc";
             DataSet oDataSet = OracleDAO.getInstance().EjecutarSQLDataSet(sql);
             return oDataSet;
         }

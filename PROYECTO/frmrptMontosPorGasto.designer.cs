@@ -1,6 +1,6 @@
 namespace PROYECTO
 {
-    partial class frmrptFactsRecibidasCategoria
+    partial class frmrptMontosPorGasto
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@ namespace PROYECTO
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmrptFactsRecibidasCategoria));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmrptMontosPorGasto));
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.label4 = new System.Windows.Forms.Label();
             this.txtFechaFinal = new System.Windows.Forms.TextBox();
@@ -49,12 +49,6 @@ namespace PROYECTO
             this.rutaGuardar = new System.Windows.Forms.SaveFileDialog();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.btnVerInfo = new System.Windows.Forms.Button();
-            this.gbTipoInfo = new System.Windows.Forms.GroupBox();
-            this.btnCancelar = new System.Windows.Forms.Button();
-            this.btnAceptar = new System.Windows.Forms.Button();
-            this.rbConded = new System.Windows.Forms.RadioButton();
-            this.rbSinded = new System.Windows.Forms.RadioButton();
-            this.gbTipoInfo.SuspendLayout();
             this.SuspendLayout();
             // 
             // imageList1
@@ -267,89 +261,16 @@ namespace PROYECTO
             this.btnVerInfo.Name = "btnVerInfo";
             this.btnVerInfo.Size = new System.Drawing.Size(125, 34);
             this.btnVerInfo.TabIndex = 418;
-            this.btnVerInfo.Text = "&Ver Info";
+            this.btnVerInfo.Text = "&Ver Detalle";
             this.btnVerInfo.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnVerInfo.UseVisualStyleBackColor = true;
             this.btnVerInfo.Click += new System.EventHandler(this.btnVerInfo_Click);
-            // 
-            // gbTipoInfo
-            // 
-            this.gbTipoInfo.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.gbTipoInfo.Controls.Add(this.btnCancelar);
-            this.gbTipoInfo.Controls.Add(this.btnAceptar);
-            this.gbTipoInfo.Controls.Add(this.rbConded);
-            this.gbTipoInfo.Controls.Add(this.rbSinded);
-            this.gbTipoInfo.Location = new System.Drawing.Point(89, 9);
-            this.gbTipoInfo.Margin = new System.Windows.Forms.Padding(4);
-            this.gbTipoInfo.Name = "gbTipoInfo";
-            this.gbTipoInfo.Padding = new System.Windows.Forms.Padding(4);
-            this.gbTipoInfo.Size = new System.Drawing.Size(317, 129);
-            this.gbTipoInfo.TabIndex = 419;
-            this.gbTipoInfo.TabStop = false;
-            this.gbTipoInfo.Text = "Tipo de Informacion";
-            this.gbTipoInfo.Visible = false;
-            // 
-            // btnCancelar
-            // 
-            this.btnCancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancelar.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnCancelar.ImageIndex = 1;
-            this.btnCancelar.ImageList = this.imageList1;
-            this.btnCancelar.Location = new System.Drawing.Point(29, 78);
-            this.btnCancelar.Margin = new System.Windows.Forms.Padding(4);
-            this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(125, 34);
-            this.btnCancelar.TabIndex = 384;
-            this.btnCancelar.Text = "Cancelar";
-            this.btnCancelar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnCancelar.UseVisualStyleBackColor = true;
-            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
-            // 
-            // btnAceptar
-            // 
-            this.btnAceptar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAceptar.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnAceptar.ImageIndex = 4;
-            this.btnAceptar.ImageList = this.imageList1;
-            this.btnAceptar.Location = new System.Drawing.Point(163, 78);
-            this.btnAceptar.Margin = new System.Windows.Forms.Padding(4);
-            this.btnAceptar.Name = "btnAceptar";
-            this.btnAceptar.Size = new System.Drawing.Size(125, 34);
-            this.btnAceptar.TabIndex = 383;
-            this.btnAceptar.Text = "&Aceptar";
-            this.btnAceptar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnAceptar.UseVisualStyleBackColor = true;
-            this.btnAceptar.Click += new System.EventHandler(this.btnAceptar_Click);
-            // 
-            // rbConded
-            // 
-            this.rbConded.AutoSize = true;
-            this.rbConded.Location = new System.Drawing.Point(143, 38);
-            this.rbConded.Margin = new System.Windows.Forms.Padding(4);
-            this.rbConded.Name = "rbConded";
-            this.rbConded.Size = new System.Drawing.Size(163, 21);
-            this.rbConded.TabIndex = 1;
-            this.rbConded.Text = "Facturas modificadas";
-            this.rbConded.UseVisualStyleBackColor = true;
-            // 
-            // rbSinded
-            // 
-            this.rbSinded.Checked = true;
-            this.rbSinded.Location = new System.Drawing.Point(9, 26);
-            this.rbSinded.Margin = new System.Windows.Forms.Padding(4);
-            this.rbSinded.Name = "rbSinded";
-            this.rbSinded.Size = new System.Drawing.Size(128, 44);
-            this.rbSinded.TabIndex = 0;
-            this.rbSinded.TabStop = true;
-            this.rbSinded.Text = "Facturas sin modificar";
-            this.rbSinded.UseVisualStyleBackColor = true;
             // 
             // frmrptFactsRecibidasCategoria
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(516, 160);
-            this.Controls.Add(this.gbTipoInfo);
             this.Controls.Add(this.btnVerInfo);
             this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.chkXML);
@@ -372,11 +293,9 @@ namespace PROYECTO
             this.MinimizeBox = false;
             this.Name = "frmrptFactsRecibidasCategoria";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Reporte Montos Recibidos por Categoria";
+            this.Text = "Montos por Gasto";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmrptReportePagosRealizadosCategoria_FormClosing);
             this.Load += new System.EventHandler(this.frmrptReportePagosRealizadosCategoria_Load);
-            this.gbTipoInfo.ResumeLayout(false);
-            this.gbTipoInfo.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -403,10 +322,5 @@ namespace PROYECTO
         private System.Windows.Forms.SaveFileDialog rutaGuardar;
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.Button btnVerInfo;
-        private System.Windows.Forms.GroupBox gbTipoInfo;
-        private System.Windows.Forms.RadioButton rbSinded;
-        private System.Windows.Forms.RadioButton rbConded;
-        private System.Windows.Forms.Button btnCancelar;
-        private System.Windows.Forms.Button btnAceptar;
     }
 }

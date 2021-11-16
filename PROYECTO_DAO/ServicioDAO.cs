@@ -71,14 +71,14 @@ namespace PROYECTO_DAO
 
         public DataSet Consultar(String pNo_cia)
         {
-            String sql = "Select ART_INDICE as cod, ART_DESC_BREVE as descripcion FROM tbl_servicios ar where ar.no_cia = '" + pNo_cia + "' and ART_ESTADO = 1 ORDER BY ART_DESC_BREVE,ART_TIPO, ART_INDICE";
+            String sql = "Select SER_INDICE as cod, SER_DESC_BREVE as descripcion FROM tbl_servicios ar where ar.no_cia = '" + pNo_cia + "' and SER_ESTADO = 1 ORDER BY SER_DESC_BREVE,SER_TIPO, SER_INDICE";
             DataSet oDataSet = OracleDAO.getInstance().EjecutarSQLDataSet(sql);
             return oDataSet;
         }
 
         public DataSet ConsultarTodo(String pNo_cia)
         {
-            String sql = "SELECT ART_INDICE, ART_TIPO, ART_CODIGO, ART_DESC_BREVE, ART_IMPUESTOS, ART_VENTA_IVI, ART_ESTADO, ART_TIPO_CODIGO, Cod_cabys FROM tbl_servicios ar WHERE ar.no_cia = '" + pNo_cia + "' and ART_ESTADO = 1 AND ART_TIPO = 'SER' ORDER BY ART_DESC_BREVE,ART_TIPO, ART_INDICE";
+            String sql = "SELECT SER_INDICE, SER_TIPO, SER_CODIGO, SER_DESC_BREVE, SER_IMPUESTOS, SER_VENTA_IVI, SER_ESTADO, SER_TIPO_CODIGO, Cod_cabys FROM tbl_servicios ar WHERE ar.no_cia = '" + pNo_cia + "' and SER_ESTADO = 1 AND SER_TIPO = 'SER' ORDER BY SER_DESC_BREVE,SER_TIPO, SER_INDICE";
 
 
             DataSet oDataSet = OracleDAO.getInstance().EjecutarSQLDataSet(sql);
@@ -87,31 +87,31 @@ namespace PROYECTO_DAO
 
         public DataTable ConsultarEspecificoIndice2(String codIndice, String pNo_cia)
         {
-            String sql = "SELECT ART_INDICE, ART_TIPO, ART_INDICE, ART_DESC_BREVE, ART_IMPUESTOS, ART_ESTADO, ART_TIPO_CODIGO, ART_CODIGO, ART_VENTA_IVI, Cod_cabys FROM tbl_servicios ar WHERE ar.no_cia = '" + pNo_cia + "' and ART_ESTADO = 1 AND ART_INDICE = '" + codIndice + "' order by ART_DESC_BREVE";
+            String sql = "SELECT SER_INDICE, SER_TIPO, SER_INDICE, SER_DESC_BREVE, SER_IMPUESTOS, SER_ESTADO, SER_TIPO_CODIGO, SER_CODIGO, SER_VENTA_IVI, Cod_cabys FROM tbl_servicios ar WHERE ar.no_cia = '" + pNo_cia + "' and SER_ESTADO = 1 AND SER_INDICE = '" + codIndice + "' order by SER_DESC_BREVE";
             DataTable oDataTable = OracleDAO.getInstance().EjecutarSQLDataTable(sql);
             return oDataTable;
         }
 
         public DataSet Busqueda_Consulta(String pNo_cia)
         {
-            String sql = "Select ART_INDICE as cod, ART_DESC_BREVE as descripcion, ART_INDICE dato1, 0 dato2, '' dato3 FROM tbl_servicios ar WHERE ar.no_cia = '" + pNo_cia + "' and ART_TIPO = 'ART' AND ART_ESTADO = 1 ORDER BY ART_DESC_BREVE";
+            String sql = "Select SER_INDICE as cod, SER_DESC_BREVE as descripcion, SER_INDICE dato1, 0 dato2, '' dato3 FROM tbl_servicios ar WHERE ar.no_cia = '" + pNo_cia + "' and SER_TIPO = 'ART' AND SER_ESTADO = 1 ORDER BY SER_DESC_BREVE";
             DataSet oDataSet = OracleDAO.getInstance().EjecutarSQLDataSet(sql);
             return oDataSet;
         }
 
         public DataSet Listar(int tipo, String palabra, String pNo_cia)
         {
-            string sql = "SELECT ART_INDICE, ART_TIPO, ART_CODIGO, ART_DESC_BREVE, ART_IMPUESTOS, ART_VENTA_IVI, ART_ESTADO, ART_TIPO_CODIGO, Cod_cabys FROM tbl_servicios ar WHERE ar.no_cia = '" + pNo_cia + "' and ART_ESTADO = 1 AND ART_TIPO = 'SER' ";
+            string sql = "SELECT SER_INDICE, SER_TIPO, SER_CODIGO, SER_DESC_BREVE, SER_IMPUESTOS, SER_VENTA_IVI, SER_ESTADO, SER_TIPO_CODIGO, Cod_cabys FROM tbl_servicios ar WHERE ar.no_cia = '" + pNo_cia + "' and SER_ESTADO = 1 AND SER_TIPO = 'SER' ";
 
 
             if (palabra.Length > 0)
             {
                 if (tipo == 1)
-                    sql += "AND regexp_like(ART_CODIGO,'" + palabra + "','i') ";
+                    sql += "AND regexp_like(SER_CODIGO,'" + palabra + "','i') ";
                 if (tipo == 2)
-                    sql += "AND regexp_like(ART_DESC_BREVE,'" + palabra + "','i') ";
+                    sql += "AND regexp_like(SER_DESC_BREVE,'" + palabra + "','i') ";
             }
-            sql += "ORDER BY ART_DESC_BREVE, ART_TIPO, ART_INDICE";
+            sql += "ORDER BY SER_DESC_BREVE, SER_TIPO, SER_INDICE";
             DataSet oDataSet = OracleDAO.getInstance().EjecutarSQLDataSet(sql);
             return oDataSet;
         }
@@ -122,7 +122,7 @@ namespace PROYECTO_DAO
         {
             String sql = "";
 
-            sql = "SELECT DISTINCT ART_INDICE INV_COD_ARTICULO, ART_CODIGO, ART_DESC_BREVE ART_NOMBRE, art_venta_ivi INV_IVI, art_impuestos INV_IMPUESTO_VENTAS, Cod_cabys FROM tbl_servicios ar WHERE ar.no_cia = '" + pNo_cia + "' and  ART_TIPO = 'SER' AND ART_ESTADO = 1 ORDER BY art_desc_breve";
+            sql = "SELECT DISTINCT SER_INDICE INV_COD_ARTICULO, SER_CODIGO, SER_DESC_BREVE SER_NOMBRE, SER_venta_ivi INV_IVI, SER_impuestos INV_IMPUESTO_VENTAS, Cod_cabys FROM tbl_servicios ar WHERE ar.no_cia = '" + pNo_cia + "' and  SER_TIPO = 'SER' AND SER_ESTADO = 1 ORDER BY SER_desc_breve";
 
             DataSet oDataSet = OracleDAO.getInstance().EjecutarSQLDataSet(sql);
             return oDataSet;
@@ -132,14 +132,14 @@ namespace PROYECTO_DAO
         {
             String sql = "";
 
-            sql = "SELECT DISTINCT ART_INDICE INV_COD_ARTICULO, ART_CODIGO, ART_DESC_BREVE ART_NOMBRE, art_venta_ivi INV_IVI, art_impuestos INV_IMPUESTO_VENTAS, Cod_cabys FROM tbl_servicios ar WHERE ar.no_cia = '" + pNo_cia + "' and  ART_TIPO = 'SER' AND ART_ESTADO = 1 ";
+            sql = "SELECT DISTINCT SER_INDICE INV_COD_ARTICULO, SER_CODIGO, SER_DESC_BREVE SER_NOMBRE, SER_venta_ivi INV_IVI, SER_impuestos INV_IMPUESTO_VENTAS, Cod_cabys FROM tbl_servicios ar WHERE ar.no_cia = '" + pNo_cia + "' and  SER_TIPO = 'SER' AND SER_ESTADO = 1 ";
 
             if (!codigo.Equals(""))
-                sql += " AND regexp_like(ART_INDICE,'" + codigo + "','i')";
+                sql += " AND regexp_like(SER_INDICE,'" + codigo + "','i')";
             if (!descripcion.Equals(""))
-                sql += " AND regexp_like(ART_DESC_BREVE,'" + descripcion + "','i')";
+                sql += " AND regexp_like(SER_DESC_BREVE,'" + descripcion + "','i')";
 
-            sql += " ORDER BY art_desc_breve";
+            sql += " ORDER BY SER_desc_breve";
 
             DataSet oDataSet = OracleDAO.getInstance().EjecutarSQLDataSet(sql);
             return oDataSet;
@@ -149,12 +149,12 @@ namespace PROYECTO_DAO
         {
             String sql = "";
 
-            sql = "SELECT DISTINCT ART_INDICE INV_COD_ARTICULO, ART_CODIGO, ART_DESC_BREVE ART_NOMBRE, art_venta_ivi INV_IVI, art_impuestos INV_IMPUESTO_VENTAS, Cod_cabys FROM tbl_servicios ar WHERE ar.no_cia = '" + pNo_cia + "' and  ART_TIPO = 'SER' AND ART_ESTADO = 1 ";
+            sql = "SELECT DISTINCT SER_INDICE INV_COD_ARTICULO, SER_CODIGO, SER_DESC_BREVE SER_NOMBRE, SER_venta_ivi INV_IVI, SER_impuestos INV_IMPUESTO_VENTAS, Cod_cabys FROM tbl_servicios ar WHERE ar.no_cia = '" + pNo_cia + "' and  SER_TIPO = 'SER' AND SER_ESTADO = 1 ";
 
             if (!codigo.Equals(""))
-                sql += " AND ART_CODIGO = '" + codigo + "'";
+                sql += " AND SER_CODIGO = '" + codigo + "'";
 
-            sql += " ORDER BY art_desc_breve";
+            sql += " ORDER BY SER_desc_breve";
 
             DataSet oDataSet = OracleDAO.getInstance().EjecutarSQLDataSet(sql);
             return oDataSet;
@@ -164,16 +164,16 @@ namespace PROYECTO_DAO
         {
             String sql = "";
 
-            sql = "SELECT case when ARPRE_EMBALAJE='talla' then ARPRE_CANTIDAD||' '||ARPRE_EMBALAJE else ARPRE_EMBALAJE end ARPRE_EMBALAJE,ARPRE_INDICE,ART_INDICE, ART_CODIGO, ART_PROVEEDOR,'' ARTALM_ALMACEN, ART_DESC_BREVE ART_NOMBRE, '' ALM_DESCRIPCION, 0 inv_total , cat_descripcion, Cod_cabys";
+            sql = "SELECT case when ARPRE_EMBALAJE='talla' then ARPRE_CANTIDAD||' '||ARPRE_EMBALAJE else ARPRE_EMBALAJE end ARPRE_EMBALAJE,ARPRE_INDICE,SER_INDICE, SER_CODIGO, SER_PROVEEDOR,'' ARTALM_ALMACEN, SER_DESC_BREVE SER_NOMBRE, '' ALM_DESCRIPCION, 0 inv_total , cat_descripcion, Cod_cabys";
 
-            sql += " FROM tbl_servicios ar, TBL_ARTICULO_PRESENTACION ap, TBL_CATEGORIA c WHERE ar.no_cia = '" + pNo_cia + "' and ar.no_cia = ap.no_cia and ar.no_cia = c.no_cia and ART_TIPO = 'ART' AND ART_ESTADO = 1 AND ARPRE_ARTICULO = ART_INDICE and art_categoria = cat_indice";
+            sql += " FROM tbl_servicios ar, TBL_ARTICULO_PRESENTACION ap, TBL_CATEGORIA c WHERE ar.no_cia = '" + pNo_cia + "' and ar.no_cia = ap.no_cia and ar.no_cia = c.no_cia and SER_TIPO = 'ART' AND SER_ESTADO = 1 AND ARPRE_ARTICULO = SER_INDICE and SER_categoria = cat_indice";
 
             if (!codigo.Equals(""))
-                sql += " AND regexp_like(ART_CODIGO,'" + codigo + "')";
+                sql += " AND regexp_like(SER_CODIGO,'" + codigo + "')";
             if (!descripcion.Equals(""))
-                sql += " AND regexp_like(ART_DESC_BREVE,'" + descripcion + "')";
+                sql += " AND regexp_like(SER_DESC_BREVE,'" + descripcion + "')";
 
-            sql += " ORDER BY art_desc_breve, ARPRE_CANTIDAD, ARPRE_EMBALAJE";
+            sql += " ORDER BY SER_desc_breve, ARPRE_CANTIDAD, ARPRE_EMBALAJE";
 
             DataSet oDataSet = OracleDAO.getInstance().EjecutarSQLDataSet(sql);
             return oDataSet;

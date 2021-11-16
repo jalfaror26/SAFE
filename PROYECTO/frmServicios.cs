@@ -141,9 +141,7 @@ namespace PROYECTO
                         MessageBox.Show("Error al guardar:\n" + oServicioDAO.DescError(), "Error de consulta", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     else
                     {
-                        nuevo = false;
-
-                        if (oServicio.Impuestos == 1 && !chkIVI.Checked)
+                        if (oServicio.Impuestos == 1 && !chkIVI.Checked && nuevo)
                         {
                             btnImpuestos.Enabled = true;
                             btnImpuestos.PerformClick();
@@ -158,6 +156,8 @@ namespace PROYECTO
                             Llenar_Grid();
                             LimpiarCampos();
                         }
+
+                        nuevo = false;
                     }
                 }
                 else
@@ -416,11 +416,11 @@ namespace PROYECTO
         {
             try
             {
-                indice = double.Parse(dgrDatos["ART_INDICE", e.RowIndex].Value.ToString());
-                txtCodigo.Text = dgrDatos["ART_CODIGO", e.RowIndex].Value.ToString();
-                txtDesBreveArt.Text = dgrDatos["ART_DESC_BREVE", e.RowIndex].Value.ToString();
+                indice = double.Parse(dgrDatos["SER_INDICE", e.RowIndex].Value.ToString());
+                txtCodigo.Text = dgrDatos["SER_CODIGO", e.RowIndex].Value.ToString();
+                txtDesBreveArt.Text = dgrDatos["SER_DESC_BREVE", e.RowIndex].Value.ToString();
                 txtCodCabys.Text = dgrDatos["COD_CABYS", e.RowIndex].Value.ToString();
-                String tipoImpuesto = dgrDatos["ART_IMPUESTOS", e.RowIndex].Value.ToString();
+                String tipoImpuesto = dgrDatos["SER_IMPUESTOS", e.RowIndex].Value.ToString();
 
 
                 if (tipoImpuesto.Equals("0"))
@@ -431,7 +431,7 @@ namespace PROYECTO
                 {
                     rboGravado.Checked = true;
 
-                    if (dgrDatos["ART_VENTA_IVI", e.RowIndex].Value.ToString().Equals("S"))
+                    if (dgrDatos["SER_VENTA_IVI", e.RowIndex].Value.ToString().Equals("S"))
                         chkIVI.Checked = true;
                     else
                         chkIVI.Checked = false;
@@ -465,8 +465,8 @@ namespace PROYECTO
                     {
                         if (oData.Rows.Count > 0)
                         {
-                            txtCodigo.Text = oData.Rows[0]["ART_CODIGO"].ToString();
-                            txtDesBreveArt.Text = oData.Rows[0]["ART_DESC_BREVE"].ToString();
+                            txtCodigo.Text = oData.Rows[0]["SER_CODIGO"].ToString();
+                            txtDesBreveArt.Text = oData.Rows[0]["SER_DESC_BREVE"].ToString();
 
                         }
                         oConexion.cerrarConexion();
