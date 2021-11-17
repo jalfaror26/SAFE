@@ -29,7 +29,7 @@ namespace PROYECTO_DAO
             oCommand.Parameters.Add("desbreve", OracleType.NVarChar);
             oCommand.Parameters[2].Value = oServicio.Descripcion;
             oCommand.Parameters.Add("nombre", OracleType.NVarChar);
-            oCommand.Parameters[3].Value = oServicio.Descripcion;
+            oCommand.Parameters[3].Value = oServicio.Nombre;
             oCommand.Parameters.Add("impuestos", OracleType.Number);
             oCommand.Parameters[4].Value = oServicio.Impuestos;
             oCommand.Parameters.Add("indice", OracleType.Number);

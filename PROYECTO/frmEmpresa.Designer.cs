@@ -211,8 +211,7 @@ namespace PROYECTO
             // 
             // ttInformacion
             // 
-            this.ttInformacion.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
-            this.ttInformacion.ToolTipTitle = "Información Importante";
+            this.ttInformacion.IsBalloon = true;
             // 
             // imgMenu
             // 
@@ -253,6 +252,7 @@ namespace PROYECTO
             this.btnMSalir.Text = "Salir";
             this.btnMSalir.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnMSalir.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.ttInformacion.SetToolTip(this.btnMSalir, "Presione para SALIR");
             this.btnMSalir.UseVisualStyleBackColor = true;
             this.btnMSalir.Click += new System.EventHandler(this.btnMSalir_Click);
             // 
@@ -270,6 +270,7 @@ namespace PROYECTO
             this.btnMNuevo.Text = "Limpiar";
             this.btnMNuevo.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnMNuevo.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.ttInformacion.SetToolTip(this.btnMNuevo, "Presione para LIMPIAR los campos");
             this.btnMNuevo.UseVisualStyleBackColor = true;
             this.btnMNuevo.Click += new System.EventHandler(this.btnMNuevo_Click);
             // 
@@ -287,6 +288,7 @@ namespace PROYECTO
             this.btnMBackup.Text = "Backup de BD";
             this.btnMBackup.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnMBackup.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.ttInformacion.SetToolTip(this.btnMBackup, "Presione para iniciar el respaldo de la Base de Datos");
             this.btnMBackup.UseVisualStyleBackColor = true;
             this.btnMBackup.Click += new System.EventHandler(this.btnMBackup_Click);
             // 
@@ -304,6 +306,7 @@ namespace PROYECTO
             this.btnMGuardar.Text = "Guardar";
             this.btnMGuardar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnMGuardar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.ttInformacion.SetToolTip(this.btnMGuardar, "Presione para GUARDAR los datos");
             this.btnMGuardar.UseVisualStyleBackColor = true;
             this.btnMGuardar.Click += new System.EventHandler(this.btnMGuardar_Click);
             // 

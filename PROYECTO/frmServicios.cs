@@ -8,6 +8,8 @@ using System.Windows.Forms;
 using PROYECTO_DAO;
 using ENTIDADES;
 using System.IO;
+using Newtonsoft.Json;
+using System.Net;
 
 namespace PROYECTO
 {
@@ -25,6 +27,7 @@ namespace PROYECTO
         private ConexionDAO oConexion = new ConexionDAO(PROYECTO.Properties.Settings.Default.UsuarioBD, PROYECTO.Properties.Settings.Default.Servidor, Conexion.getInstance().Clave);
         private Servicio oServicio;
         private double indice = 0;
+        private readonly Ent_CW oControl = new Ent_CW();
 
         private String codigo = "par_Servicios", descripcion = "Mantenimiento de servicios", modulo = "Mantenimientos";
 
@@ -79,7 +82,7 @@ namespace PROYECTO
             /*Codigos*/
             /*Descripciones*/
             txtDesBreveArt.Clear();
-
+            txtCodCabys.Clear();
             /*Precios*/
             txtPrecioCosto.Text = "0.00";
             txtPrecioVenta.Text = "0.00";
@@ -588,6 +591,16 @@ namespace PROYECTO
             }
         }
 
+        private void btnDescargarClientes_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Si algún servicio ya existe, este será actualizado!!\n¿Seguro que desea continuar?", "Advertencia", MessageBoxButtons.YesNo);
+
+            if (result == DialogResult.Yes)
+            {
+                ActualizarServicios();
+            }
+        }
+
         private void chkIVI_CheckedChanged(object sender, EventArgs e)
         {
             if (indice > 0)
@@ -619,5 +632,171 @@ namespace PROYECTO
             oFrm.MdiParent = this.MdiParent;
             oFrm.Show();
         }
+
+        public Boolean Internet()
+        {
+            try
+            {
+                Boolean internet = false;
+
+                //Revisar la conexión a la Red local
+                bool RedActiva = System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable();
+
+                if (RedActiva)
+                {
+                    //Ahora si estamos conectados a la Red podemos enviar un ping a una pagina en Internet para asegurar la conexión.
+                    Uri Url = new System.Uri("https://www.google.com/");
+
+                    WebRequest WebRequest;
+                    WebRequest = System.Net.WebRequest.Create(Url);
+                    WebResponse objetoResp;
+
+                    try
+                    {
+                        objetoResp = WebRequest.GetResponse();
+                        internet = true;
+                        objetoResp.Close();
+                    }
+                    catch (Exception e)
+                    {
+                        internet = false;
+                    }
+                    WebRequest = null;
+                }
+
+                return internet;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
+        private void ActualizarServicios()
+        {
+            try
+            {
+                if (Internet())
+                {
+                    String oDatosJson = oControl.TraerServicios(out Boolean /*HttpStatusCode*/ vOut, out Boolean vTimeOut);
+
+                    if (vTimeOut)
+                    {
+                        MessageBox.Show("A sucedido un problema de conexión, por favor intente nuevamente, si el problema persiste informe a Soporte Técnico.", "Error de Conexión", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                        return;
+                    }
+
+                    var jobject = JsonConvert.DeserializeObject<Root>(oDatosJson);
+
+                    if (vOut)/* == HttpStatusCode.OK)*/
+                    {
+                        Boolean vHayError = false;
+                        int totalServicios = jobject.productos.Count;
+                        int totalErrores = totalServicios;
+
+
+                        oConexion.cerrarConexion();
+                        if (oConexion.abrirConexion())
+                        {
+                            foreach (Producto oResultado in jobject.productos)
+                            {
+                                int vid = oResultado.id;
+                                string vcodigo = oResultado.codigo;
+                                String vcodigoComercial = oResultado.codigoComercial;
+                                String vdescripcionGeneral = oResultado.descripcionGeneral;
+                                String vunidad = oResultado.unidad;
+                                double vprecio = oResultado.precio;
+                                double vcantidad = oResultado.cantidad;
+                                string vdetalle = oResultado.detalle;
+                                String vcodigo_barra = oResultado.codigo_barra;
+
+
+                                if (String.IsNullOrEmpty(vcodigo))
+                                    vcodigo = "";
+                                if (String.IsNullOrEmpty(vcodigoComercial))
+                                    vcodigoComercial = "";
+                                if (String.IsNullOrEmpty(vdescripcionGeneral))
+                                    vdescripcionGeneral = "";
+                                if (String.IsNullOrEmpty(vunidad))
+                                    vunidad = "";
+                                if (String.IsNullOrEmpty(vdetalle))
+                                    vdetalle = "";
+                                if (String.IsNullOrEmpty(vcodigo_barra))
+                                    vcodigo_barra = "";
+
+                                try
+                                {
+                                    if (String.IsNullOrEmpty(vcodigo.Trim()) || String.IsNullOrEmpty(vdetalle.Trim()) || String.IsNullOrEmpty(vunidad.Trim()))
+                                        vHayError = true;
+                                    else
+                                    {
+                                        oServicio = new Servicio();
+                                        oServicio.No_cia = PROYECTO.Properties.Settings.Default.No_cia;
+                                        oServicio.Tipo = "SER";
+                                        oServicio.Impuestos = 1;
+                                        oServicio.Cod_cabys = vcodigoComercial;
+                                        oServicio.Venta_IVI = "N";
+                                        oServicio.Indice = 0;
+                                        oServicio.Codigo = vcodigo.ToUpper();
+                                        oServicio.Descripcion = vdetalle.ToUpper();
+                                        oServicio.Nombre = vdescripcionGeneral;
+                                        oServicio.TipoCodigo = "EX";
+
+                                        indice = double.Parse(oServicioDAO.Agregar(oServicio));
+
+                                        if (oServicioDAO.Error())
+                                        {
+                                            vHayError = true;
+                                            MessageBox.Show("Error al Guardar el Servicio: " + oServicio.Codigo + " - " + oServicio.Nombre + "\n" + oServicioDAO.DescError(), "Error de consulta", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                        }
+                                        else
+                                            totalErrores--;
+                                    }
+                                }
+                                catch { }
+                            }
+                            oConexion.cerrarConexion();
+
+                            if (vHayError)
+                                MessageBox.Show("Proceso Finalizado con errores!!\nTotal servicios: " + totalServicios.ToString("###,###,##0") + "\nTotal errores: " + totalErrores.ToString("###,###,##0"), "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            else
+                                MessageBox.Show("Proceso Finalizado correctamente!!\nTotal servicios: " + totalServicios.ToString("###,###,##0") + "\nTotal errores: " + totalErrores.ToString("###,###,##0"), "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                        else
+                        {
+                            MessageBox.Show("Error al conectarse con la base de datos\nVerifique que los datos estén correctos");
+                            return;
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Error al extraer datos!!!", "Error de Conexión", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+
+                    Llenar_Grid();
+                    btnMNuevo.PerformClick();
+                }
+                else
+                {
+                    MessageBox.Show("Sin conexión a internet!!!", "Error de Conexión", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al buscar API!!!", "Error de Conexión", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                // Qué ha sucedido
+                var mensaje = "Error message: " + ex.Message;
+
+                // Información sobre la excepción interna
+                if (ex.InnerException != null)
+                {
+                    mensaje = mensaje + " Inner exception: " + ex.InnerException.Message;
+                }
+
+            }
+        }
+
     }
 }

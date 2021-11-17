@@ -2,11 +2,13 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Net;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using PROYECTO_DAO;
 using ENTIDADES;
+using Newtonsoft.Json;
 
 namespace PROYECTO
 {
@@ -25,6 +27,8 @@ namespace PROYECTO
         private String codigo = "par_clientes", descripcion = "Registro de clientes del sistema.", modulo = "Mantenimientos";
         private string txtCodigo = "";
         private Hacienda_DireccionDAO oHacienda_DireccionDAO = new Hacienda_DireccionDAO();
+        private readonly Ent_CW oControl = new Ent_CW();
+
 
         public String Modulo
         {
@@ -175,17 +179,17 @@ namespace PROYECTO
             catch (Exception ex) { }
         }
 
-        private char EvaluarTipoID()
+        private String EvaluarTipoID()
         {
-            char ret = ' ';
+            String ret = "";
             if (cboTipoId.Text.Equals("Jurídica"))
-                ret = 'J';
+                ret = "J";
             if (cboTipoId.Text.Equals("Física"))
-                ret = 'F';
+                ret = "F";
             if (cboTipoId.Text.Equals("Pasaporte"))
-                ret = 'P';
+                ret = "P";
             if (cboTipoId.Text.Equals("Residencia"))
-                ret = 'R';
+                ret = "R";
             return ret;
         }
 
@@ -632,6 +636,201 @@ namespace PROYECTO
             catch (Exception ex)
             {
                 oConexion.cerrarConexion();
+            }
+        }
+
+        private void btnDescargarClientes_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Si algún cliente ya existe, este será actualizado!!\n¿Seguro que desea continuar?", "Advertencia", MessageBoxButtons.YesNo);
+
+            if (result == DialogResult.Yes)
+            {
+                ActualizarClientes();
+            }
+        }
+
+        public Boolean Internet()
+        {
+            try
+            {
+                Boolean internet = false;
+
+                //Revisar la conexión a la Red local
+                bool RedActiva = System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable();
+
+                if (RedActiva)
+                {
+                    //Ahora si estamos conectados a la Red podemos enviar un ping a una pagina en Internet para asegurar la conexión.
+                    Uri Url = new System.Uri("https://www.google.com/");
+
+                    WebRequest WebRequest;
+                    WebRequest = System.Net.WebRequest.Create(Url);
+                    WebResponse objetoResp;
+
+                    try
+                    {
+                        objetoResp = WebRequest.GetResponse();
+                        internet = true;
+                        objetoResp.Close();
+                    }
+                    catch (Exception e)
+                    {
+                        internet = false;
+                    }
+                    WebRequest = null;
+                }
+
+                return internet;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
+        private void ActualizarClientes()
+        {
+            try
+            {
+                if (Internet())
+                {
+                    String oDatosJson = oControl.TraerClientes(out Boolean /*HttpStatusCode*/ vOut, out Boolean vTimeOut);
+
+                    if (vTimeOut)
+                    {
+                        MessageBox.Show("A sucedido un problema de conexión, por favor intente nuevamente, si el problema persiste informe a Soporte Técnico.", "Error de Conexión", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                        return;
+                    }
+
+                    var jobject = JsonConvert.DeserializeObject<Root>(oDatosJson);
+
+                    if (vOut)/* == HttpStatusCode.OK)*/
+                    {
+                        Boolean vHayError = false;
+                        int totalClientes = jobject.productos.Count;
+                        int totalErrores = totalClientes;
+
+
+                        oConexion.cerrarConexion();
+                        if (oConexion.abrirConexion())
+                        {
+                            foreach (Producto oResultado in jobject.productos)
+                            {
+                                int vid = oResultado.id;
+                                String vcedula = oResultado.cedula;
+                                String vtipo = oResultado.tipo;
+                                String vnombre = oResultado.nombre;
+                                String vcorreoElectronico = oResultado.correoElectronico;
+                                int vcodigoPais = oResultado.codigoPais;
+                                int vtelefono = oResultado.telefono;
+                                int vprovincia = oResultado.provincia;
+                                int vcanton = oResultado.canton;
+                                int vdistrito = oResultado.distrito;
+                                String votrasSenas = oResultado.otrasSenas;
+                                String vnombreComercial = oResultado.nombreComercial;
+
+                                if (String.IsNullOrEmpty(vcedula))
+                                    vcedula = "";
+                                if (String.IsNullOrEmpty(vtipo))
+                                    vtipo = "";
+                                if (String.IsNullOrEmpty(vnombre))
+                                    vnombre = "";
+                                if (String.IsNullOrEmpty(vcorreoElectronico))
+                                    vcorreoElectronico = "";
+                                if (String.IsNullOrEmpty(votrasSenas))
+                                    votrasSenas = "";
+                                if (String.IsNullOrEmpty(vnombreComercial))
+                                    vnombreComercial = "";
+
+                                try
+                                {
+                                    if (String.IsNullOrEmpty(vcedula.Trim()) || String.IsNullOrEmpty(vtipo.Trim()) || String.IsNullOrEmpty(vnombre.Trim()))
+                                        vHayError = true;
+                                    else
+                                    {
+                                        oCliente = new Cliente();
+
+                                        oCliente.No_cia = PROYECTO.Properties.Settings.Default.No_cia;
+                                        oCliente.Indice = 0;
+                                        oCliente.Id = vid.ToString();
+                                        oCliente.TipoId = vtipo.ToUpper();
+                                        oCliente.Nombre = vnombre.ToUpper();
+                                        oCliente.Telefono = vtelefono.ToString();
+                                        oCliente.Fax = "";
+                                        oCliente.Contacto = "";
+                                        oCliente.Correo = vcorreoElectronico;
+
+                                      
+                                        oCliente.Ubicacion = votrasSenas.ToUpper();
+                                        oCliente.Identificacion = vcedula.ToUpper();
+                                        oCliente.Dias = 0;
+
+                                        oCliente.Almacen = 0;
+                                        oCliente.DescAlmacen = "";
+
+                                        oCliente.Lc_limite = 0;
+                                        oCliente.Lc_moneda = "CRC";
+
+                                        oCliente.Provincia = vprovincia.ToString("");
+                                        oCliente.Canton = vcanton.ToString("####00");
+                                        oCliente.Distrito = vdistrito.ToString("00");
+                                        oCliente.Barrio = "";
+
+                                        oClienteDAO.Agregar(oCliente, out indice);
+
+                                        if (oClienteDAO.Error())
+                                        {
+                                            vHayError = true;
+                                            MessageBox.Show("Error al Guardar el cliente: " + oCliente.Identificacion + " - " + oCliente.Nombre + "\n" + oClienteDAO.DescError(), "Error de consulta", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                        }
+                                        else
+                                            totalErrores--;
+                                    }
+                                }
+                                catch { }
+                            }
+                            oConexion.cerrarConexion();
+
+                            if (vHayError)
+                                MessageBox.Show("Proceso Finalizado con errores!!\nTotal clientes: " + totalClientes.ToString("###,###,##0") + "\nTotal errores: " + totalErrores.ToString("###,###,##0"), "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            else
+                                MessageBox.Show("Proceso Finalizado correctamente!!\nTotal clientes: " + totalClientes.ToString("###,###,##0") + "\nTotal errores: " + totalErrores.ToString("###,###,##0"), "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                        else
+                        {
+                            MessageBox.Show("Error al conectarse con la base de datos\nVerifique que los datos estén correctos");
+                            return;
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Error al extraer datos!!!", "Error de Conexión", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+
+
+                    Llenar_Grid();
+                    btnMNuevo.PerformClick();
+
+                }
+                else
+                {
+                    MessageBox.Show("Sin conexión a internet!!!", "Error de Conexión", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al buscar API!!!", "Error de Conexión", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                // Qué ha sucedido
+                var mensaje = "Error message: " + ex.Message;
+
+                // Información sobre la excepción interna
+                if (ex.InnerException != null)
+                {
+                    mensaje = mensaje + " Inner exception: " + ex.InnerException.Message;
+                }
+
             }
         }
 

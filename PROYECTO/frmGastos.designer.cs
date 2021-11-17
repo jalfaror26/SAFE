@@ -29,8 +29,8 @@ namespace PROYECTO
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmGastos));
             this.label1 = new System.Windows.Forms.Label();
             this.txtBCodigo = new System.Windows.Forms.TextBox();
@@ -55,6 +55,7 @@ namespace PROYECTO
             this.btnMSalir = new System.Windows.Forms.Button();
             this.btnMGuardar = new System.Windows.Forms.Button();
             this.btnMEliminar = new System.Windows.Forms.Button();
+            this.ttInformacion = new System.Windows.Forms.ToolTip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dgrDatos)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -196,19 +197,19 @@ namespace PROYECTO
             this.dgrDatos.AllowUserToDeleteRows = false;
             this.dgrDatos.AllowUserToResizeColumns = false;
             this.dgrDatos.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Gainsboro;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.dgrDatos.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle9.BackColor = System.Drawing.Color.Gainsboro;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            this.dgrDatos.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle9;
             this.dgrDatos.BackgroundColor = System.Drawing.Color.White;
             this.dgrDatos.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgrDatos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgrDatos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
             this.dgrDatos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgrDatos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.gas_indice,
@@ -322,6 +323,7 @@ namespace PROYECTO
             this.btnMNuevo.Text = "Nuevo";
             this.btnMNuevo.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnMNuevo.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.ttInformacion.SetToolTip(this.btnMNuevo, "Presione para ELIMINAR el registro actual");
             this.btnMNuevo.UseVisualStyleBackColor = true;
             this.btnMNuevo.Click += new System.EventHandler(this.btnMNuevo_Click);
             // 
@@ -339,6 +341,7 @@ namespace PROYECTO
             this.btnMSalir.Text = "Salir";
             this.btnMSalir.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnMSalir.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.ttInformacion.SetToolTip(this.btnMSalir, "Presione para SALIR");
             this.btnMSalir.UseVisualStyleBackColor = true;
             this.btnMSalir.Click += new System.EventHandler(this.btnMSalir_Click);
             // 
@@ -356,6 +359,7 @@ namespace PROYECTO
             this.btnMGuardar.Text = "Guardar";
             this.btnMGuardar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnMGuardar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.ttInformacion.SetToolTip(this.btnMGuardar, "Presione para GUARDAR el registro actual");
             this.btnMGuardar.UseVisualStyleBackColor = true;
             this.btnMGuardar.Click += new System.EventHandler(this.btnMGuardar_Click);
             // 
@@ -373,8 +377,13 @@ namespace PROYECTO
             this.btnMEliminar.Text = "Eliminar";
             this.btnMEliminar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnMEliminar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.ttInformacion.SetToolTip(this.btnMEliminar, "Presione para ELIMINAR el registro actual");
             this.btnMEliminar.UseVisualStyleBackColor = true;
             this.btnMEliminar.Click += new System.EventHandler(this.btnMEliminar_Click);
+            // 
+            // ttInformacion
+            // 
+            this.ttInformacion.IsBalloon = true;
             // 
             // frmGastos
             // 
@@ -437,5 +446,6 @@ namespace PROYECTO
         private System.Windows.Forms.DataGridViewTextBoxColumn gas_codigo;
         private System.Windows.Forms.DataGridViewTextBoxColumn gas_nombre;
         private System.Windows.Forms.DataGridViewTextBoxColumn gas_tipo;
+        private System.Windows.Forms.ToolTip ttInformacion;
     }
 }

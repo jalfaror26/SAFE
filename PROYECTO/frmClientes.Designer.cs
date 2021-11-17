@@ -29,12 +29,30 @@ namespace PROYECTO
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmClientes));
             this.label2 = new System.Windows.Forms.Label();
             this.dgrDatos = new System.Windows.Forms.DataGridView();
+            this.cli_identificacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cli_Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CLI_DIAS = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cli_Linea = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cli_Tipo_ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cli_Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cli_Telefono = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cli_Fax = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cli_Contacto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cli_Correo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cli_Ubicacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cli_Credito = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CLI_LC_MONEDA = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CLI_LC_LIMITE = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PROVINCIA = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CANTON = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DISTRITO = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BARRIO = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label1 = new System.Windows.Forms.Label();
             this.txtBId = new System.Windows.Forms.TextBox();
             this.txtBNombre = new System.Windows.Forms.TextBox();
@@ -62,6 +80,7 @@ namespace PROYECTO
             this.txtLCLimite = new System.Windows.Forms.TextBox();
             this.imgMenu = new System.Windows.Forms.ImageList(this.components);
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.btnDescargarClientes = new System.Windows.Forms.Button();
             this.btnMNuevo = new System.Windows.Forms.Button();
             this.btnMSalir = new System.Windows.Forms.Button();
             this.btnMGuardar = new System.Windows.Forms.Button();
@@ -74,24 +93,7 @@ namespace PROYECTO
             this.label7 = new System.Windows.Forms.Label();
             this.cboProvincia = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
-            this.cli_identificacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cli_Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CLI_DIAS = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cli_Linea = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cli_Tipo_ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cli_Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cli_Telefono = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cli_Fax = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cli_Contacto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cli_Correo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cli_Ubicacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cli_Credito = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CLI_LC_MONEDA = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CLI_LC_LIMITE = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PROVINCIA = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CANTON = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DISTRITO = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.BARRIO = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ttInformacion = new System.Windows.Forms.ToolTip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dgrDatos)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -116,18 +118,18 @@ namespace PROYECTO
             this.dgrDatos.AllowUserToDeleteRows = false;
             this.dgrDatos.AllowUserToResizeColumns = false;
             this.dgrDatos.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Gainsboro;
-            this.dgrDatos.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle10.BackColor = System.Drawing.Color.Gainsboro;
+            this.dgrDatos.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle10;
             this.dgrDatos.BackgroundColor = System.Drawing.Color.White;
             this.dgrDatos.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgrDatos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgrDatos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle11;
             this.dgrDatos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgrDatos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.cli_identificacion,
@@ -157,9 +159,9 @@ namespace PROYECTO
             this.dgrDatos.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.dgrDatos.RowHeadersVisible = false;
             this.dgrDatos.RowHeadersWidth = 51;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.Teal;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White;
-            this.dgrDatos.RowsDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.Teal;
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.Color.White;
+            this.dgrDatos.RowsDefaultCellStyle = dataGridViewCellStyle12;
             this.dgrDatos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgrDatos.Size = new System.Drawing.Size(779, 222);
             this.dgrDatos.TabIndex = 40;
@@ -168,6 +170,184 @@ namespace PROYECTO
             this.dgrDatos.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgrDatos_CellEnter);
             this.dgrDatos.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgrDatos_CellEnter);
             this.dgrDatos.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgrDatos_DataBindingComplete);
+            // 
+            // cli_identificacion
+            // 
+            this.cli_identificacion.DataPropertyName = "cli_identificacion";
+            this.cli_identificacion.HeaderText = "IDENTIFICACION";
+            this.cli_identificacion.MinimumWidth = 6;
+            this.cli_identificacion.Name = "cli_identificacion";
+            this.cli_identificacion.ReadOnly = true;
+            this.cli_identificacion.Width = 140;
+            // 
+            // Cli_Id
+            // 
+            this.Cli_Id.DataPropertyName = "Cli_Id";
+            this.Cli_Id.HeaderText = "Cli_Id";
+            this.Cli_Id.MinimumWidth = 6;
+            this.Cli_Id.Name = "Cli_Id";
+            this.Cli_Id.ReadOnly = true;
+            this.Cli_Id.Visible = false;
+            this.Cli_Id.Width = 140;
+            // 
+            // CLI_DIAS
+            // 
+            this.CLI_DIAS.DataPropertyName = "CLI_DIAS";
+            this.CLI_DIAS.HeaderText = "Dias";
+            this.CLI_DIAS.MinimumWidth = 6;
+            this.CLI_DIAS.Name = "CLI_DIAS";
+            this.CLI_DIAS.ReadOnly = true;
+            this.CLI_DIAS.Visible = false;
+            this.CLI_DIAS.Width = 125;
+            // 
+            // Cli_Linea
+            // 
+            this.Cli_Linea.DataPropertyName = "Cli_Linea";
+            this.Cli_Linea.HeaderText = "Línea";
+            this.Cli_Linea.MinimumWidth = 6;
+            this.Cli_Linea.Name = "Cli_Linea";
+            this.Cli_Linea.ReadOnly = true;
+            this.Cli_Linea.Visible = false;
+            this.Cli_Linea.Width = 125;
+            // 
+            // Cli_Tipo_ID
+            // 
+            this.Cli_Tipo_ID.DataPropertyName = "Cli_Tipo_ID";
+            this.Cli_Tipo_ID.HeaderText = "TipoId";
+            this.Cli_Tipo_ID.MinimumWidth = 6;
+            this.Cli_Tipo_ID.Name = "Cli_Tipo_ID";
+            this.Cli_Tipo_ID.ReadOnly = true;
+            this.Cli_Tipo_ID.Visible = false;
+            this.Cli_Tipo_ID.Width = 125;
+            // 
+            // Cli_Nombre
+            // 
+            this.Cli_Nombre.DataPropertyName = "Cli_Nombre";
+            this.Cli_Nombre.HeaderText = "NOMBRE";
+            this.Cli_Nombre.MinimumWidth = 6;
+            this.Cli_Nombre.Name = "Cli_Nombre";
+            this.Cli_Nombre.ReadOnly = true;
+            this.Cli_Nombre.Width = 440;
+            // 
+            // Cli_Telefono
+            // 
+            this.Cli_Telefono.DataPropertyName = "Cli_Telefono";
+            this.Cli_Telefono.HeaderText = "Teléfono";
+            this.Cli_Telefono.MinimumWidth = 6;
+            this.Cli_Telefono.Name = "Cli_Telefono";
+            this.Cli_Telefono.ReadOnly = true;
+            this.Cli_Telefono.Visible = false;
+            this.Cli_Telefono.Width = 75;
+            // 
+            // Cli_Fax
+            // 
+            this.Cli_Fax.DataPropertyName = "Cli_Fax";
+            this.Cli_Fax.HeaderText = "Fax";
+            this.Cli_Fax.MinimumWidth = 6;
+            this.Cli_Fax.Name = "Cli_Fax";
+            this.Cli_Fax.ReadOnly = true;
+            this.Cli_Fax.Visible = false;
+            this.Cli_Fax.Width = 125;
+            // 
+            // Cli_Contacto
+            // 
+            this.Cli_Contacto.DataPropertyName = "Cli_Contacto";
+            this.Cli_Contacto.HeaderText = "Contacto";
+            this.Cli_Contacto.MinimumWidth = 6;
+            this.Cli_Contacto.Name = "Cli_Contacto";
+            this.Cli_Contacto.ReadOnly = true;
+            this.Cli_Contacto.Visible = false;
+            this.Cli_Contacto.Width = 125;
+            // 
+            // Cli_Correo
+            // 
+            this.Cli_Correo.DataPropertyName = "Cli_Correo";
+            this.Cli_Correo.HeaderText = "Correo";
+            this.Cli_Correo.MinimumWidth = 6;
+            this.Cli_Correo.Name = "Cli_Correo";
+            this.Cli_Correo.ReadOnly = true;
+            this.Cli_Correo.Visible = false;
+            this.Cli_Correo.Width = 125;
+            // 
+            // Cli_Ubicacion
+            // 
+            this.Cli_Ubicacion.DataPropertyName = "Cli_Ubicacion";
+            this.Cli_Ubicacion.HeaderText = "Ubicacion";
+            this.Cli_Ubicacion.MinimumWidth = 6;
+            this.Cli_Ubicacion.Name = "Cli_Ubicacion";
+            this.Cli_Ubicacion.ReadOnly = true;
+            this.Cli_Ubicacion.Visible = false;
+            this.Cli_Ubicacion.Width = 125;
+            // 
+            // Cli_Credito
+            // 
+            this.Cli_Credito.DataPropertyName = "Cli_Credito";
+            this.Cli_Credito.HeaderText = "Credito";
+            this.Cli_Credito.MinimumWidth = 6;
+            this.Cli_Credito.Name = "Cli_Credito";
+            this.Cli_Credito.ReadOnly = true;
+            this.Cli_Credito.Visible = false;
+            this.Cli_Credito.Width = 125;
+            // 
+            // CLI_LC_MONEDA
+            // 
+            this.CLI_LC_MONEDA.DataPropertyName = "CLI_LC_MONEDA";
+            this.CLI_LC_MONEDA.HeaderText = "CLI_LC_MONEDA";
+            this.CLI_LC_MONEDA.MinimumWidth = 6;
+            this.CLI_LC_MONEDA.Name = "CLI_LC_MONEDA";
+            this.CLI_LC_MONEDA.ReadOnly = true;
+            this.CLI_LC_MONEDA.Visible = false;
+            this.CLI_LC_MONEDA.Width = 125;
+            // 
+            // CLI_LC_LIMITE
+            // 
+            this.CLI_LC_LIMITE.DataPropertyName = "CLI_LC_LIMITE";
+            this.CLI_LC_LIMITE.HeaderText = "CLI_LC_LIMITE";
+            this.CLI_LC_LIMITE.MinimumWidth = 6;
+            this.CLI_LC_LIMITE.Name = "CLI_LC_LIMITE";
+            this.CLI_LC_LIMITE.ReadOnly = true;
+            this.CLI_LC_LIMITE.Visible = false;
+            this.CLI_LC_LIMITE.Width = 125;
+            // 
+            // PROVINCIA
+            // 
+            this.PROVINCIA.DataPropertyName = "PROVINCIA";
+            this.PROVINCIA.HeaderText = "PROVINCIA";
+            this.PROVINCIA.MinimumWidth = 6;
+            this.PROVINCIA.Name = "PROVINCIA";
+            this.PROVINCIA.ReadOnly = true;
+            this.PROVINCIA.Visible = false;
+            this.PROVINCIA.Width = 125;
+            // 
+            // CANTON
+            // 
+            this.CANTON.DataPropertyName = "CANTON";
+            this.CANTON.HeaderText = "CANTON";
+            this.CANTON.MinimumWidth = 6;
+            this.CANTON.Name = "CANTON";
+            this.CANTON.ReadOnly = true;
+            this.CANTON.Visible = false;
+            this.CANTON.Width = 125;
+            // 
+            // DISTRITO
+            // 
+            this.DISTRITO.DataPropertyName = "DISTRITO";
+            this.DISTRITO.HeaderText = "DISTRITO";
+            this.DISTRITO.MinimumWidth = 6;
+            this.DISTRITO.Name = "DISTRITO";
+            this.DISTRITO.ReadOnly = true;
+            this.DISTRITO.Visible = false;
+            this.DISTRITO.Width = 125;
+            // 
+            // BARRIO
+            // 
+            this.BARRIO.DataPropertyName = "BARRIO";
+            this.BARRIO.HeaderText = "BARRIO";
+            this.BARRIO.MinimumWidth = 6;
+            this.BARRIO.Name = "BARRIO";
+            this.BARRIO.ReadOnly = true;
+            this.BARRIO.Visible = false;
+            this.BARRIO.Width = 125;
             // 
             // label1
             // 
@@ -450,9 +630,11 @@ namespace PROYECTO
             this.imgMenu.Images.SetKeyName(1, "Disc 01.ico");
             this.imgMenu.Images.SetKeyName(2, "Sign 06.ico");
             this.imgMenu.Images.SetKeyName(3, "salir2.ico");
+            this.imgMenu.Images.SetKeyName(4, "actualizar2.png");
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.btnDescargarClientes);
             this.groupBox2.Controls.Add(this.btnMNuevo);
             this.groupBox2.Controls.Add(this.btnMSalir);
             this.groupBox2.Controls.Add(this.btnMGuardar);
@@ -462,9 +644,30 @@ namespace PROYECTO
             this.groupBox2.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox2.Size = new System.Drawing.Size(816, 85);
+            this.groupBox2.Size = new System.Drawing.Size(834, 85);
             this.groupBox2.TabIndex = 44;
             this.groupBox2.TabStop = false;
+            // 
+            // btnDescargarClientes
+            // 
+            this.btnDescargarClientes.AccessibleDescription = "";
+            this.btnDescargarClientes.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.btnDescargarClientes.Font = new System.Drawing.Font("Tempus Sans ITC", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDescargarClientes.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnDescargarClientes.ImageKey = "actualizar2.png";
+            this.btnDescargarClientes.ImageList = this.imgMenu;
+            this.btnDescargarClientes.Location = new System.Drawing.Point(508, 18);
+            this.btnDescargarClientes.Margin = new System.Windows.Forms.Padding(4);
+            this.btnDescargarClientes.Name = "btnDescargarClientes";
+            this.btnDescargarClientes.Size = new System.Drawing.Size(147, 55);
+            this.btnDescargarClientes.TabIndex = 16;
+            this.btnDescargarClientes.Tag = "";
+            this.btnDescargarClientes.Text = "Descargar";
+            this.btnDescargarClientes.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnDescargarClientes.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.ttInformacion.SetToolTip(this.btnDescargarClientes, "Presione para DESCARGAR los clientes del proveedor de Factura Electrónica");
+            this.btnDescargarClientes.UseVisualStyleBackColor = true;
+            this.btnDescargarClientes.Click += new System.EventHandler(this.btnDescargarClientes_Click);
             // 
             // btnMNuevo
             // 
@@ -480,6 +683,7 @@ namespace PROYECTO
             this.btnMNuevo.Text = "Nuevo";
             this.btnMNuevo.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnMNuevo.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.ttInformacion.SetToolTip(this.btnMNuevo, "Presione para ELIMINAR el registro actual");
             this.btnMNuevo.UseVisualStyleBackColor = true;
             this.btnMNuevo.Click += new System.EventHandler(this.btnMNuevo_Click);
             // 
@@ -489,7 +693,7 @@ namespace PROYECTO
             this.btnMSalir.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnMSalir.ImageKey = "salir2.ico";
             this.btnMSalir.ImageList = this.imgMenu;
-            this.btnMSalir.Location = new System.Drawing.Point(508, 18);
+            this.btnMSalir.Location = new System.Drawing.Point(673, 18);
             this.btnMSalir.Margin = new System.Windows.Forms.Padding(4);
             this.btnMSalir.Name = "btnMSalir";
             this.btnMSalir.Size = new System.Drawing.Size(147, 55);
@@ -497,6 +701,7 @@ namespace PROYECTO
             this.btnMSalir.Text = "Salir";
             this.btnMSalir.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnMSalir.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.ttInformacion.SetToolTip(this.btnMSalir, "Presione para SALIR");
             this.btnMSalir.UseVisualStyleBackColor = true;
             this.btnMSalir.Click += new System.EventHandler(this.btnMSalir_Click);
             // 
@@ -514,6 +719,7 @@ namespace PROYECTO
             this.btnMGuardar.Text = "Guardar";
             this.btnMGuardar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnMGuardar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.ttInformacion.SetToolTip(this.btnMGuardar, "Presione para GUARDAR el registro actual");
             this.btnMGuardar.UseVisualStyleBackColor = true;
             this.btnMGuardar.Click += new System.EventHandler(this.btnMGuardar_Click);
             // 
@@ -531,6 +737,7 @@ namespace PROYECTO
             this.btnMEliminar.Text = "Eliminar";
             this.btnMEliminar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnMEliminar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.ttInformacion.SetToolTip(this.btnMEliminar, "Presione para ELIMINAR el registro actual");
             this.btnMEliminar.UseVisualStyleBackColor = true;
             this.btnMEliminar.Click += new System.EventHandler(this.btnMEliminar_Click);
             // 
@@ -625,189 +832,15 @@ namespace PROYECTO
             this.label8.TabIndex = 633;
             this.label8.Text = "Provincia";
             // 
-            // cli_identificacion
+            // ttInformacion
             // 
-            this.cli_identificacion.DataPropertyName = "cli_identificacion";
-            this.cli_identificacion.HeaderText = "IDENTIFICACION";
-            this.cli_identificacion.MinimumWidth = 6;
-            this.cli_identificacion.Name = "cli_identificacion";
-            this.cli_identificacion.ReadOnly = true;
-            this.cli_identificacion.Width = 140;
-            // 
-            // Cli_Id
-            // 
-            this.Cli_Id.DataPropertyName = "Cli_Id";
-            this.Cli_Id.HeaderText = "Cli_Id";
-            this.Cli_Id.MinimumWidth = 6;
-            this.Cli_Id.Name = "Cli_Id";
-            this.Cli_Id.ReadOnly = true;
-            this.Cli_Id.Visible = false;
-            this.Cli_Id.Width = 140;
-            // 
-            // CLI_DIAS
-            // 
-            this.CLI_DIAS.DataPropertyName = "CLI_DIAS";
-            this.CLI_DIAS.HeaderText = "Dias";
-            this.CLI_DIAS.MinimumWidth = 6;
-            this.CLI_DIAS.Name = "CLI_DIAS";
-            this.CLI_DIAS.ReadOnly = true;
-            this.CLI_DIAS.Visible = false;
-            this.CLI_DIAS.Width = 125;
-            // 
-            // Cli_Linea
-            // 
-            this.Cli_Linea.DataPropertyName = "Cli_Linea";
-            this.Cli_Linea.HeaderText = "Línea";
-            this.Cli_Linea.MinimumWidth = 6;
-            this.Cli_Linea.Name = "Cli_Linea";
-            this.Cli_Linea.ReadOnly = true;
-            this.Cli_Linea.Visible = false;
-            this.Cli_Linea.Width = 125;
-            // 
-            // Cli_Tipo_ID
-            // 
-            this.Cli_Tipo_ID.DataPropertyName = "Cli_Tipo_ID";
-            this.Cli_Tipo_ID.HeaderText = "TipoId";
-            this.Cli_Tipo_ID.MinimumWidth = 6;
-            this.Cli_Tipo_ID.Name = "Cli_Tipo_ID";
-            this.Cli_Tipo_ID.ReadOnly = true;
-            this.Cli_Tipo_ID.Visible = false;
-            this.Cli_Tipo_ID.Width = 125;
-            // 
-            // Cli_Nombre
-            // 
-            this.Cli_Nombre.DataPropertyName = "Cli_Nombre";
-            this.Cli_Nombre.HeaderText = "NOMBRE";
-            this.Cli_Nombre.MinimumWidth = 6;
-            this.Cli_Nombre.Name = "Cli_Nombre";
-            this.Cli_Nombre.ReadOnly = true;
-            this.Cli_Nombre.Width = 440;
-            // 
-            // Cli_Telefono
-            // 
-            this.Cli_Telefono.DataPropertyName = "Cli_Telefono";
-            this.Cli_Telefono.HeaderText = "Teléfono";
-            this.Cli_Telefono.MinimumWidth = 6;
-            this.Cli_Telefono.Name = "Cli_Telefono";
-            this.Cli_Telefono.ReadOnly = true;
-            this.Cli_Telefono.Visible = false;
-            this.Cli_Telefono.Width = 75;
-            // 
-            // Cli_Fax
-            // 
-            this.Cli_Fax.DataPropertyName = "Cli_Fax";
-            this.Cli_Fax.HeaderText = "Fax";
-            this.Cli_Fax.MinimumWidth = 6;
-            this.Cli_Fax.Name = "Cli_Fax";
-            this.Cli_Fax.ReadOnly = true;
-            this.Cli_Fax.Visible = false;
-            this.Cli_Fax.Width = 125;
-            // 
-            // Cli_Contacto
-            // 
-            this.Cli_Contacto.DataPropertyName = "Cli_Contacto";
-            this.Cli_Contacto.HeaderText = "Contacto";
-            this.Cli_Contacto.MinimumWidth = 6;
-            this.Cli_Contacto.Name = "Cli_Contacto";
-            this.Cli_Contacto.ReadOnly = true;
-            this.Cli_Contacto.Visible = false;
-            this.Cli_Contacto.Width = 125;
-            // 
-            // Cli_Correo
-            // 
-            this.Cli_Correo.DataPropertyName = "Cli_Correo";
-            this.Cli_Correo.HeaderText = "Correo";
-            this.Cli_Correo.MinimumWidth = 6;
-            this.Cli_Correo.Name = "Cli_Correo";
-            this.Cli_Correo.ReadOnly = true;
-            this.Cli_Correo.Visible = false;
-            this.Cli_Correo.Width = 125;
-            // 
-            // Cli_Ubicacion
-            // 
-            this.Cli_Ubicacion.DataPropertyName = "Cli_Ubicacion";
-            this.Cli_Ubicacion.HeaderText = "Ubicacion";
-            this.Cli_Ubicacion.MinimumWidth = 6;
-            this.Cli_Ubicacion.Name = "Cli_Ubicacion";
-            this.Cli_Ubicacion.ReadOnly = true;
-            this.Cli_Ubicacion.Visible = false;
-            this.Cli_Ubicacion.Width = 125;
-            // 
-            // Cli_Credito
-            // 
-            this.Cli_Credito.DataPropertyName = "Cli_Credito";
-            this.Cli_Credito.HeaderText = "Credito";
-            this.Cli_Credito.MinimumWidth = 6;
-            this.Cli_Credito.Name = "Cli_Credito";
-            this.Cli_Credito.ReadOnly = true;
-            this.Cli_Credito.Visible = false;
-            this.Cli_Credito.Width = 125;
-            // 
-            // CLI_LC_MONEDA
-            // 
-            this.CLI_LC_MONEDA.DataPropertyName = "CLI_LC_MONEDA";
-            this.CLI_LC_MONEDA.HeaderText = "CLI_LC_MONEDA";
-            this.CLI_LC_MONEDA.MinimumWidth = 6;
-            this.CLI_LC_MONEDA.Name = "CLI_LC_MONEDA";
-            this.CLI_LC_MONEDA.ReadOnly = true;
-            this.CLI_LC_MONEDA.Visible = false;
-            this.CLI_LC_MONEDA.Width = 125;
-            // 
-            // CLI_LC_LIMITE
-            // 
-            this.CLI_LC_LIMITE.DataPropertyName = "CLI_LC_LIMITE";
-            this.CLI_LC_LIMITE.HeaderText = "CLI_LC_LIMITE";
-            this.CLI_LC_LIMITE.MinimumWidth = 6;
-            this.CLI_LC_LIMITE.Name = "CLI_LC_LIMITE";
-            this.CLI_LC_LIMITE.ReadOnly = true;
-            this.CLI_LC_LIMITE.Visible = false;
-            this.CLI_LC_LIMITE.Width = 125;
-            // 
-            // PROVINCIA
-            // 
-            this.PROVINCIA.DataPropertyName = "PROVINCIA";
-            this.PROVINCIA.HeaderText = "PROVINCIA";
-            this.PROVINCIA.MinimumWidth = 6;
-            this.PROVINCIA.Name = "PROVINCIA";
-            this.PROVINCIA.ReadOnly = true;
-            this.PROVINCIA.Visible = false;
-            this.PROVINCIA.Width = 125;
-            // 
-            // CANTON
-            // 
-            this.CANTON.DataPropertyName = "CANTON";
-            this.CANTON.HeaderText = "CANTON";
-            this.CANTON.MinimumWidth = 6;
-            this.CANTON.Name = "CANTON";
-            this.CANTON.ReadOnly = true;
-            this.CANTON.Visible = false;
-            this.CANTON.Width = 125;
-            // 
-            // DISTRITO
-            // 
-            this.DISTRITO.DataPropertyName = "DISTRITO";
-            this.DISTRITO.HeaderText = "DISTRITO";
-            this.DISTRITO.MinimumWidth = 6;
-            this.DISTRITO.Name = "DISTRITO";
-            this.DISTRITO.ReadOnly = true;
-            this.DISTRITO.Visible = false;
-            this.DISTRITO.Width = 125;
-            // 
-            // BARRIO
-            // 
-            this.BARRIO.DataPropertyName = "BARRIO";
-            this.BARRIO.HeaderText = "BARRIO";
-            this.BARRIO.MinimumWidth = 6;
-            this.BARRIO.Name = "BARRIO";
-            this.BARRIO.ReadOnly = true;
-            this.BARRIO.Visible = false;
-            this.BARRIO.Width = 125;
+            this.ttInformacion.IsBalloon = true;
             // 
             // frmClientes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(816, 718);
+            this.ClientSize = new System.Drawing.Size(834, 718);
             this.Controls.Add(this.cboBarrio);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.cboDistrito);
@@ -924,5 +957,7 @@ namespace PROYECTO
         private System.Windows.Forms.DataGridViewTextBoxColumn CANTON;
         private System.Windows.Forms.DataGridViewTextBoxColumn DISTRITO;
         private System.Windows.Forms.DataGridViewTextBoxColumn BARRIO;
+        private System.Windows.Forms.Button btnDescargarClientes;
+        private System.Windows.Forms.ToolTip ttInformacion;
     }
 }

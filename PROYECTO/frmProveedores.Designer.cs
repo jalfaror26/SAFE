@@ -29,8 +29,8 @@ namespace PROYECTO
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmProveedores));
             this.cboCategoria = new System.Windows.Forms.ComboBox();
             this.txtFax = new System.Windows.Forms.TextBox();
@@ -80,6 +80,7 @@ namespace PROYECTO
             this.btnMSalir = new System.Windows.Forms.Button();
             this.btnMGuardar = new System.Windows.Forms.Button();
             this.btnMEliminar = new System.Windows.Forms.Button();
+            this.ttInformacion = new System.Windows.Forms.ToolTip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dgrDatos)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -244,8 +245,8 @@ namespace PROYECTO
             this.dgrDatos.AllowUserToDeleteRows = false;
             this.dgrDatos.AllowUserToResizeColumns = false;
             this.dgrDatos.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Gainsboro;
-            this.dgrDatos.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle9.BackColor = System.Drawing.Color.Gainsboro;
+            this.dgrDatos.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle9;
             this.dgrDatos.BackgroundColor = System.Drawing.Color.White;
             this.dgrDatos.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.dgrDatos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -272,9 +273,9 @@ namespace PROYECTO
             this.dgrDatos.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.dgrDatos.RowHeadersVisible = false;
             this.dgrDatos.RowHeadersWidth = 51;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Teal;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
-            this.dgrDatos.RowsDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.Color.Teal;
+            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.Color.White;
+            this.dgrDatos.RowsDefaultCellStyle = dataGridViewCellStyle10;
             this.dgrDatos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgrDatos.Size = new System.Drawing.Size(724, 218);
             this.dgrDatos.TabIndex = 29;
@@ -594,6 +595,7 @@ namespace PROYECTO
             this.btnMNuevo.Text = "Nuevo";
             this.btnMNuevo.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnMNuevo.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.ttInformacion.SetToolTip(this.btnMNuevo, "Presione para ELIMINAR el registro actual");
             this.btnMNuevo.UseVisualStyleBackColor = true;
             this.btnMNuevo.Click += new System.EventHandler(this.btnMNuevo_Click);
             // 
@@ -611,6 +613,7 @@ namespace PROYECTO
             this.btnMSalir.Text = "Salir";
             this.btnMSalir.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnMSalir.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.ttInformacion.SetToolTip(this.btnMSalir, "Presione para SALIR");
             this.btnMSalir.UseVisualStyleBackColor = true;
             this.btnMSalir.Click += new System.EventHandler(this.btnMSalir_Click);
             // 
@@ -628,6 +631,7 @@ namespace PROYECTO
             this.btnMGuardar.Text = "Guardar";
             this.btnMGuardar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnMGuardar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.ttInformacion.SetToolTip(this.btnMGuardar, "Presione para GUARDAR el registro actual");
             this.btnMGuardar.UseVisualStyleBackColor = true;
             this.btnMGuardar.Click += new System.EventHandler(this.btnMGuardar_Click);
             // 
@@ -645,8 +649,13 @@ namespace PROYECTO
             this.btnMEliminar.Text = "Eliminar";
             this.btnMEliminar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnMEliminar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.ttInformacion.SetToolTip(this.btnMEliminar, "Presione para ELIMINAR el registro actual");
             this.btnMEliminar.UseVisualStyleBackColor = true;
             this.btnMEliminar.Click += new System.EventHandler(this.btnMEliminar_Click);
+            // 
+            // ttInformacion
+            // 
+            this.ttInformacion.IsBalloon = true;
             // 
             // frmProveedores
             // 
@@ -752,5 +761,6 @@ namespace PROYECTO
         private System.Windows.Forms.Button btnMSalir;
         private System.Windows.Forms.Button btnMGuardar;
         private System.Windows.Forms.Button btnMEliminar;
+        private System.Windows.Forms.ToolTip ttInformacion;
     }
 }

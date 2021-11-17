@@ -10,7 +10,7 @@ namespace ENTIDADES
 
         private String id;
         private Int32 indice;
-        private Char tipoId;
+        private String tipoId;
         private String nombre;
         private String telefono;
         private String fax;
@@ -74,7 +74,7 @@ namespace ENTIDADES
             set { dias = value; }
         }
 
-        public Char TipoId
+        public String TipoId
         {
             get { return tipoId; }
             set { tipoId = value; }

@@ -12,6 +12,7 @@ using System.Drawing.Printing;
 using System.IO;
 using System.Net.Mail;
 using System.Net;
+using Newtonsoft.Json;
 
 namespace PROYECTO
 {
@@ -1687,7 +1688,7 @@ namespace PROYECTO
             if (Char.IsSeparator(e.KeyChar) || Char.IsLetter(e.KeyChar) || char.IsSymbol(e.KeyChar) || e.KeyChar.Equals(',') || e.KeyChar.Equals('*') || e.KeyChar.Equals('/') || e.KeyChar.Equals('-') || Char.IsPunctuation(e.KeyChar) && e.KeyChar.Equals('.') && puntos > 0)
                 e.Handled = true;
         }
-        
+
         private void txtTotalPorLinea_Enter(object sender, EventArgs e)
         {
             txtTotalPorLinea.Text = double.Parse(txtTotalPorLinea.Text.Substring(1)).ToString("########0.00");

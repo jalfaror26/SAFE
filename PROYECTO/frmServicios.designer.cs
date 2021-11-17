@@ -30,11 +30,11 @@ namespace PROYECTO
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmServicios));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
             this.button1 = new System.Windows.Forms.Button();
             this.imageList2 = new System.Windows.Forms.ImageList(this.components);
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
@@ -48,6 +48,16 @@ namespace PROYECTO
             this.txtFiltroDescBreve = new System.Windows.Forms.TextBox();
             this.txtFiltroCodigo = new System.Windows.Forms.TextBox();
             this.dgrDatos = new System.Windows.Forms.DataGridView();
+            this.SER_CODIGO = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SER_DESC_BREVE = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SER_IMPUESTOS = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SER_VENTA_IVI = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SER_TIPO = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SER_ESTADO = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SER_NOMBRE = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SER_TIPO_CODIGO = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SER_INDICE = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.COD_CABYS = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lblBusqueda = new System.Windows.Forms.Label();
             this.txtDesBreveArt = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
@@ -62,19 +72,11 @@ namespace PROYECTO
             this.label1 = new System.Windows.Forms.Label();
             this.txtCodCabys = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.rboExento = new System.Windows.Forms.RadioButton();
-            this.rboGravado = new System.Windows.Forms.RadioButton();
             this.btnImpuestos = new System.Windows.Forms.Button();
-            this.SER_CODIGO = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SER_DESC_BREVE = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SER_IMPUESTOS = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SER_VENTA_IVI = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SER_TIPO = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SER_ESTADO = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SER_NOMBRE = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SER_TIPO_CODIGO = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SER_INDICE = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.COD_CABYS = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.rboGravado = new System.Windows.Forms.RadioButton();
+            this.rboExento = new System.Windows.Forms.RadioButton();
+            this.ttInformacion = new System.Windows.Forms.ToolTip(this.components);
+            this.btnDescargarClientes = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgrDatos)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -172,6 +174,7 @@ namespace PROYECTO
             this.imgMenu.Images.SetKeyName(2, "Sign 06.ico");
             this.imgMenu.Images.SetKeyName(3, "salir2.ico");
             this.imgMenu.Images.SetKeyName(4, "App 17.ico");
+            this.imgMenu.Images.SetKeyName(5, "actualizar2.png");
             // 
             // label7
             // 
@@ -219,19 +222,19 @@ namespace PROYECTO
             this.dgrDatos.AllowUserToDeleteRows = false;
             this.dgrDatos.AllowUserToResizeColumns = false;
             this.dgrDatos.AllowUserToResizeRows = false;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.Gainsboro;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dgrDatos.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle11.BackColor = System.Drawing.Color.Gainsboro;
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dgrDatos.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle11;
             this.dgrDatos.BackgroundColor = System.Drawing.Color.White;
             this.dgrDatos.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgrDatos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgrDatos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle12;
             this.dgrDatos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgrDatos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.SER_CODIGO,
@@ -245,7 +248,7 @@ namespace PROYECTO
             this.SER_INDICE,
             this.COD_CABYS});
             this.dgrDatos.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.dgrDatos.Location = new System.Drawing.Point(18, 352);
+            this.dgrDatos.Location = new System.Drawing.Point(22, 352);
             this.dgrDatos.Margin = new System.Windows.Forms.Padding(4);
             this.dgrDatos.MultiSelect = false;
             this.dgrDatos.Name = "dgrDatos";
@@ -253,9 +256,9 @@ namespace PROYECTO
             this.dgrDatos.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.dgrDatos.RowHeadersVisible = false;
             this.dgrDatos.RowHeadersWidth = 51;
-            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.Color.Teal;
-            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.Color.White;
-            this.dgrDatos.RowsDefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.Color.Teal;
+            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.Color.White;
+            this.dgrDatos.RowsDefaultCellStyle = dataGridViewCellStyle15;
             this.dgrDatos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgrDatos.Size = new System.Drawing.Size(784, 306);
             this.dgrDatos.TabIndex = 55;
@@ -263,6 +266,114 @@ namespace PROYECTO
             this.dgrDatos.VirtualMode = true;
             this.dgrDatos.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgrDatos_CellEnter);
             this.dgrDatos.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgrDatos_CellEnter);
+            // 
+            // SER_CODIGO
+            // 
+            this.SER_CODIGO.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.SER_CODIGO.DataPropertyName = "SER_CODIGO";
+            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.SER_CODIGO.DefaultCellStyle = dataGridViewCellStyle13;
+            this.SER_CODIGO.HeaderText = "Código";
+            this.SER_CODIGO.MinimumWidth = 6;
+            this.SER_CODIGO.Name = "SER_CODIGO";
+            this.SER_CODIGO.ReadOnly = true;
+            this.SER_CODIGO.Width = 150;
+            // 
+            // SER_DESC_BREVE
+            // 
+            this.SER_DESC_BREVE.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.SER_DESC_BREVE.DataPropertyName = "SER_DESC_BREVE";
+            this.SER_DESC_BREVE.HeaderText = "Descripción";
+            this.SER_DESC_BREVE.MinimumWidth = 6;
+            this.SER_DESC_BREVE.Name = "SER_DESC_BREVE";
+            this.SER_DESC_BREVE.ReadOnly = true;
+            this.SER_DESC_BREVE.Width = 400;
+            // 
+            // SER_IMPUESTOS
+            // 
+            this.SER_IMPUESTOS.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.SER_IMPUESTOS.DataPropertyName = "SER_IMPUESTOS";
+            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle14.Format = "###,###0.00";
+            dataGridViewCellStyle14.NullValue = "0.00";
+            this.SER_IMPUESTOS.DefaultCellStyle = dataGridViewCellStyle14;
+            this.SER_IMPUESTOS.HeaderText = "TipoIV";
+            this.SER_IMPUESTOS.MinimumWidth = 6;
+            this.SER_IMPUESTOS.Name = "SER_IMPUESTOS";
+            this.SER_IMPUESTOS.ReadOnly = true;
+            this.SER_IMPUESTOS.Visible = false;
+            this.SER_IMPUESTOS.Width = 65;
+            // 
+            // SER_VENTA_IVI
+            // 
+            this.SER_VENTA_IVI.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.SER_VENTA_IVI.DataPropertyName = "SER_VENTA_IVI";
+            this.SER_VENTA_IVI.HeaderText = "IVI";
+            this.SER_VENTA_IVI.MinimumWidth = 6;
+            this.SER_VENTA_IVI.Name = "SER_VENTA_IVI";
+            this.SER_VENTA_IVI.ReadOnly = true;
+            this.SER_VENTA_IVI.Visible = false;
+            this.SER_VENTA_IVI.Width = 40;
+            // 
+            // SER_TIPO
+            // 
+            this.SER_TIPO.DataPropertyName = "SER_TIPO";
+            this.SER_TIPO.HeaderText = "SER_TIPO";
+            this.SER_TIPO.MinimumWidth = 2;
+            this.SER_TIPO.Name = "SER_TIPO";
+            this.SER_TIPO.ReadOnly = true;
+            this.SER_TIPO.Visible = false;
+            this.SER_TIPO.Width = 2;
+            // 
+            // SER_ESTADO
+            // 
+            this.SER_ESTADO.DataPropertyName = "SER_ESTADO";
+            this.SER_ESTADO.HeaderText = "SER_ESTADO";
+            this.SER_ESTADO.MinimumWidth = 2;
+            this.SER_ESTADO.Name = "SER_ESTADO";
+            this.SER_ESTADO.ReadOnly = true;
+            this.SER_ESTADO.Visible = false;
+            this.SER_ESTADO.Width = 2;
+            // 
+            // SER_NOMBRE
+            // 
+            this.SER_NOMBRE.DataPropertyName = "SER_NOMBRE";
+            this.SER_NOMBRE.HeaderText = "Descripción";
+            this.SER_NOMBRE.MinimumWidth = 2;
+            this.SER_NOMBRE.Name = "SER_NOMBRE";
+            this.SER_NOMBRE.ReadOnly = true;
+            this.SER_NOMBRE.Visible = false;
+            this.SER_NOMBRE.Width = 2;
+            // 
+            // SER_TIPO_CODIGO
+            // 
+            this.SER_TIPO_CODIGO.DataPropertyName = "SER_TIPO_CODIGO";
+            this.SER_TIPO_CODIGO.HeaderText = "SER_TIPO_CODIGO";
+            this.SER_TIPO_CODIGO.MinimumWidth = 2;
+            this.SER_TIPO_CODIGO.Name = "SER_TIPO_CODIGO";
+            this.SER_TIPO_CODIGO.ReadOnly = true;
+            this.SER_TIPO_CODIGO.Visible = false;
+            this.SER_TIPO_CODIGO.Width = 2;
+            // 
+            // SER_INDICE
+            // 
+            this.SER_INDICE.DataPropertyName = "SER_INDICE";
+            this.SER_INDICE.HeaderText = "SER_INDICE";
+            this.SER_INDICE.MinimumWidth = 2;
+            this.SER_INDICE.Name = "SER_INDICE";
+            this.SER_INDICE.ReadOnly = true;
+            this.SER_INDICE.Visible = false;
+            this.SER_INDICE.Width = 2;
+            // 
+            // COD_CABYS
+            // 
+            this.COD_CABYS.DataPropertyName = "COD_CABYS";
+            this.COD_CABYS.HeaderText = "COD_CABYS";
+            this.COD_CABYS.MinimumWidth = 6;
+            this.COD_CABYS.Name = "COD_CABYS";
+            this.COD_CABYS.ReadOnly = true;
+            this.COD_CABYS.Visible = false;
+            this.COD_CABYS.Width = 125;
             // 
             // lblBusqueda
             // 
@@ -350,6 +461,7 @@ namespace PROYECTO
             this.btnMEliminar.Text = "Eliminar";
             this.btnMEliminar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnMEliminar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.ttInformacion.SetToolTip(this.btnMEliminar, "Presione para ELIMINAR el registro actual");
             this.btnMEliminar.UseVisualStyleBackColor = true;
             this.btnMEliminar.Click += new System.EventHandler(this.btnMEliminar_Click);
             // 
@@ -367,6 +479,7 @@ namespace PROYECTO
             this.btnMGuardar.Text = "Guardar";
             this.btnMGuardar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnMGuardar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.ttInformacion.SetToolTip(this.btnMGuardar, "Presione para GUARDAR el registro actual");
             this.btnMGuardar.UseVisualStyleBackColor = true;
             this.btnMGuardar.Click += new System.EventHandler(this.btnMGuardar_Click);
             // 
@@ -376,7 +489,7 @@ namespace PROYECTO
             this.btnMSalir.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnMSalir.ImageKey = "salir2.ico";
             this.btnMSalir.ImageList = this.imgMenu;
-            this.btnMSalir.Location = new System.Drawing.Point(508, 18);
+            this.btnMSalir.Location = new System.Drawing.Point(673, 18);
             this.btnMSalir.Margin = new System.Windows.Forms.Padding(4);
             this.btnMSalir.Name = "btnMSalir";
             this.btnMSalir.Size = new System.Drawing.Size(147, 55);
@@ -384,6 +497,7 @@ namespace PROYECTO
             this.btnMSalir.Text = "Salir";
             this.btnMSalir.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnMSalir.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.ttInformacion.SetToolTip(this.btnMSalir, "Presione para SALIR");
             this.btnMSalir.UseVisualStyleBackColor = true;
             this.btnMSalir.Click += new System.EventHandler(this.btnMSalir_Click);
             // 
@@ -401,11 +515,13 @@ namespace PROYECTO
             this.btnMNuevo.Text = "Nuevo";
             this.btnMNuevo.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnMNuevo.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.ttInformacion.SetToolTip(this.btnMNuevo, "Presione para ELIMINAR el registro actual");
             this.btnMNuevo.UseVisualStyleBackColor = true;
             this.btnMNuevo.Click += new System.EventHandler(this.btnMNuevo_Click);
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.btnDescargarClientes);
             this.groupBox2.Controls.Add(this.btnMNuevo);
             this.groupBox2.Controls.Add(this.btnMSalir);
             this.groupBox2.Controls.Add(this.btnMGuardar);
@@ -415,7 +531,7 @@ namespace PROYECTO
             this.groupBox2.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox2.Size = new System.Drawing.Size(820, 85);
+            this.groupBox2.Size = new System.Drawing.Size(830, 85);
             this.groupBox2.TabIndex = 17;
             this.groupBox2.TabStop = false;
             // 
@@ -447,35 +563,11 @@ namespace PROYECTO
             this.groupBox1.Controls.Add(this.rboGravado);
             this.groupBox1.Controls.Add(this.rboExento);
             this.groupBox1.Controls.Add(this.chkIVI);
-            this.groupBox1.Location = new System.Drawing.Point(485, 86);
+            this.groupBox1.Location = new System.Drawing.Point(492, 86);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(300, 73);
             this.groupBox1.TabIndex = 57;
             this.groupBox1.TabStop = false;
-            // 
-            // rboExento
-            // 
-            this.rboExento.AutoSize = true;
-            this.rboExento.Checked = true;
-            this.rboExento.Location = new System.Drawing.Point(16, 15);
-            this.rboExento.Name = "rboExento";
-            this.rboExento.Size = new System.Drawing.Size(72, 21);
-            this.rboExento.TabIndex = 50;
-            this.rboExento.TabStop = true;
-            this.rboExento.Text = "Exento";
-            this.rboExento.UseVisualStyleBackColor = true;
-            this.rboExento.CheckedChanged += new System.EventHandler(this.rboExento_CheckedChanged);
-            // 
-            // rboGravado
-            // 
-            this.rboGravado.AutoSize = true;
-            this.rboGravado.Location = new System.Drawing.Point(16, 44);
-            this.rboGravado.Name = "rboGravado";
-            this.rboGravado.Size = new System.Drawing.Size(84, 21);
-            this.rboGravado.TabIndex = 51;
-            this.rboGravado.Text = "Gravado";
-            this.rboGravado.UseVisualStyleBackColor = true;
-            this.rboGravado.CheckedChanged += new System.EventHandler(this.rboGravado_CheckedChanged);
             // 
             // btnImpuestos
             // 
@@ -492,123 +584,65 @@ namespace PROYECTO
             this.btnImpuestos.TabStop = false;
             this.btnImpuestos.Text = " Impuestos";
             this.btnImpuestos.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.ttInformacion.SetToolTip(this.btnImpuestos, "Presione para ingresar Impuestos al registro actual");
             this.btnImpuestos.UseVisualStyleBackColor = true;
             this.btnImpuestos.Click += new System.EventHandler(this.btnImpuestos_Click);
             // 
-            // SER_CODIGO
+            // rboGravado
             // 
-            this.SER_CODIGO.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.SER_CODIGO.DataPropertyName = "SER_CODIGO";
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.SER_CODIGO.DefaultCellStyle = dataGridViewCellStyle8;
-            this.SER_CODIGO.HeaderText = "Código";
-            this.SER_CODIGO.MinimumWidth = 6;
-            this.SER_CODIGO.Name = "SER_CODIGO";
-            this.SER_CODIGO.ReadOnly = true;
-            this.SER_CODIGO.Width = 150;
+            this.rboGravado.AutoSize = true;
+            this.rboGravado.Location = new System.Drawing.Point(16, 44);
+            this.rboGravado.Name = "rboGravado";
+            this.rboGravado.Size = new System.Drawing.Size(84, 21);
+            this.rboGravado.TabIndex = 51;
+            this.rboGravado.Text = "Gravado";
+            this.rboGravado.UseVisualStyleBackColor = true;
+            this.rboGravado.CheckedChanged += new System.EventHandler(this.rboGravado_CheckedChanged);
             // 
-            // SER_DESC_BREVE
+            // rboExento
             // 
-            this.SER_DESC_BREVE.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.SER_DESC_BREVE.DataPropertyName = "SER_DESC_BREVE";
-            this.SER_DESC_BREVE.HeaderText = "Descripción";
-            this.SER_DESC_BREVE.MinimumWidth = 6;
-            this.SER_DESC_BREVE.Name = "SER_DESC_BREVE";
-            this.SER_DESC_BREVE.ReadOnly = true;
-            this.SER_DESC_BREVE.Width = 400;
+            this.rboExento.AutoSize = true;
+            this.rboExento.Checked = true;
+            this.rboExento.Location = new System.Drawing.Point(16, 15);
+            this.rboExento.Name = "rboExento";
+            this.rboExento.Size = new System.Drawing.Size(72, 21);
+            this.rboExento.TabIndex = 50;
+            this.rboExento.TabStop = true;
+            this.rboExento.Text = "Exento";
+            this.rboExento.UseVisualStyleBackColor = true;
+            this.rboExento.CheckedChanged += new System.EventHandler(this.rboExento_CheckedChanged);
             // 
-            // SER_IMPUESTOS
+            // ttInformacion
             // 
-            this.SER_IMPUESTOS.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.SER_IMPUESTOS.DataPropertyName = "SER_IMPUESTOS";
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle9.Format = "###,###0.00";
-            dataGridViewCellStyle9.NullValue = "0.00";
-            this.SER_IMPUESTOS.DefaultCellStyle = dataGridViewCellStyle9;
-            this.SER_IMPUESTOS.HeaderText = "TipoIV";
-            this.SER_IMPUESTOS.MinimumWidth = 6;
-            this.SER_IMPUESTOS.Name = "SER_IMPUESTOS";
-            this.SER_IMPUESTOS.ReadOnly = true;
-            this.SER_IMPUESTOS.Visible = false;
-            this.SER_IMPUESTOS.Width = 65;
+            this.ttInformacion.IsBalloon = true;
             // 
-            // SER_VENTA_IVI
+            // btnDescargarClientes
             // 
-            this.SER_VENTA_IVI.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.SER_VENTA_IVI.DataPropertyName = "SER_VENTA_IVI";
-            this.SER_VENTA_IVI.HeaderText = "IVI";
-            this.SER_VENTA_IVI.MinimumWidth = 6;
-            this.SER_VENTA_IVI.Name = "SER_VENTA_IVI";
-            this.SER_VENTA_IVI.ReadOnly = true;
-            this.SER_VENTA_IVI.Visible = false;
-            this.SER_VENTA_IVI.Width = 40;
-            // 
-            // SER_TIPO
-            // 
-            this.SER_TIPO.DataPropertyName = "SER_TIPO";
-            this.SER_TIPO.HeaderText = "SER_TIPO";
-            this.SER_TIPO.MinimumWidth = 2;
-            this.SER_TIPO.Name = "SER_TIPO";
-            this.SER_TIPO.ReadOnly = true;
-            this.SER_TIPO.Visible = false;
-            this.SER_TIPO.Width = 2;
-            // 
-            // SER_ESTADO
-            // 
-            this.SER_ESTADO.DataPropertyName = "SER_ESTADO";
-            this.SER_ESTADO.HeaderText = "SER_ESTADO";
-            this.SER_ESTADO.MinimumWidth = 2;
-            this.SER_ESTADO.Name = "SER_ESTADO";
-            this.SER_ESTADO.ReadOnly = true;
-            this.SER_ESTADO.Visible = false;
-            this.SER_ESTADO.Width = 2;
-            // 
-            // SER_NOMBRE
-            // 
-            this.SER_NOMBRE.DataPropertyName = "SER_NOMBRE";
-            this.SER_NOMBRE.HeaderText = "Descripción";
-            this.SER_NOMBRE.MinimumWidth = 2;
-            this.SER_NOMBRE.Name = "SER_NOMBRE";
-            this.SER_NOMBRE.ReadOnly = true;
-            this.SER_NOMBRE.Visible = false;
-            this.SER_NOMBRE.Width = 2;
-            // 
-            // SER_TIPO_CODIGO
-            // 
-            this.SER_TIPO_CODIGO.DataPropertyName = "SER_TIPO_CODIGO";
-            this.SER_TIPO_CODIGO.HeaderText = "SER_TIPO_CODIGO";
-            this.SER_TIPO_CODIGO.MinimumWidth = 2;
-            this.SER_TIPO_CODIGO.Name = "SER_TIPO_CODIGO";
-            this.SER_TIPO_CODIGO.ReadOnly = true;
-            this.SER_TIPO_CODIGO.Visible = false;
-            this.SER_TIPO_CODIGO.Width = 2;
-            // 
-            // SER_INDICE
-            // 
-            this.SER_INDICE.DataPropertyName = "SER_INDICE";
-            this.SER_INDICE.HeaderText = "SER_INDICE";
-            this.SER_INDICE.MinimumWidth = 2;
-            this.SER_INDICE.Name = "SER_INDICE";
-            this.SER_INDICE.ReadOnly = true;
-            this.SER_INDICE.Visible = false;
-            this.SER_INDICE.Width = 2;
-            // 
-            // COD_CABYS
-            // 
-            this.COD_CABYS.DataPropertyName = "COD_CABYS";
-            this.COD_CABYS.HeaderText = "COD_CABYS";
-            this.COD_CABYS.MinimumWidth = 6;
-            this.COD_CABYS.Name = "COD_CABYS";
-            this.COD_CABYS.ReadOnly = true;
-            this.COD_CABYS.Visible = false;
-            this.COD_CABYS.Width = 125;
+            this.btnDescargarClientes.AccessibleDescription = "";
+            this.btnDescargarClientes.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.btnDescargarClientes.Font = new System.Drawing.Font("Tempus Sans ITC", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDescargarClientes.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnDescargarClientes.ImageKey = "actualizar2.png";
+            this.btnDescargarClientes.ImageList = this.imgMenu;
+            this.btnDescargarClientes.Location = new System.Drawing.Point(508, 18);
+            this.btnDescargarClientes.Margin = new System.Windows.Forms.Padding(4);
+            this.btnDescargarClientes.Name = "btnDescargarClientes";
+            this.btnDescargarClientes.Size = new System.Drawing.Size(147, 55);
+            this.btnDescargarClientes.TabIndex = 17;
+            this.btnDescargarClientes.Tag = "";
+            this.btnDescargarClientes.Text = "Descargar";
+            this.btnDescargarClientes.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnDescargarClientes.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.ttInformacion.SetToolTip(this.btnDescargarClientes, "Presione para DESCARGAR los servicios del proveedor de Factura Electrónica");
+            this.btnDescargarClientes.UseVisualStyleBackColor = true;
+            this.btnDescargarClientes.Click += new System.EventHandler(this.btnDescargarClientes_Click);
             // 
             // frmServicios
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.button1;
-            this.ClientSize = new System.Drawing.Size(820, 673);
+            this.ClientSize = new System.Drawing.Size(830, 673);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtCodCabys);
@@ -687,5 +721,7 @@ namespace PROYECTO
         private System.Windows.Forms.DataGridViewTextBoxColumn SER_TIPO_CODIGO;
         private System.Windows.Forms.DataGridViewTextBoxColumn SER_INDICE;
         private System.Windows.Forms.DataGridViewTextBoxColumn COD_CABYS;
+        private System.Windows.Forms.ToolTip ttInformacion;
+        private System.Windows.Forms.Button btnDescargarClientes;
     }
 }
