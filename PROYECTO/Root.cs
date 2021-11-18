@@ -15,6 +15,13 @@ namespace PROYECTO
         public List<Producto> productos { get; set; }
 
 
+        public int codigo { get; set; }
+        public string estado { get; set; }
+        public string mensaje { get; set; }
+        public string respuesta { get; set; }
+        public List<object> errores { get; set; }
+
+
         public string responseCode { get; set; }
         public string responseDescription { get; set; }
         public CResultado cResultado { get; set; }

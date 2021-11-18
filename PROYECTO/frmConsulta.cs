@@ -408,11 +408,11 @@ namespace PROYECTO
             //}
 
             else if (palabra.Equals("ClienteFacturacionRapida"))
-                frmFacturacionRapida.getInstance().cargaCliente(cod, des);
+                frmFacturacion.getInstance().cargaCliente(cod, des);
             else if (palabra.Equals("ClienteProforma"))
                 frmCotizacion.getInstance().cargaCliente(cod, des);
             else if (palabra.Equals("FACTURACIONRAPIDA"))
-                frmFacturacionRapida.getInstance().cargaFactura(cod, des);
+                frmFacturacion.getInstance().cargaFactura(cod, des);
             else if (palabra.Equals("ClienteRecibo"))
             {
                 frmRecibosDineroSencillo oRecibo2 = frmRecibosDineroSencillo.getInstance();

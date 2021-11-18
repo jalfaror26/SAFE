@@ -538,28 +538,7 @@ namespace PROYECTO
               }
               this.Close();*/
         }
-
-        private void btnFacturacion_Click(object sender, EventArgs e)
-        {
-            return;
-
-            /* frmFacturacionRapida oFactura = frmFacturacionRapida.getInstance();
-             codigo = oFactura.Codigo;
-             descripcion = oFactura.Descripcion;
-             modulo = oFactura.Modulo;
-             if (!TienePermiso())
-             {
-                 oFactura.MdiParent = this.MdiParent;
-                 oFactura.Show();
-             }
-             else
-             {
-                 MessageBox.Show("No tiene permiso para accesar esta pantalla, comuníquese con el administrador", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                 oFactura = null;
-             }
-             this.Close();*/
-        }
-
+        
         private void btnAyuda_Click(object sender, EventArgs e)
         {
             frmAyuda oFrm = frmAyuda.getInstance();

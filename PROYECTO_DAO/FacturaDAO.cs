@@ -127,8 +127,10 @@ namespace PROYECTO_DAO
             oCommand.Parameters[21].Value = oFactura.PorDescuento;
             oCommand.Parameters.Add("diasCredito", OracleType.Number);
             oCommand.Parameters[22].Value = oFactura.DiasCredito;
+            oCommand.Parameters.Add("Tipopago", OracleType.NVarChar);
+            oCommand.Parameters[23].Value = oFactura.Tipopago;
             oCommand.Parameters.Add("pNo_cia", OracleType.NVarChar);
-            oCommand.Parameters[23].Value = oFactura.No_cia;
+            oCommand.Parameters[24].Value = oFactura.No_cia;
 
             OracleDAO.getInstance().EjecutarSQLStoreProcedure(oCommand);
 
@@ -184,7 +186,7 @@ namespace PROYECTO_DAO
 
         public DataTable ConsultaFactura(String numFactura, String pNo_cia)
         {
-            String sql = "SELECT fac_linea, fac_fecha, fac_cliente, fac_nombre, FAC_DIAS_CREDITO,fac_telefono, fac_ubicacion, fac_tipo_credito, fac_moneda, fac_tipo_cambio, fac_excento, fac_subtotal, fac_impuesto, fac_descuento, fac_total, fac_saldo, fac_estado, fac_observacion, fac_adelanto, fac_formapago, fac_tipo, fac_vendedor, fac_indicedocumento, fac_tipodocumento, fac_pordescuento, CASE WHEN (FAC_USUARIOMODIFICA IS NULL) THEN FAC_USUARIOCREA ELSE FAC_USUARIOMODIFICA END FAC_USUARIO FROM TBL_FACTURA F where f.no_cia = '" + pNo_cia + "' and fac_numero = '" + numFactura + "'";
+            String sql = "SELECT fac_linea, fac_fecha, fac_cliente, fac_nombre, FAC_DIAS_CREDITO,fac_telefono, fac_ubicacion, fac_tipo_credito, fac_moneda, fac_tipo_cambio, fac_excento, fac_subtotal, fac_impuesto, fac_descuento, fac_total, fac_saldo, fac_estado, fac_observacion, fac_adelanto, fac_formapago, fac_tipo, fac_vendedor, fac_indicedocumento, fac_tipodocumento, fac_pordescuento, NVL(FAC_USUARIOMODIFICA,FAC_USUARIOCREA) FAC_USUARIO, FAC_CREA_FE, f.fe_clave, f.fe_consecutivo, f.fe_comprobacion, f.fe_recepcion, fac_tipopago FROM TBL_FACTURA F where f.no_cia = '" + pNo_cia + "' and fac_numero = '" + numFactura + "'";
             DataTable oDataTable = OracleDAO.getInstance().EjecutarSQLDataTable(sql);
             return oDataTable;
         }
@@ -198,6 +200,12 @@ namespace PROYECTO_DAO
         public Int32 ModificaEstadoFactura(Factura oFactura)
         {
             String sql = "update TBL_FACTURA f set fac_estado = 'FACTURADA', Fac_Subtotal = " + oFactura.SubTotal + ", fac_impuesto =" + oFactura.Impuesto + ", Fac_descuento = " + oFactura.Descuento + ", fac_total = " + oFactura.Total + ", fac_saldo = " + oFactura.Saldo + " where f.no_cia = '" + oFactura.No_cia + "' and fac_linea = " + oFactura.Indice + " and fac_numero = '" + oFactura.NumFactura + "'";
+            return OracleDAO.getInstance().EjecutarSQL(sql);
+        }
+
+        public Int32 ModificaEstadoFactura_FE(Factura oFactura)
+        {
+            String sql = "update TBL_FACTURA f set Fe_Codigo = '" + oFactura.Fe_Codigo + "', Fe_Comprobacion = '" + oFactura.Fe_Comprobacion + "', FE_RECEPCION = 'Recibido' where f.no_cia = '" + oFactura.No_cia + "' and fac_linea = " + oFactura.Indice + " and fac_numero = '" + oFactura.NumFactura + "'";
             return OracleDAO.getInstance().EjecutarSQL(sql);
         }
 

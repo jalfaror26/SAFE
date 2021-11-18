@@ -94,29 +94,17 @@
     <Compile Include="frmFacturaAnular.designer.cs">
       <DependentUpon>frmFacturaAnular.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmFacturacionRapida.cs">
+    <Compile Include="frmFacturacion.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmFacturacionRapida.designer.cs">
-      <DependentUpon>frmFacturacionRapida.cs</DependentUpon>
-    </Compile>
-    <Compile Include="frmFacturar.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmFacturar.designer.cs">
-      <DependentUpon>frmFacturar.cs</DependentUpon>
+    <Compile Include="frmFacturacion.designer.cs">
+      <DependentUpon>frmFacturacion.cs</DependentUpon>
     </Compile>
     <Compile Include="frmFacturarAutorizacion.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmFacturarAutorizacion.designer.cs">
       <DependentUpon>frmFacturarAutorizacion.cs</DependentUpon>
-    </Compile>
-    <Compile Include="frmFacturarVuelto.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmFacturarVuelto.designer.cs">
-      <DependentUpon>frmFacturarVuelto.cs</DependentUpon>
     </Compile>
     <Compile Include="frmVistaBitacora.cs">
       <SubType>Form</SubType>
@@ -425,18 +413,12 @@
     <EmbeddedResource Include="frmFacturaAnular.resx">
       <DependentUpon>frmFacturaAnular.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmFacturacionRapida.resx">
-      <DependentUpon>frmFacturacionRapida.cs</DependentUpon>
+    <EmbeddedResource Include="frmFacturacion.resx">
+      <DependentUpon>frmFacturacion.cs</DependentUpon>
       <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmFacturar.resx">
-      <DependentUpon>frmFacturar.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmFacturarAutorizacion.resx">
       <DependentUpon>frmFacturarAutorizacion.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmFacturarVuelto.resx">
-      <DependentUpon>frmFacturarVuelto.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmVistaBitacora.resx">
       <DependentUpon>frmVistaBitacora.cs</DependentUpon>
@@ -657,6 +639,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\rym2.jpg" />
+    <Content Include="CambiosBD 17-11-21.txt" />
     <Content Include="CambiosBD 16-11-21.txt" />
     <Content Include="CambiosBD 15-11-21 v2.txt" />
     <Content Include="SAFE.ico" />

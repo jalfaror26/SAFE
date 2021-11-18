@@ -87,7 +87,7 @@ namespace PROYECTO
                     case "CLIENTE":
                     case "CLIENTEPROYECCIONESTIMADA":
                     case "CLIENTEFACTURACION":
-                    case "FRMFACTURACIONRAPIDA":
+                    case "FRMFACTURACION":
                     case "CLIENTECAMBIOPRODUCTO":
                     case "CLIENTECONSIGNACION":
                     case "CLIENTEREPORTEPROYECESTIMADA":
@@ -133,7 +133,7 @@ namespace PROYECTO
                     case "CLIENTE":
                     case "CLIENTEPROYECCIONESTIMADA":
                     case "CLIENTEFACTURACION":
-                    case "FRMFACTURACIONRAPIDA":
+                    case "FRMFACTURACION":
                     case "CLIENTECAMBIOPRODUCTO":
                     case "CLIENTECONSIGNACION":
                     case "CLIENTEREPORTEPROYECESTIMADA":
@@ -227,8 +227,8 @@ namespace PROYECTO
             //    oFactura.limpiar();
             //}
 
-            else if (palabra.Equals("frmFacturacionRapida"))
-                frmFacturacionRapida.getInstance().cargaCliente(cod, des);
+            else if (palabra.Equals("frmFacturacion"))
+                frmFacturacion.getInstance().cargaCliente(cod, des);
             else if (palabra.Equals("frmCotizacion"))
                 frmCotizacion.getInstance().cargaCliente(cod, des);
 

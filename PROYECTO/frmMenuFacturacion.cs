@@ -111,7 +111,7 @@ namespace PROYECTO
 
         private void btnFacturacionRapida_Click(object sender, EventArgs e)
         {
-            frmFacturacionRapida oFactura = frmFacturacionRapida.getInstance();
+            frmFacturacion oFactura = frmFacturacion.getInstance();
             codigo = oFactura.Codigo;
             descripcion = oFactura.Descripcion;
             modulo = oFactura.Modulo;

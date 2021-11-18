@@ -116,8 +116,8 @@ namespace PROYECTO
                     else
                     {
                         MessageBox.Show("Documento anulado correctamente.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        if (origen.Equals("frmFacturacionRapida"))
-                            frmFacturacionRapida.getInstance().cargaFactura(oFactura.NumFactura.ToString(), oFactura.Nombre);
+                        if (origen.Equals("frmFacturacion"))
+                            frmFacturacion.getInstance().cargaFactura(oFactura.NumFactura.ToString(), oFactura.Nombre);
 
                         this.Close();
                     }
@@ -147,8 +147,8 @@ namespace PROYECTO
 
         private void frmConexion_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (origen.Equals("frmFacturacionRapida"))
-                frmFacturacionRapida.getInstance().Enabled = true;
+            if (origen.Equals("frmFacturacion"))
+                frmFacturacion.getInstance().Enabled = true;
 
             instance = null;
         }

@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Net;
 using Newtonsoft.Json;
@@ -58,8 +59,9 @@ namespace PROYECTO
                 request.Headers.Add("api-token", "ir57BZTJirNGIZny7lq5nCzlcCjHvbuahuiZ81AFVvpuz2hz");
                 request.Headers.Add("access-token", "XrDy9i97pQeyGayRGGhGogJDEYMq4Hm7h1lPWXqfnhoPgev3M1Wp");
 
-                string data =  postString;
-                if (pMetodo.Equals("POST")) {
+                string data = postString;
+                if (pMetodo.Equals("POST"))
+                {
                     using (var streamWriter = new StreamWriter(request.GetRequestStream()))
                     {
                         streamWriter.Write(data);
@@ -131,5 +133,38 @@ namespace PROYECTO
             }
         }
 
+        public String CrearFE(String json, out Boolean /*HttpStatusCode*/ pstatusCode, out Boolean pTimeOut)
+        {
+            try
+            {
+                return ObtieneJson("POST", "/documentos-electronicos/emision/factura", json, out pstatusCode, out pTimeOut);
+            }
+            catch (WebException e)
+            {
+                //  HttpWebResponse response = (HttpWebResponse)e.Response;
+                pstatusCode = false;
+
+                pTimeOut = false;
+                return @"{""responseCode"": ""404"",""responseDescription"": """ + e.Message + @"""}";
+            }
+        }
+
+        public String ComprobarFE(String pClave, out Boolean /*HttpStatusCode*/ pstatusCode, out Boolean pTimeOut)
+        {
+            try
+            {
+                //var json = JsonConvert.SerializeObject(new { General = oParametrosGeneralAPI });
+
+                return ObtieneJson("GET", "/documentos-electronicos/hacienda/comprobar/" + pClave, "", out pstatusCode, out pTimeOut);
+            }
+            catch (WebException e)
+            {
+                //  HttpWebResponse response = (HttpWebResponse)e.Response;
+                pstatusCode = false;
+
+                pTimeOut = false;
+                return @"{""responseCode"": ""404"",""responseDescription"": """ + e.Message + @"""}";
+            }
+        }
     }
 }

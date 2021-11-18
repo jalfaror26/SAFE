@@ -72,10 +72,10 @@ namespace PROYECTO
                     string sql = "INSERT INTO TBL_FACTURA_AUTORIZACION fa VALUES ('" + oFactura.NumFactura + "', '" + oFactura.Cliente + "', user, '" + txtAdministrador.Text + "', '" + txtComentario.Text + "', 'AUTORIZAR FACTURA', sysdate, '" + oFactura.No_cia + "')";
                     conexion.EjecutaSentencia2(sql);
 
-                    if (origen.Equals("frmFacturacionRapida"))
+                    if (origen.Equals("frmFacturacion"))
                     {
-                        frmFacturacionRapida.getInstance().Enabled = true;
-                        frmFacturacionRapida.getInstance().facturar();
+                        frmFacturacion.getInstance().Enabled = true;
+                        frmFacturacion.getInstance().facturar();
                     }
                     this.Close();
                 }
@@ -102,8 +102,8 @@ namespace PROYECTO
 
         private void frmConexion_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (origen.Equals("frmFacturacionRapida"))
-                frmFacturacionRapida.getInstance().Enabled = true;
+            if (origen.Equals("frmFacturacion"))
+                frmFacturacion.getInstance().Enabled = true;
             instance = null;
         }
 

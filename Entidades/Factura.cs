@@ -18,12 +18,13 @@ namespace ENTIDADES
 
         private String no_cia;
 
+        private String fe_Codigo, fe_ContenidoXml, fe_ContenidoXmlFirmado, fe_Errores, fe_Clave, fe_Consecutivo, fe_Recepcion, fe_Comprobacion;
         public String No_cia
         {
             get { return no_cia; }
             set { no_cia = value; }
         }
-        
+
         public String Tipopago
         {
             get { return tipopago; }
@@ -46,7 +47,7 @@ namespace ENTIDADES
             get { return tarjeta; }
             set { tarjeta = value; }
         }
-        
+
         public Double PorDescuento
         {
             get { return porDescuento; }
@@ -64,7 +65,7 @@ namespace ENTIDADES
             get { return tipo; }
             set { tipo = value; }
         }
-        
+
         public String TipoDocumento
         {
             get { return tipoDocumento; }
@@ -82,7 +83,7 @@ namespace ENTIDADES
             get { return adelanto; }
             set { adelanto = value; }
         }
-        
+
         public String Observacion
         {
             get { return observacion; }
@@ -100,7 +101,7 @@ namespace ENTIDADES
             get { return moneda; }
             set { moneda = value; }
         }
-        
+
         public String Ubicacion
         {
             get { return ubicacion; }
@@ -160,7 +161,7 @@ namespace ENTIDADES
             get { return subTotal; }
             set { subTotal = value; }
         }
-        
+
         public Double Tipocambio
         {
             get { return tipocambio; }
@@ -184,5 +185,14 @@ namespace ENTIDADES
             get { return diasCredito; }
             set { diasCredito = value; }
         }
+
+        public string Fe_Codigo { get => fe_Codigo; set => fe_Codigo = value; }
+        public string Fe_ContenidoXml { get => fe_ContenidoXml; set => fe_ContenidoXml = value; }
+        public string Fe_ContenidoXmlFirmado { get => fe_ContenidoXmlFirmado; set => fe_ContenidoXmlFirmado = value; }
+        public string Fe_Errores { get => fe_Errores; set => fe_Errores = value; }
+        public string Fe_Clave { get => fe_Clave; set => fe_Clave = value; }
+        public string Fe_Consecutivo { get => fe_Consecutivo; set => fe_Consecutivo = value; }
+        public string Fe_Recepcion { get => fe_Recepcion; set => fe_Recepcion = value; }
+        public string Fe_Comprobacion { get => fe_Comprobacion; set => fe_Comprobacion = value; }
     }
 }

@@ -47,15 +47,15 @@ namespace PROYECTO_DAO
             oCommand.Parameters.Add("monto", OracleType.Number);
             oCommand.Parameters[12].Value = ofactura.Monto;
             oCommand.Parameters.Add("saldo", OracleType.Number);
-            oCommand.Parameters[14].Value = ofactura.Saldo;
+            oCommand.Parameters[13].Value = ofactura.Saldo;
             oCommand.Parameters.Add("estatus", OracleType.NVarChar);
-            oCommand.Parameters[15].Value = ofactura.Estatus;
+            oCommand.Parameters[14].Value = ofactura.Estatus;
             oCommand.Parameters.Add("observacion", OracleType.NVarChar);
-            oCommand.Parameters[16].Value = ofactura.Observacion;
+            oCommand.Parameters[15].Value = ofactura.Observacion;
             oCommand.Parameters.Add("tipodocumento", OracleType.NVarChar);
-            oCommand.Parameters[19].Value = ofactura.TipoDocumento;
+            oCommand.Parameters[16].Value = ofactura.TipoDocumento;
             oCommand.Parameters.Add("pNo_cia", OracleType.NVarChar);
-            oCommand.Parameters[21].Value = ofactura.No_cia;
+            oCommand.Parameters[17].Value = ofactura.No_cia;
 
             OracleDAO.getInstance().EjecutarSQLStoreProcedure(oCommand);
 

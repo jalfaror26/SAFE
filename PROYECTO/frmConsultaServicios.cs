@@ -173,8 +173,8 @@ namespace PROYECTO
                     }
                 }
 
-                if (palabra.Equals("frmFacturacionRapida"))
-                    frmFacturacionRapida.getInstance().cargaServicio(indiceServicio, descripcionServicio, IVI, IV);
+                if (palabra.Equals("frmFacturacion"))
+                    frmFacturacion.getInstance().cargaServicio(indiceServicio, descripcionServicio, IVI, IV);
                 //else if (palabra.Equals("cambioproducto"))
                 //    frmCambioProducto.getInstance().cargaArticulo(indiceArticulo, descripcionArticulo, almacen, cadena, existencia, proveedor, indiceInventario, presentacion, embalaje);
                 //else if (palabra.Equals("Apartado"))
