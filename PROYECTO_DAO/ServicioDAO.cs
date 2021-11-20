@@ -85,7 +85,7 @@ namespace PROYECTO_DAO
             return oDataSet;
         }
 
-        public DataTable ConsultarEspecificoIndice2(String codIndice, String pNo_cia)
+        public DataTable ConsultarEspecificoIndice(String codIndice, String pNo_cia)
         {
             String sql = "SELECT SER_INDICE, SER_TIPO, SER_INDICE, SER_DESC_BREVE, SER_IMPUESTOS, SER_ESTADO, SER_TIPO_CODIGO, SER_CODIGO, SER_VENTA_IVI, Cod_cabys FROM tbl_servicios ar WHERE ar.no_cia = '" + pNo_cia + "' and SER_ESTADO = 1 AND SER_INDICE = '" + codIndice + "' order by SER_DESC_BREVE";
             DataTable oDataTable = OracleDAO.getInstance().EjecutarSQLDataTable(sql);
@@ -118,27 +118,27 @@ namespace PROYECTO_DAO
 
 
 
-        public DataSet ConsultarInventario(String pNo_cia)
+        public DataSet ConsultarInventario(String pOrigen, String pNo_cia)
         {
             String sql = "";
 
-            sql = "SELECT DISTINCT SER_INDICE, SER_CODIGO, SER_DESC_BREVE SER_NOMBRE, SER_venta_ivi INV_IVI, SER_impuestos INV_IMPUESTO_VENTAS, Cod_cabys FROM tbl_servicios ar WHERE ar.no_cia = '" + pNo_cia + "' and  SER_TIPO = 'SER' AND SER_ESTADO = 1 ORDER BY SER_desc_breve";
+            sql = "SELECT SER_INDICE, SER_CODIGO, SER_DESC_BREVE SER_NOMBRE, SER_venta_ivi INV_IVI, SER_impuestos INV_IMPUESTO_VENTAS, Cod_cabys FROM tbl_servicios ar, tbl_empresa e WHERE ar.no_cia = '" + pNo_cia + "' and  SER_TIPO = 'SER' AND SER_ESTADO = 1 and ('" + pOrigen + "' = 'C' or ('" + pOrigen + "' = 'F' and (e.IND_FACT_ELECT = 'N' or (e.IND_FACT_ELECT = 'S' and SER_TIPO_CODIGO = 'EX')))) ORDER BY SER_desc_breve";
 
             DataSet oDataSet = OracleDAO.getInstance().EjecutarSQLDataSet(sql);
             return oDataSet;
         }
 
-        public DataSet ListarInventario(string codigo, string descripcion, String pNo_cia)
+        public DataSet ListarInventario(String pOrigen, string codigo, string descripcion, String pNo_cia)
         {
             String sql = "";
 
-            sql = "SELECT DISTINCT SER_INDICE, SER_CODIGO, SER_DESC_BREVE SER_NOMBRE, SER_venta_ivi INV_IVI, SER_impuestos INV_IMPUESTO_VENTAS, Cod_cabys FROM tbl_servicios ar WHERE ar.no_cia = '" + pNo_cia + "' and  SER_TIPO = 'SER' AND SER_ESTADO = 1 ";
+            sql = "SELECT SER_INDICE, SER_CODIGO, SER_DESC_BREVE SER_NOMBRE, SER_venta_ivi INV_IVI, SER_impuestos INV_IMPUESTO_VENTAS, Cod_cabys FROM tbl_servicios ar WHERE ar.no_cia = '" + pNo_cia + "' and  SER_TIPO = 'SER' AND SER_ESTADO = 1 ";
 
             if (!codigo.Equals(""))
                 sql += " AND regexp_like(SER_INDICE,'" + codigo + "','i')";
             if (!descripcion.Equals(""))
                 sql += " AND regexp_like(SER_DESC_BREVE,'" + descripcion + "','i')";
-
+            sql += " and ('" + pOrigen + "' = 'C' or ('" + pOrigen + "' = 'F' and (e.IND_FACT_ELECT = 'N' or (e.IND_FACT_ELECT = 'S' and SER_TIPO_CODIGO = 'EX'))))";
             sql += " ORDER BY SER_desc_breve";
 
             DataSet oDataSet = OracleDAO.getInstance().EjecutarSQLDataSet(sql);
@@ -149,7 +149,7 @@ namespace PROYECTO_DAO
         {
             String sql = "";
 
-            sql = "SELECT DISTINCT SER_INDICE, SER_CODIGO, SER_DESC_BREVE SER_NOMBRE, SER_venta_ivi INV_IVI, SER_impuestos INV_IMPUESTO_VENTAS, Cod_cabys FROM tbl_servicios ar WHERE ar.no_cia = '" + pNo_cia + "' and  SER_TIPO = 'SER' AND SER_ESTADO = 1 ";
+            sql = "SELECT DISTINCT SER_INDICE, SER_CODIGO, SER_DESC_BREVE SER_NOMBRE, SER_venta_ivi INV_IVI, SER_impuestos INV_IMPUESTO_VENTAS, Cod_cabys FROM tbl_servicios ar, tbl_empresa e WHERE ar.no_cia = '" + pNo_cia + "' and ar.no_cia = e.no_cia and SER_TIPO = 'SER' AND SER_ESTADO = 1 and (e.IND_FACT_ELECT = 'N' or (e.IND_FACT_ELECT = 'S' and SER_TIPO_CODIGO = 'EX'))  ";
 
             if (!codigo.Equals(""))
                 sql += " AND SER_CODIGO = '" + codigo + "'";
@@ -178,7 +178,7 @@ namespace PROYECTO_DAO
             DataSet oDataSet = OracleDAO.getInstance().EjecutarSQLDataSet(sql);
             return oDataSet;
         }
-               
+
         public String DescError()
         {
             return OracleDAO.getInstance().DescripcionErrorSQL;

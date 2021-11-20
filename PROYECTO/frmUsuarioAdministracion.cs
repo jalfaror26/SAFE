@@ -178,6 +178,20 @@ namespace PROYECTO
             }
         }
 
+        private void frmUsuarioAdministracion_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.F1)
+                Ayuda();
+        }
+
+        private void Ayuda()
+        {
+            frmAyuda oFrm = frmAyuda.getInstance("t16");
+            oFrm.MdiParent = this.MdiParent;
+            oFrm.Show();
+        }
+
+
         private void ofdRutaImagen_FileOk(object sender, CancelEventArgs e)
         {
             System.IO.FileInfo f2 = new System.IO.FileInfo(ofdRutaImagen.FileName);

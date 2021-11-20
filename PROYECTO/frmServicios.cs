@@ -63,6 +63,7 @@ namespace PROYECTO
             this.Text = this.Text + " - " + this.Name;
             try
             {
+                btnDescargarClientes.Enabled = AplicaFE();
                 btnMNuevo.PerformClick();
                 Llenar_Grid();
             }
@@ -72,10 +73,38 @@ namespace PROYECTO
             }
         }
 
+        private Boolean AplicaFE()
+        {
+            try
+            {
+                Boolean vAplicaFE = false;
+                oConexion.cerrarConexion();
+                if (oConexion.abrirConexion())
+                {
+                    DataTable oDatosGeneral = oConexion.EjecutaSentencia("select IND_FACT_ELECT from TBL_EMPRESA where no_Cia = '" + PROYECTO.Properties.Settings.Default.No_cia + "'");
+
+                    String vIND_FACT_ELECT = "N";
+
+                    foreach (DataRow ofila in oDatosGeneral.Rows)
+                        vIND_FACT_ELECT = ofila["IND_FACT_ELECT"].ToString();
+
+                    if (vIND_FACT_ELECT.Equals("S"))
+                        vAplicaFE = true;
+                }
+                return vAplicaFE;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
+
         private void LimpiarCampos()
         {
             txtCodigo.Text = "";
-
+            txtCodigo.ReadOnly = false;
+            txtCodigo.BackColor = Color.White;
             indice = 0;
 
             nuevo = true;
@@ -91,21 +120,6 @@ namespace PROYECTO
             chkIVI.Enabled = false;
             btnImpuestos.Enabled = false;
         }
-
-        public void LlenarServicio(String cod, String des, String dato1)
-        {
-            try
-            {
-                LimpiarCampos();
-                txtDesBreveArt.Text = des;
-
-                buscarServicios();
-            }
-            catch (Exception ex)
-            {
-            }
-        }
-
 
         private void Agregar()
         {
@@ -425,6 +439,16 @@ namespace PROYECTO
                 txtCodCabys.Text = dgrDatos["COD_CABYS", e.RowIndex].Value.ToString();
                 String tipoImpuesto = dgrDatos["SER_IMPUESTOS", e.RowIndex].Value.ToString();
 
+                if (dgrDatos["SER_TIPO_CODIGO", e.RowIndex].Value.ToString().Equals("IN"))
+                {
+                    txtCodigo.ReadOnly = false;
+                    txtCodigo.BackColor = Color.White;
+                }
+                else
+                {
+                    txtCodigo.ReadOnly = true;
+                    txtCodigo.BackColor = Color.Beige;
+                }
 
                 if (tipoImpuesto.Equals("0"))
                 {
@@ -453,39 +477,6 @@ namespace PROYECTO
 
         }
 
-        private void buscarServicios()
-        {
-            try
-            {
-                oConexion = new ConexionDAO(PROYECTO.Properties.Settings.Default.UsuarioBD, PROYECTO.Properties.Settings.Default.Servidor, Conexion.getInstance().Clave);
-                oConexion.cerrarConexion();
-                if (oConexion.abrirConexion())
-                {
-                    DataTable oData = oServicioDAO.ConsultarEspecificoIndice2(indice.ToString(), PROYECTO.Properties.Settings.Default.No_cia);
-                    if (oServicioDAO.Error())
-                        MessageBox.Show("Error al listar los datos:\n" + oServicioDAO.DescError(), "Error de consulta", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    else
-                    {
-                        if (oData.Rows.Count > 0)
-                        {
-                            txtCodigo.Text = oData.Rows[0]["SER_CODIGO"].ToString();
-                            txtDesBreveArt.Text = oData.Rows[0]["SER_DESC_BREVE"].ToString();
-
-                        }
-                        oConexion.cerrarConexion();
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("Error al conectarse con la base de datos\nVerifique que los datos estén correctos");
-                }
-            }
-            catch (Exception ex)
-            {
-                oConexion.cerrarConexion();
-            }
-        }
-
         private void txtFiltroCodigo_KeyUp(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.F1)
@@ -511,7 +502,6 @@ namespace PROYECTO
                     filtrarGrid(2, txtFiltroDescBreve.Text);
             }
         }
-
 
         private void filtrarGrid(int ind, string palabraFiltro)
         {

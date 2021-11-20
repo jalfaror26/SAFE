@@ -270,6 +270,18 @@ namespace PROYECTO
 
         }
 
+        private void frmServicioImpuestos_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.F1)
+                Ayuda();
+        }
+
+        private void Ayuda()
+        {
+            frmAyuda oFrm = frmAyuda.getInstance("t3");
+            oFrm.MdiParent = this.MdiParent;
+            oFrm.Show();
+        }
         private void btnMGuardar_Click(object sender, EventArgs e)
         {
             Agregar();

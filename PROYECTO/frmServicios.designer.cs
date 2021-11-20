@@ -30,11 +30,11 @@ namespace PROYECTO
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmServicios));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.button1 = new System.Windows.Forms.Button();
             this.imageList2 = new System.Windows.Forms.ImageList(this.components);
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
@@ -69,6 +69,7 @@ namespace PROYECTO
             this.btnMSalir = new System.Windows.Forms.Button();
             this.btnMNuevo = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.btnDescargarClientes = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.txtCodCabys = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -76,7 +77,6 @@ namespace PROYECTO
             this.rboGravado = new System.Windows.Forms.RadioButton();
             this.rboExento = new System.Windows.Forms.RadioButton();
             this.ttInformacion = new System.Windows.Forms.ToolTip(this.components);
-            this.btnDescargarClientes = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgrDatos)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -222,19 +222,19 @@ namespace PROYECTO
             this.dgrDatos.AllowUserToDeleteRows = false;
             this.dgrDatos.AllowUserToResizeColumns = false;
             this.dgrDatos.AllowUserToResizeRows = false;
-            dataGridViewCellStyle11.BackColor = System.Drawing.Color.Gainsboro;
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dgrDatos.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Gainsboro;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dgrDatos.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgrDatos.BackgroundColor = System.Drawing.Color.White;
             this.dgrDatos.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle12.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgrDatos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgrDatos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgrDatos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgrDatos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.SER_CODIGO,
@@ -256,9 +256,9 @@ namespace PROYECTO
             this.dgrDatos.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.dgrDatos.RowHeadersVisible = false;
             this.dgrDatos.RowHeadersWidth = 51;
-            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.Color.Teal;
-            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.Color.White;
-            this.dgrDatos.RowsDefaultCellStyle = dataGridViewCellStyle15;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.Teal;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.White;
+            this.dgrDatos.RowsDefaultCellStyle = dataGridViewCellStyle5;
             this.dgrDatos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgrDatos.Size = new System.Drawing.Size(784, 306);
             this.dgrDatos.TabIndex = 55;
@@ -271,8 +271,8 @@ namespace PROYECTO
             // 
             this.SER_CODIGO.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             this.SER_CODIGO.DataPropertyName = "SER_CODIGO";
-            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.SER_CODIGO.DefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.SER_CODIGO.DefaultCellStyle = dataGridViewCellStyle3;
             this.SER_CODIGO.HeaderText = "Código";
             this.SER_CODIGO.MinimumWidth = 6;
             this.SER_CODIGO.Name = "SER_CODIGO";
@@ -293,10 +293,10 @@ namespace PROYECTO
             // 
             this.SER_IMPUESTOS.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             this.SER_IMPUESTOS.DataPropertyName = "SER_IMPUESTOS";
-            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle14.Format = "###,###0.00";
-            dataGridViewCellStyle14.NullValue = "0.00";
-            this.SER_IMPUESTOS.DefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.Format = "###,###0.00";
+            dataGridViewCellStyle4.NullValue = "0.00";
+            this.SER_IMPUESTOS.DefaultCellStyle = dataGridViewCellStyle4;
             this.SER_IMPUESTOS.HeaderText = "TipoIV";
             this.SER_IMPUESTOS.MinimumWidth = 6;
             this.SER_IMPUESTOS.Name = "SER_IMPUESTOS";
@@ -535,6 +535,27 @@ namespace PROYECTO
             this.groupBox2.TabIndex = 17;
             this.groupBox2.TabStop = false;
             // 
+            // btnDescargarClientes
+            // 
+            this.btnDescargarClientes.AccessibleDescription = "";
+            this.btnDescargarClientes.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.btnDescargarClientes.Font = new System.Drawing.Font("Tempus Sans ITC", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDescargarClientes.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnDescargarClientes.ImageKey = "actualizar2.png";
+            this.btnDescargarClientes.ImageList = this.imgMenu;
+            this.btnDescargarClientes.Location = new System.Drawing.Point(508, 18);
+            this.btnDescargarClientes.Margin = new System.Windows.Forms.Padding(4);
+            this.btnDescargarClientes.Name = "btnDescargarClientes";
+            this.btnDescargarClientes.Size = new System.Drawing.Size(147, 55);
+            this.btnDescargarClientes.TabIndex = 17;
+            this.btnDescargarClientes.Tag = "";
+            this.btnDescargarClientes.Text = "Descargar";
+            this.btnDescargarClientes.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnDescargarClientes.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.ttInformacion.SetToolTip(this.btnDescargarClientes, "Presione para DESCARGAR los servicios del proveedor de Factura Electrónica");
+            this.btnDescargarClientes.UseVisualStyleBackColor = true;
+            this.btnDescargarClientes.Click += new System.EventHandler(this.btnDescargarClientes_Click);
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -548,11 +569,12 @@ namespace PROYECTO
             // 
             // txtCodCabys
             // 
-            this.txtCodCabys.BackColor = System.Drawing.Color.White;
+            this.txtCodCabys.BackColor = System.Drawing.Color.Beige;
             this.txtCodCabys.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtCodCabys.Location = new System.Drawing.Point(251, 117);
             this.txtCodCabys.Margin = new System.Windows.Forms.Padding(4);
             this.txtCodCabys.Name = "txtCodCabys";
+            this.txtCodCabys.ReadOnly = true;
             this.txtCodCabys.Size = new System.Drawing.Size(207, 22);
             this.txtCodCabys.TabIndex = 1;
             this.txtCodCabys.TabStop = false;
@@ -615,27 +637,6 @@ namespace PROYECTO
             // ttInformacion
             // 
             this.ttInformacion.IsBalloon = true;
-            // 
-            // btnDescargarClientes
-            // 
-            this.btnDescargarClientes.AccessibleDescription = "";
-            this.btnDescargarClientes.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnDescargarClientes.Font = new System.Drawing.Font("Tempus Sans ITC", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDescargarClientes.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnDescargarClientes.ImageKey = "actualizar2.png";
-            this.btnDescargarClientes.ImageList = this.imgMenu;
-            this.btnDescargarClientes.Location = new System.Drawing.Point(508, 18);
-            this.btnDescargarClientes.Margin = new System.Windows.Forms.Padding(4);
-            this.btnDescargarClientes.Name = "btnDescargarClientes";
-            this.btnDescargarClientes.Size = new System.Drawing.Size(147, 55);
-            this.btnDescargarClientes.TabIndex = 17;
-            this.btnDescargarClientes.Tag = "";
-            this.btnDescargarClientes.Text = "Descargar";
-            this.btnDescargarClientes.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnDescargarClientes.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.ttInformacion.SetToolTip(this.btnDescargarClientes, "Presione para DESCARGAR los servicios del proveedor de Factura Electrónica");
-            this.btnDescargarClientes.UseVisualStyleBackColor = true;
-            this.btnDescargarClientes.Click += new System.EventHandler(this.btnDescargarClientes_Click);
             // 
             // frmServicios
             // 

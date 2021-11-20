@@ -306,6 +306,7 @@ namespace PROYECTO
             this.Text = "Recordatorios";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmRecordatorioVista2_FormClosing);
             this.Load += new System.EventHandler(this.frmRecordatorioVista2_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmRecordatorioVista_KeyDown);
             this.grbBusqueda.ResumeLayout(false);
             this.grbBusqueda.PerformLayout();
             this.panel1.ResumeLayout(false);

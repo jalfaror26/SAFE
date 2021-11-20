@@ -44,6 +44,7 @@ namespace PROYECTO
             this.label6 = new System.Windows.Forms.Label();
             this.txtMonto = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.cmbMoneda = new System.Windows.Forms.ComboBox();
             this.lblSaldoAnterior = new System.Windows.Forms.Label();
             this.txtSaldoAnterior = new System.Windows.Forms.TextBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -54,7 +55,6 @@ namespace PROYECTO
             this.btnAbrirCaja = new System.Windows.Forms.Button();
             this.btnCerrar = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
-            this.cmbMoneda = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -242,6 +242,21 @@ namespace PROYECTO
             this.groupBox1.TabIndex = 514;
             this.groupBox1.TabStop = false;
             // 
+            // cmbMoneda
+            // 
+            this.cmbMoneda.BackColor = System.Drawing.Color.White;
+            this.cmbMoneda.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbMoneda.FormattingEnabled = true;
+            this.cmbMoneda.ImeMode = System.Windows.Forms.ImeMode.On;
+            this.cmbMoneda.Items.AddRange(new object[] {
+            "CRC",
+            "USD"});
+            this.cmbMoneda.Location = new System.Drawing.Point(233, 146);
+            this.cmbMoneda.Name = "cmbMoneda";
+            this.cmbMoneda.Size = new System.Drawing.Size(82, 24);
+            this.cmbMoneda.TabIndex = 616;
+            this.cmbMoneda.SelectedIndexChanged += new System.EventHandler(this.cmbMoneda_SelectedIndexChanged);
+            // 
             // lblSaldoAnterior
             // 
             this.lblSaldoAnterior.AutoSize = true;
@@ -391,21 +406,6 @@ namespace PROYECTO
             this.label7.Size = new System.Drawing.Size(873, 16);
             this.label7.TabIndex = 516;
             // 
-            // cmbMoneda
-            // 
-            this.cmbMoneda.BackColor = System.Drawing.Color.White;
-            this.cmbMoneda.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbMoneda.FormattingEnabled = true;
-            this.cmbMoneda.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.cmbMoneda.Items.AddRange(new object[] {
-            "CRC",
-            "USD"});
-            this.cmbMoneda.Location = new System.Drawing.Point(233, 146);
-            this.cmbMoneda.Name = "cmbMoneda";
-            this.cmbMoneda.Size = new System.Drawing.Size(82, 24);
-            this.cmbMoneda.TabIndex = 616;
-            this.cmbMoneda.SelectedIndexChanged += new System.EventHandler(this.cmbMoneda_SelectedIndexChanged);
-            // 
             // frmCajaChica
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -417,6 +417,7 @@ namespace PROYECTO
             this.Controls.Add(this.groupBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -425,6 +426,7 @@ namespace PROYECTO
             this.Text = "Caja Chica";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmCajaChica_FormClosing);
             this.Load += new System.EventHandler(this.frmCajaChica_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmCajaChica_KeyDown);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

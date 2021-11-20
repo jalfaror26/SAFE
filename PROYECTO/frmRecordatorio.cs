@@ -562,7 +562,7 @@ namespace PROYECTO
 
         private void Ayuda()
         {
-            frmAyuda oFrm = frmAyuda.getInstance();
+            frmAyuda oFrm = frmAyuda.getInstance("t7");
             oFrm.MdiParent = this.MdiParent;
             oFrm.Show();
         }

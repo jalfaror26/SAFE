@@ -19,7 +19,7 @@ namespace PROYECTO
 
         private ProveedorDAO oProveedorDAO = new ProveedorDAO();
         private static frmProveedores instance = null;
-        private ConexionDAO oConexion = new ConexionDAO(PROYECTO.Properties.Settings.Default.UsuarioBD, PROYECTO.Properties.Settings.Default.Servidor,Conexion.getInstance().Clave);
+        private ConexionDAO oConexion = new ConexionDAO(PROYECTO.Properties.Settings.Default.UsuarioBD, PROYECTO.Properties.Settings.Default.Servidor, Conexion.getInstance().Clave);
         private Proveedor oProveedor;
         private String codigo = "par_proveedores", descripcion = "Registro de proveedores del sistema.", modulo = "Mantenimientos";
         private Double indiceProveedor = 0;
@@ -466,10 +466,7 @@ namespace PROYECTO
         private void frmForma_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.F1)
-            {
-                if (e.KeyCode == Keys.F1)
-                    Ayuda();
-            }
+                Ayuda();
         }
 
         private void Ayuda()

@@ -439,6 +439,7 @@ namespace PROYECTO
             this.Controls.Add(this.label8);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -447,6 +448,7 @@ namespace PROYECTO
             this.Text = "Agregar Factura de Proveedor";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmFacturaPorPagarProveedorRapida_FormClosing);
             this.Load += new System.EventHandler(this.frmFacturaPorPagarProveedorRapida_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmFacturaPorPagarProveedorRapida_KeyDown);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);

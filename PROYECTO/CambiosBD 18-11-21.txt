@@ -1,0 +1,575 @@
+ALTER TABLE TBL_EMPRESA 
+ADD (SUCURSAL VARCHAR2(20) );
+
+ALTER TABLE TBL_EMPRESA 
+ADD (CAJA VARCHAR2(20) );
+
+ALTER TABLE TBL_FACTURA_DETALLE 
+ADD (COD_CABYS VARCHAR2(15) );
+
+/
+
+create or replace PACKAGE PCKFACTURADETALLE AS
+  PROCEDURE paInsertar(indiceFactura    NUMBER,
+                       cantidad         NUMBER,
+                       medida           VARCHAR2,
+                       codServicio      VARCHAR2,
+                       descripcion      VARCHAR2,
+                       precioUnitario   NUMBER,
+                       SubTotal         NUMBER,
+                       monto_IV         NUMBER,
+                       PrecioTotal      NUMBER,
+                       descuento        NUMBER,
+                       pNo_cia          VARCHAR2,
+                       IVI              VARCHAR2,
+                       pCOD_CABYS        VARCHAR2);
+
+  PROCEDURE paModificar(indice           NUMBER,
+                        indiceFactura    NUMBER,
+                        cantidad         NUMBER,
+                        medida           VARCHAR2,
+                        codServicio      VARCHAR2,
+                        descripcion      VARCHAR2,
+                        precioUnitario   NUMBER,
+                        SubTotal         NUMBER,
+                        monto_IV         NUMBER,
+                        PrecioTotal      NUMBER,
+                        descuento        NUMBER,
+                        pNo_cia          VARCHAR2,
+                        IVI              VARCHAR2,
+                        pCOD_CABYS        VARCHAR2);
+
+  PROCEDURE paEliminar(indice        NUMBER,
+                       indiceFactura NUMBER,
+                       cantidad      NUMBER,
+                       codServicio   VARCHAR2,
+                       pNo_cia       VARCHAR2);
+
+END;
+
+/
+
+create or replace PACKAGE BODY PCKFACTURADETALLE AS
+
+  PROCEDURE paInsertar(indiceFactura    NUMBER,
+                       cantidad         NUMBER,
+                       medida           VARCHAR2,
+                       codServicio      VARCHAR2,
+                       descripcion      VARCHAR2,
+                       precioUnitario   NUMBER,
+                       SubTotal         NUMBER,
+                       monto_IV         NUMBER,
+                       PrecioTotal      NUMBER,
+                       descuento        NUMBER,
+                       pNo_cia          VARCHAR2,
+                       IVI              VARCHAR2,
+                       pCOD_CABYS       VARCHAR2) IS
+  
+  BEGIN
+  
+    INSERT INTO TBL_FACTURA_DETALLE
+      (detfac_numerolinea,
+       DETFAC_INDICEFACTURA,
+       detfac_cantidad,
+       detfac_medida,
+       detfac_codigo,
+       detfac_descripcion,
+       DETFAC_PRECIO_UNITARIO,
+       DETFAC_SUBTOTAL,
+       DETFAC_MONTO_IV,
+       DETFAC_PRECIO_TOTAL,
+       detfac_usuariocrea,
+       detfac_fechacrea,
+       detfac_descuento,
+       No_cia,
+       detfac_ivi,
+       COD_CABYS
+       )
+    VALUES
+      (SFACTURADETALLE.Nextval,
+       indiceFactura,
+       cantidad,
+       medida,
+       codServicio,
+       descripcion,
+       precioUnitario,
+       SubTotal,
+       monto_IV,
+       PrecioTotal,
+       user,
+       sysdate,
+       descuento,
+       pNo_cia,
+       ivi,
+       pCOD_CABYS);
+  
+    COMMIT;
+  
+  EXCEPTION
+    WHEN timeout_on_resource THEN
+      raise_application_error(-20100,
+                              'Ha excedido el tiempo de espera maximo al insertar el detalle de la factura, vuelva a intentarlo');
+    WHEN dup_val_on_index THEN
+      raise_application_error(-20100, 'Detalle de la factura existente');
+    WHEN OTHERS THEN
+      raise_application_error(-20100,
+                              'Error desconocido al insertar el detalle de la factura ' ||
+                              sqlerrm);
+  END paInsertar;
+  ----------------------------------------------------------------------------------
+
+  PROCEDURE paModificar(indice           NUMBER,
+                        indiceFactura    NUMBER,
+                        cantidad         NUMBER,
+                        medida           VARCHAR2,
+                        codServicio      VARCHAR2,
+                        descripcion      VARCHAR2,
+                        precioUnitario   NUMBER,
+                        SubTotal         NUMBER,
+                        monto_IV         NUMBER,
+                        PrecioTotal      NUMBER,
+                        descuento        NUMBER,
+                        pNo_cia          VARCHAR2,
+                        IVI              VARCHAR2,
+                        pCOD_CABYS       VARCHAR2) IS
+  
+  BEGIN
+  
+    UPDATE TBL_FACTURA_DETALLE
+       SET detfac_cantidad         = cantidad,
+           detfac_medida           = medida,
+           detfac_codigo           = codServicio,
+           detfac_descripcion      = descripcion,
+           DETFAC_PRECIO_UNITARIO  = precioUnitario,
+           DETFAC_SUBTOTAL         = SubTotal,
+           DETFAC_MONTO_IV         = monto_IV,
+           DETFAC_PRECIO_TOTAL     = PrecioTotal,
+           detfac_usuariomodifica  = user,
+           detfac_fechamofica      = sysdate,
+           detfac_descuento        = descuento,
+           detfac_ivi              = ivi,
+           COD_CABYS               = pCOD_CABYS
+     WHERE No_cia = pNo_cia
+       and detfac_numerolinea = indice
+       AND DETFAC_INDICEFACTURA = indiceFactura;
+  
+    COMMIT;
+  
+  EXCEPTION
+    WHEN timeout_on_resource THEN
+      raise_application_error(-20100,
+                              'Ha excedido el tiempo de espera maximo al modificar el detalle de la factura, por favor intente de nuevo');
+    WHEN OTHERS THEN
+      raise_application_error(-20100,
+                              'Error desconocido al modificar el detalle de la factura ' ||
+                              sqlerrm);
+  END paModificar;
+  ---------------------------------------------------------------------------
+
+  PROCEDURE paEliminar(indice        NUMBER,
+                       indiceFactura NUMBER,
+                       cantidad      NUMBER,
+                       codServicio   VARCHAR2,
+                       pNo_cia       VARCHAR2) IS
+  
+  BEGIN
+  
+    DELETE FROM TBL_FACTURA_DETALLE
+     WHERE No_cia = pNo_cia
+       and detfac_numerolinea = indice
+       AND DETFAC_INDICEFACTURA = indiceFactura;
+  
+    COMMIT;
+  
+  EXCEPTION
+    WHEN timeout_on_resource THEN
+      raise_application_error(-20100,
+                              'Ha excedido el tiempo de espera maximo al eliminar el detalle de la factura, por favor intente de nuevo');
+    WHEN OTHERS THEN
+      raise_application_error(-20100,
+                              'Error desconocido al eliminar el detalle de la factura ' ||
+                              sqlerrm);
+  END paEliminar;
+  ----------------------------------------------------------------------------
+
+END;
+
+/
+
+
+create or replace NONEDITIONABLE PACKAGE BODY PCKFACTURA AS
+  PROCEDURE paInsertar(factura         VARCHAR2,
+                       fechafac        DATE,
+                       cliente         VARCHAR2,
+                       nombre          VARCHAR2,
+                       telefono        VARCHAR2,
+                       ubicacion       VARCHAR2,
+                       tipoCredito     VARCHAR2,
+                       moneda          VARCHAR2,
+                       tipocambio      NUMBER,
+                       exento          NUMBER,
+                       subtotal        NUMBER,
+                       impuesto        NUMBER,
+                       descuento       NUMBER,
+                       total           NUMBER,
+                       saldo           NUMBER,
+                       estado          VARCHAR2,
+                       observacion     VARCHAR2,
+                       ADELANTO        NUMBER,
+                       FORMAPAGO       VARCHAR2,
+                       TIPO            VARCHAR2,
+                       INDICEDOCUMENTO NUMBER,
+                       tIPODOCUMENTO   VARCHAR2,
+                       diasCredito     NUMBER,
+                       pNo_cia         VARCHAR2,
+                       pSalida         OUT pckAdministrativo.admincursor) IS
+    val    NUMBER;
+    numero VARCHAR2(10);
+    
+    vFAC_CREA_FE VARCHAR2(1);
+    
+    cursor oCrea_FE is
+    select IND_FACT_ELECT from TBL_EMPRESA
+    where NO_CIA = pNo_cia;
+  BEGIN
+  open oCrea_FE;
+  fetch oCrea_FE into vFAC_CREA_FE;
+  close oCrea_FE;
+  
+    SELECT COUNT(*) INTO val FROM TBL_FACTURA where No_cia = pNo_cia;
+  
+    IF (val = 0) THEN
+      numero := factura;
+    ELSE
+      SELECT MAX(fac_numero + 1)
+        INTO numero
+        FROM TBL_FACTURA
+       where No_cia = pNo_cia;
+    END IF;
+  
+    INSERT INTO TBL_FACTURA
+      (fac_linea,
+       fac_numero,
+       fac_fecha,
+       fac_cliente,
+       fac_nombre,
+       fac_telefono,
+       fac_ubicacion,
+       fac_tipo_credito,
+       fac_moneda,
+       fac_tipo_cambio,
+       fac_excento,
+       fac_subtotal,
+       fac_impuesto,
+       fac_descuento,
+       fac_total,
+       fac_saldo,
+       fac_estado,
+       fac_observacion,
+       fac_usuariocrea,
+       FAC_FECHACREA,
+       FAC_ADELANTO,
+       FAC_FORMAPAGO,
+       FAC_TIPO,
+       FAC_VENDEDOR,
+       FAC_INDICEDOCUMENTO,
+       FAC_TIPODOCUMENTO,
+       fac_pordescuento,
+       FAC_DIAS_CREDITO,
+       FAC_CREA_FE,
+       No_cia)
+    VALUES
+      (SFACTURA.Nextval,
+       numero,
+       fechafac,
+       cliente,
+       nombre,
+       telefono,
+       ubicacion,
+       tipoCredito,
+       moneda,
+       tipocambio,
+       exento,
+       subtotal,
+       impuesto,
+       descuento,
+       total,
+       saldo,
+       estado,
+       observacion,
+       user,
+       sysdate,
+       ADELANTO,
+       FORMAPAGO,
+       TIPO,
+       user,
+       INDICEDOCUMENTO,
+       TIPODOCUMENTO,
+       0,
+       diasCredito,
+       nvl(vFAC_CREA_FE,'N'),
+       pNo_cia);
+  
+    OPEN pSalida FOR
+      SELECT numero, SFACTURA.Currval FROM dual;
+  
+    COMMIT;
+  EXCEPTION
+    WHEN timeout_on_resource THEN
+      raise_application_error(-20100,
+                              'Ha excedido el tiempo de espera maximo al insertar la fatura, vuelva a intentarlo');
+    WHEN dup_val_on_index THEN
+      raise_application_error(-20100, 'Factura ya existente');
+    WHEN OTHERS THEN
+      raise_application_error(-20100,
+                              'Error desconocido al insertar la factura ' ||
+                              sqlerrm);
+  END paInsertar;
+  ----------------------------------------------------------------------------------
+  PROCEDURE paModificar(indice       NUMBER,
+                        factura      VARCHAR2,
+                        fechafac     DATE,
+                        cliente      VARCHAR2,
+                        nombre       VARCHAR2,
+                        telefono     VARCHAR2,
+                        ubicacion    VARCHAR2,
+                        tipoCredito  VARCHAR2,
+                        moneda       VARCHAR2,
+                        tipocambio   NUMBER,
+                        exento       NUMBER,
+                        subtotal     NUMBER,
+                        impuesto     NUMBER,
+                        descuento    NUMBER,
+                        total        NUMBER,
+                        saldo        NUMBER,
+                        estado       VARCHAR2,
+                        observacion  VARCHAR2,
+                        adelanto     NUMBER,
+                        FORMAPAGO    VARCHAR2,
+                        TIPO         VARCHAR2,
+                        pordescuento NUMBER,
+                        diasCredito  NUMBER,
+                        Tipopago     VARCHAR2,
+                        pNo_cia      VARCHAR2) IS
+  BEGIN
+    UPDATE TBL_FACTURA
+       SET fac_fecha           = fechafac,
+           fac_cliente         = cliente,
+           fac_nombre          = nombre,
+           fac_telefono        = telefono,
+           fac_ubicacion       = ubicacion,
+           fac_tipo_credito    = tipoCredito,
+           fac_moneda          = moneda,
+           fac_tipo_cambio     = tipocambio,
+           fac_excento         = exento,
+           fac_subtotal        = subtotal,
+           fac_impuesto        = impuesto,
+           fac_descuento       = descuento,
+           fac_total           = total,
+           fac_saldo           = saldo,
+           fac_estado          = estado,
+           fac_observacion     = observacion,
+           FAC_USUARIOMODIFICA = user,
+           FAC_FECHAMODIFICA   = sysdate,
+           FAC_ADELANTO        = ADELANTO,
+           FAC_FORMAPAGO       = FORMAPAGO,
+           FAC_TIPO            = tipo,
+           FAC_VENDEDOR        = user,
+           fac_pordescuento    = pordescuento,
+           FAC_DIAS_CREDITO    = diasCredito,
+           fac_tipopago        = Tipopago
+     WHERE No_cia = pNo_cia
+       and fac_linea = indice
+       AND fac_numero = factura;
+    COMMIT;
+  EXCEPTION
+    WHEN timeout_on_resource THEN
+      raise_application_error(-20100,
+                              'Ha excedido el tiempo de espera maximo al modificar la factura, por favor intente de nuevo');
+    WHEN OTHERS THEN
+      raise_application_error(-20100,
+                              'Error desconocido al modificar la factura ' ||
+                              sqlerrm);
+  END paModificar;
+  ---------------------------------------------------------------------------
+
+END;
+
+/
+
+ALTER TABLE TBL_EMPRESA 
+DROP COLUMN IND_USA_WS_FE;
+
+/
+
+create or replace TRIGGER TR_EMPRESA_BIT
+  BEFORE INSERT OR DELETE OR UPDATE ON TBL_EMPRESA
+  FOR EACH ROW
+
+BEGIN
+  IF deleting THEN
+    INSERT INTO TBL_BITACORA
+      (USUARIO_DUENO,
+       TABLA,
+       MOVIMIENTO,
+       USUARIO,
+       FECHA,
+       LLAVE,
+       VALORES,
+       NO_CIA,
+       NOMBRE_TABLA,
+       TIPO_TABLA)
+    VALUES
+      ('SAFE',
+       'TBL_EMPRESA',
+       'DELETE',
+       user,
+       sysdate,
+       'NO_CIA = ' || :OLD.NO_CIA || ' --> ' || '<eol>',
+       'EMPR_TIPO_ID = ' || :OLD.EMPR_TIPO_ID || ' --> ' || 
+       'EMPR_IDENTIFICACION = ' || :OLD.EMPR_IDENTIFICACION || ' --> ' || 
+       'EMPR_NOMBRE = ' || :OLD.EMPR_NOMBRE || ' --> ' || 
+       'EMPR_DIRECCION = ' || :OLD.EMPR_DIRECCION || ' --> ' || 
+       'EMPR_TELEFONO = ' || :OLD.EMPR_TELEFONO || ' --> ' || 
+       'EMPR_CORREO = ' || :OLD.EMPR_CORREO || ' --> ' || 
+       'IND_FACTURASABIERTAS = ' || :OLD.IND_FACTURASABIERTAS || ' --> ' || 
+       'RUTAARCHIVOBACKUP = ' || :OLD.RUTAARCHIVOBACKUP || ' --> ' || 
+       'BUSCATC = ' || :OLD.BUSCATC || ' --> ' || 
+       'IND_REDONDEARPRECIOVENTA = ' || :OLD.IND_REDONDEARPRECIOVENTA || ' --> ' || 
+       'IND_IMPRIMETIQUETALFACTURAR = ' || :OLD.IND_IMPRIMETIQUETALFACTURAR || ' --> ' || 
+       'PAIS = ' || :OLD.PAIS || ' --> ' || 
+       'PROVINCIA = ' || :OLD.PROVINCIA || ' --> ' || 
+       'CANTON = ' || :OLD.CANTON || ' --> ' || 
+       'DISTRITO = ' || :OLD.DISTRITO || ' --> ' || 
+       'BARRIO = ' || :OLD.BARRIO || ' --> ' || 
+       'IND_FACT_ELECT = ' || :OLD.IND_FACT_ELECT || ' --> ' || 
+       'API_TOKEN_WS_FE = ' || :OLD.API_TOKEN_WS_FE || ' --> ' || 
+       'ACCESS_TOKEN_WS_FE = ' || :OLD.ACCESS_TOKEN_WS_FE || ' --> ' || 
+       'CODIGO_ACTIVIDAD = ' || :OLD.CODIGO_ACTIVIDAD || ' --> ' ||
+       '<eol>',
+       :new.NO_CIA,
+       'DATOS EMPRESA',
+       'MANTENIMIENTOS');
+  ELSIF inserting THEN
+    INSERT INTO TBL_BITACORA
+      (USUARIO_DUENO,
+       TABLA,
+       MOVIMIENTO,
+       USUARIO,
+       FECHA,
+       LLAVE,
+       VALORES,
+       NO_CIA,
+       NOMBRE_TABLA,
+       TIPO_TABLA)
+    VALUES
+      ('SAFE',
+       'TBL_EMPRESA',
+       'INSERT',
+       user,
+       sysdate,
+       'NO_CIA = ' || :new.NO_CIA || ' --> ' || '<eol>',
+       'EMPR_TIPO_ID = ' || :new.EMPR_TIPO_ID || ' --> ' || 
+       'EMPR_IDENTIFICACION = ' || :new.EMPR_IDENTIFICACION || ' --> ' || 
+       'EMPR_NOMBRE = ' || :new.EMPR_NOMBRE || ' --> ' || 
+       'EMPR_DIRECCION = ' || :new.EMPR_DIRECCION || ' --> ' || 
+       'EMPR_TELEFONO = ' || :new.EMPR_TELEFONO || ' --> ' || 
+       'EMPR_CORREO = ' || :new.EMPR_CORREO || ' --> ' || 
+       'IND_FACTURASABIERTAS = ' || :new.IND_FACTURASABIERTAS || ' --> ' ||        
+       'RUTAARCHIVOBACKUP = ' || :new.RUTAARCHIVOBACKUP || ' --> ' || 
+       'BUSCATC = ' || :new.BUSCATC || ' --> ' || 
+       'IND_REDONDEARPRECIOVENTA = ' || :new.IND_REDONDEARPRECIOVENTA || ' --> ' || 
+       'IND_IMPRIMETIQUETALFACTURAR = ' || :new.IND_IMPRIMETIQUETALFACTURAR || ' --> ' || 
+       'PAIS = ' || :new.PAIS || ' --> ' || 
+       'PROVINCIA = ' || :new.PROVINCIA || ' --> ' || 
+       'CANTON = ' || :new.CANTON || ' --> ' || 
+       'DISTRITO = ' || :new.DISTRITO || ' --> ' || 
+       'PAIS = ' || :new.PAIS || ' --> ' || 
+       'BARRIO = ' || :new.BARRIO || ' --> ' || 
+       'IND_FACT_ELECT = ' || :new.IND_FACT_ELECT || ' --> ' || 
+       'API_TOKEN_WS_FE = ' || :new.API_TOKEN_WS_FE || ' --> ' || 
+       'ACCESS_TOKEN_WS_FE = ' || :new.ACCESS_TOKEN_WS_FE || ' --> ' || 
+       'CODIGO_ACTIVIDAD = ' || :new.CODIGO_ACTIVIDAD || ' --> ' || 
+       '<eol>',
+       :new.NO_CIA,
+       'DATOS EMPRESA',
+       'MANTENIMIENTOS');
+  ELSIF updating THEN
+    INSERT INTO TBL_BITACORA
+      (USUARIO_DUENO,
+       TABLA,
+       MOVIMIENTO,
+       USUARIO,
+       FECHA,
+       LLAVE,
+       VALORES,
+       NO_CIA,
+       NOMBRE_TABLA,
+       TIPO_TABLA)
+    VALUES
+      ('SAFE',
+       'TBL_EMPRESA',
+       'UPDATE',
+       user,
+       sysdate,
+       'NO_CIA = ' || :new.NO_CIA || ' --> ' || '<eol>',
+       'EMPR_TIPO_ID = ' || :new.EMPR_TIPO_ID || ' --> ' || 
+       'EMPR_IDENTIFICACION = ' || :new.EMPR_IDENTIFICACION || ' --> ' || 
+       'EMPR_NOMBRE = ' || :new.EMPR_NOMBRE || ' --> ' || 
+       'EMPR_DIRECCION = ' || :new.EMPR_DIRECCION || ' --> ' || 
+       'EMPR_TELEFONO = ' || :new.EMPR_TELEFONO || ' --> ' || 
+       'EMPR_CORREO = ' || :new.EMPR_CORREO || ' --> ' || 
+       'IND_FACTURASABIERTAS = ' || :new.IND_FACTURASABIERTAS || ' --> ' ||        
+       'RUTAARCHIVOBACKUP = ' || :new.RUTAARCHIVOBACKUP || ' --> ' || 
+       'BUSCATC = ' || :new.BUSCATC || ' --> ' || 
+       'IND_REDONDEARPRECIOVENTA = ' || :new.IND_REDONDEARPRECIOVENTA || ' --> ' || 
+       'IND_IMPRIMETIQUETALFACTURAR = ' || :new.IND_IMPRIMETIQUETALFACTURAR || ' --> ' || 
+       'PAIS = ' || :new.PAIS || ' --> ' || 
+       'PROVINCIA = ' || :new.PROVINCIA || ' --> ' || 
+       'CANTON = ' || :new.CANTON || ' --> ' || 
+       'DISTRITO = ' || :new.DISTRITO || ' --> ' || 
+       'PAIS = ' || :new.PAIS || ' --> ' || 
+       'BARRIO = ' || :new.BARRIO || ' --> ' || 
+       'IND_FACT_ELECT = ' || :new.IND_FACT_ELECT || ' --> ' || 
+       'API_TOKEN_WS_FE = ' || :new.API_TOKEN_WS_FE || ' --> ' || 
+       'ACCESS_TOKEN_WS_FE = ' || :new.ACCESS_TOKEN_WS_FE || ' --> ' || 
+       'CODIGO_ACTIVIDAD = ' || :new.CODIGO_ACTIVIDAD || ' --> ' || 
+       '<eol>',
+       :new.NO_CIA,
+       'DATOS EMPRESA',
+       'MANTENIMIENTOS');
+  END IF;
+END;
+
+/
+
+ALTER TABLE TBL_EMPRESA 
+DROP COLUMN VERSION_FE;
+
+ALTER TABLE TBL_EMPRESA 
+DROP COLUMN APROBACION_DGT_FE;
+
+ALTER TABLE TBL_EMPRESA 
+DROP COLUMN EMAIL_FE;
+
+ALTER TABLE TBL_EMPRESA 
+DROP COLUMN FECHA_RESOL_FE;
+
+ALTER TABLE TBL_EMPRESA 
+DROP COLUMN SECUENCIAS_URL_WS_FE;
+
+ALTER TABLE TBL_EMPRESA 
+DROP COLUMN LEYENDA_FISCAL;
+
+ALTER TABLE TBL_EMPRESA 
+DROP COLUMN IND_IMPRIME_IMP_INCL;
+
+ALTER TABLE TBL_EMPRESA 
+DROP COLUMN LEYENDA_EXONERACION;
+
+ALTER TABLE TBL_EMPRESA 
+DROP COLUMN TIPO_NC_REC;
+
+
+/
+

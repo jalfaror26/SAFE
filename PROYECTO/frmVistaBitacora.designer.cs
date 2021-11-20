@@ -40,13 +40,13 @@ namespace PROYECTO
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.label2 = new System.Windows.Forms.Label();
             this.dgrDatos = new System.Windows.Forms.DataGridView();
-            this.label1 = new System.Windows.Forms.Label();
-            this.txtBId = new System.Windows.Forms.TextBox();
-            this.txtBNombre = new System.Windows.Forms.TextBox();
             this.MOVIMIENTO = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Usuario = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Fecha = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Datos = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txtBId = new System.Windows.Forms.TextBox();
+            this.txtBNombre = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgrDatos)).BeginInit();
             this.SuspendLayout();
             // 
@@ -150,41 +150,6 @@ namespace PROYECTO
             this.dgrDatos.TabStop = false;
             this.dgrDatos.VirtualMode = true;
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.label1.Location = new System.Drawing.Point(341, 46);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(51, 17);
-            this.label1.TabIndex = 387;
-            this.label1.Text = "Filtro 1";
-            // 
-            // txtBId
-            // 
-            this.txtBId.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtBId.Location = new System.Drawing.Point(341, 66);
-            this.txtBId.Margin = new System.Windows.Forms.Padding(4);
-            this.txtBId.Name = "txtBId";
-            this.txtBId.Size = new System.Drawing.Size(321, 22);
-            this.txtBId.TabIndex = 388;
-            this.txtBId.TabStop = false;
-            this.txtBId.Tag = "P.num_producto";
-            // 
-            // txtBNombre
-            // 
-            this.txtBNombre.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtBNombre.Location = new System.Drawing.Point(688, 66);
-            this.txtBNombre.Margin = new System.Windows.Forms.Padding(4);
-            this.txtBNombre.Name = "txtBNombre";
-            this.txtBNombre.Size = new System.Drawing.Size(321, 22);
-            this.txtBNombre.TabIndex = 390;
-            this.txtBNombre.TabStop = false;
-            this.txtBNombre.Tag = "M.descripcion";
-            // 
             // MOVIMIENTO
             // 
             this.MOVIMIENTO.DataPropertyName = "MOVIMIENTO";
@@ -221,6 +186,41 @@ namespace PROYECTO
             this.Datos.ReadOnly = true;
             this.Datos.Width = 4000;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.SystemColors.Desktop;
+            this.label1.Location = new System.Drawing.Point(341, 46);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(51, 17);
+            this.label1.TabIndex = 387;
+            this.label1.Text = "Filtro 1";
+            // 
+            // txtBId
+            // 
+            this.txtBId.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtBId.Location = new System.Drawing.Point(341, 66);
+            this.txtBId.Margin = new System.Windows.Forms.Padding(4);
+            this.txtBId.Name = "txtBId";
+            this.txtBId.Size = new System.Drawing.Size(321, 22);
+            this.txtBId.TabIndex = 388;
+            this.txtBId.TabStop = false;
+            this.txtBId.Tag = "P.num_producto";
+            // 
+            // txtBNombre
+            // 
+            this.txtBNombre.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtBNombre.Location = new System.Drawing.Point(688, 66);
+            this.txtBNombre.Margin = new System.Windows.Forms.Padding(4);
+            this.txtBNombre.Name = "txtBNombre";
+            this.txtBNombre.Size = new System.Drawing.Size(321, 22);
+            this.txtBNombre.TabIndex = 390;
+            this.txtBNombre.TabStop = false;
+            this.txtBNombre.Tag = "M.descripcion";
+            // 
             // frmVistaBitacora
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -237,6 +237,7 @@ namespace PROYECTO
             this.Controls.Add(this.trvLista);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -245,6 +246,7 @@ namespace PROYECTO
             this.Text = "Vista de Bitácora de Datos";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmVistaBitacora_FormClosing);
             this.Load += new System.EventHandler(this.frmVistaBitacora_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmVistaBitacora_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.dgrDatos)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

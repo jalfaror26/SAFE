@@ -14,8 +14,9 @@ namespace PROYECTO
     {
         private ServicioDAO oServicioDAO = null;
         private static frmConsultaServicios ofrmConsultaServicios = null;
-        private ConexionDAO oConexion = new ConexionDAO(PROYECTO.Properties.Settings.Default.UsuarioBD, PROYECTO.Properties.Settings.Default.Servidor,Conexion.getInstance().Clave);
-        private String indiceServicio, codigoServicio,descripcionServicio, palabra, IVI;
+        private ConexionDAO oConexion = new ConexionDAO(PROYECTO.Properties.Settings.Default.UsuarioBD, PROYECTO.Properties.Settings.Default.Servidor, Conexion.getInstance().Clave);
+        private String indiceServicio, codigoServicio, descripcionServicio, palabra, IVI;
+        private String vOrigen = "";
 
         private double IV;
 
@@ -41,7 +42,7 @@ namespace PROYECTO
                 {
                     oServicioDAO = new ServicioDAO();
 
-                    dgrDatos.DataSource = oServicioDAO.ConsultarInventario(PROYECTO.Properties.Settings.Default.No_cia).Tables[0];
+                    dgrDatos.DataSource = oServicioDAO.ConsultarInventario(vOrigen, PROYECTO.Properties.Settings.Default.No_cia).Tables[0];
 
                     if (oServicioDAO.Error())
                         MessageBox.Show("Ocurrió un error al extraer los datos: " + oServicioDAO.DescError(), "Error de consulta", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -69,7 +70,7 @@ namespace PROYECTO
                 oConexion.cerrarConexion();
                 if (oConexion.abrirConexion())
                 {
-                    dgrDatos.DataSource = oServicioDAO.ListarInventario(codigo, descripcion, PROYECTO.Properties.Settings.Default.No_cia).Tables[0];
+                    dgrDatos.DataSource = oServicioDAO.ListarInventario(vOrigen, codigo, descripcion, PROYECTO.Properties.Settings.Default.No_cia).Tables[0];
 
                     if (oServicioDAO.Error())
                         MessageBox.Show("Ocurrió un error al extraer los datos: " + oServicioDAO.DescError(), "Error de consulta", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -124,6 +125,11 @@ namespace PROYECTO
             this.Text = this.Text + " - " + this.Name;
             try
             {
+                if (palabra.Equals("frmFacturacion"))
+                    vOrigen = "F";
+                else if (palabra.Equals("frmCotizacion"))
+                    vOrigen = "C";
+
                 llenarGrid();
                 txtCodigo.Focus();
 
@@ -187,7 +193,7 @@ namespace PROYECTO
 
                 //else
                 if (palabra.Equals("frmCotizacion"))
-                    frmCotizacion.getInstance().cargaServicio(indiceServicio, codigoServicio,descripcionServicio, IVI, IV);
+                    frmCotizacion.getInstance().cargaServicio(indiceServicio, codigoServicio, descripcionServicio, IVI, IV);
                 //else if (palabra.Equals("TRAS_E_CEN_ABIERTOS"))
                 //    frmTraspasoECentros_Crear.getInstance().cargaArticulo(indiceArticulo, descripcionArticulo, existencia, proveedor, indiceInventario, presentacion, embalaje);
 
@@ -234,6 +240,6 @@ namespace PROYECTO
             oFrm.MdiParent = this.MdiParent;
             oFrm.Show();
         }
-    
+
     }
 }

@@ -36,6 +36,8 @@ namespace PROYECTO
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.dgrDatos = new System.Windows.Forms.DataGridView();
+            this.clave = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.imp_descripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.cmbImpuestos = new System.Windows.Forms.ComboBox();
             this.imageList2 = new System.Windows.Forms.ImageList(this.components);
@@ -49,8 +51,6 @@ namespace PROYECTO
             this.btnMSalir = new System.Windows.Forms.Button();
             this.btnMGuardar = new System.Windows.Forms.Button();
             this.btnMEliminar = new System.Windows.Forms.Button();
-            this.clave = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.imp_descripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgrDatos)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -113,6 +113,26 @@ namespace PROYECTO
             this.dgrDatos.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgrDatos_CellEnter);
             this.dgrDatos.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgrDatos_DataBindingComplete);
             this.dgrDatos.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dgrDatos_DataError);
+            // 
+            // clave
+            // 
+            this.clave.DataPropertyName = "clave";
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.clave.DefaultCellStyle = dataGridViewCellStyle3;
+            this.clave.HeaderText = "Clave";
+            this.clave.MinimumWidth = 6;
+            this.clave.Name = "clave";
+            this.clave.ReadOnly = true;
+            this.clave.Width = 125;
+            // 
+            // imp_descripcion
+            // 
+            this.imp_descripcion.DataPropertyName = "descripcion";
+            this.imp_descripcion.HeaderText = "Descripción";
+            this.imp_descripcion.MinimumWidth = 6;
+            this.imp_descripcion.Name = "imp_descripcion";
+            this.imp_descripcion.ReadOnly = true;
+            this.imp_descripcion.Width = 350;
             // 
             // groupBox2
             // 
@@ -298,25 +318,6 @@ namespace PROYECTO
             this.btnMEliminar.UseVisualStyleBackColor = true;
             this.btnMEliminar.Click += new System.EventHandler(this.btnMEliminar_Click);
             // 
-            // clave
-            // 
-            this.clave.DataPropertyName = "clave";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.clave.DefaultCellStyle = dataGridViewCellStyle3;
-            this.clave.HeaderText = "Clave";
-            this.clave.MinimumWidth = 6;
-            this.clave.Name = "clave";
-            this.clave.ReadOnly = true;
-            // 
-            // imp_descripcion
-            // 
-            this.imp_descripcion.DataPropertyName = "descripcion";
-            this.imp_descripcion.HeaderText = "Descripción";
-            this.imp_descripcion.MinimumWidth = 6;
-            this.imp_descripcion.Name = "imp_descripcion";
-            this.imp_descripcion.ReadOnly = true;
-            this.imp_descripcion.Width = 350;
-            // 
             // frmServicioImpuestos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -331,6 +332,7 @@ namespace PROYECTO
             this.Controls.Add(this.dgrDatos);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -339,6 +341,7 @@ namespace PROYECTO
             this.Text = "Impuestos de los Servicios";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmArticuloPresentacion_FormClosing);
             this.Load += new System.EventHandler(this.frmArticuloPresentacion_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmServicioImpuestos_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.dgrDatos)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);

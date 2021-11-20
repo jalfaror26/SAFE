@@ -88,6 +88,12 @@
       <DependentUpon>DataSetReportes.xsd</DependentUpon>
     </Compile>
     <Compile Include="Ent_CW.cs" />
+    <Compile Include="frmConsultaFactura.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmConsultaFactura.designer.cs">
+      <DependentUpon>frmConsultaFactura.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmFacturaAnular.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -410,6 +416,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.map</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="frmConsultaFactura.resx">
+      <DependentUpon>frmConsultaFactura.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmFacturaAnular.resx">
       <DependentUpon>frmFacturaAnular.cs</DependentUpon>
     </EmbeddedResource>
@@ -639,6 +648,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\rym2.jpg" />
+    <Content Include="CambiosBD 19-11-21.txt" />
+    <Content Include="CambiosBD 18-11-21.txt" />
     <Content Include="CambiosBD 17-11-21.txt" />
     <Content Include="CambiosBD 16-11-21.txt" />
     <Content Include="CambiosBD 15-11-21 v2.txt" />

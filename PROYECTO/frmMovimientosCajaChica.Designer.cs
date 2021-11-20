@@ -537,6 +537,7 @@ namespace PROYECTO
             this.Controls.Add(this.dgrDatos);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -545,6 +546,7 @@ namespace PROYECTO
             this.Text = "Movimientos de Caja Chica";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmMovimientosCajaChica_FormClosing);
             this.Load += new System.EventHandler(this.frmMovimientosCajaChica_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmMovimientosCajaChica_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.dgrDatos)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);

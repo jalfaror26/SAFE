@@ -160,6 +160,19 @@ namespace PROYECTO
             this.Close();
         }
 
+        private void frmMenuSistema_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.F1)
+                Ayuda();
+        }
+
+        private void Ayuda()
+        {
+            frmAyuda oFrm = frmAyuda.getInstance();
+            oFrm.MdiParent = this.MdiParent;
+            oFrm.Show();
+        }
+
         private void btnAdministracionUsuario_Click(object sender, EventArgs e)
         {
             frmUsuarioAdministracion orpt = frmUsuarioAdministracion.getInstance();

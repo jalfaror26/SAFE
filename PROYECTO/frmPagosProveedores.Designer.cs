@@ -376,6 +376,7 @@ namespace PROYECTO
             this.Controls.Add(this.label8);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -385,6 +386,7 @@ namespace PROYECTO
             this.TopMost = true;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmPagosProveedores_FormClosing);
             this.Load += new System.EventHandler(this.frmPagosProveedores_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmPagosProveedores_KeyDown);
             this.ResumeLayout(false);
             this.PerformLayout();
 

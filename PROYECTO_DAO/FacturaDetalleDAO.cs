@@ -42,7 +42,9 @@ namespace PROYECTO_DAO
             oCommand.Parameters[10].Value = oFacturaDetalle.No_cia;
             oCommand.Parameters.Add("IVI", OracleType.NVarChar);
             oCommand.Parameters[11].Value = oFacturaDetalle.IVI;
-
+            oCommand.Parameters.Add("pCOD_CABYS", OracleType.NVarChar);
+            oCommand.Parameters[12].Value = oFacturaDetalle.Cod_cabys;
+            
             OracleDAO.getInstance().EjecutarSQLStoreProcedure(oCommand);
 
             return !OracleDAO.getInstance().ErrorSQL;
@@ -81,6 +83,8 @@ namespace PROYECTO_DAO
             oCommand.Parameters[11].Value = oFacturaDetalle.No_cia;
             oCommand.Parameters.Add("IVI", OracleType.NVarChar);
             oCommand.Parameters[12].Value = oFacturaDetalle.IVI;
+            oCommand.Parameters.Add("pCOD_CABYS", OracleType.NVarChar);
+            oCommand.Parameters[13].Value = oFacturaDetalle.Cod_cabys;
 
             OracleDAO.getInstance().EjecutarSQLStoreProcedure(oCommand);
 
@@ -112,7 +116,7 @@ namespace PROYECTO_DAO
 
         public DataSet Consulta(int indiceFactura, String pNo_cia)
         {
-            String sql = "select detfac_numerolinea, detfac_codigo, detfac_cantidad, detfac_descripcion, DETFAC_SUBTOTAL, DETFAC_MONTO_IV, detfac_medida, DETFAC_PRECIO_UNITARIO, DETFAC_DESCUENTO, DETFAC_PRECIO_TOTAL detfac_total, SER_CODIGO, detfac_ivi, SER_impuestos, SER_TIPO_CODIGO from TBL_FACTURA_DETALLE fd, TBL_SERVICIOS ar where ar.no_cia = '" + pNo_cia + "' and ar.no_cia = fd.no_cia and DETFAC_INDICEFACTURA = '" + indiceFactura + "' and SER_INDICE = detfac_codigo ORDER BY detfac_numerolinea desc";
+            String sql = "select detfac_numerolinea, detfac_codigo, detfac_cantidad, detfac_descripcion, DETFAC_SUBTOTAL, DETFAC_MONTO_IV, detfac_medida, DETFAC_PRECIO_UNITARIO, DETFAC_DESCUENTO, DETFAC_PRECIO_TOTAL detfac_total, SER_CODIGO, detfac_ivi, SER_impuestos, SER_TIPO_CODIGO, fd.Cod_cabys from TBL_FACTURA_DETALLE fd, TBL_SERVICIOS ar where ar.no_cia = '" + pNo_cia + "' and ar.no_cia = fd.no_cia and DETFAC_INDICEFACTURA = '" + indiceFactura + "' and SER_INDICE = detfac_codigo ORDER BY detfac_numerolinea desc";
             DataSet oDataSet = OracleDAO.getInstance().EjecutarSQLDataSet(sql);
             return oDataSet;
         }

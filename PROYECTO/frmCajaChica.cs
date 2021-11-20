@@ -402,6 +402,20 @@ namespace PROYECTO
 
         }
 
+        private void frmCajaChica_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.F1)
+                Ayuda();
+        }
+
+        private void Ayuda()
+        {
+            frmAyuda oFrm = frmAyuda.getInstance("t11");
+            oFrm.MdiParent = this.MdiParent;
+            oFrm.Show();
+        }
+
+
         private void LlenarTipoCambio()
         {
             try

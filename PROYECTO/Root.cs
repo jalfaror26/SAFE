@@ -21,15 +21,25 @@ namespace PROYECTO
         public string respuesta { get; set; }
         public List<object> errores { get; set; }
 
+        public string contenidoXml { get; set; }
+        public string contenidoXmlFirmado { get; set; }
+        public Documento documento { get; set; }
 
-        public string responseCode { get; set; }
-        public string responseDescription { get; set; }
-        public CResultado cResultado { get; set; }
+        //public string responseCode { get; set; }
+        //public string responseDescription { get; set; }
+        //public CResultado cResultado { get; set; }
 
-        //public List<CResultado> cListResultado { get; set; }
+        ////public List<CResultado> cListResultado { get; set; }
 
     }
 
+    public class Documento
+    {
+        public string clave { get; set; }
+        public string consecutivo { get; set; }
+        public string recepcion { get; set; }
+        public string comprobacion { get; set; }
+    }
     public class Producto
     {
         // Generico
@@ -41,7 +51,7 @@ namespace PROYECTO
         public string nombre { get; set; }
         public string correoElectronico { get; set; }
         public int codigoPais { get; set; }
-        public int telefono { get; set; }
+        public string telefono { get; set; }
         public int provincia { get; set; }
         public int canton { get; set; }
         public int distrito { get; set; }

@@ -46,6 +46,20 @@ namespace PROYECTO_DAO
                 oCommand.Parameters[10].Value = oEmpresa.Distrito;
                 oCommand.Parameters.Add("pBARRIO", OracleType.NVarChar);
                 oCommand.Parameters[11].Value = oEmpresa.Barrio;
+
+                oCommand.Parameters.Add("Fe_Api_Token", OracleType.NVarChar);
+                oCommand.Parameters[12].Value = oEmpresa.Fe_Api_Token;
+                oCommand.Parameters.Add("Fe_Access_Token", OracleType.NVarChar);
+                oCommand.Parameters[13].Value = oEmpresa.Fe_Access_Token;
+                oCommand.Parameters.Add("Fe_ActividadComercial", OracleType.NVarChar);
+                oCommand.Parameters[14].Value = oEmpresa.Fe_ActividadComercial;
+                oCommand.Parameters.Add("Fe_Sucursal", OracleType.NVarChar);
+                oCommand.Parameters[15].Value = oEmpresa.Fe_Sucursal;
+                oCommand.Parameters.Add("Fe_Caja", OracleType.NVarChar);
+                oCommand.Parameters[16].Value = oEmpresa.Fe_Caja;
+                oCommand.Parameters.Add("Fe_Ind_Fact_Elect", OracleType.NVarChar);
+                oCommand.Parameters[17].Value = oEmpresa.Fe_Ind_Fact_Elect;
+
             }
             else
             {
@@ -79,6 +93,19 @@ namespace PROYECTO_DAO
                 oCommand.Parameters[11].Value = oEmpresa.Distrito;
                 oCommand.Parameters.Add("pBARRIO", OracleType.NVarChar);
                 oCommand.Parameters[12].Value = oEmpresa.Barrio;
+
+                oCommand.Parameters.Add("Fe_Api_Token", OracleType.NVarChar);
+                oCommand.Parameters[13].Value = oEmpresa.Fe_Api_Token;
+                oCommand.Parameters.Add("Fe_Access_Token", OracleType.NVarChar);
+                oCommand.Parameters[14].Value = oEmpresa.Fe_Access_Token;
+                oCommand.Parameters.Add("Fe_ActividadComercial", OracleType.NVarChar);
+                oCommand.Parameters[15].Value = oEmpresa.Fe_ActividadComercial;
+                oCommand.Parameters.Add("Fe_Sucursal", OracleType.NVarChar);
+                oCommand.Parameters[16].Value = oEmpresa.Fe_Sucursal;
+                oCommand.Parameters.Add("Fe_Caja", OracleType.NVarChar);
+                oCommand.Parameters[17].Value = oEmpresa.Fe_Caja;
+                oCommand.Parameters.Add("Fe_Ind_Fact_Elect", OracleType.NVarChar);
+                oCommand.Parameters[18].Value = oEmpresa.Fe_Ind_Fact_Elect;
             }
 
             OracleDAO.getInstance().EjecutarSQLStoreProcedure(oCommand);
@@ -88,7 +115,7 @@ namespace PROYECTO_DAO
         }
 
 
-        public Boolean ActualizaParametro(String pNo_cia,String pParametro, String pValor)
+        public Boolean ActualizaParametro(String pNo_cia, String pParametro, String pValor)
         {
 
             //Declaración de objeto SqlCommand           
@@ -113,7 +140,7 @@ namespace PROYECTO_DAO
 
         public DataSet consultar(String pNo_cia)
         {
-            String sql = "SELECT EMPR_TIPO_ID, EMPR_IDENTIFICACION, EMPR_NOMBRE, EMPR_DIRECCION, EMPR_TELEFONO, EMPR_CORREO, EMPR_LOGO, PROVINCIA, CANTON, DISTRITO, BARRIO FROM TBL_EMPRESA em where no_cia = '" + pNo_cia + "'";
+            String sql = "SELECT EMPR_TIPO_ID, EMPR_IDENTIFICACION, EMPR_NOMBRE, EMPR_DIRECCION, EMPR_TELEFONO, EMPR_CORREO, EMPR_LOGO, PROVINCIA, CANTON, DISTRITO, BARRIO, ind_facturasabiertas, IND_FACT_ELECT, API_TOKEN_WS_FE, ACCESS_TOKEN_WS_FE, CODIGO_ACTIVIDAD, SUCURSAL, CAJA FROM TBL_EMPRESA em where no_cia = '" + pNo_cia + "'";
             DataSet oDataSet = OracleDAO.getInstance().EjecutarSQLDataSet(sql);
             return oDataSet;
         }

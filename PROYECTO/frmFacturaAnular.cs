@@ -187,6 +187,19 @@ namespace PROYECTO
             LlenarComentarios();
         }
 
+        private void frmFacturaAnular_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.F1)
+                Ayuda();
+        }
+
+        private void Ayuda()
+        {
+            frmAyuda oFrm = frmAyuda.getInstance("t9");
+            oFrm.MdiParent = this.MdiParent;
+            oFrm.Show();
+        }
+
         private void LlenarComentarios()
         {
             try

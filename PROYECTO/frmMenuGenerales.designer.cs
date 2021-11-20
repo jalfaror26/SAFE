@@ -326,6 +326,7 @@ namespace PROYECTO
             this.Name = "frmMenuGenerales";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmMenuGenerales_FormClosing);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmMenuGenerales_KeyDown);
             this.pGenerales.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);

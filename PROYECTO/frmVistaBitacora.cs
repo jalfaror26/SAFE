@@ -282,6 +282,19 @@ namespace PROYECTO
 
         }
 
+        private void frmVistaBitacora_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.F1)
+                Ayuda();
+        }
+
+        private void Ayuda()
+        {
+            frmAyuda oFrm = frmAyuda.getInstance();
+            oFrm.MdiParent = this.MdiParent;
+            oFrm.Show();
+        }
+
         private void txtBuscar_Enter(object sender, EventArgs e)
         {
             lblTitulo.Text = "";

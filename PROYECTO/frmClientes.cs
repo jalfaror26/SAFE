@@ -58,6 +58,7 @@ namespace PROYECTO
 
         private void frmClientes_Load(object sender, EventArgs e)
         {
+            btnDescargarClientes.Enabled = AplicaFE();
             this.Text = this.Text + " - " + this.Name;
             ((System.Windows.Forms.StatusStrip)this.MdiParent.Controls["stEstado"]).Items["stLinea4"].Visible = true;
             ((System.Windows.Forms.StatusStrip)this.MdiParent.Controls["stEstado"]).Items["stActual"].Text = " Actual: Mantenimiento de Clientes ";
@@ -66,6 +67,32 @@ namespace PROYECTO
             LlenarCombos();
             btnMNuevo.PerformClick();
             LimpiarCampos();
+        }
+
+        private Boolean AplicaFE()
+        {
+            try
+            {
+                Boolean vAplicaFE = false;
+                oConexion.cerrarConexion();
+                if (oConexion.abrirConexion())
+                {
+                    DataTable oDatosGeneral = oConexion.EjecutaSentencia("select IND_FACT_ELECT from TBL_EMPRESA where no_Cia = '" + PROYECTO.Properties.Settings.Default.No_cia + "'");
+
+                    String vIND_FACT_ELECT = "N";
+
+                    foreach (DataRow ofila in oDatosGeneral.Rows)
+                        vIND_FACT_ELECT = ofila["IND_FACT_ELECT"].ToString();
+
+                    if (vIND_FACT_ELECT.Equals("S"))
+                        vAplicaFE = true;
+                }
+                return vAplicaFE;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
         }
 
         private void LlenarCombos()
@@ -703,6 +730,9 @@ namespace PROYECTO
 
                         return;
                     }
+                    
+                    oDatosJson = oDatosJson.Replace(@"""codigoPais"":null", @"""codigoPais"":506");
+
 
                     var jobject = JsonConvert.DeserializeObject<Root>(oDatosJson);
 
@@ -724,7 +754,7 @@ namespace PROYECTO
                                 String vnombre = oResultado.nombre;
                                 String vcorreoElectronico = oResultado.correoElectronico;
                                 int vcodigoPais = oResultado.codigoPais;
-                                int vtelefono = oResultado.telefono;
+                                String vtelefono = oResultado.telefono;
                                 int vprovincia = oResultado.provincia;
                                 int vcanton = oResultado.canton;
                                 int vdistrito = oResultado.distrito;
@@ -743,6 +773,8 @@ namespace PROYECTO
                                     votrasSenas = "";
                                 if (String.IsNullOrEmpty(vnombreComercial))
                                     vnombreComercial = "";
+                                if (String.IsNullOrEmpty(vtelefono))
+                                    vtelefono = "";
 
                                 try
                                 {
@@ -757,12 +789,12 @@ namespace PROYECTO
                                         oCliente.Id = vid.ToString();
                                         oCliente.TipoId = vtipo.ToUpper();
                                         oCliente.Nombre = vnombre.ToUpper();
-                                        oCliente.Telefono = vtelefono.ToString();
+                                        oCliente.Telefono = vtelefono;
                                         oCliente.Fax = "";
                                         oCliente.Contacto = "";
                                         oCliente.Correo = vcorreoElectronico;
 
-                                      
+
                                         oCliente.Ubicacion = votrasSenas.ToUpper();
                                         oCliente.Identificacion = vcedula.ToUpper();
                                         oCliente.Dias = 0;
@@ -821,8 +853,6 @@ namespace PROYECTO
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al buscar API!!!", "Error de Conexión", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
                 // Qué ha sucedido
                 var mensaje = "Error message: " + ex.Message;
 
@@ -832,6 +862,7 @@ namespace PROYECTO
                     mensaje = mensaje + " Inner exception: " + ex.InnerException.Message;
                 }
 
+                MessageBox.Show("Error al buscar API!!!\n\nError: " + mensaje, "Error de Conexión", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

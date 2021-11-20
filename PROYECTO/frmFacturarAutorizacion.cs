@@ -135,6 +135,19 @@ namespace PROYECTO
             }
         }
 
+        private void frmFacturarAutorizacion_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.F1)
+                Ayuda();
+        }
+
+        private void Ayuda()
+        {
+            frmAyuda oFrm = frmAyuda.getInstance("t9");
+            oFrm.MdiParent = this.MdiParent;
+            oFrm.Show();
+        }
+
         private void frmConexion_Load(object sender, EventArgs e)
         {
             this.Text += "N° " + oFactura.NumFactura;

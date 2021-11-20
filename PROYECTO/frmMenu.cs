@@ -25,16 +25,22 @@ namespace PROYECTO
             return instance;
         }
 
-        public void QuitarTodos()
+        public void QuitarTodos(String pPanelVisible)
         {
             try
             {
-                pPrincipal.Visible = false;
-                pReportes.Visible = false;
-                pRepPagos.Visible = false;
-                pRepFinancieros.Visible = false;
-                pRepInvFact.Visible = false;
-                pRepGenerales.Visible = false;
+                if (!pPrincipal.Name.Equals(pPanelVisible))
+                    pPrincipal.Visible = false;
+                if (!pReportes.Name.Equals(pPanelVisible))
+                    pReportes.Visible = false;
+                if (!pRepPagos.Name.Equals(pPanelVisible))
+                    pRepPagos.Visible = false;
+                if (!pRepFinancieros.Name.Equals(pPanelVisible))
+                    pRepFinancieros.Visible = false;
+                if (!pRepInvFact.Name.Equals(pPanelVisible))
+                    pRepInvFact.Visible = false;
+                if (!pRepGenerales.Name.Equals(pPanelVisible))
+                    pRepGenerales.Visible = false;
             }
             catch
             {
@@ -81,11 +87,8 @@ namespace PROYECTO
 
         private void btnMenú1_Click(object sender, EventArgs e)
         {
-            frmMenu oMenu = frmMenu.getInstance();
-            oMenu.MdiParent = this.MdiParent;
-            oMenu.Show();
-
-            this.Close();
+            pPrincipal.Visible = true;
+            QuitarTodos(pPrincipal.Name.ToString());
         }
 
         private void frmMenu_FormClosing(object sender, FormClosingEventArgs e)
@@ -128,8 +131,8 @@ namespace PROYECTO
 
         private void lblReportes_Click(object sender, EventArgs e)
         {
-            QuitarTodos();
             pReportes.Visible = true;
+            QuitarTodos(pReportes.Name.ToString());
         }
 
         private void lblSistema_Click(object sender, EventArgs e)
@@ -143,26 +146,26 @@ namespace PROYECTO
 
         private void btnReportes1_Click(object sender, EventArgs e)
         {
-            QuitarTodos();
             pReportes.Visible = true;
+            QuitarTodos(pReportes.Name.ToString());
         }
 
         private void btnRepFinancieros_Click(object sender, EventArgs e)
         {
-            QuitarTodos();
             pRepFinancieros.Visible = true;
+            QuitarTodos(pRepFinancieros.Name.ToString());
         }
 
         private void btnRepInvFac_Click(object sender, EventArgs e)
         {
-            QuitarTodos();
             pRepInvFact.Visible = true;
+            QuitarTodos(pRepInvFact.Name.ToString());
         }
 
         private void btnRepPagos_Click(object sender, EventArgs e)
         {
-            QuitarTodos();
             pRepPagos.Visible = true;
+            QuitarTodos(pRepPagos.Name.ToString());
         }
 
         private void btnRepGtsPorCategoria_Click(object sender, EventArgs e)
@@ -435,8 +438,8 @@ namespace PROYECTO
 
         private void btnrptsGenerales_Click(object sender, EventArgs e)
         {
-            QuitarTodos();
             pRepGenerales.Visible = true;
+            QuitarTodos(pRepGenerales.Name.ToString());
         }
 
         private void btnRepClientes_Click(object sender, EventArgs e)
@@ -538,7 +541,7 @@ namespace PROYECTO
               }
               this.Close();*/
         }
-        
+
         private void btnAyuda_Click(object sender, EventArgs e)
         {
             frmAyuda oFrm = frmAyuda.getInstance();

@@ -51,7 +51,7 @@ namespace PROYECTO
             try
             {
                 HttpWebRequest request = WebRequest.Create(UrlAPI + pPostURl) as HttpWebRequest;
-                request.Timeout = 20000;
+                request.Timeout = 3000000;
                 //request.Method = "POST";
                 request.Method = pMetodo;
                 request.ContentType = "application/json";
@@ -87,7 +87,7 @@ namespace PROYECTO
             }
             catch (WebException e)
             {
-                if (e.Message.Equals("The operation has timed out."))
+                if (e.Message.Equals("The operation has timed out.") || e.Message.Equals("Se excedió el tiempo de espera de la operación"))
                     pTimeOut = true;
                 else
                     pTimeOut = false;
@@ -137,7 +137,7 @@ namespace PROYECTO
         {
             try
             {
-                return ObtieneJson("POST", "/documentos-electronicos/emision/factura", json, out pstatusCode, out pTimeOut);
+                return ObtieneJson("POST", "documentos-electronicos/emision/factura", json, out pstatusCode, out pTimeOut);
             }
             catch (WebException e)
             {
@@ -155,7 +155,7 @@ namespace PROYECTO
             {
                 //var json = JsonConvert.SerializeObject(new { General = oParametrosGeneralAPI });
 
-                return ObtieneJson("GET", "/documentos-electronicos/hacienda/comprobar/" + pClave, "", out pstatusCode, out pTimeOut);
+                return ObtieneJson("GET", "documentos-electronicos/hacienda/comprobar/" + pClave, "", out pstatusCode, out pTimeOut);
             }
             catch (WebException e)
             {

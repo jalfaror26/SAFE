@@ -55,7 +55,7 @@ namespace PROYECTO
             this.btnCambiarContrasenna.ImageIndex = 1;
             this.btnCambiarContrasenna.ImageList = this.imageList1;
             this.btnCambiarContrasenna.Location = new System.Drawing.Point(135, 256);
-            this.btnCambiarContrasenna.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnCambiarContrasenna.Margin = new System.Windows.Forms.Padding(4);
             this.btnCambiarContrasenna.Name = "btnCambiarContrasenna";
             this.btnCambiarContrasenna.Size = new System.Drawing.Size(232, 54);
             this.btnCambiarContrasenna.TabIndex = 3;
@@ -78,7 +78,7 @@ namespace PROYECTO
             // txtContrasennaActual
             // 
             this.txtContrasennaActual.Location = new System.Drawing.Point(88, 92);
-            this.txtContrasennaActual.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtContrasennaActual.Margin = new System.Windows.Forms.Padding(4);
             this.txtContrasennaActual.Name = "txtContrasennaActual";
             this.txtContrasennaActual.PasswordChar = '*';
             this.txtContrasennaActual.Size = new System.Drawing.Size(337, 22);
@@ -98,7 +98,7 @@ namespace PROYECTO
             // txtNuevaContrasenna
             // 
             this.txtNuevaContrasenna.Location = new System.Drawing.Point(88, 145);
-            this.txtNuevaContrasenna.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtNuevaContrasenna.Margin = new System.Windows.Forms.Padding(4);
             this.txtNuevaContrasenna.Name = "txtNuevaContrasenna";
             this.txtNuevaContrasenna.PasswordChar = '*';
             this.txtNuevaContrasenna.Size = new System.Drawing.Size(337, 22);
@@ -119,7 +119,7 @@ namespace PROYECTO
             // txtConfirmNueva
             // 
             this.txtConfirmNueva.Location = new System.Drawing.Point(88, 201);
-            this.txtConfirmNueva.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtConfirmNueva.Margin = new System.Windows.Forms.Padding(4);
             this.txtConfirmNueva.Name = "txtConfirmNueva";
             this.txtConfirmNueva.PasswordChar = '*';
             this.txtConfirmNueva.Size = new System.Drawing.Size(337, 22);
@@ -155,7 +155,7 @@ namespace PROYECTO
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmUsuarioContraseñaCambio";
@@ -163,6 +163,7 @@ namespace PROYECTO
             this.Text = "Cambio de Contraseña";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmUsuarioAdministracion_FormClosing);
             this.Load += new System.EventHandler(this.frmUsuarioContraseñaCambio_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmUsuarioContraseñaCambio_KeyDown);
             this.ResumeLayout(false);
             this.PerformLayout();
 

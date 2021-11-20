@@ -465,6 +465,20 @@ namespace PROYECTO
             catch { }
         }
 
+        private void frmUsuariosPermisos_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.F1)
+                Ayuda();
+        }
+
+        private void Ayuda()
+        {
+            frmAyuda oFrm = frmAyuda.getInstance("t16");
+            oFrm.MdiParent = this.MdiParent;
+            oFrm.Show();
+        }
+
+
         private void btnMSalir_Click(object sender, EventArgs e)
         {
             this.Close();

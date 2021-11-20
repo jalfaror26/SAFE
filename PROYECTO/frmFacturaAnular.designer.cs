@@ -48,7 +48,7 @@ namespace PROYECTO
             this.txtAdministrador.BackColor = System.Drawing.Color.White;
             this.txtAdministrador.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtAdministrador.Location = new System.Drawing.Point(45, 31);
-            this.txtAdministrador.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtAdministrador.Margin = new System.Windows.Forms.Padding(4);
             this.txtAdministrador.Name = "txtAdministrador";
             this.txtAdministrador.Size = new System.Drawing.Size(207, 23);
             this.txtAdministrador.TabIndex = 0;
@@ -82,7 +82,7 @@ namespace PROYECTO
             this.txtClave.BackColor = System.Drawing.Color.White;
             this.txtClave.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtClave.Location = new System.Drawing.Point(300, 31);
-            this.txtClave.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtClave.Margin = new System.Windows.Forms.Padding(4);
             this.txtClave.Name = "txtClave";
             this.txtClave.PasswordChar = '*';
             this.txtClave.Size = new System.Drawing.Size(207, 23);
@@ -96,7 +96,7 @@ namespace PROYECTO
             this.btnAnular.ImageIndex = 0;
             this.btnAnular.ImageList = this.imageList1;
             this.btnAnular.Location = new System.Drawing.Point(45, 212);
-            this.btnAnular.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnAnular.Margin = new System.Windows.Forms.Padding(4);
             this.btnAnular.Name = "btnAnular";
             this.btnAnular.Size = new System.Drawing.Size(208, 43);
             this.btnAnular.TabIndex = 2;
@@ -120,7 +120,7 @@ namespace PROYECTO
             this.btnCancelar.ImageIndex = 1;
             this.btnCancelar.ImageList = this.imageList1;
             this.btnCancelar.Location = new System.Drawing.Point(300, 212);
-            this.btnCancelar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnCancelar.Margin = new System.Windows.Forms.Padding(4);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(208, 43);
             this.btnCancelar.TabIndex = 3;
@@ -140,7 +140,7 @@ namespace PROYECTO
             this.txtComentario.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtComentario.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtComentario.Location = new System.Drawing.Point(45, 127);
-            this.txtComentario.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtComentario.Margin = new System.Windows.Forms.Padding(4);
             this.txtComentario.Multiline = true;
             this.txtComentario.Name = "txtComentario";
             this.txtComentario.Size = new System.Drawing.Size(461, 68);
@@ -164,7 +164,7 @@ namespace PROYECTO
             this.cboComentarios.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboComentarios.FormattingEnabled = true;
             this.cboComentarios.Location = new System.Drawing.Point(45, 89);
-            this.cboComentarios.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cboComentarios.Margin = new System.Windows.Forms.Padding(4);
             this.cboComentarios.Name = "cboComentarios";
             this.cboComentarios.Size = new System.Drawing.Size(461, 25);
             this.cboComentarios.TabIndex = 8;
@@ -189,7 +189,8 @@ namespace PROYECTO
             this.Controls.Add(this.txtComentario);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.KeyPreview = true;
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmFacturaAnular";
@@ -198,6 +199,7 @@ namespace PROYECTO
             this.TopMost = true;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmConexion_FormClosing);
             this.Load += new System.EventHandler(this.frmConexion_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmFacturaAnular_KeyDown);
             this.ResumeLayout(false);
             this.PerformLayout();
 

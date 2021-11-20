@@ -564,6 +564,19 @@ namespace PROYECTO
             txtMontoAumentar3.Text = moned + " " + double.Parse(monto).ToString("###,###,##0.00");
         }
 
+        private void frmCajaChicaOtros_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.F1)
+                Ayuda();
+        }
+
+        private void Ayuda()
+        {
+            frmAyuda oFrm = frmAyuda.getInstance("t11");
+            oFrm.MdiParent = this.MdiParent;
+            oFrm.Show();
+        }
+
         private void txtMontoAumentar1_KeyPress(object sender, KeyPressEventArgs e)
         {
             try

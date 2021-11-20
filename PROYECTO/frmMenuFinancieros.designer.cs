@@ -323,6 +323,7 @@ namespace PROYECTO
             this.Name = "frmMenuFinancieros";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmMenuFinancieros_FormClosing);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmMenuFinancieros_KeyDown);
             this.pFinancieros.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
             this.ResumeLayout(false);

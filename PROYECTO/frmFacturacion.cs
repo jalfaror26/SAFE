@@ -151,6 +151,11 @@ namespace PROYECTO
             btnBusqCliente.Enabled = true;
             txtDias = 0;
 
+            txtFE_Clave.Clear();
+            txtFE_Consecutivo.Clear();
+            lblFE_Comprobacion.Text = "";
+            lblFE_Recepcion.Text = "";
+
             txtCantidad.Text = "0";
 
             txtCodServicio.Text = "";
@@ -305,6 +310,7 @@ namespace PROYECTO
             txtPrecioUnitario.Text = cmbMoneda.Equals("CRC") ? "¢ 0.00" : cmbMoneda.Equals("USD") ? "$ 0.00" : "¢ 0.00";
             txtTotalPorLinea.Text = cmbMoneda.Equals("CRC") ? "¢ 0.00" : cmbMoneda.Equals("USD") ? "$ 0.00" : "¢ 0.00";
             txtLineaDescuento.Text = "0";
+            txtCodCabys.Clear();
 
             dgrDatos.ClearSelection();
             txtCantidad.ReadOnly = false;
@@ -415,17 +421,6 @@ namespace PROYECTO
                 btnFE_Comprobar.Visible = false;
                 string anterior = txtFactura.Text;
 
-                String pfactura = factura[0].ToString();
-                for (int x = 1; x < factura.Length; x++)
-                {
-                    if (char.IsNumber(factura[x]))
-                        pfactura += factura[x];
-                    else
-                        x = factura.Length;
-                }
-
-                factura = pfactura;
-
                 txtFactura.Text = factura;
 
                 txtANombreDe.Text = nombre;
@@ -527,7 +522,7 @@ namespace PROYECTO
                         if (usa_FE.Equals("S"))
                         {
                             txtFE_Clave.Text = odata.Rows[0]["fe_clave"].ToString();
-                            txtFE_Cosecutivo.Text = odata.Rows[0]["fe_consecutivo"].ToString();
+                            txtFE_Consecutivo.Text = odata.Rows[0]["fe_consecutivo"].ToString();
 
                             if (odata.Rows[0]["fe_comprobacion"].ToString().Equals("por_comprobar"))
                                 lblFE_Comprobacion.Text = "POR COMPROBAR";
@@ -539,7 +534,7 @@ namespace PROYECTO
                         else
                         {
                             txtFE_Clave.Clear();
-                            txtFE_Cosecutivo.Clear();
+                            txtFE_Consecutivo.Clear();
                             lblFE_Comprobacion.Text = "";
                             lblFE_Recepcion.Text = "";
                         }
@@ -570,7 +565,10 @@ namespace PROYECTO
                     CalculaSaldos();
                     chkDescuento.Enabled = false;
 
-                    CrearFE();
+                    lblMjFacturaElectronica.Text = "Generando Factura Electrónica";
+                    lblMjFacturaElectronica.Visible = true;
+                    pbFacturaElectronica.Visible = true;
+                    timCreaFA.Start();
                 }
                 else
                     MessageBox.Show("Ocurrió un error al conectarse a la base de datos.", "Error de Conexión", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -620,7 +618,7 @@ namespace PROYECTO
 
         private void btnBusqFactura_Click(object sender, EventArgs e)
         {
-            frmConsulta oConsulta = frmConsulta.getInstance("FACTURACIONRAPIDA");
+            frmConsultaFactura oConsulta = frmConsultaFactura.getInstance();
             oConsulta.MdiParent = frmPrincipal.getInstance().MdiParent;
             oConsulta.ShowDialog();
             btnGuardar.Visible = true;
@@ -755,8 +753,28 @@ namespace PROYECTO
 
                 txtCantidad.Focus();
 
+                oConexion = new ConexionDAO(PROYECTO.Properties.Settings.Default.UsuarioBD, PROYECTO.Properties.Settings.Default.Servidor, Conexion.getInstance().Clave);
                 oConexion.cerrarConexion();
+                if (oConexion.abrirConexion())
+                {
+                    ServicioDAO oServicio = new ServicioDAO();
+                    DataTable oDato = oServicio.ConsultarEspecificoIndice(indiceServicio.ToString(), PROYECTO.Properties.Settings.Default.No_cia);
 
+                    if (oDato.Rows.Count > 0)
+                    {
+                        try
+                        {
+                            txtCodServicio.Text = oDato.Rows[0]["ser_codigo"].ToString();
+                            txtCodCabys.Text = oDato.Rows[0]["Cod_cabys"].ToString();
+                        }
+                        catch { }
+                    }
+
+                    oConexion.cerrarConexion();
+
+                }
+                else
+                    MessageBox.Show("Ocurrió un error al conectarse a la base de datos.", "Error de Conexión", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             catch (Exception ex)
             {
@@ -805,6 +823,7 @@ namespace PROYECTO
                 txtSubTotalLinea.Text = cadena + Double.Parse(dgrDatos["DETFAC_SUBTOTAL", fila].Value.ToString()).ToString(" ###,###,##0.00");
                 txtLineaDescuento.Text = Double.Parse(dgrDatos["detfac_descuento", fila].Value.ToString()).ToString("###,###,##0.00");
                 txtTotalPorLinea.Text = cadena + Double.Parse(dgrDatos["detfac_total", fila].Value.ToString()).ToString(" ###,###,##0.00");
+                txtCodCabys.Text = dgrDatos["Cod_cabys", fila].Value.ToString();
 
                 btnGuardarDetalle.Text = " Modificar";
                 txtCantidad.ReadOnly = true;
@@ -892,9 +911,11 @@ namespace PROYECTO
                         oFacturaDetalle.PrecioTotal = oFacturaDetalle.Subtotal - montoDescuento + (IVI.Equals("S") ? 0 : oFacturaDetalle.MontoIV);
 
                         oFacturaDetalle.Descripcion = txtDescServicio.Text;
-                        oFacturaDetalle.Medida = "UND";
+                        oFacturaDetalle.Medida = "Unid";
                         oFacturaDetalle.IndiceFactura = indiceFactura;
                         oFacturaDetalle.IVI = IVI;
+
+                        oFacturaDetalle.Cod_cabys = txtCodCabys.Text;
 
                         oFacturaDetalleDAO.Agregar(oFacturaDetalle);
                         if (oFacturaDetalleDAO.Error())
@@ -926,11 +947,12 @@ namespace PROYECTO
                         oFacturaDetalle.PrecioTotal = oFacturaDetalle.Subtotal - montoDescuento + (IVI.Equals("S") ? 0 : oFacturaDetalle.MontoIV);
 
                         oFacturaDetalle.Descripcion = txtDescServicio.Text;
-                        oFacturaDetalle.Medida = "UND";
+                        oFacturaDetalle.Medida = "Unid";
                         oFacturaDetalle.IndiceFactura = indiceFactura;
                         oFacturaDetalle.Indice = indiceDetalle;
                         oFacturaDetalle.Descuento = double.Parse(txtLineaDescuento.Text);
                         oFacturaDetalle.IVI = IVI;
+                        oFacturaDetalle.Cod_cabys = txtCodCabys.Text;
 
                         oFacturaDetalleDAO.Modificar(oFacturaDetalle);
                         if (oFacturaDetalleDAO.Error())
@@ -1218,6 +1240,20 @@ namespace PROYECTO
                 if (MessageBox.Show("¿Está seguro que desea facturar?", "Advertencia", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
                     return;
 
+            String tipopago = "";
+
+            tipopago += chkEfectivo.Checked ? "01" : "00";
+            tipopago += chkTarjeta.Checked ? "02" : "00";
+            tipopago += chkCheque.Checked ? "03" : "00";
+            tipopago += chkTransferencia.Checked ? "04" : "00";
+            tipopago += chkTerceros.Checked ? "05" : "00";
+            tipopago += chkOtros.Checked ? "06" : "00";
+
+            if (tipopago.Equals("000000000000"))
+            {
+                MessageBox.Show("Se debe seleccionar al menos un tipo de pago de la factura!!", "Error!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
             modificar();
             if (rbCredito.Checked)
@@ -1428,6 +1464,8 @@ namespace PROYECTO
                         txtEstado.Text = "FACTURADA";
 
                         MessageBox.Show("El documento se facturó correctamente.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                        cargaFactura(txtFactura.Text, txtANombreDe.Text);
                     }
                     else
                         MessageBox.Show("Ocurrió un error al Modificar los datos: " + oFacturaDAO.DescError(), "Error de consulta", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -1809,7 +1847,12 @@ namespace PROYECTO
 
         private void btnFE_Comprobar_Click(object sender, EventArgs e)
         {
-            ComprobarFE();
+            lblMjFacturaElectronica.Text = "Comprobando Factura Electrónica";
+            lblMjFacturaElectronica.Visible = true;
+            pbFacturaElectronica.Visible = true;
+
+          
+            timCompruebaFA.Start();
         }
 
         public Boolean Internet()
@@ -1856,142 +1899,322 @@ namespace PROYECTO
         {
             try
             {
-                if (indiceFactura == 0)
-                    return;
-
-                if (Internet())
+                if (!AplicaFE())
                 {
-                    List<Linea> oListLineas = new List<Linea>();
-                    List<string> medio_pagos = new List<string>();
-                    if (chkEfectivo.Checked)
-                        medio_pagos.Add("01");
-                    if (chkTarjeta.Checked)
-                        medio_pagos.Add("02");
-                    if (chkCheque.Checked)
-                        medio_pagos.Add("03");
-                    if (chkTransferencia.Checked)
-                        medio_pagos.Add("04");
-                    if (chkTerceros.Checked)
-                        medio_pagos.Add("05");
-                    if (chkOtros.Checked)
-                        medio_pagos.Add("06");
+                    pbFacturaElectronica.Visible = false;
+                    lblMjFacturaElectronica.Text = "";
+                    return;
+                }
 
-                    oConexion.cerrarConexion();
-                    if (oConexion.abrirConexion())
+                if (indiceFactura == 0 || !String.IsNullOrEmpty(txtFE_Clave.Text) || !txtEstado.Text.Equals("FACTURADA"))
+                {
+                    pbFacturaElectronica.Visible = false;
+                    lblMjFacturaElectronica.Text = "";
+                    return;
+                }
+
+                oConexion.cerrarConexion();
+                if (oConexion.abrirConexion())
+                {
+                    DataTable oDatosGeneral = oConexion.EjecutaSentencia("select CODIGO_ACTIVIDAD, SUCURSAL, CAJA from TBL_EMPRESA where no_Cia = '" + PROYECTO.Properties.Settings.Default.No_cia + "'");
+                    String vsucursal = "001";
+                    String vtipo_documento = "01";
+                    String vpunto = "00001";
+                    String vactividad = "";
+                    String vcondicion_venta = "";
+
+                    foreach (DataRow ofila in oDatosGeneral.Rows)
                     {
-                        oFacturaDetalleDAO = new FacturaDetalleDAO();
+                        vsucursal = ofila["SUCURSAL"].ToString();
+                        vpunto = ofila["CAJA"].ToString();
+                        vactividad = ofila["CODIGO_ACTIVIDAD"].ToString();
+                    }
 
-                        DataTable oDetalle = oFacturaDetalleDAO.Consulta(indiceFactura, PROYECTO.Properties.Settings.Default.No_cia).Tables[0];
+                    List<Linea> oListLineas = new List<Linea>();
 
-                        foreach (DataRow ofila in oDetalle.Rows)
+                    oFacturaDetalleDAO = new FacturaDetalleDAO();
+
+                    DataTable oDetalle = oFacturaDetalleDAO.Consulta(indiceFactura, PROYECTO.Properties.Settings.Default.No_cia).Tables[0];
+
+                    foreach (DataRow ofila in oDetalle.Rows)
+                    {
+                        Impuestos oImpuestos = new Impuestos();
+                        DataTable oDtImpuestos = oConexion.EjecutaSentencia("select EQUIV_IMP_FE from TBL_IMPUESTOS where CLAVE = 'IV' and no_Cia = '" + PROYECTO.Properties.Settings.Default.No_cia + "'");
+
+                        foreach (DataRow ofilaImp in oDtImpuestos.Rows)
                         {
-                            Impuestos oImpuestos = new Impuestos();
-                            DataTable oDtImpuestos = oConexion.EjecutaSentencia("select EQUIV_IMP_FE, PORCENTAJE from TBL_IMPUESTOS where no_Cia = '" + PROYECTO.Properties.Settings.Default.No_cia + "' and PORCENTAJE in (13)");
-
-                            foreach (DataRow ofilaImp in oDtImpuestos.Rows)
+                            _01 im01 = new _01
                             {
-                                if (ofilaImp["EQUIV_IMP_FE"].ToString().Equals("01"))
-                                {
-                                    _01 p01 = new _01
-                                    {
-                                        tarifa = ofilaImp["PORCENTAJE"].ToString()
-                                    };
-
-                                    oImpuestos = new Impuestos
-                                    {
-                                        _01 = p01
-                                    };
-                                }
-
-                                if (ofilaImp["EQUIV_IMP_FE"].ToString().Equals("07"))
-                                {
-                                    _07 p07 = new _07
-                                    {
-                                        tarifa = ofilaImp["PORCENTAJE"].ToString()
-                                    };
-
-
-                                    oImpuestos = new Impuestos
-                                    {
-                                        _07 = p07
-                                    };
-                                }
-                            }
-
-                            Linea oLinea = new Linea
-                            {
-                                codigo = ofila["SER_CODIGO"].ToString(),
-                                partidaArancelaria = "",
-                                descripcion = ofila["detfac_descripcion"].ToString(),
-                                cantidad = ofila["detfac_cantidad"].ToString(),
-                                unidad = ofila["detfac_medida"].ToString(),
-                                precioUnitario = ofila["DETFAC_PRECIO_UNITARIO"].ToString(),
-                                descuento = ofila["DETFAC_DESCUENTO"].ToString(),
-                                naturalezaDescuento = "",
-                                impuestos = oImpuestos
+                                tarifa = ofilaImp["EQUIV_IMP_FE"].ToString()
                             };
 
-                            oListLineas.Add(oLinea);
+                            oImpuestos = new Impuestos
+                            {
+                                _01 = im01
+                            };
+                        }
+
+                        if (String.IsNullOrEmpty(ofila["SER_CODIGO"].ToString()))
+                        {
+                            MessageBox.Show("El código del servicio es requerido para la Factura Electrónica!!", "Error!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            pbFacturaElectronica.Visible = false;
+                            return;
+                        }
+
+                        if (String.IsNullOrEmpty(ofila["Cod_cabys"].ToString()))
+                        {
+                            MessageBox.Show("El código CABYS del servicio (" + ofila["SER_CODIGO"].ToString() + ") es requerido para la Factura Electrónica!!", "Error!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            pbFacturaElectronica.Visible = false;
+                            return;
+                        }
+
+                        if (String.IsNullOrEmpty(ofila["detfac_descripcion"].ToString()))
+                        {
+                            MessageBox.Show("La descripción del servicio (" + ofila["SER_CODIGO"].ToString() + ") es requerida para la Factura Electrónica!!", "Error!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            pbFacturaElectronica.Visible = false;
+                            return;
+                        }
+
+                        if (String.IsNullOrEmpty(ofila["detfac_cantidad"].ToString()))
+                        {
+                            MessageBox.Show("La cantidad del servicio (" + ofila["SER_CODIGO"].ToString() + ") es requerida para la Factura Electrónica!!", "Error!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            pbFacturaElectronica.Visible = false;
+                            return;
+                        }
+
+                        if (String.IsNullOrEmpty(ofila["DETFAC_PRECIO_UNITARIO"].ToString()))
+                        {
+                            MessageBox.Show("El precio del servicio (" + ofila["SER_CODIGO"].ToString() + ") es requerido para la Factura Electrónica!!", "Error!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            pbFacturaElectronica.Visible = false;
+                            return;
                         }
 
 
-                        if (oFacturaDetalleDAO.Error())
-                            MessageBox.Show("Ocurrió un error al extraer los datos: " + oFacturaDetalleDAO.DescError(), "Error de consulta", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        oConexion.cerrarConexion();
+                        Linea oLinea = new Linea
+                        {
+                            codigo = ofila["SER_CODIGO"].ToString(),
+                            codigoCabys = ofila["Cod_cabys"].ToString(),
+                            partidaArancelaria = null,
+                            descripcion = ofila["detfac_descripcion"].ToString(),
+                            cantidad = ofila["detfac_cantidad"].ToString(),
+                            unidad = "Unid",//ofila["detfac_medida"].ToString(),
+                            precioUnitario = ofila["DETFAC_PRECIO_UNITARIO"].ToString(),
+                            descuento = ofila["DETFAC_DESCUENTO"].ToString(),
+                            naturalezaDescuento = "",
+                            impuestos = oImpuestos
+                        };
 
+                        oListLineas.Add(oLinea);
                     }
-                    else
-                        MessageBox.Show("Ocurrió un error al conectarse a la base de datos.", "Error de Conexión", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+
+                    if (oFacturaDetalleDAO.Error())
+                        MessageBox.Show("Ocurrió un error al extraer los datos: " + oFacturaDetalleDAO.DescError(), "Error de consulta", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+
+                    String vtipo_cedula = "";
+                    String vcedula = "";
+                    String vcorreo = "";
+                    String vmoneda = "";
+                    Double vtipo_cambio = 0;
+                    String vnombre = "";
+                    String vNumFactura = "";
+
+                    List<string> medio_pagos = new List<string>();
+
+                    DataTable odata = oFacturaDAO.ConsultaFactura(txtFactura.Text, PROYECTO.Properties.Settings.Default.No_cia);
+
+                    String usa_FE = odata.Rows[0]["FAC_CREA_FE"].ToString();
+                    if (usa_FE.Equals("N"))
+                    {
+                        pbFacturaElectronica.Visible = false;
+                        return;
+                    }
+
+
+                    if (String.IsNullOrEmpty(odata.Rows[0]["fac_tipo"].ToString()))
+                    {
+                        pbFacturaElectronica.Visible = false;
+                        return;
+                    }
+
+                    if (odata.Rows.Count > 0)
+                    {
+                        DataTable oDTTipoID = oConexion.EjecutaSentencia("select EQUIV_ID_FE, CLI_IDENTIFICACION, CLI_CORREO from TBL_CLIENTES c, TBL_TIPOS_ID t where no_Cia = '" + PROYECTO.Properties.Settings.Default.No_cia + "' and cli_linea = '" + odata.Rows[0]["fac_cliente"].ToString() + "' and t.CODIGO = c.CLI_TIPO_ID");
+
+                        if (oDTTipoID.Rows.Count > 0)
+                        {
+                            vtipo_cedula = oDTTipoID.Rows[0]["EQUIV_ID_FE"].ToString();
+                            vcedula = oDTTipoID.Rows[0]["CLI_IDENTIFICACION"].ToString();
+                            vcorreo = oDTTipoID.Rows[0]["CLI_CORREO"].ToString();
+                        }
+
+                        if (odata.Rows[0]["fac_tipo"].ToString().Equals("CONTADO"))
+                            vcondicion_venta = "01";
+                        else
+                            vcondicion_venta = "02";
+
+                        vmoneda = odata.Rows[0]["fac_moneda"].ToString();
+                        vtipo_cambio = double.Parse(odata.Rows[0]["fac_tipo_cambio"].ToString());
+                        vnombre = odata.Rows[0]["fac_nombre"].ToString();
+                        vNumFactura = odata.Rows[0]["fac_numero"].ToString();
+
+                        String tipopago = odata.Rows[0]["fac_tipopago"].ToString();
+
+                        //chkEfectivo
+                        if (tipopago.Substring(0, 2).Equals("01"))
+                            medio_pagos.Add("01");
+                        //chkTarjeta
+                        if (tipopago.Substring(2, 2).Equals("02"))
+                            medio_pagos.Add("02");
+                        //chkCheque
+                        if (tipopago.Substring(4, 2).Equals("03"))
+                            medio_pagos.Add("03");
+                        //chkTransferencia
+                        if (tipopago.Substring(6, 2).Equals("04"))
+                            medio_pagos.Add("04");
+                        //chkTerceros
+                        if (tipopago.Substring(8, 2).Equals("05"))
+                            medio_pagos.Add("05");
+                        //chkOtros
+                        if (tipopago.Substring(10, 2).Equals("06"))
+                            medio_pagos.Add("06");
+                    }
+
+                    if (String.IsNullOrEmpty(vsucursal))
+                    {
+                        MessageBox.Show("Falta parametrizar el campo SUCURSAL para los datos de Factura Electrónica!!", "Error!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        pbFacturaElectronica.Visible = false;
+                        return;
+                    }
+                    if (String.IsNullOrEmpty(vtipo_documento))
+                    {
+                        MessageBox.Show("Falta parametrizar el campo TIPO DE DOCUMENTO para los datos de Factura Electrónica!!", "Error!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        pbFacturaElectronica.Visible = false;
+                        return;
+                    }
+                    if (String.IsNullOrEmpty(vpunto))
+                    {
+                        MessageBox.Show("Falta parametrizar el campo CAJA para los datos de Factura Electrónica!!", "Error!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        pbFacturaElectronica.Visible = false;
+                        return;
+                    }
+                    if (String.IsNullOrEmpty(vactividad))
+                    {
+                        MessageBox.Show("Falta parametrizar el campo CÓDIGO DE ACTIVIDAD para los datos de Factura Electrónica!!", "Error!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        pbFacturaElectronica.Visible = false;
+                        return;
+                    }
+
+                    if (String.IsNullOrEmpty(vtipo_cedula))
+                    {
+                        MessageBox.Show("No se encuentra el dato de tipo de cédula del cliente!!", "Error!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        pbFacturaElectronica.Visible = false;
+                        return;
+                    }
+
+                    if (String.IsNullOrEmpty(vcedula))
+                    {
+                        MessageBox.Show("No se encuentra el dato de cédula del cliente!!", "Error!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        pbFacturaElectronica.Visible = false;
+                        return;
+                    }
+
+                    if (String.IsNullOrEmpty(vcorreo))
+                    {
+                        MessageBox.Show("No se encuentra el dato de correo electrónico del cliente!!", "Error!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        pbFacturaElectronica.Visible = false;
+                        return;
+                    }
+
+                    if (String.IsNullOrEmpty(vcondicion_venta))
+                    {
+                        MessageBox.Show("No se encuentra el dato de condición de venta de la factura!!", "Error!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        pbFacturaElectronica.Visible = false;
+                        return;
+                    }
+
+                    if (String.IsNullOrEmpty(vmoneda))
+                    {
+                        MessageBox.Show("No se encuentra el dato de moneda de la factura!!", "Error!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        pbFacturaElectronica.Visible = false;
+                        return;
+                    }
+
+                    if (vtipo_cambio == 0)
+                    {
+                        MessageBox.Show("No se encuentra el dato de Tipo de Cambio de la factura!!", "Error!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        pbFacturaElectronica.Visible = false;
+                        return;
+                    }
+
+                    if (String.IsNullOrEmpty(vnombre))
+                    {
+                        MessageBox.Show("No se encuentra el dato de A nombre de en la factura!!", "Error!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        pbFacturaElectronica.Visible = false;
+                        return;
+                    }
+
+                    if (medio_pagos.Count == 0)
+                    {
+                        MessageBox.Show("Se debe seleccionar al menos un tipo de pago de la factura!!", "Error!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        pbFacturaElectronica.Visible = false;
+                        return;
+                    }
 
 
                     RootFE oRootFE = new RootFE
                     {
-                        sucursal = "001",
-                        tipo_documento = "01",
-                        punto = "00001",
-                        actividad = "",
+                        sucursal = vsucursal,
+                        tipo_documento = vtipo_documento,
+                        punto = vpunto,
+                        actividad = vactividad,
                         medio_pago = medio_pagos,
-                        condicion_venta = "01",
-                        moneda = "CRC",
-                        tipo_cambio = 1,
-                        tipo_cedula = "01",
-                        cedula = "206640656",
-                        nombre = "Johnny Alfaro",
+                        condicion_venta = vcondicion_venta,
+                        moneda = vmoneda,
+                        tipo_cambio = vmoneda.Equals("CRC") ? 1 : vtipo_cambio,
+                        tipo_cedula = vtipo_cedula,
+                        cedula = vcedula,
+                        nombre = vnombre,
                         nombre_comercial = "",
-                        correo = "jalfaror26@hotmail.com",
+                        correo = vcorreo,
                         lineas = oListLineas,
-                        comentarios = "Factura sobre la orden en tienda: #7195"
+                        comentarios = "Factura Realizada con SAFE - Factura Local No: " + vNumFactura
                     };
 
                     var json = JsonConvert.SerializeObject(oRootFE);
 
-                    String oDatosJson = oControl.CrearFE(json, out Boolean /*HttpStatusCode*/ vOut, out Boolean vTimeOut);
+                    String jfinal = json.Replace("_01", "01");
 
-                    if (vTimeOut)
+                    if (Internet())
                     {
-                        MessageBox.Show("A sucedido un problema de conexión, por favor intente nuevamente, si el problema persiste informe a Soporte Técnico.", "Error de Conexión", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        String oDatosJson = oControl.CrearFE(jfinal, out Boolean /*HttpStatusCode*/ vOut, out Boolean vTimeOut);
 
-                        return;
-                    }
+                        if (vTimeOut)
+                        {
+                            MessageBox.Show("A sucedido un problema de conexión, por favor intente nuevamente, si el problema persiste informe a Soporte Técnico.", "Error de Conexión", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            pbFacturaElectronica.Visible = false;
+                            return;
+                        }
 
-                    var jobject = JsonConvert.DeserializeObject<Root>(oDatosJson);
+                        var jobject = JsonConvert.DeserializeObject<Root>(oDatosJson);
 
-                    if (vOut)/* == HttpStatusCode.OK)*/
-                    {
-                        oConexion.cerrarConexion();
-                        if (oConexion.abrirConexion())
+                        if (vOut)/* == HttpStatusCode.OK)*/
                         {
                             int vcodigo = jobject.codigo;
-                            string vestado = jobject.estado;
-                            string vmensaje = jobject.mensaje;
-                            string vrespuesta = jobject.respuesta;
+                            string vclave = jobject.documento.clave;
+                            string vconsecutivo = jobject.documento.consecutivo;
+                            string vrecepcion = jobject.documento.recepcion;
+                            string vcomprobacion = jobject.documento.comprobacion;
 
-                            if (String.IsNullOrEmpty(vestado))
-                                vestado = "";
-                            if (String.IsNullOrEmpty(vmensaje))
-                                vmensaje = "";
-                            if (String.IsNullOrEmpty(vrespuesta))
-                                vrespuesta = "";
+                            if (String.IsNullOrEmpty(vclave))
+                                vclave = "";
+                            if (String.IsNullOrEmpty(vconsecutivo))
+                                vconsecutivo = "";
+                            if (String.IsNullOrEmpty(vrecepcion))
+                                vrecepcion = "";
+                            if (String.IsNullOrEmpty(vcomprobacion))
+                                vcomprobacion = "";
 
                             try
                             {
@@ -2004,12 +2227,21 @@ namespace PROYECTO
                                     oFactura.Indice = indiceFactura;
 
                                     oFactura.Fe_Codigo = vcodigo.ToString();
-                                    oFactura.Fe_ContenidoXml = vrespuesta;
-                                    oFactura.Fe_Errores = vmensaje;
-                                    oFactura.Fe_Comprobacion = vestado;
+                                    oFactura.Fe_Clave = vclave;
+                                    oFactura.Fe_Consecutivo = vconsecutivo;
+                                    oFactura.Fe_Recepcion = vrecepcion;
+                                    oFactura.Fe_Comprobacion = vcomprobacion;
 
-                                    if (oFacturaDAO.ModificaEstadoFactura_FE(oFactura) > 0)
+                                    if (oFacturaDAO.ModificaEstadoCreaFactura_FE(oFactura) > 0)
+                                    {
                                         cargaFactura(txtFactura.Text, txtANombreDe.Text);
+
+                                        lblMjFacturaElectronica.Text = "Comprobando Factura Electrónica";
+                                        lblMjFacturaElectronica.Visible = true;
+                                        pbFacturaElectronica.Visible = true;
+
+                                        btnFE_Comprobar.PerformClick();
+                                    }
                                     else
                                         MessageBox.Show("Ocurrió un error al guardar los datos: " + oFacturaDAO.DescError(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                 }
@@ -2017,25 +2249,21 @@ namespace PROYECTO
                             catch { }
 
                             oConexion.cerrarConexion();
-
-
                         }
                         else
-                        {
-                            MessageBox.Show("Error al conectarse con la base de datos\nVerifique que los datos estén correctos");
-                            return;
-                        }
+                            MessageBox.Show("Error al extraer datos!!!", "Error de Conexión", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                     else
-                    {
-                        MessageBox.Show("Error al extraer datos!!!", "Error de Conexión", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-
+                        MessageBox.Show("Sin conexión a internet!!!", "Error de Conexión", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 else
                 {
-                    MessageBox.Show("Sin conexión a internet!!!", "Error de Conexión", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Error al conectarse con la base de datos\nVerifique que los datos estén correctos");
+                    pbFacturaElectronica.Visible = false;
+                    return;
                 }
+
+                pbFacturaElectronica.Visible = false;
             }
             catch (Exception ex)
             {
@@ -2049,7 +2277,33 @@ namespace PROYECTO
                 {
                     mensaje = mensaje + " Inner exception: " + ex.InnerException.Message;
                 }
+                pbFacturaElectronica.Visible = false;
+            }
+        }
 
+        private Boolean AplicaFE()
+        {
+            try
+            {
+                Boolean vAplicaFE = false;
+                oConexion.cerrarConexion();
+                if (oConexion.abrirConexion())
+                {
+                    DataTable oDatosGeneral = oConexion.EjecutaSentencia("select IND_FACT_ELECT from TBL_EMPRESA where no_Cia = '" + PROYECTO.Properties.Settings.Default.No_cia + "'");
+
+                    String vIND_FACT_ELECT = "N";
+
+                    foreach (DataRow ofila in oDatosGeneral.Rows)
+                        vIND_FACT_ELECT = ofila["IND_FACT_ELECT"].ToString();
+
+                    if (vIND_FACT_ELECT.Equals("S"))
+                        vAplicaFE = true;
+                }
+                return vAplicaFE;
+            }
+            catch (Exception ex)
+            {
+                return false;
             }
         }
 
@@ -2204,6 +2458,7 @@ namespace PROYECTO
                 btnBusqServicio.Enabled = false;
                 btnGuardarDetalle.Enabled = false;
                 btnEliminarDetalle.Enabled = false;
+                gbFormasPago.Enabled = true;
             }
             else if (txtEstado.Text.Equals("ABIERTA"))
             {
@@ -2216,6 +2471,7 @@ namespace PROYECTO
                 btnBusqServicio.Enabled = true;
                 btnGuardarDetalle.Enabled = true;
                 btnEliminarDetalle.Enabled = true;
+                gbFormasPago.Enabled = true;
             }
             else if (txtEstado.Text.Equals("FACTURADA"))
             {
@@ -2228,6 +2484,7 @@ namespace PROYECTO
                 btnBusqServicio.Enabled = false;
                 btnGuardarDetalle.Enabled = false;
                 btnEliminarDetalle.Enabled = false;
+                gbFormasPago.Enabled = false;
             }
             else if (txtEstado.Text.Equals("ANULADA"))
             {
@@ -2240,6 +2497,7 @@ namespace PROYECTO
                 btnBusqServicio.Enabled = false;
                 btnGuardarDetalle.Enabled = false;
                 btnEliminarDetalle.Enabled = false;
+                gbFormasPago.Enabled = false;
             }
         }
 
@@ -2319,6 +2577,32 @@ namespace PROYECTO
                 }
             }
             catch (Exception ex) { }
+        }
+
+        private void timCreaFA_Tick(object sender, EventArgs e)
+        {
+            lblMjFacturaElectronica.Text = "Generando Factura Electrónica";
+            lblMjFacturaElectronica.Visible = true;
+            pbFacturaElectronica.Visible = true;
+
+            timCreaFA.Stop();            
+            CrearFE();
+        }
+
+        private void timCompruebaFA_Tick(object sender, EventArgs e)
+        {
+            timCompruebaFA.Stop();
+            lblMjFacturaElectronica.Text = "Comprobando Factura Electrónica";
+            ComprobarFE();
+            pbFacturaElectronica.Visible = false;
+        }
+
+        private void pbFacturaElectronica_VisibleChanged(object sender, EventArgs e)
+        {
+            if (!pbFacturaElectronica.Visible)
+                lblMjFacturaElectronica.Text = "";
+
+            lblMjFacturaElectronica.Visible = pbFacturaElectronica.Visible;
         }
 
         private void txtLineaDescuento_Enter(object sender, EventArgs e)
@@ -2417,7 +2701,7 @@ namespace PROYECTO
 
         private void Ayuda()
         {
-            frmAyuda oFrm = frmAyuda.getInstance("");
+            frmAyuda oFrm = frmAyuda.getInstance("t9");
             oFrm.MdiParent = this.MdiParent;
             oFrm.Show();
         }
@@ -2559,11 +2843,11 @@ namespace PROYECTO
             public List<string> medio_pago { get; set; }
             public string condicion_venta { get; set; }
             public string moneda { get; set; }
-            public int tipo_cambio { get; set; }
+            public double tipo_cambio { get; set; }
             public string tipo_cedula { get; set; }
             public string cedula { get; set; }
             public string nombre { get; set; }
-            public object nombre_comercial { get; set; }
+            public string nombre_comercial { get; set; }
             public string correo { get; set; }
             public List<Linea> lineas { get; set; }
             public string comentarios { get; set; }
@@ -2572,6 +2856,7 @@ namespace PROYECTO
         public class Linea
         {
             public string codigo { get; set; }
+            public string codigoCabys { get; set; }
             public object partidaArancelaria { get; set; }
             public string descripcion { get; set; }
             public string cantidad { get; set; }
@@ -2586,15 +2871,9 @@ namespace PROYECTO
         public class Impuestos
         {
             public _01 _01 { get; set; }
-            public _07 _07 { get; set; }
         }
 
         public class _01
-        {
-            public string tarifa { get; set; }
-        }
-
-        public class _07
         {
             public string tarifa { get; set; }
         }

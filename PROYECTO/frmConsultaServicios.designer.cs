@@ -35,14 +35,15 @@ namespace PROYECTO
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmConsultaServicios));
             this.txtDescripcion = new System.Windows.Forms.TextBox();
             this.dgrDatos = new System.Windows.Forms.DataGridView();
+            this.btnSalir = new System.Windows.Forms.Button();
+            this.btnAceptar = new System.Windows.Forms.Button();
+            this.txtCodigo = new System.Windows.Forms.TextBox();
             this.SER_INDICE = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SER_CODIGO = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SER_NOMBRE = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.INV_IVI = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.INV_IMPUESTO_VENTAS = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnSalir = new System.Windows.Forms.Button();
-            this.btnAceptar = new System.Windows.Forms.Button();
-            this.txtCodigo = new System.Windows.Forms.TextBox();
+            this.Cod_cabys = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgrDatos)).BeginInit();
             this.SuspendLayout();
             // 
@@ -61,7 +62,7 @@ namespace PROYECTO
             this.dgrDatos.AllowUserToDeleteRows = false;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.Gainsboro;
             this.dgrDatos.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            this.dgrDatos.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.dgrDatos.BackgroundColor = System.Drawing.Color.White;
             this.dgrDatos.BorderStyle = System.Windows.Forms.BorderStyle.None;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
@@ -77,7 +78,8 @@ namespace PROYECTO
             this.SER_CODIGO,
             this.SER_NOMBRE,
             this.INV_IVI,
-            this.INV_IMPUESTO_VENTAS});
+            this.INV_IMPUESTO_VENTAS,
+            this.Cod_cabys});
             this.dgrDatos.Location = new System.Drawing.Point(16, 54);
             this.dgrDatos.Margin = new System.Windows.Forms.Padding(4);
             this.dgrDatos.MultiSelect = false;
@@ -90,62 +92,13 @@ namespace PROYECTO
             this.dgrDatos.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.dgrDatos.RowTemplate.Height = 28;
             this.dgrDatos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgrDatos.Size = new System.Drawing.Size(827, 384);
+            this.dgrDatos.Size = new System.Drawing.Size(889, 384);
             this.dgrDatos.TabIndex = 2;
             this.dgrDatos.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgrDatos_CellDoubleClick);
             this.dgrDatos.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgrDatos_CellEnter);
             this.dgrDatos.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgrDatos_DataBindingComplete);
             this.dgrDatos.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.dgrDatos_KeyPress);
             this.dgrDatos.KeyUp += new System.Windows.Forms.KeyEventHandler(this.dgrDatos_KeyUp);
-            // 
-            // SER_INDICE
-            // 
-            this.SER_INDICE.DataPropertyName = "SER_INDICE";
-            this.SER_INDICE.HeaderText = "";
-            this.SER_INDICE.MinimumWidth = 6;
-            this.SER_INDICE.Name = "SER_INDICE";
-            this.SER_INDICE.ReadOnly = true;
-            this.SER_INDICE.Visible = false;
-            this.SER_INDICE.Width = 50;
-            // 
-            // SER_CODIGO
-            // 
-            this.SER_CODIGO.DataPropertyName = "SER_CODIGO";
-            this.SER_CODIGO.HeaderText = "CODIGO";
-            this.SER_CODIGO.MinimumWidth = 6;
-            this.SER_CODIGO.Name = "SER_CODIGO";
-            this.SER_CODIGO.ReadOnly = true;
-            this.SER_CODIGO.Width = 150;
-            // 
-            // SER_NOMBRE
-            // 
-            this.SER_NOMBRE.DataPropertyName = "SER_NOMBRE";
-            this.SER_NOMBRE.HeaderText = "Descripción";
-            this.SER_NOMBRE.MinimumWidth = 6;
-            this.SER_NOMBRE.Name = "SER_NOMBRE";
-            this.SER_NOMBRE.ReadOnly = true;
-            this.SER_NOMBRE.Width = 400;
-            // 
-            // INV_IVI
-            // 
-            this.INV_IVI.DataPropertyName = "INV_IVI";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.INV_IVI.DefaultCellStyle = dataGridViewCellStyle3;
-            this.INV_IVI.HeaderText = "IVI";
-            this.INV_IVI.MinimumWidth = 6;
-            this.INV_IVI.Name = "INV_IVI";
-            this.INV_IVI.ReadOnly = true;
-            this.INV_IVI.Width = 50;
-            // 
-            // INV_IMPUESTO_VENTAS
-            // 
-            this.INV_IMPUESTO_VENTAS.DataPropertyName = "INV_IMPUESTO_VENTAS";
-            this.INV_IMPUESTO_VENTAS.HeaderText = "INV_IMPUESTO_VENTAS";
-            this.INV_IMPUESTO_VENTAS.MinimumWidth = 6;
-            this.INV_IMPUESTO_VENTAS.Name = "INV_IMPUESTO_VENTAS";
-            this.INV_IMPUESTO_VENTAS.ReadOnly = true;
-            this.INV_IMPUESTO_VENTAS.Visible = false;
-            this.INV_IMPUESTO_VENTAS.Width = 125;
             // 
             // btnSalir
             // 
@@ -182,12 +135,70 @@ namespace PROYECTO
             this.txtCodigo.TabIndex = 1;
             this.txtCodigo.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtCodigo_KeyUp);
             // 
+            // SER_INDICE
+            // 
+            this.SER_INDICE.DataPropertyName = "SER_INDICE";
+            this.SER_INDICE.HeaderText = "";
+            this.SER_INDICE.MinimumWidth = 6;
+            this.SER_INDICE.Name = "SER_INDICE";
+            this.SER_INDICE.ReadOnly = true;
+            this.SER_INDICE.Visible = false;
+            this.SER_INDICE.Width = 50;
+            // 
+            // SER_CODIGO
+            // 
+            this.SER_CODIGO.DataPropertyName = "SER_CODIGO";
+            this.SER_CODIGO.HeaderText = "Código";
+            this.SER_CODIGO.MinimumWidth = 6;
+            this.SER_CODIGO.Name = "SER_CODIGO";
+            this.SER_CODIGO.ReadOnly = true;
+            this.SER_CODIGO.Width = 150;
+            // 
+            // SER_NOMBRE
+            // 
+            this.SER_NOMBRE.DataPropertyName = "SER_NOMBRE";
+            this.SER_NOMBRE.HeaderText = "Descripción";
+            this.SER_NOMBRE.MinimumWidth = 6;
+            this.SER_NOMBRE.Name = "SER_NOMBRE";
+            this.SER_NOMBRE.ReadOnly = true;
+            this.SER_NOMBRE.Width = 400;
+            // 
+            // INV_IVI
+            // 
+            this.INV_IVI.DataPropertyName = "INV_IVI";
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.INV_IVI.DefaultCellStyle = dataGridViewCellStyle3;
+            this.INV_IVI.HeaderText = "IVI";
+            this.INV_IVI.MinimumWidth = 6;
+            this.INV_IVI.Name = "INV_IVI";
+            this.INV_IVI.ReadOnly = true;
+            this.INV_IVI.Visible = false;
+            this.INV_IVI.Width = 50;
+            // 
+            // INV_IMPUESTO_VENTAS
+            // 
+            this.INV_IMPUESTO_VENTAS.DataPropertyName = "INV_IMPUESTO_VENTAS";
+            this.INV_IMPUESTO_VENTAS.HeaderText = "INV_IMPUESTO_VENTAS";
+            this.INV_IMPUESTO_VENTAS.MinimumWidth = 6;
+            this.INV_IMPUESTO_VENTAS.Name = "INV_IMPUESTO_VENTAS";
+            this.INV_IMPUESTO_VENTAS.ReadOnly = true;
+            this.INV_IMPUESTO_VENTAS.Visible = false;
+            this.INV_IMPUESTO_VENTAS.Width = 125;
+            // 
+            // Cod_cabys
+            // 
+            this.Cod_cabys.DataPropertyName = "Cod_cabys";
+            this.Cod_cabys.HeaderText = "CABYS";
+            this.Cod_cabys.MinimumWidth = 6;
+            this.Cod_cabys.Name = "Cod_cabys";
+            this.Cod_cabys.ReadOnly = true;
+            // 
             // frmConsultaServicios
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnSalir;
-            this.ClientSize = new System.Drawing.Size(863, 449);
+            this.ClientSize = new System.Drawing.Size(918, 449);
             this.Controls.Add(this.dgrDatos);
             this.Controls.Add(this.btnSalir);
             this.Controls.Add(this.btnAceptar);
@@ -223,5 +234,6 @@ namespace PROYECTO
         private System.Windows.Forms.DataGridViewTextBoxColumn SER_NOMBRE;
         private System.Windows.Forms.DataGridViewTextBoxColumn INV_IVI;
         private System.Windows.Forms.DataGridViewTextBoxColumn INV_IMPUESTO_VENTAS;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Cod_cabys;
     }
 }

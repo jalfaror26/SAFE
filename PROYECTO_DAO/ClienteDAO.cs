@@ -51,13 +51,13 @@ namespace PROYECTO_DAO
             oCommand.Parameters[9].Value = oCliente.Almacen;
             oCommand.Parameters.Add("descAlmacen", OracleType.NVarChar);
             oCommand.Parameters[10].Value = oCliente.DescAlmacen;
-            oCommand.Parameters.Add("indice", OracleType.Number);
+            oCommand.Parameters.Add("INDICE", OracleType.Number);
             oCommand.Parameters[11].Value = oCliente.Indice;
             oCommand.Parameters.Add("identificacion", OracleType.NVarChar);
             oCommand.Parameters[12].Value = oCliente.Identificacion;
-            oCommand.Parameters.Add("lc_moneda", OracleType.NVarChar);
+            oCommand.Parameters.Add("LC_moneda", OracleType.NVarChar);
             oCommand.Parameters[13].Value = oCliente.Lc_moneda;
-            oCommand.Parameters.Add("lc_limite", OracleType.Number);
+            oCommand.Parameters.Add("LC_limite", OracleType.Number);
             oCommand.Parameters[14].Value = oCliente.Lc_limite;
             oCommand.Parameters.Add("pNo_cia", OracleType.NVarChar);
             oCommand.Parameters[15].Value = oCliente.No_cia;

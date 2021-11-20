@@ -59,10 +59,25 @@ namespace PROYECTO
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.dgrDatos = new System.Windows.Forms.DataGridView();
+            this.factura = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.indic = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.gasto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.monto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.codproveedor = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.saldo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.emision = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.vence = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.moneda = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tipocambio = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.estatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.proveedor = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.flujo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tipogasto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.txtestado = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.txtSaldoAdeudado = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.cmbMoneda = new System.Windows.Forms.ComboBox();
             this.label12 = new System.Windows.Forms.Label();
             this.btnBusqGasto = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
@@ -80,21 +95,6 @@ namespace PROYECTO
             this.btnMSalir = new System.Windows.Forms.Button();
             this.btnMGuardar = new System.Windows.Forms.Button();
             this.btnMEliminar = new System.Windows.Forms.Button();
-            this.cmbMoneda = new System.Windows.Forms.ComboBox();
-            this.factura = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.indic = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.gasto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.monto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.codproveedor = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.saldo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.emision = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.vence = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.moneda = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tipocambio = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.estatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.proveedor = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.flujo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tipogasto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgrDatos)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -445,6 +445,148 @@ namespace PROYECTO
             this.dgrDatos.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgrDatos_CellEnter);
             this.dgrDatos.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgrDatos_DataBindingComplete);
             // 
+            // factura
+            // 
+            this.factura.DataPropertyName = "facpag_num_factura";
+            this.factura.HeaderText = "Factura";
+            this.factura.MinimumWidth = 6;
+            this.factura.Name = "factura";
+            this.factura.ReadOnly = true;
+            this.factura.Width = 120;
+            // 
+            // indic
+            // 
+            this.indic.DataPropertyName = "FACPAG_INDICE";
+            this.indic.HeaderText = "indic";
+            this.indic.MinimumWidth = 6;
+            this.indic.Name = "indic";
+            this.indic.ReadOnly = true;
+            this.indic.Visible = false;
+            this.indic.Width = 125;
+            // 
+            // gasto
+            // 
+            this.gasto.DataPropertyName = "gas_nombre";
+            this.gasto.HeaderText = "gasto";
+            this.gasto.MinimumWidth = 6;
+            this.gasto.Name = "gasto";
+            this.gasto.ReadOnly = true;
+            this.gasto.Visible = false;
+            this.gasto.Width = 125;
+            // 
+            // monto
+            // 
+            this.monto.DataPropertyName = "facpag_monto";
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle2.Format = "###,###,##0.00";
+            dataGridViewCellStyle2.NullValue = "0";
+            this.monto.DefaultCellStyle = dataGridViewCellStyle2;
+            this.monto.HeaderText = "Monto";
+            this.monto.MinimumWidth = 6;
+            this.monto.Name = "monto";
+            this.monto.ReadOnly = true;
+            this.monto.Width = 70;
+            // 
+            // codproveedor
+            // 
+            this.codproveedor.DataPropertyName = "facpag_proveedor";
+            this.codproveedor.HeaderText = "CodProveedor";
+            this.codproveedor.MinimumWidth = 6;
+            this.codproveedor.Name = "codproveedor";
+            this.codproveedor.ReadOnly = true;
+            this.codproveedor.Visible = false;
+            this.codproveedor.Width = 125;
+            // 
+            // saldo
+            // 
+            this.saldo.DataPropertyName = "facpag_saldo";
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle3.Format = "###,###,##0.00";
+            dataGridViewCellStyle3.NullValue = "0";
+            this.saldo.DefaultCellStyle = dataGridViewCellStyle3;
+            this.saldo.HeaderText = "Saldo";
+            this.saldo.MinimumWidth = 6;
+            this.saldo.Name = "saldo";
+            this.saldo.ReadOnly = true;
+            this.saldo.Width = 70;
+            // 
+            // emision
+            // 
+            this.emision.DataPropertyName = "facpag_fecha_emision";
+            this.emision.HeaderText = "Fecha";
+            this.emision.MinimumWidth = 6;
+            this.emision.Name = "emision";
+            this.emision.ReadOnly = true;
+            this.emision.Width = 125;
+            // 
+            // vence
+            // 
+            this.vence.DataPropertyName = "facpag_fecha_vence";
+            this.vence.HeaderText = "Vence";
+            this.vence.MinimumWidth = 6;
+            this.vence.Name = "vence";
+            this.vence.ReadOnly = true;
+            this.vence.Width = 125;
+            // 
+            // moneda
+            // 
+            this.moneda.DataPropertyName = "facpag_moneda";
+            this.moneda.HeaderText = "Moneda";
+            this.moneda.MinimumWidth = 6;
+            this.moneda.Name = "moneda";
+            this.moneda.ReadOnly = true;
+            this.moneda.Width = 50;
+            // 
+            // tipocambio
+            // 
+            this.tipocambio.DataPropertyName = "facpag_tipo_cambio";
+            this.tipocambio.HeaderText = "TipoCambio";
+            this.tipocambio.MinimumWidth = 6;
+            this.tipocambio.Name = "tipocambio";
+            this.tipocambio.ReadOnly = true;
+            this.tipocambio.Visible = false;
+            this.tipocambio.Width = 125;
+            // 
+            // estatus
+            // 
+            this.estatus.DataPropertyName = "facpag_estatus";
+            this.estatus.HeaderText = "Estatus";
+            this.estatus.MinimumWidth = 6;
+            this.estatus.Name = "estatus";
+            this.estatus.ReadOnly = true;
+            this.estatus.Visible = false;
+            this.estatus.Width = 125;
+            // 
+            // proveedor
+            // 
+            this.proveedor.DataPropertyName = "prov_nombre";
+            this.proveedor.HeaderText = "nombre_proveedor";
+            this.proveedor.MinimumWidth = 6;
+            this.proveedor.Name = "proveedor";
+            this.proveedor.ReadOnly = true;
+            this.proveedor.Visible = false;
+            this.proveedor.Width = 125;
+            // 
+            // flujo
+            // 
+            this.flujo.DataPropertyName = "facpag_flujo";
+            this.flujo.HeaderText = "flujo";
+            this.flujo.MinimumWidth = 6;
+            this.flujo.Name = "flujo";
+            this.flujo.ReadOnly = true;
+            this.flujo.Visible = false;
+            this.flujo.Width = 125;
+            // 
+            // tipogasto
+            // 
+            this.tipogasto.DataPropertyName = "facpag_tipo_gasto";
+            this.tipogasto.HeaderText = "tipogasto";
+            this.tipogasto.MinimumWidth = 6;
+            this.tipogasto.Name = "tipogasto";
+            this.tipogasto.ReadOnly = true;
+            this.tipogasto.Visible = false;
+            this.tipogasto.Width = 125;
+            // 
             // txtestado
             // 
             this.txtestado.BackColor = System.Drawing.Color.Beige;
@@ -520,6 +662,21 @@ namespace PROYECTO
             this.groupBox1.Size = new System.Drawing.Size(696, 177);
             this.groupBox1.TabIndex = 11;
             this.groupBox1.TabStop = false;
+            // 
+            // cmbMoneda
+            // 
+            this.cmbMoneda.BackColor = System.Drawing.Color.White;
+            this.cmbMoneda.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbMoneda.FormattingEnabled = true;
+            this.cmbMoneda.ImeMode = System.Windows.Forms.ImeMode.On;
+            this.cmbMoneda.Items.AddRange(new object[] {
+            "CRC",
+            "USD"});
+            this.cmbMoneda.Location = new System.Drawing.Point(19, 140);
+            this.cmbMoneda.Name = "cmbMoneda";
+            this.cmbMoneda.Size = new System.Drawing.Size(82, 24);
+            this.cmbMoneda.TabIndex = 616;
+            this.cmbMoneda.SelectedIndexChanged += new System.EventHandler(this.cbomoneda_SelectedIndexChanged);
             // 
             // label12
             // 
@@ -764,161 +921,6 @@ namespace PROYECTO
             this.btnMEliminar.UseVisualStyleBackColor = true;
             this.btnMEliminar.Click += new System.EventHandler(this.btnMEliminar_Click);
             // 
-            // cmbMoneda
-            // 
-            this.cmbMoneda.BackColor = System.Drawing.Color.White;
-            this.cmbMoneda.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbMoneda.FormattingEnabled = true;
-            this.cmbMoneda.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.cmbMoneda.Items.AddRange(new object[] {
-            "CRC",
-            "USD"});
-            this.cmbMoneda.Location = new System.Drawing.Point(19, 140);
-            this.cmbMoneda.Name = "cmbMoneda";
-            this.cmbMoneda.Size = new System.Drawing.Size(82, 24);
-            this.cmbMoneda.TabIndex = 616;
-            this.cmbMoneda.SelectedIndexChanged += new System.EventHandler(this.cbomoneda_SelectedIndexChanged);
-            // 
-            // factura
-            // 
-            this.factura.DataPropertyName = "facpag_num_factura";
-            this.factura.HeaderText = "Factura";
-            this.factura.MinimumWidth = 6;
-            this.factura.Name = "factura";
-            this.factura.ReadOnly = true;
-            this.factura.Width = 120;
-            // 
-            // indic
-            // 
-            this.indic.DataPropertyName = "FACPAG_INDICE";
-            this.indic.HeaderText = "indic";
-            this.indic.MinimumWidth = 6;
-            this.indic.Name = "indic";
-            this.indic.ReadOnly = true;
-            this.indic.Visible = false;
-            this.indic.Width = 125;
-            // 
-            // gasto
-            // 
-            this.gasto.DataPropertyName = "gas_nombre";
-            this.gasto.HeaderText = "gasto";
-            this.gasto.MinimumWidth = 6;
-            this.gasto.Name = "gasto";
-            this.gasto.ReadOnly = true;
-            this.gasto.Visible = false;
-            this.gasto.Width = 125;
-            // 
-            // monto
-            // 
-            this.monto.DataPropertyName = "facpag_monto";
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle2.Format = "###,###,##0.00";
-            dataGridViewCellStyle2.NullValue = "0";
-            this.monto.DefaultCellStyle = dataGridViewCellStyle2;
-            this.monto.HeaderText = "Monto";
-            this.monto.MinimumWidth = 6;
-            this.monto.Name = "monto";
-            this.monto.ReadOnly = true;
-            this.monto.Width = 70;
-            // 
-            // codproveedor
-            // 
-            this.codproveedor.DataPropertyName = "facpag_proveedor";
-            this.codproveedor.HeaderText = "CodProveedor";
-            this.codproveedor.MinimumWidth = 6;
-            this.codproveedor.Name = "codproveedor";
-            this.codproveedor.ReadOnly = true;
-            this.codproveedor.Visible = false;
-            this.codproveedor.Width = 125;
-            // 
-            // saldo
-            // 
-            this.saldo.DataPropertyName = "facpag_saldo";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle3.Format = "###,###,##0.00";
-            dataGridViewCellStyle3.NullValue = "0";
-            this.saldo.DefaultCellStyle = dataGridViewCellStyle3;
-            this.saldo.HeaderText = "Saldo";
-            this.saldo.MinimumWidth = 6;
-            this.saldo.Name = "saldo";
-            this.saldo.ReadOnly = true;
-            this.saldo.Width = 70;
-            // 
-            // emision
-            // 
-            this.emision.DataPropertyName = "facpag_fecha_emision";
-            this.emision.HeaderText = "Fecha";
-            this.emision.MinimumWidth = 6;
-            this.emision.Name = "emision";
-            this.emision.ReadOnly = true;
-            // 
-            // vence
-            // 
-            this.vence.DataPropertyName = "facpag_fecha_vence";
-            this.vence.HeaderText = "Vence";
-            this.vence.MinimumWidth = 6;
-            this.vence.Name = "vence";
-            this.vence.ReadOnly = true;
-            // 
-            // moneda
-            // 
-            this.moneda.DataPropertyName = "facpag_moneda";
-            this.moneda.HeaderText = "Moneda";
-            this.moneda.MinimumWidth = 6;
-            this.moneda.Name = "moneda";
-            this.moneda.ReadOnly = true;
-            this.moneda.Width = 50;
-            // 
-            // tipocambio
-            // 
-            this.tipocambio.DataPropertyName = "facpag_tipo_cambio";
-            this.tipocambio.HeaderText = "TipoCambio";
-            this.tipocambio.MinimumWidth = 6;
-            this.tipocambio.Name = "tipocambio";
-            this.tipocambio.ReadOnly = true;
-            this.tipocambio.Visible = false;
-            this.tipocambio.Width = 125;
-            // 
-            // estatus
-            // 
-            this.estatus.DataPropertyName = "facpag_estatus";
-            this.estatus.HeaderText = "Estatus";
-            this.estatus.MinimumWidth = 6;
-            this.estatus.Name = "estatus";
-            this.estatus.ReadOnly = true;
-            this.estatus.Visible = false;
-            this.estatus.Width = 125;
-            // 
-            // proveedor
-            // 
-            this.proveedor.DataPropertyName = "prov_nombre";
-            this.proveedor.HeaderText = "nombre_proveedor";
-            this.proveedor.MinimumWidth = 6;
-            this.proveedor.Name = "proveedor";
-            this.proveedor.ReadOnly = true;
-            this.proveedor.Visible = false;
-            this.proveedor.Width = 125;
-            // 
-            // flujo
-            // 
-            this.flujo.DataPropertyName = "facpag_flujo";
-            this.flujo.HeaderText = "flujo";
-            this.flujo.MinimumWidth = 6;
-            this.flujo.Name = "flujo";
-            this.flujo.ReadOnly = true;
-            this.flujo.Visible = false;
-            this.flujo.Width = 125;
-            // 
-            // tipogasto
-            // 
-            this.tipogasto.DataPropertyName = "facpag_tipo_gasto";
-            this.tipogasto.HeaderText = "tipogasto";
-            this.tipogasto.MinimumWidth = 6;
-            this.tipogasto.Name = "tipogasto";
-            this.tipogasto.ReadOnly = true;
-            this.tipogasto.Visible = false;
-            this.tipogasto.Width = 125;
-            // 
             // frmFacturaPorPagarProveedor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -941,6 +943,7 @@ namespace PROYECTO
             this.Controls.Add(this.dgrDatos);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -949,6 +952,7 @@ namespace PROYECTO
             this.Text = "Registro de Facturas para Pago";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmFacturaPorPagarProveedor_FormClosing);
             this.Load += new System.EventHandler(this.frmFacturaPorPagarProveedor_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmFacturaPorPagarProveedor_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.dgrDatos)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

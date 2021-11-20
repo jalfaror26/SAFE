@@ -98,7 +98,18 @@ namespace PROYECTO
             this.Close();
         }
 
+        private void frmMenuFacturacion_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.F1)
+                Ayuda();
+        }
 
+        private void Ayuda()
+        {
+            frmAyuda oFrm = frmAyuda.getInstance();
+            oFrm.MdiParent = this.MdiParent;
+            oFrm.Show();
+        }
 
         private void button23_Click(object sender, EventArgs e)
         {

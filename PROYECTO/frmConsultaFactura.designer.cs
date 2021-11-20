@@ -1,6 +1,6 @@
 namespace PROYECTO
 {
-    partial class frmConsultaCliente
+    partial class frmConsultaFactura
     {
         /// <summary>
         /// Required designer variable.
@@ -28,29 +28,31 @@ namespace PROYECTO
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmConsultaCliente));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmConsultaFactura));
             this.label2 = new System.Windows.Forms.Label();
             this.dgrDatos = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
             this.txtBId = new System.Windows.Forms.TextBox();
+            this.txtBNombre = new System.Windows.Forms.TextBox();
             this.lblBusqueda = new System.Windows.Forms.Label();
             this.lDAOinea = new System.Windows.Forms.Label();
             this.btnSalir = new System.Windows.Forms.Button();
             this.btnAceptar = new System.Windows.Forms.Button();
-            this.label3 = new System.Windows.Forms.Label();
-            this.txtBCedula = new System.Windows.Forms.TextBox();
-            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
-            this.txtBNombre = new System.Windows.Forms.TextBox();
-            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cli_cedula = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.descripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dato1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dato2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dato3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.fac_numero = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.fac_estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.fac_fecha = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.fac_nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.FE_CONSECUTIVO = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.FE_RECEPCION = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.FE_COMPROBACION = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgrDatos)).BeginInit();
             this.SuspendLayout();
             // 
@@ -60,12 +62,12 @@ namespace PROYECTO
             this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.label2.Location = new System.Drawing.Point(327, 39);
+            this.label2.Location = new System.Drawing.Point(235, 39);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(58, 17);
+            this.label2.Size = new System.Drawing.Size(82, 17);
             this.label2.TabIndex = 162;
-            this.label2.Text = "Nombre";
+            this.label2.Text = "Descripción";
             // 
             // dgrDatos
             // 
@@ -86,12 +88,13 @@ namespace PROYECTO
             this.dgrDatos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgrDatos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgrDatos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Id,
-            this.cli_cedula,
-            this.descripcion,
-            this.dato1,
-            this.dato2,
-            this.dato3});
+            this.fac_numero,
+            this.fac_estado,
+            this.fac_fecha,
+            this.fac_nombre,
+            this.FE_CONSECUTIVO,
+            this.FE_RECEPCION,
+            this.FE_COMPROBACION});
             this.dgrDatos.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.dgrDatos.Location = new System.Drawing.Point(16, 100);
             this.dgrDatos.Margin = new System.Windows.Forms.Padding(4);
@@ -101,15 +104,14 @@ namespace PROYECTO
             this.dgrDatos.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.dgrDatos.RowHeadersVisible = false;
             this.dgrDatos.RowHeadersWidth = 51;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.Teal;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White;
-            this.dgrDatos.RowsDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.Teal;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.White;
+            this.dgrDatos.RowsDefaultCellStyle = dataGridViewCellStyle8;
             this.dgrDatos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgrDatos.ShowEditingIcon = false;
-            this.dgrDatos.Size = new System.Drawing.Size(717, 331);
+            this.dgrDatos.Size = new System.Drawing.Size(1097, 368);
             this.dgrDatos.TabIndex = 2;
             this.dgrDatos.VirtualMode = true;
-            this.dgrDatos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgrDatos_CellContentClick);
             this.dgrDatos.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgrDatos_CellDoubleClick);
             this.dgrDatos.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgrDatos_CellEnter);
             this.dgrDatos.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgrDatos_DataBindingComplete);
@@ -121,7 +123,7 @@ namespace PROYECTO
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.label1.Location = new System.Drawing.Point(27, 39);
+            this.label1.Location = new System.Drawing.Point(40, 39);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(19, 17);
@@ -131,13 +133,24 @@ namespace PROYECTO
             // txtBId
             // 
             this.txtBId.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtBId.Location = new System.Drawing.Point(23, 59);
+            this.txtBId.Location = new System.Drawing.Point(41, 59);
             this.txtBId.Margin = new System.Windows.Forms.Padding(4);
             this.txtBId.Name = "txtBId";
-            this.txtBId.Size = new System.Drawing.Size(84, 22);
-            this.txtBId.TabIndex = 3;
-            this.txtBId.Tag = "";
+            this.txtBId.Size = new System.Drawing.Size(140, 22);
+            this.txtBId.TabIndex = 2;
+            this.txtBId.Tag = "P.num_producto";
             this.txtBId.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtBId_KeyUp);
+            // 
+            // txtBNombre
+            // 
+            this.txtBNombre.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtBNombre.Location = new System.Drawing.Point(227, 59);
+            this.txtBNombre.Margin = new System.Windows.Forms.Padding(4);
+            this.txtBNombre.Name = "txtBNombre";
+            this.txtBNombre.Size = new System.Drawing.Size(352, 22);
+            this.txtBNombre.TabIndex = 1;
+            this.txtBNombre.Tag = "M.descripcion";
+            this.txtBNombre.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtBNombre_KeyUp);
             // 
             // lblBusqueda
             // 
@@ -186,125 +199,84 @@ namespace PROYECTO
             this.btnAceptar.UseVisualStyleBackColor = true;
             this.btnAceptar.Click += new System.EventHandler(this.btnAceptar_Click);
             // 
-            // label3
+            // fac_numero
             // 
-            this.label3.AutoSize = true;
-            this.label3.BackColor = System.Drawing.Color.Transparent;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.label3.Location = new System.Drawing.Point(124, 39);
-            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(52, 17);
-            this.label3.TabIndex = 439;
-            this.label3.Text = "Cédula";
+            this.fac_numero.DataPropertyName = "fac_numero";
+            this.fac_numero.HeaderText = "Factura";
+            this.fac_numero.MinimumWidth = 6;
+            this.fac_numero.Name = "fac_numero";
+            this.fac_numero.ReadOnly = true;
+            this.fac_numero.Width = 70;
             // 
-            // txtBCedula
+            // fac_estado
             // 
-            this.txtBCedula.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtBCedula.Location = new System.Drawing.Point(120, 59);
-            this.txtBCedula.Margin = new System.Windows.Forms.Padding(4);
-            this.txtBCedula.Name = "txtBCedula";
-            this.txtBCedula.Size = new System.Drawing.Size(180, 22);
-            this.txtBCedula.TabIndex = 1;
-            this.txtBCedula.Tag = "";
-            this.txtBCedula.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtBCedula_KeyUp);
+            this.fac_estado.DataPropertyName = "fac_estado";
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.fac_estado.DefaultCellStyle = dataGridViewCellStyle3;
+            this.fac_estado.HeaderText = "Estado";
+            this.fac_estado.MinimumWidth = 6;
+            this.fac_estado.Name = "fac_estado";
+            this.fac_estado.ReadOnly = true;
+            this.fac_estado.Width = 80;
             // 
-            // imageList1
+            // fac_fecha
             // 
-            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
-            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
-            this.imageList1.Images.SetKeyName(0, "document.ico");
-            this.imageList1.Images.SetKeyName(1, "Disc 01.ico");
-            this.imageList1.Images.SetKeyName(2, "Sign 06.ico");
-            this.imageList1.Images.SetKeyName(3, "services.ico");
-            this.imageList1.Images.SetKeyName(4, "Aceptar.ico");
-            this.imageList1.Images.SetKeyName(5, "file_find.ico");
-            this.imageList1.Images.SetKeyName(6, "Write 01.ico");
-            this.imageList1.Images.SetKeyName(7, "cruz_roja.png");
-            this.imageList1.Images.SetKeyName(8, "App 23.ico");
-            this.imageList1.Images.SetKeyName(9, "Salir 2.ico");
-            this.imageList1.Images.SetKeyName(10, "Facturadora.png");
-            this.imageList1.Images.SetKeyName(11, "file_search.png");
-            this.imageList1.Images.SetKeyName(12, "Sign 04.ico");
+            this.fac_fecha.DataPropertyName = "fac_fecha";
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.fac_fecha.DefaultCellStyle = dataGridViewCellStyle4;
+            this.fac_fecha.HeaderText = "Fecha";
+            this.fac_fecha.MinimumWidth = 6;
+            this.fac_fecha.Name = "fac_fecha";
+            this.fac_fecha.ReadOnly = true;
+            this.fac_fecha.Width = 110;
             // 
-            // txtBNombre
+            // fac_nombre
             // 
-            this.txtBNombre.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtBNombre.Location = new System.Drawing.Point(319, 59);
-            this.txtBNombre.Margin = new System.Windows.Forms.Padding(4);
-            this.txtBNombre.Name = "txtBNombre";
-            this.txtBNombre.Size = new System.Drawing.Size(343, 22);
-            this.txtBNombre.TabIndex = 2;
-            this.txtBNombre.Tag = "";
-            this.txtBNombre.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtBNombre_KeyUp);
+            this.fac_nombre.DataPropertyName = "fac_nombre";
+            this.fac_nombre.HeaderText = "Nombre";
+            this.fac_nombre.MinimumWidth = 6;
+            this.fac_nombre.Name = "fac_nombre";
+            this.fac_nombre.ReadOnly = true;
+            this.fac_nombre.Width = 200;
             // 
-            // Id
+            // FE_CONSECUTIVO
             // 
-            this.Id.DataPropertyName = "cod";
-            this.Id.HeaderText = "";
-            this.Id.MinimumWidth = 6;
-            this.Id.Name = "Id";
-            this.Id.ReadOnly = true;
-            this.Id.Width = 70;
+            this.FE_CONSECUTIVO.DataPropertyName = "FE_CONSECUTIVO";
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.FE_CONSECUTIVO.DefaultCellStyle = dataGridViewCellStyle5;
+            this.FE_CONSECUTIVO.HeaderText = "Consecutivo Hacienda";
+            this.FE_CONSECUTIVO.MinimumWidth = 6;
+            this.FE_CONSECUTIVO.Name = "FE_CONSECUTIVO";
+            this.FE_CONSECUTIVO.ReadOnly = true;
+            this.FE_CONSECUTIVO.Width = 140;
             // 
-            // cli_cedula
+            // FE_RECEPCION
             // 
-            this.cli_cedula.DataPropertyName = "cli_cedula";
-            this.cli_cedula.HeaderText = "Cédula";
-            this.cli_cedula.MinimumWidth = 6;
-            this.cli_cedula.Name = "cli_cedula";
-            this.cli_cedula.ReadOnly = true;
-            this.cli_cedula.Width = 120;
+            this.FE_RECEPCION.DataPropertyName = "FE_RECEPCION";
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.FE_RECEPCION.DefaultCellStyle = dataGridViewCellStyle6;
+            this.FE_RECEPCION.HeaderText = "Envío Hacienda";
+            this.FE_RECEPCION.MinimumWidth = 6;
+            this.FE_RECEPCION.Name = "FE_RECEPCION";
+            this.FE_RECEPCION.ReadOnly = true;
             // 
-            // descripcion
+            // FE_COMPROBACION
             // 
-            this.descripcion.DataPropertyName = "descripcion";
-            this.descripcion.HeaderText = "Nombre";
-            this.descripcion.MinimumWidth = 6;
-            this.descripcion.Name = "descripcion";
-            this.descripcion.ReadOnly = true;
-            this.descripcion.Width = 330;
+            this.FE_COMPROBACION.DataPropertyName = "FE_COMPROBACION";
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.FE_COMPROBACION.DefaultCellStyle = dataGridViewCellStyle7;
+            this.FE_COMPROBACION.HeaderText = "Respuesta Hacienda";
+            this.FE_COMPROBACION.MinimumWidth = 6;
+            this.FE_COMPROBACION.Name = "FE_COMPROBACION";
+            this.FE_COMPROBACION.ReadOnly = true;
             // 
-            // dato1
-            // 
-            this.dato1.DataPropertyName = "dato1";
-            this.dato1.HeaderText = "dato1";
-            this.dato1.MinimumWidth = 6;
-            this.dato1.Name = "dato1";
-            this.dato1.ReadOnly = true;
-            this.dato1.Visible = false;
-            this.dato1.Width = 125;
-            // 
-            // dato2
-            // 
-            this.dato2.DataPropertyName = "dato2";
-            this.dato2.HeaderText = "dato2";
-            this.dato2.MinimumWidth = 6;
-            this.dato2.Name = "dato2";
-            this.dato2.ReadOnly = true;
-            this.dato2.Visible = false;
-            this.dato2.Width = 125;
-            // 
-            // dato3
-            // 
-            this.dato3.DataPropertyName = "dato3";
-            this.dato3.HeaderText = "dato3";
-            this.dato3.MinimumWidth = 6;
-            this.dato3.Name = "dato3";
-            this.dato3.ReadOnly = true;
-            this.dato3.Visible = false;
-            this.dato3.Width = 125;
-            // 
-            // frmConsultaCliente
+            // frmConsultaFactura
             // 
             this.AcceptButton = this.btnAceptar;
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnSalir;
-            this.ClientSize = new System.Drawing.Size(752, 444);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.txtBCedula);
+            this.ClientSize = new System.Drawing.Size(1126, 487);
             this.Controls.Add(this.dgrDatos);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -320,11 +292,11 @@ namespace PROYECTO
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "frmConsultaCliente";
+            this.Name = "frmConsultaFactura";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Consulta";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmConsultaCliente_FormClosing);
-            this.Load += new System.EventHandler(this.frmConsultaCliente_Load);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmConsulta_FormClosing);
+            this.Load += new System.EventHandler(this.frmConsulta_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmForma_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.dgrDatos)).EndInit();
             this.ResumeLayout(false);
@@ -338,20 +310,17 @@ namespace PROYECTO
         private System.Windows.Forms.DataGridView dgrDatos;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtBId;
+        private System.Windows.Forms.TextBox txtBNombre;
         private System.Windows.Forms.Label lblBusqueda;
         private System.Windows.Forms.Label lDAOinea;
         private System.Windows.Forms.Button btnSalir;
         private System.Windows.Forms.Button btnAceptar;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CLI_IDENTIFICACION;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox txtBCedula;
-        private System.Windows.Forms.ImageList imageList1;
-        private System.Windows.Forms.TextBox txtBNombre;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Id;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cli_cedula;
-        private System.Windows.Forms.DataGridViewTextBoxColumn descripcion;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dato1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dato2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dato3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn fac_numero;
+        private System.Windows.Forms.DataGridViewTextBoxColumn fac_estado;
+        private System.Windows.Forms.DataGridViewTextBoxColumn fac_fecha;
+        private System.Windows.Forms.DataGridViewTextBoxColumn fac_nombre;
+        private System.Windows.Forms.DataGridViewTextBoxColumn FE_CONSECUTIVO;
+        private System.Windows.Forms.DataGridViewTextBoxColumn FE_RECEPCION;
+        private System.Windows.Forms.DataGridViewTextBoxColumn FE_COMPROBACION;
     }
 }

@@ -425,6 +425,20 @@ namespace PROYECTO
             txtOtro.Enabled = chkOtro.Checked;
         }
 
+        private void frmRecordatorioVista_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.F1)
+                Ayuda();
+        }
+
+        private void Ayuda()
+        {
+            frmAyuda oFrm = frmAyuda.getInstance("t10");
+            oFrm.MdiParent = this.MdiParent;
+            oFrm.Show();
+        }
+
+
         private void btnBuscar_Click(object sender, EventArgs e)
         {
             lblComentarios.Text = "";

@@ -393,6 +393,20 @@ namespace PROYECTO
             }
         }
 
+        private void frmFacturaPorPagarProveedorRapida_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.F1)
+                Ayuda();
+        }
+
+        private void Ayuda()
+        {
+            frmAyuda oFrm = frmAyuda.getInstance("t12");
+            oFrm.MdiParent = this.MdiParent;
+            oFrm.Show();
+        }
+
+
         private void txttipocambio_Enter(object sender, EventArgs e)
         {
             try

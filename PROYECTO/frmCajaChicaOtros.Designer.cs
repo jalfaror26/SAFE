@@ -1164,6 +1164,7 @@ namespace PROYECTO
             this.Controls.Add(this.tabControl1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -1172,6 +1173,7 @@ namespace PROYECTO
             this.Text = "Otros";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmCajaChicaOtros_FormClosing);
             this.Load += new System.EventHandler(this.frmCajaChicaOtros_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmCajaChicaOtros_KeyDown);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);

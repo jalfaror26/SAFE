@@ -207,6 +207,7 @@ namespace PROYECTO
             this.Text = "Administración de usuario";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmPermisos2_FormClosing);
             this.Load += new System.EventHandler(this.frmPermisos2_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmUsuarioAdministracion_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.imgFoto)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();

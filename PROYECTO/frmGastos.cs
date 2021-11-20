@@ -218,7 +218,7 @@ namespace PROYECTO
 
                 nuevo = false;
 
-               // txtNombre.Focus();
+                // txtNombre.Focus();
 
             }
             catch (Exception ex) { }
@@ -299,10 +299,7 @@ namespace PROYECTO
         private void frmForma_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.F1)
-            {
-                if (e.KeyCode == Keys.F1)
-                    Ayuda();
-            }
+                Ayuda();
         }
 
         private void Ayuda()

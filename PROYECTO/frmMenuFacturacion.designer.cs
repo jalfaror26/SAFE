@@ -131,7 +131,7 @@ namespace PROYECTO
             this.btnFacturacion.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnFacturacion.ImageKey = "facturar.png";
             this.btnFacturacion.ImageList = this.imageList2;
-            this.btnFacturacion.Location = new System.Drawing.Point(333, 95);
+            this.btnFacturacion.Location = new System.Drawing.Point(486, 136);
             this.btnFacturacion.Margin = new System.Windows.Forms.Padding(4);
             this.btnFacturacion.Name = "btnFacturacion";
             this.btnFacturacion.Size = new System.Drawing.Size(267, 62);
@@ -213,7 +213,7 @@ namespace PROYECTO
             this.btnCotizaciones.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnCotizaciones.ImageIndex = 41;
             this.btnCotizaciones.ImageList = this.imageList2;
-            this.btnCotizaciones.Location = new System.Drawing.Point(27, 95);
+            this.btnCotizaciones.Location = new System.Drawing.Point(180, 136);
             this.btnCotizaciones.Margin = new System.Windows.Forms.Padding(4);
             this.btnCotizaciones.Name = "btnCotizaciones";
             this.btnCotizaciones.Size = new System.Drawing.Size(267, 62);
@@ -244,6 +244,7 @@ namespace PROYECTO
             this.Name = "frmMenuFacturacion";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmMenuInvFact_FormClosing);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmMenuFacturacion_KeyDown);
             this.pInventarios.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).EndInit();
             this.ResumeLayout(false);

@@ -8,7 +8,7 @@ namespace ENTIDADES
     {
 
 
-        private String medida, codServicio, descripcion;
+        private String medida, codServicio, descripcion, cod_cabys;
         private Double precioUnitario, montoIV, subtotal, precioTotal, descuento, cantidad;
         private int indice, indiceFactura;
 
@@ -80,5 +80,6 @@ namespace ENTIDADES
 
         public string IVI { get => ivi; set => ivi = value; }
         public string CodServicio { get => codServicio; set => codServicio = value; }
+        public string Cod_cabys { get => cod_cabys; set => cod_cabys = value; }
     }
 }

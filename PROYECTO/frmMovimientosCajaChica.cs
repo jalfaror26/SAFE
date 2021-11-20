@@ -281,6 +281,19 @@ namespace PROYECTO
             }
         }
 
+        private void frmMovimientosCajaChica_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.F1)
+                Ayuda();
+        }
+
+        private void Ayuda()
+        {
+            frmAyuda oFrm = frmAyuda.getInstance("t11");
+            oFrm.MdiParent = this.MdiParent;
+            oFrm.Show();
+        }
+
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (cboTipoMovimiento.SelectedIndex == 0)

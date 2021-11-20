@@ -115,6 +115,20 @@ namespace PROYECTO
 
         }
 
+        private void frmPagosProveedores_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.F1)
+                Ayuda();
+        }
+
+        private void Ayuda()
+        {
+            frmAyuda oFrm = frmAyuda.getInstance("t13");
+            oFrm.MdiParent = this.MdiParent;
+            oFrm.Show();
+        }
+
+
         private void LlenarGasto()
         {
             DataTable oTabla = new DataTable();

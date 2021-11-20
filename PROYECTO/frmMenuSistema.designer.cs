@@ -31,8 +31,9 @@ namespace PROYECTO
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMenuSistema));
             this.pSistema = new System.Windows.Forms.Panel();
-            this.btnAdministracionUsuario = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.imageList2 = new System.Windows.Forms.ImageList(this.components);
+            this.btnAdministracionUsuario = new System.Windows.Forms.Button();
             this.btnDatosEmpresa = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
@@ -45,7 +46,6 @@ namespace PROYECTO
             this.label11 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
-            this.button1 = new System.Windows.Forms.Button();
             this.pSistema.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             this.SuspendLayout();
@@ -75,22 +75,21 @@ namespace PROYECTO
             this.pSistema.Size = new System.Drawing.Size(944, 532);
             this.pSistema.TabIndex = 576;
             // 
-            // btnAdministracionUsuario
+            // button1
             // 
-            this.btnAdministracionUsuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAdministracionUsuario.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAdministracionUsuario.ImageIndex = 34;
-            this.btnAdministracionUsuario.ImageList = this.imageList2;
-            this.btnAdministracionUsuario.Location = new System.Drawing.Point(493, 290);
-            this.btnAdministracionUsuario.Margin = new System.Windows.Forms.Padding(4);
-            this.btnAdministracionUsuario.Name = "btnAdministracionUsuario";
-            this.btnAdministracionUsuario.Size = new System.Drawing.Size(340, 70);
-            this.btnAdministracionUsuario.TabIndex = 587;
-            this.btnAdministracionUsuario.Text = "   ADMINISTRACIÓN DE \r\n   USUARIO";
-            this.btnAdministracionUsuario.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAdministracionUsuario.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnAdministracionUsuario.UseVisualStyleBackColor = true;
-            this.btnAdministracionUsuario.Click += new System.EventHandler(this.btnAdministracionUsuario_Click);
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button1.ImageIndex = 32;
+            this.button1.ImageList = this.imageList2;
+            this.button1.Location = new System.Drawing.Point(493, 389);
+            this.button1.Margin = new System.Windows.Forms.Padding(4);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(340, 70);
+            this.button1.TabIndex = 588;
+            this.button1.Text = "   BITÁCORA DE DATOS";
+            this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click_1);
             // 
             // imageList2
             // 
@@ -145,6 +144,23 @@ namespace PROYECTO
             this.imageList2.Images.SetKeyName(46, "mail.png");
             this.imageList2.Images.SetKeyName(47, "deposito.png");
             this.imageList2.Images.SetKeyName(48, "settings.png");
+            // 
+            // btnAdministracionUsuario
+            // 
+            this.btnAdministracionUsuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAdministracionUsuario.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAdministracionUsuario.ImageIndex = 34;
+            this.btnAdministracionUsuario.ImageList = this.imageList2;
+            this.btnAdministracionUsuario.Location = new System.Drawing.Point(493, 290);
+            this.btnAdministracionUsuario.Margin = new System.Windows.Forms.Padding(4);
+            this.btnAdministracionUsuario.Name = "btnAdministracionUsuario";
+            this.btnAdministracionUsuario.Size = new System.Drawing.Size(340, 70);
+            this.btnAdministracionUsuario.TabIndex = 587;
+            this.btnAdministracionUsuario.Text = "   ADMINISTRACIÓN DE \r\n   USUARIO";
+            this.btnAdministracionUsuario.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAdministracionUsuario.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnAdministracionUsuario.UseVisualStyleBackColor = true;
+            this.btnAdministracionUsuario.Click += new System.EventHandler(this.btnAdministracionUsuario_Click);
             // 
             // btnDatosEmpresa
             // 
@@ -318,22 +334,6 @@ namespace PROYECTO
             this.pictureBox4.TabIndex = 586;
             this.pictureBox4.TabStop = false;
             // 
-            // button1
-            // 
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.ImageIndex = 32;
-            this.button1.ImageList = this.imageList2;
-            this.button1.Location = new System.Drawing.Point(493, 389);
-            this.button1.Margin = new System.Windows.Forms.Padding(4);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(340, 70);
-            this.button1.TabIndex = 588;
-            this.button1.Text = "   BITÁCORA DE DATOS";
-            this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click_1);
-            // 
             // frmMenuSistema
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -354,6 +354,7 @@ namespace PROYECTO
             this.Name = "frmMenuSistema";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmMenuSistema_FormClosing);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmMenuSistema_KeyDown);
             this.pSistema.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             this.ResumeLayout(false);

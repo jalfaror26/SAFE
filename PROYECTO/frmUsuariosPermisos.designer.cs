@@ -30,10 +30,10 @@ namespace PROYECTO
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmUsuariosPermisos));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.txtCorreo = new System.Windows.Forms.MaskedTextBox();
@@ -450,8 +450,8 @@ namespace PROYECTO
             // 
             this.dgrUsuarios.AllowUserToAddRows = false;
             this.dgrUsuarios.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.Gainsboro;
-            this.dgrUsuarios.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Gainsboro;
+            this.dgrUsuarios.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgrUsuarios.BackgroundColor = System.Drawing.Color.White;
             this.dgrUsuarios.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgrUsuarios.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -468,9 +468,9 @@ namespace PROYECTO
             this.dgrUsuarios.Name = "dgrUsuarios";
             this.dgrUsuarios.RowHeadersVisible = false;
             this.dgrUsuarios.RowHeadersWidth = 51;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.Teal;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.White;
-            this.dgrUsuarios.RowsDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Teal;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
+            this.dgrUsuarios.RowsDefaultCellStyle = dataGridViewCellStyle2;
             this.dgrUsuarios.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgrUsuarios.Size = new System.Drawing.Size(810, 213);
             this.dgrUsuarios.TabIndex = 0;
@@ -621,8 +621,8 @@ namespace PROYECTO
             // 
             this.dgrPantallas.AllowUserToAddRows = false;
             this.dgrPantallas.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle7.BackColor = System.Drawing.Color.Gainsboro;
-            this.dgrPantallas.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.Gainsboro;
+            this.dgrPantallas.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
             this.dgrPantallas.BackgroundColor = System.Drawing.Color.White;
             this.dgrPantallas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgrPantallas.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -636,9 +636,9 @@ namespace PROYECTO
             this.dgrPantallas.Name = "dgrPantallas";
             this.dgrPantallas.RowHeadersVisible = false;
             this.dgrPantallas.RowHeadersWidth = 51;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.Teal;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.White;
-            this.dgrPantallas.RowsDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.Teal;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.White;
+            this.dgrPantallas.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.dgrPantallas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgrPantallas.Size = new System.Drawing.Size(811, 394);
             this.dgrPantallas.TabIndex = 0;
@@ -713,6 +713,7 @@ namespace PROYECTO
             this.Text = "Asignación de Permisos a Usuario";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmPermisos_FormClosing);
             this.Load += new System.EventHandler(this.frmPermisos_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmUsuariosPermisos_KeyDown);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();

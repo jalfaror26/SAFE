@@ -63,32 +63,9 @@ namespace PROYECTO
             //LlenaDistritos();
             //LlenaBarrios();
 
-            try
-            {
-                oConexion.cerrarConexion();
-                if (oConexion.abrirConexion())
-                {
-                    DataTable oMensajes = oConexion.EjecutaSentencia("select ind_facturasabiertas from TBL_EMPRESA e where e.no_cia = '" + PROYECTO.Properties.Settings.Default.No_cia + "'");
-
-                    if (oMensajes.Rows.Count > 0)
-                    {
-                        vFacturasAbiertas = oMensajes.Rows[0]["ind_facturasabiertas"].ToString().Equals("S") ? true : false;
-                    }
 
 
-                    oConexion.cerrarConexion();
-                }
-            }
-            catch
-            {
-            }
-
-            chkMultFacturasAbiertas.Checked = vFacturasAbiertas;
-            chkRedondearPrecioFactura.Checked = PROYECTO.Properties.Settings.Default.RedondearPrecioVenta;
-
-            chkImprimeAlFacturar.Checked = PROYECTO.Properties.Settings.Default.ImprimeTiquetAlFacturar;
-
-            Llenar_Grid();
+            Llenar_Datos();
         }
 
         private void LlenaTipoID()
@@ -280,7 +257,7 @@ namespace PROYECTO
             cboProvincia.SelectedIndex = 0;
         }
 
-        private void Llenar_Grid()
+        private void Llenar_Datos()
         {
             try
             {
@@ -310,6 +287,25 @@ namespace PROYECTO
                         cboCanton.SelectedValue = oEmpresa.Rows[0]["CANTON"].ToString();
                         cboDistrito.SelectedValue = oEmpresa.Rows[0]["DISTRITO"].ToString();
                         cboBarrio.SelectedValue = oEmpresa.Rows[0]["BARRIO"].ToString();
+
+                        chkMultFacturasAbiertas.Checked = oEmpresa.Rows[0]["ind_facturasabiertas"].ToString().Equals("S") ? true : false;
+                        chkRedondearPrecioFactura.Checked = PROYECTO.Properties.Settings.Default.RedondearPrecioVenta;
+
+                        chkImprimeAlFacturar.Checked = PROYECTO.Properties.Settings.Default.ImprimeTiquetAlFacturar;
+
+                        chkFE_Ind_Fact_Elect.Checked = oEmpresa.Rows[0]["IND_FACT_ELECT"].ToString().Equals("S") ? true : false;
+
+                        txtFE_Api_Token.Text = oEmpresa.Rows[0]["API_TOKEN_WS_FE"].ToString();
+                        txtFE_Access_Token.Text = oEmpresa.Rows[0]["ACCESS_TOKEN_WS_FE"].ToString();
+                        txtFE_ActividadComercial.Text = oEmpresa.Rows[0]["CODIGO_ACTIVIDAD"].ToString();
+                        txtFE_Sucursal.Text = oEmpresa.Rows[0]["SUCURSAL"].ToString();
+                        txtFE_Caja.Text = oEmpresa.Rows[0]["CAJA"].ToString();
+
+                        txtFE_Api_Token.Enabled = chkFE_Ind_Fact_Elect.Checked;
+                        txtFE_Access_Token.Enabled = chkFE_Ind_Fact_Elect.Checked;
+                        txtFE_ActividadComercial.Enabled = chkFE_Ind_Fact_Elect.Checked;
+                        txtFE_Sucursal.Enabled = chkFE_Ind_Fact_Elect.Checked;
+                        txtFE_Caja.Enabled = chkFE_Ind_Fact_Elect.Checked;
 
                         if (oEmpresa.Rows[0].ItemArray[0] != null)
                         {
@@ -400,6 +396,15 @@ namespace PROYECTO
                     oEmpresa.Distrito = ((KeyValuePair<string, string>)cboDistrito.SelectedItem).Key;
                     oEmpresa.Barrio = ((KeyValuePair<string, string>)cboBarrio.SelectedItem).Key;
 
+
+                    oEmpresa.Fe_Ind_Fact_Elect = chkFE_Ind_Fact_Elect.Checked ? "S" : "N";
+                    oEmpresa.Fe_Api_Token = txtFE_Api_Token.Text;
+                    oEmpresa.Fe_Access_Token = txtFE_Access_Token.Text;
+                    oEmpresa.Fe_ActividadComercial = txtFE_ActividadComercial.Text;
+                    oEmpresa.Fe_Sucursal = txtFE_Sucursal.Text;
+                    oEmpresa.Fe_Caja = txtFE_Caja.Text;
+
+
                     oEmpresaDAO.Agregar(oEmpresa, bLogo);
 
                     if (oEmpresaDAO.Error())
@@ -415,7 +420,8 @@ namespace PROYECTO
                         oEmpresaDAO.ActualizaParametro(PROYECTO.Properties.Settings.Default.No_cia, "IND_FACTURASABIERTAS", chkMultFacturasAbiertas.Checked ? "S" : "N");
 
                         MessageBox.Show("Guardado Correctamente!!", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        Llenar_Grid();
+
+                        Llenar_Datos();
                     }
                     oConexion.cerrarConexion();
                 }
@@ -614,6 +620,15 @@ namespace PROYECTO
             }
         }
 
+        private void chkFE_Ind_Fact_Elect_CheckedChanged(object sender, EventArgs e)
+        {
+            txtFE_Api_Token.Enabled = chkFE_Ind_Fact_Elect.Checked;
+            txtFE_Access_Token.Enabled = chkFE_Ind_Fact_Elect.Checked;
+            txtFE_ActividadComercial.Enabled = chkFE_Ind_Fact_Elect.Checked;
+            txtFE_Sucursal.Enabled = chkFE_Ind_Fact_Elect.Checked;
+            txtFE_Caja.Enabled = chkFE_Ind_Fact_Elect.Checked;
+        }
+
         private void frmForma_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.F1)
@@ -622,7 +637,7 @@ namespace PROYECTO
 
         private void Ayuda()
         {
-            frmAyuda oFrm = frmAyuda.getInstance();
+            frmAyuda oFrm = frmAyuda.getInstance("t17");
             oFrm.MdiParent = this.MdiParent;
             oFrm.Show();
         }
