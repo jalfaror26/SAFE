@@ -28,6 +28,7 @@ namespace PROYECTO
         private Servicio oServicio;
         private double indice = 0;
         private readonly Ent_CW oControl = new Ent_CW();
+        private int ttime = 0;
 
         private String codigo = "par_Servicios", descripcion = "Mantenimiento de servicios", modulo = "Mantenimientos";
 
@@ -573,7 +574,9 @@ namespace PROYECTO
 
             if (result == DialogResult.Yes)
             {
-                ActualizarServicios();
+                ttime = 0;
+                progressBar1.Visible = true;
+                timer1.Start();
             }
         }
 
@@ -588,6 +591,18 @@ namespace PROYECTO
                 }
                 Eliminar();
             }
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            if (ttime == 5)
+            {
+                ttime = 0;
+                timer1.Stop();
+                ActualizarServicios();
+                progressBar1.Visible = false;
+            }
+            ttime++;
         }
 
         private void frmForma_KeyDown(object sender, KeyEventArgs e)
@@ -649,14 +664,18 @@ namespace PROYECTO
                 if (Internet())
                 {
                     if (!AplicaFE(out String pApiToken, out String pAccessToken))
+                    {
+                        progressBar1.Visible = false;
                         return;
+                    }
+
 
                     String oDatosJson = oControl.TraerServicios(out Boolean /*HttpStatusCode*/ vOut, out Boolean vTimeOut, pApiToken, pAccessToken);
 
                     if (vTimeOut)
                     {
+                        progressBar1.Visible = false;
                         MessageBox.Show("A sucedido un problema de conexión, por favor intente nuevamente, si el problema persiste informe a Soporte Técnico.", "Error de Conexión", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
                         return;
                     }
 
@@ -721,6 +740,7 @@ namespace PROYECTO
                                         if (oServicioDAO.Error())
                                         {
                                             vHayError = true;
+                                            progressBar1.Visible = false;
                                             MessageBox.Show("Error al Guardar el Servicio: " + oServicio.Codigo + " - " + oServicio.Nombre + "\n" + oServicioDAO.DescError(), "Error de consulta", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                         }
                                         else
@@ -731,6 +751,7 @@ namespace PROYECTO
                             }
                             oConexion.cerrarConexion();
 
+                            progressBar1.Visible = false;
                             if (vHayError)
                                 MessageBox.Show("Proceso Finalizado con errores!!\nTotal servicios: " + totalServicios.ToString("###,###,##0") + "\nTotal errores: " + totalErrores.ToString("###,###,##0"), "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             else
@@ -738,25 +759,29 @@ namespace PROYECTO
                         }
                         else
                         {
+                            progressBar1.Visible = false;
                             MessageBox.Show("Error al conectarse con la base de datos\nVerifique que los datos estén correctos");
                             return;
                         }
                     }
                     else
                     {
+                        progressBar1.Visible = false;
                         MessageBox.Show("Error al extraer datos!!!", "Error de Conexión", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
-
+                    progressBar1.Visible = false;
                     Llenar_Grid();
                     btnMNuevo.PerformClick();
                 }
                 else
                 {
+                    progressBar1.Visible = false;
                     MessageBox.Show("Sin conexión a internet!!!", "Error de Conexión", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             catch (Exception ex)
             {
+                progressBar1.Visible = false;
                 MessageBox.Show("Error al buscar API!!!", "Error de Conexión", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                 // Qué ha sucedido

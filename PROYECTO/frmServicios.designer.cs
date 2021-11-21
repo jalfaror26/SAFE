@@ -76,6 +76,8 @@ namespace PROYECTO
             this.rboGravado = new System.Windows.Forms.RadioButton();
             this.rboExento = new System.Windows.Forms.RadioButton();
             this.ttInformacion = new System.Windows.Forms.ToolTip(this.components);
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.progressBar1 = new System.Windows.Forms.ProgressBar();
             ((System.ComponentModel.ISupportInitialize)(this.dgrDatos)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -505,6 +507,7 @@ namespace PROYECTO
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.progressBar1);
             this.groupBox2.Controls.Add(this.btnDescargarClientes);
             this.groupBox2.Controls.Add(this.btnMNuevo);
             this.groupBox2.Controls.Add(this.btnMSalir);
@@ -621,6 +624,20 @@ namespace PROYECTO
             // 
             this.ttInformacion.IsBalloon = true;
             // 
+            // timer1
+            // 
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // progressBar1
+            // 
+            this.progressBar1.Location = new System.Drawing.Point(508, 18);
+            this.progressBar1.Margin = new System.Windows.Forms.Padding(4);
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(147, 55);
+            this.progressBar1.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
+            this.progressBar1.TabIndex = 638;
+            this.progressBar1.Visible = false;
+            // 
             // frmServicios
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -706,5 +723,7 @@ namespace PROYECTO
         private System.Windows.Forms.DataGridViewTextBoxColumn COD_CABYS;
         private System.Windows.Forms.ToolTip ttInformacion;
         private System.Windows.Forms.Button btnDescargarClientes;
+        private System.Windows.Forms.ProgressBar progressBar1;
+        private System.Windows.Forms.Timer timer1;
     }
 }

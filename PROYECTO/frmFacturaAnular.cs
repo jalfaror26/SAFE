@@ -26,6 +26,7 @@ namespace PROYECTO
 
         private static frmFacturaAnular instance = null;
 
+        private int ttime = 0;
         public static frmFacturaAnular getInstance(Factura oFactura, DataTable Detalles, String pOrigen)
         {
             if (instance == null)
@@ -216,12 +217,18 @@ namespace PROYECTO
 
         private void timCreaNC_Tick(object sender, EventArgs e)
         {
-            lblMjFacturaElectronica.Text = "Generando Nota de Crédito";
-            lblMjFacturaElectronica.Visible = true;
-            pbFacturaElectronica.Visible = true;
+            if (ttime == 5)
+            {
+                ttime = 0;
+                lblMjFacturaElectronica.Text = "Generando Nota de Crédito";
+                lblMjFacturaElectronica.Visible = true;
+                pbFacturaElectronica.Visible = true;
 
-            timCreaNC.Stop();
-            CrearNC();
+                timCreaNC.Stop();
+                CrearNC();
+                pbFacturaElectronica.Visible = false;
+            }
+            ttime++;
         }
 
         private void LlenarComentarios()

@@ -48,6 +48,8 @@ namespace PROYECTO
 
         private String codigoAbrir = "", descripcionAbrir = "", moduloAbrir = "";
 
+        private int ttime = 0;
+
         public String Modulo
         {
             get { return modulo; }
@@ -2552,20 +2554,34 @@ namespace PROYECTO
 
         private void timCreaFA_Tick(object sender, EventArgs e)
         {
-            lblMjFacturaElectronica.Text = "Generando Factura Electrónica";
-            lblMjFacturaElectronica.Visible = true;
-            pbFacturaElectronica.Visible = true;
+            if (ttime == 5)
+            {
+                ttime = 0;
+                lblMjFacturaElectronica.Text = "Generando Factura Electrónica";
+                lblMjFacturaElectronica.Visible = true;
+                pbFacturaElectronica.Visible = true;
 
-            timCreaFA.Stop();
-            CrearFE();
+                timCreaFA.Stop();
+                CrearFE();
+                pbFacturaElectronica.Visible = false;
+            }
+            ttime++;
         }
 
         private void timCompruebaFA_Tick(object sender, EventArgs e)
         {
-            timCompruebaFA.Stop();
-            lblMjFacturaElectronica.Text = "Comprobando Factura Electrónica";
-            ComprobarFE();
-            pbFacturaElectronica.Visible = false;
+            if (ttime == 5)
+            {
+                ttime = 0;
+                lblMjFacturaElectronica.Text = "Comprobando Factura Electrónica";
+                lblMjFacturaElectronica.Visible = true;
+                pbFacturaElectronica.Visible = true;
+
+                timCompruebaFA.Stop();
+                ComprobarFE();
+                pbFacturaElectronica.Visible = false;
+            }
+            ttime++;
         }
 
         private void pbFacturaElectronica_VisibleChanged(object sender, EventArgs e)

@@ -29,7 +29,7 @@ namespace PROYECTO
         private string txtCodigo = "";
         private Hacienda_DireccionDAO oHacienda_DireccionDAO = new Hacienda_DireccionDAO();
         private readonly Ent_CW oControl = new Ent_CW();
-
+        private int ttime = 0;
 
         public String Modulo
         {
@@ -682,8 +682,27 @@ namespace PROYECTO
 
             if (result == DialogResult.Yes)
             {
-                ActualizarClientes();
+                ttime = 0;
+                progressBar1.Visible = true;
+                timer1.Start();
             }
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            if (ttime == 5)
+            {
+                ttime = 0;
+                timer1.Stop();
+                ActualizarClientes();
+                progressBar1.Visible = false;
+            }
+            ttime++;
+        }
+
+        private void progressBar1_Click(object sender, EventArgs e)
+        {
+
         }
 
         public Boolean Internet()
@@ -738,8 +757,8 @@ namespace PROYECTO
 
                     if (vTimeOut)
                     {
+                        progressBar1.Visible = false;
                         MessageBox.Show("A sucedido un problema de conexión, por favor intente nuevamente, si el problema persiste informe a Soporte Técnico.", "Error de Conexión", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
                         return;
                     }
 
@@ -827,6 +846,7 @@ namespace PROYECTO
                                         if (oClienteDAO.Error())
                                         {
                                             vHayError = true;
+                                            progressBar1.Visible = false;
                                             MessageBox.Show("Error al Guardar el cliente: " + oCliente.Identificacion + " - " + oCliente.Nombre + "\n" + oClienteDAO.DescError(), "Error de consulta", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                         }
                                         else
@@ -837,22 +857,27 @@ namespace PROYECTO
                             }
                             oConexion.cerrarConexion();
 
-                            if (vHayError)
+                            progressBar1.Visible = false;
+
+                            if (vHayError) 
                                 MessageBox.Show("Proceso Finalizado con errores!!\nTotal clientes: " + totalClientes.ToString("###,###,##0") + "\nTotal errores: " + totalErrores.ToString("###,###,##0"), "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             else
                                 MessageBox.Show("Proceso Finalizado correctamente!!\nTotal clientes: " + totalClientes.ToString("###,###,##0") + "\nTotal errores: " + totalErrores.ToString("###,###,##0"), "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
                         else
                         {
+                            progressBar1.Visible = false;
                             MessageBox.Show("Error al conectarse con la base de datos\nVerifique que los datos estén correctos");
                             return;
                         }
                     }
                     else
                     {
+                        progressBar1.Visible = false;
                         MessageBox.Show("Error al extraer datos!!!", "Error de Conexión", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
 
+                    progressBar1.Visible = false;
 
                     Llenar_Grid();
                     btnMNuevo.PerformClick();
@@ -860,11 +885,13 @@ namespace PROYECTO
                 }
                 else
                 {
+                    progressBar1.Visible = false;
                     MessageBox.Show("Sin conexión a internet!!!", "Error de Conexión", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             catch (Exception ex)
             {
+                progressBar1.Visible = false;
                 // Qué ha sucedido
                 var mensaje = "Error message: " + ex.Message;
 
