@@ -46,7 +46,7 @@ namespace PROYECTO
             get => AsignaUrlAPI(); set => urlAPI = value;
         }
 
-        private String ObtieneJson(String pMetodo, String pPostURl, String postString, out Boolean pstatusCode, out Boolean pTimeOut)//HttpStatusCode pstatusCode)
+        private String ObtieneJson(String pMetodo, String pPostURl, String postString, out Boolean pstatusCode, out Boolean pTimeOut, String pApiToken, String pAccessToken)//HttpStatusCode pstatusCode)
         {
             try
             {
@@ -56,11 +56,11 @@ namespace PROYECTO
                 request.Method = pMetodo;
                 request.ContentType = "application/json";
                 request.Accept = "application/json";
-                request.Headers.Add("api-token", "ir57BZTJirNGIZny7lq5nCzlcCjHvbuahuiZ81AFVvpuz2hz");
-                request.Headers.Add("access-token", "XrDy9i97pQeyGayRGGhGogJDEYMq4Hm7h1lPWXqfnhoPgev3M1Wp");
+                request.Headers.Add("api-token", pApiToken);
+                request.Headers.Add("access-token", pAccessToken);
 
                 string data = postString;
-                if (pMetodo.Equals("POST"))
+                if (pMetodo.Equals("POST") || pMetodo.Equals("PUT"))
                 {
                     using (var streamWriter = new StreamWriter(request.GetRequestStream()))
                     {
@@ -97,13 +97,13 @@ namespace PROYECTO
             }
         }
 
-        public String TraerClientes(out Boolean /*HttpStatusCode*/ pstatusCode, out Boolean pTimeOut)
+        public String TraerClientes(out Boolean /*HttpStatusCode*/ pstatusCode, out Boolean pTimeOut, String pApiToken, String pAccessToken)
         {
             try
             {
                 //var json = JsonConvert.SerializeObject(new { General = oParametrosGeneralAPI });
 
-                return ObtieneJson("GET", "clientes/repositorio", "", out pstatusCode, out pTimeOut);
+                return ObtieneJson("GET", "clientes/repositorio", "", out pstatusCode, out pTimeOut, pApiToken, pAccessToken);
             }
             catch (WebException e)
             {
@@ -115,13 +115,13 @@ namespace PROYECTO
             }
         }
 
-        public String TraerServicios(out Boolean /*HttpStatusCode*/ pstatusCode, out Boolean pTimeOut)
+        public String TraerServicios(out Boolean /*HttpStatusCode*/ pstatusCode, out Boolean pTimeOut, String pApiToken, String pAccessToken)
         {
             try
             {
                 //var json = JsonConvert.SerializeObject(new { General = oParametrosGeneralAPI });
 
-                return ObtieneJson("GET", "productos/repositorio", "", out pstatusCode, out pTimeOut);
+                return ObtieneJson("GET", "productos/repositorio", "", out pstatusCode, out pTimeOut, pApiToken, pAccessToken);
             }
             catch (WebException e)
             {
@@ -133,11 +133,11 @@ namespace PROYECTO
             }
         }
 
-        public String CrearFE(String json, out Boolean /*HttpStatusCode*/ pstatusCode, out Boolean pTimeOut)
+        public String CrearFE(String json, out Boolean /*HttpStatusCode*/ pstatusCode, out Boolean pTimeOut, String pApiToken, String pAccessToken)
         {
             try
             {
-                return ObtieneJson("POST", "documentos-electronicos/emision/factura", json, out pstatusCode, out pTimeOut);
+                return ObtieneJson("POST", "documentos-electronicos/emision/factura", json, out pstatusCode, out pTimeOut, pApiToken, pAccessToken);
             }
             catch (WebException e)
             {
@@ -149,13 +149,29 @@ namespace PROYECTO
             }
         }
 
-        public String ComprobarFE(String pClave, out Boolean /*HttpStatusCode*/ pstatusCode, out Boolean pTimeOut)
+        public String CrearNC(String json, String pClave, out Boolean /*HttpStatusCode*/ pstatusCode, out Boolean pTimeOut, String pApiToken, String pAccessToken)
+        {
+            try
+            {
+                return ObtieneJson("PUT", "documentos-electronicos/emision/nota-credito/" + pClave, json, out pstatusCode, out pTimeOut, pApiToken, pAccessToken);
+            }
+            catch (WebException e)
+            {
+                //  HttpWebResponse response = (HttpWebResponse)e.Response;
+                pstatusCode = false;
+
+                pTimeOut = false;
+                return @"{""responseCode"": ""404"",""responseDescription"": """ + e.Message + @"""}";
+            }
+        }
+
+        public String ComprobarFE(String pClave, out Boolean /*HttpStatusCode*/ pstatusCode, out Boolean pTimeOut, String pApiToken, String pAccessToken)
         {
             try
             {
                 //var json = JsonConvert.SerializeObject(new { General = oParametrosGeneralAPI });
 
-                return ObtieneJson("GET", "documentos-electronicos/hacienda/comprobar/" + pClave, "", out pstatusCode, out pTimeOut);
+                return ObtieneJson("GET", "documentos-electronicos/hacienda/comprobar/" + pClave, "", out pstatusCode, out pTimeOut, pApiToken, pAccessToken);
             }
             catch (WebException e)
             {

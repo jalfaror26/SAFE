@@ -513,7 +513,7 @@ namespace PROYECTO
                             chkTransferencia.Checked = true;
                         if (tipopago.Substring(8, 2).Equals("05"))
                             chkTerceros.Checked = true;
-                        if (tipopago.Substring(10, 2).Equals("06"))
+                        if (tipopago.Substring(10, 2).Equals("99"))
                             chkOtros.Checked = true;
 
                         String usa_FE = odata.Rows[0]["FAC_CREA_FE"].ToString();
@@ -700,7 +700,7 @@ namespace PROYECTO
                     tipopago += chkCheque.Checked ? "03" : "00";
                     tipopago += chkTransferencia.Checked ? "04" : "00";
                     tipopago += chkTerceros.Checked ? "05" : "00";
-                    tipopago += chkOtros.Checked ? "06" : "00";
+                    tipopago += chkOtros.Checked ? "99" : "00";
 
                     oFactura.Tipopago = tipopago;
 
@@ -725,7 +725,7 @@ namespace PROYECTO
         {
             modificar();
         }
-        
+
         public void cargaServicio(String pIndiceServicio, String pDescripcion, double pIV)
         {
             try
@@ -878,7 +878,7 @@ namespace PROYECTO
                     return;
                 }
 
-                if (string.IsNullOrEmpty(txtCodCabys.Text) && AplicaFE())
+                if (string.IsNullOrEmpty(txtCodCabys.Text) && AplicaFE(out String pApiToken, out String pAccessToken))
                 {
                     MessageBox.Show("El código CABYS es requerido para Factura Electrónica, por favor parametrizar.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
@@ -1235,7 +1235,7 @@ namespace PROYECTO
                 if (MessageBox.Show("¿Está seguro que desea facturar?", "Advertencia", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
                     return;
 
-            if (idCliente.Equals("-1") && AplicaFE())
+            if (idCliente.Equals("-1") && AplicaFE(out String pApiToken, out String pAccessToken))
             {
                 MessageBox.Show("El cliente CONTADO no puede generar Factura Electrónica, por favor seleccione un cliente válido para la factura.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
@@ -1248,7 +1248,7 @@ namespace PROYECTO
             tipopago += chkCheque.Checked ? "03" : "00";
             tipopago += chkTransferencia.Checked ? "04" : "00";
             tipopago += chkTerceros.Checked ? "05" : "00";
-            tipopago += chkOtros.Checked ? "06" : "00";
+            tipopago += chkOtros.Checked ? "99" : "00";
 
             if (tipopago.Equals("000000000000"))
             {
@@ -1547,6 +1547,10 @@ namespace PROYECTO
                     oFactura.NumFactura = int.Parse(txtFactura.Text);
                     oFactura.Indice = indiceFactura;
                     oFactura.Cliente = idCliente;
+                    oFactura.Fe_Clave = txtFE_Clave.Text;
+                    oFactura.Estado = txtEstado.Text;
+                    oFactura.Comprobante = lblFE_Comprobacion.Text;
+
                     if (rbContado.Checked)
                         oFactura.Tipo = "CONTADO";
                     else
@@ -1564,7 +1568,7 @@ namespace PROYECTO
                 oConexion.cerrarConexion();
             }
         }
-        
+
         private void txtCantidad_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (Char.IsLetter(e.KeyChar) || //Char.IsPunctuation(e.KeyChar) || 
@@ -1775,7 +1779,7 @@ namespace PROYECTO
         private void txtCantidad_Enter(object sender, EventArgs e)
         {
             if (txtCantidad.Text.Equals("0"))
-                txtCantidad.Clear(); 
+                txtCantidad.Clear();
         }
 
         private void txtTotalPorLinea_KeyPress(object sender, KeyPressEventArgs e)
@@ -1853,7 +1857,7 @@ namespace PROYECTO
         {
             try
             {
-                if (!AplicaFE())
+                if (!AplicaFE(out String pApiToken, out String pAccessToken))
                 {
                     pbFacturaElectronica.Visible = false;
                     lblMjFacturaElectronica.Text = "";
@@ -1902,7 +1906,7 @@ namespace PROYECTO
                     foreach (DataRow ofila in oDetalle.Rows)
                     {
                         Impuestos oImpuestos = new Impuestos();
-                        DataTable oDtImpuestos = oConexion.EjecutaSentencia("SELECT i.EQUIV_IMP_FE FROM TBL_SERVICIO_IMPUESTOS si, TBL_IMPUESTOS i WHERE si.no_cia = '" + PROYECTO.Properties.Settings.Default.No_cia + "' and si.no_cia = i.no_cia and si.CODIGO_SERVICIO = '"+ ofila["detfac_codigo"].ToString() + "' and si.clave = i.clave");
+                        DataTable oDtImpuestos = oConexion.EjecutaSentencia("SELECT i.EQUIV_IMP_FE FROM TBL_SERVICIO_IMPUESTOS si, TBL_IMPUESTOS i WHERE si.no_cia = '" + PROYECTO.Properties.Settings.Default.No_cia + "' and si.no_cia = i.no_cia and si.CODIGO_SERVICIO = '" + ofila["detfac_codigo"].ToString() + "' and si.clave = i.clave");
 
                         foreach (DataRow ofilaImp in oDtImpuestos.Rows)
                         {
@@ -1985,9 +1989,6 @@ namespace PROYECTO
 
                     List<string> medio_pagos = new List<string>();
 
-
-
-
                     if (String.IsNullOrEmpty(odata.Rows[0]["fac_tipo"].ToString()))
                     {
                         pbFacturaElectronica.Visible = false;
@@ -2005,10 +2006,10 @@ namespace PROYECTO
                             vcorreo = oDTTipoID.Rows[0]["CLI_CORREO"].ToString();
                         }
 
-                        if (odata.Rows[0]["fac_tipo"].ToString().Equals("CONTADO"))
-                            vcondicion_venta = "01";
-                        else
-                            vcondicion_venta = "02";
+                        // if (odata.Rows[0]["fac_tipo"].ToString().Equals("CONTADO"))
+                        vcondicion_venta = "01";
+                        // else
+                        //    vcondicion_venta = "02";
 
                         vmoneda = odata.Rows[0]["fac_moneda"].ToString();
                         vtipo_cambio = double.Parse(odata.Rows[0]["fac_tipo_cambio"].ToString());
@@ -2033,8 +2034,8 @@ namespace PROYECTO
                         if (tipopago.Substring(8, 2).Equals("05"))
                             medio_pagos.Add("05");
                         //chkOtros
-                        if (tipopago.Substring(10, 2).Equals("06"))
-                            medio_pagos.Add("06");
+                        if (tipopago.Substring(10, 2).Equals("99"))
+                            medio_pagos.Add("99");
                     }
 
                     if (String.IsNullOrEmpty(vsucursal))
@@ -2144,7 +2145,7 @@ namespace PROYECTO
 
                     if (Internet())
                     {
-                        String oDatosJson = oControl.CrearFE(jfinal, out Boolean /*HttpStatusCode*/ vOut, out Boolean vTimeOut);
+                        String oDatosJson = oControl.CrearFE(jfinal, out Boolean /*HttpStatusCode*/ vOut, out Boolean vTimeOut, pApiToken, pAccessToken);
 
                         if (vTimeOut)
                         {
@@ -2237,20 +2238,27 @@ namespace PROYECTO
             }
         }
 
-        private Boolean AplicaFE()
+        private Boolean AplicaFE(out String pApiToken, out String pAccessToken)
         {
             try
             {
+                pApiToken = "";
+                pAccessToken = "";
+
                 Boolean vAplicaFE = false;
                 oConexion.cerrarConexion();
                 if (oConexion.abrirConexion())
                 {
-                    DataTable oDatosGeneral = oConexion.EjecutaSentencia("select IND_FACT_ELECT from TBL_EMPRESA where no_Cia = '" + PROYECTO.Properties.Settings.Default.No_cia + "'");
+                    DataTable oDatosGeneral = oConexion.EjecutaSentencia("select IND_FACT_ELECT, API_TOKEN_WS_FE, ACCESS_TOKEN_WS_FE from TBL_EMPRESA where no_Cia = '" + PROYECTO.Properties.Settings.Default.No_cia + "'");
 
                     String vIND_FACT_ELECT = "N";
 
                     foreach (DataRow ofila in oDatosGeneral.Rows)
+                    {
                         vIND_FACT_ELECT = ofila["IND_FACT_ELECT"].ToString();
+                        pApiToken = ofila["API_TOKEN_WS_FE"].ToString();
+                        pAccessToken = ofila["ACCESS_TOKEN_WS_FE"].ToString();
+                    }
 
                     if (vIND_FACT_ELECT.Equals("S"))
                         vAplicaFE = true;
@@ -2259,6 +2267,8 @@ namespace PROYECTO
             }
             catch (Exception ex)
             {
+                pApiToken = "";
+                pAccessToken = "";
                 return false;
             }
         }
@@ -2272,7 +2282,10 @@ namespace PROYECTO
 
                 if (Internet())
                 {
-                    String oDatosJson = oControl.ComprobarFE(txtFE_Clave.Text, out Boolean /*HttpStatusCode*/ vOut, out Boolean vTimeOut);
+                    if (!AplicaFE(out String pApiToken, out String pAccessToken))
+                        return;
+
+                    String oDatosJson = oControl.ComprobarFE(txtFE_Clave.Text, out Boolean /*HttpStatusCode*/ vOut, out Boolean vTimeOut, pApiToken, pAccessToken);
 
                     if (vTimeOut)
                     {
@@ -2506,7 +2519,7 @@ namespace PROYECTO
 
                     subtotal = cantidad * Double.Parse(txtPrecioUnitario.Text.Substring(1));
                     montoDescuento = (subtotal * porcDescuento);
-                   
+
                     montoIV = subtotal * (vPorcentajeIV / 100);
 
                     double total = subtotal - montoDescuento + montoIV;
@@ -2757,7 +2770,7 @@ namespace PROYECTO
             {
                 double vPorcentaje = 0;
 
-                if (vTipoIV == 0 || indiceServicio.ToString().Equals("0"))
+                if (indiceServicio.ToString().Equals("0"))
                     return vPorcentaje;
 
                 oConexion.cerrarConexion();
@@ -2787,7 +2800,7 @@ namespace PROYECTO
                 return 0;
             }
         }
-        
+
         private void btnFacturaAtras_Click(object sender, EventArgs e)
         {
             try

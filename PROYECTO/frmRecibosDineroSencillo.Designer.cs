@@ -84,18 +84,6 @@ namespace PROYECTO
             this.label3 = new System.Windows.Forms.Label();
             this.txtEstado = new System.Windows.Forms.TextBox();
             this.dgrFacturas = new System.Windows.Forms.DataGridView();
-            this.factura = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.monto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.retencion = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.montoRet = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.montoabono = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.saldoActual = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.fechaFac = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.fechavence = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.FACP_TIPODOCUMENTO = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label18 = new System.Windows.Forms.Label();
             this.cmbTipoPago = new System.Windows.Forms.ComboBox();
             this.btnTransaccionar = new System.Windows.Forms.Button();
@@ -107,6 +95,18 @@ namespace PROYECTO
             this.gboPendientes = new System.Windows.Forms.GroupBox();
             this.cmbMoneda = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
+            this.factura = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.fac_moneda = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.monto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.retencion = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.montoRet = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.montoabono = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.saldoActual = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.fechaFac = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.fechavence = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.FACP_TIPODOCUMENTO = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgrDatos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgrFacturas)).BeginInit();
             this.gboCancelados.SuspendLayout();
@@ -684,7 +684,7 @@ namespace PROYECTO
             this.dgrFacturas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgrFacturas.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.factura,
-            this.dataGridViewTextBoxColumn1,
+            this.fac_moneda,
             this.dataGridViewTextBoxColumn2,
             this.monto,
             this.retencion,
@@ -706,150 +706,6 @@ namespace PROYECTO
             this.dgrFacturas.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgrFacturas_CellDoubleClick);
             this.dgrFacturas.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgrFacturas_CellEndEdit);
             this.dgrFacturas.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgrFacturas_CellEnter);
-            // 
-            // factura
-            // 
-            this.factura.DataPropertyName = "factura";
-            this.factura.HeaderText = "Factura";
-            this.factura.MinimumWidth = 6;
-            this.factura.Name = "factura";
-            this.factura.ReadOnly = true;
-            this.factura.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.factura.Width = 75;
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.dataGridViewTextBoxColumn1.DataPropertyName = "moneda";
-            this.dataGridViewTextBoxColumn1.HeaderText = "Moneda";
-            this.dataGridViewTextBoxColumn1.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.ReadOnly = true;
-            this.dataGridViewTextBoxColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.dataGridViewTextBoxColumn1.Width = 65;
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.DataPropertyName = "tc";
-            dataGridViewCellStyle6.Format = "N2";
-            dataGridViewCellStyle6.NullValue = "0";
-            this.dataGridViewTextBoxColumn2.DefaultCellStyle = dataGridViewCellStyle6;
-            this.dataGridViewTextBoxColumn2.HeaderText = "Tipo Cambio";
-            this.dataGridViewTextBoxColumn2.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.ReadOnly = true;
-            this.dataGridViewTextBoxColumn2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.dataGridViewTextBoxColumn2.Visible = false;
-            this.dataGridViewTextBoxColumn2.Width = 75;
-            // 
-            // monto
-            // 
-            this.monto.DataPropertyName = "monto";
-            dataGridViewCellStyle7.Format = "N2";
-            dataGridViewCellStyle7.NullValue = "0";
-            this.monto.DefaultCellStyle = dataGridViewCellStyle7;
-            this.monto.HeaderText = "Monto";
-            this.monto.MinimumWidth = 6;
-            this.monto.Name = "monto";
-            this.monto.ReadOnly = true;
-            this.monto.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.monto.Width = 75;
-            // 
-            // retencion
-            // 
-            this.retencion.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.retencion.DataPropertyName = "retencion";
-            this.retencion.FalseValue = "0";
-            this.retencion.HeaderText = "Retencion";
-            this.retencion.MinimumWidth = 6;
-            this.retencion.Name = "retencion";
-            this.retencion.ReadOnly = true;
-            this.retencion.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.retencion.TrueValue = "1";
-            this.retencion.Visible = false;
-            this.retencion.Width = 125;
-            // 
-            // montoRet
-            // 
-            this.montoRet.DataPropertyName = "montoRet";
-            dataGridViewCellStyle8.Format = "N2";
-            dataGridViewCellStyle8.NullValue = "0";
-            this.montoRet.DefaultCellStyle = dataGridViewCellStyle8;
-            this.montoRet.HeaderText = "";
-            this.montoRet.MinimumWidth = 6;
-            this.montoRet.Name = "montoRet";
-            this.montoRet.ReadOnly = true;
-            this.montoRet.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.montoRet.Visible = false;
-            this.montoRet.Width = 75;
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            this.dataGridViewTextBoxColumn3.DataPropertyName = "saldo";
-            dataGridViewCellStyle9.Format = "N2";
-            dataGridViewCellStyle9.NullValue = "0";
-            this.dataGridViewTextBoxColumn3.DefaultCellStyle = dataGridViewCellStyle9;
-            this.dataGridViewTextBoxColumn3.HeaderText = "Saldo";
-            this.dataGridViewTextBoxColumn3.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            this.dataGridViewTextBoxColumn3.ReadOnly = true;
-            this.dataGridViewTextBoxColumn3.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.dataGridViewTextBoxColumn3.Width = 75;
-            // 
-            // montoabono
-            // 
-            this.montoabono.DataPropertyName = "montoabono";
-            dataGridViewCellStyle10.Format = "N2";
-            dataGridViewCellStyle10.NullValue = "0";
-            this.montoabono.DefaultCellStyle = dataGridViewCellStyle10;
-            this.montoabono.HeaderText = "Abono";
-            this.montoabono.MinimumWidth = 6;
-            this.montoabono.Name = "montoabono";
-            this.montoabono.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.montoabono.Width = 75;
-            // 
-            // saldoActual
-            // 
-            this.saldoActual.DataPropertyName = "saldoActual";
-            dataGridViewCellStyle11.Format = "N2";
-            dataGridViewCellStyle11.NullValue = "0";
-            this.saldoActual.DefaultCellStyle = dataGridViewCellStyle11;
-            this.saldoActual.HeaderText = "Saldo Actual";
-            this.saldoActual.MinimumWidth = 6;
-            this.saldoActual.Name = "saldoActual";
-            this.saldoActual.ReadOnly = true;
-            this.saldoActual.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.saldoActual.Width = 75;
-            // 
-            // fechaFac
-            // 
-            this.fechaFac.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.fechaFac.DataPropertyName = "fechafac";
-            this.fechaFac.HeaderText = "Fecha Factura";
-            this.fechaFac.MinimumWidth = 6;
-            this.fechaFac.Name = "fechaFac";
-            this.fechaFac.ReadOnly = true;
-            this.fechaFac.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.fechaFac.Width = 105;
-            // 
-            // fechavence
-            // 
-            this.fechavence.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.fechavence.DataPropertyName = "fechavence";
-            this.fechavence.HeaderText = "Fecha Vence";
-            this.fechavence.MinimumWidth = 6;
-            this.fechavence.Name = "fechavence";
-            this.fechavence.ReadOnly = true;
-            this.fechavence.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.fechavence.Width = 97;
-            // 
-            // FACP_TIPODOCUMENTO
-            // 
-            this.FACP_TIPODOCUMENTO.DataPropertyName = "FACP_TIPODOCUMENTO";
-            this.FACP_TIPODOCUMENTO.HeaderText = "TIPO";
-            this.FACP_TIPODOCUMENTO.MinimumWidth = 6;
-            this.FACP_TIPODOCUMENTO.Name = "FACP_TIPODOCUMENTO";
-            this.FACP_TIPODOCUMENTO.Width = 140;
             // 
             // label18
             // 
@@ -999,6 +855,150 @@ namespace PROYECTO
             this.label6.TabIndex = 617;
             this.label6.Text = "Moneda";
             // 
+            // factura
+            // 
+            this.factura.DataPropertyName = "factura";
+            this.factura.HeaderText = "Factura";
+            this.factura.MinimumWidth = 6;
+            this.factura.Name = "factura";
+            this.factura.ReadOnly = true;
+            this.factura.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.factura.Width = 75;
+            // 
+            // fac_moneda
+            // 
+            this.fac_moneda.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.fac_moneda.DataPropertyName = "fac_moneda";
+            this.fac_moneda.HeaderText = "Moneda";
+            this.fac_moneda.MinimumWidth = 6;
+            this.fac_moneda.Name = "fac_moneda";
+            this.fac_moneda.ReadOnly = true;
+            this.fac_moneda.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.fac_moneda.Width = 65;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.DataPropertyName = "tc";
+            dataGridViewCellStyle6.Format = "N2";
+            dataGridViewCellStyle6.NullValue = "0";
+            this.dataGridViewTextBoxColumn2.DefaultCellStyle = dataGridViewCellStyle6;
+            this.dataGridViewTextBoxColumn2.HeaderText = "Tipo Cambio";
+            this.dataGridViewTextBoxColumn2.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            this.dataGridViewTextBoxColumn2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.dataGridViewTextBoxColumn2.Visible = false;
+            this.dataGridViewTextBoxColumn2.Width = 75;
+            // 
+            // monto
+            // 
+            this.monto.DataPropertyName = "monto";
+            dataGridViewCellStyle7.Format = "N2";
+            dataGridViewCellStyle7.NullValue = "0";
+            this.monto.DefaultCellStyle = dataGridViewCellStyle7;
+            this.monto.HeaderText = "Monto";
+            this.monto.MinimumWidth = 6;
+            this.monto.Name = "monto";
+            this.monto.ReadOnly = true;
+            this.monto.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.monto.Width = 75;
+            // 
+            // retencion
+            // 
+            this.retencion.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.retencion.DataPropertyName = "retencion";
+            this.retencion.FalseValue = "0";
+            this.retencion.HeaderText = "Retencion";
+            this.retencion.MinimumWidth = 6;
+            this.retencion.Name = "retencion";
+            this.retencion.ReadOnly = true;
+            this.retencion.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.retencion.TrueValue = "1";
+            this.retencion.Visible = false;
+            this.retencion.Width = 78;
+            // 
+            // montoRet
+            // 
+            this.montoRet.DataPropertyName = "montoRet";
+            dataGridViewCellStyle8.Format = "N2";
+            dataGridViewCellStyle8.NullValue = "0";
+            this.montoRet.DefaultCellStyle = dataGridViewCellStyle8;
+            this.montoRet.HeaderText = "";
+            this.montoRet.MinimumWidth = 6;
+            this.montoRet.Name = "montoRet";
+            this.montoRet.ReadOnly = true;
+            this.montoRet.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.montoRet.Visible = false;
+            this.montoRet.Width = 75;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.DataPropertyName = "saldo";
+            dataGridViewCellStyle9.Format = "N2";
+            dataGridViewCellStyle9.NullValue = "0";
+            this.dataGridViewTextBoxColumn3.DefaultCellStyle = dataGridViewCellStyle9;
+            this.dataGridViewTextBoxColumn3.HeaderText = "Saldo";
+            this.dataGridViewTextBoxColumn3.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.ReadOnly = true;
+            this.dataGridViewTextBoxColumn3.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.dataGridViewTextBoxColumn3.Width = 75;
+            // 
+            // montoabono
+            // 
+            this.montoabono.DataPropertyName = "montoabono";
+            dataGridViewCellStyle10.Format = "N2";
+            dataGridViewCellStyle10.NullValue = "0";
+            this.montoabono.DefaultCellStyle = dataGridViewCellStyle10;
+            this.montoabono.HeaderText = "Abono";
+            this.montoabono.MinimumWidth = 6;
+            this.montoabono.Name = "montoabono";
+            this.montoabono.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.montoabono.Width = 75;
+            // 
+            // saldoActual
+            // 
+            this.saldoActual.DataPropertyName = "saldoActual";
+            dataGridViewCellStyle11.Format = "N2";
+            dataGridViewCellStyle11.NullValue = "0";
+            this.saldoActual.DefaultCellStyle = dataGridViewCellStyle11;
+            this.saldoActual.HeaderText = "Saldo Actual";
+            this.saldoActual.MinimumWidth = 6;
+            this.saldoActual.Name = "saldoActual";
+            this.saldoActual.ReadOnly = true;
+            this.saldoActual.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.saldoActual.Width = 75;
+            // 
+            // fechaFac
+            // 
+            this.fechaFac.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.fechaFac.DataPropertyName = "fechafac";
+            this.fechaFac.HeaderText = "Fecha Factura";
+            this.fechaFac.MinimumWidth = 6;
+            this.fechaFac.Name = "fechaFac";
+            this.fechaFac.ReadOnly = true;
+            this.fechaFac.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.fechaFac.Width = 95;
+            // 
+            // fechavence
+            // 
+            this.fechavence.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.fechavence.DataPropertyName = "fechavence";
+            this.fechavence.HeaderText = "Fecha Vence";
+            this.fechavence.MinimumWidth = 6;
+            this.fechavence.Name = "fechavence";
+            this.fechavence.ReadOnly = true;
+            this.fechavence.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.fechavence.Width = 87;
+            // 
+            // FACP_TIPODOCUMENTO
+            // 
+            this.FACP_TIPODOCUMENTO.DataPropertyName = "FACP_TIPODOCUMENTO";
+            this.FACP_TIPODOCUMENTO.HeaderText = "TIPO";
+            this.FACP_TIPODOCUMENTO.MinimumWidth = 6;
+            this.FACP_TIPODOCUMENTO.Name = "FACP_TIPODOCUMENTO";
+            this.FACP_TIPODOCUMENTO.Width = 140;
+            // 
             // frmRecibosDineroSencillo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -1107,8 +1107,10 @@ namespace PROYECTO
         private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
         private System.Windows.Forms.DataGridViewTextBoxColumn Deposito;
         private System.Windows.Forms.DataGridViewTextBoxColumn REC_INDICE;
+        private System.Windows.Forms.ComboBox cmbMoneda;
+        private System.Windows.Forms.Label label6;
         private System.Windows.Forms.DataGridViewTextBoxColumn factura;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn fac_moneda;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.DataGridViewTextBoxColumn monto;
         private System.Windows.Forms.DataGridViewCheckBoxColumn retencion;
@@ -1119,7 +1121,5 @@ namespace PROYECTO
         private System.Windows.Forms.DataGridViewTextBoxColumn fechaFac;
         private System.Windows.Forms.DataGridViewTextBoxColumn fechavence;
         private System.Windows.Forms.DataGridViewTextBoxColumn FACP_TIPODOCUMENTO;
-        private System.Windows.Forms.ComboBox cmbMoneda;
-        private System.Windows.Forms.Label label6;
     }
 }

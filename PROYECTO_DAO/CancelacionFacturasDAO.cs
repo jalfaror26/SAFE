@@ -13,7 +13,7 @@ namespace PROYECTO_DAO
         
         public DataSet Consulta(String cliente, String pNo_cia, String pmoneda)
         {
-            String sql = "select facp_numero_factura as factura, facp_moneda as moneda, facp_tipo_cambio as tc, facp_monto as monto, facp_aplica_retencion as retencion, facp_retencion as montoRet,  facp_saldo as saldo, to_char(facp_fecha_factura,'dd/MM/yyyy') as fechafac, to_char(facp_fecha_vence, 'dd/MM/yyyy') as fechavence, FACP_TIPODOCUMENTO from TBL_FACTURAS_PENDIENTES_CTA FPC where fpc.no_cia = '" + pNo_cia + "' and facp_estado = 1 and facp_saldo <> 0 and (facp_estatus = 'PE' or facp_estatus = 'FT') and facp_cliente = '" + cliente + "' and facp_moneda = '" + pmoneda + "'";
+            String sql = "select facp_numero_factura as factura, facp_moneda as moneda, facp_tipo_cambio as tc, facp_monto as monto, facp_saldo as saldo, to_char(facp_fecha_factura,'dd/MM/yyyy') as fechafac, to_char(facp_fecha_vence, 'dd/MM/yyyy') as fechavence, FACP_TIPODOCUMENTO from TBL_FACTURAS_PENDIENTES_CTA FPC where fpc.no_cia = '" + pNo_cia + "' and facp_estado = 1 and facp_saldo <> 0 and (facp_estatus = 'PE' or facp_estatus = 'FT') and facp_cliente = '" + cliente + "' and facp_moneda = '" + pmoneda + "'";
             DataSet oDataSet = OracleDAO.getInstance().EjecutarSQLDataSet(sql);
             return oDataSet;
         }

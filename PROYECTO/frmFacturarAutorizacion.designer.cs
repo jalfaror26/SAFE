@@ -46,6 +46,7 @@ namespace PROYECTO
             // txtAdministrador
             // 
             this.txtAdministrador.BackColor = System.Drawing.Color.White;
+            this.txtAdministrador.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtAdministrador.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtAdministrador.Location = new System.Drawing.Point(45, 38);
             this.txtAdministrador.Margin = new System.Windows.Forms.Padding(4);

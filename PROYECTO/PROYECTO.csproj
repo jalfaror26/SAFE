@@ -648,6 +648,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\rym2.jpg" />
+    <Content Include="CambiosBD 20-11-21 - parte 2.txt" />
     <Content Include="CambiosBD 20-11-21.txt" />
     <Content Include="CambiosBD 19-11-21.txt" />
     <Content Include="CambiosBD 18-11-21.txt" />

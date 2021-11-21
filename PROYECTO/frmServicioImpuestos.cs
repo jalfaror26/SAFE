@@ -102,8 +102,10 @@ namespace PROYECTO
             LlenarImpuestos();
             txtCodigoSer.Text = oServicio.Codigo.ToString();
             txtDesBreveSer.Text = oServicio.Descripcion;
-            Llenar_Grid();
+
             btnMNuevo.PerformClick();
+
+            Llenar_Grid();
 
             try
             {
@@ -133,8 +135,6 @@ namespace PROYECTO
                 cmbImpuestos.SelectedIndex = 0;
             dgrDatos.ClearSelection();
             indice = 0;
-            btnMGuardar.Enabled = true;
-
         }
 
         private void Llenar_Grid()
@@ -150,6 +150,20 @@ namespace PROYECTO
                         MessageBox.Show("Error al listar los datos:\n" + oServicioImpuestosDAO.DescError(), "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     oConexion.cerrarConexion();
 
+                    if (dgrDatos.Rows.Count == 0)
+                    {
+                        btnMNuevo.Enabled = true;
+                        btnMGuardar.Enabled = true;
+                        btnMEliminar.Enabled = false;
+                        cmbImpuestos.Enabled = true;
+                    }
+                    else
+                    {
+                        btnMNuevo.Enabled = false;
+                        btnMGuardar.Enabled = false;
+                        btnMEliminar.Enabled = true;
+                        cmbImpuestos.Enabled = false;
+                    }
                 }
                 else
                 {
@@ -258,7 +272,7 @@ namespace PROYECTO
             }
             catch (Exception ex) { }
         }
-        
+
         private void btnMNuevo_Click(object sender, EventArgs e)
         {
             LimpiarCampos();

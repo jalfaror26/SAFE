@@ -58,7 +58,7 @@ namespace PROYECTO
 
         private void frmClientes_Load(object sender, EventArgs e)
         {
-            btnDescargarClientes.Enabled = AplicaFE();
+            btnDescargarClientes.Enabled = AplicaFE(out String pApiToken, out String pAccessToken);
             this.Text = this.Text + " - " + this.Name;
             ((System.Windows.Forms.StatusStrip)this.MdiParent.Controls["stEstado"]).Items["stLinea4"].Visible = true;
             ((System.Windows.Forms.StatusStrip)this.MdiParent.Controls["stEstado"]).Items["stActual"].Text = " Actual: Mantenimiento de Clientes ";
@@ -69,20 +69,27 @@ namespace PROYECTO
             LimpiarCampos();
         }
 
-        private Boolean AplicaFE()
+        private Boolean AplicaFE(out String pApiToken, out String pAccessToken)
         {
             try
             {
+                pApiToken = "";
+                pAccessToken = "";
+
                 Boolean vAplicaFE = false;
                 oConexion.cerrarConexion();
                 if (oConexion.abrirConexion())
                 {
-                    DataTable oDatosGeneral = oConexion.EjecutaSentencia("select IND_FACT_ELECT from TBL_EMPRESA where no_Cia = '" + PROYECTO.Properties.Settings.Default.No_cia + "'");
+                    DataTable oDatosGeneral = oConexion.EjecutaSentencia("select IND_FACT_ELECT, API_TOKEN_WS_FE, ACCESS_TOKEN_WS_FE from TBL_EMPRESA where no_Cia = '" + PROYECTO.Properties.Settings.Default.No_cia + "'");
 
                     String vIND_FACT_ELECT = "N";
 
                     foreach (DataRow ofila in oDatosGeneral.Rows)
+                    {
                         vIND_FACT_ELECT = ofila["IND_FACT_ELECT"].ToString();
+                        pApiToken = ofila["API_TOKEN_WS_FE"].ToString();
+                        pAccessToken = ofila["ACCESS_TOKEN_WS_FE"].ToString();
+                    }
 
                     if (vIND_FACT_ELECT.Equals("S"))
                         vAplicaFE = true;
@@ -91,6 +98,8 @@ namespace PROYECTO
             }
             catch (Exception ex)
             {
+                pApiToken = "";
+                pAccessToken = "";
                 return false;
             }
         }
@@ -722,7 +731,10 @@ namespace PROYECTO
             {
                 if (Internet())
                 {
-                    String oDatosJson = oControl.TraerClientes(out Boolean /*HttpStatusCode*/ vOut, out Boolean vTimeOut);
+                    if (!AplicaFE(out String pApiToken, out String pAccessToken))
+                        return;
+
+                    String oDatosJson = oControl.TraerClientes(out Boolean /*HttpStatusCode*/ vOut, out Boolean vTimeOut, pApiToken, pAccessToken);
 
                     if (vTimeOut)
                     {
@@ -730,7 +742,7 @@ namespace PROYECTO
 
                         return;
                     }
-                    
+
                     oDatosJson = oDatosJson.Replace(@"""codigoPais"":null", @"""codigoPais"":506");
 
 

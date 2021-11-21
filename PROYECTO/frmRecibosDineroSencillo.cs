@@ -557,7 +557,7 @@ namespace PROYECTO
                     string monto = txtMonto.Text;
                     if (txtMonto.ReadOnly == false)
                     {
-                        txtMonto.Text = double.Parse(monto.Substring(1)).ToString("#########0.00");
+                        txtMonto.Text = double.Parse(monto.Substring(1)).ToString("#########0.##");
 
                     }
                 }
@@ -689,11 +689,9 @@ namespace PROYECTO
                 if (oConexion.abrirConexion())
                 {
                     oDataTable.Columns.Add("factura", typeof(string));
-                    oDataTable.Columns.Add("moneda", typeof(string));
+                    oDataTable.Columns.Add("fac_moneda", typeof(string));
                     oDataTable.Columns.Add("tc", typeof(string));
                     oDataTable.Columns.Add("monto", typeof(string));
-                    oDataTable.Columns.Add("retencion", typeof(string));
-                    oDataTable.Columns.Add("montoRet", typeof(string));
                     oDataTable.Columns.Add("saldo", typeof(string));
                     oDataTable.Columns.Add("montoabono", typeof(string));
                     oDataTable.Columns.Add("saldoActual", typeof(string));
@@ -707,16 +705,14 @@ namespace PROYECTO
                     {
                         oDataRow = oDataTable.NewRow();
                         oDataRow["factura"] = OFila.ItemArray[0].ToString();
-                        oDataRow["moneda"] = OFila.ItemArray[1].ToString();
+                        oDataRow["fac_moneda"] = OFila.ItemArray[1].ToString();
                         oDataRow["tc"] = OFila.ItemArray[2].ToString();
                         oDataRow["monto"] = OFila.ItemArray[3].ToString();
-                        oDataRow["retencion"] = OFila.ItemArray[4].ToString();
-                        oDataRow["montoRet"] = OFila.ItemArray[5].ToString();
-                        oDataRow["saldo"] = OFila.ItemArray[6].ToString();
+                        oDataRow["saldo"] = OFila.ItemArray[4].ToString();
                         oDataRow["montoabono"] = "0";
-                        oDataRow["saldoActual"] = OFila.ItemArray[6].ToString();
-                        oDataRow["fechaFac"] = OFila.ItemArray[7].ToString();
-                        oDataRow["fechavence"] = OFila.ItemArray[8].ToString();
+                        oDataRow["saldoActual"] = OFila.ItemArray[4].ToString();
+                        oDataRow["fechaFac"] = OFila.ItemArray[5].ToString();
+                        oDataRow["fechavence"] = OFila.ItemArray[6].ToString();
                         oDataRow["FACP_TIPODOCUMENTO"] = OFila["FACP_TIPODOCUMENTO"].ToString();
 
                         oDataTable.Rows.Add(oDataRow.ItemArray);
@@ -820,7 +816,7 @@ namespace PROYECTO
         {
             try
             {
-                if (col == 0)
+                if (col == 2)
                 {
                     Double monto = 0;
                     DataTable oTable = new DataTable();
@@ -829,7 +825,7 @@ namespace PROYECTO
                     monto = Double.Parse(dgrFacturas.Rows[fil].Cells["dataGridViewTextBoxColumn3"].Value.ToString());
                     Double montoTotalRecibo = 0;
                     Double saldo = 0;
-                    if (ofila["moneda"].ToString().Equals("CRC"))
+                    if (ofila["fac_moneda"].ToString().Equals("CRC"))
                         montoTotalRecibo = Double.Parse(txtDisponible.Text.Substring(1));
 
                     if (dgrFacturas[7, fil].Value.ToString().Equals("0") || dgrFacturas[7, fil].Value.ToString().Equals(""))
@@ -898,7 +894,7 @@ namespace PROYECTO
                     Double montoAbono = Double.Parse(valor);
                     if (montoAbono != montoAnterior)
                     {
-                        if (dgrFacturas.Rows[e.RowIndex].Cells[1].Value.ToString().Equals("CRC"))
+                        if (dgrFacturas.Rows[e.RowIndex].Cells["fac_moneda"].Value.ToString().Equals("CRC"))
                         {
                             if (montoAbono > Double.Parse(dgrFacturas.Rows[e.RowIndex].Cells[6].Value.ToString()))
                             {
@@ -1079,11 +1075,11 @@ namespace PROYECTO
                             oTransaccion.No_cia = PROYECTO.Properties.Settings.Default.No_cia;
                             oTransaccion.FechaRegistro = DateTime.Parse(txtfechaactual.Text);
                             oTransaccion.IdCliente = int.Parse(txtIdCliente.Text);
-                            oTransaccion.NumFactura = ofila.Cells[0].Value.ToString();
+                            oTransaccion.NumFactura = ofila.Cells[2].Value.ToString();
                             oTransaccion.Tipotransaccion = "RD RECIBO DE DINERO";
                             oTransaccion.NumDocumento = int.Parse(txtNumRecibo.Text);
                             oTransaccion.Monto = Double.Parse(ofila.Cells[7].Value.ToString());
-                            oTransaccion.Moneda = ofila.Cells[1].Value.ToString();
+                            oTransaccion.Moneda = ofila.Cells["fac_moneda"].Value.ToString();
 
                             if (Double.Parse(ofila.Cells[8].Value.ToString()) == 0)
                                 oTransaccion.Texto = "CANCELACION DE LA FACTURA";

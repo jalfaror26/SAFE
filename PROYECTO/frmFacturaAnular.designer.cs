@@ -41,11 +41,15 @@ namespace PROYECTO
             this.txtComentario = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.cboComentarios = new System.Windows.Forms.ComboBox();
+            this.timCreaNC = new System.Windows.Forms.Timer(this.components);
+            this.lblMjFacturaElectronica = new System.Windows.Forms.Label();
+            this.pbFacturaElectronica = new System.Windows.Forms.ProgressBar();
             this.SuspendLayout();
             // 
             // txtAdministrador
             // 
             this.txtAdministrador.BackColor = System.Drawing.Color.White;
+            this.txtAdministrador.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtAdministrador.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtAdministrador.Location = new System.Drawing.Point(45, 31);
             this.txtAdministrador.Margin = new System.Windows.Forms.Padding(4);
@@ -170,6 +174,33 @@ namespace PROYECTO
             this.cboComentarios.TabIndex = 8;
             this.cboComentarios.SelectedIndexChanged += new System.EventHandler(this.cboComentarios_SelectedIndexChanged);
             // 
+            // timCreaNC
+            // 
+            this.timCreaNC.Tick += new System.EventHandler(this.timCreaNC_Tick);
+            // 
+            // lblMjFacturaElectronica
+            // 
+            this.lblMjFacturaElectronica.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMjFacturaElectronica.ForeColor = System.Drawing.Color.Red;
+            this.lblMjFacturaElectronica.Location = new System.Drawing.Point(78, 145);
+            this.lblMjFacturaElectronica.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblMjFacturaElectronica.Name = "lblMjFacturaElectronica";
+            this.lblMjFacturaElectronica.Size = new System.Drawing.Size(397, 38);
+            this.lblMjFacturaElectronica.TabIndex = 622;
+            this.lblMjFacturaElectronica.Text = "Generando Factura Electrónica";
+            this.lblMjFacturaElectronica.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblMjFacturaElectronica.Visible = false;
+            // 
+            // pbFacturaElectronica
+            // 
+            this.pbFacturaElectronica.Location = new System.Drawing.Point(115, 85);
+            this.pbFacturaElectronica.Margin = new System.Windows.Forms.Padding(4);
+            this.pbFacturaElectronica.Name = "pbFacturaElectronica";
+            this.pbFacturaElectronica.Size = new System.Drawing.Size(321, 52);
+            this.pbFacturaElectronica.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
+            this.pbFacturaElectronica.TabIndex = 621;
+            this.pbFacturaElectronica.Visible = false;
+            // 
             // frmFacturaAnular
             // 
             this.AcceptButton = this.btnAnular;
@@ -178,6 +209,8 @@ namespace PROYECTO
             this.BackColor = System.Drawing.Color.White;
             this.CancelButton = this.btnCancelar;
             this.ClientSize = new System.Drawing.Size(553, 268);
+            this.Controls.Add(this.lblMjFacturaElectronica);
+            this.Controls.Add(this.pbFacturaElectronica);
             this.Controls.Add(this.cboComentarios);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.btnCancelar);
@@ -218,6 +251,8 @@ namespace PROYECTO
         private System.Windows.Forms.TextBox txtComentario;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox cboComentarios;
-
+        private System.Windows.Forms.Timer timCreaNC;
+        private System.Windows.Forms.Label lblMjFacturaElectronica;
+        private System.Windows.Forms.ProgressBar pbFacturaElectronica;
     }
 }

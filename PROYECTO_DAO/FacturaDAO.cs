@@ -217,16 +217,7 @@ namespace PROYECTO_DAO
 
         public Int32 Anular(Factura oFactura, String administrador, String pNo_cia)
         {
-            String sql = "SELECT FAC_INDICEDOCUMENTO, FAC_TIPODOCUMENTO FROM TBL_FACTURA F WHERE f.no_cia = '" + oFactura.No_cia + "' and fac_linea = '" + oFactura.Indice + "' and fac_numero = '" + oFactura.NumFactura + "'";
-            DataTable oTabla = OracleDAO.getInstance().EjecutarSQLDataTable(sql);
-            if (oTabla.Rows.Count > 0)
-            {
-                if (oTabla.Rows[0].ItemArray[1].ToString().Equals("COT"))
-                {
-                    sql = "update TBL_COTIZACION c set COT_ESTADOREGISTRO = 'ABIERTA' WHERE c.no_cia = '" + oFactura.No_cia + "' and COT_NUMERO = '" + oTabla.Rows[0].ItemArray[0].ToString() + "'";
-                    OracleDAO.getInstance().EjecutarSQL(sql);
-                }
-            }
+            String sql = "";
 
             sql = "update TBL_FACTURA F set fac_estado = 'ANULADA', FAC_USUARIOMODIFICA = user, FAC_FECHAMODIFICA= sysdate,FAC_ADMINISTRADOR_ANULA='" + administrador + "', FAC_FECHA_ANULA=sysdate, fac_comentario='" + oFactura.Comentario + "' where f.no_cia = '" + oFactura.No_cia + "' and fac_linea = " + oFactura.Indice + " and fac_numero = " + oFactura.NumFactura;
             OracleDAO.getInstance().EjecutarSQL(sql);
