@@ -38,8 +38,7 @@ namespace PROYECTO
 
         private double cantidad2 = 0;
         //private DateTime dtpFechaCotizacion;
-        private String IVI = "N";
-        private double IV = 0;
+        private double vTipoIV = 0;
 
         private int indiceDetalle = 0, txtDias = 0;
 
@@ -275,8 +274,7 @@ namespace PROYECTO
             dgrDatos.ClearSelection();
             txtCantidad.ReadOnly = false;
 
-            IVI = "N";
-            IV = 0;
+            vTipoIV = 0;
         }
 
         private void frmCotizacioncion_Load(object sender, EventArgs e)
@@ -626,12 +624,11 @@ namespace PROYECTO
             modificar();
         }
 
-        public void cargaServicio(String pindiceServicio, String pCodigo, String pDescripcion, String pIVI, double pIV)
+        public void cargaServicio(String pindiceServicio, String pCodigo, String pDescripcion, double pIV)
         {
             try
             {
-                IVI = pIVI;
-                IV = pIV;
+                vTipoIV = pIV;
 
                 txtPrecioUnitario.ForeColor = Color.Black;
                 txtPrecioUnitario.BackColor = Color.White;
@@ -699,6 +696,9 @@ namespace PROYECTO
                     MessageBox.Show("Este documento fue anulado.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
+
+                double vPorcentajeIV = ImpuestoCodigoServicio(indiceServicio.ToString());
+
                 oConexion.cerrarConexion();
                 if (oConexion.abrirConexion())
                 {
@@ -716,7 +716,7 @@ namespace PROYECTO
                         oCotizacionDetalle.SubTotal = oCotizacionDetalle.PrecioUnitario * oCotizacionDetalle.Cantidad;
                         oCotizacionDetalle.Descuento = double.Parse(txtLineaDescuento.Text);
                         double montoDescuento = oCotizacionDetalle.SubTotal * (oCotizacionDetalle.Descuento / 100);
-                        oCotizacionDetalle.Monto_IV = IVI.Equals("S") ? 0 : oCotizacionDetalle.SubTotal * (IV / 100);
+                        oCotizacionDetalle.Monto_IV = oCotizacionDetalle.SubTotal * (vPorcentajeIV / 100);
                         oCotizacionDetalle.PrecioTotal = oCotizacionDetalle.SubTotal - montoDescuento + oCotizacionDetalle.Monto_IV;
 
                         oCotizacionDetalle.Descripcion = txtDescServicio.Text;
@@ -727,7 +727,7 @@ namespace PROYECTO
 
                         oCotizacionDetalle.Descuento = double.Parse(txtLineaDescuento.Text);
 
-                        oCotizacionDetalle.IVI = IVI;
+                        oCotizacionDetalle.IVI = "N";
 
                         oCotizacionDetalleDAO.Agregar(oCotizacionDetalle);
                         if (oCotizacionDetalleDAO.Error())
@@ -755,7 +755,7 @@ namespace PROYECTO
                         oCotizacionDetalle.SubTotal = oCotizacionDetalle.PrecioUnitario * oCotizacionDetalle.Cantidad;
                         oCotizacionDetalle.Descuento = double.Parse(txtLineaDescuento.Text);
                         double montoDescuento = oCotizacionDetalle.SubTotal * (oCotizacionDetalle.Descuento / 100);
-                        oCotizacionDetalle.Monto_IV = IVI.Equals("S") ? 0 : oCotizacionDetalle.SubTotal * (IV / 100);
+                        oCotizacionDetalle.Monto_IV = oCotizacionDetalle.SubTotal * (vPorcentajeIV / 100);
                         oCotizacionDetalle.PrecioTotal = oCotizacionDetalle.SubTotal - montoDescuento + oCotizacionDetalle.Monto_IV;
 
                         oCotizacionDetalle.Descripcion = txtDescServicio.Text;
@@ -766,7 +766,7 @@ namespace PROYECTO
                         oCotizacionDetalle.Indice = indiceDetalle;
 
                         oCotizacionDetalle.Descuento = double.Parse(txtLineaDescuento.Text);
-                        oCotizacionDetalle.IVI = IVI;
+                        oCotizacionDetalle.IVI = "N";
 
                         oCotizacionDetalleDAO.Modificar(oCotizacionDetalle);
                         if (oCotizacionDetalleDAO.Error())
@@ -787,6 +787,44 @@ namespace PROYECTO
                 oConexion.cerrarConexion();
             }
         }
+
+        private double ImpuestoCodigoServicio(String pIndiceServicio)
+        {
+            try
+            {
+                double vPorcentaje = 0;
+
+                if (vTipoIV == 0 || indiceServicio.ToString().Equals("0"))
+                    return vPorcentaje;
+
+                oConexion.cerrarConexion();
+                if (oConexion.abrirConexion())
+                {
+                    ServicioDAO oServicioDAO = new ServicioDAO();
+                    DataTable oTabla = oServicioDAO.ConsultaImpuesto(pIndiceServicio, PROYECTO.Properties.Settings.Default.No_cia).Tables[0];
+
+                    if (oServicioDAO.Error())
+                        MessageBox.Show("Ocurrió un error al extraer los datos: " + oServicioDAO.DescError(), "Error de consulta", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    else
+                    {
+                        if (oTabla.Rows.Count > 0)
+                            vPorcentaje = double.Parse(oTabla.Rows[0]["porcentaje"].ToString());
+                    }
+
+                    oConexion.cerrarConexion();
+                }
+                else
+                    MessageBox.Show("Ocurrió un error al conectarse a la base de datos.", "Error de Conexión", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                return vPorcentaje;
+            }
+            catch (Exception ex)
+            {
+                oConexion.cerrarConexion();
+                return 0;
+            }
+        }
+
 
         private void btnEliminarDetalle_Click(object sender, EventArgs e)
         {
@@ -882,8 +920,8 @@ namespace PROYECTO
                 indiceServicio = double.Parse(dgrDatos["detfac_codigo", e.RowIndex].Value.ToString());
                 txtCodServicio.Text = dgrDatos["SER_codigo", e.RowIndex].Value.ToString();
                 txtDescServicio.Text = dgrDatos["detfac_descripcion", e.RowIndex].Value.ToString();
-                IVI = dgrDatos["detfac_ivi", e.RowIndex].Value.ToString();
-                IV = double.Parse(dgrDatos["SER_impuestos", e.RowIndex].Value.ToString());
+
+                vTipoIV = double.Parse(dgrDatos["SER_impuestos", e.RowIndex].Value.ToString());
 
                 switch (cmbMoneda.SelectedIndex)
                 {
@@ -1578,7 +1616,7 @@ namespace PROYECTO
 
         private void txtPrecioUnitario_Enter(object sender, EventArgs e)
         {
-            txtPrecioUnitario.Text = double.Parse(txtPrecioUnitario.Text.Substring(1)).ToString("########0.00");
+            txtPrecioUnitario.Text = double.Parse(txtPrecioUnitario.Text.Substring(1)).ToString("########0.##");
             if (txtPrecioUnitario.Text.Equals("0"))
                 txtPrecioUnitario.Clear();
         }
@@ -1643,7 +1681,7 @@ namespace PROYECTO
                         }
                         else if (oTabla.Rows.Count > 0)
                         {
-                            cargaServicio(oTabla.Rows[0]["SER_INDICE"].ToString(), oTabla.Rows[0]["SER_CODIGO"].ToString(), oTabla.Rows[0]["SER_NOMBRE"].ToString(), oTabla.Rows[0]["INV_IVI"].ToString(), double.Parse(oTabla.Rows[0]["inv_impuesto_ventas"].ToString()));
+                            cargaServicio(oTabla.Rows[0]["SER_INDICE"].ToString(), oTabla.Rows[0]["SER_CODIGO"].ToString(), oTabla.Rows[0]["SER_NOMBRE"].ToString(), double.Parse(oTabla.Rows[0]["inv_impuesto_ventas"].ToString()));
                         }
 
                     }

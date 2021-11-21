@@ -180,7 +180,7 @@ namespace PROYECTO
                 }
 
                 if (palabra.Equals("frmFacturacion"))
-                    frmFacturacion.getInstance().cargaServicio(indiceServicio, descripcionServicio, IVI, IV);
+                    frmFacturacion.getInstance().cargaServicio(indiceServicio, descripcionServicio, IV);
                 //else if (palabra.Equals("cambioproducto"))
                 //    frmCambioProducto.getInstance().cargaArticulo(indiceArticulo, descripcionArticulo, almacen, cadena, existencia, proveedor, indiceInventario, presentacion, embalaje);
                 //else if (palabra.Equals("Apartado"))
@@ -193,7 +193,7 @@ namespace PROYECTO
 
                 //else
                 if (palabra.Equals("frmCotizacion"))
-                    frmCotizacion.getInstance().cargaServicio(indiceServicio, codigoServicio, descripcionServicio, IVI, IV);
+                    frmCotizacion.getInstance().cargaServicio(indiceServicio, codigoServicio, descripcionServicio, IV);
                 //else if (palabra.Equals("TRAS_E_CEN_ABIERTOS"))
                 //    frmTraspasoECentros_Crear.getInstance().cargaArticulo(indiceArticulo, descripcionArticulo, existencia, proveedor, indiceInventario, presentacion, embalaje);
 

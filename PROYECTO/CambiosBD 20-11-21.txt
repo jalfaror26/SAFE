@@ -1,0 +1,4 @@
+drop table "SAFE"."TBL_SERVICIOS_CABYS"  
+
+/
+

@@ -35,20 +35,15 @@ namespace PROYECTO_DAO
             oCommand.Parameters[7].Value = oCotizacionDetalle.Monto_IV;
             oCommand.Parameters.Add("PrecioTotal", OracleType.Number);
             oCommand.Parameters[8].Value = oCotizacionDetalle.PrecioTotal;
-            oCommand.Parameters.Add("usuario", OracleType.NVarChar);
-            oCommand.Parameters[9].Value = oCotizacionDetalle.Usuario;
-
-                  oCommand.Parameters.Add("tipoPrecio", OracleType.Number);
-            oCommand.Parameters[10].Value = oCotizacionDetalle.TipoPrecio;
-
-           
+            oCommand.Parameters.Add("tipoPrecio", OracleType.Number);
+            oCommand.Parameters[9].Value = oCotizacionDetalle.TipoPrecio;
             oCommand.Parameters.Add("descuento", OracleType.Number);
-            oCommand.Parameters[11].Value = oCotizacionDetalle.Descuento;
+            oCommand.Parameters[10].Value = oCotizacionDetalle.Descuento;
             oCommand.Parameters.Add("pNo_cia", OracleType.NVarChar);
-            oCommand.Parameters[12].Value = oCotizacionDetalle.No_cia;
+            oCommand.Parameters[11].Value = oCotizacionDetalle.No_cia;
             oCommand.Parameters.Add("IVI", OracleType.NVarChar);
-            oCommand.Parameters[13].Value = oCotizacionDetalle.IVI;
-            
+            oCommand.Parameters[12].Value = oCotizacionDetalle.IVI;
+
 
             OracleDAO.getInstance().EjecutarSQLStoreProcedure(oCommand);
 
@@ -82,18 +77,14 @@ namespace PROYECTO_DAO
             oCommand.Parameters[8].Value = oCotizacionDetalle.Monto_IV;
             oCommand.Parameters.Add("PrecioTotal", OracleType.Number);
             oCommand.Parameters[9].Value = oCotizacionDetalle.PrecioTotal;
-            oCommand.Parameters.Add("usuario", OracleType.NVarChar);
-            oCommand.Parameters[10].Value = oCotizacionDetalle.Usuario;
-
             oCommand.Parameters.Add("tipoPrecio", OracleType.Number);
-            oCommand.Parameters[11].Value = oCotizacionDetalle.TipoPrecio;
-
+            oCommand.Parameters[10].Value = oCotizacionDetalle.TipoPrecio;
             oCommand.Parameters.Add("descuento", OracleType.Number);
-            oCommand.Parameters[12].Value = oCotizacionDetalle.Descuento;
+            oCommand.Parameters[11].Value = oCotizacionDetalle.Descuento;
             oCommand.Parameters.Add("pNo_cia", OracleType.NVarChar);
-            oCommand.Parameters[13].Value = oCotizacionDetalle.No_cia;
+            oCommand.Parameters[12].Value = oCotizacionDetalle.No_cia;
             oCommand.Parameters.Add("IVI", OracleType.NVarChar);
-            oCommand.Parameters[14].Value = oCotizacionDetalle.IVI;
+            oCommand.Parameters[13].Value = oCotizacionDetalle.IVI;
 
             OracleDAO.getInstance().EjecutarSQLStoreProcedure(oCommand);
 
@@ -114,7 +105,7 @@ namespace PROYECTO_DAO
             oCommand.Parameters.Add("cantidad", OracleType.Number);
             oCommand.Parameters[2].Value = oCotizacionDetalle.Cantidad;
             oCommand.Parameters.Add("codArticulo", OracleType.NVarChar);
-            oCommand.Parameters[3].Value = oCotizacionDetalle.CodServicio;       
+            oCommand.Parameters[3].Value = oCotizacionDetalle.CodServicio;
             oCommand.Parameters.Add("pNo_cia", OracleType.NVarChar);
             oCommand.Parameters[4].Value = oCotizacionDetalle.No_cia;
 

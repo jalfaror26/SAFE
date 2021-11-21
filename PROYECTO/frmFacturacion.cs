@@ -44,8 +44,7 @@ namespace PROYECTO
 
         private int indiceDetalle = 0, cliente = 0, txtDias = 0, tipoDescuento = 0;
 
-        private String IVI = "N";
-        private double IV = 0;
+        private double vTipoIV = 0;
 
         private String codigoAbrir = "", descripcionAbrir = "", moduloAbrir = "";
 
@@ -181,8 +180,7 @@ namespace PROYECTO
             dtpFechaFactura = fecha;
             chkDescuento.Enabled = false;
             idCliente = "";
-            IVI = "N";
-            IV = 0;
+            vTipoIV = 0;
             oConexion.cerrarConexion();
             limpiarAbajo();
         }
@@ -727,17 +725,8 @@ namespace PROYECTO
         {
             modificar();
         }
-
-        private void btnBusqArticulo_Click(object sender, EventArgs e)
-        {
-            limpiarAbajo();
-
-            frmConsultaServicios oConsulta = new frmConsultaServicios("frmFacturacion");
-            oConsulta.MdiParent = frmPrincipal.getInstance().MdiParent;
-            oConsulta.ShowDialog();
-        }
-
-        public void cargaServicio(String pIndiceServicio, String pDescripcion, String pIVI, double pIV)
+        
+        public void cargaServicio(String pIndiceServicio, String pDescripcion, double pIV)
         {
             try
             {
@@ -812,8 +801,7 @@ namespace PROYECTO
                 txtCodServicio.Text = dgrDatos["SER_codigo", fila].Value.ToString();
                 txtDescServicio.Text = dgrDatos["detfac_descripcion", fila].Value.ToString();
 
-                IVI = dgrDatos["detfac_ivi", fila].Value.ToString();
-                IV = double.Parse(dgrDatos["SER_impuestos", fila].Value.ToString());
+                vTipoIV = double.Parse(dgrDatos["SER_impuestos", fila].Value.ToString());
 
                 if (cmbMoneda.Equals("CRC")) cadena = "¢";
                 else if (cmbMoneda.Equals("USD")) cadena = "$";
@@ -866,17 +854,17 @@ namespace PROYECTO
 
                 if (indiceServicio == 0)
                 {
-                    MessageBox.Show("Seleccione el artículo a facturar.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Seleccione el Servicio a facturar.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
                 if (txtPrecioUnitario.Text.Equals("") || txtPrecioUnitario.Text.Substring(1).Equals(" 0.00"))
                 {
-                    MessageBox.Show("Digite el costo unitario del artículo.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Digite el costo unitario del Servicio.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
                 if (txtCantidad.Text.Equals("") || txtCantidad.Text.Equals("0"))
                 {
-                    MessageBox.Show("Digite la cantidad del artículo a facturar.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Digite la cantidad del Servicio a facturar.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
                 if (txtCliente.Text.Equals("") || idCliente.Equals(""))
@@ -890,6 +878,13 @@ namespace PROYECTO
                     return;
                 }
 
+                if (string.IsNullOrEmpty(txtCodCabys.Text) && AplicaFE())
+                {
+                    MessageBox.Show("El código CABYS es requerido para Factura Electrónica, por favor parametrizar.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                double vPorcentajeIV = ImpuestoCodigoServicio(indiceServicio.ToString());
 
                 oConexion.cerrarConexion();
                 if (oConexion.abrirConexion())
@@ -907,13 +902,13 @@ namespace PROYECTO
                         oFacturaDetalle.Subtotal = oFacturaDetalle.PrecioUnitario * oFacturaDetalle.Cantidad;
                         oFacturaDetalle.Descuento = double.Parse(txtLineaDescuento.Text);
                         double montoDescuento = oFacturaDetalle.Subtotal * (oFacturaDetalle.Descuento / 100);
-                        oFacturaDetalle.MontoIV = oFacturaDetalle.Subtotal * (IV / 100);// IVI.Equals("S") ? 0 : oFacturaDetalle.Subtotal * (IV / 100);
-                        oFacturaDetalle.PrecioTotal = oFacturaDetalle.Subtotal - montoDescuento + (IVI.Equals("S") ? 0 : oFacturaDetalle.MontoIV);
+                        oFacturaDetalle.MontoIV = oFacturaDetalle.Subtotal * (vPorcentajeIV / 100);// IVI.Equals("S") ? 0 : oFacturaDetalle.Subtotal * (IV / 100);
+                        oFacturaDetalle.PrecioTotal = oFacturaDetalle.Subtotal - montoDescuento + oFacturaDetalle.MontoIV;
 
                         oFacturaDetalle.Descripcion = txtDescServicio.Text;
                         oFacturaDetalle.Medida = "Unid";
                         oFacturaDetalle.IndiceFactura = indiceFactura;
-                        oFacturaDetalle.IVI = IVI;
+                        oFacturaDetalle.IVI = "N";
 
                         oFacturaDetalle.Cod_cabys = txtCodCabys.Text;
 
@@ -943,15 +938,15 @@ namespace PROYECTO
                         oFacturaDetalle.Subtotal = oFacturaDetalle.PrecioUnitario * oFacturaDetalle.Cantidad;
                         oFacturaDetalle.Descuento = double.Parse(txtLineaDescuento.Text);
                         double montoDescuento = oFacturaDetalle.Subtotal * (oFacturaDetalle.Descuento / 100);
-                        oFacturaDetalle.MontoIV = oFacturaDetalle.Subtotal * (IV / 100);// IVI.Equals("S") ? 0 : oFacturaDetalle.Subtotal * (IV / 100);
-                        oFacturaDetalle.PrecioTotal = oFacturaDetalle.Subtotal - montoDescuento + (IVI.Equals("S") ? 0 : oFacturaDetalle.MontoIV);
+                        oFacturaDetalle.MontoIV = oFacturaDetalle.Subtotal * (vPorcentajeIV / 100);// IVI.Equals("S") ? 0 : oFacturaDetalle.Subtotal * (IV / 100);
+                        oFacturaDetalle.PrecioTotal = oFacturaDetalle.Subtotal - montoDescuento + oFacturaDetalle.MontoIV;
 
                         oFacturaDetalle.Descripcion = txtDescServicio.Text;
                         oFacturaDetalle.Medida = "Unid";
                         oFacturaDetalle.IndiceFactura = indiceFactura;
                         oFacturaDetalle.Indice = indiceDetalle;
                         oFacturaDetalle.Descuento = double.Parse(txtLineaDescuento.Text);
-                        oFacturaDetalle.IVI = IVI;
+                        oFacturaDetalle.IVI = "N";
                         oFacturaDetalle.Cod_cabys = txtCodCabys.Text;
 
                         oFacturaDetalleDAO.Modificar(oFacturaDetalle);
@@ -1082,7 +1077,7 @@ namespace PROYECTO
                     IVI = ofila.Cells["detfac_ivi"].Value.ToString();
                     cantidad = Double.Parse(ofila.Cells["detfac_cantidad"].Value.ToString());
                     totalLinea += Double.Parse(ofila.Cells["detfac_total"].Value.ToString());
-                    totalMonto_IV += IVI.Equals("S") ? 0 : Double.Parse(ofila.Cells["DETFAC_MONTO_IV"].Value.ToString());
+                    totalMonto_IV += Double.Parse(ofila.Cells["DETFAC_MONTO_IV"].Value.ToString());
                     subtotal += Double.Parse(ofila.Cells["DETFAC_SUBTOTAL"].Value.ToString());
                     porcDescuento = Double.Parse(ofila.Cells["detfac_descuento"].Value.ToString()) / 100;
                     descuento += subtotal * porcDescuento;
@@ -1239,6 +1234,12 @@ namespace PROYECTO
             if (rbCredito.Checked)
                 if (MessageBox.Show("¿Está seguro que desea facturar?", "Advertencia", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
                     return;
+
+            if (idCliente.Equals("-1") && AplicaFE())
+            {
+                MessageBox.Show("El cliente CONTADO no puede generar Factura Electrónica, por favor seleccione un cliente válido para la factura.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
             String tipopago = "";
 
@@ -1563,54 +1564,7 @@ namespace PROYECTO
                 oConexion.cerrarConexion();
             }
         }
-
-        private void btnVista_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                oConexion = new ConexionDAO(PROYECTO.Properties.Settings.Default.UsuarioBD, PROYECTO.Properties.Settings.Default.Servidor, Conexion.getInstance().Clave);
-                modificar();
-                oConexion.cerrarConexion();
-                if (oConexion.abrirConexion())
-                {
-                    String sql = "";
-                    if (idCliente.Equals(""))
-                    {
-                        sql = "select fac_nombre as nombre, fac_telefono as telefono, to_char(fac_fecha,'dd') as dia, to_char(fac_fecha,'MM') as mes, to_char(fac_fecha,'yyyy') as anno, fac_observacion as obcervacion, fac_subtotal as subtotal, fac_impuesto as impuesto, fac_excento as excento, fac_total as total, fac_moneda as moneda, detfac_cantidad as cantidad, detfac_medida as embalaje, DETFAC_DESCRIPCION as descripcion, DETFAC_PRECIO_UNITARIO as costUnit, (detfac_cantidad*DETFAC_PRECIO_UNITARIO) as costTotal, fac_ubicacion AS ubicacion, fac_adelanto adelanto, '' codigoCliente, case when f.fac_tipodocumento = 'PED' then to_char(f.fac_indicedocumento) else ' ' end pedido, '' idPersona, f.fac_vendedor vendedor, '', '' vence, case when df.DETFAC_SUBTOTAL = 0 then '1' else '0' end indImpuesto,EMPR_NOMBRE, EMPR_LOGO Logo,EMPR_IDENTIFICACION, EMPR_DIRECCION, EMPR_TELEFONO, EMPR_CORREO, (DETFAC_CANTIDAD*DETFAC_PRECIO_UNITARIO)- ((DETFAC_CANTIDAD*DETFAC_PRECIO_UNITARIO)* (DETFAC_DESCUENTO/100)) as costTotal, DETFAC_DESCUENTO descuento, (SELECT case when ARPRE_EMBALAJE='talla' then ARPRE_CANTIDAD||' '||ARPRE_EMBALAJE else ARPRE_EMBALAJE end FROM TBL_ARTICULO_PRESENTACION ap WHERE ap.no_cia = '" + PROYECTO.Properties.Settings.Default.No_cia + "' and DETFAC_PRESENTACION = ARPRE_INDICE) ARPRE_EMBALAJE, SER_CODIGO codigoArticulo from TBL_FACTURA F, TBL_FACTURA_DETALLE df, TBL_EMPRESA em, TBL_ARTICULOS ar WHERE f.no_cia = '" + PROYECTO.Properties.Settings.Default.No_cia + "' and f.no_cia = df.no_cia and f.no_cia = em.no_cia and f.no_cia = ar.no_cia and SER_INDICE=DETFAC_CODIGO and FAC_LINEA = DETFAC_INDICEFACTURA and fac_numero ='" + txtFactura.Text + "' ORDER BY DETFAC_NUMEROLINEA";
-                    }
-                    else
-                    {
-                        sql = "select fac_nombre as nombre, fac_telefono as telefono, to_char(fac_fecha,'dd') as dia, to_char(fac_fecha,'MM') as mes, to_char(fac_fecha,'yyyy') as anno, fac_observacion as obcervacion, fac_subtotal as subtotal, fac_impuesto as impuesto, fac_excento as excento, fac_total as total, fac_moneda as moneda, detfac_cantidad as cantidad, detfac_medida as embalaje, DETFAC_DESCRIPCION as descripcion, DETFAC_PRECIO_UNITARIO as costUnit, (detfac_cantidad*DETFAC_PRECIO_UNITARIO) as costTotal, fac_ubicacion AS ubicacion, fac_adelanto adelanto, cl.cli_id codigoCliente, case when f.fac_tipodocumento = 'PED' then to_char(f.fac_indicedocumento) else ' ' end pedido, cl.cli_identificacion idPersona, f.fac_vendedor vendedor, '', '' vence, case when df.DETFAC_SUBTOTAL = 0 then '1' else '0' end indImpuesto,EMPR_NOMBRE, EMPR_LOGO Logo,EMPR_IDENTIFICACION, EMPR_DIRECCION, EMPR_TELEFONO, EMPR_CORREO, (DETFAC_CANTIDAD*DETFAC_PRECIO_UNITARIO)- ((DETFAC_CANTIDAD*DETFAC_PRECIO_UNITARIO)* (DETFAC_DESCUENTO/100)) as costTotal, DETFAC_DESCUENTO descuento, (SELECT case when ARPRE_EMBALAJE='talla' then ARPRE_CANTIDAD||' '||ARPRE_EMBALAJE else ARPRE_EMBALAJE end FROM TBL_ARTICULO_PRESENTACION ap WHERE ap.no_cia = '" + PROYECTO.Properties.Settings.Default.No_cia + "' and DETFAC_PRESENTACION = ARPRE_INDICE) ARPRE_EMBALAJE, SER_CODIGO codigoArticulo from TBL_FACTURA F, TBL_FACTURA_DETALLE df, TBL_CLIENTES cl, TBL_EMPRESA em, TBL_ARTICULOS ar WHERE f.no_cia = '" + PROYECTO.Properties.Settings.Default.No_cia + "' and f.no_cia = df.no_cia and f.no_cia = cl.no_cia and f.no_cia = em.no_cia and f.no_cia = ar.no_cia and SER_INDICE=DETFAC_CODIGO and f.fac_cliente = cl.cli_linea and FAC_LINEA = DETFAC_INDICEFACTURA and fac_numero ='" + txtFactura.Text + "' ORDER BY DETFAC_NUMEROLINEA";
-                    }
-
-                    DataTable oTabla = crearTabla(oReporteDAO.EjecutaSentencia(sql).Tables[0]);
-                    if (oTabla.Rows.Count > 0)
-                    {
-                        frmVisorReportesFactura oVisor = frmVisorReportesFactura.getInstance();
-                        oVisor.MdiParent = this.MdiParent;
-                        rptFactura oReporte = new rptFactura();
-                        oReporte.DataDefinition.FormulaFields["factura"].Text = "'" + txtFactura.Text + "'";
-                        oReporte.DataDefinition.FormulaFields["contado"].Text = "'" + (txtDias == 0 ? "CONTADO" : "CREDITO") + "'";
-                        oReporte.DataDefinition.FormulaFields["fechaPago"].Text = "'" + dtpFechaFactura.AddDays(txtDias).ToShortDateString() + "'";
-                        oReporte.DataDefinition.FormulaFields["totGrabado"].Text = double.Parse(txtMontoIV.Text.Substring(1)).ToString();
-                        oReporte.DataDefinition.FormulaFields["totExento"].Text = "0.00";
-                        oReporte.DataDefinition.FormulaFields["subtotal"].Text = double.Parse(txtSubTotal.Text.Substring(1)).ToString();
-                        oReporte.DataDefinition.FormulaFields["descuento"].Text = double.Parse(txtDescuento.Text.Substring(1)).ToString();
-                        oReporte.DataDefinition.FormulaFields["usuario"].Text = "'" + PROYECTO.Properties.Settings.Default.Usuario + "'";
-
-                        oReporte.SetDataSource(oTabla);
-                        oVisor.ReportSource(oReporte);
-                        oVisor.Show();
-                    }
-                    oConexion.cerrarConexion();
-                }
-            }
-            catch (Exception ex)
-            {
-
-            }
-        }
-
+        
         private void txtCantidad_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (Char.IsLetter(e.KeyChar) || //Char.IsPunctuation(e.KeyChar) || 
@@ -1821,7 +1775,7 @@ namespace PROYECTO
         private void txtCantidad_Enter(object sender, EventArgs e)
         {
             if (txtCantidad.Text.Equals("0"))
-                txtCantidad.Clear();
+                txtCantidad.Clear(); 
         }
 
         private void txtTotalPorLinea_KeyPress(object sender, KeyPressEventArgs e)
@@ -1851,7 +1805,7 @@ namespace PROYECTO
             lblMjFacturaElectronica.Visible = true;
             pbFacturaElectronica.Visible = true;
 
-          
+
             timCompruebaFA.Start();
         }
 
@@ -1916,6 +1870,15 @@ namespace PROYECTO
                 oConexion.cerrarConexion();
                 if (oConexion.abrirConexion())
                 {
+                    DataTable odata = oFacturaDAO.ConsultaFactura(txtFactura.Text, PROYECTO.Properties.Settings.Default.No_cia);
+
+                    String usa_FE = odata.Rows[0]["FAC_CREA_FE"].ToString();
+                    if (usa_FE.Equals("N"))
+                    {
+                        pbFacturaElectronica.Visible = false;
+                        return;
+                    }
+
                     DataTable oDatosGeneral = oConexion.EjecutaSentencia("select CODIGO_ACTIVIDAD, SUCURSAL, CAJA from TBL_EMPRESA where no_Cia = '" + PROYECTO.Properties.Settings.Default.No_cia + "'");
                     String vsucursal = "001";
                     String vtipo_documento = "01";
@@ -1939,7 +1902,7 @@ namespace PROYECTO
                     foreach (DataRow ofila in oDetalle.Rows)
                     {
                         Impuestos oImpuestos = new Impuestos();
-                        DataTable oDtImpuestos = oConexion.EjecutaSentencia("select EQUIV_IMP_FE from TBL_IMPUESTOS where CLAVE = 'IV' and no_Cia = '" + PROYECTO.Properties.Settings.Default.No_cia + "'");
+                        DataTable oDtImpuestos = oConexion.EjecutaSentencia("SELECT i.EQUIV_IMP_FE FROM TBL_SERVICIO_IMPUESTOS si, TBL_IMPUESTOS i WHERE si.no_cia = '" + PROYECTO.Properties.Settings.Default.No_cia + "' and si.no_cia = i.no_cia and si.CODIGO_SERVICIO = '"+ ofila["detfac_codigo"].ToString() + "' and si.clave = i.clave");
 
                         foreach (DataRow ofilaImp in oDtImpuestos.Rows)
                         {
@@ -2022,14 +1985,7 @@ namespace PROYECTO
 
                     List<string> medio_pagos = new List<string>();
 
-                    DataTable odata = oFacturaDAO.ConsultaFactura(txtFactura.Text, PROYECTO.Properties.Settings.Default.No_cia);
 
-                    String usa_FE = odata.Rows[0]["FAC_CREA_FE"].ToString();
-                    if (usa_FE.Equals("N"))
-                    {
-                        pbFacturaElectronica.Visible = false;
-                        return;
-                    }
 
 
                     if (String.IsNullOrEmpty(odata.Rows[0]["fac_tipo"].ToString()))
@@ -2509,12 +2465,13 @@ namespace PROYECTO
                 double subtotal = 0;
                 double montoDescuento = 0;
                 double montoIV = 0;
+                double vPorcentajeIV = ImpuestoCodigoServicio(indiceServicio.ToString());
 
                 if (pTipo.Equals("CANTIDAD"))
                 {
                     subtotal = Double.Parse(txtCantidad.Text) * Double.Parse(txtPrecioUnitario.Text.Substring(1));
                     montoDescuento = (subtotal * porcDescuento);
-                    montoIV = IVI.Equals("S") ? 0 : subtotal * (IV / 100);
+                    montoIV = subtotal * (vPorcentajeIV / 100);
 
                     double total = subtotal - montoDescuento + montoIV;
 
@@ -2549,7 +2506,8 @@ namespace PROYECTO
 
                     subtotal = cantidad * Double.Parse(txtPrecioUnitario.Text.Substring(1));
                     montoDescuento = (subtotal * porcDescuento);
-                    montoIV = IVI.Equals("S") ? 0 : subtotal * (IV / 100);
+                   
+                    montoIV = subtotal * (vPorcentajeIV / 100);
 
                     double total = subtotal - montoDescuento + montoIV;
 
@@ -2585,7 +2543,7 @@ namespace PROYECTO
             lblMjFacturaElectronica.Visible = true;
             pbFacturaElectronica.Visible = true;
 
-            timCreaFA.Stop();            
+            timCreaFA.Stop();
             CrearFE();
         }
 
@@ -2610,6 +2568,23 @@ namespace PROYECTO
             txtLineaDescuento.Text = Double.Parse(txtLineaDescuento.Text).ToString("########0.00");
             if (txtLineaDescuento.Text.Equals("0.00"))
                 txtLineaDescuento.Text = "";
+        }
+
+        private void btnBusqServicio_Click(object sender, EventArgs e)
+        {
+            limpiarAbajo();
+
+            frmConsultaServicios oConsulta = new frmConsultaServicios("frmFacturacion");
+            oConsulta.MdiParent = frmPrincipal.getInstance().MdiParent;
+            oConsulta.ShowDialog();
+        }
+
+        private void txtCodServicio_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter || e.KeyCode == Keys.Tab)
+            {
+                BuscaCodigoServicio();
+            }
         }
 
         private void txtLineaDescuento_KeyPress(object sender, KeyPressEventArgs e)
@@ -2740,7 +2715,7 @@ namespace PROYECTO
             calcularTotalPorLinea("CANTIDAD");
         }
 
-        private void BuscaCodigoArticulo()
+        private void BuscaCodigoServicio()
         {
             try
             {
@@ -2760,7 +2735,7 @@ namespace PROYECTO
                         }
                         else if (oTabla.Rows.Count > 0)
                         {
-                            cargaServicio(oTabla.Rows[0]["SER_INDICE"].ToString(), oTabla.Rows[0]["SER_NOMBRE"].ToString(), oTabla.Rows[0]["INV_IVI"].ToString(), double.Parse(oTabla.Rows[0]["INV_IMPUESTO_VENTAS"].ToString()));
+                            cargaServicio(oTabla.Rows[0]["SER_INDICE"].ToString(), oTabla.Rows[0]["SER_NOMBRE"].ToString(), double.Parse(oTabla.Rows[0]["INV_IMPUESTO_VENTAS"].ToString()));
                         }
 
                     }
@@ -2776,14 +2751,43 @@ namespace PROYECTO
             }
         }
 
-        private void txtCodarticulo_KeyDown(object sender, KeyEventArgs e)
+        private double ImpuestoCodigoServicio(String pIndiceServicio)
         {
-            if (e.KeyCode == Keys.Enter || e.KeyCode == Keys.Tab)
+            try
             {
-                BuscaCodigoArticulo();
+                double vPorcentaje = 0;
+
+                if (vTipoIV == 0 || indiceServicio.ToString().Equals("0"))
+                    return vPorcentaje;
+
+                oConexion.cerrarConexion();
+                if (oConexion.abrirConexion())
+                {
+                    ServicioDAO oServicioDAO = new ServicioDAO();
+                    DataTable oTabla = oServicioDAO.ConsultaImpuesto(pIndiceServicio, PROYECTO.Properties.Settings.Default.No_cia).Tables[0];
+
+                    if (oServicioDAO.Error())
+                        MessageBox.Show("Ocurrió un error al extraer los datos: " + oServicioDAO.DescError(), "Error de consulta", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    else
+                    {
+                        if (oTabla.Rows.Count > 0)
+                            vPorcentaje = double.Parse(oTabla.Rows[0]["porcentaje"].ToString());
+                    }
+
+                    oConexion.cerrarConexion();
+                }
+                else
+                    MessageBox.Show("Ocurrió un error al conectarse a la base de datos.", "Error de Conexión", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                return vPorcentaje;
+            }
+            catch (Exception ex)
+            {
+                oConexion.cerrarConexion();
+                return 0;
             }
         }
-
+        
         private void btnFacturaAtras_Click(object sender, EventArgs e)
         {
             try

@@ -160,6 +160,14 @@ namespace PROYECTO_DAO
             return oDataSet;
         }
 
+        public DataSet ConsultaImpuesto(String pIndiceServicio, String pNo_cia)
+        {
+            String sql = "SELECT si.clave, i.porcentaje FROM TBL_SERVICIO_IMPUESTOS si, TBL_IMPUESTOS i WHERE si.no_cia = '" + pNo_cia + "' and si.no_cia = i.no_cia and si.CODIGO_SERVICIO = '" + pIndiceServicio + "' and si.clave = i.clave";
+
+            DataSet oDataSet = OracleDAO.getInstance().EjecutarSQLDataSet(sql);
+            return oDataSet;
+        }
+
         public DataSet ListarSinInventario(string codigo, string descripcion, String pNo_cia)
         {
             String sql = "";

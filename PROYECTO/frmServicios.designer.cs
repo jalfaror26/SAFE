@@ -61,7 +61,6 @@ namespace PROYECTO
             this.lblBusqueda = new System.Windows.Forms.Label();
             this.txtDesBreveArt = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
-            this.chkIVI = new System.Windows.Forms.CheckBox();
             this.label8 = new System.Windows.Forms.Label();
             this.txtCodigo = new System.Windows.Forms.TextBox();
             this.btnMEliminar = new System.Windows.Forms.Button();
@@ -410,21 +409,6 @@ namespace PROYECTO
             this.label14.TabIndex = 43;
             this.label14.Text = "Descripción";
             // 
-            // chkIVI
-            // 
-            this.chkIVI.AutoSize = true;
-            this.chkIVI.Enabled = false;
-            this.chkIVI.Location = new System.Drawing.Point(118, 45);
-            this.chkIVI.Margin = new System.Windows.Forms.Padding(4);
-            this.chkIVI.Name = "chkIVI";
-            this.chkIVI.Size = new System.Drawing.Size(45, 21);
-            this.chkIVI.TabIndex = 49;
-            this.chkIVI.Tag = "Impuesto de Ventas Incluido para la Venta";
-            this.chkIVI.Text = "IVI";
-            this.chkIVI.UseVisualStyleBackColor = true;
-            this.chkIVI.Visible = false;
-            this.chkIVI.CheckedChanged += new System.EventHandler(this.chkIVI_CheckedChanged);
-            // 
             // label8
             // 
             this.label8.AutoSize = true;
@@ -584,7 +568,6 @@ namespace PROYECTO
             this.groupBox1.Controls.Add(this.btnImpuestos);
             this.groupBox1.Controls.Add(this.rboGravado);
             this.groupBox1.Controls.Add(this.rboExento);
-            this.groupBox1.Controls.Add(this.chkIVI);
             this.groupBox1.Location = new System.Drawing.Point(492, 86);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(300, 73);
@@ -698,7 +681,6 @@ namespace PROYECTO
         private System.Windows.Forms.Label lblBusqueda;
         private System.Windows.Forms.TextBox txtDesBreveArt;
         private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.CheckBox chkIVI;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox txtCodigo;
         private System.Windows.Forms.Button btnMEliminar;

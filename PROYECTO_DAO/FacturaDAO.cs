@@ -172,7 +172,7 @@ namespace PROYECTO_DAO
 
         public DataTable ConsultaFacturas(String pNo_cia)
         {
-            String sql = "select fac_numero , fac_estado ,  fac_fecha , fac_nombre,FE_CONSECUTIVO, upper(FE_RECEPCION) FE_RECEPCION, decode(FE_COMPROBACION,'por_comprobar','POR COMPROBAR',upper(FE_COMPROBACION)) FE_COMPROBACION from TBL_FACTURA F where f.no_cia = '" + pNo_cia + "' order by to_number(fac_numero) desc";
+            String sql = "select fac_numero , fac_estado ,  fac_fecha , fac_nombre, decode(FAC_CREA_FE,'S',FE_CONSECUTIVO,'NO APLICA') FE_CONSECUTIVO, upper(FE_RECEPCION) FE_RECEPCION, decode(FE_COMPROBACION,'por_comprobar','POR COMPROBAR',upper(FE_COMPROBACION)) FE_COMPROBACION from TBL_FACTURA F where f.no_cia = '" + pNo_cia + "' order by to_number(fac_numero) desc";
             DataTable oDataTable = OracleDAO.getInstance().EjecutarSQLDataTable(sql);
             return oDataTable;
         }
@@ -245,7 +245,7 @@ namespace PROYECTO_DAO
 
         public DataTable Consulta(int tipo, String palabra, String pNo_cia)
         {
-            String sql = "select fac_numero , fac_estado ,  fac_fecha , fac_nombre,FE_CONSECUTIVO, upper(FE_RECEPCION) FE_RECEPCION, decode(FE_COMPROBACION,'por_comprobar','POR COMPROBAR',upper(FE_COMPROBACION)) FE_COMPROBACION from TBL_FACTURA F where f.no_cia = '" + pNo_cia + "' and ";
+            String sql = "select fac_numero , fac_estado ,  fac_fecha , fac_nombre, decode(FAC_CREA_FE,'S',FE_CONSECUTIVO,'NO APLICA') FE_CONSECUTIVO, upper(FE_RECEPCION) FE_RECEPCION, decode(FE_COMPROBACION,'por_comprobar','POR COMPROBAR',upper(FE_COMPROBACION)) FE_COMPROBACION from TBL_FACTURA F where f.no_cia = '" + pNo_cia + "' and ";
             if (tipo == 1)
                 sql += " regexp_like(fac_numero,'" + palabra + "','i')";
             else

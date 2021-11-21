@@ -116,8 +116,6 @@ namespace PROYECTO
             txtPrecioCosto.Text = "0.00";
             txtPrecioVenta.Text = "0.00";
             rboExento.Checked = true;
-            chkIVI.Checked = false;
-            chkIVI.Enabled = false;
             btnImpuestos.Enabled = false;
         }
 
@@ -135,15 +133,7 @@ namespace PROYECTO
                     oServicio.Impuestos = rboExento.Checked ? 0 : 1;
                     oServicio.Cod_cabys = txtCodCabys.Text;
 
-                    if (oServicio.Impuestos == 0)
-                        oServicio.Venta_IVI = "N";
-                    else
-                    {
-                        if (chkIVI.Checked)
-                            oServicio.Venta_IVI = "S";
-                        else
-                            oServicio.Venta_IVI = "N";
-                    }
+                    oServicio.Venta_IVI = "N";
 
                     oServicio.Indice = indice;
                     oServicio.Codigo = txtCodigo.Text;
@@ -158,7 +148,7 @@ namespace PROYECTO
                         MessageBox.Show("Error al guardar:\n" + oServicioDAO.DescError(), "Error de consulta", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     else
                     {
-                        if (oServicio.Impuestos == 1 && !chkIVI.Checked && nuevo)
+                        if (oServicio.Impuestos == 1 && nuevo)
                         {
                             btnImpuestos.Enabled = true;
                             btnImpuestos.PerformClick();
@@ -451,18 +441,9 @@ namespace PROYECTO
                 }
 
                 if (tipoImpuesto.Equals("0"))
-                {
                     rboExento.Checked = true;
-                }
                 else
-                {
                     rboGravado.Checked = true;
-
-                    if (dgrDatos["SER_VENTA_IVI", e.RowIndex].Value.ToString().Equals("S"))
-                        chkIVI.Checked = true;
-                    else
-                        chkIVI.Checked = false;
-                }
 
                 nuevo = false;
 
@@ -544,14 +525,11 @@ namespace PROYECTO
 
         private void rboExento_CheckedChanged(object sender, EventArgs e)
         {
-            chkIVI.Checked = false;
-            chkIVI.Enabled = false;
             btnImpuestos.Enabled = false;
         }
 
         private void rboGravado_CheckedChanged(object sender, EventArgs e)
         {
-            chkIVI.Enabled = true;
             if (indice > 0)
                 btnImpuestos.Enabled = true;
         }
@@ -590,13 +568,7 @@ namespace PROYECTO
                 ActualizarServicios();
             }
         }
-
-        private void chkIVI_CheckedChanged(object sender, EventArgs e)
-        {
-            if (indice > 0)
-                btnImpuestos.Enabled = !chkIVI.Checked;
-        }
-
+        
         private void btnMEliminar_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("¿Está seguro que desea ELIMINAR el registro?", "Advertencia", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
