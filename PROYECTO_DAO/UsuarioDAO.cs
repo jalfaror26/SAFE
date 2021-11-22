@@ -65,15 +65,36 @@ namespace PROYECTO_DAO
         {
             OracleCommand oCommand = new OracleCommand();
 
-            oCommand.CommandText = "PCKUSUARIO.paCambiarContraseña";
+            oCommand.CommandText = "PCKUSUARIO.paCambiarContrasena";
             oCommand.CommandType = CommandType.StoredProcedure;
 
             oCommand.Parameters.Add("nomUsuario", OracleType.NVarChar);
             oCommand.Parameters[0].Value = oUsuario.CodUsuario;
-            oCommand.Parameters.Add("contraseña", OracleType.NVarChar);
+            oCommand.Parameters.Add("contrasena", OracleType.NVarChar);
             oCommand.Parameters[1].Value = oUsuario.Contrasenna;
             oCommand.Parameters.Add("pNo_cia", OracleType.NVarChar);
             oCommand.Parameters[2].Value = pNo_cia;
+            
+
+            OracleDAO.getInstance().EjecutarSQLStoreProcedure(oCommand);
+
+            return !OracleDAO.getInstance().ErrorSQL;
+        }
+
+        public Boolean ReseteaContraseña(Usuario oUsuario, string pNo_cia)
+        {
+            OracleCommand oCommand = new OracleCommand();
+
+            oCommand.CommandText = "PCKUSUARIO.paResetearContrasena";
+            oCommand.CommandType = CommandType.StoredProcedure;
+
+            oCommand.Parameters.Add("nomUsuario", OracleType.NVarChar);
+            oCommand.Parameters[0].Value = oUsuario.CodUsuario;
+            oCommand.Parameters.Add("contrasena", OracleType.NVarChar);
+            oCommand.Parameters[1].Value = oUsuario.Contrasenna;
+            oCommand.Parameters.Add("pNo_cia", OracleType.NVarChar);
+            oCommand.Parameters[2].Value = pNo_cia;
+
 
             OracleDAO.getInstance().EjecutarSQLStoreProcedure(oCommand);
 
@@ -99,7 +120,7 @@ namespace PROYECTO_DAO
 
         public DataSet consultaUsuarios(String pNo_cia)
         {
-            String sql = "select usuario, rol, cedula, nombre, apellido1, apellido2, email from TBUSUARIO u where u.no_Cia = '" + pNo_cia + "' and estado = 1";
+            String sql = "select usuario, rol, cedula, nombre, apellido1, apellido2, email, CONTRASENNA from TBUSUARIO u where u.no_Cia = '" + pNo_cia + "' and estado = 1";
             DataSet oDataSet = OracleDAO.getInstance().EjecutarSQLDataSet(sql);
             return oDataSet;
         }
@@ -162,7 +183,7 @@ namespace PROYECTO_DAO
 
         public Boolean CambiaClaveUsuarioBD(Usuario oUsuario)
         {
-            Boolean userAlterado = false;
+            Boolean userAlterado = true;
 
             OracleDAO.getInstance().EjecutarSQLComando(@"alter session set ""_ORACLE_SCRIPT""=true");
 
@@ -170,9 +191,12 @@ namespace PROYECTO_DAO
             {
                 OracleDAO.getInstance().EjecutarSQLComando("alter user " + oUsuario.CodUsuario + " identified by " + oUsuario.Contrasenna);
 
-                if (!OracleDAO.getInstance().ErrorSQL)
-                    userAlterado = true;
+                if (OracleDAO.getInstance().ErrorSQL)
+                    userAlterado = false;
             }
+            else
+                userAlterado = false;
+
             return userAlterado;
         }
 

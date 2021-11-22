@@ -55,6 +55,7 @@ namespace PROYECTO
             this.btnAbrirCaja = new System.Windows.Forms.Button();
             this.btnCerrar = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
+            this.label29 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -234,6 +235,7 @@ namespace PROYECTO
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.txtSaldo);
             this.groupBox1.Controls.Add(this.label3);
+            this.groupBox1.Controls.Add(this.label29);
             this.groupBox1.Location = new System.Drawing.Point(16, 7);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox1.Name = "groupBox1";
@@ -406,6 +408,18 @@ namespace PROYECTO
             this.label7.Size = new System.Drawing.Size(873, 16);
             this.label7.TabIndex = 516;
             // 
+            // label29
+            // 
+            this.label29.AutoSize = true;
+            this.label29.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label29.ForeColor = System.Drawing.Color.Red;
+            this.label29.Location = new System.Drawing.Point(395, 123);
+            this.label29.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(26, 32);
+            this.label29.TabIndex = 617;
+            this.label29.Text = "*";
+            // 
             // frmCajaChica
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -462,5 +476,6 @@ namespace PROYECTO
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.ComboBox cmbMoneda;
+        private System.Windows.Forms.Label label29;
     }
 }

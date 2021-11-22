@@ -38,7 +38,7 @@ namespace PROYECTO
         private String tipoDocumento = "";
         private Double IndiceDocumento = 0, indiceServicio = 0, txtCredDisponible = 0;
         private int indiceFactura = 0;
-        private String tipoCliente = "", txtUbicacion = "", txtTelefono = "", cmbMoneda = "CRC", lblMontoEnLetras = "", idCliente = "";
+        private String tipoCliente = "", txtUbicacion = "", txtTelefono = "", lblMontoEnLetras = "", idCliente = "";
         private double LimiteSaldo = 0, SaldoUsado = 0, SaldoLibre = 0, txtTipoCambio = 0, txtAdelantos = 0, cantidad2 = 0;
         private DateTime dtpFechaFactura;
 
@@ -175,7 +175,7 @@ namespace PROYECTO
             txtTotalFactura.Text = "¢ 0.00";
             txtUbicacion = "";
             chkDescuento.Checked = false;
-            cmbMoneda = "CRC";
+            cmbMoneda.SelectedIndex = 0;
             oConexion.cerrarConexion();
             oConexion.abrirConexion();
             DateTime fecha = oConexion.fecha();
@@ -191,6 +191,10 @@ namespace PROYECTO
         {
             try
             {
+                btnFacturar.Visible = true;
+                btnImprimir.Visible = false;
+                btnImprimir.Enabled = false;
+
                 Boolean vFacturasAbiertas = false;
 
                 oConexion.cerrarConexion();
@@ -244,7 +248,7 @@ namespace PROYECTO
                         oFactura.NumFactura = int.Parse(txtFactura.Text);
                         oFactura.FechaFactura = dtpFechaFactura;
                         oFactura.Impuesto = Double.Parse(txtMontoIV.Text.Substring(1));
-                        oFactura.Moneda = cmbMoneda;
+                        oFactura.Moneda = cmbMoneda.Text;
                         oFactura.Nombre = txtANombreDe.Text;
                         oFactura.Observacion = "";
                         oFactura.Saldo = rbCredito.Checked ? Double.Parse(txtTotalFactura.Text.Substring(1)) : 0;
@@ -306,9 +310,9 @@ namespace PROYECTO
             indiceServicio = 0;
             txtDescServicio.Text = "";
             indiceDetalle = 0;
-            txtSubTotalLinea.Text = cmbMoneda.Equals("CRC") ? "¢ 0.00" : cmbMoneda.Equals("USD") ? "$ 0.00" : "¢ 0.00";
-            txtPrecioUnitario.Text = cmbMoneda.Equals("CRC") ? "¢ 0.00" : cmbMoneda.Equals("USD") ? "$ 0.00" : "¢ 0.00";
-            txtTotalPorLinea.Text = cmbMoneda.Equals("CRC") ? "¢ 0.00" : cmbMoneda.Equals("USD") ? "$ 0.00" : "¢ 0.00";
+            txtSubTotalLinea.Text = cmbMoneda.Text.Equals("CRC") ? "¢ 0.00" : cmbMoneda.Text.Equals("USD") ? "$ 0.00" : "¢ 0.00";
+            txtPrecioUnitario.Text = cmbMoneda.Text.Equals("CRC") ? "¢ 0.00" : cmbMoneda.Text.Equals("USD") ? "$ 0.00" : "¢ 0.00";
+            txtTotalPorLinea.Text = cmbMoneda.Text.Equals("CRC") ? "¢ 0.00" : cmbMoneda.Text.Equals("USD") ? "$ 0.00" : "¢ 0.00";
             txtLineaDescuento.Text = "0";
             txtCodCabys.Clear();
 
@@ -343,7 +347,11 @@ namespace PROYECTO
 
         private void frmFacturacion_Load(object sender, EventArgs e)
         {
-            this.Text = this.Text + " - " + this.Name;
+            if (AplicaFE(out String pApiToken, out String pAccessToken))
+                this.Text = "Tipo de Facturación: Tributación por Factura Electrónica";
+            else
+                this.Text = "Tipo de Facturación: Regimen Simplificado";
+
             btnGuardar.Visible = true;
             obtieneTipoCambio();
 
@@ -448,7 +456,7 @@ namespace PROYECTO
                         txtANombreDe.Text = odata.Rows[0]["fac_nombre"].ToString();
                         txtTelefono = odata.Rows[0]["fac_telefono"].ToString();
                         txtUbicacion = odata.Rows[0]["fac_ubicacion"].ToString();
-                        cmbMoneda = odata.Rows[0]["fac_moneda"].ToString();
+                        cmbMoneda.SelectedItem = odata.Rows[0]["fac_moneda"].ToString();
                         txtTipoCambio = double.Parse(odata.Rows[0]["fac_tipo_cambio"].ToString());
                         txtEstado.Text = odata.Rows[0]["fac_estado"].ToString();
                         String porcentaje = odata.Rows[0]["fac_pordescuento"].ToString();
@@ -460,7 +468,7 @@ namespace PROYECTO
                             chkDescuento.Checked = true;
                         txtPorcDecuento.Text = porcentaje;
 
-                        if (cmbMoneda.Equals("CRC"))
+                        if (cmbMoneda.Text.Equals("CRC"))
                         {
                             txtMontoIV.Text = "¢ " + odata.Rows[0]["fac_subtotal"].ToString();
                             txtSubTotal.Text = "¢ " + (Double.Parse(odata.Rows[0]["fac_excento"].ToString()) + Double.Parse(odata.Rows[0]["fac_subtotal"].ToString()));
@@ -468,7 +476,7 @@ namespace PROYECTO
                             txtTotalFactura.Text = "¢ " + odata.Rows[0]["fac_total"].ToString();
                             txtAdelantos = double.Parse(odata.Rows[0]["fac_adelanto"].ToString());
                         }
-                        else if (cmbMoneda.Equals("USD"))
+                        else if (cmbMoneda.Text.Equals("USD"))
                         {
                             txtMontoIV.Text = "$ " + odata.Rows[0]["fac_subtotal"].ToString();
                             txtSubTotal.Text = "$ " + (Double.Parse(odata.Rows[0]["fac_excento"].ToString()) + Double.Parse(odata.Rows[0]["fac_subtotal"].ToString()));
@@ -538,7 +546,7 @@ namespace PROYECTO
                             lblFE_Comprobacion.Text = "";
                             lblFE_Recepcion.Text = "";
                         }
-
+                        CalculaEstado();
                         VerificaEstados_FE();
 
                     }
@@ -672,7 +680,7 @@ namespace PROYECTO
                     oFactura.NumFactura = int.Parse(txtFactura.Text);
                     oFactura.DiasCredito = txtDias;
                     oFactura.FechaFactura = dtpFechaFactura;
-                    oFactura.Moneda = cmbMoneda;
+                    oFactura.Moneda = cmbMoneda.Text;
                     oFactura.Nombre = txtANombreDe.Text;
                     String comentario = "";
                     DataTable ot = oFacturaDAO.ConsultaFactura(txtFactura.Text, PROYECTO.Properties.Settings.Default.No_cia);
@@ -740,7 +748,7 @@ namespace PROYECTO
                 indiceServicio = double.Parse(pIndiceServicio);
                 txtDescServicio.Text = pDescripcion;
 
-                txtPrecioUnitario.Text = cmbMoneda.Equals("CRC") ? double.Parse("0").ToString("¢ ###,###,##0.00") : cmbMoneda.Equals("USD") ? double.Parse("0").ToString("$ ###,###,##0.00") : double.Parse("0").ToString("¢ ###,###,##0.00");
+                txtPrecioUnitario.Text = cmbMoneda.Text.Equals("CRC") ? double.Parse("0").ToString("¢ ###,###,##0.00") : cmbMoneda.Text.Equals("USD") ? double.Parse("0").ToString("$ ###,###,##0.00") : double.Parse("0").ToString("¢ ###,###,##0.00");
 
                 txtCantidad.Focus();
 
@@ -805,8 +813,8 @@ namespace PROYECTO
 
                 vTipoIV = double.Parse(dgrDatos["SER_impuestos", fila].Value.ToString());
 
-                if (cmbMoneda.Equals("CRC")) cadena = "¢";
-                else if (cmbMoneda.Equals("USD")) cadena = "$";
+                if (cmbMoneda.Text.Equals("CRC")) cadena = "¢";
+                else if (cmbMoneda.Text.Equals("USD")) cadena = "$";
 
                 txtPrecioUnitario.Text = cadena + Double.Parse(dgrDatos["DETFAC_PRECIO_UNITARIO", fila].Value.ToString()).ToString(" ###,###,##0.00");
 
@@ -1110,19 +1118,26 @@ namespace PROYECTO
 
                 granTotal = granTotal - adelantos;
 
-                if (cmbMoneda.Equals("CRC"))
+                if (cmbMoneda.Text.Equals("CRC"))
                 {
                     txtMontoIV.Text = "¢ ";
                     txtSubTotal.Text = "¢ ";
                     txtDescuento.Text = "¢ ";
                     txtTotalFactura.Text = "¢ ";
                 }
-                else if (cmbMoneda.Equals("USD"))
+                else if (cmbMoneda.Text.Equals("USD"))
                 {
                     txtMontoIV.Text = "$ ";
                     txtSubTotal.Text = "$ ";
                     txtDescuento.Text = "$ ";
                     txtTotalFactura.Text = "$ ";
+                }
+                else
+                {
+                    txtMontoIV.Text = "¢ ";
+                    txtSubTotal.Text = "¢ ";
+                    txtDescuento.Text = "¢ ";
+                    txtTotalFactura.Text = "¢ ";
                 }
 
                 if (totalMonto_IV > 0)
@@ -1142,7 +1157,7 @@ namespace PROYECTO
 
                 if (granTotal > 0)
                 {
-                    if (cmbMoneda.Equals("CRC"))
+                    if (cmbMoneda.Text.Equals("CRC"))
                     {
                         RedondearNumero oRedondear = new RedondearNumero();
                         granTotal = oRedondear.Redondear(granTotal);
@@ -1184,8 +1199,8 @@ namespace PROYECTO
             {
                 if (Double.Parse(txtTotalFactura.Text.Substring(1)) > 0)
                 {
-                    if (cmbMoneda.Equals("CRC")) cadena = "colones";
-                    else if (cmbMoneda.Equals("USD")) cadena = "dolares";
+                    if (cmbMoneda.Text.Equals("CRC")) cadena = "colones";
+                    else if (cmbMoneda.Text.Equals("USD")) cadena = "dolares";
 
                     objeto = new Cantidad_a_Letra();
                     String montoenletras = objeto.ConvertirCadena(Double.Parse(txtTotalFactura.Text.Substring(1)), cadena);
@@ -1349,7 +1364,7 @@ namespace PROYECTO
                     ofacturaPendiente.FechaVence = dtpFechaFactura.AddDays(txtDias);
                     ofacturaPendiente.IdCliente = int.Parse(idCliente);
                     ofacturaPendiente.Impuesto = 0;
-                    ofacturaPendiente.Moneda = cmbMoneda;
+                    ofacturaPendiente.Moneda = cmbMoneda.Text;
                     ofacturaPendiente.Monto = Double.Parse(txtTotalFactura.Text.Substring(1)) + txtAdelantos;
                     ofacturaPendiente.Nombre = oFacturaDAO.ConsultaCliente(idCliente, PROYECTO.Properties.Settings.Default.No_cia).Rows[0]["cli_nombre"].ToString();
                     ofacturaPendiente.NumFactura = txtFactura.Text;
@@ -1493,9 +1508,9 @@ namespace PROYECTO
                 //    total = Double.Parse(txtCantidad.Text) * Double.Parse(txtUnidEmba.Text) * Double.Parse(txtCostoUnitario.Text);
                 //else
                 total = Double.Parse(txtCantidad.Text) * Double.Parse(txtPrecioUnitario.Text.Substring(1));
-                if (cmbMoneda.Equals("CRC"))
+                if (cmbMoneda.Text.Equals("CRC"))
                     cadena = "¢";
-                else if (cmbMoneda.Equals("USD"))
+                else if (cmbMoneda.Text.Equals("USD"))
                     cadena = "$";
 
                 txtTotalPorLinea.Text = cadena + " " + total.ToString("###,###,##0.00");
@@ -2430,6 +2445,9 @@ namespace PROYECTO
                 btnGuardarDetalle.Enabled = false;
                 btnEliminarDetalle.Enabled = false;
                 gbFormasPago.Enabled = true;
+                btnFacturar.Visible = true;
+                btnImprimir.Visible = false;
+                btnImprimir.Enabled = false;
             }
             else if (txtEstado.Text.Equals("ABIERTA"))
             {
@@ -2443,6 +2461,9 @@ namespace PROYECTO
                 btnGuardarDetalle.Enabled = true;
                 btnEliminarDetalle.Enabled = true;
                 gbFormasPago.Enabled = true;
+                btnFacturar.Visible = true;
+                btnImprimir.Visible = false;
+                btnImprimir.Enabled = false;
             }
             else if (txtEstado.Text.Equals("FACTURADA"))
             {
@@ -2456,6 +2477,9 @@ namespace PROYECTO
                 btnGuardarDetalle.Enabled = false;
                 btnEliminarDetalle.Enabled = false;
                 gbFormasPago.Enabled = false;
+                btnFacturar.Visible = false;
+                btnImprimir.Visible = true;
+                btnImprimir.Enabled = true;
             }
             else if (txtEstado.Text.Equals("ANULADA"))
             {
@@ -2469,6 +2493,9 @@ namespace PROYECTO
                 btnGuardarDetalle.Enabled = false;
                 btnEliminarDetalle.Enabled = false;
                 gbFormasPago.Enabled = false;
+                btnFacturar.Visible = true;
+                btnImprimir.Visible = false;
+                btnImprimir.Enabled = false;
             }
         }
 
@@ -2490,13 +2517,13 @@ namespace PROYECTO
 
                     double total = subtotal - montoDescuento + montoIV;
 
-                    if (cmbMoneda.Equals("CRC"))
+                    if (cmbMoneda.Text.Equals("CRC"))
                     {
                         RedondearNumero oRedondear = new RedondearNumero();
                         total = oRedondear.Redondear(total);
                     }
 
-                    switch (cmbMoneda.Trim())
+                    switch (cmbMoneda.Text)
                     {
                         case "CRC":
                             txtSubTotalLinea.Text = subtotal.ToString("¢ ###,###,##0.00");
@@ -2526,13 +2553,13 @@ namespace PROYECTO
 
                     double total = subtotal - montoDescuento + montoIV;
 
-                    if (cmbMoneda.Equals("CRC"))
+                    if (cmbMoneda.Text.Equals("CRC"))
                     {
                         RedondearNumero oRedondear = new RedondearNumero();
                         total = oRedondear.Redondear(total);
                     }
 
-                    switch (cmbMoneda.Trim())
+                    switch (cmbMoneda.Text)
                     {
                         case "CRC":
                             txtSubTotalLinea.Text = subtotal.ToString("¢ ###,###,##0.00");
@@ -2543,8 +2570,8 @@ namespace PROYECTO
                             txtTotalPorLinea.Text = total.ToString("$ ###,###,##0.00");
                             break;
                         default:
-                            txtSubTotalLinea.Text = subtotal.ToString("###,###,##0.00");
-                            txtTotalPorLinea.Text = total.ToString("###,###,##0.00");
+                            txtSubTotalLinea.Text = subtotal.ToString("¢ ###,###,##0.00");
+                            txtTotalPorLinea.Text = total.ToString("¢ ###,###,##0.00");
                             break;
                     }
                 }
@@ -2616,6 +2643,11 @@ namespace PROYECTO
             }
         }
 
+        private void btnImprimir_Click(object sender, EventArgs e)
+        {
+            ImprimirFactura();
+        }
+
         private void txtLineaDescuento_KeyPress(object sender, KeyPressEventArgs e)
         {
             int puntos = 0;
@@ -2646,8 +2678,8 @@ namespace PROYECTO
                 oConexion.cerrarConexion();
                 if (oConexion.abrirConexion())
                 {
-                    string monedaSaldo = cmbMoneda;
-                    string monedaFactura = cmbMoneda;
+                    string monedaSaldo = cmbMoneda.Text;
+                    string monedaFactura = cmbMoneda.Text;
                     double tc = txtTipoCambio;
                     LimiteSaldo = 0;
                     SaldoUsado = 0;
@@ -2657,11 +2689,11 @@ namespace PROYECTO
                     if (oLimiteSaldo.Rows.Count > 0)
                     {
                         monedaSaldo = oLimiteSaldo.Rows[0]["CLI_LC_MONEDA"].ToString();
-                        if (monedaSaldo.Equals(cmbMoneda))
+                        if (monedaSaldo.Equals(cmbMoneda.Text))
                             LimiteSaldo = double.Parse(oLimiteSaldo.Rows[0]["CLI_LC_LIMITE"].ToString());
-                        else if (monedaSaldo.Equals("CRC") && cmbMoneda.Equals("USD"))
+                        else if (monedaSaldo.Equals("CRC") && cmbMoneda.Text.Equals("USD"))
                             LimiteSaldo = double.Parse(oLimiteSaldo.Rows[0]["CLI_LC_LIMITE"].ToString()) / tc;
-                        else if (monedaSaldo.Equals("USD") && cmbMoneda.Equals("CRC"))
+                        else if (monedaSaldo.Equals("USD") && cmbMoneda.Text.Equals("CRC"))
                             LimiteSaldo = double.Parse(oLimiteSaldo.Rows[0]["CLI_LC_LIMITE"].ToString()) * tc;
                     }
 
@@ -2671,19 +2703,19 @@ namespace PROYECTO
                     {
                         monedaFactura = ofila["FACP_MONEDA"].ToString();
 
-                        if (monedaFactura.Equals(cmbMoneda))
+                        if (monedaFactura.Equals(cmbMoneda.Text))
                             SaldoUsado += double.Parse(ofila["FACP_SALDO"].ToString());
-                        else if (monedaFactura.Equals("CRC") && cmbMoneda.Equals("USD"))
+                        else if (monedaFactura.Equals("CRC") && cmbMoneda.Text.Equals("USD"))
                             SaldoUsado += double.Parse(ofila["FACP_SALDO"].ToString()) / tc;
-                        else if (monedaFactura.Equals("USD") && cmbMoneda.Equals("CRC"))
+                        else if (monedaFactura.Equals("USD") && cmbMoneda.Text.Equals("CRC"))
                             SaldoUsado += double.Parse(ofila["FACP_SALDO"].ToString()) * tc;
                     }
 
                     SaldoLibre = LimiteSaldo - SaldoUsado;
 
-                    if (cmbMoneda.Equals("USD"))
+                    if (cmbMoneda.Text.Equals("USD"))
                         txtCredDisponible = SaldoLibre;//.ToString("$ ###,###,##0.00");
-                    else if (cmbMoneda.Equals("CRC"))
+                    else if (cmbMoneda.Text.Equals("CRC"))
                         txtCredDisponible = SaldoLibre;//.ToString("¢ ###,###,##0.00");
                 }
                 else
@@ -2867,6 +2899,87 @@ namespace PROYECTO
             }
         }
 
+        private void ImprimirFactura()
+        {
+            try
+            {
+                String sql = "";
+                oConexion.cerrarConexion();
+                if (oConexion.abrirConexion())
+                {
+                    sql = "select fac_numero, fac_fecha, cli_identificacion, cli_tipo_id, cli_correo, fac_nombre, fac_moneda, fac_tipo_cambio, fac_subtotal, fac_descuento, fac_impuesto, fac_total, fac_vendedor, fac_crea_fe, fe_clave, fe_consecutivo,";
+                    sql += " detfac_cantidad, detfac_medida, detfac_codigo, detfac_descripcion, DETFAC_PRECIO_UNITARIO, detfac_subtotal, detfac_descuento, detfac_monto_iv, detfac_precio_total, detfac_numerolinea, cod_cabys,";
+                    sql += " EMPR_NOMBRE, EMPR_LOGO, EMPR_DIRECCION EMPR_OTROS, EMPR_IDENTIFICACION, EMPR_TELEFONO, EMPR_CORREO, user usuario";
+                    sql += " from tbl_factura f, tbl_factura_detalle fd, tbl_clientes c, tbl_empresa e";
+                    sql += " where f.no_cia='" + PROYECTO.Properties.Settings.Default.No_cia + "' and f.fac_linea = '" + indiceFactura + "' and f.no_cia=fd.no_cia and f.fac_linea=fd.DETFAC_INDICEFACTURA and f.no_cia=c.no_cia and f.FAC_CLIENTE = CLI_LINEA and f.no_cia = e.no_cia";
+
+                    oReporteDAO = new ReportesDAO();
+                    DataTable oTable = oConexion.EjecutaSentencia(sql);
+
+                    if (oConexion.Error())
+                        MessageBox.Show("Error al listar los datos:\n" + oConexion.DescError(), "Error de consulta", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                    if (oTable.Rows.Count > 0)
+                    {
+                        frmVisorReportes oVisor = frmVisorReportes.getInstance();
+                        oVisor.MdiParent = this.MdiParent;
+                        rptFactura oReporte = new rptFactura();
+
+                        if (AplicaFE(out String pApiToken, out String pAccessToken))
+                            oReporte.DataDefinition.FormulaFields["Leyenda"].Text = "'Autorizada mediante la Resolución DGT-R-033-2019, publicada en La Gaceta, Alcance N° 147 del 27 de junio de 2019. Documento Electrónico 4.3'";
+                        else
+                            oReporte.DataDefinition.FormulaFields["Leyenda"].Text = "'Autorizada mediante oficio N° 04-0017-97 de fecha 30-09-97 de la D.G.T.D - REGIMEN SIMPLIFICADO'";
+
+
+                        oReporte.SetDataSource(oTable);
+                        oVisor.ReportSource(oReporte);
+                        oVisor.Show();
+                    }
+                    else
+                        MessageBox.Show("No hay datos para mostrar.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    oConexion.cerrarConexion();
+                }
+                else
+                    MessageBox.Show("Error al conectarse a la base de datos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                oConexion.cerrarConexion();
+            }
+        }
+
+        private void cmbMoneda_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                String cadena = "";
+                switch (cmbMoneda.SelectedIndex)
+                {
+                    case 0:
+                        // txtTipoCambio.Text = "¢ " + TipoCambio.Tables[0].Rows[0].ItemArray[0].ToString();
+                        txtSubTotal.Text = "¢ " + Double.Parse(txtSubTotal.Text.Substring(1)).ToString("###,###,##0.00");
+                        txtDescuento.Text = "¢ " + Double.Parse(txtDescuento.Text.Substring(1)).ToString("###,###,##0.00");
+                        txtMontoIV.Text = "¢ " + Double.Parse(txtMontoIV.Text.Substring(1)).ToString("###,###,##0.00");
+                        txtTotalFactura.Text = "¢ " + Double.Parse(txtTotalFactura.Text.Substring(1)).ToString("###,###,##0.00");
+                        cadena = "¢ ";
+                        break;
+                    case 1:
+                        //txtTipoCambio.Text = "¢ " + TipoCambio.Tables[0].Rows[0].ItemArray[0].ToString();
+                        txtSubTotal.Text = "$ " + Double.Parse(txtSubTotal.Text.Substring(1)).ToString("###,###,##0.00");
+                        txtDescuento.Text = "$ " + Double.Parse(txtDescuento.Text.Substring(1)).ToString("###,###,##0.00");
+                        txtMontoIV.Text = "$ " + Double.Parse(txtMontoIV.Text.Substring(1)).ToString("###,###,##0.00");
+                        txtTotalFactura.Text = "$ " + Double.Parse(txtTotalFactura.Text.Substring(1)).ToString("###,###,##0.00");
+                        cadena = "$ ";
+                        break;
+                }
+                if (txtTotalPorLinea.Text.Length == 2)
+                    txtTotalPorLinea.Text = cadena;
+                else
+                    if (!txtTotalPorLinea.Text.Equals("") && !txtTotalPorLinea.Text.Equals("0"))
+                    txtTotalPorLinea.Text = cadena + txtTotalPorLinea.Text.Substring(2);
+            }
+            catch { }
+        }
         public class RootFE
         {
             public string sucursal { get; set; }

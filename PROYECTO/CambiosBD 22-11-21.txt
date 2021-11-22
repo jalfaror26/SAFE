@@ -1,0 +1,345 @@
+create or replace PACKAGE PCKUSUARIO as
+  procedure paInsertar(nomUsuario varchar2,
+                       pass       varchar2,
+                       rol        varchar2,
+                       pNo_cia    VARCHAR2,
+                       pNombre VARCHAR2,
+                       pApellido1 VARCHAR2,
+                       pApellido2 VARCHAR2,
+                       pCedula VARCHAR2,
+                       pEmail VARCHAR2);
+
+  procedure paGuardarImagen(nomUsuario varchar2,
+                            usimagen   BLOB,
+                            pNo_cia    VARCHAR2);
+
+  procedure paCambiarContrasena(nomUsuario varchar2,
+                                contrasena varchar2,
+                                pNo_cia    VARCHAR2);
+
+  procedure paResetearContrasena(nomUsuario varchar2,
+                                contrasena varchar2,
+                                pNo_cia    VARCHAR2);
+                                
+  procedure paEliminar(nomUsuario varchar2, pNo_cia VARCHAR2);
+
+end;
+
+/
+
+create or replace PACKAGE BODY PCKUSUARIO AS
+  PROCEDURE paInsertar(nomUsuario VARCHAR2,
+                       pass       VARCHAR2,
+                       rol        VARCHAR2,
+                       pNo_cia    VARCHAR2,
+                       pNombre    VARCHAR2,
+                       pApellido1 VARCHAR2,
+                       pApellido2 VARCHAR2,
+                       pCedula    VARCHAR2,
+                       pEmail     VARCHAR2) IS
+  
+    CURSOR oCursor IS
+      SELECT pan_id FROM TBL_PANTALLAS;
+  
+    vsql varchar2(200);
+  
+  BEGIN
+  
+    UPDATE TBUSUARIO
+       SET nombre    = pNombre,
+           apellido1 = pApellido1,
+           apellido2 = pApellido2,
+           cedula    = pCedula,
+           email     = pEmail
+     WHERE No_cia = pNo_cia
+       and USUARIO = nomUsuario
+       AND ESTADO = 1;
+  
+    IF (SQL%ROWCOUNT = 0) THEN
+      INSERT INTO TBUSUARIO
+        (usuario,
+         contrasenna,
+         fecha,
+         rol,
+         estado,
+         no_cia,
+         nombre,
+         apellido1,
+         apellido2,
+         cedula,
+         email,
+         ind_req_cambio)
+      VALUES
+        (nomUsuario,
+         pass,
+         sysdate,
+         rol,
+         1,
+         pNo_cia,
+         pNombre,
+         pApellido1,
+         pApellido2,
+         pCedula,
+         pEmail,
+         'S');
+    
+      IF (rol = 'ADMINISTRADOR') THEN
+        FOR registro IN oCursor LOOP
+          INSERT INTO TBL_PERMISOS
+          VALUES
+            (nomUsuario, registro.pan_id, 1, 1, pNo_cia);
+        END LOOP;
+      else
+        FOR registro IN oCursor LOOP
+          INSERT INTO TBL_PERMISOS
+          VALUES
+            (nomUsuario, registro.pan_id, 0, 1, pNo_cia);
+        END LOOP;
+      END IF;
+    END IF;
+  
+    COMMIT;
+  EXCEPTION
+    WHEN timeout_on_resource THEN
+      raise_application_error(-20100,
+                              'Ha excedido el tiempo de espera maximo al insertar el usuario, vuelva a intentarlo');
+    WHEN dup_val_on_index THEN
+      raise_application_error(-20100,
+                              'Usuario existente - No_cia: ' || pNo_cia);
+    WHEN OTHERS THEN
+      raise_application_error(-20100,
+                              'Error desconocido al insertar el usuario ' ||
+                              sqlerrm);
+  END;
+  ---------------------------------------------------------------------------
+  PROCEDURE paGuardarImagen(nomUsuario VARCHAR2,
+                            usimagen   BLOB,
+                            pNo_cia    VARCHAR2) IS
+  
+  BEGIN
+    UPDATE TBUSUARIO
+       SET IMAGEN = usimagen
+     WHERE No_cia = pNo_cia
+       and USUARIO = nomUsuario
+       AND ESTADO = 1;
+  
+    COMMIT;
+  EXCEPTION
+    WHEN timeout_on_resource THEN
+      raise_application_error(-20100,
+                              'Ha excedido el tiempo de espera maximo al insertar el usuario, vuelva a intentarlo');
+    WHEN dup_val_on_index THEN
+      raise_application_error(-20100, 'Usuario existente');
+    WHEN OTHERS THEN
+      raise_application_error(-20100,
+                              'Error desconocido al insertar el usuario ' ||
+                              sqlerrm);
+  END;
+  ---------------------------------------------------------------------------
+  PROCEDURE paCambiarContrasena(nomUsuario VARCHAR2,
+                                contrasena VARCHAR2,
+                                pNo_cia    VARCHAR2) IS
+  BEGIN
+    UPDATE TBUSUARIO
+       SET CONTRASENNA = contrasena, ind_req_cambio = 'N'
+     WHERE No_cia = pNo_cia
+       and USUARIO = nomUsuario;
+    COMMIT;
+  EXCEPTION
+    WHEN timeout_on_resource THEN
+      raise_application_error(-20100,
+                              'Ha excedido el tiempo de espera maximo al modificar el usuario, vuelva a intentarlo');
+    WHEN dup_val_on_index THEN
+      raise_application_error(-20100, 'Usuario existente');
+    WHEN OTHERS THEN
+      raise_application_error(-20100,
+                              'Error desconocido al modificar el usuario ' ||
+                              sqlerrm);
+  END;
+  ---------------------------------------------------------------------------
+  PROCEDURE paResetearContrasena(nomUsuario VARCHAR2,
+                                 contrasena VARCHAR2,
+                                 pNo_cia    VARCHAR2) IS
+  BEGIN
+    UPDATE TBUSUARIO
+       SET CONTRASENNA = contrasena, ind_req_cambio = 'S'
+     WHERE No_cia = pNo_cia
+       and USUARIO = nomUsuario;
+    COMMIT;
+  EXCEPTION
+    WHEN timeout_on_resource THEN
+      raise_application_error(-20100,
+                              'Ha excedido el tiempo de espera maximo al resetear la contraseña del usuario, vuelva a intentarlo');
+    WHEN dup_val_on_index THEN
+      raise_application_error(-20100, 'Usuario existente');
+    WHEN OTHERS THEN
+      raise_application_error(-20100,
+                              'Error desconocido al resetear la contraseña del usuario ' ||
+                              sqlerrm);
+  END;
+  ---------------------------------------------------------------------------  
+  PROCEDURE paEliminar(nomUsuario VARCHAR2, pNo_cia VARCHAR2) IS
+  BEGIN
+  
+    UPDATE TBL_PERMISOS
+       SET per_estado = 0
+     WHERE No_cia = pNo_cia
+       and per_usuario = nomUsuario;
+  
+    UPDATE TBUSUARIO
+       SET estado = 0
+     WHERE No_cia = pNo_cia
+       and usuario = nomUsuario;
+  
+    COMMIT;
+  EXCEPTION
+    WHEN timeout_on_resource THEN
+      raise_application_error(-20100,
+                              'Ha excedido el tiempo de espera maximo al eliminar el usuario, por favor intente de nuevo');
+    WHEN OTHERS THEN
+      raise_application_error(-20100,
+                              'Error desconocido al eliminar el usuario ' ||
+                              sqlerrm);
+  END;
+
+END;
+
+
+/
+
+create or replace NONEDITIONABLE TRIGGER TR_FACTURA_BIT
+  BEFORE INSERT OR DELETE OR UPDATE ON TBL_FACTURA
+  FOR EACH ROW
+
+BEGIN
+  IF deleting THEN
+    INSERT INTO TBL_BITACORA
+      (USUARIO_DUENO,
+       TABLA,
+       MOVIMIENTO,
+       USUARIO,
+       FECHA,
+       LLAVE,
+       VALORES,
+       NO_CIA,
+       NOMBRE_TABLA,
+       TIPO_TABLA)
+    VALUES
+      ('SAFE',
+       'TBL_FACTURA', --cambia
+       'DELETE',
+       user,
+       sysdate,
+       'NO_CIA = ' || :OLD.NO_CIA || ' --> ' || 'FAC_LINEA = ' || :OLD.FAC_LINEA || ' --> ' || '<eol>', -- Llave primaria
+       'FAC_NUMERO = ' || :OLD.FAC_NUMERO || ' --> ' || -- empieza 
+       'FAC_FECHA = ' || :OLD.FAC_FECHA || ' --> ' || 
+       'FAC_CLIENTE = ' || :OLD.FAC_CLIENTE || ' --> ' || 
+       'FAC_NOMBRE = ' || :OLD.FAC_NOMBRE || ' --> ' || 
+       'FAC_TELEFONO = ' || :OLD.FAC_TELEFONO || ' --> ' || 
+       'FAC_UBICACION = ' || :OLD.FAC_UBICACION || ' --> ' ||        
+       'FAC_DIAS_CREDITO = ' || :OLD.FAC_DIAS_CREDITO || ' --> ' || 
+       'FAC_TIPO_CREDITO = ' || :OLD.FAC_TIPO_CREDITO || ' --> ' || 
+       'FAC_MONEDA = ' || :OLD.FAC_MONEDA || ' --> ' || 
+       'FAC_TIPO_CAMBIO = ' || :OLD.FAC_TIPO_CAMBIO || ' --> ' || 
+       'FAC_EXCENTO = ' || :OLD.FAC_EXCENTO || ' --> ' || 
+       'FAC_SUBTOTAL = ' || :OLD.FAC_SUBTOTAL || ' --> ' || 
+       'FAC_IMPUESTO = ' || :OLD.FAC_IMPUESTO || ' --> ' || 
+       'FAC_DESCUENTO = ' || :OLD.FAC_DESCUENTO || ' --> ' || 
+       'FAC_TOTAL = ' || :OLD.FAC_TOTAL || ' --> ' || 
+       'FAC_SALDO = ' || :OLD.FAC_SALDO || ' --> ' || 
+       'FAC_ESTADO = ' || :OLD.FAC_ESTADO || ' --> ' || 
+       'FAC_OBSERVACION = ' || :OLD.FAC_OBSERVACION || ' --> ' || 
+       'FAC_TIPOPAGO = ' || :OLD.FAC_TIPOPAGO || ' --> ' || 
+       '<eol>',
+       :new.NO_CIA,
+       'FACTURAS',
+       'PROCESOS');
+  ELSIF inserting THEN
+    INSERT INTO TBL_BITACORA
+      (USUARIO_DUENO,
+       TABLA,
+       MOVIMIENTO,
+       USUARIO,
+       FECHA,
+       LLAVE,
+       VALORES,
+       NO_CIA,
+       NOMBRE_TABLA,
+       TIPO_TABLA)
+    VALUES
+      ('SAFE',
+       'TBL_CLIENTES',
+       'INSERT',
+       user,
+       sysdate,
+       'NO_CIA = ' || :new.NO_CIA || ' --> ' || 'FAC_LINEA = ' || :new.FAC_LINEA || ' --> ' || '<eol>',
+       'FAC_NUMERO = ' || :new.FAC_NUMERO || ' --> ' || 
+       'FAC_FECHA = ' || :new.FAC_FECHA || ' --> ' || 
+       'FAC_CLIENTE = ' || :new.FAC_CLIENTE || ' --> ' || 
+       'FAC_NOMBRE = ' || :new.FAC_NOMBRE || ' --> ' || 
+       'FAC_TELEFONO = ' || :new.FAC_TELEFONO || ' --> ' || 
+       'FAC_UBICACION = ' || :new.FAC_UBICACION || ' --> ' ||        
+       'FAC_DIAS_CREDITO = ' || :new.FAC_DIAS_CREDITO || ' --> ' || 
+       'FAC_TIPO_CREDITO = ' || :new.FAC_TIPO_CREDITO || ' --> ' || 
+       'FAC_MONEDA = ' || :new.FAC_MONEDA || ' --> ' || 
+       'FAC_TIPO_CAMBIO = ' || :new.FAC_TIPO_CAMBIO || ' --> ' || 
+       'FAC_EXCENTO = ' || :new.FAC_EXCENTO || ' --> ' || 
+       'FAC_SUBTOTAL = ' || :new.FAC_SUBTOTAL || ' --> ' || 
+       'FAC_IMPUESTO = ' || :new.FAC_IMPUESTO || ' --> ' || 
+       'FAC_DESCUENTO = ' || :new.FAC_DESCUENTO || ' --> ' || 
+       'FAC_TOTAL = ' || :new.FAC_TOTAL || ' --> ' || 
+       'FAC_SALDO = ' || :new.FAC_SALDO || ' --> ' || 
+       'FAC_ESTADO = ' || :new.FAC_ESTADO || ' --> ' || 
+       'FAC_OBSERVACION = ' || :new.FAC_OBSERVACION || ' --> ' || 
+       'FAC_TIPOPAGO = ' || :new.FAC_TIPOPAGO || ' --> ' || 
+       '<eol>',
+       :new.NO_CIA,
+       'FACTURAS',
+       'PROCESOS');
+  ELSIF updating THEN
+    INSERT INTO TBL_BITACORA
+      (USUARIO_DUENO,
+       TABLA,
+       MOVIMIENTO,
+       USUARIO,
+       FECHA,
+       LLAVE,
+       VALORES,
+       NO_CIA,
+       NOMBRE_TABLA,
+       TIPO_TABLA)
+    VALUES
+      ('SAFE',
+       'TBL_CLIENTES',
+       'UPDATE',
+       user,
+       sysdate,
+       'NO_CIA = ' || :new.NO_CIA || ' --> ' || 'FAC_LINEA = ' || :new.FAC_LINEA || ' --> ' || '<eol>',
+       'FAC_NUMERO = ' || :new.FAC_NUMERO || ' --> ' || 
+       'FAC_FECHA = ' || :new.FAC_FECHA || ' --> ' || 
+       'FAC_CLIENTE = ' || :new.FAC_CLIENTE || ' --> ' || 
+       'FAC_NOMBRE = ' || :new.FAC_NOMBRE || ' --> ' || 
+       'FAC_TELEFONO = ' || :new.FAC_TELEFONO || ' --> ' || 
+       'FAC_UBICACION = ' || :new.FAC_UBICACION || ' --> ' ||        
+       'FAC_DIAS_CREDITO = ' || :new.FAC_DIAS_CREDITO || ' --> ' || 
+       'FAC_TIPO_CREDITO = ' || :new.FAC_TIPO_CREDITO || ' --> ' || 
+       'FAC_MONEDA = ' || :new.FAC_MONEDA || ' --> ' || 
+       'FAC_TIPO_CAMBIO = ' || :new.FAC_TIPO_CAMBIO || ' --> ' || 
+       'FAC_EXCENTO = ' || :new.FAC_EXCENTO || ' --> ' || 
+       'FAC_SUBTOTAL = ' || :new.FAC_SUBTOTAL || ' --> ' || 
+       'FAC_IMPUESTO = ' || :new.FAC_IMPUESTO || ' --> ' || 
+       'FAC_DESCUENTO = ' || :new.FAC_DESCUENTO || ' --> ' || 
+       'FAC_TOTAL = ' || :new.FAC_TOTAL || ' --> ' || 
+       'FAC_SALDO = ' || :new.FAC_SALDO || ' --> ' || 
+       'FAC_ESTADO = ' || :new.FAC_ESTADO || ' --> ' || 
+       'FAC_OBSERVACION = ' || :new.FAC_OBSERVACION || ' --> ' || 
+       'FAC_TIPOPAGO = ' || :new.FAC_TIPOPAGO || ' --> ' || 
+       '<eol>',
+       :new.NO_CIA,
+       'FACTURAS',
+       'PROCESOS');
+  END IF;
+END;
+
+/
+

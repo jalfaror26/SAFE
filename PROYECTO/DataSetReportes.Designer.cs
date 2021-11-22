@@ -2094,7 +2094,7 @@ namespace PROYECTO {
             
             private global::System.Data.DataColumn columndetfac_descripcion;
             
-            private global::System.Data.DataColumn columndetfac_preciounitario;
+            private global::System.Data.DataColumn columnDETFAC_PRECIO_UNITARIO;
             
             private global::System.Data.DataColumn columndetfac_subtotal;
             
@@ -2115,6 +2115,12 @@ namespace PROYECTO {
             private global::System.Data.DataColumn columnEMPR_OTROS;
             
             private global::System.Data.DataColumn columnusuario;
+            
+            private global::System.Data.DataColumn columnEMPR_IDENTIFICACION;
+            
+            private global::System.Data.DataColumn columnEMPR_TELEFONO;
+            
+            private global::System.Data.DataColumn columnEMPR_CORREO;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
@@ -2311,9 +2317,9 @@ namespace PROYECTO {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public global::System.Data.DataColumn detfac_preciounitarioColumn {
+            public global::System.Data.DataColumn DETFAC_PRECIO_UNITARIOColumn {
                 get {
-                    return this.columndetfac_preciounitario;
+                    return this.columnDETFAC_PRECIO_UNITARIO;
                 }
             }
             
@@ -2399,6 +2405,30 @@ namespace PROYECTO {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn EMPR_IDENTIFICACIONColumn {
+                get {
+                    return this.columnEMPR_IDENTIFICACION;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn EMPR_TELEFONOColumn {
+                get {
+                    return this.columnEMPR_TELEFONO;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn EMPR_CORREOColumn {
+                get {
+                    return this.columnEMPR_CORREO;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -2455,7 +2485,7 @@ namespace PROYECTO {
                         string detfac_medida, 
                         string detfac_codigo, 
                         string detfac_descripcion, 
-                        double detfac_preciounitario, 
+                        double DETFAC_PRECIO_UNITARIO, 
                         double detfac_subtotal, 
                         double detfac_descuento, 
                         double detfac_monto_iv, 
@@ -2465,7 +2495,10 @@ namespace PROYECTO {
                         string EMPR_NOMBRE, 
                         byte[] EMPR_LOGO, 
                         string EMPR_OTROS, 
-                        string usuario) {
+                        string usuario, 
+                        string EMPR_IDENTIFICACION, 
+                        string EMPR_TELEFONO, 
+                        string EMPR_CORREO) {
                 rptFacturaRow rowrptFacturaRow = ((rptFacturaRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         fac_numero,
@@ -2488,7 +2521,7 @@ namespace PROYECTO {
                         detfac_medida,
                         detfac_codigo,
                         detfac_descripcion,
-                        detfac_preciounitario,
+                        DETFAC_PRECIO_UNITARIO,
                         detfac_subtotal,
                         detfac_descuento,
                         detfac_monto_iv,
@@ -2498,7 +2531,10 @@ namespace PROYECTO {
                         EMPR_NOMBRE,
                         EMPR_LOGO,
                         EMPR_OTROS,
-                        usuario};
+                        usuario,
+                        EMPR_IDENTIFICACION,
+                        EMPR_TELEFONO,
+                        EMPR_CORREO};
                 rowrptFacturaRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowrptFacturaRow);
                 return rowrptFacturaRow;
@@ -2541,7 +2577,7 @@ namespace PROYECTO {
                 this.columndetfac_medida = base.Columns["detfac_medida"];
                 this.columndetfac_codigo = base.Columns["detfac_codigo"];
                 this.columndetfac_descripcion = base.Columns["detfac_descripcion"];
-                this.columndetfac_preciounitario = base.Columns["detfac_preciounitario"];
+                this.columnDETFAC_PRECIO_UNITARIO = base.Columns["DETFAC_PRECIO_UNITARIO"];
                 this.columndetfac_subtotal = base.Columns["detfac_subtotal"];
                 this.columndetfac_descuento = base.Columns["detfac_descuento"];
                 this.columndetfac_monto_iv = base.Columns["detfac_monto_iv"];
@@ -2552,6 +2588,9 @@ namespace PROYECTO {
                 this.columnEMPR_LOGO = base.Columns["EMPR_LOGO"];
                 this.columnEMPR_OTROS = base.Columns["EMPR_OTROS"];
                 this.columnusuario = base.Columns["usuario"];
+                this.columnEMPR_IDENTIFICACION = base.Columns["EMPR_IDENTIFICACION"];
+                this.columnEMPR_TELEFONO = base.Columns["EMPR_TELEFONO"];
+                this.columnEMPR_CORREO = base.Columns["EMPR_CORREO"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2597,8 +2636,8 @@ namespace PROYECTO {
                 base.Columns.Add(this.columndetfac_codigo);
                 this.columndetfac_descripcion = new global::System.Data.DataColumn("detfac_descripcion", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columndetfac_descripcion);
-                this.columndetfac_preciounitario = new global::System.Data.DataColumn("detfac_preciounitario", typeof(double), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columndetfac_preciounitario);
+                this.columnDETFAC_PRECIO_UNITARIO = new global::System.Data.DataColumn("DETFAC_PRECIO_UNITARIO", typeof(double), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDETFAC_PRECIO_UNITARIO);
                 this.columndetfac_subtotal = new global::System.Data.DataColumn("detfac_subtotal", typeof(double), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columndetfac_subtotal);
                 this.columndetfac_descuento = new global::System.Data.DataColumn("detfac_descuento", typeof(double), null, global::System.Data.MappingType.Element);
@@ -2619,6 +2658,12 @@ namespace PROYECTO {
                 base.Columns.Add(this.columnEMPR_OTROS);
                 this.columnusuario = new global::System.Data.DataColumn("usuario", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnusuario);
+                this.columnEMPR_IDENTIFICACION = new global::System.Data.DataColumn("EMPR_IDENTIFICACION", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnEMPR_IDENTIFICACION);
+                this.columnEMPR_TELEFONO = new global::System.Data.DataColumn("EMPR_TELEFONO", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnEMPR_TELEFONO);
+                this.columnEMPR_CORREO = new global::System.Data.DataColumn("EMPR_CORREO", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnEMPR_CORREO);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4516,17 +4561,17 @@ namespace PROYECTO {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public double detfac_preciounitario {
+            public double DETFAC_PRECIO_UNITARIO {
                 get {
                     try {
-                        return ((double)(this[this.tablerptFactura.detfac_preciounitarioColumn]));
+                        return ((double)(this[this.tablerptFactura.DETFAC_PRECIO_UNITARIOColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'detfac_preciounitario\' in table \'rptFactura\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'DETFAC_PRECIO_UNITARIO\' in table \'rptFactura\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tablerptFactura.detfac_preciounitarioColumn] = value;
+                    this[this.tablerptFactura.DETFAC_PRECIO_UNITARIOColumn] = value;
                 }
             }
             
@@ -4687,6 +4732,54 @@ namespace PROYECTO {
                 }
                 set {
                     this[this.tablerptFactura.usuarioColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public string EMPR_IDENTIFICACION {
+                get {
+                    try {
+                        return ((string)(this[this.tablerptFactura.EMPR_IDENTIFICACIONColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'EMPR_IDENTIFICACION\' in table \'rptFactura\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablerptFactura.EMPR_IDENTIFICACIONColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public string EMPR_TELEFONO {
+                get {
+                    try {
+                        return ((string)(this[this.tablerptFactura.EMPR_TELEFONOColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'EMPR_TELEFONO\' in table \'rptFactura\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablerptFactura.EMPR_TELEFONOColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public string EMPR_CORREO {
+                get {
+                    try {
+                        return ((string)(this[this.tablerptFactura.EMPR_CORREOColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'EMPR_CORREO\' in table \'rptFactura\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablerptFactura.EMPR_CORREOColumn] = value;
                 }
             }
             
@@ -4932,14 +5025,14 @@ namespace PROYECTO {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public bool Isdetfac_preciounitarioNull() {
-                return this.IsNull(this.tablerptFactura.detfac_preciounitarioColumn);
+            public bool IsDETFAC_PRECIO_UNITARIONull() {
+                return this.IsNull(this.tablerptFactura.DETFAC_PRECIO_UNITARIOColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public void Setdetfac_preciounitarioNull() {
-                this[this.tablerptFactura.detfac_preciounitarioColumn] = global::System.Convert.DBNull;
+            public void SetDETFAC_PRECIO_UNITARIONull() {
+                this[this.tablerptFactura.DETFAC_PRECIO_UNITARIOColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -5060,6 +5153,42 @@ namespace PROYECTO {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public void SetusuarioNull() {
                 this[this.tablerptFactura.usuarioColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsEMPR_IDENTIFICACIONNull() {
+                return this.IsNull(this.tablerptFactura.EMPR_IDENTIFICACIONColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetEMPR_IDENTIFICACIONNull() {
+                this[this.tablerptFactura.EMPR_IDENTIFICACIONColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsEMPR_TELEFONONull() {
+                return this.IsNull(this.tablerptFactura.EMPR_TELEFONOColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetEMPR_TELEFONONull() {
+                this[this.tablerptFactura.EMPR_TELEFONOColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsEMPR_CORREONull() {
+                return this.IsNull(this.tablerptFactura.EMPR_CORREOColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetEMPR_CORREONull() {
+                this[this.tablerptFactura.EMPR_CORREOColumn] = global::System.Convert.DBNull;
             }
         }
         

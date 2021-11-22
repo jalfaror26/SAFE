@@ -639,7 +639,7 @@ namespace PROYECTO
                 indiceServicio = double.Parse(pindiceServicio);
                 txtDescServicio.Text = pDescripcion;
 
-                txtPrecioUnitario.Text = cmbMoneda.Equals("CRC") ? double.Parse("0").ToString("¢ ###,###,##0.00") : cmbMoneda.Equals("USD") ? double.Parse("0").ToString("$ ###,###,##0.00") : double.Parse("0").ToString("¢ ###,###,##0.00");
+                txtPrecioUnitario.Text = cmbMoneda.Text.Equals("CRC") ? double.Parse("0").ToString("¢ ###,###,##0.00") : cmbMoneda.Text.Equals("USD") ? double.Parse("0").ToString("$ ###,###,##0.00") : double.Parse("0").ToString("¢ ###,###,##0.00");
 
                 txtCantidad.Focus();
 
@@ -1021,7 +1021,7 @@ namespace PROYECTO
 
                 if (granTotal > 0)
                 {
-                    if (cmbMoneda.Equals("CRC"))
+                    if (cmbMoneda.Text.Equals("CRC"))
                     {
                         RedondearNumero oRedondear = new RedondearNumero();
                         granTotal = oRedondear.Redondear(granTotal);
@@ -1059,8 +1059,8 @@ namespace PROYECTO
             {
                 if (Double.Parse(txtTotalCotizacion.Text.Substring(1)) > 0)
                 {
-                    if (cmbMoneda.Equals("CRC")) cadena = "colones";
-                    else if (cmbMoneda.Equals("USD")) cadena = "dolares";
+                    if (cmbMoneda.Text.Equals("CRC")) cadena = "colones";
+                    else if (cmbMoneda.Text.Equals("USD")) cadena = "dolares";
 
                     objeto = new Cantidad_a_Letra();
                     String montoenletras = objeto.ConvertirCadena(Double.Parse(txtTotalCotizacion.Text.Substring(1)), cadena);
@@ -1138,9 +1138,9 @@ namespace PROYECTO
                 //    total = Double.Parse(txtCantidad.Text) * Double.Parse(txtUnidEmba.Text) * Double.Parse(txtCostoUnitario.Text);
                 //else
                 total = Double.Parse(txtCantidad.Text) * Double.Parse(txtPrecioUnitario.Text.Substring(1));
-                if (cmbMoneda.Equals("CRC"))
+                if (cmbMoneda.Text.Equals("CRC"))
                     cadena = "¢";
-                else if (cmbMoneda.Equals("USD"))
+                else if (cmbMoneda.Text.Equals("USD"))
                     cadena = "$";
 
                 txtTotalPorLinea.Text = cadena + " " + total.ToString("###,###,##0.00");
@@ -1534,13 +1534,13 @@ namespace PROYECTO
 
                 double total = subtotal - descuento;
 
-                if (cmbMoneda.Equals("CRC"))
+                if (cmbMoneda.Text.Equals("CRC"))
                 {
                     RedondearNumero oRedondear = new RedondearNumero();
                     total = oRedondear.Redondear(total);
                 }
 
-                switch (cmbMoneda.Text.Trim())
+                switch (cmbMoneda.Text)
                 {
                     case "CRC":
                         txtSubTotalLinea.Text = subtotal.ToString("¢ ###,###,##0.00");
@@ -1780,18 +1780,18 @@ namespace PROYECTO
                 {
                     case 0:
                         // txtTipoCambio.Text = "¢ " + TipoCambio.Tables[0].Rows[0].ItemArray[0].ToString();
-                        txtSubTotal.Text = "¢ " + Double.Parse(txtSubTotal.Text.Substring(1));
-                        txtDescuento.Text = "¢ " + Double.Parse(txtDescuento.Text.Substring(1));
-                        txtMonto_IV.Text = "¢ " + Double.Parse(txtMonto_IV.Text.Substring(1));
-                        txtTotalCotizacion.Text = "¢ " + Double.Parse(txtTotalCotizacion.Text.Substring(1));
+                        txtSubTotal.Text = "¢ " + Double.Parse(txtSubTotal.Text.Substring(1)).ToString("###,###,##0.00");
+                        txtDescuento.Text = "¢ " + Double.Parse(txtDescuento.Text.Substring(1)).ToString("###,###,##0.00");
+                        txtMonto_IV.Text = "¢ " + Double.Parse(txtMonto_IV.Text.Substring(1)).ToString("###,###,##0.00");
+                        txtTotalCotizacion.Text = "¢ " + Double.Parse(txtTotalCotizacion.Text.Substring(1)).ToString("###,###,##0.00");
                         cadena = "¢ ";
                         break;
                     case 1:
                         //txtTipoCambio.Text = "¢ " + TipoCambio.Tables[0].Rows[0].ItemArray[0].ToString();
-                        txtSubTotal.Text = "$ " + Double.Parse(txtSubTotal.Text.Substring(1));
-                        txtDescuento.Text = "$ " + Double.Parse(txtDescuento.Text.Substring(1));
-                        txtMonto_IV.Text = "$ " + Double.Parse(txtMonto_IV.Text.Substring(1));
-                        txtTotalCotizacion.Text = "$ " + Double.Parse(txtTotalCotizacion.Text.Substring(1));
+                        txtSubTotal.Text = "$ " + Double.Parse(txtSubTotal.Text.Substring(1)).ToString("###,###,##0.00");
+                        txtDescuento.Text = "$ " + Double.Parse(txtDescuento.Text.Substring(1)).ToString("###,###,##0.00");
+                        txtMonto_IV.Text = "$ " + Double.Parse(txtMonto_IV.Text.Substring(1)).ToString("###,###,##0.00");
+                        txtTotalCotizacion.Text = "$ " + Double.Parse(txtTotalCotizacion.Text.Substring(1)).ToString("###,###,##0.00");
                         cadena = "$ ";
                         break;
                 }

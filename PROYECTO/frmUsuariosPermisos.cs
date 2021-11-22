@@ -10,6 +10,8 @@ using System.Collections;
 using ENTIDADES;
 using System.Text.RegularExpressions;
 using Entidades;
+using System.Net.Mail;
+using System.Net;
 
 namespace PROYECTO
 {
@@ -101,14 +103,17 @@ namespace PROYECTO
             {
                 txtCodUsuario.Text = dgrUsuarios["usuario", e.RowIndex].Value.ToString();
 
+                if (!txtCodUsuario.Text.Equals(PROYECTO.Properties.Settings.Default.UsuarioBD))
+                    btnResetearContrasenna.Visible = true;
+
                 txtIdentificacion.Text = dgrUsuarios["cedula", e.RowIndex].Value.ToString();
                 txtNombre.Text = dgrUsuarios["nombre", e.RowIndex].Value.ToString();
                 txtApellido1.Text = dgrUsuarios["apellido1", e.RowIndex].Value.ToString();
                 txtApellido2.Text = dgrUsuarios["apellido2", e.RowIndex].Value.ToString();
                 txtCorreo.Text = dgrUsuarios["email", e.RowIndex].Value.ToString();
 
-                txtcontrasenna.Text = "********************";
-                txtContrasenna2.Text = "********************";
+                txtcontrasenna.Text = dgrUsuarios["CONTRASENNA", e.RowIndex].Value.ToString();
+                txtContrasenna2.Text = "";
                 if (dgrUsuarios["rol", e.RowIndex].Value.ToString().Equals("ADMINISTRADOR"))
                     rboAdministrador.Checked = true;
                 else
@@ -286,6 +291,7 @@ namespace PROYECTO
 
         private void btnMNuevo_Click(object sender, EventArgs e)
         {
+            btnResetearContrasenna.Visible = false;
             txtCodUsuario.Clear();
             txtContrasenna2.Clear();
             txtcontrasenna.Clear();
@@ -327,6 +333,12 @@ namespace PROYECTO
                 if (String.IsNullOrEmpty(txtNombre.Text.Trim()))
                 {
                     MessageBox.Show("Digite el nombre del usuario a crear", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    txtNombre.Focus();
+                    return;
+                }
+                if (String.IsNullOrEmpty(txtCorreo.Text.Trim()))
+                {
+                    MessageBox.Show("Digite el correo electrónico del usuario a crear", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     txtNombre.Focus();
                     return;
                 }
@@ -410,17 +422,17 @@ namespace PROYECTO
         {
             try
             {
-                if (MessageBox.Show("¿Está seguro que desea ELIMINAR el registro?", "Advertencia", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                if (MessageBox.Show("¿Está seguro que desea DESACTIVAR el registro?", "Advertencia", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     if (dgrUsuarios.SelectedCells.Count == 0 || String.IsNullOrEmpty(txtCodUsuario.Text.Trim()))
                     {
-                        MessageBox.Show("Seleccione el usuario a eliminar.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        MessageBox.Show("Seleccione el usuario a desactivar.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         return;
                     }
 
                     if (txtCodUsuario.Text.Equals(PROYECTO.Properties.Settings.Default.Usuario))
                     {
-                        MessageBox.Show("No se permite eliminar el usuario conectado.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        MessageBox.Show("No se permite desactivar el usuario conectado.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         return;
                     }
 
@@ -433,9 +445,9 @@ namespace PROYECTO
                         oUsuarioDAO = new UsuarioDAO();
                         oUsuarioDAO.Eliminar(oUsuario, PROYECTO.Properties.Settings.Default.No_cia);
                         if (oUsuarioDAO.Error())
-                            MessageBox.Show("Ocurrió un error al eliminar el usuario.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show("Ocurrió un error al desactivar el usuario.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         else
-                            MessageBox.Show("Usuario eliminado correctamente", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            MessageBox.Show("Usuario desactivado correctamente", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         oConexion.cerrarConexion();
                         llenarGrid();
                     }
@@ -476,6 +488,177 @@ namespace PROYECTO
             frmAyuda oFrm = frmAyuda.getInstance("t16");
             oFrm.MdiParent = this.MdiParent;
             oFrm.Show();
+        }
+
+        private void btnResetearContrasenna_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (Internet())
+                {
+                    if (String.IsNullOrEmpty(txtCodUsuario.Text.Trim()))
+                    {
+                        MessageBox.Show("Seleccione el usuario", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        txtCodUsuario.Focus();
+                        return;
+                    }
+                    if (txtCodUsuario.Text.Equals(PROYECTO.Properties.Settings.Default.UsuarioBD))
+                    {
+                        MessageBox.Show("Para su usuario debe utilizar la opción de cambio de contraseña", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        txtCodUsuario.Focus();
+                        return;
+                    }
+                    if (String.IsNullOrEmpty(txtCorreo.Text.Trim()))
+                    {
+                        MessageBox.Show("Digite el correo electrónico del usuario a resetear contraseña", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        txtNombre.Focus();
+                        return;
+                    }
+
+                    oConexion.cerrarConexion();
+                    if (oConexion.abrirConexion())
+                    {
+                        oUsuario = new Usuario();
+
+                        String[] values = { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" };
+
+                        Random rnd = new Random();
+
+                        String val = "";
+
+                        for (int x = 1; x <= 8; x++)
+                        {
+                            int pos = 0;
+
+                            if (val.Equals(""))
+                                pos = rnd.Next(values.Length - 11);
+                            else
+                                pos = rnd.Next(values.Length - 1);
+                            val += values[pos];
+                        }
+
+                        oUsuario.CodUsuario = txtCodUsuario.Text.Trim();
+                        oUsuario.Contrasenna = val;//txtcontrasenna.Text.Trim();
+                        oUsuario.Rol = rboAdministrador.Checked ? "ADMINISTRADOR" : "FUNCIONARIO";
+                        oUsuario.Cedula = txtIdentificacion.Text.Trim();
+                        oUsuario.Nombre = txtNombre.Text.Trim();
+                        oUsuario.Apellido1 = txtApellido1.Text.Trim();
+                        oUsuario.Apellido2 = txtApellido2.Text.Trim();
+                        oUsuario.Email = txtCorreo.Text.Trim();
+
+                        oUsuarioDAO = new UsuarioDAO();
+                        oUsuarioDAO.Agregar(oUsuario, PROYECTO.Properties.Settings.Default.No_cia);
+                        if (oUsuarioDAO.Error())
+                        {
+                            MessageBox.Show("Ocurrió un error al guardar los datos del usuario.\n" + oUsuarioDAO.DescError(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return;
+                        }
+
+                        if (oUsuarioDAO.CambiaClaveUsuarioBD(oUsuario))
+                            oUsuarioDAO.ReseteaContraseña(oUsuario, PROYECTO.Properties.Settings.Default.No_cia);
+
+                        if (oUsuarioDAO.Error())
+                        {
+                            MessageBox.Show("Ocurrió un error al resetear la contraseña del usuario." + oUsuarioDAO.DescError(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return;
+                        }
+
+                        MailMessage email = new MailMessage();
+
+                        email.From = new MailAddress("jalfaro@softconcr.com");
+                        email.To.Add(new MailAddress(oUsuario.Email));
+                        email.Subject = "Su contraseña de acceso a SAFE fue reseteada";
+                        email.Body = "Estimado usuario, su contraseña para accesar a SAFE fue reseteada por " + PROYECTO.Properties.Settings.Default.UsuarioBD;
+                        email.Body += "<br>";
+                        email.Body += "<br>";
+                        email.Body += "<b>Usuario:</b> " + oUsuario.CodUsuario;
+                        email.Body += "<br>";
+                        email.Body += "<b>Contraseña temporal:</b> " + oUsuario.Contrasenna;
+                        email.Body += "<br>";
+                        email.Body += "<br>";
+                        email.Body += "<br>";
+                        email.Body += "Este es un correo automático, por favor no contestar.";
+                        email.IsBodyHtml = true;
+                        email.Priority = MailPriority.Normal;
+
+                        SmtpClient smtp = new SmtpClient();
+                        smtp.Host = "smtpout.secureserver.net";
+                        smtp.Port = 80;
+                        smtp.EnableSsl = false;
+                        smtp.UseDefaultCredentials = false;
+                        smtp.Credentials = new NetworkCredential("jalfaro@softconcr.com", "verde19895");
+
+                        string output = null;
+
+                        try
+                        {
+                            smtp.Send(email);
+                            email.Dispose();
+
+                            MessageBox.Show("La contraseña fue enviada al correo electrónico del usuario.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            output = "Correo electrónico fue enviado satisfactoriamente.";
+                        }
+                        catch (Exception ex)
+                        {
+                            output = "Error enviando correo electrónico: " + ex.Message;
+                            MessageBox.Show(output, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+
+                        oConexion.cerrarConexion();
+                        llenarGrid();
+                    }
+                    else
+                        MessageBox.Show("Ocurrió un error al conectarse a la base de datos.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    MessageBox.Show("Sin conexión a internet, no es ppsible realizar el reseteo de la contraseña", "Error de Conexión", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            catch (Exception ex)
+            {
+                oConexion.cerrarConexion();
+            }
+        }
+
+
+        public Boolean Internet()
+        {
+            try
+            {
+                Boolean internet = false;
+
+                //Revisar la conexión a la Red local
+                bool RedActiva = System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable();
+
+                if (RedActiva)
+                {
+                    //Ahora si estamos conectados a la Red podemos enviar un ping a una pagina en Internet para asegurar la conexión.
+                    Uri Url = new System.Uri("https://www.google.com/");
+
+                    WebRequest WebRequest;
+                    WebRequest = System.Net.WebRequest.Create(Url);
+                    WebResponse objetoResp;
+
+                    try
+                    {
+                        objetoResp = WebRequest.GetResponse();
+                        internet = true;
+                        objetoResp.Close();
+                    }
+                    catch (Exception e)
+                    {
+                        internet = false;
+                    }
+                    WebRequest = null;
+                }
+
+                return internet;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
         }
 
 

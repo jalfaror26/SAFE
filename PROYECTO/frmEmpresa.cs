@@ -514,6 +514,7 @@ namespace PROYECTO
 
         private String DefineMascaraID(String pTipoID, String pID)
         {
+            try { 
             double vIdentificacion = 0;
 
             if (!string.IsNullOrEmpty(pID))
@@ -538,6 +539,11 @@ namespace PROYECTO
             }
 
             return vIdentificacion2;
+            }
+            catch
+            {
+                return ""; 
+            }
         }
 
         private void cboTipoId_SelectedIndexChanged(object sender, EventArgs e)

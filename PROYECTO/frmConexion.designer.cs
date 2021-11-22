@@ -45,6 +45,8 @@ namespace PROYECTO
             this.txtContrasena1 = new System.Windows.Forms.TextBox();
             this.txtUsuario = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.grpboxEmpresas.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -125,6 +127,8 @@ namespace PROYECTO
             this.groupBox1.Controls.Add(this.lblNombre);
             this.groupBox1.Controls.Add(this.txtContrasena1);
             this.groupBox1.Controls.Add(this.txtUsuario);
+            this.groupBox1.Controls.Add(this.label8);
+            this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.ForeColor = System.Drawing.SystemColors.ControlLight;
             this.groupBox1.Location = new System.Drawing.Point(340, 205);
@@ -241,6 +245,30 @@ namespace PROYECTO
             this.panel1.Size = new System.Drawing.Size(783, 504);
             this.panel1.TabIndex = 593;
             // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.ForeColor = System.Drawing.Color.Red;
+            this.label8.Location = new System.Drawing.Point(45, 55);
+            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(26, 32);
+            this.label8.TabIndex = 594;
+            this.label8.Text = "*";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.Color.Red;
+            this.label3.Location = new System.Drawing.Point(45, 134);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(26, 32);
+            this.label3.TabIndex = 603;
+            this.label3.Text = "*";
+            // 
             // frmConexion
             // 
             this.AcceptButton = this.btnConectar;
@@ -292,5 +320,7 @@ namespace PROYECTO
         private System.Windows.Forms.Button btnSalir;
         private System.Windows.Forms.ImageList imgMenu;
         private System.Windows.Forms.Button btnConectar;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label3;
     }
 }

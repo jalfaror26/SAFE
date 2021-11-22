@@ -30,12 +30,14 @@ namespace PROYECTO
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmUsuariosPermisos));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle29 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle30 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle31 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle32 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.btnResetearContrasenna = new System.Windows.Forms.Button();
+            this.imgMenu = new System.Windows.Forms.ImageList(this.components);
             this.txtCorreo = new System.Windows.Forms.MaskedTextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.txtApellido2 = new System.Windows.Forms.TextBox();
@@ -48,7 +50,6 @@ namespace PROYECTO
             this.label10 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnMAsignarPermisos = new System.Windows.Forms.Button();
-            this.imgMenu = new System.Windows.Forms.ImageList(this.components);
             this.btnMNuevo = new System.Windows.Forms.Button();
             this.btnMSalir = new System.Windows.Forms.Button();
             this.btnMGuardar = new System.Windows.Forms.Button();
@@ -63,13 +64,12 @@ namespace PROYECTO
             this.label1 = new System.Windows.Forms.Label();
             this.txtCodUsuario = new System.Windows.Forms.TextBox();
             this.dgrUsuarios = new System.Windows.Forms.DataGridView();
-            this.usuario = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.apellido1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Apellido2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.rol = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cedula = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.email = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.chkTodasPantallas = new System.Windows.Forms.CheckBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -81,6 +81,15 @@ namespace PROYECTO
             this.acceso = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.pan_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
+            this.usuario = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.apellido1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Apellido2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.rol = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cedula = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.email = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CONTRASENNA = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ttInformacion = new System.Windows.Forms.ToolTip(this.components);
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -105,6 +114,7 @@ namespace PROYECTO
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.btnResetearContrasenna);
             this.tabPage1.Controls.Add(this.txtCorreo);
             this.tabPage1.Controls.Add(this.label6);
             this.tabPage1.Controls.Add(this.txtApellido2);
@@ -124,6 +134,12 @@ namespace PROYECTO
             this.tabPage1.Controls.Add(this.label1);
             this.tabPage1.Controls.Add(this.txtCodUsuario);
             this.tabPage1.Controls.Add(this.dgrUsuarios);
+            this.tabPage1.Controls.Add(this.label7);
+            this.tabPage1.Controls.Add(this.label8);
+            this.tabPage1.Controls.Add(this.label9);
+            this.tabPage1.Controls.Add(this.label11);
+            this.tabPage1.Controls.Add(this.label12);
+            this.tabPage1.Controls.Add(this.label13);
             this.tabPage1.Location = new System.Drawing.Point(4, 25);
             this.tabPage1.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage1.Name = "tabPage1";
@@ -132,6 +148,34 @@ namespace PROYECTO
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Usuarios";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // btnResetearContrasenna
+            // 
+            this.btnResetearContrasenna.Font = new System.Drawing.Font("Tempus Sans ITC", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnResetearContrasenna.ImageKey = "actualizar2.png";
+            this.btnResetearContrasenna.ImageList = this.imgMenu;
+            this.btnResetearContrasenna.Location = new System.Drawing.Point(220, 171);
+            this.btnResetearContrasenna.Margin = new System.Windows.Forms.Padding(4);
+            this.btnResetearContrasenna.Name = "btnResetearContrasenna";
+            this.btnResetearContrasenna.Size = new System.Drawing.Size(38, 39);
+            this.btnResetearContrasenna.TabIndex = 472;
+            this.btnResetearContrasenna.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.ttInformacion.SetToolTip(this.btnResetearContrasenna, "Presione para RESETEAR la contraseña al registro actual");
+            this.btnResetearContrasenna.UseVisualStyleBackColor = true;
+            this.btnResetearContrasenna.Visible = false;
+            this.btnResetearContrasenna.Click += new System.EventHandler(this.btnResetearContrasenna_Click);
+            // 
+            // imgMenu
+            // 
+            this.imgMenu.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imgMenu.ImageStream")));
+            this.imgMenu.TransparentColor = System.Drawing.Color.Transparent;
+            this.imgMenu.Images.SetKeyName(0, "document.ico");
+            this.imgMenu.Images.SetKeyName(1, "Disc 01.ico");
+            this.imgMenu.Images.SetKeyName(2, "Sign 06.ico");
+            this.imgMenu.Images.SetKeyName(3, "salir2.ico");
+            this.imgMenu.Images.SetKeyName(4, "App 17.ico");
+            this.imgMenu.Images.SetKeyName(5, "C&M 18.ico");
+            this.imgMenu.Images.SetKeyName(6, "actualizar2.png");
             // 
             // txtCorreo
             // 
@@ -259,22 +303,12 @@ namespace PROYECTO
             this.btnMAsignarPermisos.Name = "btnMAsignarPermisos";
             this.btnMAsignarPermisos.Size = new System.Drawing.Size(147, 55);
             this.btnMAsignarPermisos.TabIndex = 16;
-            this.btnMAsignarPermisos.Text = "&Asig Permisos";
+            this.btnMAsignarPermisos.Text = "Asig Permisos";
             this.btnMAsignarPermisos.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnMAsignarPermisos.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.ttInformacion.SetToolTip(this.btnMAsignarPermisos, "Presione para ASIGNAR PERMISOS al registro actual");
             this.btnMAsignarPermisos.UseVisualStyleBackColor = true;
             this.btnMAsignarPermisos.Click += new System.EventHandler(this.btnMAsignarPermisos_Click);
-            // 
-            // imgMenu
-            // 
-            this.imgMenu.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imgMenu.ImageStream")));
-            this.imgMenu.TransparentColor = System.Drawing.Color.Transparent;
-            this.imgMenu.Images.SetKeyName(0, "document.ico");
-            this.imgMenu.Images.SetKeyName(1, "Disc 01.ico");
-            this.imgMenu.Images.SetKeyName(2, "Sign 06.ico");
-            this.imgMenu.Images.SetKeyName(3, "salir2.ico");
-            this.imgMenu.Images.SetKeyName(4, "App 17.ico");
-            this.imgMenu.Images.SetKeyName(5, "C&M 18.ico");
             // 
             // btnMNuevo
             // 
@@ -290,6 +324,7 @@ namespace PROYECTO
             this.btnMNuevo.Text = "Nuevo";
             this.btnMNuevo.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnMNuevo.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.ttInformacion.SetToolTip(this.btnMNuevo, "Presione para LIMPIAR el registro actual");
             this.btnMNuevo.UseVisualStyleBackColor = true;
             this.btnMNuevo.Click += new System.EventHandler(this.btnMNuevo_Click);
             // 
@@ -307,6 +342,7 @@ namespace PROYECTO
             this.btnMSalir.Text = "Salir";
             this.btnMSalir.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnMSalir.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.ttInformacion.SetToolTip(this.btnMSalir, "Presione para SALIR");
             this.btnMSalir.UseVisualStyleBackColor = true;
             this.btnMSalir.Click += new System.EventHandler(this.btnMSalir_Click);
             // 
@@ -324,6 +360,7 @@ namespace PROYECTO
             this.btnMGuardar.Text = "Guardar";
             this.btnMGuardar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnMGuardar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.ttInformacion.SetToolTip(this.btnMGuardar, "Presione para GUARDAR el registro actual");
             this.btnMGuardar.UseVisualStyleBackColor = true;
             this.btnMGuardar.Click += new System.EventHandler(this.btnMGuardar_Click);
             // 
@@ -338,9 +375,10 @@ namespace PROYECTO
             this.btnMEliminar.Name = "btnMEliminar";
             this.btnMEliminar.Size = new System.Drawing.Size(147, 55);
             this.btnMEliminar.TabIndex = 14;
-            this.btnMEliminar.Text = "Eliminar";
+            this.btnMEliminar.Text = "Desactivar";
             this.btnMEliminar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnMEliminar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.ttInformacion.SetToolTip(this.btnMEliminar, "Presione para DESACTIVAR el registro actual");
             this.btnMEliminar.UseVisualStyleBackColor = true;
             this.btnMEliminar.Click += new System.EventHandler(this.btnMEliminar_Click);
             // 
@@ -450,8 +488,8 @@ namespace PROYECTO
             // 
             this.dgrUsuarios.AllowUserToAddRows = false;
             this.dgrUsuarios.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Gainsboro;
-            this.dgrUsuarios.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle29.BackColor = System.Drawing.Color.Gainsboro;
+            this.dgrUsuarios.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle29;
             this.dgrUsuarios.BackgroundColor = System.Drawing.Color.White;
             this.dgrUsuarios.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgrUsuarios.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -461,16 +499,17 @@ namespace PROYECTO
             this.Apellido2,
             this.rol,
             this.cedula,
-            this.email});
+            this.email,
+            this.CONTRASENNA});
             this.dgrUsuarios.Location = new System.Drawing.Point(28, 296);
             this.dgrUsuarios.Margin = new System.Windows.Forms.Padding(4);
             this.dgrUsuarios.MultiSelect = false;
             this.dgrUsuarios.Name = "dgrUsuarios";
             this.dgrUsuarios.RowHeadersVisible = false;
             this.dgrUsuarios.RowHeadersWidth = 51;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Teal;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
-            this.dgrUsuarios.RowsDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle30.SelectionBackColor = System.Drawing.Color.Teal;
+            dataGridViewCellStyle30.SelectionForeColor = System.Drawing.Color.White;
+            this.dgrUsuarios.RowsDefaultCellStyle = dataGridViewCellStyle30;
             this.dgrUsuarios.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgrUsuarios.Size = new System.Drawing.Size(810, 213);
             this.dgrUsuarios.TabIndex = 0;
@@ -478,70 +517,77 @@ namespace PROYECTO
             this.dgrUsuarios.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgrDatos_CellEnter);
             this.dgrUsuarios.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgrDatos_DataBindingComplete);
             // 
-            // usuario
+            // label7
             // 
-            this.usuario.DataPropertyName = "usuario";
-            this.usuario.HeaderText = "Usuario";
-            this.usuario.MinimumWidth = 6;
-            this.usuario.Name = "usuario";
-            this.usuario.ReadOnly = true;
-            this.usuario.Width = 125;
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.ForeColor = System.Drawing.Color.Red;
+            this.label7.Location = new System.Drawing.Point(7, 128);
+            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(26, 32);
+            this.label7.TabIndex = 466;
+            this.label7.Text = "*";
             // 
-            // nombre
+            // label8
             // 
-            this.nombre.DataPropertyName = "nombre";
-            this.nombre.HeaderText = "Nombre";
-            this.nombre.MinimumWidth = 6;
-            this.nombre.Name = "nombre";
-            this.nombre.ReadOnly = true;
-            this.nombre.Width = 150;
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.ForeColor = System.Drawing.Color.Red;
+            this.label8.Location = new System.Drawing.Point(8, 186);
+            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(26, 32);
+            this.label8.TabIndex = 467;
+            this.label8.Text = "*";
             // 
-            // apellido1
+            // label9
             // 
-            this.apellido1.DataPropertyName = "apellido1";
-            this.apellido1.HeaderText = "1er Apellido";
-            this.apellido1.MinimumWidth = 6;
-            this.apellido1.Name = "apellido1";
-            this.apellido1.ReadOnly = true;
-            this.apellido1.Width = 125;
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.ForeColor = System.Drawing.Color.Red;
+            this.label9.Location = new System.Drawing.Point(10, 243);
+            this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(26, 32);
+            this.label9.TabIndex = 468;
+            this.label9.Text = "*";
             // 
-            // Apellido2
+            // label11
             // 
-            this.Apellido2.DataPropertyName = "Apellido2";
-            this.Apellido2.HeaderText = "2do Apellido";
-            this.Apellido2.MinimumWidth = 6;
-            this.Apellido2.Name = "Apellido2";
-            this.Apellido2.ReadOnly = true;
-            this.Apellido2.Width = 125;
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.ForeColor = System.Drawing.Color.Red;
+            this.label11.Location = new System.Drawing.Point(376, 137);
+            this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(26, 32);
+            this.label11.TabIndex = 469;
+            this.label11.Text = "*";
             // 
-            // rol
+            // label12
             // 
-            this.rol.DataPropertyName = "rol";
-            this.rol.HeaderText = "Rol";
-            this.rol.MinimumWidth = 6;
-            this.rol.Name = "rol";
-            this.rol.ReadOnly = true;
-            this.rol.Width = 125;
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.ForeColor = System.Drawing.Color.Red;
+            this.label12.Location = new System.Drawing.Point(539, 137);
+            this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(26, 32);
+            this.label12.TabIndex = 470;
+            this.label12.Text = "*";
             // 
-            // cedula
+            // label13
             // 
-            this.cedula.DataPropertyName = "cedula";
-            this.cedula.HeaderText = "Cedula";
-            this.cedula.MinimumWidth = 6;
-            this.cedula.Name = "cedula";
-            this.cedula.ReadOnly = true;
-            this.cedula.Visible = false;
-            this.cedula.Width = 125;
-            // 
-            // email
-            // 
-            this.email.DataPropertyName = "email";
-            this.email.HeaderText = "Email";
-            this.email.MinimumWidth = 6;
-            this.email.Name = "email";
-            this.email.ReadOnly = true;
-            this.email.Visible = false;
-            this.email.Width = 125;
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.ForeColor = System.Drawing.Color.Red;
+            this.label13.Location = new System.Drawing.Point(412, 196);
+            this.label13.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(26, 32);
+            this.label13.TabIndex = 471;
+            this.label13.Text = "*";
             // 
             // tabPage2
             // 
@@ -621,8 +667,8 @@ namespace PROYECTO
             // 
             this.dgrPantallas.AllowUserToAddRows = false;
             this.dgrPantallas.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.Gainsboro;
-            this.dgrPantallas.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle31.BackColor = System.Drawing.Color.Gainsboro;
+            this.dgrPantallas.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle31;
             this.dgrPantallas.BackgroundColor = System.Drawing.Color.White;
             this.dgrPantallas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgrPantallas.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -636,9 +682,9 @@ namespace PROYECTO
             this.dgrPantallas.Name = "dgrPantallas";
             this.dgrPantallas.RowHeadersVisible = false;
             this.dgrPantallas.RowHeadersWidth = 51;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.Teal;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.White;
-            this.dgrPantallas.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle32.SelectionBackColor = System.Drawing.Color.Teal;
+            dataGridViewCellStyle32.SelectionForeColor = System.Drawing.Color.White;
+            this.dgrPantallas.RowsDefaultCellStyle = dataGridViewCellStyle32;
             this.dgrPantallas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgrPantallas.Size = new System.Drawing.Size(811, 394);
             this.dgrPantallas.TabIndex = 0;
@@ -695,6 +741,84 @@ namespace PROYECTO
             this.imageList1.Images.SetKeyName(5, "Sign 08.ico");
             this.imageList1.Images.SetKeyName(6, "Salir.ico");
             this.imageList1.Images.SetKeyName(7, "file_find.ico");
+            // 
+            // usuario
+            // 
+            this.usuario.DataPropertyName = "usuario";
+            this.usuario.HeaderText = "Usuario";
+            this.usuario.MinimumWidth = 6;
+            this.usuario.Name = "usuario";
+            this.usuario.ReadOnly = true;
+            this.usuario.Width = 125;
+            // 
+            // nombre
+            // 
+            this.nombre.DataPropertyName = "nombre";
+            this.nombre.HeaderText = "Nombre";
+            this.nombre.MinimumWidth = 6;
+            this.nombre.Name = "nombre";
+            this.nombre.ReadOnly = true;
+            this.nombre.Width = 150;
+            // 
+            // apellido1
+            // 
+            this.apellido1.DataPropertyName = "apellido1";
+            this.apellido1.HeaderText = "1er Apellido";
+            this.apellido1.MinimumWidth = 6;
+            this.apellido1.Name = "apellido1";
+            this.apellido1.ReadOnly = true;
+            this.apellido1.Width = 125;
+            // 
+            // Apellido2
+            // 
+            this.Apellido2.DataPropertyName = "Apellido2";
+            this.Apellido2.HeaderText = "2do Apellido";
+            this.Apellido2.MinimumWidth = 6;
+            this.Apellido2.Name = "Apellido2";
+            this.Apellido2.ReadOnly = true;
+            this.Apellido2.Width = 125;
+            // 
+            // rol
+            // 
+            this.rol.DataPropertyName = "rol";
+            this.rol.HeaderText = "Rol";
+            this.rol.MinimumWidth = 6;
+            this.rol.Name = "rol";
+            this.rol.ReadOnly = true;
+            this.rol.Width = 125;
+            // 
+            // cedula
+            // 
+            this.cedula.DataPropertyName = "cedula";
+            this.cedula.HeaderText = "Cedula";
+            this.cedula.MinimumWidth = 6;
+            this.cedula.Name = "cedula";
+            this.cedula.ReadOnly = true;
+            this.cedula.Visible = false;
+            this.cedula.Width = 125;
+            // 
+            // email
+            // 
+            this.email.DataPropertyName = "email";
+            this.email.HeaderText = "Email";
+            this.email.MinimumWidth = 6;
+            this.email.Name = "email";
+            this.email.ReadOnly = true;
+            this.email.Visible = false;
+            this.email.Width = 125;
+            // 
+            // CONTRASENNA
+            // 
+            this.CONTRASENNA.DataPropertyName = "CONTRASENNA";
+            this.CONTRASENNA.HeaderText = "CONTRASENNA";
+            this.CONTRASENNA.MinimumWidth = 6;
+            this.CONTRASENNA.Name = "CONTRASENNA";
+            this.CONTRASENNA.Visible = false;
+            this.CONTRASENNA.Width = 125;
+            // 
+            // ttInformacion
+            // 
+            this.ttInformacion.IsBalloon = true;
             // 
             // frmUsuariosPermisos
             // 
@@ -767,6 +891,17 @@ namespace PROYECTO
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Button btnGuardarPermisos;
         private System.Windows.Forms.Button btnMSalir2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn pan_nombre;
+        private System.Windows.Forms.DataGridViewTextBoxColumn pan_modulo;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn acceso;
+        private System.Windows.Forms.DataGridViewTextBoxColumn pan_id;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Button btnResetearContrasenna;
         private System.Windows.Forms.DataGridViewTextBoxColumn usuario;
         private System.Windows.Forms.DataGridViewTextBoxColumn nombre;
         private System.Windows.Forms.DataGridViewTextBoxColumn apellido1;
@@ -774,9 +909,7 @@ namespace PROYECTO
         private System.Windows.Forms.DataGridViewTextBoxColumn rol;
         private System.Windows.Forms.DataGridViewTextBoxColumn cedula;
         private System.Windows.Forms.DataGridViewTextBoxColumn email;
-        private System.Windows.Forms.DataGridViewTextBoxColumn pan_nombre;
-        private System.Windows.Forms.DataGridViewTextBoxColumn pan_modulo;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn acceso;
-        private System.Windows.Forms.DataGridViewTextBoxColumn pan_id;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CONTRASENNA;
+        private System.Windows.Forms.ToolTip ttInformacion;
     }
 }

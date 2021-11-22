@@ -43,6 +43,7 @@ namespace PROYECTO
             this.btnMNuevo = new System.Windows.Forms.Button();
             this.tobSalir = new System.Windows.Forms.Button();
             this.btnMGuardar = new System.Windows.Forms.Button();
+            this.label8 = new System.Windows.Forms.Label();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -59,7 +60,7 @@ namespace PROYECTO
             // 
             // txtDolar
             // 
-            this.txtDolar.Location = new System.Drawing.Point(339, 105);
+            this.txtDolar.Location = new System.Drawing.Point(335, 105);
             this.txtDolar.Margin = new System.Windows.Forms.Padding(4);
             this.txtDolar.Name = "txtDolar";
             this.txtDolar.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -215,6 +216,18 @@ namespace PROYECTO
             this.btnMGuardar.UseVisualStyleBackColor = true;
             this.btnMGuardar.Click += new System.EventHandler(this.tobAgregar_Click);
             // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.ForeColor = System.Drawing.Color.Red;
+            this.label8.Location = new System.Drawing.Point(407, 104);
+            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(26, 32);
+            this.label8.TabIndex = 553;
+            this.label8.Text = "*";
+            // 
             // frmTiposCambio
             // 
             this.AcceptButton = this.button1;
@@ -232,6 +245,7 @@ namespace PROYECTO
             this.Controls.Add(this.label1);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
+            this.Controls.Add(this.label8);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
@@ -264,5 +278,6 @@ namespace PROYECTO
         private System.Windows.Forms.Button btnMNuevo;
         private System.Windows.Forms.Button tobSalir;
         private System.Windows.Forms.Button btnMGuardar;
+        private System.Windows.Forms.Label label8;
     }
 }
