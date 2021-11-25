@@ -16,7 +16,7 @@ namespace PROYECTO
         private ConexionDAO oConexion = new ConexionDAO(PROYECTO.Properties.Settings.Default.UsuarioBD, PROYECTO.Properties.Settings.Default.Servidor, Conexion.getInstance().Clave);
         private ReportesDAO oReporteDAO = null;
         private int numero = 0;
-        private String codigo = "rpt_Clientes", descripcion = "Reporte de clientes.", modulo = "Reportes_Mantenimientos";
+        private String codigo = "rpt_Clientes", descripcion = "Reporte de clientes.", modulo = "Reportes Mantenimientos";
         private int cambiar = 0, cambiar2 = 0;
 
         public String Modulo

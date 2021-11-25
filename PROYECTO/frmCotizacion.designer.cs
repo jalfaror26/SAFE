@@ -79,6 +79,20 @@ namespace PROYECTO
             this.label32 = new System.Windows.Forms.Label();
             this.txtCantidad = new System.Windows.Forms.TextBox();
             this.dgrDatos = new System.Windows.Forms.DataGridView();
+            this.detfac_numerolinea = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.detfac_codigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SER_CODIGO = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.detfac_cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.detfac_descripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DETFAC_MONTO_IV = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.detfac_medida = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DETFAC_PRECIO_UNITARIO = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DETFAC_SUBTOTAL = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.detfac_descuento = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DETFAC_TIPOPRECIO = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DETFAC_PRECIO_TOTAL = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.detfac_ivi = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SER_impuestos = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.txtTotalCotizacion = new System.Windows.Forms.TextBox();
             this.label25 = new System.Windows.Forms.Label();
             this.txtTotalPorLinea = new System.Windows.Forms.MaskedTextBox();
@@ -106,20 +120,6 @@ namespace PROYECTO
             this.dtpFechaCotizacion = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
-            this.detfac_numerolinea = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.detfac_codigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SER_CODIGO = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.detfac_cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.detfac_descripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DETFAC_MONTO_IV = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.detfac_medida = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DETFAC_PRECIO_UNITARIO = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DETFAC_SUBTOTAL = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.detfac_descuento = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DETFAC_TIPOPRECIO = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DETFAC_PRECIO_TOTAL = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.detfac_ivi = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SER_impuestos = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.grpDetalleCotizacion.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgrDatos)).BeginInit();
@@ -668,7 +668,7 @@ namespace PROYECTO
             this.txtCantidad.Margin = new System.Windows.Forms.Padding(4);
             this.txtCantidad.Name = "txtCantidad";
             this.txtCantidad.Size = new System.Drawing.Size(61, 22);
-            this.txtCantidad.TabIndex = 3;
+            this.txtCantidad.TabIndex = 4;
             this.txtCantidad.Text = "0";
             this.txtCantidad.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtCantidad.Enter += new System.EventHandler(this.txtCantidad_Enter);
@@ -740,6 +740,156 @@ namespace PROYECTO
             this.dgrDatos.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgrdatos_CellEnter);
             this.dgrDatos.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgrdatos_DataBindingComplete);
             // 
+            // detfac_numerolinea
+            // 
+            this.detfac_numerolinea.DataPropertyName = "detfac_numerolinea";
+            this.detfac_numerolinea.HeaderText = "indice";
+            this.detfac_numerolinea.MinimumWidth = 6;
+            this.detfac_numerolinea.Name = "detfac_numerolinea";
+            this.detfac_numerolinea.ReadOnly = true;
+            this.detfac_numerolinea.Visible = false;
+            this.detfac_numerolinea.Width = 125;
+            // 
+            // detfac_codigo
+            // 
+            this.detfac_codigo.DataPropertyName = "detfac_codigo";
+            this.detfac_codigo.HeaderText = "CodArticulo";
+            this.detfac_codigo.MinimumWidth = 6;
+            this.detfac_codigo.Name = "detfac_codigo";
+            this.detfac_codigo.ReadOnly = true;
+            this.detfac_codigo.Visible = false;
+            this.detfac_codigo.Width = 75;
+            // 
+            // SER_CODIGO
+            // 
+            this.SER_CODIGO.DataPropertyName = "SER_CODIGO";
+            this.SER_CODIGO.HeaderText = "CODIGO";
+            this.SER_CODIGO.MinimumWidth = 6;
+            this.SER_CODIGO.Name = "SER_CODIGO";
+            this.SER_CODIGO.ReadOnly = true;
+            this.SER_CODIGO.Width = 125;
+            // 
+            // detfac_cantidad
+            // 
+            this.detfac_cantidad.DataPropertyName = "detfac_cantidad";
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.detfac_cantidad.DefaultCellStyle = dataGridViewCellStyle3;
+            this.detfac_cantidad.HeaderText = "CANT";
+            this.detfac_cantidad.MinimumWidth = 6;
+            this.detfac_cantidad.Name = "detfac_cantidad";
+            this.detfac_cantidad.ReadOnly = true;
+            this.detfac_cantidad.Width = 60;
+            // 
+            // detfac_descripcion
+            // 
+            this.detfac_descripcion.DataPropertyName = "detfac_descripcion";
+            this.detfac_descripcion.HeaderText = "DESCRIPCIÓN";
+            this.detfac_descripcion.MinimumWidth = 6;
+            this.detfac_descripcion.Name = "detfac_descripcion";
+            this.detfac_descripcion.ReadOnly = true;
+            this.detfac_descripcion.Width = 250;
+            // 
+            // DETFAC_MONTO_IV
+            // 
+            this.DETFAC_MONTO_IV.DataPropertyName = "DETFAC_MONTO_IV";
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle4.Format = "N2";
+            this.DETFAC_MONTO_IV.DefaultCellStyle = dataGridViewCellStyle4;
+            this.DETFAC_MONTO_IV.HeaderText = "Monto IV";
+            this.DETFAC_MONTO_IV.MinimumWidth = 6;
+            this.DETFAC_MONTO_IV.Name = "DETFAC_MONTO_IV";
+            this.DETFAC_MONTO_IV.ReadOnly = true;
+            this.DETFAC_MONTO_IV.Visible = false;
+            this.DETFAC_MONTO_IV.Width = 80;
+            // 
+            // detfac_medida
+            // 
+            this.detfac_medida.DataPropertyName = "detfac_medida";
+            this.detfac_medida.HeaderText = "Medida";
+            this.detfac_medida.MinimumWidth = 6;
+            this.detfac_medida.Name = "detfac_medida";
+            this.detfac_medida.ReadOnly = true;
+            this.detfac_medida.Visible = false;
+            this.detfac_medida.Width = 125;
+            // 
+            // DETFAC_PRECIO_UNITARIO
+            // 
+            this.DETFAC_PRECIO_UNITARIO.DataPropertyName = "DETFAC_PRECIO_UNITARIO";
+            this.DETFAC_PRECIO_UNITARIO.HeaderText = "Precio Unitario";
+            this.DETFAC_PRECIO_UNITARIO.MinimumWidth = 6;
+            this.DETFAC_PRECIO_UNITARIO.Name = "DETFAC_PRECIO_UNITARIO";
+            this.DETFAC_PRECIO_UNITARIO.ReadOnly = true;
+            this.DETFAC_PRECIO_UNITARIO.Visible = false;
+            this.DETFAC_PRECIO_UNITARIO.Width = 125;
+            // 
+            // DETFAC_SUBTOTAL
+            // 
+            this.DETFAC_SUBTOTAL.DataPropertyName = "DETFAC_SUBTOTAL";
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle5.Format = "###,###,##0.00";
+            this.DETFAC_SUBTOTAL.DefaultCellStyle = dataGridViewCellStyle5;
+            this.DETFAC_SUBTOTAL.HeaderText = "SUBTOTAL";
+            this.DETFAC_SUBTOTAL.MinimumWidth = 6;
+            this.DETFAC_SUBTOTAL.Name = "DETFAC_SUBTOTAL";
+            this.DETFAC_SUBTOTAL.ReadOnly = true;
+            this.DETFAC_SUBTOTAL.Width = 90;
+            // 
+            // detfac_descuento
+            // 
+            this.detfac_descuento.DataPropertyName = "detfac_descuento";
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle6.Format = "###,###,##0.00";
+            this.detfac_descuento.DefaultCellStyle = dataGridViewCellStyle6;
+            this.detfac_descuento.HeaderText = "DESC";
+            this.detfac_descuento.MinimumWidth = 6;
+            this.detfac_descuento.Name = "detfac_descuento";
+            this.detfac_descuento.ReadOnly = true;
+            this.detfac_descuento.Width = 50;
+            // 
+            // DETFAC_TIPOPRECIO
+            // 
+            this.DETFAC_TIPOPRECIO.DataPropertyName = "DETFAC_TIPOPRECIO";
+            this.DETFAC_TIPOPRECIO.HeaderText = "DETFAC_TIPOPRECIO";
+            this.DETFAC_TIPOPRECIO.MinimumWidth = 6;
+            this.DETFAC_TIPOPRECIO.Name = "DETFAC_TIPOPRECIO";
+            this.DETFAC_TIPOPRECIO.ReadOnly = true;
+            this.DETFAC_TIPOPRECIO.Visible = false;
+            this.DETFAC_TIPOPRECIO.Width = 125;
+            // 
+            // DETFAC_PRECIO_TOTAL
+            // 
+            this.DETFAC_PRECIO_TOTAL.DataPropertyName = "DETFAC_PRECIO_TOTAL";
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle7.Format = "###,###,##0.00";
+            this.DETFAC_PRECIO_TOTAL.DefaultCellStyle = dataGridViewCellStyle7;
+            this.DETFAC_PRECIO_TOTAL.HeaderText = "TOTAL";
+            this.DETFAC_PRECIO_TOTAL.MinimumWidth = 6;
+            this.DETFAC_PRECIO_TOTAL.Name = "DETFAC_PRECIO_TOTAL";
+            this.DETFAC_PRECIO_TOTAL.ReadOnly = true;
+            this.DETFAC_PRECIO_TOTAL.Width = 90;
+            // 
+            // detfac_ivi
+            // 
+            this.detfac_ivi.DataPropertyName = "detfac_ivi";
+            this.detfac_ivi.HeaderText = "detfac_ivi";
+            this.detfac_ivi.MinimumWidth = 6;
+            this.detfac_ivi.Name = "detfac_ivi";
+            this.detfac_ivi.ReadOnly = true;
+            this.detfac_ivi.Visible = false;
+            this.detfac_ivi.Width = 125;
+            // 
+            // SER_impuestos
+            // 
+            this.SER_impuestos.DataPropertyName = "SER_impuestos";
+            this.SER_impuestos.HeaderText = "SER_impuestos";
+            this.SER_impuestos.MinimumWidth = 6;
+            this.SER_impuestos.Name = "SER_impuestos";
+            this.SER_impuestos.ReadOnly = true;
+            this.SER_impuestos.Visible = false;
+            this.SER_impuestos.Width = 125;
+            // 
             // txtTotalCotizacion
             // 
             this.txtTotalCotizacion.BackColor = System.Drawing.Color.Bisque;
@@ -804,7 +954,7 @@ namespace PROYECTO
             this.txtPrecioUnitario.Name = "txtPrecioUnitario";
             this.txtPrecioUnitario.ReadOnly = true;
             this.txtPrecioUnitario.Size = new System.Drawing.Size(121, 23);
-            this.txtPrecioUnitario.TabIndex = 4;
+            this.txtPrecioUnitario.TabIndex = 5;
             this.txtPrecioUnitario.Text = "¢ 0";
             this.txtPrecioUnitario.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtPrecioUnitario.Enter += new System.EventHandler(this.txtPrecioUnitario_Enter);
@@ -844,7 +994,7 @@ namespace PROYECTO
             this.txtDescServicio.Name = "txtDescServicio";
             this.txtDescServicio.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.txtDescServicio.Size = new System.Drawing.Size(484, 22);
-            this.txtDescServicio.TabIndex = 5;
+            this.txtDescServicio.TabIndex = 3;
             // 
             // label19
             // 
@@ -1083,156 +1233,6 @@ namespace PROYECTO
             this.label10.Size = new System.Drawing.Size(26, 32);
             this.label10.TabIndex = 622;
             this.label10.Text = "*";
-            // 
-            // detfac_numerolinea
-            // 
-            this.detfac_numerolinea.DataPropertyName = "detfac_numerolinea";
-            this.detfac_numerolinea.HeaderText = "indice";
-            this.detfac_numerolinea.MinimumWidth = 6;
-            this.detfac_numerolinea.Name = "detfac_numerolinea";
-            this.detfac_numerolinea.ReadOnly = true;
-            this.detfac_numerolinea.Visible = false;
-            this.detfac_numerolinea.Width = 125;
-            // 
-            // detfac_codigo
-            // 
-            this.detfac_codigo.DataPropertyName = "detfac_codigo";
-            this.detfac_codigo.HeaderText = "CodArticulo";
-            this.detfac_codigo.MinimumWidth = 6;
-            this.detfac_codigo.Name = "detfac_codigo";
-            this.detfac_codigo.ReadOnly = true;
-            this.detfac_codigo.Visible = false;
-            this.detfac_codigo.Width = 75;
-            // 
-            // SER_CODIGO
-            // 
-            this.SER_CODIGO.DataPropertyName = "SER_CODIGO";
-            this.SER_CODIGO.HeaderText = "CODIGO";
-            this.SER_CODIGO.MinimumWidth = 6;
-            this.SER_CODIGO.Name = "SER_CODIGO";
-            this.SER_CODIGO.ReadOnly = true;
-            this.SER_CODIGO.Width = 125;
-            // 
-            // detfac_cantidad
-            // 
-            this.detfac_cantidad.DataPropertyName = "detfac_cantidad";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.detfac_cantidad.DefaultCellStyle = dataGridViewCellStyle3;
-            this.detfac_cantidad.HeaderText = "CANT";
-            this.detfac_cantidad.MinimumWidth = 6;
-            this.detfac_cantidad.Name = "detfac_cantidad";
-            this.detfac_cantidad.ReadOnly = true;
-            this.detfac_cantidad.Width = 60;
-            // 
-            // detfac_descripcion
-            // 
-            this.detfac_descripcion.DataPropertyName = "detfac_descripcion";
-            this.detfac_descripcion.HeaderText = "DESCRIPCIÓN";
-            this.detfac_descripcion.MinimumWidth = 6;
-            this.detfac_descripcion.Name = "detfac_descripcion";
-            this.detfac_descripcion.ReadOnly = true;
-            this.detfac_descripcion.Width = 250;
-            // 
-            // DETFAC_MONTO_IV
-            // 
-            this.DETFAC_MONTO_IV.DataPropertyName = "DETFAC_MONTO_IV";
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle4.Format = "N2";
-            this.DETFAC_MONTO_IV.DefaultCellStyle = dataGridViewCellStyle4;
-            this.DETFAC_MONTO_IV.HeaderText = "Monto IV";
-            this.DETFAC_MONTO_IV.MinimumWidth = 6;
-            this.DETFAC_MONTO_IV.Name = "DETFAC_MONTO_IV";
-            this.DETFAC_MONTO_IV.ReadOnly = true;
-            this.DETFAC_MONTO_IV.Visible = false;
-            this.DETFAC_MONTO_IV.Width = 80;
-            // 
-            // detfac_medida
-            // 
-            this.detfac_medida.DataPropertyName = "detfac_medida";
-            this.detfac_medida.HeaderText = "Medida";
-            this.detfac_medida.MinimumWidth = 6;
-            this.detfac_medida.Name = "detfac_medida";
-            this.detfac_medida.ReadOnly = true;
-            this.detfac_medida.Visible = false;
-            this.detfac_medida.Width = 125;
-            // 
-            // DETFAC_PRECIO_UNITARIO
-            // 
-            this.DETFAC_PRECIO_UNITARIO.DataPropertyName = "DETFAC_PRECIO_UNITARIO";
-            this.DETFAC_PRECIO_UNITARIO.HeaderText = "Precio Unitario";
-            this.DETFAC_PRECIO_UNITARIO.MinimumWidth = 6;
-            this.DETFAC_PRECIO_UNITARIO.Name = "DETFAC_PRECIO_UNITARIO";
-            this.DETFAC_PRECIO_UNITARIO.ReadOnly = true;
-            this.DETFAC_PRECIO_UNITARIO.Visible = false;
-            this.DETFAC_PRECIO_UNITARIO.Width = 125;
-            // 
-            // DETFAC_SUBTOTAL
-            // 
-            this.DETFAC_SUBTOTAL.DataPropertyName = "DETFAC_SUBTOTAL";
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle5.Format = "###,###,##0.00";
-            this.DETFAC_SUBTOTAL.DefaultCellStyle = dataGridViewCellStyle5;
-            this.DETFAC_SUBTOTAL.HeaderText = "SUBTOTAL";
-            this.DETFAC_SUBTOTAL.MinimumWidth = 6;
-            this.DETFAC_SUBTOTAL.Name = "DETFAC_SUBTOTAL";
-            this.DETFAC_SUBTOTAL.ReadOnly = true;
-            this.DETFAC_SUBTOTAL.Width = 90;
-            // 
-            // detfac_descuento
-            // 
-            this.detfac_descuento.DataPropertyName = "detfac_descuento";
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle6.Format = "###,###,##0.00";
-            this.detfac_descuento.DefaultCellStyle = dataGridViewCellStyle6;
-            this.detfac_descuento.HeaderText = "DESC";
-            this.detfac_descuento.MinimumWidth = 6;
-            this.detfac_descuento.Name = "detfac_descuento";
-            this.detfac_descuento.ReadOnly = true;
-            this.detfac_descuento.Width = 50;
-            // 
-            // DETFAC_TIPOPRECIO
-            // 
-            this.DETFAC_TIPOPRECIO.DataPropertyName = "DETFAC_TIPOPRECIO";
-            this.DETFAC_TIPOPRECIO.HeaderText = "DETFAC_TIPOPRECIO";
-            this.DETFAC_TIPOPRECIO.MinimumWidth = 6;
-            this.DETFAC_TIPOPRECIO.Name = "DETFAC_TIPOPRECIO";
-            this.DETFAC_TIPOPRECIO.ReadOnly = true;
-            this.DETFAC_TIPOPRECIO.Visible = false;
-            this.DETFAC_TIPOPRECIO.Width = 125;
-            // 
-            // DETFAC_PRECIO_TOTAL
-            // 
-            this.DETFAC_PRECIO_TOTAL.DataPropertyName = "DETFAC_PRECIO_TOTAL";
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle7.Format = "###,###,##0.00";
-            this.DETFAC_PRECIO_TOTAL.DefaultCellStyle = dataGridViewCellStyle7;
-            this.DETFAC_PRECIO_TOTAL.HeaderText = "TOTAL";
-            this.DETFAC_PRECIO_TOTAL.MinimumWidth = 6;
-            this.DETFAC_PRECIO_TOTAL.Name = "DETFAC_PRECIO_TOTAL";
-            this.DETFAC_PRECIO_TOTAL.ReadOnly = true;
-            this.DETFAC_PRECIO_TOTAL.Width = 90;
-            // 
-            // detfac_ivi
-            // 
-            this.detfac_ivi.DataPropertyName = "detfac_ivi";
-            this.detfac_ivi.HeaderText = "detfac_ivi";
-            this.detfac_ivi.MinimumWidth = 6;
-            this.detfac_ivi.Name = "detfac_ivi";
-            this.detfac_ivi.ReadOnly = true;
-            this.detfac_ivi.Visible = false;
-            this.detfac_ivi.Width = 125;
-            // 
-            // SER_impuestos
-            // 
-            this.SER_impuestos.DataPropertyName = "SER_impuestos";
-            this.SER_impuestos.HeaderText = "SER_impuestos";
-            this.SER_impuestos.MinimumWidth = 6;
-            this.SER_impuestos.Name = "SER_impuestos";
-            this.SER_impuestos.ReadOnly = true;
-            this.SER_impuestos.Visible = false;
-            this.SER_impuestos.Width = 125;
             // 
             // frmCotizacion
             // 

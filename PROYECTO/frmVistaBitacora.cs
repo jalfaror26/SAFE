@@ -17,6 +17,8 @@ namespace PROYECTO
         private static frmVistaBitacora instance = null;
         private String vtema = "";
         private String codigo = "par_Bitacora", descripcion = "Vista de Bitácora de datos del sistema.", modulo = "Seguridad";
+        String vNodeName = "";
+        int vNodeLevel = 0;
 
         public String Modulo
         {
@@ -193,10 +195,16 @@ namespace PROYECTO
 
         private void trvLista_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
         {
-            LlenarDatos(e.Node.Name, e.Node.Level);
+            vNodeName = e.Node.Name;
+            vNodeLevel = e.Node.Level;
+
+            txtFiltro1.Clear();
+            txtFiltro2.Clear();
+
+            LlenarDatos(vNodeName, vNodeLevel, txtFiltro1.Text, txtFiltro2.Text);
         }
 
-        private void LlenarDatos(String pTabla, int nivel)
+        private void LlenarDatos(String pTabla, int nivel, String pFiltro1, String pFiltro2)
         {
             try
             {
@@ -220,7 +228,15 @@ namespace PROYECTO
                             lblTitulo.Text = oFila.ItemArray[0].ToString();
                         }
 
-                        String sql = "select unique movimiento, usuario, fecha, valores datos from tbl_bitacora where no_cia = '" + PROYECTO.Properties.Settings.Default.No_cia + "' and TABLA= '" + pTabla + "' order by fecha desc";
+                        String sql = "select unique movimiento, usuario, fecha, valores datos from tbl_bitacora where no_cia = '" + PROYECTO.Properties.Settings.Default.No_cia + "' and TABLA= '" + pTabla + "' ";
+
+                        if (!String.IsNullOrEmpty(pFiltro1))
+                            sql += " and regexp_like(llave,'" + pFiltro1 + "','i')";
+
+                        if (!String.IsNullOrEmpty(pFiltro2))
+                            sql += " and regexp_like(VALORES,'" + pFiltro2 + "','i')";
+
+                        sql += " order by fecha desc";
 
                         Llenar_Grid(sql);
                     }
@@ -293,6 +309,16 @@ namespace PROYECTO
             frmAyuda oFrm = frmAyuda.getInstance();
             oFrm.MdiParent = this.MdiParent;
             oFrm.Show();
+        }
+
+        private void txtBId_KeyUp(object sender, KeyEventArgs e)
+        {
+            LlenarDatos(vNodeName, vNodeLevel, txtFiltro1.Text, txtFiltro2.Text);
+        }
+
+        private void txtBNombre_KeyUp(object sender, KeyEventArgs e)
+        {
+            LlenarDatos(vNodeName, vNodeLevel, txtFiltro1.Text, txtFiltro2.Text);
         }
 
         private void txtBuscar_Enter(object sender, EventArgs e)

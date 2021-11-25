@@ -112,6 +112,18 @@
     <Compile Include="frmFacturarAutorizacion.designer.cs">
       <DependentUpon>frmFacturarAutorizacion.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmrptEstadoCuentasClientes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmrptEstadoCuentasClientes.designer.cs">
+      <DependentUpon>frmrptEstadoCuentasClientes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmrptFacturasRecibidasPagadas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmrptFacturasRecibidasPagadas.designer.cs">
+      <DependentUpon>frmrptFacturasRecibidasPagadas.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmVistaBitacora.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -374,11 +386,23 @@
       <DependentUpon>rptCajasChicas.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="rptCotizacion.cs">
+      <DependentUpon>rptCotizacion.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="rptFactura.cs">
       <DependentUpon>rptFactura.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
       <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="rptFacturasCanceladasRecibidas.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptFacturasCanceladasRecibidas.rpt</DependentUpon>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="rptMontosPorGasto.cs">
       <AutoGen>True</AutoGen>
@@ -410,6 +434,18 @@
       <DependentUpon>rptClientes.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="rptSaldosFacturasSinDias.cs">
+      <DependentUpon>rptSaldosFacturasSinDias.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="rptSaldosFacturasDias.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptSaldosFacturasDias.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Settings.cs" />
     <Compile Include="Web References\TipoCambioBCCR\Reference.cs">
       <AutoGen>True</AutoGen>
@@ -428,6 +464,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmFacturarAutorizacion.resx">
       <DependentUpon>frmFacturarAutorizacion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmrptEstadoCuentasClientes.resx">
+      <DependentUpon>frmrptEstadoCuentasClientes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmrptFacturasRecibidasPagadas.resx">
+      <DependentUpon>frmrptFacturasRecibidasPagadas.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmVistaBitacora.resx">
       <DependentUpon>frmVistaBitacora.cs</DependentUpon>
@@ -576,9 +618,17 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>rptCajasChicas.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="rptCotizacion.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptCotizacion.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="rptFactura.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>rptFactura.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="rptFacturasCanceladasRecibidas.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptFacturasCanceladasRecibidas.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="rptMontosPorGasto.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
@@ -599,6 +649,14 @@
     <EmbeddedResource Include="rptClientes.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>rptClientes.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="rptSaldosFacturasSinDias.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptSaldosFacturasSinDias.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="rptSaldosFacturasDias.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptSaldosFacturasDias.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="backup_SAFE.BAT" />
     <None Include="BD_SAFE.DMP" />
@@ -648,6 +706,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\rym2.jpg" />
+    <Content Include="CambiosBD 24-11-21.txt" />
     <Content Include="CambiosBD 22-11-21.txt" />
     <Content Include="CambiosBD 20-11-21 - parte 2.txt" />
     <Content Include="CambiosBD 20-11-21.txt" />

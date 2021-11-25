@@ -565,7 +565,7 @@ namespace PROYECTO
 
                         MailMessage email = new MailMessage();
 
-                        email.From = new MailAddress("jalfaro@softconcr.com");
+                        email.From = new MailAddress("seguridad@rymserviciosdepublicidad.com");
                         email.To.Add(new MailAddress(oUsuario.Email));
                         email.Subject = "Su contraseña de acceso a SAFE fue reseteada";
                         email.Body = "Estimado usuario, su contraseña para accesar a SAFE fue reseteada por " + PROYECTO.Properties.Settings.Default.UsuarioBD;
@@ -586,7 +586,7 @@ namespace PROYECTO
                         smtp.Port = 80;
                         smtp.EnableSsl = false;
                         smtp.UseDefaultCredentials = false;
-                        smtp.Credentials = new NetworkCredential("jalfaro@softconcr.com", "verde19895");
+                        smtp.Credentials = new NetworkCredential("seguridad@rymserviciosdepublicidad.com", "seguridad123");
 
                         string output = null;
 

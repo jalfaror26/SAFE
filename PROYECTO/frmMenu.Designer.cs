@@ -264,7 +264,6 @@ namespace PROYECTO
             this.btnRepInvFac.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnRepInvFac.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnRepInvFac.UseVisualStyleBackColor = true;
-            this.btnRepInvFac.Visible = false;
             this.btnRepInvFac.Click += new System.EventHandler(this.btnRepInvFac_Click);
             // 
             // btnRepFinancieros
@@ -575,7 +574,7 @@ namespace PROYECTO
             this.btnCajas.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnCajas.ImageIndex = 1;
             this.btnCajas.ImageList = this.imageList1;
-            this.btnCajas.Location = new System.Drawing.Point(11, 182);
+            this.btnCajas.Location = new System.Drawing.Point(269, 269);
             this.btnCajas.Margin = new System.Windows.Forms.Padding(4);
             this.btnCajas.Name = "btnCajas";
             this.btnCajas.Size = new System.Drawing.Size(440, 55);
@@ -606,7 +605,7 @@ namespace PROYECTO
             this.btnVentas.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnVentas.ImageIndex = 1;
             this.btnVentas.ImageList = this.imageList1;
-            this.btnVentas.Location = new System.Drawing.Point(477, 182);
+            this.btnVentas.Location = new System.Drawing.Point(269, 342);
             this.btnVentas.Margin = new System.Windows.Forms.Padding(4);
             this.btnVentas.Name = "btnVentas";
             this.btnVentas.Size = new System.Drawing.Size(440, 55);
@@ -654,7 +653,7 @@ namespace PROYECTO
             this.btnRepTransacc.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnRepTransacc.ImageIndex = 1;
             this.btnRepTransacc.ImageList = this.imageList1;
-            this.btnRepTransacc.Location = new System.Drawing.Point(477, 101);
+            this.btnRepTransacc.Location = new System.Drawing.Point(269, 121);
             this.btnRepTransacc.Margin = new System.Windows.Forms.Padding(4);
             this.btnRepTransacc.Name = "btnRepTransacc";
             this.btnRepTransacc.Size = new System.Drawing.Size(440, 55);
@@ -671,7 +670,7 @@ namespace PROYECTO
             this.btnRepRecDinero.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnRepRecDinero.ImageIndex = 1;
             this.btnRepRecDinero.ImageList = this.imageList1;
-            this.btnRepRecDinero.Location = new System.Drawing.Point(11, 101);
+            this.btnRepRecDinero.Location = new System.Drawing.Point(269, 196);
             this.btnRepRecDinero.Margin = new System.Windows.Forms.Padding(4);
             this.btnRepRecDinero.Name = "btnRepRecDinero";
             this.btnRepRecDinero.Size = new System.Drawing.Size(440, 55);
@@ -756,6 +755,7 @@ namespace PROYECTO
             this.btnProdPendientesCobro.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnProdPendientesCobro.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnProdPendientesCobro.UseVisualStyleBackColor = true;
+            this.btnProdPendientesCobro.Visible = false;
             this.btnProdPendientesCobro.Click += new System.EventHandler(this.btnProdPendientesCobro_Click);
             // 
             // btnRepFacImpuestoVentas
@@ -773,6 +773,7 @@ namespace PROYECTO
             this.btnRepFacImpuestoVentas.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnRepFacImpuestoVentas.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnRepFacImpuestoVentas.UseVisualStyleBackColor = true;
+            this.btnRepFacImpuestoVentas.Visible = false;
             this.btnRepFacImpuestoVentas.Click += new System.EventHandler(this.btnRepFacImpuestoVentas_Click);
             // 
             // btnFacturacionXmesAno
@@ -790,6 +791,7 @@ namespace PROYECTO
             this.btnFacturacionXmesAno.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnFacturacionXmesAno.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnFacturacionXmesAno.UseVisualStyleBackColor = true;
+            this.btnFacturacionXmesAno.Visible = false;
             this.btnFacturacionXmesAno.Click += new System.EventHandler(this.btnFacturacionXmesAno_Click);
             // 
             // button10
@@ -839,6 +841,7 @@ namespace PROYECTO
             this.btnRepFacMoneda.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnRepFacMoneda.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnRepFacMoneda.UseVisualStyleBackColor = true;
+            this.btnRepFacMoneda.Visible = false;
             this.btnRepFacMoneda.Click += new System.EventHandler(this.btnRepFacMoneda_Click);
             // 
             // btnRepSalFact
@@ -873,6 +876,7 @@ namespace PROYECTO
             this.btnRepFacCliente.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnRepFacCliente.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnRepFacCliente.UseVisualStyleBackColor = true;
+            this.btnRepFacCliente.Visible = false;
             this.btnRepFacCliente.Click += new System.EventHandler(this.btnRepFacCliente_Click);
             // 
             // btnRepFacPeriodo
@@ -890,6 +894,7 @@ namespace PROYECTO
             this.btnRepFacPeriodo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnRepFacPeriodo.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnRepFacPeriodo.UseVisualStyleBackColor = true;
+            this.btnRepFacPeriodo.Visible = false;
             this.btnRepFacPeriodo.Click += new System.EventHandler(this.btnRepFacPeriodo_Click);
             // 
             // label19
@@ -1033,7 +1038,6 @@ namespace PROYECTO
             this.btnRepFacRecPag.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnRepFacRecPag.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnRepFacRecPag.UseVisualStyleBackColor = true;
-            this.btnRepFacRecPag.Visible = false;
             this.btnRepFacRecPag.Click += new System.EventHandler(this.btnRepFacRecPag_Click);
             // 
             // btnRepGtsPorCategoria

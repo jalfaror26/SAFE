@@ -82,6 +82,21 @@ namespace PROYECTO
                         }
                     }
 
+                    if (!AplicaFE(out String pApiToken, out String pAccessToken))
+                    {
+                        pbFacturaElectronica.Visible = false;
+                        lblMjFacturaElectronica.Text = "";
+                        AnularFactura();
+                        return;
+                    }
+
+                    if (!oFactura.Fe_Comprobacion.Equals("ACEPTADO"))
+                    {
+                        MessageBox.Show("No se puede anular esta factura porque la Factura Electrónica no está en estado ACEPTADO!!", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
+
+
                     lblMjFacturaElectronica.Text = "Generando Nota de Crédito";
                     lblMjFacturaElectronica.Visible = true;
                     pbFacturaElectronica.Visible = true;
@@ -360,15 +375,7 @@ namespace PROYECTO
             {
                 FacturaDAO oFacturaDAO = new FacturaDAO();
 
-                if (!AplicaFE(out String pApiToken, out String pAccessToken) || oFactura.Comprobante.Equals("RECHAZADO"))
-                {
-                    pbFacturaElectronica.Visible = false;
-                    lblMjFacturaElectronica.Text = "";
-                    AnularFactura();
-                    return;
-                }
-
-                if (oFactura.Indice == 0 || String.IsNullOrEmpty(oFactura.Fe_Clave) || !oFactura.Estado.Equals("FACTURADA") || oFactura.Comprobante.Equals("POR COMPROBAR"))
+                if (oFactura.Indice == 0 || String.IsNullOrEmpty(oFactura.Fe_Clave) || !oFactura.Estado.Equals("FACTURADA") || oFactura.Fe_Comprobacion.Equals("POR COMPROBAR"))
                 {
                     pbFacturaElectronica.Visible = false;
                     lblMjFacturaElectronica.Text = "";
@@ -645,7 +652,7 @@ namespace PROYECTO
                         //nombre_comercial = "",
                         //correo = vcorreo,
                         lineas = oListLineas,
-                        comentarios = "Factura Realizada con SAFE - Factura Local No: " + vNumFactura
+                        comentarios = "Nota de Crédito Realizada con SAFE - Factura Local No: " + vNumFactura
                     };
 
                     var json = JsonConvert.SerializeObject(oRootFE);
@@ -654,6 +661,9 @@ namespace PROYECTO
 
                     if (Internet())
                     {
+                        if (!AplicaFE(out String pApiToken, out String pAccessToken))
+                            return;
+
                         String oDatosJson = oControl.CrearNC(jfinal, oFactura.Fe_Clave, out Boolean /*HttpStatusCode*/ vOut, out Boolean vTimeOut, pApiToken, pAccessToken);
 
                         if (vTimeOut)
@@ -668,25 +678,39 @@ namespace PROYECTO
                         if (vOut)/* == HttpStatusCode.OK)*/
                         {
                             int vcodigo = jobject.codigo;
-                            string vclave = jobject.documento.clave;
-                            string vconsecutivo = jobject.documento.consecutivo;
-                            string vrecepcion = jobject.documento.recepcion;
-                            string vcomprobacion = jobject.documento.comprobacion;
+                            string vclave_NC = jobject.documento.clave;
+                            string vconsecutivo_NC = jobject.documento.consecutivo;
+                            string vrecepcion_NC = jobject.documento.recepcion;
+                            string vcomprobacion_NC = jobject.documento.comprobacion;
 
-                            if (String.IsNullOrEmpty(vclave))
-                                vclave = "";
-                            if (String.IsNullOrEmpty(vconsecutivo))
-                                vconsecutivo = "";
-                            if (String.IsNullOrEmpty(vrecepcion))
-                                vrecepcion = "";
-                            if (String.IsNullOrEmpty(vcomprobacion))
-                                vcomprobacion = "";
+                            if (String.IsNullOrEmpty(vclave_NC))
+                                vclave_NC = "";
+                            if (String.IsNullOrEmpty(vconsecutivo_NC))
+                                vconsecutivo_NC = "";
+                            if (String.IsNullOrEmpty(vrecepcion_NC))
+                                vrecepcion_NC = "";
+                            if (String.IsNullOrEmpty(vcomprobacion_NC))
+                                vcomprobacion_NC = "";
 
                             try
                             {
                                 if (vcodigo == 200)
                                 {
-                                    AnularFactura();
+                                    oFactura.Fe_Clave_NC = vclave_NC;
+                                    oFactura.Fe_Consecutivo_NC = vconsecutivo_NC;
+                                    oFactura.Fe_Recepcion_NC = vrecepcion_NC;
+                                    oFactura.Fe_Comprobacion_NC = vcomprobacion_NC;
+
+                                    if (oFacturaDAO.ModificaEstadoCreaFactura_FE_NC(oFactura) > 0)
+                                    {
+                                        lblMjFacturaElectronica.Text = "Comprobando Factura Electrónica";
+                                        lblMjFacturaElectronica.Visible = true;
+                                        pbFacturaElectronica.Visible = true;
+
+                                        timCompruebaNC.Start();
+                                    }
+                                    else
+                                        MessageBox.Show("Ocurrió un error al guardar los datos: " + oFacturaDAO.DescError(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                 }
                             }
                             catch { }
@@ -694,7 +718,7 @@ namespace PROYECTO
                             oConexion.cerrarConexion();
                         }
                         else
-                            MessageBox.Show("Error al extraer datos!!!", "Error de Conexión", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show("Perdida de conexión con API de Facturador Virtual.", "Error de Conexión", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                     else
                         MessageBox.Show("Sin conexión a internet!!!", "Error de Conexión", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -743,6 +767,117 @@ namespace PROYECTO
             public List<Linea> lineas { get; set; }
             public string comentarios { get; set; }
         }
+
+        private void timCompruebaNC_Tick(object sender, EventArgs e)
+        {
+            if (ttime == 5)
+            {
+                ttime = 0;
+                lblMjFacturaElectronica.Text = "Comprobando Nota de Crédito";
+                lblMjFacturaElectronica.Visible = true;
+                pbFacturaElectronica.Visible = true;
+
+                timCompruebaNC.Stop();
+                ComprobarNC();
+                pbFacturaElectronica.Visible = false;
+            }
+            ttime++;
+        }
+
+        private void ComprobarNC()
+        {
+            try
+            {
+                if (String.IsNullOrEmpty(oFactura.Fe_Clave_NC))
+                    return;
+
+                if (Internet())
+                {
+                    if (!AplicaFE(out String pApiToken, out String pAccessToken))
+                        return;
+
+                    String oDatosJson = oControl.ComprobarFE(oFactura.Fe_Clave_NC, out Boolean /*HttpStatusCode*/ vOut, out Boolean vTimeOut, pApiToken, pAccessToken);
+
+                    if (vTimeOut)
+                    {
+                        MessageBox.Show("A sucedido un problema de conexión, por favor intente nuevamente, si el problema persiste informe a Soporte Técnico.", "Error de Conexión", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                        return;
+                    }
+
+                    var jobject = JsonConvert.DeserializeObject<Root>(oDatosJson);
+
+                    if (vOut)/* == HttpStatusCode.OK)*/
+                    {
+                        oConexion.cerrarConexion();
+                        if (oConexion.abrirConexion())
+                        {
+                            int vcodigo = jobject.codigo;
+                            string vestado = jobject.estado;
+                            string vmensaje = jobject.mensaje;
+                            string vrespuesta = jobject.respuesta;
+
+                            if (String.IsNullOrEmpty(vestado))
+                                vestado = "";
+                            if (String.IsNullOrEmpty(vmensaje))
+                                vmensaje = "";
+                            if (String.IsNullOrEmpty(vrespuesta))
+                                vrespuesta = "";
+
+                            try
+                            {
+                                if (vcodigo == 200)
+                                {
+                                    //oFactura.Fe_Codigo = vcodigo.ToString();
+                                    //oFactura.Fe_ContenidoXml = vrespuesta;
+                                    //oFactura.Fe_Errores = vmensaje;
+                                    oFactura.Fe_Comprobacion_NC = vestado;
+
+                                    FacturaDAO oFacturaDAO = new FacturaDAO();
+                                    oFacturaDAO.ModificaEstadoFactura_FE_NC(oFactura);
+                                }
+
+                                AnularFactura();
+                            }
+                            catch { }
+
+                            oConexion.cerrarConexion();
+
+
+                        }
+                        else
+                        {
+                            MessageBox.Show("Error al conectarse con la base de datos\nVerifique que los datos estén correctos");
+                            return;
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Perdida de conexión con API de Facturador Virtual.", "Error de Conexión", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+
+                }
+                else
+                {
+                    MessageBox.Show("Sin conexión a internet!!!", "Error de Conexión", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al buscar API!!!", "Error de Conexión", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                // Qué ha sucedido
+                var mensaje = "Error message: " + ex.Message;
+
+                // Información sobre la excepción interna
+                if (ex.InnerException != null)
+                {
+                    mensaje = mensaje + " Inner exception: " + ex.InnerException.Message;
+                }
+
+            }
+        }
+
 
         public class Linea
         {

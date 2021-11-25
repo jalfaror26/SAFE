@@ -387,8 +387,8 @@ namespace PROYECTO
 
             if (palabra.Equals("PROFORMA"))
                 frmCotizacion.getInstance().cargaCotizacion(cod, des);
-            //else if (palabra.Equals("ProveedorReporteFacturasPC"))
-            //    frmrptFacturasRecibidasPagadas.getInstance().cargaProveedor(cod, des);
+            else if (palabra.Equals("ProveedorReporteFacturasPC"))
+                frmrptFacturasRecibidasPagadas.getInstance().cargaProveedor(cod, des);
             //else if (palabra.Equals("GastoReporte"))
             //    frmrptPagosRealizadosCategoria.getInstance().cargaGasto(cod, des);
             //else if (palabra.Equals("puestoReporteFacturacionPeriodo"))
@@ -424,8 +424,8 @@ namespace PROYECTO
             else if (palabra.Equals("GastosRapidos"))
                 frmFacturaPorPagarProveedorRapida.getInstance().LlenarGasto(cod, des);
 
-            //else if (palabra.Equals("ClienteReporteRecibos"))
-            //    frmrptRecibosPorCliente.getInstance().cargaCliente(cod, des);
+            else if (palabra.Equals("ClienteReporteRecibos"))
+                frmrptEstadoCuentasClientes.getInstance().cargaCliente(cod, des);
             //else if (palabra.Equals("ClienteReporteFacturacionPeriodo"))
             //    frmrptFacturacionPorPeriodo.getInstance().cargaCliente(cod, des);
             //else if (palabra.Equals("ReporteArticuloPrecios"))

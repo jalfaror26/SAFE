@@ -44,17 +44,18 @@ namespace PROYECTO
             this.timCreaNC = new System.Windows.Forms.Timer(this.components);
             this.lblMjFacturaElectronica = new System.Windows.Forms.Label();
             this.pbFacturaElectronica = new System.Windows.Forms.ProgressBar();
+            this.timCompruebaNC = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
             // txtAdministrador
             // 
             this.txtAdministrador.BackColor = System.Drawing.Color.White;
             this.txtAdministrador.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtAdministrador.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtAdministrador.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtAdministrador.Location = new System.Drawing.Point(45, 31);
             this.txtAdministrador.Margin = new System.Windows.Forms.Padding(4);
             this.txtAdministrador.Name = "txtAdministrador";
-            this.txtAdministrador.Size = new System.Drawing.Size(207, 23);
+            this.txtAdministrador.Size = new System.Drawing.Size(207, 22);
             this.txtAdministrador.TabIndex = 0;
             // 
             // label1
@@ -84,18 +85,18 @@ namespace PROYECTO
             // txtClave
             // 
             this.txtClave.BackColor = System.Drawing.Color.White;
-            this.txtClave.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtClave.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtClave.Location = new System.Drawing.Point(300, 31);
             this.txtClave.Margin = new System.Windows.Forms.Padding(4);
             this.txtClave.Name = "txtClave";
             this.txtClave.PasswordChar = '*';
-            this.txtClave.Size = new System.Drawing.Size(207, 23);
+            this.txtClave.Size = new System.Drawing.Size(207, 22);
             this.txtClave.TabIndex = 1;
             // 
             // btnAnular
             // 
             this.btnAnular.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnAnular.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAnular.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAnular.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnAnular.ImageIndex = 0;
             this.btnAnular.ImageList = this.imageList1;
@@ -119,7 +120,7 @@ namespace PROYECTO
             // btnCancelar
             // 
             this.btnCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancelar.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnCancelar.ImageIndex = 1;
             this.btnCancelar.ImageList = this.imageList1;
@@ -142,7 +143,7 @@ namespace PROYECTO
             // 
             this.txtComentario.BackColor = System.Drawing.Color.White;
             this.txtComentario.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtComentario.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtComentario.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtComentario.Location = new System.Drawing.Point(45, 127);
             this.txtComentario.Margin = new System.Windows.Forms.Padding(4);
             this.txtComentario.Multiline = true;
@@ -165,12 +166,12 @@ namespace PROYECTO
             // cboComentarios
             // 
             this.cboComentarios.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboComentarios.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboComentarios.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboComentarios.FormattingEnabled = true;
             this.cboComentarios.Location = new System.Drawing.Point(45, 89);
             this.cboComentarios.Margin = new System.Windows.Forms.Padding(4);
             this.cboComentarios.Name = "cboComentarios";
-            this.cboComentarios.Size = new System.Drawing.Size(461, 25);
+            this.cboComentarios.Size = new System.Drawing.Size(461, 24);
             this.cboComentarios.TabIndex = 8;
             this.cboComentarios.SelectedIndexChanged += new System.EventHandler(this.cboComentarios_SelectedIndexChanged);
             // 
@@ -187,7 +188,7 @@ namespace PROYECTO
             this.lblMjFacturaElectronica.Name = "lblMjFacturaElectronica";
             this.lblMjFacturaElectronica.Size = new System.Drawing.Size(397, 38);
             this.lblMjFacturaElectronica.TabIndex = 622;
-            this.lblMjFacturaElectronica.Text = "Generando Factura Electrónica";
+            this.lblMjFacturaElectronica.Text = "Generando Nota de Crédito";
             this.lblMjFacturaElectronica.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.lblMjFacturaElectronica.Visible = false;
             // 
@@ -200,6 +201,10 @@ namespace PROYECTO
             this.pbFacturaElectronica.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
             this.pbFacturaElectronica.TabIndex = 621;
             this.pbFacturaElectronica.Visible = false;
+            // 
+            // timCompruebaNC
+            // 
+            this.timCompruebaNC.Tick += new System.EventHandler(this.timCompruebaNC_Tick);
             // 
             // frmFacturaAnular
             // 
@@ -254,5 +259,6 @@ namespace PROYECTO
         private System.Windows.Forms.Timer timCreaNC;
         private System.Windows.Forms.Label lblMjFacturaElectronica;
         private System.Windows.Forms.ProgressBar pbFacturaElectronica;
+        private System.Windows.Forms.Timer timCompruebaNC;
     }
 }

@@ -45,8 +45,8 @@ namespace PROYECTO
             this.Fecha = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Datos = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label1 = new System.Windows.Forms.Label();
-            this.txtBId = new System.Windows.Forms.TextBox();
-            this.txtBNombre = new System.Windows.Forms.TextBox();
+            this.txtFiltro1 = new System.Windows.Forms.TextBox();
+            this.txtFiltro2 = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgrDatos)).BeginInit();
             this.SuspendLayout();
             // 
@@ -199,27 +199,29 @@ namespace PROYECTO
             this.label1.TabIndex = 387;
             this.label1.Text = "Filtro 1";
             // 
-            // txtBId
+            // txtFiltro1
             // 
-            this.txtBId.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtBId.Location = new System.Drawing.Point(341, 66);
-            this.txtBId.Margin = new System.Windows.Forms.Padding(4);
-            this.txtBId.Name = "txtBId";
-            this.txtBId.Size = new System.Drawing.Size(321, 22);
-            this.txtBId.TabIndex = 388;
-            this.txtBId.TabStop = false;
-            this.txtBId.Tag = "P.num_producto";
+            this.txtFiltro1.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtFiltro1.Location = new System.Drawing.Point(341, 66);
+            this.txtFiltro1.Margin = new System.Windows.Forms.Padding(4);
+            this.txtFiltro1.Name = "txtFiltro1";
+            this.txtFiltro1.Size = new System.Drawing.Size(321, 22);
+            this.txtFiltro1.TabIndex = 388;
+            this.txtFiltro1.TabStop = false;
+            this.txtFiltro1.Tag = "P.num_producto";
+            this.txtFiltro1.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtBId_KeyUp);
             // 
-            // txtBNombre
+            // txtFiltro2
             // 
-            this.txtBNombre.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtBNombre.Location = new System.Drawing.Point(688, 66);
-            this.txtBNombre.Margin = new System.Windows.Forms.Padding(4);
-            this.txtBNombre.Name = "txtBNombre";
-            this.txtBNombre.Size = new System.Drawing.Size(321, 22);
-            this.txtBNombre.TabIndex = 390;
-            this.txtBNombre.TabStop = false;
-            this.txtBNombre.Tag = "M.descripcion";
+            this.txtFiltro2.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtFiltro2.Location = new System.Drawing.Point(688, 66);
+            this.txtFiltro2.Margin = new System.Windows.Forms.Padding(4);
+            this.txtFiltro2.Name = "txtFiltro2";
+            this.txtFiltro2.Size = new System.Drawing.Size(837, 22);
+            this.txtFiltro2.TabIndex = 390;
+            this.txtFiltro2.TabStop = false;
+            this.txtFiltro2.Tag = "M.descripcion";
+            this.txtFiltro2.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtBNombre_KeyUp);
             // 
             // frmVistaBitacora
             // 
@@ -229,8 +231,8 @@ namespace PROYECTO
             this.Controls.Add(this.label2);
             this.Controls.Add(this.dgrDatos);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.txtBId);
-            this.Controls.Add(this.txtBNombre);
+            this.Controls.Add(this.txtFiltro1);
+            this.Controls.Add(this.txtFiltro2);
             this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.lblTitulo);
             this.Controls.Add(this.txtBuscar);
@@ -263,8 +265,8 @@ namespace PROYECTO
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.DataGridView dgrDatos;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox txtBId;
-        private System.Windows.Forms.TextBox txtBNombre;
+        private System.Windows.Forms.TextBox txtFiltro1;
+        private System.Windows.Forms.TextBox txtFiltro2;
         private System.Windows.Forms.DataGridViewTextBoxColumn MOVIMIENTO;
         private System.Windows.Forms.DataGridViewTextBoxColumn Usuario;
         private System.Windows.Forms.DataGridViewTextBoxColumn Fecha;

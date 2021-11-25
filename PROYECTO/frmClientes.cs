@@ -275,10 +275,38 @@ namespace PROYECTO
                     oCliente.Lc_limite = double.Parse(txtLCLimite.Text);
                     oCliente.Lc_moneda = cboLCMoneda.SelectedItem.ToString();
 
-                    oCliente.Provincia = ((KeyValuePair<string, string>)cboProvincia.SelectedItem).Key;
-                    oCliente.Canton = ((KeyValuePair<string, string>)cboCanton.SelectedItem).Key;
-                    oCliente.Distrito = ((KeyValuePair<string, string>)cboDistrito.SelectedItem).Key;
-                    oCliente.Barrio = ((KeyValuePair<string, string>)cboBarrio.SelectedItem).Key;
+                    try
+                    {
+                        oCliente.Provincia = ((KeyValuePair<string, string>)cboProvincia.SelectedItem).Key;
+                    }
+                    catch
+                    {
+                        oCliente.Provincia = "";
+                    }
+                    try
+                    {
+                        oCliente.Canton = ((KeyValuePair<string, string>)cboCanton.SelectedItem).Key;
+                    }
+                    catch
+                    {
+                        oCliente.Canton = "";
+                    }
+                    try
+                    {
+                        oCliente.Distrito = ((KeyValuePair<string, string>)cboDistrito.SelectedItem).Key;
+                    }
+                    catch
+                    {
+                        oCliente.Distrito = "";
+                    }
+                    try
+                    {
+                        oCliente.Barrio = ((KeyValuePair<string, string>)cboBarrio.SelectedItem).Key;
+                    }
+                    catch
+                    {
+                        oCliente.Barrio = "";
+                    }
 
                     if (indice == 0)
                         oClienteDAO.Agregar(oCliente, out indice);
@@ -434,7 +462,7 @@ namespace PROYECTO
 
         private void txtLCLimite_Enter(object sender, EventArgs e)
         {
-            txtLCLimite.Text = double.Parse(txtLCLimite.Text).ToString("########0.00");
+            txtLCLimite.Text = double.Parse(txtLCLimite.Text).ToString("########0.##");
             if (txtLCLimite.Text.Equals("0"))
                 txtLCLimite.Clear();
         }
@@ -859,7 +887,7 @@ namespace PROYECTO
 
                             progressBar1.Visible = false;
 
-                            if (vHayError) 
+                            if (vHayError)
                                 MessageBox.Show("Proceso Finalizado con errores!!\nTotal clientes: " + totalClientes.ToString("###,###,##0") + "\nTotal errores: " + totalErrores.ToString("###,###,##0"), "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             else
                                 MessageBox.Show("Proceso Finalizado correctamente!!\nTotal clientes: " + totalClientes.ToString("###,###,##0") + "\nTotal errores: " + totalErrores.ToString("###,###,##0"), "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -874,7 +902,7 @@ namespace PROYECTO
                     else
                     {
                         progressBar1.Visible = false;
-                        MessageBox.Show("Error al extraer datos!!!", "Error de Conexión", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("Perdida de conexión con API de Facturador Virtual.", "Error de Conexión", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
 
                     progressBar1.Visible = false;

@@ -15,7 +15,7 @@ namespace PROYECTO
         private static frmrptProveedores ofrmrptProveedores = null;
         private ConexionDAO oConexion = new ConexionDAO(PROYECTO.Properties.Settings.Default.UsuarioBD, PROYECTO.Properties.Settings.Default.Servidor, Conexion.getInstance().Clave);
         private ReportesDAO oReporteDAO = null;
-        private String codigo = "rpt_Proveedores", descripcion = "Reporte de proveedores.", modulo = "Reportes_Generales";
+        private String codigo = "rpt_Proveedores", descripcion = "Reporte de proveedores.", modulo = "Reportes Mantenimientos";
 
         public String Modulo
         {

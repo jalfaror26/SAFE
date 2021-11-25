@@ -19,7 +19,7 @@ namespace PROYECTO
         private TipoCambioDAO oTipoCambioDAO = new TipoCambioDAO();
         private ReportesDAO oReportesDAO = null;
         private int numero = 0;
-        private String codigo = "rpt_FactsRecibidasCategoria", descripcion = "Reporte de facturas recibidas por periodo.", modulo = "Reportes_Pagos";
+        private String codigo = "rpt_FactsRecibidasCategoria", descripcion = "Reporte de facturas recibidas por periodo.", modulo = "Reportes CxP";
 
         public String Modulo
         {

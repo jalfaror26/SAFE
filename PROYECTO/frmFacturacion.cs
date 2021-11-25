@@ -538,6 +538,24 @@ namespace PROYECTO
                                 lblFE_Comprobacion.Text = odata.Rows[0]["fe_comprobacion"].ToString().ToUpper();
 
                             lblFE_Recepcion.Text = odata.Rows[0]["fe_recepcion"].ToString().ToUpper(); ;
+
+
+
+                            txtFE_Clave_NC.Text = odata.Rows[0]["fe_clave_NC"].ToString();
+                            txtFE_Consecutivo_NC.Text = odata.Rows[0]["fe_consecutivo_NC"].ToString();
+
+                            if (odata.Rows[0]["fe_comprobacion_NC"].ToString().Equals("por_comprobar"))
+                                lblFE_Comprobacion_NC.Text = "POR COMPROBAR";
+                            else
+                                lblFE_Comprobacion_NC.Text = odata.Rows[0]["fe_comprobacion_NC"].ToString().ToUpper();
+
+                            lblFE_Recepcion_NC.Text = odata.Rows[0]["fe_recepcion_NC"].ToString().ToUpper();
+
+                            if (txtEstado.Text.Equals("ANULADA"))
+                                gbDatosHacienda.Size = new Size(446, 215);
+                            else
+                                gbDatosHacienda.Size = new Size(446, 105);
+
                         }
                         else
                         {
@@ -545,6 +563,13 @@ namespace PROYECTO
                             txtFE_Consecutivo.Clear();
                             lblFE_Comprobacion.Text = "";
                             lblFE_Recepcion.Text = "";
+
+                            txtFE_Clave_NC.Clear();
+                            txtFE_Consecutivo_NC.Clear();
+                            lblFE_Comprobacion_NC.Text = "";
+                            lblFE_Recepcion_NC.Text = "";
+
+                            gbDatosHacienda.Size = new Size(446, 105);
                         }
                         CalculaEstado();
                         VerificaEstados_FE();
@@ -573,10 +598,16 @@ namespace PROYECTO
                     CalculaSaldos();
                     chkDescuento.Enabled = false;
 
-                    lblMjFacturaElectronica.Text = "Generando Factura Electrónica";
-                    lblMjFacturaElectronica.Visible = true;
-                    pbFacturaElectronica.Visible = true;
-                    timCreaFA.Start();
+                    if (AplicaFE(out String pApiToken, out String pAccessToken))
+                    {
+                        if (txtEstado.Text.Equals("FACTURADA") && String.IsNullOrEmpty(txtFE_Clave.Text))
+                        {
+                            lblMjFacturaElectronica.Text = "Generando Factura Electrónica";
+                            lblMjFacturaElectronica.Visible = true;
+                            pbFacturaElectronica.Visible = true;
+                            timCreaFA.Start();
+                        }
+                    }
                 }
                 else
                     MessageBox.Show("Ocurrió un error al conectarse a la base de datos.", "Error de Conexión", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -615,6 +646,34 @@ namespace PROYECTO
                 lblFE_Recepcion.ForeColor = Color.Blue;
             else
                 lblFE_Recepcion.ForeColor = Color.Yellow;
+
+            // NOTA DE CREDITO
+            btnFE_Comprobar_NC.Visible = false;
+
+            if (lblFE_Comprobacion_NC.Text.Equals(""))
+                lblFE_Comprobacion_NC.ForeColor = Color.Black;
+            else if (lblFE_Comprobacion_NC.Text.Equals("POR COMPROBAR"))
+            {
+                btnFE_Comprobar_NC.Visible = true;
+                lblFE_Comprobacion_NC.ForeColor = Color.Blue;
+            }
+            else if (lblFE_Comprobacion_NC.Text.Equals("ACEPTADO"))
+                lblFE_Comprobacion_NC.ForeColor = Color.Green;
+            else if (lblFE_Comprobacion_NC.Text.Equals("RECHAZADO"))
+                lblFE_Comprobacion_NC.ForeColor = Color.Red;
+            else
+                lblFE_Comprobacion_NC.ForeColor = Color.Yellow;
+
+            if (lblFE_Recepcion.Text.Equals(""))
+                lblFE_Recepcion_NC.ForeColor = Color.Black;
+            else if (lblFE_Recepcion.Text.Equals("PROCESANDO"))
+                lblFE_Recepcion_NC.ForeColor = Color.Green;
+            else if (lblFE_Recepcion.Text.Equals("ACEPTADO"))
+                lblFE_Recepcion_NC.ForeColor = Color.Blue;
+            else if (lblFE_Recepcion.Text.Equals("RECIBIDO"))
+                lblFE_Recepcion_NC.ForeColor = Color.Blue;
+            else
+                lblFE_Recepcion_NC.ForeColor = Color.Yellow;
         }
 
         private void btnBusqCliente_Click(object sender, EventArgs e)
@@ -1566,7 +1625,9 @@ namespace PROYECTO
                     oFactura.Cliente = idCliente;
                     oFactura.Fe_Clave = txtFE_Clave.Text;
                     oFactura.Estado = txtEstado.Text;
-                    oFactura.Comprobante = lblFE_Comprobacion.Text;
+                    oFactura.Fe_Comprobacion = lblFE_Comprobacion.Text;
+                    oFactura.Fe_Clave_NC = txtFE_Clave_NC.Text;
+                    oFactura.Fe_Comprobacion_NC = lblFE_Comprobacion_NC.Text;
 
                     if (rbContado.Checked)
                         oFactura.Tipo = "CONTADO";
@@ -1822,12 +1883,14 @@ namespace PROYECTO
 
         private void btnFE_Comprobar_Click(object sender, EventArgs e)
         {
-            lblMjFacturaElectronica.Text = "Comprobando Factura Electrónica";
-            lblMjFacturaElectronica.Visible = true;
-            pbFacturaElectronica.Visible = true;
+            if (AplicaFE(out String pApiToken, out String pAccessToken))
+            {
+                lblMjFacturaElectronica.Text = "Comprobando Factura Electrónica";
+                lblMjFacturaElectronica.Visible = true;
+                pbFacturaElectronica.Visible = true;
 
-
-            timCompruebaFA.Start();
+                timCompruebaFA.Start();
+            }
         }
 
         public Boolean Internet()
@@ -2225,7 +2288,7 @@ namespace PROYECTO
                             oConexion.cerrarConexion();
                         }
                         else
-                            MessageBox.Show("Error al extraer datos!!!", "Error de Conexión", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show("Perdida de conexión con API de Facturador Virtual.", "Error de Conexión", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                     else
                         MessageBox.Show("Sin conexión a internet!!!", "Error de Conexión", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -2365,7 +2428,7 @@ namespace PROYECTO
                     }
                     else
                     {
-                        MessageBox.Show("Error al extraer datos!!!", "Error de Conexión", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("Perdida de conexión con API de Facturador Virtual.", "Error de Conexión", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
 
                 }
@@ -2390,6 +2453,105 @@ namespace PROYECTO
             }
         }
 
+        private void ComprobarNC()
+        {
+            try
+            {
+                if (String.IsNullOrEmpty(txtFE_Clave.Text))
+                    return;
+
+                if (Internet())
+                {
+                    if (!AplicaFE(out String pApiToken, out String pAccessToken))
+                        return;
+
+                    String oDatosJson = oControl.ComprobarFE(txtFE_Clave_NC.Text, out Boolean /*HttpStatusCode*/ vOut, out Boolean vTimeOut, pApiToken, pAccessToken);
+
+                    if (vTimeOut)
+                    {
+                        MessageBox.Show("A sucedido un problema de conexión, por favor intente nuevamente, si el problema persiste informe a Soporte Técnico.", "Error de Conexión", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                        return;
+                    }
+
+                    var jobject = JsonConvert.DeserializeObject<Root>(oDatosJson);
+
+                    if (vOut)/* == HttpStatusCode.OK)*/
+                    {
+                        oConexion.cerrarConexion();
+                        if (oConexion.abrirConexion())
+                        {
+                            int vcodigo = jobject.codigo;
+                            string vestado = jobject.estado;
+                            string vmensaje = jobject.mensaje;
+                            string vrespuesta = jobject.respuesta;
+
+                            if (String.IsNullOrEmpty(vestado))
+                                vestado = "";
+                            if (String.IsNullOrEmpty(vmensaje))
+                                vmensaje = "";
+                            if (String.IsNullOrEmpty(vrespuesta))
+                                vrespuesta = "";
+
+                            try
+                            {
+                                if (vcodigo == 200)
+                                {
+                                    oFactura = new Factura();
+
+                                    oFactura.No_cia = PROYECTO.Properties.Settings.Default.No_cia;
+                                    oFactura.NumFactura = int.Parse(txtFactura.Text);
+                                    oFactura.Indice = indiceFactura;
+
+                                    //oFactura.Fe_Codigo = vcodigo.ToString();
+                                    //oFactura.Fe_ContenidoXml = vrespuesta;
+                                    //oFactura.Fe_Errores = vmensaje;
+                                    oFactura.Fe_Comprobacion_NC = vestado;
+
+                                    if (oFacturaDAO.ModificaEstadoFactura_FE_NC(oFactura) > 0)
+                                        cargaFactura(txtFactura.Text, txtANombreDe.Text);
+                                    else
+                                        MessageBox.Show("Ocurrió un error al guardar los datos: " + oFacturaDAO.DescError(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                }
+                            }
+                            catch { }
+
+                            oConexion.cerrarConexion();
+
+
+                        }
+                        else
+                        {
+                            MessageBox.Show("Error al conectarse con la base de datos\nVerifique que los datos estén correctos");
+                            return;
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Perdida de conexión con API de Facturador Virtual.", "Error de Conexión", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+
+                }
+                else
+                {
+                    MessageBox.Show("Sin conexión a internet!!!", "Error de Conexión", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al buscar API!!!", "Error de Conexión", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                // Qué ha sucedido
+                var mensaje = "Error message: " + ex.Message;
+
+                // Información sobre la excepción interna
+                if (ex.InnerException != null)
+                {
+                    mensaje = mensaje + " Inner exception: " + ex.InnerException.Message;
+                }
+
+            }
+        }
 
         private void txtTotalPorLinea_Leave(object sender, EventArgs e)
         {
@@ -2669,6 +2831,34 @@ namespace PROYECTO
             txtLineaDescuento.Text = Double.Parse(txtLineaDescuento.Text).ToString("###,###,##0.00");
 
             calcularTotalPorLinea("CANTIDAD");
+        }
+
+        private void btnFE_Comprobar_NC_Click(object sender, EventArgs e)
+        {
+            if (AplicaFE(out String pApiToken, out String pAccessToken))
+            {
+                lblMjFacturaElectronica.Text = "Comprobando Nota de Crédito";
+                lblMjFacturaElectronica.Visible = true;
+                pbFacturaElectronica.Visible = true;
+
+                timCompruebaNC.Start();
+            }
+        }
+
+        private void timCompruebaNC_Tick(object sender, EventArgs e)
+        {
+            if (ttime == 5)
+            {
+                ttime = 0;
+                lblMjFacturaElectronica.Text = "Comprobando Nota de Crédito";
+                lblMjFacturaElectronica.Visible = true;
+                pbFacturaElectronica.Visible = true;
+
+                timCompruebaNC.Stop();
+                ComprobarNC();
+                pbFacturaElectronica.Visible = false;
+            }
+            ttime++;
         }
 
         public void CalculaSaldos()

@@ -231,13 +231,13 @@ namespace PROYECTO
                         txtCotizacion.ForeColor = Color.White;
                         txtCotizacion.Text = miArreglo.Rows[0].ItemArray[0].ToString();
                         indiceCotizacion = int.Parse(miArreglo.Rows[0].ItemArray[1].ToString());
-                        btnBusqCliente.PerformClick();
+                        //btnBusqCliente.PerformClick();
                         lblMontoEnLetras = "";
                     }
                     else
                         MessageBox.Show("Ocurrio un error al conectarse a la base de datos.", "Error de Conexion", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
-                    btnBusqCliente.PerformClick();
+                    //btnBusqCliente.PerformClick();
                     limpiar();
                     llenarGrid();
                     txtCodServicio.Focus();
@@ -1642,7 +1642,50 @@ namespace PROYECTO
 
         private void btnImprimir_Click(object sender, EventArgs e)
         {
+            ImprimirCotizacion();
+        }
 
+        private void ImprimirCotizacion()
+        {
+            try
+            {
+                String sql = "";
+                oConexion.cerrarConexion();
+                if (oConexion.abrirConexion())
+                {
+                    sql = "select fac_numero, fac_fecha, cli_identificacion, cli_tipo_id, cli_correo, fac_nombre, fac_moneda, fac_tipo_cambio, fac_subtotal, fac_descuento, fac_impuesto, fac_total, fac_vendedor, ";
+                    sql += " detfac_cantidad, detfac_medida, detfac_codigo, detfac_descripcion, DETFAC_PRECIO_UNITARIO, detfac_subtotal, detfac_descuento, detfac_monto_iv, detfac_precio_total, detfac_numerolinea, ";
+                    sql += " EMPR_NOMBRE, EMPR_LOGO, EMPR_DIRECCION EMPR_OTROS, EMPR_IDENTIFICACION, EMPR_TELEFONO, EMPR_CORREO, user usuario";
+                    sql += " from TBL_PROFORMA f, TBL_PROFORMA_DETALLE fd, tbl_clientes c, tbl_empresa e";
+                    sql += " where f.no_cia='" + PROYECTO.Properties.Settings.Default.No_cia + "' and f.fac_linea = '" + indiceCotizacion + "' and f.no_cia=fd.no_cia and f.fac_linea=fd.DETFAC_INDICEFACTURA and f.no_cia=c.no_cia and f.FAC_CLIENTE = CLI_LINEA and f.no_cia = e.no_cia";
+
+                    oReporteDAO = new ReportesDAO();
+                    DataTable oTable = oConexion.EjecutaSentencia(sql);
+
+                    if (oConexion.Error())
+                        MessageBox.Show("Error al listar los datos:\n" + oConexion.DescError(), "Error de consulta", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                    if (oTable.Rows.Count > 0)
+                    {
+                        frmVisorReportes oVisor = frmVisorReportes.getInstance();
+                        oVisor.MdiParent = this.MdiParent;
+                        rptCotizacion oReporte = new rptCotizacion();
+                        
+                        oReporte.SetDataSource(oTable);
+                        oVisor.ReportSource(oReporte);
+                        oVisor.Show();
+                    }
+                    else
+                        MessageBox.Show("No hay datos para mostrar.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    oConexion.cerrarConexion();
+                }
+                else
+                    MessageBox.Show("Error al conectarse a la base de datos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                oConexion.cerrarConexion();
+            }
         }
 
         private void txtCodServicio_KeyDown(object sender, KeyEventArgs e)

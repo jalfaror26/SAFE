@@ -189,7 +189,7 @@ namespace PROYECTO
 
         private void btnRepFacRecPag_Click(object sender, EventArgs e)
         {
-            /*frmrptFacturasRecibidasPagadas orpt = frmrptFacturasRecibidasPagadas.getInstance();
+            frmrptFacturasRecibidasPagadas orpt = frmrptFacturasRecibidasPagadas.getInstance();
             codigo = orpt.Codigo;
             descripcion = orpt.Descripcion;
             modulo = orpt.Modulo;
@@ -203,7 +203,7 @@ namespace PROYECTO
                 MessageBox.Show("No tiene permiso para accesar esta pantalla, comuníquese con el administrador", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 orpt = null;
             }
-            this.Close();*/
+            this.Close();
         }
 
         private void btnRepPagReaCate_Click(object sender, EventArgs e)
@@ -380,21 +380,21 @@ namespace PROYECTO
 
         private void btnRepSalFact_Click(object sender, EventArgs e)
         {
-            /* frmrptEstadoCuentasClientes orpt = frmrptEstadoCuentasClientes.getInstance();
-             codigo = orpt.Codigo;
-             descripcion = orpt.Descripcion;
-             modulo = orpt.Modulo;
-             if (!TienePermiso())
-             {
-                 orpt.MdiParent = this.MdiParent;
-                 orpt.Show();
-             }
-             else
-             {
-                 MessageBox.Show("No tiene permiso para accesar esta pantalla, comuníquese con el administrador", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                 orpt = null;
-             }
-             this.Close();*/
+            frmrptEstadoCuentasClientes orpt = frmrptEstadoCuentasClientes.getInstance();
+            codigo = orpt.Codigo;
+            descripcion = orpt.Descripcion;
+            modulo = orpt.Modulo;
+            if (!TienePermiso())
+            {
+                orpt.MdiParent = this.MdiParent;
+                orpt.Show();
+            }
+            else
+            {
+                MessageBox.Show("No tiene permiso para accesar esta pantalla, comuníquese con el administrador", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                orpt = null;
+            }
+            this.Close();
         }
 
 

@@ -18,7 +18,7 @@ namespace ENTIDADES
 
         private String no_cia;
 
-        private String fe_Codigo, fe_ContenidoXml, fe_ContenidoXmlFirmado, fe_Errores, fe_Clave, fe_Consecutivo, fe_Recepcion, fe_Comprobacion;
+        private String fe_Codigo, fe_ContenidoXml, fe_ContenidoXmlFirmado, fe_Errores, fe_Clave, fe_Consecutivo, fe_Recepcion, fe_Comprobacion, fe_Clave_NC, fe_Consecutivo_NC, fe_Recepcion_NC, fe_Comprobacion_NC;
         public String No_cia
         {
             get { return no_cia; }
@@ -194,5 +194,9 @@ namespace ENTIDADES
         public string Fe_Consecutivo { get => fe_Consecutivo; set => fe_Consecutivo = value; }
         public string Fe_Recepcion { get => fe_Recepcion; set => fe_Recepcion = value; }
         public string Fe_Comprobacion { get => fe_Comprobacion; set => fe_Comprobacion = value; }
+        public string Fe_Clave_NC { get => fe_Clave_NC; set => fe_Clave_NC = value; }
+        public string Fe_Consecutivo_NC { get => fe_Consecutivo_NC; set => fe_Consecutivo_NC = value; }
+        public string Fe_Recepcion_NC { get => fe_Recepcion_NC; set => fe_Recepcion_NC = value; }
+        public string Fe_Comprobacion_NC { get => fe_Comprobacion_NC; set => fe_Comprobacion_NC = value; }
     }
 }

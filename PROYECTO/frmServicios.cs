@@ -767,7 +767,7 @@ namespace PROYECTO
                     else
                     {
                         progressBar1.Visible = false;
-                        MessageBox.Show("Error al extraer datos!!!", "Error de Conexión", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("Perdida de conexión con API de Facturador Virtual.", "Error de Conexión", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                     progressBar1.Visible = false;
                     Llenar_Grid();

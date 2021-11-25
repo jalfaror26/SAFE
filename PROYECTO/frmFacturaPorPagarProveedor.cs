@@ -131,7 +131,7 @@ namespace PROYECTO
                 txtestado.Text = "FP";
                 txtEstadoDesc.Text = "FACTURA PENDIENTE";
                 cmbMoneda.Enabled = true;
-                btnBusqGasto.Enabled = false;
+                btnBusqGasto.Enabled = true;
                 dtpEmision.Enabled = true;
                 cboTipoGasto.Enabled = true;
                 cmbMoneda.SelectedIndex = 0;
