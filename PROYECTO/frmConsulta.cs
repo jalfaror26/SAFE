@@ -189,6 +189,7 @@ namespace PROYECTO
 
                     case "Gastos":
                     case "GastosRapidos":
+                    case "GastosSaldosPagos":
                     case "GastosRapidos2":
                         {
                             dgrDatos.DataSource = oGastosDAO.Listar2(tipoFiltro, palabraFiltro, PROYECTO.Properties.Settings.Default.No_cia).Tables[0];
@@ -313,6 +314,7 @@ namespace PROYECTO
                     case "GASTOS":
                     case "GASTOSRAPIDOS":
                     case "GASTOSRAPIDOS2":
+                    case "GASTOSSALDOSPAGOS":
                         {
                             dgrDatos.DataSource = oGastosDAO.Consultar2(PROYECTO.Properties.Settings.Default.No_cia).Tables[0];
 
@@ -434,8 +436,8 @@ namespace PROYECTO
 
             //else if (palabra.Equals("ReporteArticulosMovimientos"))
             //    frmrptInventarioDetalle.getInstance().cargaArtiuculo(cod, des);
-            //else if (palabra.Equals("GastosSaldosPagos"))
-            //    frmrptSaldosFacturasPago.getInstance().llenargasto(cod, des);
+            else if (palabra.Equals("GastosSaldosPagos"))
+                frmrptSaldosFacturasPago.getInstance().llenargasto(cod, des);
 
 
 

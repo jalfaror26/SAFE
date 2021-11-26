@@ -246,21 +246,21 @@ namespace PROYECTO
 
         private void btnRepSalPenPago_Click(object sender, EventArgs e)
         {
-            /* frmrptSaldosFacturasPago ofrm = frmrptSaldosFacturasPago.getInstance();
-             codigo = ofrm.Codigo;
-             descripcion = ofrm.Descripcion;
-             modulo = ofrm.Modulo;
-             if (!TienePermiso())
-             {
-                 ofrm.MdiParent = this.MdiParent;
-                 ofrm.Show();
-             }
-             else
-             {
-                 MessageBox.Show("No tiene permiso para accesar esta pantalla, comuníquese con el administrador", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                 ofrm = null;
-             }
-             this.Close();*/
+            frmrptSaldosFacturasPago ofrm = frmrptSaldosFacturasPago.getInstance();
+            codigo = ofrm.Codigo;
+            descripcion = ofrm.Descripcion;
+            modulo = ofrm.Modulo;
+            if (!TienePermiso())
+            {
+                ofrm.MdiParent = this.MdiParent;
+                ofrm.Show();
+            }
+            else
+            {
+                MessageBox.Show("No tiene permiso para accesar esta pantalla, comuníquese con el administrador", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                ofrm = null;
+            }
+            this.Close();
         }
 
         private void btnRepRecDinero_Click(object sender, EventArgs e)

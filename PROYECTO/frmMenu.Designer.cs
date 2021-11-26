@@ -574,10 +574,10 @@ namespace PROYECTO
             this.btnCajas.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnCajas.ImageIndex = 1;
             this.btnCajas.ImageList = this.imageList1;
-            this.btnCajas.Location = new System.Drawing.Point(269, 269);
+            this.btnCajas.Location = new System.Drawing.Point(235, 266);
             this.btnCajas.Margin = new System.Windows.Forms.Padding(4);
             this.btnCajas.Name = "btnCajas";
-            this.btnCajas.Size = new System.Drawing.Size(440, 55);
+            this.btnCajas.Size = new System.Drawing.Size(450, 70);
             this.btnCajas.TabIndex = 587;
             this.btnCajas.Text = "  CAJAS CERRADAS";
             this.btnCajas.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -605,10 +605,10 @@ namespace PROYECTO
             this.btnVentas.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnVentas.ImageIndex = 1;
             this.btnVentas.ImageList = this.imageList1;
-            this.btnVentas.Location = new System.Drawing.Point(269, 342);
+            this.btnVentas.Location = new System.Drawing.Point(235, 358);
             this.btnVentas.Margin = new System.Windows.Forms.Padding(4);
             this.btnVentas.Name = "btnVentas";
-            this.btnVentas.Size = new System.Drawing.Size(440, 55);
+            this.btnVentas.Size = new System.Drawing.Size(450, 70);
             this.btnVentas.TabIndex = 9;
             this.btnVentas.Text = " VENTAS Y UTILIDADES";
             this.btnVentas.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -653,10 +653,10 @@ namespace PROYECTO
             this.btnRepTransacc.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnRepTransacc.ImageIndex = 1;
             this.btnRepTransacc.ImageList = this.imageList1;
-            this.btnRepTransacc.Location = new System.Drawing.Point(269, 121);
+            this.btnRepTransacc.Location = new System.Drawing.Point(235, 89);
             this.btnRepTransacc.Margin = new System.Windows.Forms.Padding(4);
             this.btnRepTransacc.Name = "btnRepTransacc";
-            this.btnRepTransacc.Size = new System.Drawing.Size(440, 55);
+            this.btnRepTransacc.Size = new System.Drawing.Size(450, 70);
             this.btnRepTransacc.TabIndex = 1;
             this.btnRepTransacc.Text = " TRANSACCIONES POR RECIBO DINERO";
             this.btnRepTransacc.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -670,10 +670,10 @@ namespace PROYECTO
             this.btnRepRecDinero.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnRepRecDinero.ImageIndex = 1;
             this.btnRepRecDinero.ImageList = this.imageList1;
-            this.btnRepRecDinero.Location = new System.Drawing.Point(269, 196);
+            this.btnRepRecDinero.Location = new System.Drawing.Point(235, 177);
             this.btnRepRecDinero.Margin = new System.Windows.Forms.Padding(4);
             this.btnRepRecDinero.Name = "btnRepRecDinero";
-            this.btnRepRecDinero.Size = new System.Drawing.Size(440, 55);
+            this.btnRepRecDinero.Size = new System.Drawing.Size(450, 70);
             this.btnRepRecDinero.TabIndex = 0;
             this.btnRepRecDinero.Text = "  RECIBOS DE DINERO POR CLIENTE";
             this.btnRepRecDinero.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -742,7 +742,7 @@ namespace PROYECTO
             // 
             // btnProdPendientesCobro
             // 
-            this.btnProdPendientesCobro.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnProdPendientesCobro.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold);
             this.btnProdPendientesCobro.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnProdPendientesCobro.ImageIndex = 1;
             this.btnProdPendientesCobro.ImageList = this.imageList2;
@@ -760,7 +760,7 @@ namespace PROYECTO
             // 
             // btnRepFacImpuestoVentas
             // 
-            this.btnRepFacImpuestoVentas.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRepFacImpuestoVentas.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold);
             this.btnRepFacImpuestoVentas.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnRepFacImpuestoVentas.ImageIndex = 1;
             this.btnRepFacImpuestoVentas.ImageList = this.imageList2;
@@ -778,7 +778,7 @@ namespace PROYECTO
             // 
             // btnFacturacionXmesAno
             // 
-            this.btnFacturacionXmesAno.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnFacturacionXmesAno.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold);
             this.btnFacturacionXmesAno.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnFacturacionXmesAno.ImageIndex = 1;
             this.btnFacturacionXmesAno.ImageList = this.imageList2;
@@ -828,16 +828,16 @@ namespace PROYECTO
             // 
             // btnRepFacMoneda
             // 
-            this.btnRepFacMoneda.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRepFacMoneda.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold);
             this.btnRepFacMoneda.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnRepFacMoneda.ImageIndex = 1;
             this.btnRepFacMoneda.ImageList = this.imageList2;
-            this.btnRepFacMoneda.Location = new System.Drawing.Point(321, 86);
+            this.btnRepFacMoneda.Location = new System.Drawing.Point(263, 179);
             this.btnRepFacMoneda.Margin = new System.Windows.Forms.Padding(4);
             this.btnRepFacMoneda.Name = "btnRepFacMoneda";
-            this.btnRepFacMoneda.Size = new System.Drawing.Size(299, 55);
+            this.btnRepFacMoneda.Size = new System.Drawing.Size(400, 70);
             this.btnRepFacMoneda.TabIndex = 4;
-            this.btnRepFacMoneda.Text = "  FACTURAS SEGUN\r\n  MONEDA";
+            this.btnRepFacMoneda.Text = "  FACTURAS SEGUN MONEDA";
             this.btnRepFacMoneda.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnRepFacMoneda.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnRepFacMoneda.UseVisualStyleBackColor = true;
@@ -846,16 +846,16 @@ namespace PROYECTO
             // 
             // btnRepSalFact
             // 
-            this.btnRepSalFact.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRepSalFact.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold);
             this.btnRepSalFact.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnRepSalFact.ImageIndex = 1;
             this.btnRepSalFact.ImageList = this.imageList2;
-            this.btnRepSalFact.Location = new System.Drawing.Point(321, 149);
+            this.btnRepSalFact.Location = new System.Drawing.Point(263, 91);
             this.btnRepSalFact.Margin = new System.Windows.Forms.Padding(4);
             this.btnRepSalFact.Name = "btnRepSalFact";
-            this.btnRepSalFact.Size = new System.Drawing.Size(299, 55);
+            this.btnRepSalFact.Size = new System.Drawing.Size(400, 70);
             this.btnRepSalFact.TabIndex = 10;
-            this.btnRepSalFact.Text = "  ESTADO DE CUENTA\r\n  CLIENTE";
+            this.btnRepSalFact.Text = "  ESTADO DE CUENTA CLIENTE";
             this.btnRepSalFact.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnRepSalFact.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnRepSalFact.UseVisualStyleBackColor = true;
@@ -863,7 +863,7 @@ namespace PROYECTO
             // 
             // btnRepFacCliente
             // 
-            this.btnRepFacCliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRepFacCliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold);
             this.btnRepFacCliente.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnRepFacCliente.ImageIndex = 1;
             this.btnRepFacCliente.ImageList = this.imageList2;
@@ -881,7 +881,7 @@ namespace PROYECTO
             // 
             // btnRepFacPeriodo
             // 
-            this.btnRepFacPeriodo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRepFacPeriodo.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold);
             this.btnRepFacPeriodo.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnRepFacPeriodo.ImageIndex = 1;
             this.btnRepFacPeriodo.ImageList = this.imageList2;
@@ -975,10 +975,10 @@ namespace PROYECTO
             this.btnRepPagReaCate.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnRepPagReaCate.ImageIndex = 1;
             this.btnRepPagReaCate.ImageList = this.imageList2;
-            this.btnRepPagReaCate.Location = new System.Drawing.Point(220, 249);
+            this.btnRepPagReaCate.Location = new System.Drawing.Point(244, 321);
             this.btnRepPagReaCate.Margin = new System.Windows.Forms.Padding(4);
             this.btnRepPagReaCate.Name = "btnRepPagReaCate";
-            this.btnRepPagReaCate.Size = new System.Drawing.Size(511, 70);
+            this.btnRepPagReaCate.Size = new System.Drawing.Size(450, 70);
             this.btnRepPagReaCate.TabIndex = 4;
             this.btnRepPagReaCate.Text = "  PAGOS REALIZADOS POR CATEGORIA";
             this.btnRepPagReaCate.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -993,10 +993,10 @@ namespace PROYECTO
             this.btnRepPagReaCuenta.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnRepPagReaCuenta.ImageIndex = 1;
             this.btnRepPagReaCuenta.ImageList = this.imageList2;
-            this.btnRepPagReaCuenta.Location = new System.Drawing.Point(220, 329);
+            this.btnRepPagReaCuenta.Location = new System.Drawing.Point(244, 401);
             this.btnRepPagReaCuenta.Margin = new System.Windows.Forms.Padding(4);
             this.btnRepPagReaCuenta.Name = "btnRepPagReaCuenta";
-            this.btnRepPagReaCuenta.Size = new System.Drawing.Size(511, 70);
+            this.btnRepPagReaCuenta.Size = new System.Drawing.Size(450, 70);
             this.btnRepPagReaCuenta.TabIndex = 5;
             this.btnRepPagReaCuenta.Text = "  PAGOS REALIZADOS POR CUENTA";
             this.btnRepPagReaCuenta.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -1011,16 +1011,15 @@ namespace PROYECTO
             this.btnRepSalPenPago.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnRepSalPenPago.ImageIndex = 1;
             this.btnRepSalPenPago.ImageList = this.imageList2;
-            this.btnRepSalPenPago.Location = new System.Drawing.Point(220, 409);
+            this.btnRepSalPenPago.Location = new System.Drawing.Point(244, 241);
             this.btnRepSalPenPago.Margin = new System.Windows.Forms.Padding(4);
             this.btnRepSalPenPago.Name = "btnRepSalPenPago";
-            this.btnRepSalPenPago.Size = new System.Drawing.Size(511, 70);
+            this.btnRepSalPenPago.Size = new System.Drawing.Size(450, 70);
             this.btnRepSalPenPago.TabIndex = 6;
             this.btnRepSalPenPago.Text = "  SALDOS PENDIENTES DE PAGO";
             this.btnRepSalPenPago.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnRepSalPenPago.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnRepSalPenPago.UseVisualStyleBackColor = true;
-            this.btnRepSalPenPago.Visible = false;
             this.btnRepSalPenPago.Click += new System.EventHandler(this.btnRepSalPenPago_Click);
             // 
             // btnRepFacRecPag
@@ -1029,10 +1028,10 @@ namespace PROYECTO
             this.btnRepFacRecPag.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnRepFacRecPag.ImageIndex = 1;
             this.btnRepFacRecPag.ImageList = this.imageList2;
-            this.btnRepFacRecPag.Location = new System.Drawing.Point(220, 167);
+            this.btnRepFacRecPag.Location = new System.Drawing.Point(244, 159);
             this.btnRepFacRecPag.Margin = new System.Windows.Forms.Padding(4);
             this.btnRepFacRecPag.Name = "btnRepFacRecPag";
-            this.btnRepFacRecPag.Size = new System.Drawing.Size(511, 70);
+            this.btnRepFacRecPag.Size = new System.Drawing.Size(450, 70);
             this.btnRepFacRecPag.TabIndex = 3;
             this.btnRepFacRecPag.Text = "  FACTURAS RECIBIDAS Y PAGADAS";
             this.btnRepFacRecPag.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -1046,10 +1045,10 @@ namespace PROYECTO
             this.btnRepGtsPorCategoria.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnRepGtsPorCategoria.ImageIndex = 1;
             this.btnRepGtsPorCategoria.ImageList = this.imageList2;
-            this.btnRepGtsPorCategoria.Location = new System.Drawing.Point(220, 87);
+            this.btnRepGtsPorCategoria.Location = new System.Drawing.Point(244, 79);
             this.btnRepGtsPorCategoria.Margin = new System.Windows.Forms.Padding(4);
             this.btnRepGtsPorCategoria.Name = "btnRepGtsPorCategoria";
-            this.btnRepGtsPorCategoria.Size = new System.Drawing.Size(511, 70);
+            this.btnRepGtsPorCategoria.Size = new System.Drawing.Size(450, 70);
             this.btnRepGtsPorCategoria.TabIndex = 2;
             this.btnRepGtsPorCategoria.Text = "  MONTOS POR GASTO";
             this.btnRepGtsPorCategoria.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -1156,16 +1155,16 @@ namespace PROYECTO
             // 
             // btnRepProveedores
             // 
-            this.btnRepProveedores.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRepProveedores.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold);
             this.btnRepProveedores.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnRepProveedores.ImageIndex = 1;
             this.btnRepProveedores.ImageList = this.imageList2;
-            this.btnRepProveedores.Location = new System.Drawing.Point(495, 106);
+            this.btnRepProveedores.Location = new System.Drawing.Point(259, 199);
             this.btnRepProveedores.Margin = new System.Windows.Forms.Padding(4);
             this.btnRepProveedores.Name = "btnRepProveedores";
-            this.btnRepProveedores.Size = new System.Drawing.Size(333, 70);
+            this.btnRepProveedores.Size = new System.Drawing.Size(400, 70);
             this.btnRepProveedores.TabIndex = 3;
-            this.btnRepProveedores.Text = "   PROVEEDORES";
+            this.btnRepProveedores.Text = "   LISTADO DE PROVEEDORES";
             this.btnRepProveedores.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnRepProveedores.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnRepProveedores.UseVisualStyleBackColor = true;
@@ -1174,16 +1173,16 @@ namespace PROYECTO
             // btnRepClientes
             // 
             this.btnRepClientes.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnRepClientes.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRepClientes.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold);
             this.btnRepClientes.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnRepClientes.ImageIndex = 1;
             this.btnRepClientes.ImageList = this.imageList2;
-            this.btnRepClientes.Location = new System.Drawing.Point(115, 106);
+            this.btnRepClientes.Location = new System.Drawing.Point(259, 100);
             this.btnRepClientes.Margin = new System.Windows.Forms.Padding(4);
             this.btnRepClientes.Name = "btnRepClientes";
-            this.btnRepClientes.Size = new System.Drawing.Size(333, 70);
+            this.btnRepClientes.Size = new System.Drawing.Size(400, 70);
             this.btnRepClientes.TabIndex = 2;
-            this.btnRepClientes.Text = "   CLIENTES";
+            this.btnRepClientes.Text = "   LISTADO DE CLIENTES";
             this.btnRepClientes.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnRepClientes.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnRepClientes.UseVisualStyleBackColor = true;
@@ -1238,12 +1237,12 @@ namespace PROYECTO
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(944, 532);
             this.ControlBox = false;
+            this.Controls.Add(this.pRepInvFact);
+            this.Controls.Add(this.pPrincipal);
             this.Controls.Add(this.pReportes);
             this.Controls.Add(this.pRepGenerales);
             this.Controls.Add(this.pRepPagos);
             this.Controls.Add(this.pRepFinancieros);
-            this.Controls.Add(this.pRepInvFact);
-            this.Controls.Add(this.pPrincipal);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
