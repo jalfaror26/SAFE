@@ -16,14 +16,14 @@ namespace PROYECTO {
     using CrystalDecisions.CrystalReports.Engine;
     
     
-    public class rptCajasChicas : ReportClass {
+    public class rptCajaChica : ReportClass {
         
-        public rptCajasChicas() {
+        public rptCajaChica() {
         }
         
         public override string ResourceName {
             get {
-                return "rptCajasChicas.rpt";
+                return "rptCajaChica.rpt";
             }
             set {
                 // Do nothing
@@ -41,7 +41,7 @@ namespace PROYECTO {
         
         public override string FullResourceName {
             get {
-                return "PROYECTO.rptCajasChicas.rpt";
+                return "PROYECTO.rptCajaChica.rpt";
             }
             set {
                 // Do nothing
@@ -106,9 +106,9 @@ namespace PROYECTO {
     }
     
     [System.Drawing.ToolboxBitmapAttribute(typeof(CrystalDecisions.Shared.ExportOptions), "report.bmp")]
-    public class CachedrptCajasChicas : Component, ICachedReport {
+    public class CachedrptCajaChica : Component, ICachedReport {
         
-        public CachedrptCajasChicas() {
+        public CachedrptCajaChica() {
         }
         
         [Browsable(false)]
@@ -145,7 +145,7 @@ namespace PROYECTO {
         }
         
         public virtual CrystalDecisions.CrystalReports.Engine.ReportDocument CreateReport() {
-            rptCajasChicas rpt = new rptCajasChicas();
+            rptCajaChica rpt = new rptCajaChica();
             rpt.Site = this.Site;
             return rpt;
         }

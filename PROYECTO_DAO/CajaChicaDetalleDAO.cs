@@ -44,7 +44,10 @@ namespace PROYECTO_DAO
 
         public DataSet Consultar(string tipomovimiento, String pNo_cia)
         {
-            String sql = "SELECT  DETCAJ_FECHAMOVIMIENTO, DETCAJ_EMPLEADO,'CAJA CHICA' emp_nombre, DETCAJ_DOCUMENTO , DETCAJ_CREDITO, DETCAJ_DEBITO, DETCAJ_MOVIMIENTO, DETCAJ_JUSTIFICACION FROM TBL_CAJA_CHICA_DETALLE, tbl_caja_chica where DETCAJ_CAJA = CAJ_LINEA and CAJ_ESTADO =1 and caj_usuarioabre = user and regexp_like(DETCAJ_MOVIMIENTO, '" + tipomovimiento + "','i') and no_cia = '" + pNo_cia + "' order by DETCAJ_FECHAMOVIMIENTO, DETCAJ_MOVIMIENTO";
+            String sql = "SELECT  DETCAJ_FECHAMOVIMIENTO, DETCAJ_EMPLEADO,'CAJA CHICA' emp_nombre, DETCAJ_DOCUMENTO , DETCAJ_CREDITO, DETCAJ_DEBITO, DETCAJ_MOVIMIENTO, DETCAJ_JUSTIFICACION FROM TBL_CAJA_CHICA_DETALLE, tbl_caja_chica where DETCAJ_CAJA = CAJ_LINEA and CAJ_ESTADO =1 and caj_usuarioabre = user ";
+            if (!String.IsNullOrEmpty(tipomovimiento))
+                sql += " and regexp_like(DETCAJ_MOVIMIENTO, '" + tipomovimiento + "','i') ";
+            sql += " and no_cia = '" + pNo_cia + "' order by DETCAJ_FECHAMOVIMIENTO, DETCAJ_MOVIMIENTO";
             DataSet oDataSet = OracleDAO.getInstance().EjecutarSQLDataSet(sql);
             return oDataSet;
         }

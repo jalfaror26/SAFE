@@ -47,6 +47,9 @@ namespace PROYECTO
             this.label1 = new System.Windows.Forms.Label();
             this.txtFiltro1 = new System.Windows.Forms.TextBox();
             this.txtFiltro2 = new System.Windows.Forms.TextBox();
+            this.btnCrearXML = new System.Windows.Forms.Button();
+            this.rutaGuardar = new System.Windows.Forms.SaveFileDialog();
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dgrDatos)).BeginInit();
             this.SuspendLayout();
             // 
@@ -217,17 +220,47 @@ namespace PROYECTO
             this.txtFiltro2.Location = new System.Drawing.Point(688, 66);
             this.txtFiltro2.Margin = new System.Windows.Forms.Padding(4);
             this.txtFiltro2.Name = "txtFiltro2";
-            this.txtFiltro2.Size = new System.Drawing.Size(837, 22);
+            this.txtFiltro2.Size = new System.Drawing.Size(704, 22);
             this.txtFiltro2.TabIndex = 390;
             this.txtFiltro2.TabStop = false;
             this.txtFiltro2.Tag = "M.descripcion";
             this.txtFiltro2.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtBNombre_KeyUp);
+            // 
+            // btnCrearXML
+            // 
+            this.btnCrearXML.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCrearXML.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnCrearXML.ImageIndex = 7;
+            this.btnCrearXML.Location = new System.Drawing.Point(1400, 58);
+            this.btnCrearXML.Margin = new System.Windows.Forms.Padding(4);
+            this.btnCrearXML.Name = "btnCrearXML";
+            this.btnCrearXML.Size = new System.Drawing.Size(125, 34);
+            this.btnCrearXML.TabIndex = 419;
+            this.btnCrearXML.Text = "Exportar XML";
+            this.btnCrearXML.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnCrearXML.UseVisualStyleBackColor = true;
+            this.btnCrearXML.Click += new System.EventHandler(this.btnCrearXML_Click);
+            // 
+            // imageList1
+            // 
+            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
+            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList1.Images.SetKeyName(0, "document.ico");
+            this.imageList1.Images.SetKeyName(1, "Sign 09.ico");
+            this.imageList1.Images.SetKeyName(2, "Disc 01.ico");
+            this.imageList1.Images.SetKeyName(3, "Sign 06.ico");
+            this.imageList1.Images.SetKeyName(4, "services.ico");
+            this.imageList1.Images.SetKeyName(5, "Sign 08.ico");
+            this.imageList1.Images.SetKeyName(6, "Salir.ico");
+            this.imageList1.Images.SetKeyName(7, "file_find.ico");
+            this.imageList1.Images.SetKeyName(8, "C&M 17.ico");
             // 
             // frmVistaBitacora
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1538, 734);
+            this.Controls.Add(this.btnCrearXML);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.dgrDatos);
             this.Controls.Add(this.label1);
@@ -271,5 +304,8 @@ namespace PROYECTO
         private System.Windows.Forms.DataGridViewTextBoxColumn Usuario;
         private System.Windows.Forms.DataGridViewTextBoxColumn Fecha;
         private System.Windows.Forms.DataGridViewTextBoxColumn Datos;
+        private System.Windows.Forms.Button btnCrearXML;
+        private System.Windows.Forms.SaveFileDialog rutaGuardar;
+        private System.Windows.Forms.ImageList imageList1;
     }
 }

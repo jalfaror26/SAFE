@@ -19,6 +19,7 @@ namespace PROYECTO
         private String codigo = "par_Bitacora", descripcion = "Vista de Bitácora de datos del sistema.", modulo = "Seguridad";
         String vNodeName = "";
         int vNodeLevel = 0;
+        private DataTable oDatosGrid;
 
         public String Modulo
         {
@@ -262,7 +263,8 @@ namespace PROYECTO
                 oConexion.cerrarConexion();
                 if (oConexion.abrirConexion())
                 {
-                    dgrDatos.DataSource = oConexion.EjecutaSentencia(plsql);
+                    oDatosGrid = oConexion.EjecutaSentencia(plsql);
+                    dgrDatos.DataSource = oDatosGrid;
 
                     //Evaluar si ocurriió un Error
                     if (oConexion.Error())
@@ -319,6 +321,29 @@ namespace PROYECTO
         private void txtBNombre_KeyUp(object sender, KeyEventArgs e)
         {
             LlenarDatos(vNodeName, vNodeLevel, txtFiltro1.Text, txtFiltro2.Text);
+        }
+
+        private void btnCrearXML_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (oDatosGrid.Rows.Count > 0)
+                {
+                    DataSet oDataSet = new DataSet();
+                    oDataSet.Tables.Add(oDatosGrid);
+                    rutaGuardar.Filter = "Ficheros XML (*.xml)|*.xml";
+                    if (rutaGuardar.ShowDialog() == DialogResult.OK)
+                    {
+                        String ruta = rutaGuardar.FileName;
+                        oDataSet.WriteXml(ruta);
+                        MessageBox.Show("Archivo generado correctamente.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
         }
 
         private void txtBuscar_Enter(object sender, EventArgs e)

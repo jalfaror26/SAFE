@@ -48,6 +48,7 @@ namespace PROYECTO
             this.lblSaldoAnterior = new System.Windows.Forms.Label();
             this.txtSaldoAnterior = new System.Windows.Forms.TextBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.label29 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.btnSalir = new System.Windows.Forms.Button();
             this.btnMovimientos = new System.Windows.Forms.Button();
@@ -55,7 +56,6 @@ namespace PROYECTO
             this.btnAbrirCaja = new System.Windows.Forms.Button();
             this.btnCerrar = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
-            this.label29 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -133,7 +133,7 @@ namespace PROYECTO
             this.txtDocumento.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtDocumento.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtDocumento.ForeColor = System.Drawing.Color.Black;
-            this.txtDocumento.Location = new System.Drawing.Point(32, 148);
+            this.txtDocumento.Location = new System.Drawing.Point(26, 148);
             this.txtDocumento.Margin = new System.Windows.Forms.Padding(4);
             this.txtDocumento.Name = "txtDocumento";
             this.txtDocumento.ReadOnly = true;
@@ -180,14 +180,14 @@ namespace PROYECTO
             this.txtSaldo.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtSaldo.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtSaldo.ForeColor = System.Drawing.Color.Black;
-            this.txtSaldo.Location = new System.Drawing.Point(511, 148);
+            this.txtSaldo.Location = new System.Drawing.Point(505, 148);
             this.txtSaldo.Margin = new System.Windows.Forms.Padding(4);
             this.txtSaldo.Name = "txtSaldo";
             this.txtSaldo.ReadOnly = true;
-            this.txtSaldo.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.txtSaldo.Size = new System.Drawing.Size(124, 22);
             this.txtSaldo.TabIndex = 507;
             this.txtSaldo.Text = "¢ 0";
+            this.txtSaldo.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label6
             // 
@@ -240,7 +240,7 @@ namespace PROYECTO
             this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox1.Size = new System.Drawing.Size(685, 258);
+            this.groupBox1.Size = new System.Drawing.Size(673, 258);
             this.groupBox1.TabIndex = 514;
             this.groupBox1.TabStop = false;
             // 
@@ -278,26 +278,38 @@ namespace PROYECTO
             this.txtSaldoAnterior.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtSaldoAnterior.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtSaldoAnterior.ForeColor = System.Drawing.Color.Black;
-            this.txtSaldoAnterior.Location = new System.Drawing.Point(511, 199);
+            this.txtSaldoAnterior.Location = new System.Drawing.Point(505, 199);
             this.txtSaldoAnterior.Margin = new System.Windows.Forms.Padding(4);
             this.txtSaldoAnterior.Name = "txtSaldoAnterior";
             this.txtSaldoAnterior.ReadOnly = true;
-            this.txtSaldoAnterior.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.txtSaldoAnterior.Size = new System.Drawing.Size(124, 22);
             this.txtSaldoAnterior.TabIndex = 514;
             this.txtSaldoAnterior.Text = "¢ 0";
+            this.txtSaldoAnterior.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtSaldoAnterior.Visible = false;
             // 
             // pictureBox1
             // 
             this.pictureBox1.Image = global::PROYECTO.Properties.Resources.rym2;
-            this.pictureBox1.Location = new System.Drawing.Point(545, 15);
+            this.pictureBox1.Location = new System.Drawing.Point(527, 15);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(133, 70);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 516;
             this.pictureBox1.TabStop = false;
+            // 
+            // label29
+            // 
+            this.label29.AutoSize = true;
+            this.label29.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label29.ForeColor = System.Drawing.Color.Red;
+            this.label29.Location = new System.Drawing.Point(395, 123);
+            this.label29.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(26, 32);
+            this.label29.TabIndex = 617;
+            this.label29.Text = "*";
             // 
             // groupBox2
             // 
@@ -307,11 +319,11 @@ namespace PROYECTO
             this.groupBox2.Controls.Add(this.btnOtros);
             this.groupBox2.Controls.Add(this.btnAbrirCaja);
             this.groupBox2.Controls.Add(this.btnCerrar);
-            this.groupBox2.Location = new System.Drawing.Point(711, 7);
+            this.groupBox2.Location = new System.Drawing.Point(700, 7);
             this.groupBox2.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox2.Size = new System.Drawing.Size(172, 258);
+            this.groupBox2.Size = new System.Drawing.Size(188, 258);
             this.groupBox2.TabIndex = 515;
             this.groupBox2.TabStop = false;
             // 
@@ -325,7 +337,7 @@ namespace PROYECTO
             this.btnSalir.Location = new System.Drawing.Point(15, 207);
             this.btnSalir.Margin = new System.Windows.Forms.Padding(4);
             this.btnSalir.Name = "btnSalir";
-            this.btnSalir.Size = new System.Drawing.Size(145, 38);
+            this.btnSalir.Size = new System.Drawing.Size(163, 38);
             this.btnSalir.TabIndex = 496;
             this.btnSalir.Text = " &Salir";
             this.btnSalir.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -342,7 +354,7 @@ namespace PROYECTO
             this.btnMovimientos.Location = new System.Drawing.Point(15, 116);
             this.btnMovimientos.Margin = new System.Windows.Forms.Padding(4);
             this.btnMovimientos.Name = "btnMovimientos";
-            this.btnMovimientos.Size = new System.Drawing.Size(145, 38);
+            this.btnMovimientos.Size = new System.Drawing.Size(163, 38);
             this.btnMovimientos.TabIndex = 497;
             this.btnMovimientos.Text = " &Movimientos";
             this.btnMovimientos.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -359,7 +371,7 @@ namespace PROYECTO
             this.btnOtros.Location = new System.Drawing.Point(15, 161);
             this.btnOtros.Margin = new System.Windows.Forms.Padding(4);
             this.btnOtros.Name = "btnOtros";
-            this.btnOtros.Size = new System.Drawing.Size(145, 38);
+            this.btnOtros.Size = new System.Drawing.Size(163, 38);
             this.btnOtros.TabIndex = 498;
             this.btnOtros.Text = " &Otros";
             this.btnOtros.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -376,7 +388,7 @@ namespace PROYECTO
             this.btnAbrirCaja.Location = new System.Drawing.Point(15, 25);
             this.btnAbrirCaja.Margin = new System.Windows.Forms.Padding(4);
             this.btnAbrirCaja.Name = "btnAbrirCaja";
-            this.btnAbrirCaja.Size = new System.Drawing.Size(145, 38);
+            this.btnAbrirCaja.Size = new System.Drawing.Size(163, 38);
             this.btnAbrirCaja.TabIndex = 500;
             this.btnAbrirCaja.Text = " &Abrir Caja";
             this.btnAbrirCaja.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -393,7 +405,7 @@ namespace PROYECTO
             this.btnCerrar.Location = new System.Drawing.Point(15, 70);
             this.btnCerrar.Margin = new System.Windows.Forms.Padding(4);
             this.btnCerrar.Name = "btnCerrar";
-            this.btnCerrar.Size = new System.Drawing.Size(145, 38);
+            this.btnCerrar.Size = new System.Drawing.Size(163, 38);
             this.btnCerrar.TabIndex = 499;
             this.btnCerrar.Text = " &Cerrar Caja";
             this.btnCerrar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -407,18 +419,6 @@ namespace PROYECTO
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(873, 16);
             this.label7.TabIndex = 516;
-            // 
-            // label29
-            // 
-            this.label29.AutoSize = true;
-            this.label29.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label29.ForeColor = System.Drawing.Color.Red;
-            this.label29.Location = new System.Drawing.Point(395, 123);
-            this.label29.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(26, 32);
-            this.label29.TabIndex = 617;
-            this.label29.Text = "*";
             // 
             // frmCajaChica
             // 

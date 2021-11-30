@@ -29,14 +29,14 @@ namespace PROYECTO
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle23 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle24 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMovimientosCajaChica));
             this.dgrDatos = new System.Windows.Forms.DataGridView();
             this.DETCAJ_FECHAMOVIMIENTO = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -47,8 +47,8 @@ namespace PROYECTO
             this.DETCAJ_JUSTIFICACION = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DETCAJ_CREDITO = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DETCAJ_DEBITO = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.btnSalir = new System.Windows.Forms.Button();
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.label22 = new System.Windows.Forms.Label();
             this.lblCaja = new System.Windows.Forms.Label();
             this.lblFecha = new System.Windows.Forms.Label();
@@ -81,14 +81,14 @@ namespace PROYECTO
             this.dgrDatos.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
             this.dgrDatos.BackgroundColor = System.Drawing.Color.White;
             this.dgrDatos.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgrDatos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle17.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle17.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle17.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle17.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle17.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle17.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgrDatos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle17;
             this.dgrDatos.ColumnHeadersHeight = 29;
             this.dgrDatos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dgrDatos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -100,14 +100,14 @@ namespace PROYECTO
             this.DETCAJ_JUSTIFICACION,
             this.DETCAJ_CREDITO,
             this.DETCAJ_DEBITO});
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.Teal;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgrDatos.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle23.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle23.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle23.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle23.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle23.SelectionBackColor = System.Drawing.Color.Teal;
+            dataGridViewCellStyle23.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle23.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgrDatos.DefaultCellStyle = dataGridViewCellStyle23;
             this.dgrDatos.GridColor = System.Drawing.Color.LightGray;
             this.dgrDatos.ImeMode = System.Windows.Forms.ImeMode.On;
             this.dgrDatos.Location = new System.Drawing.Point(16, 209);
@@ -117,10 +117,10 @@ namespace PROYECTO
             this.dgrDatos.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.dgrDatos.RowHeadersVisible = false;
             this.dgrDatos.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToFirstHeader;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.Teal;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgrDatos.RowsDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle24.SelectionBackColor = System.Drawing.Color.Teal;
+            dataGridViewCellStyle24.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle24.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgrDatos.RowsDefaultCellStyle = dataGridViewCellStyle24;
             this.dgrDatos.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.dgrDatos.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dgrDatos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -132,8 +132,8 @@ namespace PROYECTO
             // DETCAJ_FECHAMOVIMIENTO
             // 
             this.DETCAJ_FECHAMOVIMIENTO.DataPropertyName = "DETCAJ_FECHAMOVIMIENTO";
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.DETCAJ_FECHAMOVIMIENTO.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.DETCAJ_FECHAMOVIMIENTO.DefaultCellStyle = dataGridViewCellStyle18;
             this.DETCAJ_FECHAMOVIMIENTO.HeaderText = "Fecha";
             this.DETCAJ_FECHAMOVIMIENTO.MinimumWidth = 6;
             this.DETCAJ_FECHAMOVIMIENTO.Name = "DETCAJ_FECHAMOVIMIENTO";
@@ -143,8 +143,8 @@ namespace PROYECTO
             // DETCAJ_DOCUMENTO
             // 
             this.DETCAJ_DOCUMENTO.DataPropertyName = "DETCAJ_DOCUMENTO";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.DETCAJ_DOCUMENTO.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.DETCAJ_DOCUMENTO.DefaultCellStyle = dataGridViewCellStyle19;
             this.DETCAJ_DOCUMENTO.HeaderText = "Documento";
             this.DETCAJ_DOCUMENTO.MinimumWidth = 6;
             this.DETCAJ_DOCUMENTO.Name = "DETCAJ_DOCUMENTO";
@@ -154,8 +154,8 @@ namespace PROYECTO
             // DETCAJ_EMPLEADO
             // 
             this.DETCAJ_EMPLEADO.DataPropertyName = "DETCAJ_EMPLEADO";
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.DETCAJ_EMPLEADO.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.DETCAJ_EMPLEADO.DefaultCellStyle = dataGridViewCellStyle20;
             this.DETCAJ_EMPLEADO.HeaderText = "Empleado";
             this.DETCAJ_EMPLEADO.MinimumWidth = 6;
             this.DETCAJ_EMPLEADO.Name = "DETCAJ_EMPLEADO";
@@ -195,10 +195,10 @@ namespace PROYECTO
             // DETCAJ_CREDITO
             // 
             this.DETCAJ_CREDITO.DataPropertyName = "DETCAJ_CREDITO";
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle5.Format = "N2";
-            dataGridViewCellStyle5.NullValue = null;
-            this.DETCAJ_CREDITO.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle21.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle21.Format = "N2";
+            dataGridViewCellStyle21.NullValue = null;
+            this.DETCAJ_CREDITO.DefaultCellStyle = dataGridViewCellStyle21;
             this.DETCAJ_CREDITO.HeaderText = "Credito";
             this.DETCAJ_CREDITO.MinimumWidth = 6;
             this.DETCAJ_CREDITO.Name = "DETCAJ_CREDITO";
@@ -208,15 +208,31 @@ namespace PROYECTO
             // DETCAJ_DEBITO
             // 
             this.DETCAJ_DEBITO.DataPropertyName = "DETCAJ_DEBITO";
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle6.Format = "N2";
-            dataGridViewCellStyle6.NullValue = null;
-            this.DETCAJ_DEBITO.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle22.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle22.Format = "N2";
+            dataGridViewCellStyle22.NullValue = null;
+            this.DETCAJ_DEBITO.DefaultCellStyle = dataGridViewCellStyle22;
             this.DETCAJ_DEBITO.HeaderText = "Debito";
             this.DETCAJ_DEBITO.MinimumWidth = 6;
             this.DETCAJ_DEBITO.Name = "DETCAJ_DEBITO";
             this.DETCAJ_DEBITO.ReadOnly = true;
             this.DETCAJ_DEBITO.Width = 80;
+            // 
+            // btnSalir
+            // 
+            this.btnSalir.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSalir.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnSalir.ImageIndex = 4;
+            this.btnSalir.ImageList = this.imageList1;
+            this.btnSalir.Location = new System.Drawing.Point(668, 143);
+            this.btnSalir.Margin = new System.Windows.Forms.Padding(4);
+            this.btnSalir.Name = "btnSalir";
+            this.btnSalir.Size = new System.Drawing.Size(160, 43);
+            this.btnSalir.TabIndex = 420;
+            this.btnSalir.Text = " Salir";
+            this.btnSalir.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnSalir.UseVisualStyleBackColor = true;
+            this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
             // 
             // imageList1
             // 
@@ -226,25 +242,13 @@ namespace PROYECTO
             this.imageList1.Images.SetKeyName(1, "");
             this.imageList1.Images.SetKeyName(2, "");
             this.imageList1.Images.SetKeyName(3, "Disc 01.ico");
-            this.imageList1.Images.SetKeyName(4, "Salir.ico");
+            this.imageList1.Images.SetKeyName(4, "salir.ico");
             this.imageList1.Images.SetKeyName(5, "Printer Inyect.ico");
             this.imageList1.Images.SetKeyName(6, "Window 03.ico");
-            // 
-            // btnSalir
-            // 
-            this.btnSalir.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSalir.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnSalir.ImageIndex = 4;
-            this.btnSalir.ImageList = this.imageList1;
-            this.btnSalir.Location = new System.Drawing.Point(675, 143);
-            this.btnSalir.Margin = new System.Windows.Forms.Padding(4);
-            this.btnSalir.Name = "btnSalir";
-            this.btnSalir.Size = new System.Drawing.Size(136, 43);
-            this.btnSalir.TabIndex = 420;
-            this.btnSalir.Text = " &Salir";
-            this.btnSalir.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnSalir.UseVisualStyleBackColor = true;
-            this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
+            this.imageList1.Images.SetKeyName(7, "control_panel.ico");
+            this.imageList1.Images.SetKeyName(8, "CP 50.ico");
+            this.imageList1.Images.SetKeyName(9, "CP 45.ico");
+            this.imageList1.Images.SetKeyName(10, "P&F 07.ico");
             // 
             // label22
             // 
@@ -341,12 +345,12 @@ namespace PROYECTO
             this.btnCajaChica.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnCajaChica.ImageIndex = 6;
             this.btnCajaChica.ImageList = this.imageList1;
-            this.btnCajaChica.Location = new System.Drawing.Point(675, 30);
+            this.btnCajaChica.Location = new System.Drawing.Point(668, 30);
             this.btnCajaChica.Margin = new System.Windows.Forms.Padding(4);
             this.btnCajaChica.Name = "btnCajaChica";
-            this.btnCajaChica.Size = new System.Drawing.Size(136, 43);
+            this.btnCajaChica.Size = new System.Drawing.Size(160, 43);
             this.btnCajaChica.TabIndex = 490;
-            this.btnCajaChica.Text = " &Caja Chica";
+            this.btnCajaChica.Text = " Caja Chica";
             this.btnCajaChica.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnCajaChica.UseVisualStyleBackColor = true;
             this.btnCajaChica.Visible = false;
@@ -500,12 +504,16 @@ namespace PROYECTO
             // 
             this.btnImprimir.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnImprimir.ForeColor = System.Drawing.Color.Black;
-            this.btnImprimir.Location = new System.Drawing.Point(675, 87);
+            this.btnImprimir.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnImprimir.ImageIndex = 10;
+            this.btnImprimir.ImageList = this.imageList1;
+            this.btnImprimir.Location = new System.Drawing.Point(668, 87);
             this.btnImprimir.Margin = new System.Windows.Forms.Padding(4);
             this.btnImprimir.Name = "btnImprimir";
-            this.btnImprimir.Size = new System.Drawing.Size(136, 43);
+            this.btnImprimir.Size = new System.Drawing.Size(160, 43);
             this.btnImprimir.TabIndex = 532;
-            this.btnImprimir.Text = "Imprimir";
+            this.btnImprimir.Text = " Imprimir";
+            this.btnImprimir.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnImprimir.UseVisualStyleBackColor = true;
             this.btnImprimir.Click += new System.EventHandler(this.btnImprimir_Click);
             // 
@@ -557,7 +565,6 @@ namespace PROYECTO
         #endregion
 
         private System.Windows.Forms.DataGridView dgrDatos;
-        private System.Windows.Forms.ImageList imageList1;
         private System.Windows.Forms.Button btnSalir;
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.Label lblCaja;
@@ -588,5 +595,6 @@ namespace PROYECTO
         private System.Windows.Forms.DataGridViewTextBoxColumn DETCAJ_CREDITO;
         private System.Windows.Forms.DataGridViewTextBoxColumn DETCAJ_DEBITO;
         private System.Windows.Forms.Button btnImprimir;
+        private System.Windows.Forms.ImageList imageList1;
     }
 }

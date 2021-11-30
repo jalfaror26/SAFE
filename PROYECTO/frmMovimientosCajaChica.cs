@@ -126,7 +126,7 @@ namespace PROYECTO
             {
                 oConexion = new ConexionDAO(PROYECTO.Properties.Settings.Default.UsuarioBD, PROYECTO.Properties.Settings.Default.Clave, PROYECTO.Properties.Settings.Default.Servidor);
                 oConexion.cerrarConexion();
-                oConexion.cerrarConexion(); if (oConexion.abrirConexion())
+                if (oConexion.abrirConexion())
                 {
                     CajaChicaDAO = new CajaChicaDetalleDAO();
 
@@ -140,7 +140,7 @@ namespace PROYECTO
                     oTabla.Columns.Add("DETCAJ_CREDITO");
                     oTabla.Columns.Add("DETCAJ_DEBITO");
                     oTabla.Columns.Add("DETCAJ_JUSTIFICACION");
-                    foreach (DataRow oFila in CajaChicaDAO.Consultar(PROYECTO.Properties.Settings.Default.Usuario, PROYECTO.Properties.Settings.Default.No_cia).Tables[0].Rows)
+                    foreach (DataRow oFila in CajaChicaDAO.Consultar("", PROYECTO.Properties.Settings.Default.No_cia).Tables[0].Rows)
                     {
                         oRow = oTabla.NewRow();
                         oRow["DETCAJ_FECHAMOVIMIENTO"] = DateTime.Parse(oFila["DETCAJ_FECHAMOVIMIENTO"].ToString()).ToShortDateString();
@@ -154,6 +154,7 @@ namespace PROYECTO
                         oTabla.Rows.Add(oRow.ItemArray);
 
                     }
+
                     dgrDatos.DataSource = oTabla;
 
                     if (CajaChicaDAO.Error())
@@ -259,13 +260,16 @@ namespace PROYECTO
                 oConexion.cerrarConexion();
                 if (oConexion.abrirConexion())
                 {
-                    DataTable oTable = (DataTable)dgrDatos.DataSource;
+                    String sql = "SELECT to_char(DETCAJ_FECHAMOVIMIENTO,'DD/MM/YYYY') DETCAJ_FECHAMOVIMIENTO, DETCAJ_DOCUMENTO , DETCAJ_CREDITO, DETCAJ_DEBITO, DETCAJ_MOVIMIENTO, DETCAJ_JUSTIFICACION, to_char(CAJ_LINEA) CAJ_LINEA, to_char(CAJ_FECHAAPERTURA,'DD/MM/YYYY') CAJ_FECHAAPERTURA, CAJ_DOCUMENTO, CAJ_MONTO, CAJ_SALDO, CAJ_MONEDA, EMPR_NOMBRE, EMPR_LOGO, EMPR_DIRECCION ||' - Telefono: '||EMPR_TELEFONO EMPR_OTROS, user usuario FROM TBL_CAJA_CHICA_DETALLE, tbl_caja_chica c, TBL_EMPRESA e where c.no_cia = e.no_cia and DETCAJ_CAJA = CAJ_LINEA  and CAJ_ESTADO =1  and CAJ_LINEA = " + lblCaja.Text + "  and c.no_cia = '" + PROYECTO.Properties.Settings.Default.No_cia + "' order by DETCAJ_FECHAMOVIMIENTO, DETCAJ_MOVIMIENTO";
+
+                    ReportesDAO oReporteDAO = new ReportesDAO();
+                    DataTable oTable = oConexion.EjecutaSentencia(sql);
+
                     if (oTable.Rows.Count > 0)
                     {
                         frmVisorReportes oVisor = frmVisorReportes.getInstance();
                         oVisor.MdiParent = this.MdiParent;
-                        rptCajasChicas oReporte = new rptCajasChicas();
-                        oReporte.DataDefinition.FormulaFields["empleado"].Text = "''";
+                        rptCajaChica oReporte = new rptCajaChica();
                         oReporte.SetDataSource(oTable);
                         oVisor.ReportSource(oReporte);
                         oVisor.Show();

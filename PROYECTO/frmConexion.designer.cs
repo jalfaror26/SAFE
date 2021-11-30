@@ -44,9 +44,9 @@ namespace PROYECTO
             this.lblNombre = new System.Windows.Forms.Label();
             this.txtContrasena1 = new System.Windows.Forms.TextBox();
             this.txtUsuario = new System.Windows.Forms.TextBox();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.label8 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.grpboxEmpresas.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -116,6 +116,7 @@ namespace PROYECTO
             this.cboEmpresa.Name = "cboEmpresa";
             this.cboEmpresa.Size = new System.Drawing.Size(498, 25);
             this.cboEmpresa.TabIndex = 6;
+            this.cboEmpresa.TabStop = false;
             this.cboEmpresa.SelectedIndexChanged += new System.EventHandler(this.cboEmpresa_SelectedIndexChanged);
             // 
             // groupBox1
@@ -230,21 +231,6 @@ namespace PROYECTO
             this.txtUsuario.Size = new System.Drawing.Size(245, 27);
             this.txtUsuario.TabIndex = 1;
             // 
-            // panel1
-            // 
-            this.panel1.BackColor = System.Drawing.Color.Transparent;
-            this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.panel1.Controls.Add(this.groupBox1);
-            this.panel1.Controls.Add(this.grpboxEmpresas);
-            this.panel1.Controls.Add(this.pictureBox1);
-            this.panel1.Controls.Add(this.label1);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(783, 504);
-            this.panel1.TabIndex = 593;
-            // 
             // label8
             // 
             this.label8.AutoSize = true;
@@ -268,6 +254,21 @@ namespace PROYECTO
             this.label3.Size = new System.Drawing.Size(26, 32);
             this.label3.TabIndex = 603;
             this.label3.Text = "*";
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.Transparent;
+            this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.panel1.Controls.Add(this.groupBox1);
+            this.panel1.Controls.Add(this.grpboxEmpresas);
+            this.panel1.Controls.Add(this.pictureBox1);
+            this.panel1.Controls.Add(this.label1);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(783, 504);
+            this.panel1.TabIndex = 593;
             // 
             // frmConexion
             // 

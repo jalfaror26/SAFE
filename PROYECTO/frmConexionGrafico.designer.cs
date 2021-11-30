@@ -693,6 +693,7 @@ namespace PROYECTO
             this.cboEmpresa.Name = "cboEmpresa";
             this.cboEmpresa.Size = new System.Drawing.Size(352, 25);
             this.cboEmpresa.TabIndex = 6;
+            this.cboEmpresa.TabStop = false;
             this.cboEmpresa.SelectedIndexChanged += new System.EventHandler(this.cboEmpresa_SelectedIndexChanged);
             // 
             // panel1

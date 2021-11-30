@@ -183,7 +183,7 @@ namespace PROYECTO
             string monto = txtMontoAumentar1.Text;
             if (txtMontoAumentar1.ReadOnly == false)
             {
-                txtMontoAumentar1.Text = double.Parse(monto.Substring(1)).ToString("#########");
+                txtMontoAumentar1.Text = double.Parse(monto.Substring(1)).ToString("########0.##");
 
             }
         }
@@ -466,7 +466,7 @@ namespace PROYECTO
             string monto = txtMontoAumentar2.Text;
             if (txtMontoAumentar2.ReadOnly == false)
             {
-                txtMontoAumentar2.Text = double.Parse(monto.Substring(1)).ToString("###,###,##0.00");
+                txtMontoAumentar2.Text = double.Parse(monto.Substring(1)).ToString("###,###,##0.##");
 
             }
         }
@@ -524,7 +524,7 @@ namespace PROYECTO
             string monto = txtMontoAumentar3.Text;
             if (txtMontoAumentar3.ReadOnly == false)
             {
-                txtMontoAumentar3.Text = double.Parse(monto.Substring(1)).ToString("###,###,##0.00");
+                txtMontoAumentar3.Text = double.Parse(monto.Substring(1)).ToString("###,###,##0.##");
 
             }
         }

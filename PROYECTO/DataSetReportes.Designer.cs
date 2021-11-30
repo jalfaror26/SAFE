@@ -40,6 +40,8 @@ namespace PROYECTO {
         
         private rptSaldosFacturasPagoDataTable tablerptSaldosFacturasPago;
         
+        private rptCajasChicasDataTable tablerptCajasChicas;
+        
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -91,6 +93,9 @@ namespace PROYECTO {
                 }
                 if ((ds.Tables["rptSaldosFacturasPago"] != null)) {
                     base.Tables.Add(new rptSaldosFacturasPagoDataTable(ds.Tables["rptSaldosFacturasPago"]));
+                }
+                if ((ds.Tables["rptCajasChicas"] != null)) {
+                    base.Tables.Add(new rptCajasChicasDataTable(ds.Tables["rptCajasChicas"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -192,6 +197,16 @@ namespace PROYECTO {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+        [global::System.ComponentModel.Browsable(false)]
+        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
+        public rptCajasChicasDataTable rptCajasChicas {
+            get {
+                return this.tablerptCajasChicas;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.BrowsableAttribute(true)]
         [global::System.ComponentModel.DesignerSerializationVisibilityAttribute(global::System.ComponentModel.DesignerSerializationVisibility.Visible)]
         public override global::System.Data.SchemaSerializationMode SchemaSerializationMode {
@@ -281,6 +296,9 @@ namespace PROYECTO {
                 if ((ds.Tables["rptSaldosFacturasPago"] != null)) {
                     base.Tables.Add(new rptSaldosFacturasPagoDataTable(ds.Tables["rptSaldosFacturasPago"]));
                 }
+                if ((ds.Tables["rptCajasChicas"] != null)) {
+                    base.Tables.Add(new rptCajasChicasDataTable(ds.Tables["rptCajasChicas"]));
+                }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
                 this.Namespace = ds.Namespace;
@@ -362,6 +380,12 @@ namespace PROYECTO {
                     this.tablerptSaldosFacturasPago.InitVars();
                 }
             }
+            this.tablerptCajasChicas = ((rptCajasChicasDataTable)(base.Tables["rptCajasChicas"]));
+            if ((initTable == true)) {
+                if ((this.tablerptCajasChicas != null)) {
+                    this.tablerptCajasChicas.InitVars();
+                }
+            }
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -388,6 +412,8 @@ namespace PROYECTO {
             base.Tables.Add(this.tablerptEstadoCuentaCliente);
             this.tablerptSaldosFacturasPago = new rptSaldosFacturasPagoDataTable();
             base.Tables.Add(this.tablerptSaldosFacturasPago);
+            this.tablerptCajasChicas = new rptCajasChicasDataTable();
+            base.Tables.Add(this.tablerptCajasChicas);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -435,6 +461,12 @@ namespace PROYECTO {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         private bool ShouldSerializerptSaldosFacturasPago() {
+            return false;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+        private bool ShouldSerializerptCajasChicas() {
             return false;
         }
         
@@ -516,6 +548,9 @@ namespace PROYECTO {
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         public delegate void rptSaldosFacturasPagoRowChangeEventHandler(object sender, rptSaldosFacturasPagoRowChangeEvent e);
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+        public delegate void rptCajasChicasRowChangeEventHandler(object sender, rptCajasChicasRowChangeEvent e);
         
         /// <summary>
         ///Represents the strongly named DataTable class.
@@ -4142,6 +4177,479 @@ namespace PROYECTO {
                 global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
                 attribute2.FixedValue = "rptSaldosFacturasPagoDataTable";
+                type.Attributes.Add(attribute2);
+                type.Particle = sequence;
+                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace)) {
+                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
+                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    try {
+                        global::System.Xml.Schema.XmlSchema schema = null;
+                        dsSchema.Write(s1);
+                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                            s2.SetLength(0);
+                            schema.Write(s2);
+                            if ((s1.Length == s2.Length)) {
+                                s1.Position = 0;
+                                s2.Position = 0;
+                                for (; ((s1.Position != s1.Length) 
+                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                    ;
+                                }
+                                if ((s1.Position == s1.Length)) {
+                                    return type;
+                                }
+                            }
+                        }
+                    }
+                    finally {
+                        if ((s1 != null)) {
+                            s1.Close();
+                        }
+                        if ((s2 != null)) {
+                            s2.Close();
+                        }
+                    }
+                }
+                xs.Add(dsSchema);
+                return type;
+            }
+        }
+        
+        /// <summary>
+        ///Represents the strongly named DataTable class.
+        ///</summary>
+        [global::System.Serializable()]
+        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
+        public partial class rptCajasChicasDataTable : global::System.Data.TypedTableBase<rptCajasChicasRow> {
+            
+            private global::System.Data.DataColumn columnDETCAJ_FECHAMOVIMIENTO;
+            
+            private global::System.Data.DataColumn columnDETCAJ_DOCUMENTO;
+            
+            private global::System.Data.DataColumn columnDETCAJ_CREDITO;
+            
+            private global::System.Data.DataColumn columnDETCAJ_DEBITO;
+            
+            private global::System.Data.DataColumn columnDETCAJ_MOVIMIENTO;
+            
+            private global::System.Data.DataColumn columnDETCAJ_JUSTIFICACION;
+            
+            private global::System.Data.DataColumn columnCAJ_LINEA;
+            
+            private global::System.Data.DataColumn columnCAJ_FECHAAPERTURA;
+            
+            private global::System.Data.DataColumn columnCAJ_DOCUMENTO;
+            
+            private global::System.Data.DataColumn columnCAJ_MONTO;
+            
+            private global::System.Data.DataColumn columnCAJ_SALDO;
+            
+            private global::System.Data.DataColumn columnCAJ_MONEDA;
+            
+            private global::System.Data.DataColumn columnEMPR_NOMBRE;
+            
+            private global::System.Data.DataColumn columnEMPR_OTROS;
+            
+            private global::System.Data.DataColumn columnusuario;
+            
+            private global::System.Data.DataColumn columnEMPR_LOGO;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public rptCajasChicasDataTable() {
+                this.TableName = "rptCajasChicas";
+                this.BeginInit();
+                this.InitClass();
+                this.EndInit();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            internal rptCajasChicasDataTable(global::System.Data.DataTable table) {
+                this.TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
+                    this.CaseSensitive = table.CaseSensitive;
+                }
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
+                    this.Locale = table.Locale;
+                }
+                if ((table.Namespace != table.DataSet.Namespace)) {
+                    this.Namespace = table.Namespace;
+                }
+                this.Prefix = table.Prefix;
+                this.MinimumCapacity = table.MinimumCapacity;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            protected rptCajasChicasDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+                    base(info, context) {
+                this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn DETCAJ_FECHAMOVIMIENTOColumn {
+                get {
+                    return this.columnDETCAJ_FECHAMOVIMIENTO;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn DETCAJ_DOCUMENTOColumn {
+                get {
+                    return this.columnDETCAJ_DOCUMENTO;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn DETCAJ_CREDITOColumn {
+                get {
+                    return this.columnDETCAJ_CREDITO;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn DETCAJ_DEBITOColumn {
+                get {
+                    return this.columnDETCAJ_DEBITO;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn DETCAJ_MOVIMIENTOColumn {
+                get {
+                    return this.columnDETCAJ_MOVIMIENTO;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn DETCAJ_JUSTIFICACIONColumn {
+                get {
+                    return this.columnDETCAJ_JUSTIFICACION;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn CAJ_LINEAColumn {
+                get {
+                    return this.columnCAJ_LINEA;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn CAJ_FECHAAPERTURAColumn {
+                get {
+                    return this.columnCAJ_FECHAAPERTURA;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn CAJ_DOCUMENTOColumn {
+                get {
+                    return this.columnCAJ_DOCUMENTO;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn CAJ_MONTOColumn {
+                get {
+                    return this.columnCAJ_MONTO;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn CAJ_SALDOColumn {
+                get {
+                    return this.columnCAJ_SALDO;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn CAJ_MONEDAColumn {
+                get {
+                    return this.columnCAJ_MONEDA;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn EMPR_NOMBREColumn {
+                get {
+                    return this.columnEMPR_NOMBRE;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn EMPR_OTROSColumn {
+                get {
+                    return this.columnEMPR_OTROS;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn usuarioColumn {
+                get {
+                    return this.columnusuario;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn EMPR_LOGOColumn {
+                get {
+                    return this.columnEMPR_LOGO;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            [global::System.ComponentModel.Browsable(false)]
+            public int Count {
+                get {
+                    return this.Rows.Count;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public rptCajasChicasRow this[int index] {
+                get {
+                    return ((rptCajasChicasRow)(this.Rows[index]));
+                }
+            }
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public event rptCajasChicasRowChangeEventHandler rptCajasChicasRowChanging;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public event rptCajasChicasRowChangeEventHandler rptCajasChicasRowChanged;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public event rptCajasChicasRowChangeEventHandler rptCajasChicasRowDeleting;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public event rptCajasChicasRowChangeEventHandler rptCajasChicasRowDeleted;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void AddrptCajasChicasRow(rptCajasChicasRow row) {
+                this.Rows.Add(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public rptCajasChicasRow AddrptCajasChicasRow(
+                        string DETCAJ_FECHAMOVIMIENTO, 
+                        string DETCAJ_DOCUMENTO, 
+                        double DETCAJ_CREDITO, 
+                        double DETCAJ_DEBITO, 
+                        string DETCAJ_MOVIMIENTO, 
+                        string DETCAJ_JUSTIFICACION, 
+                        string CAJ_LINEA, 
+                        string CAJ_FECHAAPERTURA, 
+                        string CAJ_DOCUMENTO, 
+                        double CAJ_MONTO, 
+                        double CAJ_SALDO, 
+                        string CAJ_MONEDA, 
+                        string EMPR_NOMBRE, 
+                        string EMPR_OTROS, 
+                        string usuario, 
+                        byte[] EMPR_LOGO) {
+                rptCajasChicasRow rowrptCajasChicasRow = ((rptCajasChicasRow)(this.NewRow()));
+                object[] columnValuesArray = new object[] {
+                        DETCAJ_FECHAMOVIMIENTO,
+                        DETCAJ_DOCUMENTO,
+                        DETCAJ_CREDITO,
+                        DETCAJ_DEBITO,
+                        DETCAJ_MOVIMIENTO,
+                        DETCAJ_JUSTIFICACION,
+                        CAJ_LINEA,
+                        CAJ_FECHAAPERTURA,
+                        CAJ_DOCUMENTO,
+                        CAJ_MONTO,
+                        CAJ_SALDO,
+                        CAJ_MONEDA,
+                        EMPR_NOMBRE,
+                        EMPR_OTROS,
+                        usuario,
+                        EMPR_LOGO};
+                rowrptCajasChicasRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowrptCajasChicasRow);
+                return rowrptCajasChicasRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public override global::System.Data.DataTable Clone() {
+                rptCajasChicasDataTable cln = ((rptCajasChicasDataTable)(base.Clone()));
+                cln.InitVars();
+                return cln;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            protected override global::System.Data.DataTable CreateInstance() {
+                return new rptCajasChicasDataTable();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            internal void InitVars() {
+                this.columnDETCAJ_FECHAMOVIMIENTO = base.Columns["DETCAJ_FECHAMOVIMIENTO"];
+                this.columnDETCAJ_DOCUMENTO = base.Columns["DETCAJ_DOCUMENTO"];
+                this.columnDETCAJ_CREDITO = base.Columns["DETCAJ_CREDITO"];
+                this.columnDETCAJ_DEBITO = base.Columns["DETCAJ_DEBITO"];
+                this.columnDETCAJ_MOVIMIENTO = base.Columns["DETCAJ_MOVIMIENTO"];
+                this.columnDETCAJ_JUSTIFICACION = base.Columns["DETCAJ_JUSTIFICACION"];
+                this.columnCAJ_LINEA = base.Columns["CAJ_LINEA"];
+                this.columnCAJ_FECHAAPERTURA = base.Columns["CAJ_FECHAAPERTURA"];
+                this.columnCAJ_DOCUMENTO = base.Columns["CAJ_DOCUMENTO"];
+                this.columnCAJ_MONTO = base.Columns["CAJ_MONTO"];
+                this.columnCAJ_SALDO = base.Columns["CAJ_SALDO"];
+                this.columnCAJ_MONEDA = base.Columns["CAJ_MONEDA"];
+                this.columnEMPR_NOMBRE = base.Columns["EMPR_NOMBRE"];
+                this.columnEMPR_OTROS = base.Columns["EMPR_OTROS"];
+                this.columnusuario = base.Columns["usuario"];
+                this.columnEMPR_LOGO = base.Columns["EMPR_LOGO"];
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            private void InitClass() {
+                this.columnDETCAJ_FECHAMOVIMIENTO = new global::System.Data.DataColumn("DETCAJ_FECHAMOVIMIENTO", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDETCAJ_FECHAMOVIMIENTO);
+                this.columnDETCAJ_DOCUMENTO = new global::System.Data.DataColumn("DETCAJ_DOCUMENTO", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDETCAJ_DOCUMENTO);
+                this.columnDETCAJ_CREDITO = new global::System.Data.DataColumn("DETCAJ_CREDITO", typeof(double), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDETCAJ_CREDITO);
+                this.columnDETCAJ_DEBITO = new global::System.Data.DataColumn("DETCAJ_DEBITO", typeof(double), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDETCAJ_DEBITO);
+                this.columnDETCAJ_MOVIMIENTO = new global::System.Data.DataColumn("DETCAJ_MOVIMIENTO", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDETCAJ_MOVIMIENTO);
+                this.columnDETCAJ_JUSTIFICACION = new global::System.Data.DataColumn("DETCAJ_JUSTIFICACION", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDETCAJ_JUSTIFICACION);
+                this.columnCAJ_LINEA = new global::System.Data.DataColumn("CAJ_LINEA", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCAJ_LINEA);
+                this.columnCAJ_FECHAAPERTURA = new global::System.Data.DataColumn("CAJ_FECHAAPERTURA", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCAJ_FECHAAPERTURA);
+                this.columnCAJ_DOCUMENTO = new global::System.Data.DataColumn("CAJ_DOCUMENTO", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCAJ_DOCUMENTO);
+                this.columnCAJ_MONTO = new global::System.Data.DataColumn("CAJ_MONTO", typeof(double), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCAJ_MONTO);
+                this.columnCAJ_SALDO = new global::System.Data.DataColumn("CAJ_SALDO", typeof(double), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCAJ_SALDO);
+                this.columnCAJ_MONEDA = new global::System.Data.DataColumn("CAJ_MONEDA", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCAJ_MONEDA);
+                this.columnEMPR_NOMBRE = new global::System.Data.DataColumn("EMPR_NOMBRE", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnEMPR_NOMBRE);
+                this.columnEMPR_OTROS = new global::System.Data.DataColumn("EMPR_OTROS", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnEMPR_OTROS);
+                this.columnusuario = new global::System.Data.DataColumn("usuario", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnusuario);
+                this.columnEMPR_LOGO = new global::System.Data.DataColumn("EMPR_LOGO", typeof(byte[]), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnEMPR_LOGO);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public rptCajasChicasRow NewrptCajasChicasRow() {
+                return ((rptCajasChicasRow)(this.NewRow()));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+                return new rptCajasChicasRow(builder);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            protected override global::System.Type GetRowType() {
+                return typeof(rptCajasChicasRow);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanged(e);
+                if ((this.rptCajasChicasRowChanged != null)) {
+                    this.rptCajasChicasRowChanged(this, new rptCajasChicasRowChangeEvent(((rptCajasChicasRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanging(e);
+                if ((this.rptCajasChicasRowChanging != null)) {
+                    this.rptCajasChicasRowChanging(this, new rptCajasChicasRowChangeEvent(((rptCajasChicasRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleted(e);
+                if ((this.rptCajasChicasRowDeleted != null)) {
+                    this.rptCajasChicasRowDeleted(this, new rptCajasChicasRowChangeEvent(((rptCajasChicasRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleting(e);
+                if ((this.rptCajasChicasRowDeleting != null)) {
+                    this.rptCajasChicasRowDeleting(this, new rptCajasChicasRowChangeEvent(((rptCajasChicasRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void RemoverptCajasChicasRow(rptCajasChicasRow row) {
+                this.Rows.Remove(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
+                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                DataSetReportes ds = new DataSetReportes();
+                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
+                any1.MinOccurs = new decimal(0);
+                any1.MaxOccurs = decimal.MaxValue;
+                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any1);
+                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
+                any2.MinOccurs = new decimal(1);
+                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any2);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute1.Name = "namespace";
+                attribute1.FixedValue = ds.Namespace;
+                type.Attributes.Add(attribute1);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute2.Name = "tableTypeName";
+                attribute2.FixedValue = "rptCajasChicasDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
@@ -7820,6 +8328,470 @@ namespace PROYECTO {
         }
         
         /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
+        public partial class rptCajasChicasRow : global::System.Data.DataRow {
+            
+            private rptCajasChicasDataTable tablerptCajasChicas;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            internal rptCajasChicasRow(global::System.Data.DataRowBuilder rb) : 
+                    base(rb) {
+                this.tablerptCajasChicas = ((rptCajasChicasDataTable)(this.Table));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public string DETCAJ_FECHAMOVIMIENTO {
+                get {
+                    try {
+                        return ((string)(this[this.tablerptCajasChicas.DETCAJ_FECHAMOVIMIENTOColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'DETCAJ_FECHAMOVIMIENTO\' in table \'rptCajasChicas\' is DBNull" +
+                                ".", e);
+                    }
+                }
+                set {
+                    this[this.tablerptCajasChicas.DETCAJ_FECHAMOVIMIENTOColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public string DETCAJ_DOCUMENTO {
+                get {
+                    try {
+                        return ((string)(this[this.tablerptCajasChicas.DETCAJ_DOCUMENTOColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'DETCAJ_DOCUMENTO\' in table \'rptCajasChicas\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablerptCajasChicas.DETCAJ_DOCUMENTOColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public double DETCAJ_CREDITO {
+                get {
+                    try {
+                        return ((double)(this[this.tablerptCajasChicas.DETCAJ_CREDITOColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'DETCAJ_CREDITO\' in table \'rptCajasChicas\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablerptCajasChicas.DETCAJ_CREDITOColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public double DETCAJ_DEBITO {
+                get {
+                    try {
+                        return ((double)(this[this.tablerptCajasChicas.DETCAJ_DEBITOColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'DETCAJ_DEBITO\' in table \'rptCajasChicas\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablerptCajasChicas.DETCAJ_DEBITOColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public string DETCAJ_MOVIMIENTO {
+                get {
+                    try {
+                        return ((string)(this[this.tablerptCajasChicas.DETCAJ_MOVIMIENTOColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'DETCAJ_MOVIMIENTO\' in table \'rptCajasChicas\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablerptCajasChicas.DETCAJ_MOVIMIENTOColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public string DETCAJ_JUSTIFICACION {
+                get {
+                    try {
+                        return ((string)(this[this.tablerptCajasChicas.DETCAJ_JUSTIFICACIONColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'DETCAJ_JUSTIFICACION\' in table \'rptCajasChicas\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablerptCajasChicas.DETCAJ_JUSTIFICACIONColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public string CAJ_LINEA {
+                get {
+                    try {
+                        return ((string)(this[this.tablerptCajasChicas.CAJ_LINEAColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'CAJ_LINEA\' in table \'rptCajasChicas\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablerptCajasChicas.CAJ_LINEAColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public string CAJ_FECHAAPERTURA {
+                get {
+                    try {
+                        return ((string)(this[this.tablerptCajasChicas.CAJ_FECHAAPERTURAColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'CAJ_FECHAAPERTURA\' in table \'rptCajasChicas\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablerptCajasChicas.CAJ_FECHAAPERTURAColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public string CAJ_DOCUMENTO {
+                get {
+                    try {
+                        return ((string)(this[this.tablerptCajasChicas.CAJ_DOCUMENTOColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'CAJ_DOCUMENTO\' in table \'rptCajasChicas\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablerptCajasChicas.CAJ_DOCUMENTOColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public double CAJ_MONTO {
+                get {
+                    try {
+                        return ((double)(this[this.tablerptCajasChicas.CAJ_MONTOColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'CAJ_MONTO\' in table \'rptCajasChicas\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablerptCajasChicas.CAJ_MONTOColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public double CAJ_SALDO {
+                get {
+                    try {
+                        return ((double)(this[this.tablerptCajasChicas.CAJ_SALDOColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'CAJ_SALDO\' in table \'rptCajasChicas\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablerptCajasChicas.CAJ_SALDOColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public string CAJ_MONEDA {
+                get {
+                    try {
+                        return ((string)(this[this.tablerptCajasChicas.CAJ_MONEDAColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'CAJ_MONEDA\' in table \'rptCajasChicas\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablerptCajasChicas.CAJ_MONEDAColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public string EMPR_NOMBRE {
+                get {
+                    try {
+                        return ((string)(this[this.tablerptCajasChicas.EMPR_NOMBREColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'EMPR_NOMBRE\' in table \'rptCajasChicas\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablerptCajasChicas.EMPR_NOMBREColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public string EMPR_OTROS {
+                get {
+                    try {
+                        return ((string)(this[this.tablerptCajasChicas.EMPR_OTROSColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'EMPR_OTROS\' in table \'rptCajasChicas\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablerptCajasChicas.EMPR_OTROSColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public string usuario {
+                get {
+                    try {
+                        return ((string)(this[this.tablerptCajasChicas.usuarioColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'usuario\' in table \'rptCajasChicas\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablerptCajasChicas.usuarioColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public byte[] EMPR_LOGO {
+                get {
+                    try {
+                        return ((byte[])(this[this.tablerptCajasChicas.EMPR_LOGOColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'EMPR_LOGO\' in table \'rptCajasChicas\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablerptCajasChicas.EMPR_LOGOColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsDETCAJ_FECHAMOVIMIENTONull() {
+                return this.IsNull(this.tablerptCajasChicas.DETCAJ_FECHAMOVIMIENTOColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetDETCAJ_FECHAMOVIMIENTONull() {
+                this[this.tablerptCajasChicas.DETCAJ_FECHAMOVIMIENTOColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsDETCAJ_DOCUMENTONull() {
+                return this.IsNull(this.tablerptCajasChicas.DETCAJ_DOCUMENTOColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetDETCAJ_DOCUMENTONull() {
+                this[this.tablerptCajasChicas.DETCAJ_DOCUMENTOColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsDETCAJ_CREDITONull() {
+                return this.IsNull(this.tablerptCajasChicas.DETCAJ_CREDITOColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetDETCAJ_CREDITONull() {
+                this[this.tablerptCajasChicas.DETCAJ_CREDITOColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsDETCAJ_DEBITONull() {
+                return this.IsNull(this.tablerptCajasChicas.DETCAJ_DEBITOColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetDETCAJ_DEBITONull() {
+                this[this.tablerptCajasChicas.DETCAJ_DEBITOColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsDETCAJ_MOVIMIENTONull() {
+                return this.IsNull(this.tablerptCajasChicas.DETCAJ_MOVIMIENTOColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetDETCAJ_MOVIMIENTONull() {
+                this[this.tablerptCajasChicas.DETCAJ_MOVIMIENTOColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsDETCAJ_JUSTIFICACIONNull() {
+                return this.IsNull(this.tablerptCajasChicas.DETCAJ_JUSTIFICACIONColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetDETCAJ_JUSTIFICACIONNull() {
+                this[this.tablerptCajasChicas.DETCAJ_JUSTIFICACIONColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsCAJ_LINEANull() {
+                return this.IsNull(this.tablerptCajasChicas.CAJ_LINEAColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetCAJ_LINEANull() {
+                this[this.tablerptCajasChicas.CAJ_LINEAColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsCAJ_FECHAAPERTURANull() {
+                return this.IsNull(this.tablerptCajasChicas.CAJ_FECHAAPERTURAColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetCAJ_FECHAAPERTURANull() {
+                this[this.tablerptCajasChicas.CAJ_FECHAAPERTURAColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsCAJ_DOCUMENTONull() {
+                return this.IsNull(this.tablerptCajasChicas.CAJ_DOCUMENTOColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetCAJ_DOCUMENTONull() {
+                this[this.tablerptCajasChicas.CAJ_DOCUMENTOColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsCAJ_MONTONull() {
+                return this.IsNull(this.tablerptCajasChicas.CAJ_MONTOColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetCAJ_MONTONull() {
+                this[this.tablerptCajasChicas.CAJ_MONTOColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsCAJ_SALDONull() {
+                return this.IsNull(this.tablerptCajasChicas.CAJ_SALDOColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetCAJ_SALDONull() {
+                this[this.tablerptCajasChicas.CAJ_SALDOColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsCAJ_MONEDANull() {
+                return this.IsNull(this.tablerptCajasChicas.CAJ_MONEDAColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetCAJ_MONEDANull() {
+                this[this.tablerptCajasChicas.CAJ_MONEDAColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsEMPR_NOMBRENull() {
+                return this.IsNull(this.tablerptCajasChicas.EMPR_NOMBREColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetEMPR_NOMBRENull() {
+                this[this.tablerptCajasChicas.EMPR_NOMBREColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsEMPR_OTROSNull() {
+                return this.IsNull(this.tablerptCajasChicas.EMPR_OTROSColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetEMPR_OTROSNull() {
+                this[this.tablerptCajasChicas.EMPR_OTROSColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsusuarioNull() {
+                return this.IsNull(this.tablerptCajasChicas.usuarioColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetusuarioNull() {
+                this[this.tablerptCajasChicas.usuarioColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsEMPR_LOGONull() {
+                return this.IsNull(this.tablerptCajasChicas.EMPR_LOGOColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetEMPR_LOGONull() {
+                this[this.tablerptCajasChicas.EMPR_LOGOColumn] = global::System.Convert.DBNull;
+            }
+        }
+        
+        /// <summary>
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
@@ -8077,6 +9049,40 @@ namespace PROYECTO {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public rptSaldosFacturasPagoRow Row {
+                get {
+                    return this.eventRow;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataRowAction Action {
+                get {
+                    return this.eventAction;
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Row event argument class
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+        public class rptCajasChicasRowChangeEvent : global::System.EventArgs {
+            
+            private rptCajasChicasRow eventRow;
+            
+            private global::System.Data.DataRowAction eventAction;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public rptCajasChicasRowChangeEvent(rptCajasChicasRow row, global::System.Data.DataRowAction action) {
+                this.eventRow = row;
+                this.eventAction = action;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public rptCajasChicasRow Row {
                 get {
                     return this.eventRow;
                 }
