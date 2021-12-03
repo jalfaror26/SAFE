@@ -150,13 +150,13 @@ namespace PROYECTO
 
         private void txtNuevaContrasenna_Leave(object sender, EventArgs e)
         {
-            if (Valida_Contrasenna(txtNuevaContrasenna.Text.Trim()))
-                txtConfirmNueva.Focus();
-            else
-            {
-                MessageBox.Show("La contraseña no es valida, La contraseña debe tener 8 caracteres, incluyendo 1 letra mayúscula, 1 carácter especial, caracteres alfanuméricos", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                txtNuevaContrasenna.Focus();
-            }
+            //if (Valida_Contrasenna(txtNuevaContrasenna.Text.Trim()))
+            //    txtConfirmNueva.Focus();
+            //else
+            //{
+            //    MessageBox.Show("La contraseña no es valida, La contraseña debe tener 8 caracteres, incluyendo 1 letra mayúscula, 1 carácter especial, caracteres alfanuméricos", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            //    txtNuevaContrasenna.Focus();
+            //}
         }
 
         private void frmUsuarioContraseñaCambio_KeyDown(object sender, KeyEventArgs e)
